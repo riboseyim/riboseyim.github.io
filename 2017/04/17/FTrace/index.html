@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>FTrace | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ftrace: trace your kernel functions!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FTrace">
+<meta property="og:url" content="http://riboseyim.github.com/2017/04/17/FTrace/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="ftrace: trace your kernel functions!">
+<meta property="og:updated_time" content="2017-04-17T10:40:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FTrace">
+<meta name="twitter:description" content="ftrace: trace your kernel functions!">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-FTrace" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/17/FTrace/" class="article-date">
+  	<time datetime="2017-04-17T10:02:57.000Z" itemprop="datePublished">2017-04-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FTrace
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ftrace-trace-your-kernel-functions"><a href="#ftrace-trace-your-kernel-functions" class="headerlink" title="ftrace: trace your kernel functions!"></a>ftrace: trace your kernel functions!</h1><a id="more"></a>
+<p>开始： Linux kernel 2.6，2008年。</p>
+<h2 id="what’s-ftrace"><a href="#what’s-ftrace" class="headerlink" title="what’s ftrace?"></a>what’s ftrace?</h2><p>ftrace is a Linux kernel feature that lets you trace Linux kernel function calls. Why would you want to do that? Well, suppose you’re debugging a weird problem, and you’ve gotten to the point where you’re staring at the source code for your kernel version and wondering what exactly is going on.<br>I don’t read the kernel source code very often when debugging, but occasionally I do! For example this week at work we had a program that was frozen and stuck spinning inside the kernel. Looking at what functions were being called helped us understand better what was happening in the kernel and what systems were involved (in that case, it was the virtual memory system)!<br>I think ftrace is a bit of a niche tool (it’s definitely less broadly useful and harder to use than strace) but that it’s worth knowing about. So let’s learn about it!</p>
+<h2 id="first-steps-with-ftrace"><a href="#first-steps-with-ftrace" class="headerlink" title="first steps with ftrace"></a>first steps with ftrace</h2><p>Unlike strace and perf, ftrace isn’t a program exactly – you don’t just run ftrace my_cool_function. That would be too easy!<br>If you read Debugging the kernel using Ftrace it starts out by telling you to<br><strong>cd /sys/kernel/debug/tracing</strong> and then do various filesystem manipulations.<br>For me this is way too annoying – a simple example of using ftrace this way is something like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /sys/kernel/debug/tracing</span><br><span class="line">echo function &gt; current_tracer</span><br><span class="line">echo do_page_fault &gt; set_ftrace_filter</span><br><span class="line">cat trace</span><br></pre></td></tr></table></figure>
+<p>This filesystem interface to the tracing system (“put values in these magic files and things will happen”) seems theoretically possible to use but really not my preference.<br>Luckily, team ftrace also thought this interface wasn’t that user friendly and so there is an easier-to-use interface called trace-cmd!!! trace-cmd is a normal program with command line arguments. We’ll use that! I found an intro to trace-cmd on LWN at trace-cmd: A front-end for Ftrace.<br>getting started with trace-cmd: let’s trace just one function<br>First, I needed to install trace-cmd with sudo apt-get install trace-cmd. Easy enough.<br>For this first ftrace demo, I decided I wanted to know when my kernel was handling a page fault. When Linux allocates memory, it often does it lazily (“you weren’t really planning to use that memory, right?“). This means that when an application tries to actually write to memory that it allocated, there’s a page fault and the kernel needs to give the application physical memory to use.<br>Let’s start trace-cmd and make it trace the do_page_fault function!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo trace-cmd record -p function -l do_page_fault</span><br><span class="line">  plugin &apos;function&apos;</span><br><span class="line">Hit Ctrl^C to stop recording</span><br></pre></td></tr></table></figure>
+<p>I ran it for a few seconds and then hit Ctrl+C. Awesome! It created a 2.5MB file called trace.dat. Let’s see what’s that file!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sudo trace-cmd report</span><br><span class="line">		  chrome-15144 [000] 11446.466121: function:             do_page_fault</span><br><span class="line">		  chrome-15144 [000] 11446.467910: function:             do_page_fault</span><br><span class="line">		  chrome-15144 [000] 11446.469174: function:             do_page_fault</span><br><span class="line">		  chrome-15144 [000] 11446.474225: function:             do_page_fault</span><br><span class="line">		  chrome-15144 [000] 11446.474386: function:             do_page_fault</span><br><span class="line">		  chrome-15144 [000] 11446.478768: function:             do_page_fault</span><br><span class="line"> CompositorTileW-15154 [001] 11446.480172: function:             do_page_fault</span><br><span class="line">		  chrome-1830  [003] 11446.486696: function:             do_page_fault</span><br><span class="line"> CompositorTileW-15154 [001] 11446.488983: function:             do_page_fault</span><br><span class="line"> CompositorTileW-15154 [001] 11446.489034: function:             do_page_fault</span><br><span class="line"> CompositorTileW-15154 [001] 11446.489045: function:             do_page_fault</span><br></pre></td></tr></table></figure></p>
+<p>This is neat – it shows me the process name (chrome), process ID (15144), CPU (000), and function that got traced.<br>By looking at the whole report, (sudo trace-cmd report | grep chrome) I can see that we traced for about 1.5 seconds and in that time Chrome had about 500 page faults. Cool! We have done our first ftrace!<br>next ftrace trick: let’s trace a process!<br>Okay, but just seeing one function is kind of boring! Let’s say I want to know everything that’s happening for one program. I use a static site generator called Hugo. What’s the kernel doing for Hugo?<br>Hugo’s PID on my computer right now is 25314, so I recorded all the kernel functions with:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo trace-cmd record --help # I read the help!</span><br><span class="line">sudo trace-cmd record -p function -P 25314 # record for PID 25314</span><br></pre></td></tr></table></figure></p>
+<p>sudo trace-cmd report printed out 18,000 lines of output. If you’re interested, you can see all 18,000 lines here.</p>
+<p>18,000 lines is a lot so here are some interesting excerpts.<br>This looks like what happens when the clock_gettime system call runs. Neat!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> compat_SyS_clock_gettime</span><br><span class="line">	SyS_clock_gettime</span><br><span class="line">	   clockid_to_kclock</span><br><span class="line">	   posix_clock_realtime_get</span><br><span class="line">		  getnstimeofday64</span><br><span class="line">			 __getnstimeofday64</span><br><span class="line">				arch_counter_read</span><br><span class="line">	__compat_put_timespec</span><br><span class="line">This is something related to process scheduling:</span><br><span class="line"> cpufreq_sched_irq_work</span><br><span class="line">	wake_up_process</span><br><span class="line">	   try_to_wake_up</span><br><span class="line">		  _raw_spin_lock_irqsave</span><br><span class="line">			 do_raw_spin_lock</span><br><span class="line">		  _raw_spin_lock</span><br><span class="line">			 do_raw_spin_lock</span><br><span class="line">		  walt_ktime_clock</span><br><span class="line">			 ktime_get</span><br><span class="line">				arch_counter_read</span><br><span class="line">		  walt_update_task_ravg</span><br><span class="line">			 exiting_task</span><br></pre></td></tr></table></figure></p>
+<p>Being able to see all these function calls is pretty cool, even if I don’t quite understand them.</p>
+<h2 id="“function-graph”-tracing"><a href="#“function-graph”-tracing" class="headerlink" title="“function graph” tracing"></a>“function graph” tracing</h2><p>There’s another tracing mode called function_graph. This is the same as the function tracer except that it instruments both entering and exiting a function. Here’s the output of that tracer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo trace-cmd record -p function_graph -P 25314</span><br></pre></td></tr></table></figure>
+<p>Again, here’s a snipped (this time from the futex code)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">			 |      futex_wake() &#123;</span><br><span class="line">			 |        get_futex_key() &#123;</span><br><span class="line">			 |          get_user_pages_fast() &#123;</span><br><span class="line">  1.458 us   |            __get_user_pages_fast();</span><br><span class="line">  4.375 us   |          &#125;</span><br><span class="line">			 |          __might_sleep() &#123;</span><br><span class="line">  0.292 us   |            ___might_sleep();</span><br><span class="line">  2.333 us   |          &#125;</span><br><span class="line">  0.584 us   |          get_futex_key_refs();</span><br><span class="line">			 |          unlock_page() &#123;</span><br><span class="line">  0.291 us   |            page_waitqueue();</span><br><span class="line">  0.583 us   |            __wake_up_bit();</span><br><span class="line">  5.250 us   |          &#125;</span><br><span class="line">  0.583 us   |          put_page();</span><br><span class="line">+ 24.208 us  |        &#125;</span><br></pre></td></tr></table></figure>
+<p>We see in this example that get_futex_key gets called right after futex_wake. Is that what really happens in the source code? We can check!! Here’s the definition of futex_wake in Linux 4.4 (my kernel version).<br>I’ll save you a click: it looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static int</span><br><span class="line">futex_wake(u32 __user *uaddr, unsigned int flags, int nr_wake, u32 bitset)</span><br><span class="line">&#123;</span><br><span class="line">	struct futex_hash_bucket *hb;</span><br><span class="line">	struct futex_q *this, *next;</span><br><span class="line">	union futex_key key = FUTEX_KEY_INIT;</span><br><span class="line">	int ret;</span><br><span class="line">	WAKE_Q(wake_q);</span><br><span class="line"></span><br><span class="line">	if (!bitset)</span><br><span class="line">		return -EINVAL;</span><br><span class="line"></span><br><span class="line">	ret = get_futex_key(uaddr, flags &amp; FLAGS_SHARED, &amp;key, VERIFY_READ);</span><br></pre></td></tr></table></figure>
+<p>So the first function called in futex_wake really is get_futex_key! Neat! Reading the function trace was definitely an easier way to find that out than by reading the kernel code, and it’s nice to see how long all of the functions took.<br>How to know what functions you can trace<br>If you run sudo trace-cmd list -f you’ll get a list of all the functions you can trace. That’s pretty simple but it’s important.</p>
+<h2 id="one-last-thing-events"><a href="#one-last-thing-events" class="headerlink" title="one last thing: events!"></a>one last thing: events!</h2><p>So, now we know how to trace functions in the kernel! That’s really cool!<br>There’s one more class of thing we can trace though! Some events don’t correspond super well to function calls. For example, you might want to knowwhen a program is scheduled on or off the CPU! You might be able to figure that out by peering at function calls, but I sure can’t.<br>So the kernel also gives you a few events so you can see when a few important things happen. You can see a list of all these events with <strong>sudo cat /sys/kernel/debug/tracing/available_events</strong><br>I looked at all the sched_switch events. I’m not exactly sure what sched_switch is but it’s something to do with scheduling I guess.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cat /sys/kernel/debug/tracing/available_events</span><br><span class="line">sudo trace-cmd record -e sched:sched_switch</span><br><span class="line">sudo trace-cmd report</span><br></pre></td></tr></table></figure>
+<p>The output looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">16169.624862:   Chrome_ChildIOT:24817 [112] S ==&gt; chrome:15144 [120]</span><br><span class="line">16169.624992:   chrome:15144 [120] S ==&gt; swapper/3:0 [120]</span><br><span class="line">16169.625202:   swapper/3:0 [120] R ==&gt; Chrome_ChildIOT:24817 [112]</span><br><span class="line">16169.625251:   Chrome_ChildIOT:24817 [112] R ==&gt; chrome:1561 [112]</span><br><span class="line">16169.625437:   chrome:1561 [112] S ==&gt; chrome:15144 [120]</span><br></pre></td></tr></table></figure>
+<p>so you can see it switching from PID 24817 -&gt; 15144 -&gt; kernel -&gt; 24817 -&gt; 1561 -&gt; 15114. (all of these events are on the same CPU)</p>
+<h2 id="how-does-ftrace-work"><a href="#how-does-ftrace-work" class="headerlink" title="how does ftrace work?"></a>how does ftrace work?</h2><blockquote>
+<p>ftrace is a dynamic tracing system.</p>
+</blockquote>
+<p>This means that when I start ftracing a kernel function, the function’s code gets changed. So – let’s suppose that I’m tracing that do_page_fault function from before. The kernel will insert some extra instructions in the assembly for that function to notify the tracing system every time that function gets called. The reason it can add extra instructions is that Linux compiles in a few extra NOP instructions into every function, so there’s space to add tracing code when needed.<br>This is awesome because it means that when I’m not using ftrace to trace my kernel, it doesn’t affect performance at all. When I do start tracing, the more functions I trace, the more overhead it’ll have.<br>(probably some of this is wrong, but this is how I think ftrace works anyway)</p>
+<h2 id="KernelShark"><a href="#KernelShark" class="headerlink" title="KernelShark"></a>KernelShark</h2><p>Another tool for visualizing the output of ftrace better is kernelshark. I haven’t played with it much yet but it looks useful. You can install it with sudo apt-get install kernelshark.</p>
+<h2 id="use-ftrace-more-easily-Brendan-Gregg’s-tools"><a href="#use-ftrace-more-easily-Brendan-Gregg’s-tools" class="headerlink" title="use ftrace more easily: Brendan Gregg’s tools"></a>use ftrace more easily: Brendan Gregg’s tools</h2><p>As we’ve seen in this post, you need to think quite a lot about what individual kernel functions / events do to use ftrace directly. This is cool, but it’s also a lot of work!<br>Brendan Gregg (our linux debugging tools hero) has repository of tools that use ftrace to give you information about various things like IO latency. They’re all in his perf-tools repository on GitHub.<br>The tradeoff here is that they’re easier to use, but you’re limited to things that Brendan Gregg thought of &amp; decided to make a tool for. Which is a lot of things! :)</p>
+<h2 id="a-new-superpower"><a href="#a-new-superpower" class="headerlink" title="a new superpower"></a>a new superpower</h2><p>I’m really happy I took the time to learn a little more about ftrace today! Like any kernel tool, it’ll work differently between different kernel versions, but I hope that you find it useful one day.<br>an index of ftrace articles</p>
+<h2 id="Articles"><a href="#Articles" class="headerlink" title="Articles"></a>Articles</h2><ol>
+<li>Debugging the kernel using Ftrace - part 1 (Dec 2009, Steven Rostedt)</li>
+<li>Debugging the kernel using Ftrace - part 2 (Dec 2009, Steven Rostedt)</li>
+<li>Secrets of the Linux function tracer (Jan 2010, Steven Rostedt)</li>
+<li>trace-cmd: A front-end for Ftrace (Oct 2010, Steven Rostedt)</li>
+<li>Using KernelShark to analyze the real-time scheduler (2011, Steven Rostedt)</li>
+<li>Ftrace: The hidden light switch (2014, Brendan Gregg)</li>
+<li>the kernel documentation: (which is quite useful) Documentation/ftrace.txt</li>
+<li>documentation on events you can trace Documentation/events.txt</li>
+<li>some docs on ftrace design for linux kernel devs (not as useful, but interesting)</li>
+<li>Documentation/ftrace-design.txt</li>
+</ol>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>1、阅读trace-cmd结果的图形化工具：<a href="http://rostedt.homelinux.com/kernelshark/" target="_blank" rel="external">KernelShark</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/20/MrGuZhun/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          人物-顾准
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/13/Les-Miserables/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">世纪小说《悲惨世界》</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="FTrace" data-title="FTrace" data-url="http://riboseyim.github.com/2017/04/17/FTrace/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

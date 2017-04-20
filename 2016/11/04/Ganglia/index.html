@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>基于Ganglia实现集群性能态势感知 | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于Ganglia实现集群性能态势感知本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。
+回顾通过前面的发布过的两篇文章，我们已经大致掌握了描述单个服务器的性能情况的方法。可以从load avgerage等总括性的数据着手，获得系统资源利用率（CPU、内存、I/O、网络）和进程运行情况的整体概念。参考CPU使用率和I/O等待时间等具体的数字，从而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Ganglia实现集群性能态势感知">
+<meta property="og:url" content="http://riboseyim.github.com/2016/11/04/Ganglia/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="基于Ganglia实现集群性能态势感知本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。
+回顾通过前面的发布过的两篇文章，我们已经大致掌握了描述单个服务器的性能情况的方法。可以从load avgerage等总括性的数据着手，获得系统资源利用率（CPU、内存、I/O、网络）和进程运行情况的整体概念。参考CPU使用率和I/O等待时间等具体的数字，从而">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_Arch_Top.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_Install.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_Arch_Impl.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-1.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-2.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-3.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-4.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-5.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-6.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Nginx.jpg">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-CPU.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_Perf_Test.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia-sFlow.jpg">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_DIE.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_WACM.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_ADAM.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg">
+<meta property="og:updated_time" content="2017-03-29T06:30:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Ganglia实现集群性能态势感知">
+<meta name="twitter:description" content="基于Ganglia实现集群性能态势感知本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。
+回顾通过前面的发布过的两篇文章，我们已经大致掌握了描述单个服务器的性能情况的方法。可以从load avgerage等总括性的数据着手，获得系统资源利用率（CPU、内存、I/O、网络）和进程运行情况的整体概念。参考CPU使用率和I/O等待时间等具体的数字，从而">
+<meta name="twitter:image" content="http://og2061b3n.bkt.clouddn.com/Ganglia_Arch_Top.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Ganglia" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/04/Ganglia/" class="article-date">
+  	<time datetime="2016-11-03T17:45:16.000Z" itemprop="datePublished">2016-11-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于Ganglia实现集群性能态势感知
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/">OpenSource</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基于Ganglia实现集群性能态势感知"><a href="#基于Ganglia实现集群性能态势感知" class="headerlink" title="基于Ganglia实现集群性能态势感知"></a>基于Ganglia实现集群性能态势感知</h1><p>本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。</p>
+<h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p>通过前面的发布过的两篇文章，我们已经大致掌握了描述单个服务器的性能情况的方法。可以从load avgerage等总括性的数据着手，获得系统资源利用率（CPU、内存、I/O、网络）和进程运行情况的整体概念。参考CPU使用率和I/O等待时间等具体的数字，从而自顶向下快速排查各进程状态。也可以在60秒内，通过运行以下10个基本命令，判断是否存在异常、评估饱和度，度量请求队列长度等等。</p>
+<p><a href="http://www.jianshu.com/p/db8e8a2884ef" target="_blank" rel="external">1.基于Linux单机的负载评估</a></p>
+<p><a href="http://www.jianshu.com/p/fd6e35f529c1" target="_blank" rel="external">2.Netflix性能分析模型：In 60 Seconds</a></p>
+<p>在真实的工程实践中，并不能总是通过几行简单的命令，直接获得性能问题的答案。一般不会存在一台单独运行的服务器，它们一定属于某个服务集群之中，就算是同一集群的服务器，也可能属于不同建设周期、硬件配置不同、分工角色不同。或者由不同机房、不通集群的服务器共同协作完成任务。</p>
+<p>另外，很多性能问题也需要长时间的追踪、对比才能作出判断。正如任何一个高明的医生，都需要尽可能多地了解、记录病人的病史，不掌握这些情况，盲目下药，无异于庸医杀人。诚如医者曰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">夫经方之难精，由来尚矣。今病有内同而外异，亦有内异而外，</span><br><span class="line">故五脏六腑之盈虚，血脉荣卫之通塞，固非耳目之所察，</span><br><span class="line">必先诊候以审之。世有愚者，读方三年，便谓天下无病可治；</span><br><span class="line">及治病三年，乃知天下无方可用。</span><br></pre></td></tr></table></figure>
+<p>基于Ganglia项目，我们可以快速搭建一套高性能的监控系统，展开故障诊断分析、资源扩容预算甚至故障预测。</p>
+<h4 id="Ganglia框架简析"><a href="#Ganglia框架简析" class="headerlink" title="Ganglia框架简析"></a>Ganglia框架简析</h4><p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_Arch_Top.png" alt=""></p>
+<a id="more"></a>
+<p>一般应用中，需要用到两个核心组件：</p>
+<p><strong> Gmond （Ganglia Monitoring Daemon） </strong><br>Gmond承担双重角色：1、作为Agent，部署在所有需要监控的服务器上。<br>2、作为收发机，接收或转发数据包。</p>
+<p><strong> Gmetad (Ganglia Meta Daemon)</strong><br>负责收集所在集群的数据，并持久化到RRD数据库。根据集群的组网情况，可以部署1-N个。</p>
+<p><strong> Web frontend </strong><br>Ganglia项目提供一个PHP编写的通用型的Web包，主要实现数据可视化，能提供一些简单的数据筛选UI。页面不多，大量使用了模版技术。HTTP Server方面，用Apache和Nginx都可以。</p>
+<p><strong> RRDTool (Round Robin Database)  </strong><br>Gmetad收集的时间序列数据都通过RRD存储，RRDTool作为绘图引擎使用。</p>
+<p><strong> 插件生态 </strong><br>Ganglia最重要的特性之一就是提供了一个灵活的数据标准和插件API。<br>它使得我们可以根据系统的情况，很容易地在默认的监控指标集之上，引用或定制其他扩展指标。<br>这一特性在大数据领域也获得了认可，Hadoop,Spark等都开放了面向Ganglia的指标集。<br>在Github上也有很多现成的扩展插件。</p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_Install.png" alt=""></p>
+<h4 id="Ganglia工作模式"><a href="#Ganglia工作模式" class="headerlink" title="Ganglia工作模式"></a>Ganglia工作模式</h4><p>项目的名称其实已经反映了作者的设计思路。<br>Ganglia（又作：ganglion）,直译为“神经节”、“中枢神经”。在解剖学上是一个生物组织丛集，通常是神经细胞体的集合。在神经学中，神经节主要是由核周体和附随连结的树突组合而成。神经节经常与其他神经节相互连接以形成一个复杂的神经节系统。神经节提供了身体内不同神经体系之间的依靠点和中介连结，例如周围神经系统和中枢神经系统。</p>
+<p>Ganglia的作者意图将服务器集群理解为生物神经系统，每台服务器都是独立工作神经节，通过多层次树突结构连接起来，<br>既可以横向联合，也可以从低向高，逐层传递信息。具体例证就是Ganglia的收集数据工作可以工作在单播（unicast)或多播(multicast)模式下，<br>默认为多播模式。</p>
+<p>单播：Gmond收集到的监控数据发送到特定的一台或几台机器上，可以跨网段</p>
+<p>多播：Gmond收集到的监控数据发送到同一网段内所有的机器上，同时收集同一网段内的所有机器发送过来的监控数据。<br>因为是以广播包的形式发送，因此需要同一网段内。但同一网段内，又可以定义不同的发送通道。</p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_Arch_Impl.png" alt=""></p>
+<p>vi /usr/local/ganglia/etc/gmond.conf</p>
+<p><strong> 默认配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">cluster &#123;</span><br><span class="line">  name = &quot;cluster01&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">udp_send_channel &#123;</span><br><span class="line">  mcast_join = 239.2.11.71</span><br><span class="line">  port = 8649</span><br><span class="line">  ttl = 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">udp_recv_channel &#123;</span><br><span class="line">  mcast_join = 239.2.11.71</span><br><span class="line">  port = 8649</span><br><span class="line">  bind = 239.2.11.71</span><br><span class="line">  retry_bind = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tcp_accept_channel &#123;</span><br><span class="line">  port = 8649</span><br><span class="line">  gzip_output = no</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> 单播模式Gmetad增加配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">udp_recv_channel &#123;</span><br><span class="line">  port = 8666</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> 单播模式Gmond增加配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">udp_send_channel &#123;</span><br><span class="line">  host = 192.168.0.39</span><br><span class="line">  port = 8666</span><br><span class="line">  ttl = 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> 默认装载指标集：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">modules &#123;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;core_metrics&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;cpu_module&quot;</span><br><span class="line">    path = &quot;modcpu.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;disk_module&quot;</span><br><span class="line">    path = &quot;moddisk.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;load_module&quot;</span><br><span class="line">    path = &quot;modload.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;mem_module&quot;</span><br><span class="line">    path = &quot;modmem.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;net_module&quot;</span><br><span class="line">    path = &quot;modnet.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;proc_module&quot;</span><br><span class="line">    path = &quot;modproc.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;sys_module&quot;</span><br><span class="line">    path = &quot;modsys.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>vi /usr/local/ganglia/etc/gmetad.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">### 配置数据源，可以多个</span><br><span class="line">data_source &quot;cluster01&quot; localhost:8649   </span><br><span class="line">data_source &quot;cluster02&quot;  192.168.0.39:8666 192.168.0.48:8666</span><br><span class="line"></span><br><span class="line">gridname &quot;mygrid&quot;</span><br><span class="line"></span><br><span class="line">### 指定RRD数据路径</span><br><span class="line">rrd_rootdir &quot;/home/data/ganglia/rrds&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="查看数据流向"><a href="#查看数据流向" class="headerlink" title="查看数据流向"></a>查看数据流向</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># netstat -an | grep 86     </span><br><span class="line">tcp        0      0 0.0.0.0:8649         0.0.0.0:*           LISTEN      ##tcp_accept_channel</span><br><span class="line">udp        0      0 192.168.0.45:52745   239.2.11.71:8649    ESTABLISHED  ##组播</span><br><span class="line">udp        0      0 239.2.11.71:8649     0.0.0.0:*                               </span><br><span class="line">udp        0      0 0.0.0.0:8666         0.0.0.0:*    ##udp_recv_channel</span><br></pre></td></tr></table></figure>
+<p>Gmetad所在位置，已经可以收到监控数据的服务器列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># telnet localhost 8649 | grep HOST</span><br><span class="line">&lt;HOST NAME=&quot;192.168.0.56&quot; IP=&quot;192.168.0.56&quot; TAGS=&quot;&quot; REPORTED=&quot;1478226772&quot; TN=&quot;6&quot; TMAX=&quot;20&quot; DMAX=&quot;86400&quot; LOCATION=&quot;GZ&quot; GMOND_STARTED=&quot;1477817579&quot;&gt;</span><br><span class="line">&lt;/HOST&gt;</span><br><span class="line">&lt;HOST NAME=&quot;192.168.0.39&quot; IP=&quot;192.168.0.39&quot; TAGS=&quot;&quot; REPORTED=&quot;1478226771&quot; TN=&quot;7&quot; TMAX=&quot;20&quot; DMAX=&quot;86400&quot; LOCATION=&quot;GZ&quot; GMOND_STARTED=&quot;1477473541&quot;&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>Gmond所在位置，收到的监控指标数据明细：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># telnet localhost 8649 | grep cpu_idle</span><br><span class="line">telnet: connect to address ::1: Connection refused</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;96.7&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;33&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;100.0&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;20&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;91.2&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;4&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;96.3&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;28&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;99.9&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;5&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;83.9&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;14&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;84.2&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;0&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;44.1&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;9&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-1.png" alt="集群视图"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-2.png" alt="一级视图"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-3.png" alt="二级视图"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-4.png" alt="主机视图"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-5.png" alt="多机横向对比"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-6.png" alt="多机横向对比"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Nginx.jpg" alt="Nginx监控扩展插件"></p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia-Demo-CPU.png" alt="CPU密集型特征"></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">没有任何一个开源项目是完美的。</span><br></pre></td></tr></table></figure>
+<p>1、告警流程框架：Ganglia本身并不具备，可以选用Nagios补充。</p>
+<p>2、日志管理框架：Ganglia本身并不具备，可以选用Splunk补充。</p>
+<p>3、性能开销预算</p>
+<p>对于单纯的Gmond节点来说，性能开销很低。主要的瓶颈在中央节点。<br><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_Perf_Test.png" alt=""></p>
+<p>各节点的gmond进程向中央节点发送的udp数据带来的网络开销。如果一个节点每秒发10个包，<br>1000个节点将会发出10000个，每个包有200字节，就有2m字节，10000个包的处理所需要的cpu使用也会上升。</p>
+<p>Gmetad默认15秒向gmond取一次xml数据,解析xml文件带来的CPU负荷也会随着管理节点数线性增长。</p>
+<p>格外需要注意的是RRD的写入瓶颈。实际应用中需要根据资源情况，调整采样频率、权衡指标数量、引入RRDCached等方式优化。</p>
+<p>4、网络流向监控：Ganglia原生支持sFlow<br>   GitHub:gmond-proxy project。what are some of the benefits of using the proxy?</p>
+<p>   Firstly, the proxy allows metrics to be filtered, reducing the amount of data logged and increasing the scaleability of the Ganglia collector.</p>
+<p>   Secondly, sFlow-RT generates traffic flow metrics, making them available to Ganglia.</p>
+<p>   Finally, Ganglia is typically used in conjunction with additional monitoring tools that can all be driven using the analytics stream generated by sFlow-RT.</p>
+<p>   <img src="http://og2061b3n.bkt.clouddn.com/Ganglia-sFlow.jpg" alt=""></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1、《 The ganglia distributed monitoring system: design, implementation, and experience》（必读）</p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_DIE.png" alt=""></p>
+<p>2、《Wide Area Cluster Monitoring with Ganglia》（必读）<br><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_WACM.png" alt=""></p>
+<p>3、这篇本来没有什么直接关系，是Ganglia作者的最新研究成果，仅供娱乐。<br><img src="http://og2061b3n.bkt.clouddn.com/Ganglia_ADAM.png" alt=""></p>
+<p>请扫码关注公众号：@睿哥杂货铺，更多精彩内容<br><img src="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg" alt="微信公众号@睿哥杂货铺"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/20/Traffic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          性能优化思路：从珠海航展交通管控实践谈起
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/15/Zhuhai/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">珠海航展摄影辑</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Ganglia" data-title="基于Ganglia实现集群性能态势感知" data-url="http://riboseyim.github.com/2016/11/04/Ganglia/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

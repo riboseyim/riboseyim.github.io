@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>GOPS | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2016 GOPS 上海站简报
+风向：从概念到落地
+特色：Google SRE 分享
+终极命题：人才">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GOPS">
+<meta property="og:url" content="http://riboseyim.github.com/2016/09/24/GOPS/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="2016 GOPS 上海站简报
+风向：从概念到落地
+特色：Google SRE 分享
+终极命题：人才">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Chris.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Li.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Sun.png">
+<meta property="og:updated_time" content="2017-03-29T06:31:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GOPS">
+<meta name="twitter:description" content="2016 GOPS 上海站简报
+风向：从概念到落地
+特色：Google SRE 分享
+终极命题：人才">
+<meta name="twitter:image" content="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Chris.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-GOPS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/24/GOPS/" class="article-date">
+  	<time datetime="2016-09-24T05:31:47.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GOPS
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2016-GOPS-上海站简报"><a href="#2016-GOPS-上海站简报" class="headerlink" title="2016 GOPS 上海站简报"></a>2016 GOPS 上海站简报</h2><ol>
+<li>风向：从概念到落地</li>
+<li>特色：Google SRE 分享</li>
+<li>终极命题：人才</li>
+</ol>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Chris.png" alt=""></p>
+<a id="more"></a>
+<h2 id="风向：从概念到落地"><a href="#风向：从概念到落地" class="headerlink" title="风向：从概念到落地"></a>风向：从概念到落地</h2><p>延续这两年的风向，云计算、大数据、DevOps、容器等依然是比较热闹的话题。<br>鉴于这些关键词已经比较普及，大家聊的内容开始更多地聚焦在落地应用上。比如关于OpenStack，有人从网络架构角度聊，也有人从数据中心、对象存储、可视化等方面聊。借用李明宇的一句话：“OpenStack是一个生态”，很多公司已经在利用其庞大生态的细分技术来创业了。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Li.png" alt=""></p>
+<p>从行业分布来看，除了“传统的”几家巨头互联网公司，GOPS大会已经出现了越来越多的传统企业面孔，可能是上海金融中心的背景，银行、保险公司、银联等金融属性的企业参会的很多，此外中移动、石油系、旅游、快递业也很活跃，还办了中小企业专场。</p>
+<p>最后，无论是现场交流环节的观众提问，还是我自己的体会，对于大部分人来说，最难的可能还是选型困境：技术方案不是太少，而是选择太多了。以分布式服务为例，有人推崇Zookeeper，有人选择etcd。前者有JAVA派的支持，后者也不乏Go粉的拥趸，或者有的时候就是拍脑袋决策呢？反正各有各的说法，根本也没个标准。希望以后哪位大牛可以来分享下《技术选型指南》。</p>
+<h2 id="特色：Google-SRE-分享"><a href="#特色：Google-SRE-分享" class="headerlink" title="特色：Google SRE 分享"></a>特色：Google SRE 分享</h2><p>本人最感兴趣的是来自Google SRE的分享。</p>
+<p>《Google SRE》一书的作者Chris Jones，主要是介绍了一些方法论方面的东西。看气质不像工程师，倒很有几分大学教授的味道。看过《Google SRE》几位作者的简历，除了工程师这个副业，还在斯坦福搞过什么经济学、国际关系、药学博士、文学、诗歌……，Jones则持有Computer Engineering,Economics,Technology Policy三个学位，长期在工程一线，还有professional engineer认证。这哥们还算是它们中间最接近工程师的啦。</p>
+<p>Minghua Ye：印象比较深的是推荐了一堆开源库，command-line flags、google protocol buffer、Logging、Googletest…….也许这就是Google人的套路，每当谈到一个什么问题，要么是XXX发表了论文《XXXX》里有说明，要么就是我们发明了XXX技术／工具作为解决方案，开源代码的地址是：XXXX。</p>
+<p>孙宇聪：他是《Google SRE》的 中文版译者，前Google SRE。最大的特点就是自带笑点，看得出活得很欢乐、发自内心的。活动现场很多国内企业的CTO、总监 可是极度缺乏这种欢乐。结合zookeeper，讨论了分布式系统的“太祖长拳”——共识系统的一些故事。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/GOPS_201609_Sun.png" alt=""></p>
+<h2 id="终极命题：人才"><a href="#终极命题：人才" class="headerlink" title="终极命题：人才"></a>终极命题：人才</h2><p>大多数人可能并没有注意到，本次活动还有一个主题：人才。<br>在热闹的开幕会场上，宣布了三件事：</p>
+<p>1.“不出所料”，萧帮主终于从原企业离职，全职搞社区创业去了。<br>2.社区和复旦大学合作，推出了联合培养软件工程硕士的项目。<br>3.社区和EXIN合作，试水DevOps Master认证培训。</p>
+<p>特别是后两件事，我其实不太乐观：<strong>干好很难，干砸很容易</strong> 。<br>从业人才培养难题、在职人员的进修困境，早已有之，连BAT这样的巨头都时常流露出人才难求的尴尬境地。很多有识之士都曾经大声疾呼，但是商业和社区的冲突，能力和学历的争论，再加上当局和教育市场的避重就轻，这方面一直也没走出什么新路。归根到底，这需要产业结构、人才评价体制的根本提升。</p>
+<p>不管怎么样，有些事总是需要有人去摸索吧，祝福。</p>
+<p>关于工程师人才的微观定义，腾讯提了个自己的标准，供参考：<br>业务和架构能力<br>问题诊断能力<br>开源组件的改造能力<br>工具开发能力<br>运营平台构建能力<br>数据分析和决策能力<br>……</p>
+<p>但是，个人觉得他们这个标准过于功利，还少那么一丢丢。</p>
+<p>比如说，第一天Chris Jones演讲的时候，我内心深处是非常郁闷的。<br>当时Jones说一句，孙宇聪在一旁翻译一句。这场面像极了总理新闻发布会，演讲人和翻译一句一顿，看着都蛋疼。说实话，很难有多少交流传播价值。</p>
+<p>可是，话说回来了，你要不翻译，至少80%以上的人还真就听不明白，公开活动毕竟要照顾大多数。托教育部的福，现在全国人民的学历线可谓蒸蒸日上，跟通货一样膨胀。但是从业人员的语言水平，能达到并保持一定水准的，还真没几个。</p>
+<p>反省自己，阅读资料的时候，不也经常放着官方文档不读，非要去找些东拼西凑的二手货吗？过去买的参考书，原著比例是多少？也算写过几片技术文章吧，被Google索引的有多少？ 能有多少东西是可以和国际同行交流的？</p>
+<p>跨语言能力绝对是弯道超车的必备利器！以后专门写一篇探讨这个问题。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ol>
+<li><a href="[http://mp.weixin.qq.com/s?\_\_biz=MzA4Nzg5Nzc5OA==&amp;mid=2651662368&amp;idx=1&amp;sn=766cd0f708e9d3a1449f1aac926e27e1&amp;scene=1&amp;srcid=0925yHh4bGlTvdUZ7og6Uulq#rd]">官方实录和PPT下载</a></li>
+<li><a href="http://gops2016-shanghai-tcwechatshare.eventdove.com/" target="_blank" rel="external">2016上海站日程表</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/06/SSH/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          SSH并不安全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/10/Lincoln/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Lincoln</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="GOPS" data-title="GOPS" data-url="http://riboseyim.github.com/2016/09/24/GOPS/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

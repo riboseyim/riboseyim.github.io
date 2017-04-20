@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Autobiography：2016年度盘点 | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2016年度盘点一、实践
+Oracle数据库迁移割接实践
+基于LVS的AAA负载均衡架构实践  
+基于Ganglia实现服务集群性能态势感知
+动态追踪技术：Linux喜迎DTrace
+赠书活动
+社区活动:GOPS上海站EGO社群:Commounity Over Code51CTO企业安全广州DevOps
+运营工具链1）增加七牛云作为图片存储仓库：提高跨平台移植能力。2）小密圈：简书号第一次被注销（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autobiography：2016年度盘点">
+<meta property="og:url" content="http://riboseyim.github.com/2017/01/01/Check2016/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="2016年度盘点一、实践
+Oracle数据库迁移割接实践
+基于LVS的AAA负载均衡架构实践  
+基于Ganglia实现服务集群性能态势感知
+动态追踪技术：Linux喜迎DTrace
+赠书活动
+社区活动:GOPS上海站EGO社群:Commounity Over Code51CTO企业安全广州DevOps
+运营工具链1）增加七牛云作为图片存储仓库：提高跨平台移植能力。2）小密圈：简书号第一次被注销（">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/Writer2016-OPS007.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg">
+<meta property="og:updated_time" content="2017-03-29T06:25:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Autobiography：2016年度盘点">
+<meta name="twitter:description" content="2016年度盘点一、实践
+Oracle数据库迁移割接实践
+基于LVS的AAA负载均衡架构实践  
+基于Ganglia实现服务集群性能态势感知
+动态追踪技术：Linux喜迎DTrace
+赠书活动
+社区活动:GOPS上海站EGO社群:Commounity Over Code51CTO企业安全广州DevOps
+运营工具链1）增加七牛云作为图片存储仓库：提高跨平台移植能力。2）小密圈：简书号第一次被注销（">
+<meta name="twitter:image" content="http://o8m8ngokc.bkt.clouddn.com/Writer2016-OPS007.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Check2016" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/01/Check2016/" class="article-date">
+  	<time datetime="2017-01-01T01:40:44.000Z" itemprop="datePublished">2017-01-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Autobiography：2016年度盘点
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/我的自传/">我的自传</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最佳工程实践/">最佳工程实践</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2016年度盘点"><a href="#2016年度盘点" class="headerlink" title="2016年度盘点"></a>2016年度盘点</h2><h3 id="一、实践"><a href="#一、实践" class="headerlink" title="一、实践"></a>一、实践</h3><ol>
+<li><a href="http://riboseyim.github.io/2016/06/12/Oracle/" target="_blank" rel="external">Oracle数据库迁移割接实践</a></li>
+<li><a href="http://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="external">基于LVS的AAA负载均衡架构实践</a>  </li>
+<li><a href="http://riboseyim.github.io/2016/11/04/Ganglia/" target="_blank" rel="external">基于Ganglia实现服务集群性能态势感知</a></li>
+<li><a href="http://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术：Linux喜迎DTrace</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939328&amp;idx=1&amp;sn=0d70dda90171fd22ac2dbb590a8272b6&amp;scene=21#wechat_redirect" target="_blank" rel="external">赠书活动</a></li>
+<li>社区活动:<br><a href="http://riboseyim.github.io/2016/09/24/GOPS/" target="_blank" rel="external">GOPS上海站</a><br><a href="http://www.jianshu.com/p/236dd6e22bbb" target="_blank" rel="external">EGO社群:Commounity Over Code</a><br><a href="http://www.jianshu.com/p/824616ad7575" target="_blank" rel="external">51CTO企业安全</a><br><a href="http://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="external">广州DevOps</a></li>
+<li>运营工具链<br>1）增加七牛云作为图片存储仓库：提高跨平台移植能力。<br>2）小密圈：简书号第一次被注销（投诉后恢复），警惕。</li>
+<li>搬家：两次，思路决定出路，过程优化。</li>
+<li>摄影：上海市博物馆特辑（青铜、佛教造像、印章）、2016珠海航展特辑</li>
+<li>出版：<a href="http://riboseyim.github.io/2016/07/28/Publish/" target="_blank" rel="external">如何出版技术书籍?</a>(探索中)</li>
+<li>生活案例：<a href="http://riboseyim.github.io/2016/11/20/Traffic/" target="_blank" rel="external">性能优化思路：从珠海航展交通管控实践谈起</a></li>
+</ol>
+<h3 id="二、荣誉"><a href="#二、荣誉" class="headerlink" title="二、荣誉"></a>二、荣誉</h3><ol>
+<li><p>高效运维社区|开放运维联盟 <strong>2016年度金牌作者 Writer #Ops 007</strong> <a href="https://mp.weixin.qq.com/s?__biz=MzA4Nzg5Nzc5OA==&amp;mid=2651663680&amp;idx=1&amp;sn=04c1239f098db6310a9b41641d78d03f&amp;chksm=8bcbeee9bcbc67ff89a958340ba78983b85d9975efb462dc89cf6706dedab7f11c53e80cf1c1&amp;scene=0&amp;key=9c48b642bc3f329aca6980052053912927c6d4580b415d7cda29d4054d0dae0b9b32434b23d151bf53866ef530dfcc602c076612c97f498884fa5f5807bdf7194b1848f4e6d8c5e3f062859dcc5c8b23&amp;ascene=0&amp;uin=Mjg2OTA0MDQ4Mg%3D%3D" target="_blank" rel="external">全部作者</a></p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/Writer2016-OPS007.png" alt=""></p>
+<h3 id="三、文章列表"><a href="#三、文章列表" class="headerlink" title="三、文章列表"></a>三、文章列表</h3></li>
+</ol>
+<ol>
+<li>翻译：TED访谈<a href="http://riboseyim.github.io/2016/05/28/Linux/" target="_blank" rel="external">Linus Torvalds: The mind behind Linux</a>（高效运维公众号推荐）</li>
+<li>原创：<a href="http://riboseyim.github.io/2016/06/12/Oracle/" target="_blank" rel="external">Oracle数据库迁移割接实践</a>（高效运维公众号推荐）</li>
+<li>原创：<a href="http://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="external">基于LVS的AAA负载均衡架构实践</a>： 开源中国（首页推荐|每日一博），当日阅读2000+，收藏人数100+</li>
+<li>原创：<a href="http://riboseyim.github.io/2016/11/04/Ganglia/" target="_blank" rel="external">基于Ganglia实现服务集群性能态势感知</a>（开源中国推荐）</li>
+<li>原创：<a href="http://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术：Linux喜迎DTrace</a>（开源中国推荐）</li>
+<li>翻译：<a href="http://riboseyim.github.io/2016/07/17/StackOverflow/" target="_blank" rel="external">《Stack Overflow: The Architecture - 2016 Edition》</a>（高效运维公众号推荐）</li>
+<li>翻译：<a href="http://riboseyim.github.io/2016/07/17/StackOverflow/" target="_blank" rel="external">《Stack Overflow: The Hardware》</a></li>
+<li>翻译：<a href="http://riboseyim.github.io/2016/08/15/Kafka/" target="_blank" rel="external">《LinkedIn开源Kafka Monitor》</a></li>
+<li>翻译：<a href="http://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="external">《Regulating Cybersecurity》（美国网络安全立法策略，SCI，概要）</a></li>
+<li>原创：<a href="http://riboseyim.github.io/2016/06/12/Trojan/" target="_blank" rel="external">《木马来袭：今天你被挖矿了吗？》</a></li>
+<li>原创：<a href="http://riboseyim.github.io/2016/10/06/SSH/" target="_blank" rel="external">《木马来袭：SSH并不安全》</a></li>
+<li>原创：<a href="http://riboseyim.github.io/2016/06/11/Writing/" target="_blank" rel="external">《最佳写作实践：从Evernote到Ulysses》</a></li>
+<li>原创：<a href="http://www.jianshu.com/p/db8e8a2884ef" target="_blank" rel="external">《基于Linux单机的负载评估》</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/fd6e35f529c1" target="_blank" rel="external">《Linux性能分析模型－In 60 Seconds》</a></li>
+<li>原创：<a href="http://www.jianshu.com/p/8addb7d0024f" target="_blank" rel="external">基于Github的开源项目管理流程（1）</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/b268267800e9" target="_blank" rel="external">NTOP 2016 路线图</a>（开源中国推荐）</li>
+<li>原创：<a href="http://www.jianshu.com/p/c92c042b1b34" target="_blank" rel="external">美军体能训练观察</a></li>
+<li>原创：<a href="http://www.jianshu.com/p/0edcc6402fc4" target="_blank" rel="external">美军士官制度观察</a></li>
+<li>原创：<a href="http://www.jianshu.com/p/4c3731d6b552" target="_blank" rel="external">体能标准横向评测</a></li>
+<li>原创：<a href="http://www.jianshu.com/p/5290fc641230" target="_blank" rel="external">跑步应用Nike+ Running与Garmin Mobile评测</a></li>
+<li>读书笔记：<a href="http://www.jianshu.com/p/e9004fb31f3e" target="_blank" rel="external">《李自成》（姚雪垠）</a></li>
+<li>读书笔记：<a href="http://www.jianshu.com/p/b2bc9871d129" target="_blank" rel="external">《万历十五年(黄仁宇)》</a></li>
+<li>读书笔记：<a href="http://www.jianshu.com/p/8376f08e6b90" target="_blank" rel="external">《放宽历史的视界》(黄仁宇)</a></li>
+<li>读书笔记：<a href="http://www.jianshu.com/p/c43df2f608bb" target="_blank" rel="external">《国士无双伍连德》</a></li>
+<li>读书笔记：<a href="http://www.jianshu.com/p/88f20aa63c39" target="_blank" rel="external">粮食还是罂粟？小说中的经济学悖论</a></li>
+<li>读书笔记：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;tempkey=RvzJtGnWznLJ3NUPvQx4vu149A3kOJ0N1B6VTbsAs8UbMMlfqjNsX78Zpkf36eIsUVb2HnS0wcjXAYZoAkYIgt7mg%2BYPEmxjjlC7EMzexJ8WP0u%2B%2BFKgKKC2elJLXN5pEhqM0b4i3%2FuGko%2BwLRucQg%3D%3D&amp;#rd" target="_blank" rel="external">传统兵法摘要：选兵练将</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/663ffcd0d2a2" target="_blank" rel="external">Economist译文:欧洲难民计划：移民危机管理</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/351bc45763cb" target="_blank" rel="external">Economist译文:The Saudi blueprint 沙特王国的改革蓝图</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/9c5f837030e9" target="_blank" rel="external">Economist译文:2016年全球经济形势预测</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/d525f1a7fd25" target="_blank" rel="external">Economist译文:印度电商竞赛</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/2cfd0b46f1c5" target="_blank" rel="external">Economist译文:越共换届－巨变或轮回？</a>（201612封禁）</li>
+<li>翻译：<a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="external">Economist译文:事与愿违的后门程序</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/ce638dafe225" target="_blank" rel="external">Economist译文:当代德国纳粹魅影</a></li>
+<li>翻译：<a href="http://www.jianshu.com/p/f5f55bbe9d57" target="_blank" rel="external">Economist译文:自由迁徙的障碍</a>（201612封禁）</li>
+<li>翻译：<a href="http://www.jianshu.com/p/18edbb3023f6" target="_blank" rel="external">Economist译文:奢侈品—万金藏獒</a>（201612封禁）</li>
+<li>原创：<a href="https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&amp;count=10&amp;t=media/appmsg_list&amp;type=10&amp;action=list_card&amp;lang=zh_CN&amp;token=1371525865" target="_blank" rel="external">钞票任务：风流小王爷</a></li>
+<li>原创：<a href="https://mp.weixin.qq.com/cgi-bin/appmsg?begin=10&amp;count=10&amp;t=media/appmsg_list2&amp;type=10&amp;action=list_card&amp;token=1371525865&amp;lang=zh_CN" target="_blank" rel="external">艺术评论：舞台剧《南海十三郎》幕后故事</a></li>
+<li>原创：<a href="http://riboseyim.github.io/2016/09/10/Lincoln/" target="_blank" rel="external">艺术评论：电影《灵魂解码《林肯》》</a></li>
+</ol>
+<a id="more"></a>
+<p>更多精彩内容，请扫码关注公众号：@睿哥杂货铺<br>RSS订阅：<a href="https://riboseyim.github.io" target="_blank" rel="external">https://riboseyim.github.io</a></p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg" alt="微信公众号"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/30/Garden/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          园林艺术鉴赏
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/19/HomeWork/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HomeWork 2017</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Check2016" data-title="Autobiography：2016年度盘点" data-url="http://riboseyim.github.com/2017/01/01/Check2016/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

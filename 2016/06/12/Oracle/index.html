@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Oracle数据库迁移割接实录 | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最佳工程实践—Oracle数据库迁移割接实录项目背景某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。
+历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。
+随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle数据库迁移割接实录">
+<meta property="og:url" content="http://riboseyim.github.com/2016/06/12/Oracle/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="最佳工程实践—Oracle数据库迁移割接实录项目背景某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。
+历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。
+随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-go.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-t1.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-t2.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-cflow-1.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test1.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test2.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test3.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg">
+<meta property="og:updated_time" content="2017-03-29T06:34:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle数据库迁移割接实录">
+<meta name="twitter:description" content="最佳工程实践—Oracle数据库迁移割接实录项目背景某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。
+历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。
+随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大">
+<meta name="twitter:image" content="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-go.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Oracle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/12/Oracle/" class="article-date">
+  	<time datetime="2016-06-12T01:47:21.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle数据库迁移割接实录
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最佳工程实践/">最佳工程实践</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="最佳工程实践—Oracle数据库迁移割接实录"><a href="#最佳工程实践—Oracle数据库迁移割接实录" class="headerlink" title="最佳工程实践—Oracle数据库迁移割接实录"></a>最佳工程实践—Oracle数据库迁移割接实录</h1><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。</p>
+<p>历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。</p>
+<p>随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大的客户压力，提升系统稳定性的巨大挑战摆在了大家面前。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-go.png" alt="迁移拓扑"></p>
+<a id="more"></a>
+<h2 id="主要困难"><a href="#主要困难" class="headerlink" title="主要困难"></a>主要困难</h2><blockquote>
+<p>在“天塌地陷”的不利局面中加入进来。</p>
+</blockquote>
+<h3 id="困难1-团队大动荡"><a href="#困难1-团队大动荡" class="headerlink" title="困难1: 团队大动荡"></a>困难1: 团队大动荡</h3><p>原运营团队，包括但不限于资深项目经理、技术负责人、多名工程师等，先后因各种原因，在很短的时间内集中离职了。在接手之前，对于该项目我一无所知，接手以后短暂的交接过程中，也很难获取多少有价值的信息。</p>
+<p>连续发生突发重大故障，我们面临巨大的商务压力，团队内部疲惫不堪、心理压力极大、士气低落。每一次大故障，所有人都得没日没夜地处理，处理好以后还得写材料汇报，汇报之后也未必能得到客户的首肯。甚至在某种程度上说，急剧增长的故障率进一步刺激、增加了离职率。正如一位哲人说的：</p>
+<blockquote>
+<p>降低故障率是提升团队幸福指数的首要保障。— 弗拉基米.耶维奇.严</p>
+</blockquote>
+<h3 id="困难2-拓扑大调整"><a href="#困难2-拓扑大调整" class="headerlink" title="困难2: 拓扑大调整"></a>困难2: 拓扑大调整</h3><p>系统的拓扑结构最初是星型：以数据库和应用服务器为核心，外挂近100台服务器。数据库服务器配置双网卡，连通内网、外网。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-t1.png" alt="迁移前"></p>
+<p>虽然星型结构简单易用，却也存在较大的安全隐患。在早期建设的时候，规范尚未健全，还可以用业务优先的理由搪塞过去。在本期工程中，非常明确必须要完成内外网分离的改造。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-t2.png" alt="迁移后"></p>
+<h3 id="困难3-安全一票否决"><a href="#困难3-安全一票否决" class="headerlink" title="困难3: 安全一票否决"></a>困难3: 安全一票否决</h3><p>Oracle 版本由10g 升级到 11g，集中管理访问权限。<br>最大限度地提高安全性，口令60天更换一次，不能因为更换口令中断业务；如果出现连续的错误口令访问，甚至不惜锁定数据库。</p>
+<p>从正向的角度看，这些严格规定可以倒逼改造。在软件架构规范化不足、自动化严重不足的条件下，整个迁移期间，这个问题确实给我们造成了极大困扰。</p>
+<h2 id="迁移前准备"><a href="#迁移前准备" class="headerlink" title="迁移前准备"></a>迁移前准备</h2><p>基于上述三大问题，在正式迁移之前主要做了下列几项工作：</p>
+<ol>
+<li><p>加强监控手段，降低日常故障率；<br> 梳理需要监控的基础指标和业务指标，侧重关键业务可用性。例如，某业务的正常调度周期是3小时，部署模拟脚本，将模拟脚本的调度频率提高到5分钟一次甚至更高，通过高密度的执行，主动触发风险点，一些隐藏的问题就比较容易暴露出来。</p>
+</li>
+<li><p>重点培训新人，稳定队伍；<br> 本质上说，这次迁移工作的首要任务不在技术、也不在数据，而在于人。<br> 上一个团队整体流失，新补充的人员又完全没有相关经验，可以说是从0开始。基于该阶段的特殊情况，我选择了实质性暂停迁移工作，而把主要的精力投入到人员培训和组织重建上来。</p>
+<p> 关于这块内容比较复杂，实际是另外一个主题，计划后续再发布，敬请关注。</p>
+</li>
+<li><p>梳理全局视图，调研周边系统关系链；<br>全局视图实际上也包括技术和人两个维度：</p>
+<p> 1）重绘系统架构图：可以参考现有文档资料，但是主要应该立足于自主调研。绘制的过程，即是收集、整理的过程，也是制定迁移方案的思考过程。唯有自己动手，才能加深认识，做到胸有成竹。</p>
+<p> 2）大量接触相关方面的领导、配合部门以及第三方厂家：<br> 个人工作经历方面，独立工作的场景居多，自己能直接控制的情况居多，不太需要理会复杂的部门关系、人际关系。这项工作对于某些人来说比较容易，但是对我而言，其实是有过一段比较困难的过程。</p>
+</li>
+<li><p>数据复制<br>主要实现：OGG + dblink+ 自主迁移程序。</p>
+</li>
+</ol>
+<p><strong>OGG</strong>：即Oracle Golden Gate方案。<br>在最早的方案中，我们打算完全依赖OGG来实现数据复制，但是在实验阶段发现，该方案有其限制条件。<br>第一、历史遗留系统有庞大的历史数据，如果都用OGG，无法确保新库的及时性、一致性。<br>第二、由于管理的不规范，存在很多该做分区而没有做分区的大表，而且这样的表，数量很多，一时还真的很难分离出来。</p>
+<p><strong>DB Link</strong>: 提供了旧－&gt;新库之间的快速连接通道。</p>
+<p><strong>自主迁移程序</strong>：针对特殊大分区表。<br>例如A表是大量的原始数据，每天一个分区，每个分区约为4000万条记录，一个月就有1.2亿条。由于业务上非常重要，该表的数据必须迁移到新库。针对这个问题，我们自己编写了迁移脚本。按照“少量、多批次、并行”的原则，实现数据推送。</p>
+<p>首先，控制每个批次提交的记录数，将每个分区4000万的数据，切分成10万一份的小切片，这样即使失败也能快速重试，还能杜绝UNDO表空间暴涨（例如exp/imp整个分区的方式）。</p>
+<p>基于小粒度的切片，进一步就可以实现多批次、多进程的并行推送，从而保证每个commit和时间单元的推送规模都完全可控、可视。</p>
+<ol>
+<li>双库并行部署<br>在所有采集服务器开启两个入库进程，即一份原始结果同时入两套数据库。最大限度在没有额外测试系统的条件下，利用现有资源，模拟仿真正式生产环境的并发压力，同时完成负载均衡、单点故障验证测试。</li>
+</ol>
+<p>并不是所有的程序都能轻易的实现双库并行，有的可能只要稍微调整配置文件，有些可能就必须修改代码，还有的可能就没法弄。从这个角度观察，第一种应该就是好的代码，灵活，适应各种可能的场景。后者则可能连配置－代码分离都没有做到，侵入式编程等。</p>
+<ol>
+<li><p>转发入库组件开发<br>开发这个东西的时候，我一度准备中途放弃。<br>前两版发布测试的时候，起初都还不错，但是运行一段时间之后，就暴露出严重的性能问题，几乎不可用。多次调试都找不到原因。后来发现，最大的Bug不过是一个空指针异常的捕获不合理。<br> 很不经意地修改几个字符之后，一切都顺畅起来，往后再也没有出一丁点问题。<br> 很多时候可能就是这样，需要一点灵性，需要一点运气。</p>
+</li>
+<li><p>割接工具开发<br>系统配置收集器（例如口令配置必须保证强一致性）；<br>转发路径监视（ 外网跳板到内网跳板、跳板到数据库等）；<br>预配置／检查工具；<br>连接 切换 &amp; 回退 工具；</p>
+</li>
+</ol>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-cflow-1.png" alt="割接流程"></p>
+<h2 id="没有一帆风顺"><a href="#没有一帆风顺" class="headerlink" title="没有一帆风顺"></a>没有一帆风顺</h2><blockquote>
+<p>第一次割接失败了！</p>
+</blockquote>
+<p><strong>失败的体验</strong></p>
+<p>第一次割接之后，系统各项功能正如我们预计的那样顺利运行。<br>就在我们准备庆祝成功的时候，几项关键业务的吞吐量却急剧下降。初步判断是性能问题，因为每次连接时延飙升了100多倍，高达秒级，基本是不可用的。</p>
+<p>人工排查几次以后，看到了大量的挂起进程，一堆的锁表。而且失败来源遍布一多半的服务器。虽然不想承认，但是我们不得不做出回退的决定。</p>
+<p><strong>万事留后路</strong><br>割接失败是需要承担很大压力的。<br>这次割接是大家都期待很久的，为了几分钟的操作，用户和我们整个团队都付出了很大的努力，调动了方方面面的资源参与进来。</p>
+<p>如果说有什么能稍感欣慰的话，那就是我们遍历了各种可能，几乎成功，在不可知的情况出现之后，还能赶在割接窗口结束之前，快速回退。这主要得益于前期准备方案时，特别考虑了最坏的情况，认真演练了回退流程。</p>
+<p>这种体验与技术关系不大，来自于勇气——无论是正确的，还是错误的决定。</p>
+<p><strong> 幽灵进程 </strong><br>事后筛查发现，导致割接失败的是一个监测程序——不在生产程序清单里面，没有读统一配置，自带定时调度，零散分布在一半的机器上，早已经被人遗忘。在旧库中，这个问题其实一直存在，但是不会有什么问题。</p>
+<p>新数据库的版本是Oracle 11g 。<br>为了提高安全性，防止暴力破解数据库中用户的密码，Oracle默认提供了一种机制：<strong>延长失败尝试响应</strong>。<br>这种策略是：在连续使用错误密码反复尝试登录时，从第四次错误尝试开始，每次增加1秒的延迟，最长延迟目前是10秒。使用这种手段可以相对比较有效的防治用户密码的暴力破解。</p>
+<p><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test1.png" alt="01"><br><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test2.png" alt="02"><br><img src="http://o8m8ngokc.bkt.clouddn.com/oracle-trans-test3.png" alt="03"></p>
+<p>由于系统服务器较多，历史遗留程序瞬间就触发该机制，导致所有应用不可用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然这次的迁移不甚完美，事情本身也谈不上宏大，简短的一篇更不可能穷举所有的问题和细节，但是有几点思考还是想和大家交流：</p>
+<ol>
+<li><p>变通</p>
+<p> 回想起来，开始设计方案时想到的几个大难题，都是通过替代方案实现的：奇葩的内外网分离方案，与IT部门关于权限问题的艰难谈判，数据复制过程中及时性的要求…… 另外，还有真实割接过程中，现场压力状态的进退困境。到处都需要权衡、选择。</p>
+<p> 决策是一件非常艰难的事情，受到多种因素的制约，最终的决策是一个各种利益妥协的结果。正如另一位资深哲人所说：</p>
+<blockquote>
+<p>项目经理首先要学会变通。——瓦西里.杨</p>
+</blockquote>
+<p> 天下武功，无坚不摧，唯变不破。</p>
+</li>
+<li><p>韧性</p>
+<p> 按照最初的方案，我其实并不负责这项工作，后来就算参与进来，也并不负责主导。应该说起初也有侥幸心理，希望有其他人来背这个锅。为了这次迁移，前面已经生生吓走了好几拨人。</p>
+<p> 从技术上分析，我以前没怎么搞过数据库，并不具备任何优势。<br> 如果说还有一点可以凭借的东西，我感觉是韧性。面对未知的恐惧，敢于直面；面对不确定的方案，不断在尝试；面对失败的后果，坦然接受。</p>
+</li>
+</ol>
+<blockquote>
+<p>这件事能干成，感觉很好，我喜欢干成事的感觉。</p>
+</blockquote>
+<!--more-->
+<p>更多精彩内容，请扫码关注公众号：@Ribose<br><img src="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg" alt="微信公众号"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/15/TeamWork/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          团队重建中的心理问题 （构思）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/12/Trojan/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">木马来袭</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Oracle" data-title="Oracle数据库迁移割接实录" data-url="http://riboseyim.github.com/2016/06/12/Oracle/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

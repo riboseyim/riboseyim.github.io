@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>动态追踪技术专题 | Ribose Yim&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="动态追踪技术：Linux喜迎DTrace通过前面几篇文章的介绍，我们已经可以通过一系列命令，从不同维度获得操作系统当前的性能运行情况。另外，借助类似Ganglia这样的开源产品，持续不断地实施性能数据采集和存储，我们基于时间序列的历史性能图形，就可以大致判读出计算集群的资源消耗情况和变化趋势。但是，仅仅这些还是不够的，在很多情况下，我们希望能够知道：“慢，是为什么慢；快，又是为什么快”。如果要回答">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态追踪技术专题">
+<meta property="og:url" content="http://riboseyim.github.com/2016/11/26/DTrace/index.html">
+<meta property="og:site_name" content="Ribose Yim's Blog">
+<meta property="og:description" content="动态追踪技术：Linux喜迎DTrace通过前面几篇文章的介绍，我们已经可以通过一系列命令，从不同维度获得操作系统当前的性能运行情况。另外，借助类似Ganglia这样的开源产品，持续不断地实施性能数据采集和存储，我们基于时间序列的历史性能图形，就可以大致判读出计算集群的资源消耗情况和变化趋势。但是，仅仅这些还是不够的，在很多情况下，我们希望能够知道：“慢，是为什么慢；快，又是为什么快”。如果要回答">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/DTrace_History_01.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/DTrace_Linux_Choose.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/DTrace_Flame_Java_01.png">
+<meta property="og:image" content="http://og2061b3n.bkt.clouddn.com/DTrace_Linux_Types.png">
+<meta property="og:image" content="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg">
+<meta property="og:updated_time" content="2017-03-29T06:29:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态追踪技术专题">
+<meta name="twitter:description" content="动态追踪技术：Linux喜迎DTrace通过前面几篇文章的介绍，我们已经可以通过一系列命令，从不同维度获得操作系统当前的性能运行情况。另外，借助类似Ganglia这样的开源产品，持续不断地实施性能数据采集和存储，我们基于时间序列的历史性能图形，就可以大致判读出计算集群的资源消耗情况和变化趋势。但是，仅仅这些还是不够的，在很多情况下，我们希望能够知道：“慢，是为什么慢；快，又是为什么快”。如果要回答">
+<meta name="twitter:image" content="http://og2061b3n.bkt.clouddn.com/DTrace_History_01.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Ribose Yim&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://o8m8ngokc.bkt.clouddn.com/icon_cangshu.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">RiboseYim</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/Economist">经济学人</a></li>
+				        
+							<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+				        
+							<li><a href="/tags/DevOps">DevOps</a></li>
+				        
+							<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/App鉴赏/" style="font-size: 10px;">App鉴赏</a> <a href="/tags/Books/" style="font-size: 10px;">Books</a> <a href="/tags/Cyber-Security/" style="font-size: 13.75px;">Cyber-Security</a> <a href="/tags/DTrace/" style="font-size: 10px;">DTrace</a> <a href="/tags/DevOps/" style="font-size: 18.75px;">DevOps</a> <a href="/tags/Economist/" style="font-size: 12.5px;">Economist</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/History/" style="font-size: 12.5px;">History</a> <a href="/tags/Law/" style="font-size: 15px;">Law</a> <a href="/tags/Lincoln/" style="font-size: 10px;">Lincoln</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Manager/" style="font-size: 11.25px;">Manager</a> <a href="/tags/OpenSource/" style="font-size: 17.5px;">OpenSource</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PMP/" style="font-size: 10px;">PMP</a> <a href="/tags/Perf/" style="font-size: 10px;">Perf</a> <a href="/tags/Policy/" style="font-size: 13.75px;">Policy</a> <a href="/tags/Reading/" style="font-size: 10px;">Reading</a> <a href="/tags/Running/" style="font-size: 10px;">Running</a> <a href="/tags/Science/" style="font-size: 10px;">Science</a> <a href="/tags/TeamWork/" style="font-size: 10px;">TeamWork</a> <a href="/tags/书单/" style="font-size: 10px;">书单</a> <a href="/tags/人物/" style="font-size: 12.5px;">人物</a> <a href="/tags/军事/" style="font-size: 11.25px;">军事</a> <a href="/tags/历史/" style="font-size: 16.25px;">历史</a> <a href="/tags/园林/" style="font-size: 10px;">园林</a> <a href="/tags/太平天国/" style="font-size: 10px;">太平天国</a> <a href="/tags/学习方法论/" style="font-size: 10px;">学习方法论</a> <a href="/tags/工具癖/" style="font-size: 10px;">工具癖</a> <a href="/tags/待办事项/" style="font-size: 17.5px;">待办事项</a> <a href="/tags/性能优化大师/" style="font-size: 10px;">性能优化大师</a> <a href="/tags/我的自传/" style="font-size: 12.5px;">我的自传</a> <a href="/tags/技术史/" style="font-size: 10px;">技术史</a> <a href="/tags/摄影/" style="font-size: 11.25px;">摄影</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/最佳写作实践/" style="font-size: 11.25px;">最佳写作实践</a> <a href="/tags/最佳工程实践/" style="font-size: 20px;">最佳工程实践</a> <a href="/tags/架构师/" style="font-size: 15px;">架构师</a> <a href="/tags/游记/" style="font-size: 10px;">游记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/码农的自我修养/" style="font-size: 10px;">码农的自我修养</a> <a href="/tags/移动互联网/" style="font-size: 10px;">移动互联网</a> <a href="/tags/网络安全/" style="font-size: 13.75px;">网络安全</a> <a href="/tags/自传/" style="font-size: 10px;">自传</a> <a href="/tags/自然科学/" style="font-size: 10px;">自然科学</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/香山艺术评论/" style="font-size: 16.25px;">香山艺术评论</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://my.oschina.net/zijingshanke/blog">开源中国</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/9a817d8a67ea">简书专题《系统运维专家》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/c/f2ea0605db4b">简书专题《经济学人翻译社》</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">GitBook《Linux Perf Master》</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">RiboseYim</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o8m8ngokc.bkt.clouddn.com/icon_macbook.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">RiboseYim</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">愿交天下士，罄我怀中藏。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/Economist">经济学人</a></li>
+		        
+					<li><a href="/tags/最佳工程实践">最佳工程实践</a></li>
+		        
+					<li><a href="/tags/DevOps">DevOps</a></li>
+		        
+					<li><a href="/tags/香山艺术评论">香山艺术评论</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/riboseyim" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/RiboseYim" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="https://riboseyim.github.io/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/riboseyim" title="zhihu">zhihu</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/%E7%9D%BF-%E4%B8%A5-b39028110" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-DTrace" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/26/DTrace/" class="article-date">
+  	<time datetime="2016-11-25T17:21:31.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      动态追踪技术专题
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTrace/">DTrace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态追踪技术：Linux喜迎DTrace"><a href="#动态追踪技术：Linux喜迎DTrace" class="headerlink" title="动态追踪技术：Linux喜迎DTrace"></a>动态追踪技术：Linux喜迎DTrace</h1><p>通过前面几篇文章的介绍，我们已经可以通过一系列命令，从不同维度获得操作系统当前的性能运行情况。<br>另外，借助类似Ganglia这样的开源产品，持续不断地实施性能数据采集和存储，我们基于时间序列的历史性能图形，就可以大致判读出计算集群的资源消耗情况和变化趋势。<br>但是，仅仅这些还是不够的，在很多情况下，我们希望能够知道：“慢，是为什么慢；快，又是为什么快”。<br>如果要回答这个问题，就必须引入另外一件神兵利器：动态追踪技术（Dynamic Tracing）。</p>
+<p>鉴于这套兵器过于复杂（牛逼），属于专家级技能， advanced performance analysis and troubleshooting tool。<br>据称掌握该技能需要耗费大约100小时以上，所以如果不是对于系统性能问题有极致追求，以及变态般地技术狂热，建议绕过本文。</p>
+<p>为了便于展开，今天先起个头，重点梳理下动态追踪技术的发展简史和目前的生态环境。更加具体详细的内容，会在后续的文章中陆续发表。</p>
+<p>上月底，正当全国人民翘首以盼光棍节的时候，开源社区传来一则重要新闻：<br>Linux 4.9-rc1发布，正式合并了一项重要特性：BPF追踪（Timed sampling）。</p>
+<p>系统性能领域的国际导师Brendan Gregg，感动得都快哭了，当即在Twitter上表示这是一个重要的里程碑!<br>他随后又写了一篇长文<a href="http://www.brendangregg.com/blog/2016-10-27/dtrace-for-linux-2016.html" target="_blank" rel="external">《DTrace for Linux 2016》</a>，以示庆祝。</p>
+<blockquote>
+<p>As a long time DTrace user and expert, this is an exciting milestone!<br>–Brendan Gregg</p>
+</blockquote>
+<p>Linux 合并了BPF而已嘛，跟DTrace这个劳什子有什么关系呢？</p>
+<p>DTrace 是动态追踪技术的鼻祖，源自 Solaris 操作系统，提供了高级性能分析和调试功能，它的源代码采用 CDDL 许可证，不兼容 Linux 内核使用的 GPLv2 许可证，无法直接移植。<br>当然，江湖上还有另外一种说法，Linux之所以一直没有原生支持DTrace,是因为Linus 觉得这玩意没什么必要。<br>Anyway,随着 BPF跟踪的最后主要功能合并到 Linux 4.9-rc1，Linux 现在有了类似 DTrace 的高级分析和调试功能。</p>
+<p>Linux 这次合并的BPF（The Berkeley Packet Filter ），和Ganglia一样，来自于加州大学伯克利分校（这所大学很有意思，以后还要反复提到）。<br>BPF，顾名思义，最早只是一个纯粹的封包过滤器，大家比较熟知的netfilter，就是基于BPF实现的动态编译器。<br>后来在很多牛人的参与下，进行了扩展，得到了一个所谓的 eBPF，可以作为某种更加通用的内核虚拟机。<br>通过这种机制，我们其实可以在 Linux 中构建类似 DTrace 那种常驻内核的动态追踪虚拟机。</p>
+<blockquote>
+<p>Linux 没有 DTrace（名字），但现在有了 DTrace（功能）</p>
+</blockquote>
+<p>严格来说，DTrace这个词本身，已经并不是狭义上基于Solaris的那套工具了，而是代表的是后现代操作系统的一整套工具家族和方法论。</p>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><blockquote>
+<p>当时 Solaris 操作系统的几个工程师花了几天几夜去排查一个看似非常诡异的线上问题。<br>开始他们以为是很高级的问题，就特别卖力，结果折腾了几天，最后发现其实是一个非常愚蠢的、某个不起眼的地方的配置问题。<br>自从那件事情之后，这些工程师就痛定思痛，创造了 DTrace 这样一个非常高级的调试工具，来帮助他们在未来的工作当中避免把过多精力花费在愚蠢问题上面。<br>毕竟大部分所谓的“诡异问题”其实都是低级问题，属于那种“调不出来很郁闷，调出来了更郁闷”的类型。—《漫谈动态追踪技术》</p>
+</blockquote>
+<p><img src="http://og2061b3n.bkt.clouddn.com/DTrace_History_01.png" alt=""></p>
+<p>通观DTrace的演变过程，几乎相当于一部现代操作系统系统的发展史，细查起来，极其复杂。<br>但是有两个人非常值得关注，一个是国际级的布道师，一个是国内的代表人物，<br>初学者完全可以通过阅读他们的文章、代码，甚至微博／Twitter动态，了解动态追踪技术的实际应用情况。</p>
+<p><strong>Brendan Gregg</strong></p>
+<p>前SUN性能工程师，最早的DTrace用户，出版了包括《性能之巅》在内的一大批书籍，囊括了性能问题领域的技术、工具、方法论等方方面面。<br>是动态追踪技术当之无愧的首席布道师。他维护的个人博客发布了大量的原创内容，并且持续保持着相当的活跃度。可以作为第一手的学习资料。</p>
+<p><a href="[https://twitter.com/brendangregg]">Twitter：</a><br><a href="[http://www.brendangregg.com/]">个人网站：</a></p>
+<p><strong>章亦春</strong><br>网名 agentzh。开源项目OpenResty创始人，编写了很多 Nginx 的第三方模块， Perl 开源模块，以及最近一些年写的很多 Lua 方面的库。<br>他发表过的<a href="[https://openresty.org/posts/dynamic-tracing/]">《漫谈动态追踪技术》</a>，是目前唯一由Brendan认证的中文资料，入门首选。<br>另外，他本人也在目前的工作、开源项目运营中大量使用动态追踪技术。<br><a href="[http://weibo.com/agentzh]">微博：</a></p>
+<h2 id="Linux-追踪器选型"><a href="#Linux-追踪器选型" class="headerlink" title="Linux 追踪器选型"></a>Linux 追踪器选型</h2><p>动态追踪技术最复杂的地方在于追踪器种类繁多，让人一时无从下手。<br>根据前人的一些经验总结，建议按照以下路径进行选择：</p>
+<p><img src="http://og2061b3n.bkt.clouddn.com/DTrace_Linux_Choose.png" alt=""></p>
+<a id="more"></a>
+<h3 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h3><p>适用于：开发者, 系统管理员, DevOps, SRE</p>
+<p><strong>CPU分析</strong></p>
+<p>perf_events的应用很广泛，配合Brendan Gregg老师研究的火焰图工具，可以分析程序在所有代码基的资源消耗，精确定位到函数级。<br>例如：<br><img src="http://og2061b3n.bkt.clouddn.com/DTrace_Flame_Java_01.png" alt="火焰图实例"></p>
+<p><strong>进程追踪</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ./execsnoop</span><br><span class="line">Tracing exec()s. Ctrl-C to end.</span><br><span class="line">   PID   PPID ARGS</span><br><span class="line"> 22898  22004 man ls</span><br><span class="line"> 22905  22898 preconv -e UTF-8</span><br><span class="line"> 22908  22898 pager -s</span><br><span class="line"> 22907  22898 nroff -mandoc -rLL=164n -rLT=164n -Tutf8</span><br></pre></td></tr></table></figure></p>
+<h3 id="HARD模式"><a href="#HARD模式" class="headerlink" title="HARD模式"></a>HARD模式</h3><p>适用于：性能或内核工程师</p>
+<blockquote>
+<p>Understanding all the Linux tracers to make a rational decision between them a huge undertaking.</p>
+</blockquote>
+<p><img src="http://og2061b3n.bkt.clouddn.com/DTrace_Linux_Types.png" alt=""></p>
+<ol>
+<li><p>ftrace<br>内核hacker的最爱。已经包含在内核，能够支持 tracepoints, kprobes, and uprobes,<br>并提供一些能力: 事件追踪, 可选择过滤器和参数; 事件计数和时间采样，内核概览；基于函数的路径追踪。</p>
+</li>
+<li><p>perf_events<br>Linux用户的主要追踪器之一，它的源代码在内核中，通常在一个 linux-tools-common包。</p>
+</li>
+<li><p>eBPF<br>基于内核的虚拟机</p>
+</li>
+<li><p>SystemTap<br>最强有力的追踪器。它可以做几乎所有的事情: 分析，打点, kprobes, uprobes (源子 SystemTap), USDT, 内核编程等。</p>
+</li>
+<li><p>LTTng<br>事件收集器, 优于其它追踪器，支持多种事件类型，包括 USDT。</p>
+</li>
+<li><p>ktap<br>一个很有前景的追踪器，基于lua内核虚拟机</p>
+</li>
+<li><p>dtrace4linux<br>个人开发者业余产出 (Paul Fox) ，将 Sun DTrace迁移到 Linux。</p>
+</li>
+<li><p>OL DTrace<br>Oracle Linux DTrace，将 DTrace 迁移到Oracle Linux的实现。</p>
+</li>
+<li><p>sysdig<br>一种新型追踪器， 能够基于类似tcpdump的命令操作 syscall events, 再用lua后处理。</p>
+</li>
+</ol>
+<p>更多精彩内容，请扫码关注公众号：@睿哥杂货铺<br><img src="http://o8m8ngokc.bkt.clouddn.com/qrcode_for_gh_896dd3dd5255_344.jpg" alt="微信公众号"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/09/Books/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Books：
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/20/Traffic/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">性能优化思路：从珠海航展交通管控实践谈起</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="DTrace" data-title="动态追踪技术专题" data-url="http://riboseyim.github.com/2016/11/26/DTrace/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 RiboseYim
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://riboseyim.github.io" target="_blank">聪明秀出谓之英，胆力过人谓之雄</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
