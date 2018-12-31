@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2018-12-31T04:21:32.164Z</updated>
+  <updated>2018-12-31T17:10:55.741Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,226 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Engineering-DisasterRecovery</title>
+    <link href="https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/"/>
+    <id>https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/</id>
+    <published>2018-12-31T17:06:37.000Z</published>
+    <updated>2018-12-31T17:10:55.741Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<blockquote>
+<p>容灾备份是一个工程师的基本意识</p>
+</blockquote>
+<h2 id="2018-七牛云·域名"><a href="#2018-七牛云·域名" class="headerlink" title="2018 七牛云·域名"></a>2018 七牛云·域名</h2><blockquote>
+<p>尊敬的七牛云用户，您好: 如果您正在使用或将要使用测试域名，请务必仔细阅读本邮件内容！ 七牛云测试域名是用户在创建云存储空间时系统自动生成的七牛域名，以 clouddn.com, qiniucdn.com, qiniudn.com, qnssl.com, qbox.me 等结尾，此类域名仅供用户测试不能用于正式生产环境。测试域名不规范使用或被当作正式域名使用，将导致域名的安全风险增加，从而影响用户的正常测试需求。 为了确保测试域名的规范使用，保障七牛云用户的权益，我们将逐步对测试域名加强管理，具体规则如下： [已上线生效] 不得使用测试域名存储、发布、传播违法违规内容。当测试域名下有非法资源时，该域名将被直接冻结并不予解封。如对七牛云及其他用户造成损害，七牛云保留进一步追责的权利。 对 2018 年 7 月 18 日起新产生的测试域名，禁止下载移动应用程序(apk,ipa 等)，请绑定自定义域名进行访问。 [预计生效时间 8 月上旬] ：流量限制 测试域名无论新老测试域名每个自然日限总流量 10GB，当日测试流量达到 10GB 上限后，禁止继续访问。 [预计生效时间 8 月中旬] ：测试域名回收机制 每个测试域名生命周期为 30 个自然日（已有测试域名自回收功能上线之日起算，新产生的测试域名自系统自动生成之日起算），超过 30 日系统将自动回收，回收即为域名删除。 在测试域名生命周期终结之前我们会邮件通知您，您也可以自行在 七牛云-管理控制台 上查看测试域名剩余的回收时间。</p>
+</blockquote>
+<h2 id="2017-小密圈"><a href="#2017-小密圈" class="headerlink" title="2017 小密圈"></a>2017 小密圈</h2><blockquote>
+<p>亲爱的小密圈用户:<br>由于技术升级，您将暂时无法访问小密圈官网、网页版、客户端和小程序。小密圈公众号内的提现功能可正常使用。升级后，我们会更好地服务内容创作者。——小密圈团队</p>
+</blockquote>
+<p>历史再次证明关键信息放在国内根本靠不住，前有微博、B站，现有小密圈，下一个会是微信公众号吗？<br>完全有可能，谁也不知道。<strong>随时可能变成敏感词，随时可能因为技术原因被消失，白色恐怖、KGB（Komitet gosudarstvennoy bezopasnosti）莫过于此</strong></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Commander-Decision</title>
+    <link href="https://riboseyim.com/2018/12/31/Commander-Decision/"/>
+    <id>https://riboseyim.com/2018/12/31/Commander-Decision/</id>
+    <published>2018-12-31T15:19:46.000Z</published>
+    <updated>2018-12-31T17:23:25.987Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<blockquote>
+<p>要搞清楚一件非常非常不确定的事，或是我们一无所知的事情，就需要了解大量的信息。相反，如果我们对某件事已经有了较多的了解，那么不需要太多的信息就能把它搞清楚。所以，从这个角度来看，可以认为，信息量就等于不确定性的多少。——吴军《数学之美》</p>
+</blockquote>
+<h2 id="荐书-《如何作出正确决策》"><a href="#荐书-《如何作出正确决策》" class="headerlink" title="荐书|《如何作出正确决策》"></a>荐书|《如何作出正确决策》</h2><p>1 9 7 8年 ，李 ·比奇和特里 ·米切尔提出了决策的 “可能性模型 ” （ c o n t i n g e n c y m o d e l ） ，认为人类所采取的决策策略 ，会根据决策任务的背景变化而有所差异 。有时 ，人类会使用严谨的分析方法 ；有时 ，则会依赖于非分析方法 。比奇和米切尔在解释 “严谨的分析方法 ”时 ，如行云流水般得心应手 。但轮到 “非分析方法 ”时 ，他们则显得捉襟见肘 ，只能泛泛地解释为 “直观感觉 ” ，或者说抛硬币 ，甚至提到了 “南无阿弥陀佛 ” 。——《如何作出正确决策》</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s/lpNVYqEIiZmINbQj1qZt_g" target="_blank" rel="external">俄军“新面貌”改革十年：问题与反思 | 梅夫利亚 《知远防务评论》</a></li>
+<li>先由官员做决定，再由学者来论证这一决定是正确的”，“军师们”无法向上级提供决策建议与事实支撑，而只能作为总结和阐释政策的工具，这使“新面貌”的部分改革措施和规划仅能解决一时所需，缺乏长期建设性，因此在后期需要不断地“循环往复”。</li>
+<li><a href="https://mp.weixin.qq.com/s/XUNWGOFrq6C8wGu4NabPDg" target="_blank" rel="external">最后的武士——超越净评估 | 知远战略与防务研究所  2018-03-30</a><br>如果不考虑系统分析和博弈论的局限性，不考虑决策在层层执行过程中的正向加强和负向衰减，往往就会出现“播下的是龙种，收获的是跳蚤”现象，结果事与愿违。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Engineering-Architecture</title>
+    <link href="https://riboseyim.com/2018/12/31/Engineering-Architecture/"/>
+    <id>https://riboseyim.com/2018/12/31/Engineering-Architecture/</id>
+    <published>2018-12-31T12:55:08.000Z</published>
+    <updated>2018-12-31T12:57:21.850Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="荐书-《建筑的复杂性与矛盾性》"><a href="#荐书-《建筑的复杂性与矛盾性》" class="headerlink" title="荐书|《建筑的复杂性与矛盾性》"></a>荐书|《建筑的复杂性与矛盾性》</h2><p>建筑师和规划师怒气冲冲地谴责一般城市面貌的平庸与粗俗，提倡在现有城市景观中采用矫揉造作的方法，消除或掩盖低级酒吧间与下等夜总会，或者在新城市景观的语汇中加以排斥。然而，他们大都无法提高也无法代替现有城市面貌，因为他们的企图是徒劳的。他们愈卖力就愈显得无能，并不断冒左右“假专家”的风险。……改进或增加传统要素，扭转周围环境，就能以最简便的方法取得最大的效果，并使我们以不同的方式看到相同的东西。《建筑的复杂性与矛盾性》076</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>History-Rome</title>
+    <link href="https://riboseyim.com/2018/12/31/History-Rome/"/>
+    <id>https://riboseyim.com/2018/12/31/History-Rome/</id>
+    <published>2018-12-31T12:43:57.000Z</published>
+    <updated>2018-12-31T15:17:58.981Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h1 id=""><a href="#" class="headerlink" title="#"></a>#</h1><h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940487&amp;idx=1&amp;sn=65e67860424f2b723daa68c406b7085f&amp;chksm=bd5789958a2000834c3f4c3d5e23f3694eb2320af9c838c5853734a46c005361a9b0384546b2#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《罗马帝国衰亡史》</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/45617772" target="_blank" rel="external">国家能力的信息基础：来自神圣罗马帝国的证据</a><br>获取农业收成信息更容易的国家，享有更多的税收、更大的疆域和更长久的国祚</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Science-Feynman</title>
+    <link href="https://riboseyim.com/2018/12/31/Science-Feynman/"/>
+    <id>https://riboseyim.com/2018/12/31/Science-Feynman/</id>
+    <published>2018-12-31T12:42:16.000Z</published>
+    <updated>2018-12-31T15:16:06.295Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="荐书-《发现的乐趣》"><a href="#荐书-《发现的乐趣》" class="headerlink" title="荐书|《发现的乐趣》"></a>荐书|《发现的乐趣》</h2><p>我们现在生活在一个没有科学的时代，几乎人们所有的交流、电视上的言论和书本，所有这些都充斥着不科学的东西。不是说那些内容不好，我是说他们是不科学的。于是，就出现了大量打着科学旗号的智力专制。</p>
+<p>科学的各个学科门类在其发展过程中都有过这样的教训：认为先辈大师们字字珠玑、说的都是绝对真理，这样的信念是很危险的。</p>
+<p>—— 理查德·费曼 1966年4月在全美科学教师协会的演讲</p>
+<h4 id="《关于“挑战者号”航天飞机事故的少数派调查报告》"><a href="#《关于“挑战者号”航天飞机事故的少数派调查报告》" class="headerlink" title="《关于“挑战者号”航天飞机事故的少数派调查报告》"></a>《关于“挑战者号”航天飞机事故的少数派调查报告》</h4><p><strong>国之重器，在人不在宝</strong></p>
+<blockquote>
+<p>现在总结一下，计算机软件检测体系及其检测的仔细程度确实达到了最高水准。这里并没有出现这种情况:一边降低标准一边自欺欺人一一对于固体火箭助推器或航天飞机主发动机的安全体系来说，这种情况很明显。确实，管理层最近已经提议要减少这样复杂、耗资又如此巨大的测试——他们认为， 在航天飞机发展业已成熟的现阶段，做这些测试是没有必要的。我们必须抵制这些建议，因为持这种看法的人，他们没有认识到微妙的相互影响，整个项目的某一部分即便一个很细微的变化导致的错误也会影响到项目的其他组成部分。飞船的使用者一直在不断地提各种修改要求:要么提出新的任务，要么提出新的要求和修改意见。而按照他们的要求进行修改，代价很昂贵，因为需要做全面的测试。要省钱，合理的办法是尽可能减少变动，而不是降低每一次改动后 (必须要做的)测试的水准。</p>
+</blockquote>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940500&amp;idx=1&amp;sn=36a6663e996058a543fa13d4d3f4b4fe&amp;chksm=bd5789868a2000902acbda3adde45326aa04edc4db4cc582fdb58c0a8285f3abe762760528a3&amp;token=1403618953&amp;lang=zh_CN#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《发现的乐趣》</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>History-Empire</title>
+    <link href="https://riboseyim.com/2018/12/31/History-Empire/"/>
+    <id>https://riboseyim.com/2018/12/31/History-Empire/</id>
+    <published>2018-12-31T12:34:26.000Z</published>
+    <updated>2018-12-31T15:15:33.017Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>荐书|《帝国的铸就》<a id="more"></a>
+</li>
+</ul>
+<blockquote>
+<p>通常来说，一个国家或者民族被称为“特色”的东西，是指一种缺点或特质……当今日本教育工作者喋喋不休的所谓日本人与众不同的大部分特质，将会使我们的学问更加贫困……  —— 西园寺公望</p>
+</blockquote>
+<h2 id="荐书-《西洋国情》"><a href="#荐书-《西洋国情》" class="headerlink" title="荐书|《西洋国情》"></a>荐书|《西洋国情》</h2><p>出500美元就想雇佣价值3000美元的教师去教书，岂不是荒谬之极？试问用这个价钱雇用人，他果真会心甘情愿地接受这项工作吗？从古至今，这种“合算”的买卖还闻所未闻。如果一味地以削减教育的费用为目的，即使受教育者数量增加了，但是教育的质量却下降了。这就好比不管什么商品，一旦质量下降，需求也会减少。不仅商品的品味，而且最终商品的数量也会逐渐减少。世上任何物品只要需求者减少，生产者也会减少，这个物品自然而然就减少。— p226</p>
+<h2 id="荐书-《帝国的铸就》"><a href="#荐书-《帝国的铸就》" class="headerlink" title="荐书|《帝国的铸就》"></a>荐书|《帝国的铸就》</h2><blockquote>
+<p>分析现代自由政权起起落落的书成百上干，它们也描述了独裁政权的出现。从来没有一本书特别重视1861年至1871年间的几场改革，这个十年构成了人类自由编年史上最引人瞩目的篇章，也见证了恐怖和高压统治的新哲学的出现。</p>
+</blockquote>
+<h4 id="节选｜第一章-绝境边缘的三个民族"><a href="#节选｜第一章-绝境边缘的三个民族" class="headerlink" title="节选｜第一章 绝境边缘的三个民族"></a>节选｜第一章 绝境边缘的三个民族</h4><p>在日渐衰落的18世纪，俄国不再是一个奴隶制国家。但是，它也没有成为一个自由国度。国内矛盾重重。日渐衰落的专制体制，对于人民的蠢蠢欲动尚能勉强压制，然而对于他们的希望，却已然难以遏制。人民心怀不满，不再卑躬屈膝、畏缩怯懦。显而易见，危机的爆发已经为期不远。</p>
+<p>登上皇位的亚历山大决意先发制人，阻止这场灾难。不过，他该何去何从呢?摆在面前的有两条路。一条路，是将高压统治继续下去:而另一条，则是追求自由的觉醒。</p>
+<p>有一段时间，自由体制似乎已经蓄势待发，即将大获全胜。然面，出现了相反的反应。在全世界，特权阶级起来维护自身的特权地位。在俄园、德意志，甚至就在美国，走投无路的贵族用维护自身权力的专制思想来对抗自由的挑战。新的专制哲学基于两点。</p>
+<p>首先，是家长式的统治。这个理念是对抗自由国度的强力武器，……根据政府最新的家长理论，国家要像父亲爱孩子一样爱人民。所以伟大的自由史学者麦考利爵土写道：新的家长式政体会“管理学校，监视运动场。将劳作和娱乐的时间固定下来。规定什么歌能唱，什么曲子能弹，什么书能读，什么药能吃…..”</p>
+<p>贵族的第二个立足点是激进的民族主义。</p>
+<h4 id="节选｜第四章-自由宣言"><a href="#节选｜第四章-自由宣言" class="headerlink" title="节选｜第四章 自由宣言"></a>节选｜第四章 自由宣言</h4><p>新的强权哲学之所以危险，正是因为它直指自由国家理想的要害。它攻击人人生而平等的原则。正如林肯所说:</p>
+<p>自由社会的定义和公理被否认，被回避，而且他们取得了不小的胜利。有人时髦地称之为“漂亮的空话”，有人不客气地称之为” 一派胡言”，还有人阴险地说它们只适用于“高级人种”。这些表述尽管形式不同，但在实质上和影响上是相同的一取代自由政府的原则， 恢复等级制度、家族和正统性的原则。他们乐于见到贵族老爷们聚集，密谋与人民为敌。他们是复辟专制的先锋，是开路者。我们必须打倒他们，否则他们就会征服我们。</p>
+<p>俄罗斯帝国皇帝、芬兰大公、波兰国王尼古拉二世及其皇后、女大公和皇储一家人。1918年7月17日，沙皇全家包括仆人在内被全俄肃清反革命及怠工非常委员会下令秘密处决，长者50岁，幼者13岁。</p>
+<p>如果“复辟专制的先锋”在美利坚合众国得势，或者北美大陆上出现两个敌对的共和政体，一个奴隶制，一个自由制，那么美国能否足够强大，足够自由，在未来的几十年中，当奴隶制帝国在德意志和俄国出现，并在20世纪迫切要求主宰全世界的时候，美国能否有效地与之抗衡，就值得商榷了。</p>
+<p>火车载着总统的遗体，飞驰着穿过乡村，春天的花朵正在盛开，在远远的交叉路口，在孤独的小村庄里，在荒芜的农场边缘，美国民众站在铁轨边，向被害的总统致敬。许多人用手帕抹着眼泪。妇人们的怀里抱着婴儿。小学生们手里握着镶黑边的美国国旗。在煤气灯照亮的火车站站台上，成群的少女围在起唱赞美诗; 她们穿着圣洁的白色衣袍， 胸前垂下黑色的肩带。有些哀悼者拿着手写的标语牌:“向值得致敬者致敬”、“英雄烈士”、“华盛顿，国父:林肯，国之救主”、“人虽死，言犹在”。</p>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940532&amp;idx=1&amp;sn=1fb7629123377f20308fcf462f63fb34&amp;chksm=bd5789a68a2000b0cdd3134e12886261b682048c4f5f3719672d7ead06edff925a1ff7f4d12e&amp;token=1403618953&amp;lang=zh_CN#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：荐书|帝国的铸就</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;荐书|《帝国的铸就》
+    
+    </summary>
+    
+    
+      <category term="History" scheme="https://riboseyim.com/tags/History/"/>
+    
+      <category term="Economist" scheme="https://riboseyim.com/tags/Economist/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Autobiography:我的2019年度盘点</title>
+    <link href="https://riboseyim.com/2018/12/31/Check2019/"/>
+    <id>https://riboseyim.com/2018/12/31/Check2019/</id>
+    <published>2018-12-31T12:25:24.000Z</published>
+    <updated>2018-12-31T15:30:59.010Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="创作计划"><a href="#创作计划" class="headerlink" title="创作计划"></a>创作计划</h2><ul>
+<li>Preview<a href="https://riboseyim.github.io/2018/12/10/DevOps-Build/" target="_blank" rel="external">DevOps 漫谈:全生命周期构建管理</a></li>
+<li>Preview<a href="https://riboseyim.github.io/2018/12/23/Visualization-DataStruct/" target="_blank" rel="external">数据可视化（九）：探索数据结构之美</a></li>
+<li>Priview<a href="https://riboseyim.github.io/2018/02/02/Mathmetics-Tools/" target="_blank" rel="external">数学工具指南</a></li>
+<li>Preview<a href="https://riboseyim.github.io/2018/12/31/Mathmetics-Algorithm/" target="_blank" rel="external">数学与算法</a></li>
+<li>Preview<a href="https://riboseyim.github.io/2018/11/30/DTrace-SystemTap/" target="_blank" rel="external">DTrace-SystemTap</a></li>
+<li>Preview<a href="https://riboseyim.github.io/2018/11/21/Protocol-Route/" target="_blank" rel="external">Protocol-Route</a></li>
+</ul>
+<h2 id="阅读计划"><a href="#阅读计划" class="headerlink" title="阅读计划"></a>阅读计划</h2><h4 id="工程学"><a href="#工程学" class="headerlink" title="工程学"></a>工程学</h4><ul>
+<li><a href="https://riboseyim.github.io/2018/12/31/Science-Feynman/" target="_blank" rel="external">费曼：发现的乐趣</a></li>
+<li><a href="http://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《建筑的复杂性与矛盾性》</a></li>
+<li><a href="#">《写作这门手艺》</a></li>
+<li><a href="#">《应用预测建模》</a></li>
+<li><a href="https://riboseyim.github.io/2018/12/31/Commander-Decision/" target="_blank" rel="external">《如何作出正确决策》</a></li>
+</ul>
+<h4 id="历史学"><a href="#历史学" class="headerlink" title="历史学"></a>历史学</h4><ul>
+<li><a href="https://riboseyim.github.io/2018/12/31/History-Rome/" target="_blank" rel="external">专题：罗马史</a></li>
+<li><a href="https://riboseyim.github.io/2018/12/31/History-Empire/" target="_blank" rel="external">《帝国的铸就》</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="我的自传" scheme="https://riboseyim.com/tags/%E6%88%91%E7%9A%84%E8%87%AA%E4%BC%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Mathmetics-Algorithm</title>
@@ -1157,335 +1377,6 @@
       <category term="数学与算法" scheme="https://riboseyim.com/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
       <category term="Machine-Learning" scheme="https://riboseyim.com/tags/Machine-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DevOps-Deployment-SaltStack</title>
-    <link href="https://riboseyim.com/2018/09/18/DevOps-Deployment-SaltStack/"/>
-    <id>https://riboseyim.com/2018/09/18/DevOps-Deployment-SaltStack/</id>
-    <published>2018-09-18T07:09:07.000Z</published>
-    <updated>2018-09-24T07:41:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="Introduction-简介"><a href="#Introduction-简介" class="headerlink" title="Introduction |  简介"></a>Introduction |  简介</h2><h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ wget http://downloads.puppetlabs.com/</div><div class="line"></div><div class="line"><span class="comment">## hello puppet !</span></div><div class="line">$ puppet status</div><div class="line">&#123;</div><div class="line">  <span class="string">"is_alive"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"5.5.6"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Puppet does not support OS X versions &lt; 10.4</div></pre></td></tr></table></figure>
-<h2 id="Core-Concept-Puppet-核心概念"><a href="#Core-Concept-Puppet-核心概念" class="headerlink" title="Core Concept | Puppet 核心概念"></a>Core Concept | Puppet 核心概念</h2><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Puppet-架构"><a href="#Architecture-Puppet-架构" class="headerlink" title="Architecture | Puppet 架构"></a>Architecture | Puppet 架构</h2><h2 id="Best-Practice-Puppet-最佳实践"><a href="#Best-Practice-Puppet-最佳实践" class="headerlink" title="Best Practice | Puppet 最佳实践"></a>Best Practice | Puppet 最佳实践</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>DevOps-Puppet</title>
-    <link href="https://riboseyim.com/2018/09/17/DevOps-Deployment-Puppet/"/>
-    <id>https://riboseyim.com/2018/09/17/DevOps-Deployment-Puppet/</id>
-    <published>2018-09-17T07:34:02.000Z</published>
-    <updated>2018-09-18T08:00:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="Introduction-Puppet-简介"><a href="#Introduction-Puppet-简介" class="headerlink" title="Introduction | Puppet 简介"></a>Introduction | Puppet 简介</h2><h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ wget http://downloads.puppetlabs.com/</div><div class="line"></div><div class="line"><span class="comment">## hello puppet !</span></div><div class="line">$ puppet status</div><div class="line">&#123;</div><div class="line">  <span class="string">"is_alive"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"5.5.6"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">##</span></div><div class="line">Puppet does not support OS X versions &lt; 10.4</div></pre></td></tr></table></figure>
-<h2 id="Core-Concept-Puppet-核心概念"><a href="#Core-Concept-Puppet-核心概念" class="headerlink" title="Core Concept | Puppet 核心概念"></a>Core Concept | Puppet 核心概念</h2><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Puppet-架构"><a href="#Architecture-Puppet-架构" class="headerlink" title="Architecture | Puppet 架构"></a>Architecture | Puppet 架构</h2><h4 id="Puppet-Development-Kit"><a href="#Puppet-Development-Kit" class="headerlink" title="Puppet Development Kit"></a>Puppet Development Kit</h4><blockquote>
-<p>PDK provides integrated testing tools and a simple command line interface to help you develop, validate, and test modules.</p>
-</blockquote>
-<h4 id="Task-Runner-Bolt"><a href="#Task-Runner-Bolt" class="headerlink" title="Task Runner : Bolt"></a>Task Runner : Bolt</h4><blockquote>
-<p>Bolt is an open source task runner that automates the manual work that you do to maintain your infrastructure. Use Bolt to automate tasks that you perform on your infrastructure on an as-needed basis, for example, when you troubleshoot a system, deploy an application, or stop and restart services. Bolt connects directly to remote nodes with SSH or WinRM, so you are not required to install any agent software.</p>
-</blockquote>
-<h2 id="Best-Practice-Puppet-最佳实践"><a href="#Best-Practice-Puppet-最佳实践" class="headerlink" title="Best Practice | Puppet 最佳实践"></a>Best Practice | Puppet 最佳实践</h2><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Yum   </span></div><div class="line">$ yum clean all</div><div class="line">$ yum update yum</div><div class="line">$ yum update</div><div class="line"><span class="comment"># MacPorts</span></div><div class="line">$ wget https://guide.macports.org/</div><div class="line">$ port version</div><div class="line">Version: 2.5.3</div></pre></td></tr></table></figure>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Engineering Blog</title>
-    <link href="https://riboseyim.com/2018/09/15/Engineering-Blog/"/>
-    <id>https://riboseyim.com/2018/09/15/Engineering-Blog/</id>
-    <published>2018-09-15T14:16:53.000Z</published>
-    <updated>2018-09-17T02:27:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>Study The Master</li>
-</ul>
-<a id="more"></a>
-<h2 id="Study-The-Master"><a href="#Study-The-Master" class="headerlink" title="Study The Master"></a>Study The Master</h2><ul>
-<li><a href="https://blog.twitter.com/engineering/en_us.html" target="_blank" rel="external">Twitter Engineering</a></li>
-<li><a href="https://eng.uber.com/" target="_blank" rel="external">Uber Engineering</a></li>
-<li><a href="https://tech.meituan.com/" target="_blank" rel="external">美团技术团队</a></li>
-<li><a href="https://www.confluent.io/blog/" target="_blank" rel="external">Confluent: Apache Kafka &amp; Streaming Platform for the Enterprise</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Study The Master&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-      <category term="eBook" scheme="https://riboseyim.com/tags/eBook/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="Developer" scheme="https://riboseyim.com/tags/Developer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Engineering Index</title>
-    <link href="https://riboseyim.com/2018/09/11/Engineering-Index/"/>
-    <id>https://riboseyim.com/2018/09/11/Engineering-Index/</id>
-    <published>2018-09-11T02:45:32.000Z</published>
-    <updated>2018-12-01T16:46:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>工程技术文献索引汇编</p>
-<a id="more"></a>
-<h2 id="Psychology"><a href="#Psychology" class="headerlink" title="Psychology"></a>Psychology</h2><ul>
-<li><a href="https://www.psychologytoday.com" target="_blank" rel="external">Psychology Today</a></li>
-</ul>
-<h2 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h2><ul>
-<li><a href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Articles/" target="_blank" rel="external">Machine Learning Articles</a></li>
-<li><a href="http://download.tensorflow.org/paper/whitepaper2015.pdf" target="_blank" rel="external">TensorFlow:Large-Scale Machine Learning on Heterogeneous Distributed Systems (Preliminary White Paper, November 9, 2015)</a></li>
-</ul>
-<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><ul>
-<li><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="external">MapReduce: Simplified Data Processing on Large Clusters</a></li>
-</ul>
-<h2 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h2><ul>
-<li><a href="https://www.devdungeon.com/content/packet-capture-injection-and-analysis-gopacket" target="_blank" rel="external">Packet Capture, Injection, and Analysis with Gopacket</a></li>
-</ul>
-<h2 id="Perf"><a href="#Perf" class="headerlink" title="Perf"></a>Perf</h2><ul>
-<li><a href="https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55" target="_blank" rel="external">Linux Performance Analysis in 60,000 Milliseconds</a></li>
-<li><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/papers/dapper-2010-1.pdf" target="_blank" rel="external">《Dapper, a Large-Scale Distributed Systems Tracing Infrastructure|Google Technical Report dapper-2010-1, April 2010》</a></li>
-</ul>
-<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
-<li><a href="https://opensource.com/article/17/10/10-layers-container-security" target="_blank" rel="external">10 layers of Linux container security</a></li>
-</ul>
-<h2 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/05/12/Protocol-RFC/" target="_blank" rel="external">RFC</a></li>
-<li><a href="http://yuba.stanford.edu/~casado/mcthesis.pdf" target="_blank" rel="external">ARCHITECTURAL SUPPORT FOR SECURITY MANAGEMENT IN ENTERPRISE NETWORKS</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;工程技术文献索引汇编&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-      <category term="eBook" scheme="https://riboseyim.com/tags/eBook/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="Developer" scheme="https://riboseyim.com/tags/Developer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统原理：Linux Commands Extension</title>
-    <link href="https://riboseyim.com/2018/09/03/Linux-Commands-New/"/>
-    <id>https://riboseyim.com/2018/09/03/Linux-Commands-New/</id>
-    <published>2018-09-02T17:36:40.000Z</published>
-    <updated>2018-12-01T14:07:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li>DevOps 资讯 | 是时候升级你的命令行了</li>
-<li>autojump &gt; cd</li>
-<li>bat &gt; cat</li>
-<li>prettyping &gt; ping</li>
-<li>fzf &gt; ctrl+r</li>
-<li>htop &gt; top</li>
-<li>diff-so-fancy &gt; diff</li>
-<li>fd &gt; find</li>
-<li>ncdu &gt; du</li>
-<li>tldr &gt; man</li>
-<li>ack || ag &gt; grep</li>
-<li>jq &gt; grep et al</li>
-</ul>
-<a id="more"></a>
-<h1 id="DevOps-资讯-是时候升级你的命令行了"><a href="#DevOps-资讯-是时候升级你的命令行了" class="headerlink" title="DevOps 资讯 | 是时候升级你的命令行了"></a>DevOps 资讯 | 是时候升级你的命令行了</h1><blockquote>
-<p>子贡问为仁。<br>子曰：“工欲善其事，必先利其器。居是邦也，事其大夫之贤者，友其士之仁者。”<br>——《论语·卫灵公》</p>
-</blockquote>
-<h4 id="AutoJump-gt-cd"><a href="#AutoJump-gt-cd" class="headerlink" title="AutoJump &gt; cd"></a>AutoJump &gt; cd</h4><p>autojump 记录你访问过的文件夹（包括记录访问频率进而调整权重），通过路径 cache 实现文件夹位置快速切换。了解更多 <a href="https://olivierlacan.com/posts/cd-is-wasting-your-time" target="_blank" rel="external">cd is Wasting Your Time</a></p>
-<ul>
-<li>Install</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># source</span></div><div class="line">git <span class="built_in">clone</span> git://github.com/wting/autojump.git</div><div class="line"><span class="built_in">cd</span> autojump</div><div class="line">./install.py or ./uninstall.py</div><div class="line"><span class="comment"># mac</span></div><div class="line">brew install autojump</div><div class="line">port install autojump</div></pre></td></tr></table></figure>
-<ul>
-<li>Example</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">aca80164:~ kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">109:	 total weight</div><div class="line">3:	 number of entries</div><div class="line">0.00:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:~ kurui$</div><div class="line">aca80164:~ kurui$ cd project/ebook-linuxperfmaster/</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">14.1:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">124:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">14.14:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:ebook-linuxperfmaster kurui$</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j post</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ pwd</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">22.4:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">52.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">134:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">51.96:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:_posts kurui$</div></pre></td></tr></table></figure>
-<h4 id="bat-gt-cat"><a href="#bat-gt-cat" class="headerlink" title="bat &gt; cat"></a>bat &gt; cat</h4><p>cat 被用于打印文件内容。ccat 工具还提供像语法高亮显示这样的功能。在此基础之上，bat 还支持 分页, 行号和 git 集成。同时允许在输出中搜索 (当输出长于屏幕高度时) 。更多信息：<a href="https://github.com/sharkdp/bat" target="_blank" rel="external">https://github.com/sharkdp/bat</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-1.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-2.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-3.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Linux</div><div class="line">wget https://github.com/sharkdp/bat/releases/download/v0.6.1/bat-v0.6.1-x86_64-unknown-linux-gnu.tar.gz</div><div class="line">make install</div><div class="line"></div><div class="line"># Mac</div><div class="line">brew install bat</div><div class="line"></div><div class="line">#</div><div class="line">alias cat=&apos;bat&apos;</div></pre></td></tr></table></figure>
-<h4 id="prettyping-gt-ping"><a href="#prettyping-gt-ping" class="headerlink" title="prettyping &gt; ping"></a>prettyping &gt; ping</h4><p>ping 是一种非常有用的网络工具。原理是向目标主机传出一个ICMP echo@要求数据包，并等待接收 echo 回应数据包。程序会按时间和成功响应的次数估算丢失数据包率（丢包率）和数据包往返时间（网络时延，Round-trip delay time）。不过默认的 ping 命令输出比较乏味。prettyping 则提供了更友好、更美观的输出，包括彩色点图表示网络连通性。prettyping 基于 bash 和 awk 编写能，够兼容大部分操作系统 (例如 Linux, BSD, Mac OS X, …)。更多信息：<a href="http://denilson.sa.nom.br/prettyping/" target="_blank" rel="external">http://denilson.sa.nom.br/prettyping/</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180903-ping.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl -O https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping</div><div class="line">chmod +x prettyping</div><div class="line">./prettyping baiud.com</div><div class="line"></div><div class="line">alias ping=&apos;prettyping --nolegend&apos;</div></pre></td></tr></table></figure>
-<h4 id="fzf-gt-ctrl-r"><a href="#fzf-gt-ctrl-r" class="headerlink" title="fzf &gt; ctrl+r"></a>fzf &gt; ctrl+r</h4><p>在终端中使用 ctrl + r 组合键可以向后搜索历史操作记录（ 尽管有点繁琐 ）。fzf 工具是对 ctrl + r 的增强。支持对终端操作历史的模糊搜索, 预览可能的匹配结果。除了历史搜索之外, fzf 还可以预览和打开文件。<br>更多信息：<a href="https://github.com/junegunn/fzf" target="_blank" rel="external">https://github.com/junegunn/fzf</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fzf.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Linux</div><div class="line">git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</div><div class="line">~/.fzf/install</div><div class="line"># Mac</div><div class="line">brew install fzf</div><div class="line"></div><div class="line"># alias</div><div class="line">alias preview=&quot;fzf --preview &apos;bat --color \&quot;always\&quot; &#123;&#125;&apos;&quot;</div><div class="line"># add support for ctrl+o to open selected file in VS Code</div><div class="line">export FZF_DEFAULT_OPTS=&quot;--bind=&apos;ctrl-o:execute(code &#123;&#125;)+abor</div></pre></td></tr></table></figure>
-<h4 id="htop-gt-top"><a href="#htop-gt-top" class="headerlink" title="htop &gt; top"></a>htop &gt; top</h4><p>top 是一个快速诊断系统性能的工具。值得一提的是 top for Mac 与 Linux 上的输出不太一样。htop 优化了顶部输出格式，并支持大量的颜色, 键盘快键键和视图, 帮助我们洞察进程行为。更多信息：<a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-htop.png" alt="htop"></p>
-<p>htop 提供的键盘快捷键：</p>
-<ul>
-<li>P - 按 CPU 利用率排序</li>
-<li>M - 按内存利用率排序</li>
-<li>F4 - 按字符串过滤进程</li>
-<li>space - 高亮显示某一进程，便于持续跟踪</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alias top=&quot;sudo htop&quot; # alias top</div></pre></td></tr></table></figure>
-<h4 id="diff-so-fancy-gt-diff"><a href="#diff-so-fancy-gt-diff" class="headerlink" title="diff-so-fancy &gt; diff"></a>diff-so-fancy &gt; diff</h4><p>GIT 版本控制系统中使用 git diff 来显示两个版本之间差别(包括文件、元数据和改动等)。diff-so-fancy 是一个用 node.js 实现的命令行工具，提供更友好的输出样式和定制能力。更多信息：<a href="https://github.com/so-fancy/diff-so-fancy" target="_blank" rel="external">https://github.com/so-fancy/diff-so-fancy</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-diff-so-fancy.jpg" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-git-diff.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># download</div><div class="line">wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy</div><div class="line">chmod +x diff-so-fancy</div><div class="line"># npm</div><div class="line">npm install -g diff-so-fancy</div><div class="line"># 直接调用</div><div class="line">git diff --color | diff-so-fancy</div></pre></td></tr></table></figure>
-<p>在 git diff 和 git show 中启用  diff-so-fancy ，需要修改 gitconfig :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[pager]</div><div class="line">	   diff = diff-so-fancy | less --tabs=1,5 -RFX</div><div class="line">	   show = diff-so-fancy | less --tabs=1,5 -RFX</div></pre></td></tr></table></figure></p>
-<p>除了默认样式优化，diff-so-fancy 还支持颜色和显示项定制，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">git config --global color.ui true</div><div class="line"></div><div class="line">git config --global color.diff-highlight.oldNormal    &quot;red bold&quot;</div><div class="line">git config --global color.diff-highlight.oldHighlight &quot;red bold 52&quot;</div><div class="line">git config --global color.diff-highlight.newNormal    &quot;green bold&quot;</div><div class="line">git config --global color.diff-highlight.newHighlight &quot;green bold 22&quot;</div><div class="line"></div><div class="line">git config --global color.diff.meta       &quot;yellow&quot;</div><div class="line">git config --global color.diff.frag       &quot;magenta bold&quot;</div><div class="line">git config --global color.diff.commit     &quot;yellow bold&quot;</div><div class="line">git config --global color.diff.old        &quot;red bold&quot;</div><div class="line">git config --global color.diff.new        &quot;green bold&quot;</div><div class="line">git config --global color.diff.whitespace &quot;red reverse&quot;</div><div class="line"></div><div class="line">git config --bool --global diff-so-fancy.markEmptyLines false</div></pre></td></tr></table></figure></p>
-<h4 id="fd-gt-find"><a href="#fd-gt-find" class="headerlink" title="fd &gt; find"></a>fd &gt; find</h4><p>fd 非常快。有意思的是 fd 与 bat 的作者是同一个人（David Peter）。更多信息：<a href="https://github.com/sharkdp/fd/" target="_blank" rel="external">https://github.com/sharkdp/fd/</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fd.png" alt=""></p>
-<p>常用的命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">## SourceCode</div><div class="line">git clone https://github.com/sharkdp/fd</div><div class="line">cd fd</div><div class="line">cargo build</div><div class="line">cargo test</div><div class="line">cargo install</div><div class="line"></div><div class="line"># Mac</div><div class="line">brew install fd</div><div class="line"></div><div class="line">## Usage</div><div class="line">fd cli # 查找所有包含&quot;cli&quot;的文件名</div><div class="line">fd -e md # 查找所有 .md 文件</div><div class="line">fd cli -x wc -w # 查找 &quot;cli&quot; 并运行 `wc -w`</div></pre></td></tr></table></figure></p>
-<h4 id="ncdu-gt-du"><a href="#ncdu-gt-du" class="headerlink" title="ncdu &gt; du"></a>ncdu &gt; du</h4><p>了解磁盘空间占用情况是一项非常重要的工作。常用的命令是 du -sh  (-sh 表示摘要、便于人工阅读), 但我们经常需要挖掘目录的空间占用。ncdu 是一个替代选择（完全基于 C 语言编写，MIT 许可证）。ncdu 提供了一个交互式界面, 支持快速扫描哪些文件夹或文件占用空间, 并且导航非常方便。更多信息：<a href="https://dev.yorhel.nl/ncdu" target="_blank" rel="external">https://dev.yorhel.nl/ncdu</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu-nav.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">git clone git://g.blicky.net/ncdu.git/</div><div class="line"></div><div class="line"># release</div><div class="line">wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz</div><div class="line">tar -xvf ncdu-1.13.tar.gz</div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div><div class="line"></div><div class="line"># Usage</div><div class="line">ncdu path</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">alias du=&quot;ncdu --color dark -rr -x --exclude .git --exclude node_modules&quot;</div><div class="line"></div><div class="line"># 扩展选项</div><div class="line">--color dark - use a colour scheme</div><div class="line">-rr - read-only mode (prevents delete and spawn shell)</div><div class="line">--exclude ignore directories I won&apos;t do anything about</div></pre></td></tr></table></figure>
-<h4 id="tldr-gt-man"><a href="#tldr-gt-man" class="headerlink" title="tldr &gt; man"></a>tldr &gt; man</h4><p>几乎每一个命令行工具都可以通过手工输入 man 命令获得帮助信息。TL;DR 项目(“too long; didn’t read”)是一个由社区驱动的命令行文档系统，以非常简洁的方式提供命令行参数列表、使用说明和示例。更多信息：<a href="https://tldr.sh" target="_blank" rel="external">https://tldr.sh/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"># Install</div><div class="line">npm install -g tldr</div><div class="line"></div><div class="line">alias help=&apos;tldr&apos;</div><div class="line"></div><div class="line"># Usage</div><div class="line">Options:</div><div class="line"></div><div class="line">  -V, --version            output the version number</div><div class="line">  -l, --list               List all commands for the chosen platform in the cache</div><div class="line">  -a, --list-all           List all commands in the cache</div><div class="line">  -1, --single-column      List single command per line (use with options -l or -a)</div><div class="line">  -r, --random             Show a random command</div><div class="line">  -e, --random-example     Show a random example</div><div class="line">  -f, --render [file]      Render a specific markdown [file]</div><div class="line">  -m, --markdown           Output in markdown format</div><div class="line">  -o, --os [type]          Override the operating system [linux, osx, sunos]</div><div class="line">  --linux                  Override the operating system with Linux</div><div class="line">  --osx                    Override the operating system with OSX</div><div class="line">  --sunos                  Override the operating system with SunOS</div><div class="line">  -t, --theme [theme]      Color theme (simple, base16, ocean)</div><div class="line">  -s, --search [keywords]  Search pages using keywords</div><div class="line">  -u, --update             Update the local cache</div><div class="line">  -c, --clear-cache        Clear the local cache</div><div class="line">  -h, --help               output usage information</div><div class="line"></div><div class="line"># Example</div><div class="line">bash-3.2$ tldr tar</div><div class="line">✔ Page not found. Updating cache</div><div class="line">✔ Creating index</div><div class="line"></div><div class="line">  tar</div><div class="line"></div><div class="line">  Archiving utility.</div><div class="line">  Often combined with a compression method, such as gzip or bzip.</div><div class="line"></div><div class="line">  - Create an archive from files:</div><div class="line">    tar cf target.tar file1 file2 file3</div><div class="line"></div><div class="line">  - Create a gzipped archive:</div><div class="line">    tar czf target.tar.gz file1 file2 file3</div><div class="line"></div><div class="line">  - Extract an archive in a target folder:</div><div class="line">    tar xf source.tar -C folder</div></pre></td></tr></table></figure>
-<h4 id="ack-ag-gt-grep"><a href="#ack-ag-gt-grep" class="headerlink" title="ack || ag &gt; grep"></a>ack || ag &gt; grep</h4><p>grep 无疑是一个强大的命令行工具, 但多年来它已被许多工具所取代，包括 ack 和 ag 。更多信息：[<a href="https://beyondgrep.com/" target="_blank" rel="external">https://beyondgrep.com/</a>]</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-ack.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl https://beyondgrep.com/ack-2.24-single-file &gt; ~/bin/ack &amp;&amp; chmod 0755 ~/bin/ack</div></pre></td></tr></table></figure>
-<p>ack 和 ag 默认情况下使用正则表达式进行搜索,可以指定文件类型 —— 使用像 —js 或 —html 标志搜索。ack 和 ag  工具都支持 grep 选项, 如 -B (表示输出匹配行和其之后(after)的N行)。</p>
-<p>ack 默认没有支持 markdown 格式，可以在 .ackrc 文件定制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">--type-set=md=.md,.mkd,.markdown</div><div class="line">--pager=less -FRX</div></pre></td></tr></table></figure></p>
-<h4 id="jq-gt-grep-et-al"><a href="#jq-gt-grep-et-al" class="headerlink" title="jq &gt; grep et al"></a>jq &gt; grep et al</h4><blockquote>
-<p>jq is like sed for JSON data</p>
-</blockquote>
-<p>jq 可以作为 JSON 数据转换工具。示例：更新节点依赖项 (分为多行以便于可读性)。<br>更多信息：<a href="https://stedolan.github.io/jq/" target="_blank" rel="external">https://stedolan.github.io/jq/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm i $(echo $(\</div><div class="line">  npm outdated --json | \</div><div class="line">  jq -r &apos;to_entries | .[] | &quot;\(.key)@\(.value.latest)&quot;&apos; \</div><div class="line">))</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;node-jq&quot;: &#123;</div><div class="line">	&quot;current&quot;: &quot;0.7.0&quot;,</div><div class="line">	&quot;wanted&quot;: &quot;0.7.0&quot;,</div><div class="line">	&quot;latest&quot;: &quot;1.2.0&quot;,</div><div class="line">	&quot;location&quot;: &quot;node_modules/node-jq&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;uuid&quot;: &#123;</div><div class="line">	&quot;current&quot;: &quot;3.1.0&quot;,</div><div class="line">	&quot;wanted&quot;: &quot;3.2.1&quot;,</div><div class="line">	&quot;latest&quot;: &quot;3.2.1&quot;,</div><div class="line">	&quot;location&quot;: &quot;node_modules/uuid&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node-jq@1.2.0</div><div class="line">uuid@3.2.1</div></pre></td></tr></table></figure>
-<h2 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h2><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
-<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
-</ul>
-<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
-<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
-<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
-<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://remysharp.com/2018/08/23/cli-improved" target="_blank" rel="external">cli-improved</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;DevOps 资讯 | 是时候升级你的命令行了&lt;/li&gt;
-&lt;li&gt;autojump &amp;gt; cd&lt;/li&gt;
-&lt;li&gt;bat &amp;gt; cat&lt;/li&gt;
-&lt;li&gt;prettyping &amp;gt; ping&lt;/li&gt;
-&lt;li&gt;fzf &amp;gt; ctrl+r&lt;/li&gt;
-&lt;li&gt;htop &amp;gt; top&lt;/li&gt;
-&lt;li&gt;diff-so-fancy &amp;gt; diff&lt;/li&gt;
-&lt;li&gt;fd &amp;gt; find&lt;/li&gt;
-&lt;li&gt;ncdu &amp;gt; du&lt;/li&gt;
-&lt;li&gt;tldr &amp;gt; man&lt;/li&gt;
-&lt;li&gt;ack || ag &amp;gt; grep&lt;/li&gt;
-&lt;li&gt;jq &amp;gt; grep et al&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Language-Lua-lang</title>
-    <link href="https://riboseyim.com/2018/08/23/Language-Lua-lang/"/>
-    <id>https://riboseyim.com/2018/08/23/Language-Lua-lang/</id>
-    <published>2018-08-23T08:57:17.000Z</published>
-    <updated>2018-08-23T08:59:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="Introduction-Lua-简介"><a href="#Introduction-Lua-简介" class="headerlink" title="Introduction | Lua 简介"></a>Introduction | Lua 简介</h2><h2 id="Core-Concept-核心概念"><a href="#Core-Concept-核心概念" class="headerlink" title="Core Concept | 核心概念"></a>Core Concept | 核心概念</h2><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Lua-架构"><a href="#Architecture-Lua-架构" class="headerlink" title="Architecture | Lua 架构"></a>Architecture | Lua 架构</h2><h2 id="Best-Practice-Lua-最佳实践"><a href="#Best-Practice-Lua-最佳实践" class="headerlink" title="Best Practice | Lua 最佳实践"></a>Best Practice | Lua 最佳实践</h2><ul>
-<li>Redis Monitor with Lua</li>
-</ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="external">玩转编程语言系列</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://blog.codingnow.com/2018/08/luavm_bootstrap.html" target="_blank" rel="external">Lua 虚拟机封装</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OpenSource-DB-ES</title>
-    <link href="https://riboseyim.com/2018/08/07/OpenSource-DB-ES/"/>
-    <id>https://riboseyim.com/2018/08/07/OpenSource-DB-ES/</id>
-    <published>2018-08-07T03:34:49.000Z</published>
-    <updated>2018-08-07T03:36:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="Introduction-Apache-Elasticsearch-简介"><a href="#Introduction-Apache-Elasticsearch-简介" class="headerlink" title="Introduction | Apache Elasticsearch 简介"></a>Introduction | Apache Elasticsearch 简介</h2><h2 id="Core-Concept-Apache-Elasticsearch-核心概念"><a href="#Core-Concept-Apache-Elasticsearch-核心概念" class="headerlink" title="Core Concept | Apache Elasticsearch 核心概念"></a>Core Concept | Apache Elasticsearch 核心概念</h2><ul>
-<li><a href="#">art</a></li>
-</ul>
-<h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Apache-Elasticsearch-架构"><a href="#Architecture-Apache-Elasticsearch-架构" class="headerlink" title="Architecture | Apache Elasticsearch 架构"></a>Architecture | Apache Elasticsearch 架构</h2><h2 id="Best-Practice-Apache-Elasticsearch-最佳实践"><a href="#Best-Practice-Apache-Elasticsearch-最佳实践" class="headerlink" title="Best Practice | Apache Elasticsearch 最佳实践"></a>Best Practice | Apache Elasticsearch 最佳实践</h2><h2 id="Apache-Elasticsearch-ABC"><a href="#Apache-Elasticsearch-ABC" class="headerlink" title="Apache Elasticsearch ABC"></a>Apache Elasticsearch ABC</h2><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
     
   </entry>
   

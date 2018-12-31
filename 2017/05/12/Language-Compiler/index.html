@@ -12,10 +12,12 @@
 <meta property="og:url" content="https://riboseyim.com/2017/05/12/Language-Compiler/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 LLVM 构建 LLVM 和 Clang 开发工具库">
-<meta property="og:updated_time" content="2018-08-02T10:33:41.000Z">
+<meta property="og:image" content="https://blog.gopheracademy.com/postimages/advent-2018/llvm-ir-and-go/llvm_compiler_pipeline.png">
+<meta property="og:updated_time" content="2018-12-31T05:16:02.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转编程语言:编译器与编译原理">
 <meta name="twitter:description" content="摘要 LLVM 构建 LLVM 和 Clang 开发工具库">
+<meta name="twitter:image" content="https://blog.gopheracademy.com/postimages/advent-2018/llvm-ir-and-go/llvm_compiler_pipeline.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
   
@@ -140,7 +142,10 @@ ga('send', 'pageview');
 <p>目前 LLVM 已支持包括 ActionScript、Ada、D 语言、Fortran、GLSL、Haskell、Java字节码、Objective-C、Swift、Python、Ruby、Rust、Scala1 以及 C# 等语言。</p>
 <h4 id="LLVM-与-Clang"><a href="#LLVM-与-Clang" class="headerlink" title="LLVM 与 Clang"></a>LLVM 与 Clang</h4><p>Clang 是LLVM编译器工具集的前端（front-end），目的是输出代码对应的抽象语法树（Abstract Syntax Tree, AST），并将代码编译成LLVM Bitcode。接着在后端（back-end）使用 LLVM 编译成平台相关的机器语言 。Clang支持C、C++、Objective C。它的目标是提供一个 GCC 的替代品。作者是克里斯·拉特纳（Chris Lattner），在苹果公司的赞助支持下进行开发。Clang项目包括Clang前端和Clang静态分析器等。</p>
 <h4 id="构建-LLVM-和-Clang-开发工具库"><a href="#构建-LLVM-和-Clang-开发工具库" class="headerlink" title="构建 LLVM 和 Clang 开发工具库"></a>构建 LLVM 和 Clang 开发工具库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># MacOS</span></div><div class="line">$ brew install --with-toolchain llvm</div><div class="line">$ brew info llvm</div><div class="line"><span class="comment"># Linux</span></div><div class="line">$ yum install gcc</div><div class="line">$ yum install gcc-g++</div><div class="line"></div><div class="line">wget https://cmake.org/files/v3.9/cmake-3.9.0-rc4.tar.gz</div><div class="line">tar -xvf cmake-3.9.0-rc4.tar.gz</div><div class="line"><span class="built_in">cd</span> cmake-3.9.0</div><div class="line">./bootstrap  </div><div class="line">gmake</div><div class="line">gmake install</div><div class="line"><span class="built_in">export</span> CMAKE_ROOT=/usr/<span class="built_in">local</span>/share/cmake-3.9.0</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$CMAKE_ROOT</span></div><div class="line"></div><div class="line">git <span class="built_in">clone</span> http://llvm.org/git/llvm.git</div><div class="line"><span class="built_in">cd</span> llvm/tools;</div><div class="line">git <span class="built_in">clone</span> http://llvm.org/git/clang.git</div><div class="line"><span class="built_in">cd</span> ..; mkdir -p build/install; <span class="built_in">cd</span> build</div><div class="line">cmake -G <span class="string">"Unix Makefiles"</span> -DLLVM_TARGETS_TO_BUILD=<span class="string">"BPF;X86"</span> -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<span class="variable">$PWD</span>/install ..</div><div class="line">make</div><div class="line">make install</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/install/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
-<h2 id="扩展阅读-玩转编程语言系列"><a href="#扩展阅读-玩转编程语言系列" class="headerlink" title="扩展阅读:玩转编程语言系列"></a>扩展阅读:<a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="external">玩转编程语言系列</a></h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/" target="_blank" rel="external">LLVM IR and Go</a><br><img src="https://blog.gopheracademy.com/postimages/advent-2018/llvm-ir-and-go/llvm_compiler_pipeline.png" alt=""></li>
+</ul>
+<h4 id="玩转编程语言系列"><a href="#玩转编程语言系列" class="headerlink" title="玩转编程语言系列"></a><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="external">玩转编程语言系列</a></h4><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="http://www.cs.cornell.edu/~asampson/blog/llvm.html" target="_blank" rel="external">LLVM for Grad Students</a></li>
 <li><a href="https://medium.com/dailyjs/gentle-introduction-into-compilers-part-1-lexical-analysis-and-scanner-733246be6738" target="_blank" rel="external">Gentle introduction into compilers. Part 1: Lexical analysis and Scanner | A guide to understanding ECMAScript (JavaScript) spec lexical grammar and TypeScript scanner</a></li>
 </ul>
@@ -259,7 +264,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLVM"><span class="toc-number">2.</span> <span class="toc-text">LLVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LLVM-与-Clang"><span class="toc-number">2.0.1.</span> <span class="toc-text">LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构建-LLVM-和-Clang-开发工具库"><span class="toc-number">2.0.2.</span> <span class="toc-text">构建 LLVM 和 Clang 开发工具库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-玩转编程语言系列"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读:玩转编程语言系列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLVM"><span class="toc-number">2.</span> <span class="toc-text">LLVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LLVM-与-Clang"><span class="toc-number">2.0.1.</span> <span class="toc-text">LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构建-LLVM-和-Clang-开发工具库"><span class="toc-number">2.0.2.</span> <span class="toc-text">构建 LLVM 和 Clang 开发工具库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#玩转编程语言系列"><span class="toc-number">3.0.1.</span> <span class="toc-text">玩转编程语言系列</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -288,7 +293,7 @@ ga('send', 'pageview');
   
   <div class="outer">
       <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-      &copy; 2008 - 2018 RiboseYim&nbsp;
+      &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
       |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
