@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>操作系统原理:How Linux Works(四):Network | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 一、How DNS Works 二、How Route Works 三、How ARP Works">
+<meta name="keywords" content="SRE,DevOps,Linux,架构师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统原理:How Linux Works(四):Network">
+<meta property="og:url" content="https://riboseyim.com/2018/01/08/Linux-Works-Network/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 一、How DNS Works 二、How Route Works 三、How ARP Works">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-DNS-Overview.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DNS_Package_Message.jpeg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-NSSwitch.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-Call.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="og:updated_time" content="2018-12-02T06:08:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统原理:How Linux Works(四):Network">
+<meta name="twitter:description" content="摘要 一、How DNS Works 二、How Route Works 三、How ARP Works">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-DNS-Overview.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Works-Network" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/08/Linux-Works-Network/" class="article-date">
+  <time datetime="2018-01-07T20:28:31.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      操作系统原理:How Linux Works(四):Network
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/01/08/Linux-Works-Network/" data-id="cjq6z2h1h007dxfbmqixg6ho3" class="article-share-link">Share</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构师/">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>一、How DNS Works</li>
+<li>二、How Route Works</li>
+<li>三、How ARP Works</li>
+</ul>
+<a id="more"></a>
+<h2 id="How-DNS-Works"><a href="#How-DNS-Works" class="headerlink" title="How DNS Works"></a>How DNS Works</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-DNS-Overview.png" alt="Overview"></p>
+<p>域名系统（Domain Name System，DNS）将域名和 IP 地址相互映射，能够使人更方便地访问互联网。DNS 最早于 1983 年由保罗·莫卡派乔斯（Paul Mockapetris）发明（RFC 882，RFC 883），1987年发布了修正（RFC 1034，RFC 1035），在此之后 DNS 技术基本上没有改动。</p>
+<p>DNS 协议使用端口 53 ，同时兼容 TCP (RFC-793) 和 UDP(RFC-768) ，但是考虑到更低的开销及性能，DNS 查询通常使用 UDP 协议。DNS 消息包括请求和响应两部分, 所有报文包含标题和其他片断 (例如 question 和 RR ，取决于报文类型)。</p>
+<ul>
+<li>DNS Message - Header: 给出语义的上下文，包括查询个数、结果个数、 会话 ID 等</li>
+<li>DNS Message - Question: 包含要针对 nameserver 执行的查询</li>
+<li>DNS Message - RR: 包装格式相同, 可以根据类型分析字段 (RDATA)</li>
+</ul>
+<blockquote>
+<p>The DNS assumes that messages will be transmitted as datagrams or in a byte stream carried by a virtual circuit. While virtual circuits can be used for any DNS activity, datagrams are preferred for queries due to their lower overhead and better performance.  — 《<a href="https://tools.ietf.org/html/rfc1035" target="_blank" rel="external">RFC-1035 DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a>》</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DNS_Package_Message.jpeg" alt=""></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ping</span> baidu.com | head -1</div><div class="line">PING baidu.com (220.181.57.216) 56(84) bytes of data.</div><div class="line"></div><div class="line"><span class="variable">$host</span> baidu.com</div><div class="line">baidu.com has address 220.181.57.216</div><div class="line">baidu.com has address 123.125.115.110</div></pre></td></tr></table></figure>
+<h4 id="unknown-host"><a href="#unknown-host" class="headerlink" title="unknown host"></a>unknown host</h4><p><strong>strace</strong> 是 Linux 环境下的一款程序调试工具，用来监视一个应用程序所使用的系统调用及它所接收的系统信息。借助 strace 我们可以更好地理解 DNS 工作原理。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ping</span> baidu.com</div><div class="line">ping: unknown host baidu.com</div><div class="line"></div><div class="line"><span class="comment"># strace -e trace=open -f ping -c1 baidu.com</span></div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libcap.so.2"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libidn.so.11"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libc.so.6"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libattr.so.1"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/usr/lib/locale/locale-archive"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/etc/resolv.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/nsswitch.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libnss_files.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/host.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/hosts"</span>, O_RDONLY|O_CLOEXEC)  = 4</div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libnss_dns.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libresolv.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">ping: unknown host baidu.com</div><div class="line">+++ exited with 2 +++</div></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-NSSwitch.png" alt="NSSwitch"></p>
+<h4 id="hosts-static-table-lookup-for-hostnames"><a href="#hosts-static-table-lookup-for-hostnames" class="headerlink" title="hosts - static table lookup for hostnames"></a>hosts - static table lookup for hostnames</h4><p><strong>/etc/hosts</strong> 主机名查询静态表；主要用于IP地址与计算机主机名之间的转换。与 /etc/resolv.conf 的区别是，用户可以直接对 hosts 文件进行控制。一般情况下，我们主要通过 DNS 自动提供动态的主机名解析。不过 hosts 文件仍然是一个可以作为备用手段。</p>
+<ul>
+<li>【IPv4】 127.0.0.1       localhost</li>
+<li>【FQDN】 192.168.1.10    foo.mydomain.org   foo</li>
+<li>【FQDN】 209.237.226.90  www.opensource.org</li>
+<li>【IPv6】 ::1    localhost ip6-localhost ip6-loopback</li>
+<li>【IPv6】 ff02::1   ip6-allnodes</li>
+<li>【IPv6】 ff02::2   ip6-allrouters</li>
+</ul>
+<h4 id="etc-resolv-conf"><a href="#etc-resolv-conf" class="headerlink" title="/etc/resolv.conf"></a>/etc/resolv.conf</h4><p><strong>/etc/resolv.conf</strong> DNS 客户机配置文件，用于设置 DNS 服务器的 IP 地址及 DNS 域名，还包含了主机的域名搜索顺序。</p>
+<p>值得注意的是，许多程序能够覆盖 /etc/resolv.conf 里的内容（例如 dhcpcd, NetworkManager ），但是有些时候我们希望能够手动设定 DNS 设置(比如使用静态IP时)，可以参考以下几种方法：</p>
+<ul>
+<li>修改 dhcpcd 配置，echo “nohook resolv.conf” &gt;  /etc/dhcpcd.conf</li>
+<li>创建 resolv.conf.head ，dhcpcd将把这个文件插入到 /etc/resolv.conf 文件头.</li>
+<li>写保护 /etc/resolv.conf，chattr +i /etc/resolv.conf</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vi /etc/resolv.conf</span></div><div class="line">nameserver 1.1.1.1</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># strace -e trace=open -f ping -c1 baidu.com</span></div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/lib64/libcap.so.2"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/lib64/libidn.so.11"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/lib64/libc.so.6"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/lib64/libattr.so.1"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/usr/lib/locale/locale-archive"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">3</span></div><div class="line">open(<span class="string">"/etc/resolv.conf"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/etc/nsswitch.conf"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/lib64/libnss_files.so.2"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/etc/host.conf"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/etc/hosts"</span>, O_RDONLY|O_CLOEXEC)  = <span class="number">4</span></div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/lib64/libnss_dns.so.2"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">open(<span class="string">"/lib64/libresolv.so.2"</span>, O_RDONLY|O_CLOEXEC) = <span class="number">4</span></div><div class="line">PING baidu.com (<span class="number">220.181</span><span class="number">.57</span><span class="number">.216</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</div><div class="line">open(<span class="string">"/etc/hosts"</span>, O_RDONLY|O_CLOEXEC)  = <span class="number">4</span></div><div class="line"><span class="number">64</span> bytes from <span class="number">220.181</span><span class="number">.57</span><span class="number">.216</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">128</span> time=<span class="number">174</span> ms</div><div class="line">--- baidu.com ping statistics ---</div><div class="line"><span class="number">1</span> packets transmitted, <span class="number">1</span> received, <span class="number">0</span>% packet loss, time <span class="number">0</span>ms</div><div class="line">rtt min/avg/max/mdev = <span class="number">174.062</span>/<span class="number">174.062</span>/<span class="number">174.062</span>/<span class="number">0.000</span> ms</div><div class="line">+++ exited with <span class="number">0</span> +++</div></pre></td></tr></table></figure>
+<h4 id="NSSwitch"><a href="#NSSwitch" class="headerlink" title="NSSwitch"></a>NSSwitch</h4><p><strong>nsswitch.conf</strong>（name services switch）是 SUN 公司开发的一种扩展。每一行都标识特定类型的网络信息（如主机、口令和组）以及信息源（如 NIS+ 表、NIS 映射、DNS 主机表或本地 /etc）。</p>
+<blockquote>
+<p>NSSwitch is not just for DNS lookups. It’s also used for passwords and user lookup information.</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-Call.png" alt=""></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># more /etc/nsswitch.conf</span></div><div class="line">passwd:     files sss</div><div class="line">shadow:     files sss</div><div class="line">group:      files sss</div><div class="line">hosts:      files dns</div><div class="line">bootparams: nisplus [NOTFOUND=<span class="built_in">return</span>] files</div><div class="line">ethers:     files</div><div class="line">netmasks:   files</div><div class="line">networks:   files</div><div class="line">protocols:  files</div><div class="line">rpc:        files</div><div class="line">services:   files sss</div><div class="line">netgroup:   files sss</div><div class="line">publickey:  nisplus</div><div class="line">automount:  files sss</div><div class="line">aliases:    files nisplus</div></pre></td></tr></table></figure>
+<h4 id="dig-Domain-Information-Groper"><a href="#dig-Domain-Information-Groper" class="headerlink" title="dig | Domain Information Groper"></a>dig | Domain Information Groper</h4><p><strong>dig</strong>（Domain Information Groper，域信息搜索器）命令是一个用于查询 DNS 的工具。dig 总共有42个查询选项，涉及到 DNS 信息的方方面面，在 DNS 问题诊断时可以将整个过程信息输出。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dig +nocmd google.com  输出过滤版本信息</div><div class="line">dig +short google.com  输出最精简的CNAME信息和A记录</div><div class="line">dig +nostat google.com 输出过滤统计信息</div><div class="line">dig +trace google.com 输出跟踪，从根域查询直到最终结果</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># dig +short google.com</span></div><div class="line">74.125.130.102</div><div class="line">74.125.130.139</div><div class="line">74.125.130.138</div><div class="line">74.125.130.100</div><div class="line">74.125.130.101</div><div class="line">74.125.130.113</div><div class="line"></div><div class="line"><span class="comment"># dig +trace google.com</span></div><div class="line">DiG 9.9.4-RedHat-9.9.4-18.el7  +trace google.com</div><div class="line">;; global options: +cmd</div><div class="line">.			5	IN	NS	a.root-servers.net.</div><div class="line">.			5	IN	NS	b.root-servers.net.</div><div class="line">.			5	IN	NS	c.root-servers.net.</div><div class="line">.			5	IN	NS	d.root-servers.net.</div><div class="line">.			5	IN	NS	e.root-servers.net.</div><div class="line">.			5	IN	NS	f.root-servers.net.</div><div class="line">.			5	IN	NS	g.root-servers.net.</div><div class="line">.			5	IN	NS	h.root-servers.net.</div><div class="line">.			5	IN	NS	i.root-servers.net.</div><div class="line">.			5	IN	NS	j.root-servers.net.</div><div class="line">.			5	IN	NS	k.root-servers.net.</div><div class="line">.			5	IN	NS	l.root-servers.net.</div><div class="line">.			5	IN	NS	m.root-servers.net.</div><div class="line">.			5	IN	RRSIG	NS 8 0 518400 20180803170000 20180721160000 41656 .</div><div class="line">.....</div><div class="line">;; Received 717 bytes from 192.168.213.2<span class="comment">#53(192.168.213.2) in 10120 ms</span></div><div class="line">com.			172800	IN	NS	g.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	j.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	f.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	h.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	b.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	d.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	i.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	m.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	a.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	l.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	c.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	k.gtld-servers.net.</div><div class="line">com.			172800	IN	NS	e.gtld-servers.net.</div><div class="line">com.			86400	IN	DS	30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766</div><div class="line">com.			86400	IN	RRSIG	DS 8 1 86400 20180804050000 20180722040000 41656 .</div><div class="line">.....</div><div class="line">;; Received 1170 bytes from 192.36.148.17<span class="comment">#53(i.root-servers.net) in 10405 ms</span></div><div class="line">google.com.		172800	IN	NS	ns2.google.com.</div><div class="line">google.com.		172800	IN	NS	ns1.google.com.</div><div class="line">google.com.		172800	IN	NS	ns3.google.com.</div><div class="line">google.com.		172800	IN	NS	ns4.google.com.</div><div class="line">.....</div><div class="line">;; Received 772 bytes from 192.26.92.30<span class="comment">#53(c.gtld-servers.net) in 4914 ms</span></div><div class="line">google.com.		300	IN	A	172.217.31.238</div><div class="line">;; Received 44 bytes from 216.239.36.10<span class="comment">#53(ns3.google.com) in 1003 ms</span></div></pre></td></tr></table></figure>
+<h4 id="DNS-Coding-API"><a href="#DNS-Coding-API" class="headerlink" title="DNS Coding API"></a>DNS Coding API</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"net"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">	query(<span class="string">"riboseyim.com"</span>)</div><div class="line">	query(<span class="string">"qq.com"</span>)</div><div class="line">	query(<span class="string">"facebook.com"</span>)</div><div class="line"></div><div class="line">	host := <span class="string">"riboseyim-qiniu.riboseyim.com"</span></div><div class="line">	cname, _ := net.LookupCNAME(host)</div><div class="line">	fmt.Println(<span class="string">"CNAME(域名),host"</span>, host, <span class="string">"cname"</span>, cname)</div><div class="line"></div><div class="line">	server_ip := <span class="string">"8.8.8.8"</span></div><div class="line">	ptr, _ := net.LookupAddr(server_ip)</div><div class="line">	<span class="keyword">for</span> _, ptrvalue := <span class="keyword">range</span> ptr &#123;</div><div class="line">		fmt.Println(<span class="string">"PTR(指针，IP地址的别名),server_ip"</span>, server_ip, <span class="string">"ptrvalue"</span>, ptrvalue)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">query</span><span class="params">(domain <span class="keyword">string</span>)</span></span> &#123;</div><div class="line">	iprecords, _ := net.LookupIP(domain)</div><div class="line">	<span class="keyword">for</span> _, ip := <span class="keyword">range</span> iprecords &#123;</div><div class="line">		fmt.Println(<span class="string">"A(主机地址),domain"</span>, domain, <span class="string">"ip"</span>, ip)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	nameserver, _ := net.LookupNS(domain)</div><div class="line">	<span class="keyword">for</span> _, ns := <span class="keyword">range</span> nameserver &#123;</div><div class="line">		fmt.Println(<span class="string">"NS(域名服务器),domain"</span>, domain, <span class="string">"nameserver"</span>, ns)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	mxrecords, _ := net.LookupMX(domain)</div><div class="line">	<span class="keyword">for</span> _, mx := <span class="keyword">range</span> mxrecords &#123;</div><div class="line">		fmt.Println(<span class="string">"MX(邮件交换),domain"</span>, domain, <span class="string">"mx.host"</span>, mx.Host, <span class="string">"mx.pref"</span>, mx.Pref)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	txtrecords, _ := net.LookupTXT(domain)</div><div class="line"></div><div class="line">	<span class="keyword">for</span> _, txt := <span class="keyword">range</span> txtrecords &#123;</div><div class="line">		fmt.Println(<span class="string">"TXT(文本标识),domain"</span>, domain, <span class="string">"txt"</span>, txt)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="How-Route-Works-（待续）"><a href="#How-Route-Works-（待续）" class="headerlink" title="How Route Works （待续）"></a>How Route Works （待续）</h2><h4 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">route -n</div><div class="line"><span class="comment"># To Host</span></div><div class="line">route add -host [ip] dev eth0</div><div class="line">route add -host [ip] gw [ip]</div><div class="line"><span class="comment"># To Network</span></div><div class="line">route add -net [ip] netmask [mask]</div><div class="line">route del -net [ip] netmask [mask] gw [......]</div><div class="line"><span class="comment"># default route</span></div><div class="line">route add default gw [......]</div></pre></td></tr></table></figure>
+<h4 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/Library/Preferences/VMware Fusion/vmnet8/nat.conf</div><div class="line"># NAT gateway address</div><div class="line">ip = 192.168.213.2</div><div class="line">netmask = 255.255.255.0</div></pre></td></tr></table></figure>
+<h2 id="How-ARP-Works-（待续）"><a href="#How-ARP-Works-（待续）" class="headerlink" title="How ARP Works （待续）"></a>How ARP Works （待续）</h2><ul>
+<li><a href="https://github.com/malfunkt/hyperfox" target="_blank" rel="external">hyperfox:HTTP/HTTPs MITM proxy and traffic recorder with on-the-fly TLS cert generation. </a></li>
+<li><a href="https://github.com/malfunkt/arpfox" target="_blank" rel="external">arpfox</a></li>
+</ul>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="DNS-Tools"><a href="#DNS-Tools" class="headerlink" title="DNS Tools"></a>DNS Tools</h4><ul>
+<li><p>chrome DNS Cache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 浏览器</span></div><div class="line">chrome://net-internals/<span class="comment">#dns</span></div><div class="line"><span class="comment"># 清空缓存</span></div><div class="line">“clean host cache”</div></pre></td></tr></table></figure>
+</li>
+<li><p>Windows DNS Cache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看缓存</span></div><div class="line">ipconfig /displaydns</div><div class="line"><span class="comment"># 清空缓存</span></div><div class="line">ipconfig /flushd ns</div></pre></td></tr></table></figure>
+</li>
+<li><p>Mac OS X</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lookupd -flushcache</div></pre></td></tr></table></figure>
+</li>
+<li><p>Linux</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 清空DNS缓存，重启 nscd 进程</span></div><div class="line">$ /etc/rc.d/init.d/nscd restart</div></pre></td></tr></table></figure>
+<ul>
+<li>网卡流量 nLoad<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget http://www.roland-riegel.de/nload/nload-0.7.2.tar.gz</div><div class="line">tar zxvf nload-0.7.2.tar.gz</div><div class="line"><span class="built_in">cd</span> nload-0.7.2</div><div class="line">./configure</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="bond"><a href="#bond" class="headerlink" title="bond"></a>bond</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># modinfo bonding</span></div><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-bond0  </div><div class="line">DEVICE=bond0</div><div class="line">BOOTPROTO=none</div><div class="line">ONBOOT=yes</div><div class="line">IPADDR=192.168.1.10</div><div class="line">GATEWAY=192.168.1.1</div><div class="line">NETMASK=255.255.255.249</div><div class="line">USERCTL=NO</div><div class="line"></div><div class="line">$ more ifcfg-eth0</div><div class="line"><span class="comment">#HWADDR=74:86:7A:DD:C3:68</span></div><div class="line">DEVICE=eth0</div><div class="line">BOOTPROTO=none</div><div class="line">ONBOOT=yes</div><div class="line">MASTER=bond0</div><div class="line">SLAVE=yes</div><div class="line">USERCTL=NO</div><div class="line"></div><div class="line">$ more ifcfg-eth1</div><div class="line"><span class="comment">##HWADDR=74:86:7A:DD:C3:69</span></div><div class="line">DEVICE=eth1</div><div class="line">BOOTPROTO=none</div><div class="line">ONBOOT=yes</div><div class="line">MASTER=bond0</div><div class="line">SLAVE=yes</div><div class="line">USERCTL=NO</div><div class="line"></div><div class="line">more /etc/modprobe.conf</div><div class="line">options bonding mode=1 miimon=100</div></pre></td></tr></table></figure>
+<h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
+</ul>
+<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="扩展阅读-1"><a href="#扩展阅读-1" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="external">远程通信协议：从 CORBA 到 gRPC</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://tools.ietf.org/html/rfc1035" target="_blank" rel="external">RFC-1035 DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a></li>
+<li><a href="https://ops.tips/blog/raw-dns-resolver-in-go" target="_blank" rel="external">Writing DNS messages from scratch using Go</a></li>
+<li><a href="http://man7.org/linux/man-pages/man5/hosts.5.html" target="_blank" rel="external">hosts - static table lookup for hostnames | Linux Programmer’s Manual</a></li>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/strace.html" target="_blank" rel="external">strace 跟踪进程中的系统调用</a></li>
+<li><a href="https://zwischenzugs.com/2018/06/08/anatomy-of-a-linux-dns-lookup-part-i/" target="_blank" rel="external">Anatomy of a Linux DNS Lookup – Part I</a></li>
+<li><a href="https://zwischenzugs.com/2018/06/18/anatomy-of-a-linux-dns-lookup-part-ii/" target="_blank" rel="external">Anatomy of a Linux DNS Lookup – Part II</a></li>
+<li><a href="http://www.golangprograms.com/find-dns-records-programmatically.html" target="_blank" rel="external">Find DNS records programmatically</a></li>
+<li><a href="https://medium.com/@owlwalks/build-a-dns-server-in-golang-fec346c42889" target="_blank" rel="external">Build a DNS server in Golang</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3MDQ4MzQzMg==&amp;mid=2665690630&amp;idx=1&amp;sn=89e75f7fb2910b74b082515b7107222b&amp;chksm=842bba81b35c33978e0d127cf734e4d5c03ed8e15a857f43626b72b1ca9a1024f945e27d7f1f&amp;mpshare=1&amp;scene=1&amp;srcid=0316ZJP9Ue8U7triSRjq4HhK%23rd" target="_blank" rel="external">网卡收包流程 | 原创 2017-03-16 信鸽工程师Henry 腾讯大数据</a></li>
+<li><a href="http://www.vpser.net/manage/nethogs.html" target="_blank" rel="external">Linux下进程/程序网络带宽占用情况查看工具 — NetHogs</a></li>
+<li><a href="http://www.cnblogs.com/peida/archive/2013/03/05/2943698.html" target="_blank" rel="external">每天一个linux命令（53）：route命令</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/01/08/Linux-Works-Network/" data-id="cjq6z2h1h007dxfbmqixg6ho3" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构师/">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/15/Visualization-DataSource/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据可视化（十）公共数据源列表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/07/Policy-Law-Family/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Policy-Law-Family</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-DNS-Works"><span class="toc-number">2.</span> <span class="toc-text">How DNS Works</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unknown-host"><span class="toc-number">2.0.1.</span> <span class="toc-text">unknown host</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hosts-static-table-lookup-for-hostnames"><span class="toc-number">2.0.2.</span> <span class="toc-text">hosts - static table lookup for hostnames</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-resolv-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">/etc/resolv.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSwitch"><span class="toc-number">2.0.4.</span> <span class="toc-text">NSSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig-Domain-Information-Groper"><span class="toc-number">2.0.5.</span> <span class="toc-text">dig | Domain Information Groper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Coding-API"><span class="toc-number">2.0.6.</span> <span class="toc-text">DNS Coding API</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Route-Works-（待续）"><span class="toc-number">3.</span> <span class="toc-text">How Route Works （待续）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ABC"><span class="toc-number">3.0.1.</span> <span class="toc-text">ABC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT"><span class="toc-number">3.0.2.</span> <span class="toc-text">NAT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-ARP-Works-（待续）"><span class="toc-number">4.</span> <span class="toc-text">How ARP Works （待续）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">5.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Tools"><span class="toc-number">5.0.1.</span> <span class="toc-text">DNS Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bond"><span class="toc-number">5.0.2.</span> <span class="toc-text">bond</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-1"><span class="toc-number">9.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

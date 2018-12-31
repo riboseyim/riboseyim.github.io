@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Oracle 数据库日常维护 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 【编辑中】 init params files tree">
+<meta name="keywords" content="DevOps,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 数据库日常维护">
+<meta property="og:url" content="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 【编辑中】 init params files tree">
+<meta property="og:updated_time" content="2018-12-23T07:18:19.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 数据库日常维护">
+<meta name="twitter:description" content="摘要 【编辑中】 init params files tree">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Technology-Oracle-Ops" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/21/Technology-Oracle-Ops/" class="article-date">
+  <time datetime="2018-11-21T06:03:16.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle 数据库日常维护
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/" data-id="cjq6z2h4300e3xfbm7k0h8tha" class="article-share-link">Share</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>【编辑中】</li>
+<li>init params</li>
+<li>files tree</li>
+</ul>
+<a id="more"></a>
+<h2 id="INSTALL"><a href="#INSTALL" class="headerlink" title="INSTALL"></a>INSTALL</h2><h4 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> USER_NAME <span class="keyword">identified</span> <span class="keyword">by</span> USER_PASSWD;</div></pre></td></tr></table></figure>
+<h4 id="Init-Params"><a href="#Init-Params" class="headerlink" title="Init Params"></a>Init Params</h4><ul>
+<li><p>初始化参数文件（Initialization Parameters Files,pfile）<br>pfile 默认为“init+例程名.ora”,文本文件，可以手工编辑。</p>
+</li>
+<li><p>spfile:服务器参数文件（Server Parameter Files）<br>spfile 默认为“spfile+例程名.ora”，<strong>不能用vi编辑器对其中参数进行修改，只能通过命令在线修改。</strong></p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-- $ORACLE_HOME/dbs/spfiledbnms.ora</div><div class="line">--pfile格式转换：将二进制转换为文本格式</div><div class="line">SQL&gt; CREATE Spfile FROM pfile;</div><div class="line">这种方法，然后再用vi编辑器对其中的参数进行直观修改，以达到方便的目的。</div><div class="line"></div><div class="line">--pfile格式转换：将文本转为二进制格式</div><div class="line">SQL&gt; CREATE pfile FROM Spfile;</div><div class="line"></div><div class="line"># df -k /dev/shm</div><div class="line">Filesystem     1K-blocks  Used Available Use% Mounted on</div><div class="line">tmpfs            4194304   288   4194016   1% /dev/shm</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams193.htm#REFRN10256" target="_blank" rel="external">SGA</a></li>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams157.htm#REFRN10165" target="_blank" rel="external">pga_aggregate_target</a></li>
+</ul>
+<p>SGA_TARGET specifies the total size of all SGA components.<br>If SGA_TARGET is specified, then the following memory pools are automatically sized:</p>
+<ul>
+<li>Buffer cache (DB_CACHE_SIZE)</li>
+<li>Shared pool (SHARED_POOL_SIZE)</li>
+<li>Large pool (LARGE_POOL_SIZE)</li>
+<li>Java pool (JAVA_POOL_SIZE)</li>
+<li>Streams pool (STREAMS_POOL_SIZE)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pga_aggregate_target = total memory - SGA</div></pre></td></tr></table></figure>
+<p>When setting this parameter, you should examine the total memory on your system that is available to the Oracle instance and subtract the SGA. You can assign the remaining memory to PGA_AGGREGATE_TARGET.</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># example:vi $ORACLE_HOME/dbs/spfiledbnms.ora</span></div><div class="line"><span class="comment"># dbnms.__java_pool_size=939524096</span></div><div class="line"><span class="comment"># dbnms.__large_pool_size=805306368</span></div><div class="line">dbnms.__java_pool_size=<span class="number">4294967296</span></div><div class="line">dbnms.__large_pool_size=<span class="number">4294967296</span></div><div class="line">dbnms.__oracle_base=<span class="string">'/oracle/product'</span><span class="comment">#ORACLE_BASE set from environment</span></div><div class="line"><span class="comment">#dbnms.__pga_aggregate_target=16106127360</span></div><div class="line">dbnms.__pga_aggregate_target=<span class="number">0</span></div><div class="line"><span class="comment">#dbnms.__sga_target=64424509440</span></div><div class="line">dbnms.sga_target=<span class="number">4294967296</span></div><div class="line">dbnms.__shared_io_pool_size=<span class="number">0</span></div><div class="line">dbnms.__shared_pool_size=<span class="number">4697620480</span></div><div class="line">dbnms.__streams_pool_size=<span class="number">0</span></div><div class="line">*.audit_file_dest=<span class="string">'/oracle/product/admin/dbnms/adump'</span></div><div class="line">*.audit_trail=<span class="string">'db'</span></div><div class="line">*.compatible=<span class="string">'11.2.0.4.0'</span></div><div class="line">*.control_files=<span class="string">'/oradata1/dbnms/control01.ctl'</span>,<span class="string">'/oradata2/dbnms/control02.ctl'</span></div><div class="line">*.db_block_size=<span class="number">8192</span></div><div class="line">*.db_domain=<span class="string">''</span></div><div class="line">*.db_name=<span class="string">'dbnms'</span></div><div class="line">*.diagnostic_dest=<span class="string">'/oracle/product'</span></div><div class="line">*.dispatchers=<span class="string">'(PROTOCOL=TCP) (SERVICE=dbnms)'</span></div><div class="line">*.open_cursors=<span class="number">300</span></div><div class="line"><span class="comment">#*.pga_aggregate_target=16106127360</span></div><div class="line">*.pga_aggregate_target=<span class="number">0</span></div><div class="line">*.processes=<span class="number">1500</span></div><div class="line">*.remote_login_passwordfile=<span class="string">'EXCLUSIVE'</span></div><div class="line">*.sessions=<span class="number">1655</span></div><div class="line"><span class="comment"># *.sga_target=64424509440</span></div><div class="line">*.sga_target=<span class="number">4294967296</span></div><div class="line">*.undo_tablespace=<span class="string">'UNDOTBS1'</span></div></pre></td></tr></table></figure>
+<h2 id="Optimizing"><a href="#Optimizing" class="headerlink" title="Optimizing"></a>Optimizing</h2><h4 id="Metric"><a href="#Metric" class="headerlink" title="Metric"></a>Metric</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="string">'vsession:'</span>||<span class="keyword">count</span>(*)||<span class="string">''</span> <span class="keyword">as</span> moni <span class="keyword">from</span> v$<span class="keyword">session</span></div><div class="line"><span class="keyword">union</span></div><div class="line"><span class="keyword">select</span> <span class="string">'maxsessions:'</span>||<span class="keyword">value</span>||<span class="string">''</span> <span class="keyword">as</span> sessions <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'sessions'</span></div><div class="line"><span class="keyword">union</span></div><div class="line"><span class="keyword">select</span> <span class="string">'vprocess:'</span>||<span class="keyword">count</span>(*)||<span class="string">''</span> <span class="keyword">from</span> v$process</div><div class="line"><span class="keyword">union</span></div><div class="line"><span class="keyword">select</span> <span class="string">'maxprocess:'</span>||<span class="keyword">value</span>||<span class="string">''</span> <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'processes'</span></div></pre></td></tr></table></figure>
+<h4 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v$event_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v$<span class="keyword">sql</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> p.spid, s.osuser, s.program ,p.* <span class="keyword">from</span> v$<span class="keyword">session</span> s,v$process p <span class="keyword">where</span> s.paddr=p.addr   <span class="keyword">and</span> s.SID=<span class="string">'8463'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">---eg:Buffer Busy Waits</span></div><div class="line"><span class="keyword">select</span>   sql_text   </div><div class="line"><span class="keyword">from</span>   v$<span class="keyword">sql</span> t1, v$<span class="keyword">session</span> t2, v$session_wait   t3  </div><div class="line"><span class="keyword">where</span>   <span class="number">1</span>=<span class="number">1</span></div><div class="line"><span class="keyword">and</span> t1.address=t2.sql_address   </div><div class="line"><span class="keyword">and</span> t1.hash_value=t2.sql_hash_value</div><div class="line"><span class="keyword">and</span> t2.sid=t3.sid   </div><div class="line"><span class="keyword">and</span> t3.event=<span class="string">'buffer busy waits'</span>;</div></pre></td></tr></table></figure>
+<h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><ul>
+<li>TOP IO SQL</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- - TOP IO SQL</span></div><div class="line"><span class="keyword">select</span> p.spid,s.sid,s.machine,s.program,q.disk_reads,q.sql_text</div><div class="line"><span class="keyword">from</span> v$process p,v$<span class="keyword">session</span> s,v$<span class="keyword">sql</span> q</div><div class="line"><span class="keyword">where</span> p.addr=s.paddr <span class="keyword">and</span> s.sql_id=q.sql_id</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<h4 id="INDEX"><a href="#INDEX" class="headerlink" title="INDEX"></a>INDEX</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">analyze</span> <span class="keyword">table</span> TABLENAME <span class="keyword">compute</span> <span class="keyword">statistics</span>;  </div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">sid</span>,opname,target,sofar,totalwork,trunc(sofar/totalwork*<span class="number">100</span>,<span class="number">2</span>)||<span class="string">'%'</span> <span class="keyword">as</span> perwork</div><div class="line"><span class="keyword">from</span> v$session_longops <span class="keyword">where</span> sofar!=totalwork <span class="keyword">and</span> <span class="keyword">sid</span>=<span class="string">'1479'</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 21:16 1	1479	Table Scan	SLVIEW.FLUX	6457	128417	5.02%</span></div><div class="line"><span class="comment">-- 1	1479	Table Scan	TEST.TABLE_A	14813	128417	11.53%</span></div></pre></td></tr></table></figure>
+<h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="string">'alter system kill session '''</span>||<span class="string">''</span>||s.sid||<span class="string">','</span>||s.serial#||<span class="string">''';'</span></div><div class="line"><span class="keyword">from</span> v$locked_object lo,dba_objects ao,v$<span class="keyword">session</span> s</div><div class="line"><span class="keyword">where</span> ao.object_id = lo.object_id <span class="keyword">and</span> lo.session_id = s.sid</div><div class="line"><span class="keyword">and</span> object_name = <span class="string">'TABLENAME'</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="comment">/*+ rule */</span> s.username,<span class="keyword">decode</span>(l.type,<span class="string">'TM'</span>,<span class="string">'TABLE LOCK'</span>,<span class="string">'TX'</span>,<span class="string">'ROW LOCK'</span>,<span class="literal">NULL</span>) LOCK_LEVEL,</div><div class="line">o.owner,o.object_name,o.object_type,s.sid,s.serial#,s.terminal,s.machine,s.program,s.osuser,l.CTIME</div><div class="line"><span class="keyword">FROM</span> v$<span class="keyword">session</span> s,v$<span class="keyword">lock</span> l,dba_objects o <span class="keyword">WHERE</span> l.sid = s.sid <span class="keyword">AND</span> l.id1 = o.object_id(+)</div><div class="line"><span class="keyword">and</span> machine =<span class="string">'HOST_NAME'</span></div><div class="line"><span class="keyword">and</span> owner=<span class="string">'USER_NAME'</span>  </div><div class="line"><span class="keyword">and</span> object_name=<span class="string">'TABLE_NAME'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> t2.username,  </div><div class="line">       t2.sid,  </div><div class="line">       t2.serial#,  </div><div class="line">       t3.object_name,  </div><div class="line">       t2.OSUSER,  </div><div class="line">       t2.MACHINE,  </div><div class="line">       t2.PROGRAM,  </div><div class="line">       t2.LOGON_TIME,  </div><div class="line">       t2.COMMAND,  </div><div class="line">       t2.LOCKWAIT,  </div><div class="line">       t2.SADDR,  </div><div class="line">       t2.PADDR,  </div><div class="line">       t2.TADDR,  </div><div class="line">       t2.SQL_ADDRESS,  </div><div class="line">       t1.LOCKED_MODE  </div><div class="line">  <span class="keyword">from</span> v$locked_object t1, v$<span class="keyword">session</span> t2, dba_objects t3  </div><div class="line"><span class="keyword">where</span> t1.session_id = t2.sid  </div><div class="line">   <span class="keyword">and</span> t1.object_id = t3.object_id  </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> t2.logon_time;</div></pre></td></tr></table></figure>
+<h4 id="Constraint"><a href="#Constraint" class="headerlink" title="Constraint"></a>Constraint</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> a.constraint_name, a.table_name, b.constraint_name</div><div class="line"><span class="keyword">from</span> user_constraints a, user_constraints b</div><div class="line"><span class="keyword">where</span></div><div class="line">a.constraint_type = <span class="string">'R'</span> <span class="comment">--外键</span></div><div class="line"><span class="comment">--and b.constraint_type = 'P' --主键</span></div><div class="line"><span class="keyword">and</span> a.r_constraint_name = b.constraint_name</div><div class="line"><span class="keyword">and</span> a.constraint_name <span class="keyword">like</span> <span class="string">'%KEY_NAME%'</span>;</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams.htm#REFRN001" target="_blank" rel="external">Oracle initparams</a></li>
+<li><a href="https://docs.oracle.com/en/middleware/goldengate/index.html" target="_blank" rel="external">Oracle GoldenGate Doc</a></li>
+<li><a href="https://www.oracle.com/technetwork/cn/community/developer-day/3-goldengate-289794-zhs.pdf" target="_blank" rel="external">Oracle GoldenGate 产品介绍</a></li>
+<li><a href="https://docs.oracle.com/goldengate/c1230/gg-winux/GGSAU/GGSAU.pdf" target="_blank" rel="external">Using Oracle GoldenGate Microservices Architecture</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/" data-id="cjq6z2h4300e3xfbm7k0h8tha" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/21/Protocol-Route/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Protocol-Route
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/03/Machine-Learning-Uber/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Uber 业务预测系统实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#INSTALL"><span class="toc-number">2.</span> <span class="toc-text">INSTALL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Security"><span class="toc-number">2.0.1.</span> <span class="toc-text">Security</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Init-Params"><span class="toc-number">2.0.2.</span> <span class="toc-text">Init Params</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimizing"><span class="toc-number">3.</span> <span class="toc-text">Optimizing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Metric"><span class="toc-number">3.0.1.</span> <span class="toc-text">Metric</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Events"><span class="toc-number">3.0.2.</span> <span class="toc-text">Events</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL"><span class="toc-number">3.0.3.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#INDEX"><span class="toc-number">3.0.4.</span> <span class="toc-text">INDEX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lock"><span class="toc-number">3.0.5.</span> <span class="toc-text">Lock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constraint"><span class="toc-number">3.0.6.</span> <span class="toc-text">Constraint</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

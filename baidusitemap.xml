@@ -1,0 +1,5032 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/10/DevOps-Build/</loc>
+    <lastmod>2018-12-30T17:45:17.694Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈:全生命周期构建管理</title>
+        <pubTime>2018-12-10T02:39:51.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/09/15/Visualization-Graphviz/</loc>
+    <lastmod>2018-12-30T16:34:07.699Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（三）基于 Graphviz 实现程序化绘图</title>
+        <pubTime>2017-09-15T08:28:30.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/02/Writing-Technical/</loc>
+    <lastmod>2018-12-30T11:50:50.952Z</lastmod>
+    <data>
+        <display>
+        <title>技术团队中的作家</title>
+        <pubTime>2018-12-02T06:27:28.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Mac</tag>
+         
+        <tag>工具癖</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/01/Check2018/</loc>
+    <lastmod>2018-12-30T11:04:26.450Z</lastmod>
+    <data>
+        <display>
+        <title>Autobiography:我的2018年度盘点</title>
+        <pubTime>2018-01-01T06:10:13.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/03/Writing-WriterToolChain/</loc>
+    <lastmod>2018-12-28T02:48:41.102Z</lastmod>
+    <data>
+        <display>
+        <title>我的写作工具链</title>
+        <pubTime>2017-06-03T08:40:13.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Mac</tag>
+         
+        <tag>工具癖</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Commander/</loc>
+    <lastmod>2018-12-26T03:56:52.523Z</lastmod>
+    <data>
+        <display>
+        <title>讲武堂</title>
+        <pubTime>2016-04-26T03:32:40.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/10/06/CyberSecurity-SSH/</loc>
+    <lastmod>2018-12-25T09:13:49.545Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:OpenSSH并不绝对安全</title>
+        <pubTime>2016-10-06T10:03:08.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/10/DevOps-Phoenix/</loc>
+    <lastmod>2018-12-24T08:50:05.893Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：从作坊到工厂的寓言故事</title>
+        <pubTime>2018-04-10T07:12:14.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/05/18/DevOps-OpenTracing/</loc>
+    <lastmod>2018-12-24T08:49:35.401Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：分布式追踪系统体系概要</title>
+        <pubTime>2018-05-18T03:36:46.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/27/DevOps-OpenCensus/</loc>
+    <lastmod>2018-12-24T08:48:54.058Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：开源分布式跟踪系统 OpenCensus</title>
+        <pubTime>2018-04-27T02:33:09.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/09/24/DevOps-GOPS/</loc>
+    <lastmod>2018-12-24T08:48:30.696Z</lastmod>
+    <data>
+        <display>
+        <title>技术社群：高效运维(GOPS)</title>
+        <pubTime>2016-09-24T05:31:47.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/21/DevOps-Docker/</loc>
+    <lastmod>2018-12-24T08:48:22.808Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：Docker</title>
+        <pubTime>2017-08-21T05:46:54.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/26/DevOps-Deployment/</loc>
+    <lastmod>2018-12-24T08:48:08.078Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：基础设施部署和配置管理</title>
+        <pubTime>2018-03-26T10:01:39.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/12/DevOps-Container-Security/</loc>
+    <lastmod>2018-12-24T08:47:48.174Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:Linux容器安全的十重境界</title>
+        <pubTime>2017-11-12T08:12:13.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/15/DevOps-Container-Kubernetes/</loc>
+    <lastmod>2018-12-24T08:47:30.618Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps-Container-Kubernetes</title>
+        <pubTime>2017-11-15T10:23:30.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/06/12/DevOps-Container-Usage/</loc>
+    <lastmod>2018-12-24T08:47:18.536Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：容器技术</title>
+        <pubTime>2018-06-12T05:22:14.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/29/DevOps-Culture/</loc>
+    <lastmod>2018-12-24T08:46:50.795Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈：DevOps实践的本质是文化</title>
+        <pubTime>2018-03-29T01:21:17.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/23/Visualization-DataStruct/</loc>
+    <lastmod>2018-12-23T17:25:10.817Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（九）探索数据结构之美</title>
+        <pubTime>2018-12-23T15:10:50.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/02/Mathmetics-Tools/</loc>
+    <lastmod>2018-12-23T17:18:17.487Z</lastmod>
+    <data>
+        <display>
+        <title>数学工具指南</title>
+        <pubTime>2018-02-02T03:57:04.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/06/19/Learning-Template/</loc>
+    <lastmod>2018-12-23T16:53:20.193Z</lastmod>
+    <data>
+        <display>
+        <title>Learning-Template</title>
+        <pubTime>2018-06-18T16:04:41.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/30/Lincoln-Chicago-Orchestra/</loc>
+    <lastmod>2018-12-23T16:52:27.026Z</lastmod>
+    <data>
+        <display>
+        <title>Lincoln-Chicago-Orchestra</title>
+        <pubTime>2018-03-30T08:17:42.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/11/Linux-Works-Memory/</loc>
+    <lastmod>2018-12-23T16:50:51.938Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统原理:How Linux Works(三):Memory</title>
+        <pubTime>2017-12-10T16:36:27.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/25/Machine-Learning-Books/</loc>
+    <lastmod>2018-12-23T16:50:45.065Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:机器学习推荐书单</title>
+        <pubTime>2018-01-25T09:55:34.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/27/Technology-English/</loc>
+    <lastmod>2018-12-23T16:50:19.585Z</lastmod>
+    <data>
+        <display>
+        <title>论工程师的自我修养：全英文技术学习实践</title>
+        <pubTime>2017-06-27T06:05:05.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/05/Language-Go-lang/</loc>
+    <lastmod>2018-12-23T08:48:48.390Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog：玩转编程语言 - Golang 专题</title>
+        <pubTime>2017-05-05T06:56:56.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/11/21/Technology-Oracle-Ops/</loc>
+    <lastmod>2018-12-23T07:18:19.271Z</lastmod>
+    <data>
+        <display>
+        <title>Oracle 数据库日常维护</title>
+        <pubTime>2018-11-21T06:03:16.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/31/TeamWork-Git/</loc>
+    <lastmod>2018-12-19T03:31:12.011Z</lastmod>
+    <data>
+        <display>
+        <title>最佳工程实践:版本管理</title>
+        <pubTime>2016-05-31T09:37:04.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/06/Visualization/</loc>
+    <lastmod>2018-12-18T04:20:12.518Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：数据可视化</title>
+        <pubTime>2017-07-06T06:37:06.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/15/Visualization-DataSource/</loc>
+    <lastmod>2018-12-18T04:10:12.954Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（十）公共数据源列表</title>
+        <pubTime>2018-01-15T07:30:18.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/</loc>
+    <lastmod>2018-12-18T04:08:05.227Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（八）Program,Data and Classical Music</title>
+        <pubTime>2018-12-16T10:05:18.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Visualization-RunningApp/</loc>
+    <lastmod>2018-12-18T04:08:00.848Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（二）跑步应用数据可视化评测</title>
+        <pubTime>2016-04-26T03:59:39.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>移动互联网</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/</loc>
+    <lastmod>2018-12-18T04:07:53.205Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（一）思维利器 OmniGraffle for Mac 使用指南</title>
+        <pubTime>2017-09-15T08:31:40.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Mac</tag>
+         
+        <tag>工具癖</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/04/Visualization-Graphite/</loc>
+    <lastmod>2018-12-18T04:07:23.353Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（七）Graphite 体系结构详解</title>
+        <pubTime>2017-12-04T03:11:49.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/22/Visualization-Grafana/</loc>
+    <lastmod>2018-12-18T04:07:15.701Z</lastmod>
+    <data>
+        <display>
+        <title>Grafana</title>
+        <pubTime>2017-11-22T03:51:18.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Visualization-Charts/</loc>
+    <lastmod>2018-12-18T04:06:46.494Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（五）基于网络爬虫制作可视化图表</title>
+        <pubTime>2017-05-12T10:45:50.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/23/Visualization-DashBoard/</loc>
+    <lastmod>2018-12-18T04:06:44.721Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（六）常见的可视化仪表盘(DashBoard)</title>
+        <pubTime>2017-11-23T01:34:51.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Visualization-GIS/</loc>
+    <lastmod>2018-12-18T04:06:42.615Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化（四）开源地理信息系统简史</title>
+        <pubTime>2017-05-12T10:38:02.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/02/Artistic/</loc>
+    <lastmod>2018-12-18T04:02:33.074Z</lastmod>
+    <data>
+        <display>
+        <title>香山艺术评论</title>
+        <pubTime>2016-05-02T00:13:13.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Language-R-lang/</loc>
+    <lastmod>2018-12-16T10:13:49.516Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:R</title>
+        <pubTime>2017-05-16T02:13:04.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/21/Language-Go-lang-Spider/</loc>
+    <lastmod>2018-12-16T02:56:47.830Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:基于Golang构建网络数据爬虫</title>
+        <pubTime>2017-12-21T04:06:55.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/10/Artistic-Classical/</loc>
+    <lastmod>2018-12-16T02:22:55.523Z</lastmod>
+    <data>
+        <display>
+        <title>古典音乐低俗史</title>
+        <pubTime>2018-04-10T06:09:52.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Artistic-Museum/</loc>
+    <lastmod>2018-12-15T12:54:54.255Z</lastmod>
+    <data>
+        <display>
+        <title>Museum：博物馆大全</title>
+        <pubTime>2017-05-12T08:09:13.000Z</pubTime>
+        
+        <tag>摄影</tag>
+         
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/27/History-Psychology/</loc>
+    <lastmod>2018-12-15T12:41:41.302Z</lastmod>
+    <data>
+        <display>
+        <title>History_Psychology</title>
+        <pubTime>2017-11-27T03:35:33.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/</loc>
+    <lastmod>2018-12-15T12:37:23.361Z</lastmod>
+    <data>
+        <display>
+        <title>Linux FileSystems</title>
+        <pubTime>2018-06-07T09:45:08.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/26/Language/</loc>
+    <lastmod>2018-12-15T12:33:53.273Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言系列</title>
+        <pubTime>2017-05-26T02:37:03.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/26/Protocol/</loc>
+    <lastmod>2018-12-10T08:44:31.912Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:计算机网络协议大全(Protocol)</title>
+        <pubTime>2017-05-26T02:30:59.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/08/Economist-Books-Year-2018/</loc>
+    <lastmod>2018-12-09T16:55:56.483Z</lastmod>
+    <data>
+        <display>
+        <title>The Economist 2018年度推荐书单</title>
+        <pubTime>2018-12-08T11:23:36.000Z</pubTime>
+        
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/02/09/eBook/</loc>
+    <lastmod>2018-12-05T06:43:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>我的电子书</title>
+        <pubTime>2017-02-09T15:42:54.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/06/11/Writing/</loc>
+    <lastmod>2018-12-02T08:40:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>最佳写作实践：从Evernote到Ulysses</title>
+        <pubTime>2016-06-11T10:21:21.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Mac</tag>
+         
+        <tag>工具癖</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/11/26/DTrace/</loc>
+    <lastmod>2018-12-02T06:25:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态追踪技术专题</title>
+        <pubTime>2016-11-25T17:21:31.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>DTrace</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/08/Linux-Works-Network/</loc>
+    <lastmod>2018-12-02T06:08:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统原理:How Linux Works(四):Network</title>
+        <pubTime>2018-01-07T20:28:31.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/26/SRE/</loc>
+    <lastmod>2018-12-02T05:41:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>SRE:Site Reliability Engineering</title>
+        <pubTime>2017-04-26T07:13:36.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/09/01/AAA/</loc>
+    <lastmod>2018-12-02T05:35:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于LVS的AAA负载均衡架构实践</title>
+        <pubTime>2016-09-01T11:56:40.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/09/11/Engineering-Index/</loc>
+    <lastmod>2018-12-01T16:46:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Engineering Index</title>
+        <pubTime>2018-09-11T02:45:32.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/07/Policy-Law-Family/</loc>
+    <lastmod>2018-12-01T16:43:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>Policy-Law-Family</title>
+        <pubTime>2018-01-07T12:45:34.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/12/01/News-Night-20181201/</loc>
+    <lastmod>2018-12-01T15:15:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Night News 20181201</title>
+        <pubTime>2018-12-01T14:59:26.000Z</pubTime>
+        
+        <tag>News</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/09/03/Linux-Commands-New/</loc>
+    <lastmod>2018-12-01T14:07:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统原理：Linux Commands Extension</title>
+        <pubTime>2018-09-02T17:36:40.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/26/Linux-Commands/</loc>
+    <lastmod>2018-12-01T14:03:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统原理：Linux Commands</title>
+        <pubTime>2017-04-26T07:33:39.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/20/MrTanSitong/</loc>
+    <lastmod>2018-12-01T14:02:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>最后的豪侠——谭嗣同</title>
+        <pubTime>2017-04-20T06:51:38.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>讲武堂</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Tools/</loc>
+    <lastmod>2018-12-01T14:02:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>工具癖：如何提高日常生活效率</title>
+        <pubTime>2016-04-26T08:47:20.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>Mac</tag>
+         
+        <tag>工具癖</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/20/MrGuZhun/</loc>
+    <lastmod>2018-12-01T14:00:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>豪侠列传|顾准</title>
+        <pubTime>2017-04-20T06:44:00.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/14/Medal-HK/</loc>
+    <lastmod>2018-12-01T13:59:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>太公分猪肉--香港特区授勋及嘉奖制度观察</title>
+        <pubTime>2017-07-14T09:06:29.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/09/Medal/</loc>
+    <lastmod>2018-12-01T13:59:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>外军研究|美军授勋及嘉奖制度观察</title>
+        <pubTime>2017-04-09T12:56:00.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Commander-PHT-Stand/</loc>
+    <lastmod>2018-12-01T13:57:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>外军研究|世界各国军警体能标准横向评测</title>
+        <pubTime>2017-11-05T15:15:55.000Z</pubTime>
+        
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+        <tag>PHT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Commander-PHT-USArmy/</loc>
+    <lastmod>2018-12-01T13:57:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>外军研究|美军体能训练</title>
+        <pubTime>2017-11-05T15:15:59.000Z</pubTime>
+        
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+        <tag>PHT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/15/Commander-Sergeant/</loc>
+    <lastmod>2018-12-01T13:57:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>外军研究|美军士官制度研究</title>
+        <pubTime>2017-08-15T06:13:36.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>Commander</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Commander-Art-Of-War-Chinese/</loc>
+    <lastmod>2018-12-01T13:56:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>中国传统兵法精要</title>
+        <pubTime>2017-11-05T14:38:33.000Z</pubTime>
+        
+        <tag>Manager</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>Commander</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/31/AboutMe/</loc>
+    <lastmod>2018-12-01T06:15:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>About</title>
+        <pubTime>2016-05-31T10:05:38.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/11/30/DTrace-Ops/</loc>
+    <lastmod>2018-12-01T06:11:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>DTrace-Ops</title>
+        <pubTime>2018-11-30T08:10:28.000Z</pubTime>
+        
+        <tag>DTrace</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/11/30/DTrace-SystemTap/</loc>
+    <lastmod>2018-12-01T06:11:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>DTrace-SystemTap</title>
+        <pubTime>2018-11-30T08:10:33.000Z</pubTime>
+        
+        <tag>DTrace</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/11/30/Technology-Performance-Tuning/</loc>
+    <lastmod>2018-11-30T09:07:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>性能优化技术实践</title>
+        <pubTime>2018-11-30T06:48:40.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/06/11/Linux-Perf-App/</loc>
+    <lastmod>2018-11-30T07:02:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断：Web Server</title>
+        <pubTime>2018-06-11T06:57:15.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/06/12/Technology-Oracle/</loc>
+    <lastmod>2018-11-28T04:25:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Oracle 数据库迁移与割接实践</title>
+        <pubTime>2016-06-12T01:47:21.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/01/History/</loc>
+    <lastmod>2018-11-26T02:03:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:History</title>
+        <pubTime>2016-05-01T10:57:35.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/10/15/Artistic-Zhuhai-AirShow/</loc>
+    <lastmod>2018-11-22T14:41:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>摄影专辑:珠海航空航天展览</title>
+        <pubTime>2016-10-15T10:43:34.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>摄影</tag>
+         
+        <tag>Sport</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>讲武堂</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/26/Catalog/</loc>
+    <lastmod>2018-11-22T14:33:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>RiboseYim's Blog Root Catalog</title>
+        <pubTime>2017-05-26T02:50:49.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/10/Check2017/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Autobiography:我的2017年度盘点</title>
+        <pubTime>2017-04-10T07:40:23.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/09/04/Addiction-Decision/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：药物成瘾与神经系统</title>
+        <pubTime>2017-09-04T08:01:09.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/17/DTrace_FTrace/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态追踪技术(三) ：Tracing your kernel Functions!</title>
+        <pubTime>2017-04-17T10:02:57.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>DTrace</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/01/30/History-TaipingHeavenly/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>History:太平天国专史研究</title>
+        <pubTime>2017-01-30T02:18:06.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/17/History-Tang-DiRenjie/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>History-Tang-DiRenjie</title>
+        <pubTime>2018-01-17T12:51:12.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/21/eBook-LPM/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>电子书：《Linux Perf Master》</title>
+        <pubTime>2017-12-21T06:47:29.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/TeamWork-Redmine/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>项目管理工具集</title>
+        <pubTime>2016-04-26T03:32:25.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>工具癖</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/01/01/Check2016/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Autobiography:我的2016年度盘点</title>
+        <pubTime>2017-01-01T01:40:44.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Languae-R-lang/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:R</title>
+        <pubTime>2017-05-16T02:13:04.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/21/Language-Auto-Generator/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:基于Node.js构建自定义代码生成器</title>
+        <pubTime>2017-12-21T09:11:32.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Nodejs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/27/TeamWork-Knowledge-Sharing/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Road To Leader：构建知识共享型团队</title>
+        <pubTime>2017-06-27T09:58:37.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/23/CloudComputing/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cloud Computing 关于云计算</title>
+        <pubTime>2017-07-23T07:21:42.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/06/TeamWork-Kanban/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈:基于看板（Kanban）的管理实践</title>
+        <pubTime>2017-08-06T10:33:34.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>工具癖</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/01/30/Artistic-Garden/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>江南园林艺术鉴赏</title>
+        <pubTime>2017-01-30T02:17:14.000Z</pubTime>
+        
+        <tag>摄影</tag>
+         
+        <tag>Sport</tag>
+         
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/07/Addiction-Decision-Behavior/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：行为成瘾</title>
+        <pubTime>2018-01-07T10:41:58.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/SDN/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN 技术指南（一）：架构概览</title>
+        <pubTime>2017-05-12T07:54:48.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/20/Addiction-Decision-2016-USA-Students/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：美国青年人群药物滥用情况</title>
+        <pubTime>2017-12-20T08:46:38.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>数据可视化</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN 技术指南（四）：Open vSwitch</title>
+        <pubTime>2017-10-13T08:37:41.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/18/Artistic-Poetry/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>风月集 | 诗三百 思无邪</title>
+        <pubTime>2017-10-18T04:59:12.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/22/SDN-OpenFlow/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN 技术指南（二）：OpenFlow</title>
+        <pubTime>2017-08-22T01:27:32.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/18/SDN-ONOS/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN技术指南：Open Network Operating System</title>
+        <pubTime>2017-08-18T04:12:06.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>电子书：《Machine Learning Master》</title>
+        <pubTime>2018-03-02T07:45:40.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/05/Law-Of-Engineering/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Road To Leader：软件工程实践中的十大法则</title>
+        <pubTime>2017-07-05T14:26:05.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/09/Law-Of-Intellectual-Property/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>知识产权法 (Intellectual Property Law)</title>
+        <pubTime>2017-07-09T14:25:51.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/04/Redology-DunMing/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>红楼故事：佩刀沽酒作长歌</title>
+        <pubTime>2017-10-04T02:51:32.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Redology</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/13/Artistic-Les-Miserables/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>世纪小说《悲惨世界》</title>
+        <pubTime>2017-04-13T15:23:07.000Z</pubTime>
+        
+        <tag>Economist</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Books</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/05/14/Addiction-Decision-Coffee/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：咖啡上瘾，喝还是不喝？</title>
+        <pubTime>2018-05-14T11:23:23.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Health</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/13/Lincoln-Spielberg/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Lincoln Research:斯皮尔伯格的林肯情怀</title>
+        <pubTime>2017-05-13T10:41:37.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+        <tag>Lincoln</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/09/10/Lincoln/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Lincoln Research:电影评论|灵魂解码《林肯》</title>
+        <pubTime>2016-09-10T10:52:58.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Lincoln</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/24/LinusTorvalds/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>IT科技史漫谈：Linus Torvalds 与 Linux 操作系统</title>
+        <pubTime>2016-04-24T08:59:32.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/06/Addiction-Decision-Fentanyl/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：扰动大国外交的China Girl(芬太尼)</title>
+        <pubTime>2017-11-06T06:19:06.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/09/CyberSecurity-CSTCB/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:香港警务处网络安全与科技罪案调查科</title>
+        <pubTime>2017-04-08T18:41:15.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/09/CyberSecurity-Hacker/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:黑客与技术、产业及其精神世界</title>
+        <pubTime>2017-05-09T08:17:56.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/08/07/Linux-Perf-JVM/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断:JVM</title>
+        <pubTime>2018-08-07T01:32:30.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/11/Linux-Perf-Load/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断:负载评估</title>
+        <pubTime>2017-12-11T01:51:51.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Linux-Perf-Master/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断高级课程</title>
+        <pubTime>2016-04-26T04:00:23.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断:快速检查单(Netflix版)</title>
+        <pubTime>2017-12-11T02:01:10.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Picture/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断:荐书《图解性能优化》</title>
+        <pubTime>2017-10-24T03:35:44.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Wan/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 性能诊断:Web 应用性能优化</title>
+        <pubTime>2017-10-24T02:24:50.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/28/Redology/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>红学(Redology)</title>
+        <pubTime>2017-08-28T04:42:37.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Redology</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/19/Linux-Win-Mac/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>谁是王者：macOS vs Linux Kernels ？</title>
+        <pubTime>2017-12-19T10:15:49.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Mac</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-CSM/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>电子书：《The Cyber-Security Master》</title>
+        <pubTime>2018-03-02T07:45:44.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/02/Machine-Learning-Algorithms-Sheet/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:如何选择机器学习算法？</title>
+        <pubTime>2018-04-02T07:28:39.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/31/CyberSecurity-Headers/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:Web应用安全：攻击、防护与检测</title>
+        <pubTime>2017-08-31T01:59:11.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/28/Linux/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:Linux 操作系统专题</title>
+        <pubTime>2016-05-28T09:27:39.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/29/Linux-Works/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>操作系统原理：How Linux Works(Initial)</title>
+        <pubTime>2017-05-29T12:39:19.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>架构师</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/24/Log/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：应用程序的日志管理及可视化</title>
+        <pubTime>2017-05-24T06:22:56.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/01/Economist-International-Relation/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Economist-International-Relation</title>
+        <pubTime>2018-02-01T08:51:52.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:机器学习算法</title>
+        <pubTime>2018-02-10T10:17:46.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/07/Addiction-Decision-Law/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>嗑药简史：瘾品管制背后的情与法</title>
+        <pubTime>2018-01-07T10:41:42.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/09/Machine-Learning-Articles/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:机器学习参考文集</title>
+        <pubTime>2018-02-09T13:52:37.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/04/Redology-Intelligence/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>红楼故事：康熙的秘密情报系统</title>
+        <pubTime>2018-02-03T21:56:13.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Art</tag>
+         
+        <tag>Redology</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/09/Machine-Learning-Economist/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:经济学家谈人工智能</title>
+        <pubTime>2018-03-09T08:55:07.000Z</pubTime>
+        
+        <tag>Science</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/16/Machine-Learning-Law/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:机器学习技术与知识产权法</title>
+        <pubTime>2018-02-15T17:31:58.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:神经网络基础</title>
+        <pubTime>2018-05-07T09:42:51.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/16/QuickStart/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>QuickStart</title>
+        <pubTime>2017-11-16T03:34:10.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/29/Machine-Learning-News/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:人工智能媒体报道集</title>
+        <pubTime>2017-08-29T10:38:51.000Z</pubTime>
+        
+        <tag>Economist</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/15/Machine-Learning-OpenCV/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</title>
+        <pubTime>2018-01-15T09:01:06.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+        <tag>Nodejs</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/09/Machine-Learning-Projects/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:机器学习开源项目</title>
+        <pubTime>2018-02-09T13:51:57.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>木马来袭:Linux/XOR.DDoS样本分析</title>
+        <pubTime>2016-06-12T01:46:57.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</title>
+        <pubTime>2018-01-17T12:43:28.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:Training Models</title>
+        <pubTime>2018-02-27T06:23:57.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/10/03/Machine-Learning-Uber/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Uber 业务预测系统实践</title>
+        <pubTime>2018-10-03T09:24:09.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/19/Machine-Learning/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习(Machine Learning)小组</title>
+        <pubTime>2017-06-19T08:31:00.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/30/Protocol-gRPC/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>计算机远程通信协议：gRPC</title>
+        <pubTime>2017-10-30T10:05:14.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/21/Machine-Learning-WordBook/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning:WordBook</title>
+        <pubTime>2018-03-21T03:08:01.000Z</pubTime>
+        
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/09/Protocol-IPv6/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>计算机网络协议：IPv6 与网络安全</title>
+        <pubTime>2017-08-09T03:07:06.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/30/Mathmetics-Beauty/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>读书笔记|数学之美（Beauty Of Mathmetics）</title>
+        <pubTime>2017-08-30T10:11:06.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>Develper</tag>
+         
+        <tag>科技史</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/09/08/Policy-Poverty/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测:贫困问题(Poverty)</title>
+        <pubTime>2017-09-08T03:23:53.000Z</pubTime>
+        
+        <tag>Science</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Economist/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Economist：经济学人</title>
+        <pubTime>2016-04-26T03:42:38.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络</title>
+        <pubTime>2017-05-09T08:16:55.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/14/Mathmetics/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:数学与算法</title>
+        <pubTime>2017-06-14T05:37:12.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/10/07/CyberSecurity/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:网络安全专题合集</title>
+        <pubTime>2016-10-06T16:57:40.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>架构师</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:警惕Wi-Fi漏洞</title>
+        <pubTime>2017-10-29T09:39:02.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/19/Medicine-Hepar/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>医学：肝系统健康状态评价指标体系</title>
+        <pubTime>2017-07-19T06:05:03.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/22/Health-Emotional/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>医学常识|情绪健康检查表</title>
+        <pubTime>2018-01-22T05:55:21.000Z</pubTime>
+        
+        <tag>Science</tag>
+         
+        <tag>Health</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/15/Policy-Education/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：教育</title>
+        <pubTime>2016-05-15T04:20:10.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Education</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Network-Ntopng/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控</title>
+        <pubTime>2016-04-26T03:31:59.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态追踪技术(五)：DTrace for Linux</title>
+        <pubTime>2018-02-16T10:09:11.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>DTrace</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/16/Network-Pcap/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>网络数据包的捕获、过滤和分析（Packet Capturing）</title>
+        <pubTime>2017-06-16T08:08:56.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/28/History-Caoyun/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>黄仁宇：明代的漕运</title>
+        <pubTime>2017-05-28T14:13:11.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：Stack Overflow 架构全解析</title>
+        <pubTime>2016-07-17T06:12:37.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/14/Network-sFlow/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈基于数据分析的网络态势感知</title>
+        <pubTime>2017-07-14T09:03:12.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/11/20/Network-Traffic/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>性能优化思路：从珠海航展交通管控实践谈起</title>
+        <pubTime>2016-11-20T03:02:31.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/OpenSource/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈:开源社区、产业与知识产权</title>
+        <pubTime>2016-04-26T08:52:53.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/02/BirdWatching-GZ-Wetland/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>BirdWatching:广州湿地公园观鸟</title>
+        <pubTime>2017-07-02T09:00:51.000Z</pubTime>
+        
+        <tag>摄影</tag>
+         
+        <tag>Sport</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/PHT-Running/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>战斗体能训练：跑步(Running)</title>
+        <pubTime>2016-04-26T08:51:12.000Z</pubTime>
+        
+        <tag>Sport</tag>
+         
+        <tag>讲武堂</tag>
+         
+        <tag>PHT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：PostgreSQL 数据库</title>
+        <pubTime>2018-01-03T06:26:23.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/11/04/OpenSource-Ganglia/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知</title>
+        <pubTime>2016-11-03T17:45:16.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>OpenSource</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：消息中间件(ZeroMQ)</title>
+        <pubTime>2016-04-26T03:56:32.000Z</pubTime>
+        
+        <tag>OpenSource</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/08/01/OpenSource-Hadoop/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：Hadoop</title>
+        <pubTime>2018-08-01T11:33:59.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务</title>
+        <pubTime>2017-06-12T10:11:25.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/08/15/OpenSource-Kafka/</loc>
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：Kafka</title>
+        <pubTime>2016-08-15T12:29:20.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/11/21/Protocol-Route/</loc>
+    <lastmod>2018-11-21T16:31:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Protocol-Route</title>
+        <pubTime>2018-11-21T08:24:02.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/07/03/Reading/</loc>
+    <lastmod>2018-11-18T08:58:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于藏书与阅读</title>
+        <pubTime>2016-07-03T06:26:57.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/02/Manager/</loc>
+    <lastmod>2018-11-05T02:49:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Road To Leader:管理哲学</title>
+        <pubTime>2017-07-02T10:41:56.000Z</pubTime>
+        
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/09/18/DevOps-Deployment-SaltStack/</loc>
+    <lastmod>2018-09-24T07:41:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps-Deployment-SaltStack</title>
+        <pubTime>2018-09-18T07:09:07.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/09/17/DevOps-Deployment-Puppet/</loc>
+    <lastmod>2018-09-18T08:00:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps-Puppet</title>
+        <pubTime>2018-09-17T07:34:02.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-DVM/</loc>
+    <lastmod>2018-09-17T02:37:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>电子书：《数据可视化》</title>
+        <pubTime>2018-03-02T07:46:04.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Writing</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Virtualization/</loc>
+    <lastmod>2018-09-17T02:35:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>Virtualization</title>
+        <pubTime>2017-05-12T08:03:22.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/07/05/Technology-Writing-Reader-Question/</loc>
+    <lastmod>2018-09-17T02:35:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>读者反馈问题汇编</title>
+        <pubTime>2017-07-05T13:59:24.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/22/Technology-Writing-Publish/</loc>
+    <lastmod>2018-09-17T02:35:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>技术写作与出版</title>
+        <pubTime>2017-10-22T11:34:31.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/06/15/TeamWork/</loc>
+    <lastmod>2018-09-17T02:34:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>eBook：The Road To Leader</title>
+        <pubTime>2016-06-15T01:46:28.000Z</pubTime>
+        
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/03/TeamWork-WorldBook/</loc>
+    <lastmod>2018-09-17T02:34:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>如果快速构建一个知识体系：以中情局的 WorldBook 为例</title>
+        <pubTime>2017-05-03T03:12:50.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/06/05/TeamWork-Project-Risk/</loc>
+    <lastmod>2018-09-17T02:34:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>TeamWork-Project-Risk</title>
+        <pubTime>2018-06-05T02:54:27.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/OpenSource-Operational/</loc>
+    <lastmod>2018-09-17T02:33:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>引入开源软件的六大运营挑战</title>
+        <pubTime>2017-11-05T14:12:41.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>OpenSource</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/</loc>
+    <lastmod>2018-09-17T02:32:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：Redis</title>
+        <pubTime>2018-08-07T03:33:11.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Database</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/02/13/Master/</loc>
+    <lastmod>2018-09-17T02:31:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>Study The Master</title>
+        <pubTime>2017-02-13T06:59:12.000Z</pubTime>
+        
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/07/28/DevOps/</loc>
+    <lastmod>2018-09-17T02:30:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>DevOps 漫谈系列</title>
+        <pubTime>2016-07-28T03:44:21.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Engineering</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/09/15/Engineering-Blog/</loc>
+    <lastmod>2018-09-17T02:27:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Engineering Blog</title>
+        <pubTime>2018-09-15T14:16:53.000Z</pubTime>
+        
+        <tag>SRE</tag>
+         
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>eBook</tag>
+         
+        <tag>Engineering</tag>
+         
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/12/19/Check2017-Plan/</loc>
+    <lastmod>2018-09-16T02:48:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>HomeWork:2017年初制定的一些计划</title>
+        <pubTime>2016-12-19T04:10:23.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/21/Health/</loc>
+    <lastmod>2018-09-16T02:30:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>IT 工程师养生指南</title>
+        <pubTime>2017-04-21T10:05:06.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+        <tag>Health</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/08/23/Language-Lua-lang/</loc>
+    <lastmod>2018-08-23T08:59:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Language-Lua-lang</title>
+        <pubTime>2018-08-23T08:57:17.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/16/SDN-Controller/</loc>
+    <lastmod>2018-08-07T04:14:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN 技术指南（三）：OpenDaylight or Floodlight</title>
+        <pubTime>2017-10-16T07:43:30.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Policy-Civil-Rights/</loc>
+    <lastmod>2018-08-07T04:06:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：民权法</title>
+        <pubTime>2017-11-05T08:12:38.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/08/07/OpenSource-DB-ES/</loc>
+    <lastmod>2018-08-07T03:36:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>OpenSource-DB-ES</title>
+        <pubTime>2018-08-07T03:34:49.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/30/OpenSource-Spark/</loc>
+    <lastmod>2018-08-07T03:30:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：Spark</title>
+        <pubTime>2017-06-30T07:58:00.000Z</pubTime>
+        
+        <tag>OpenSource</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/27/DTrace_bcc/</loc>
+    <lastmod>2018-08-02T10:36:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态追踪技术（四）：基于 Linux bcc/BPF 实现 Go 程序动态追踪</title>
+        <pubTime>2017-06-27T06:47:15.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>DTrace</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Language-Compiler/</loc>
+    <lastmod>2018-08-02T10:33:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:编译器与编译原理</title>
+        <pubTime>2017-05-12T11:03:30.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Protocol-RFC/</loc>
+    <lastmod>2018-07-22T08:28:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>计算机 RFC 文档</title>
+        <pubTime>2017-05-12T10:24:48.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/07/07/Writing-Email/</loc>
+    <lastmod>2018-07-07T09:53:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Writing-Email</title>
+        <pubTime>2018-07-07T09:52:40.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/07/07/Language-React-lang/</loc>
+    <lastmod>2018-07-07T09:19:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>Language-React-lang</title>
+        <pubTime>2018-07-07T09:17:22.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/23/RestfulAPI/</loc>
+    <lastmod>2018-06-22T08:17:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>开源技术架构漫谈：基于Go语言快速构建RESTful API服务</title>
+        <pubTime>2017-05-23T06:14:12.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>Developer</tag>
+         
+        <tag>Golang</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Law/</loc>
+    <lastmod>2018-06-21T03:53:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog：法律</title>
+        <pubTime>2016-04-26T03:49:42.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Language-Node-lang/</loc>
+    <lastmod>2018-06-14T09:57:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:Node.js</title>
+        <pubTime>2017-05-16T03:38:23.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+        <tag>Nodejs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Policy/</loc>
+    <lastmod>2018-06-11T06:38:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:政府行为模型与预测</title>
+        <pubTime>2016-04-26T03:49:47.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Protocol-TCP/</loc>
+    <lastmod>2018-05-31T17:23:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>计算机网络协议：TCP</title>
+        <pubTime>2017-05-12T10:22:24.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/Protocol-UDP/</loc>
+    <lastmod>2018-05-31T17:23:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>计算机网络协议：UDP</title>
+        <pubTime>2017-05-12T10:22:19.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/16/SDN-Cloud/</loc>
+    <lastmod>2018-05-31T17:20:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>SDN 技术指南（六）：OpenStack or Kubernetes ?</title>
+        <pubTime>2017-10-16T08:34:12.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+        <tag>网络协议</tag>
+         
+        <tag>SDN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/06/03/Autobiography/</loc>
+    <lastmod>2018-05-18T03:24:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Autobiography Of RiboseYim</title>
+        <pubTime>2016-06-03T01:22:07.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/15/Medicine/</loc>
+    <lastmod>2018-05-15T05:52:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:Medical</title>
+        <pubTime>2017-08-15T07:25:18.000Z</pubTime>
+        
+        <tag>Medical</tag>
+         
+        <tag>Science</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/21/Science-Humanics/</loc>
+    <lastmod>2018-05-15T01:48:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于人类学(Humanics)</title>
+        <pubTime>2017-04-21T10:01:10.000Z</pubTime>
+        
+        <tag>Science</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/02/Science/</loc>
+    <lastmod>2018-05-15T01:48:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:Nature&Science</title>
+        <pubTime>2016-05-02T00:12:57.000Z</pubTime>
+        
+        <tag>Science</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/24/History-Qing/</loc>
+    <lastmod>2018-05-09T03:42:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于明史</title>
+        <pubTime>2017-06-24T08:12:16.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/27/Language-Go-lang-Web/</loc>
+    <lastmod>2018-04-30T11:32:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:基于Golang开发Web应用</title>
+        <pubTime>2018-04-27T09:39:48.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/04/09/Commander-Navy-Digital/</loc>
+    <lastmod>2018-04-16T10:05:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Commander-Navy-Digital</title>
+        <pubTime>2018-04-09T09:39:06.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/20/Artistic-The-Mad-Phoenix/</loc>
+    <lastmod>2018-04-15T05:42:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>豪侠列传：南海十三郎(The Mad Phoenix)</title>
+        <pubTime>2017-04-20T06:59:55.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/20/Machine-Learning-TensorFlow-ProtoBuf/</loc>
+    <lastmod>2018-04-13T01:49:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine-Learning-TensorFlow-ProtoBuf</title>
+        <pubTime>2018-03-20T09:41:30.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/Architect/</loc>
+    <lastmod>2018-04-12T06:43:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Architect：架构师</title>
+        <pubTime>2016-04-26T03:50:27.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/20/Artistic-Suona/</loc>
+    <lastmod>2018-04-10T06:10:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>Suona</title>
+        <pubTime>2017-08-20T14:54:49.000Z</pubTime>
+        
+        <tag>Art</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/23/Accounting/</loc>
+    <lastmod>2018-04-03T03:17:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Economist-Accounting</title>
+        <pubTime>2017-10-23T06:35:31.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/07/28/Policy-Publish/</loc>
+    <lastmod>2018-03-29T07:03:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：关于出版业的过去、现在和将来</title>
+        <pubTime>2016-07-28T02:47:32.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>最佳写作实践</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/25/Mathmetics-Complexity/</loc>
+    <lastmod>2018-03-26T09:17:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>数学常识|如何度量复杂性</title>
+        <pubTime>2018-03-25T12:05:04.000Z</pubTime>
+        
+        <tag>架构师</tag>
+         
+        <tag>数学与算法</tag>
+         
+        <tag>科技史</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/07/Machine-Learning-Keras/</loc>
+    <lastmod>2018-03-07T10:13:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine-Learning-Keras</title>
+        <pubTime>2018-03-07T06:14:22.000Z</pubTime>
+        
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/03/07/Machine-Learning-NLP/</loc>
+    <lastmod>2018-03-07T10:08:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Machine-Learning-NLP</title>
+        <pubTime>2018-03-07T06:10:01.000Z</pubTime>
+        
+        <tag>Machine-Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/23/Religion-Buddha/</loc>
+    <lastmod>2018-03-07T09:53:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>Religion-Buddha</title>
+        <pubTime>2017-10-23T06:30:42.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/07/History-Tang/</loc>
+    <lastmod>2018-02-03T12:53:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于唐史</title>
+        <pubTime>2018-01-07T10:23:03.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/06/CyberSecurity-BackDoor/</loc>
+    <lastmod>2018-02-01T09:10:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cyber-Security:事与愿违的后门程序</title>
+        <pubTime>2017-11-05T16:19:12.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/CyberSecurity-GFW/</loc>
+    <lastmod>2018-02-01T09:09:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>长城防火墙(GWF)的前世今生</title>
+        <pubTime>2017-05-12T08:11:32.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Cyber-Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/12/09/Economist-Books-Year-2016/</loc>
+    <lastmod>2018-01-31T01:44:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Economist 2016年度推荐书单</title>
+        <pubTime>2016-12-09T13:10:14.000Z</pubTime>
+        
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2018/01/30/Economist-Books-Year-2017/</loc>
+    <lastmod>2018-01-31T01:43:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>The Economist 2017年度推荐书单</title>
+        <pubTime>2018-01-29T16:07:12.000Z</pubTime>
+        
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Language-Perl-lang/</loc>
+    <lastmod>2018-01-30T14:42:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:Perl</title>
+        <pubTime>2017-05-16T01:20:26.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/19/Language-Python-lang/</loc>
+    <lastmod>2018-01-30T14:41:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:Python</title>
+        <pubTime>2017-06-19T08:30:10.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Language-Ruby-lang/</loc>
+    <lastmod>2018-01-30T14:41:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:Ruby</title>
+        <pubTime>2017-05-16T07:18:14.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/19/Visualization-Canvas/</loc>
+    <lastmod>2018-01-23T02:18:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>Visualization-Canvas</title>
+        <pubTime>2017-12-19T06:32:51.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/03/16/Policy-Publish-Children/</loc>
+    <lastmod>2018-01-23T02:17:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Financial Times：中国将加强进口儿童文学作品管制</title>
+        <pubTime>2017-03-16T15:54:20.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Policy-Public-Health/</loc>
+    <lastmod>2018-01-23T02:17:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：公共医疗</title>
+        <pubTime>2017-11-05T08:00:36.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/Policy-Public-Finance/</loc>
+    <lastmod>2018-01-23T01:31:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：公共财政</title>
+        <pubTime>2017-11-05T08:00:14.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/09/Policy-Female/</loc>
+    <lastmod>2018-01-15T07:53:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：女权主义与政治运动</title>
+        <pubTime>2017-12-09T13:52:00.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/12/23/Linux-Perf-WordBook/</loc>
+    <lastmod>2017-12-28T12:51:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux-Perf-WordBook</title>
+        <pubTime>2017-12-23T11:33:36.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/21/Policy-Religion/</loc>
+    <lastmod>2017-12-26T02:29:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>政府行为模型及预测：宗教(Religion)</title>
+        <pubTime>2017-04-21T15:44:18.000Z</pubTime>
+        
+        <tag>Policy&amp;Law</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2016/05/05/OpenSource-Coder/</loc>
+    <lastmod>2017-12-22T05:26:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>玩转编程语言:编程技巧</title>
+        <pubTime>2016-05-05T07:09:21.000Z</pubTime>
+        
+        <tag>Developer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/21/Technology-Thinking/</loc>
+    <lastmod>2017-12-22T05:26:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>TechThinking</title>
+        <pubTime>2017-04-21T09:58:14.000Z</pubTime>
+        
+        <tag>DevOps</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/20/Artistic-Travel/</loc>
+    <lastmod>2017-12-22T05:26:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>Catalog:Travel</title>
+        <pubTime>2017-04-20T07:07:30.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/25/History-Ming/</loc>
+    <lastmod>2017-12-22T05:26:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于明史</title>
+        <pubTime>2017-06-25T10:35:07.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Economist</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/28/Check2012/</loc>
+    <lastmod>2017-12-22T05:26:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>Autobiography:我的2012年度盘点</title>
+        <pubTime>2017-04-27T17:56:14.000Z</pubTime>
+        
+        <tag>我的自传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/04/10/Publish-MediaData/</loc>
+    <lastmod>2017-12-18T03:51:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于用户需求和最大传播效果为目标的内容创作</title>
+        <pubTime>2017-04-10T07:40:10.000Z</pubTime>
+        
+        <tag>最佳写作实践</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/08/21/Artistic-Flower/</loc>
+    <lastmod>2017-12-11T06:01:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Flower</title>
+        <pubTime>2017-08-21T03:15:07.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/11/05/History-USA-Virginia/</loc>
+    <lastmod>2017-11-05T11:45:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>私人历史文献：弗吉尼亚笔记</title>
+        <pubTime>2017-11-05T05:59:04.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Policy&amp;Law</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/10/22/History-Qing-ZhangJiXing/</loc>
+    <lastmod>2017-10-24T01:54:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>私人历史文献：张集馨《时晴斋主人自叙年谱》</title>
+        <pubTime>2017-10-22T08:38:59.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+        <tag>Economist</tag>
+         
+        <tag>Manager</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://riboseyim.com/2017/06/25/MrLizicheng/</loc>
+    <lastmod>2017-10-22T11:12:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>明史：李自成</title>
+        <pubTime>2017-06-25T10:36:17.000Z</pubTime>
+        
+        <tag>History</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+</urlset>

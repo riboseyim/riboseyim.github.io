@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：PostgreSQL 数据库 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
+<meta name="keywords" content="DevOps,Engineering,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：PostgreSQL 数据库">
+<meta property="og:url" content="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png">
+<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开源技术架构漫谈：PostgreSQL 数据库">
+<meta name="twitter:description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-DB-PostgreSQL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/OpenSource-DB-PostgreSQL/" class="article-date">
+  <time datetime="2018-01-03T06:26:23.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：PostgreSQL 数据库
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjq6z2h2m00afxfbm8va646hk" class="article-share-link">Share</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/">Engineering</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>PostgreSQL 的时代到来了吗</li>
+<li>PostgreSQL 简史</li>
+<li>PostgreSQL ABC</li>
+</ul>
+<a id="more"></a>
+<p>PostgreSQL是对象-关系型数据库，BSD 许可证。拼读为”post-gress-Q-L”。</p>
+<h2 id="PostgreSQL-的时代到来了吗"><a href="#PostgreSQL-的时代到来了吗" class="headerlink" title="PostgreSQL 的时代到来了吗 ?"></a>PostgreSQL 的时代到来了吗 ?</h2><ul>
+<li>作者： Tony Baer</li>
+<li>原文： <a href="https://www.zdnet.com/article/has-the-time-finally-come-for-postgresql/" target="_blank" rel="external">Has the time finally come for PostgreSQL?</a>（有删节）</li>
+</ul>
+<p>近30年来 PostgreSQL 无疑是您从未听说过的、最常见的开源 SQL 数据库。PostgreSQL 经常身居幕后：从 EnterpriseDB 到 Amazon Redshift 、Greenplum、Netezza 及其他许多商业数据库产品。</p>
+<p>最近在许多商业产品的推动下，PostgreSQL 逐渐走向前台。大约十年前 EnterpriseDB 打开了潘多拉的盒子 —— 作为商业支持平台提供 Oracle 的替代品。特别是最近一段时间，云服务商提供了一系列托管产品：从 Amazon Wed Services 开始, 支持 PostgreSQL 作为其托管关系数据库服务 (Relational Database Service，RDS) 之一。</p>
+<p>过去一年 AWS 和它的竞争对手将 PostgreSQL 的市场前景提升了一个等级。AWS 推出了兼容 PostgreSQL 的原生云数据库平台 Amazon Aurora ，作为回应 Microsoft 和 Google 推出了 Azure Database for PostgreSQL 和 Cloud SQL for PostgreSQL 解决方案。</p>
+<p>Mark Porter（马克·波特，Amazon Aurora PostgreSQL  和 Amazon RDS for PostgreSQL 主管） 不得不通过一些花哨的方法表达 AWS 对开源社区的支持，例如修复 Bug、提供免费测试帐户和其他形式的财政支助。PostgreSQL 在 AWS 上的实现不是开源的, 因为它是为 AWS 自身的云基础结构而设计。</p>
+<p>PostgreSQL 虽然是聚焦于事务型数据库的开源项目, 但是许多基于它的商业产品都是大规模并行处理数据仓库（Massively Parallel Processing，MPP）。出于这个原因,  Greenplums，Netezzas 和Redshifts 创建了自己的开源 forks 项目, 甚至添加像 columnar tables 这样的基本功能。</p>
+<p>PostgreSQL 的一个常见主题是支持企业级负载的开源关系数据库。关于这一点，竞争者包括 MySQL 和 MariaDB , 但仍然存在差异, PostgreSQL 支持更复杂的 SQL 函数和数据类型, 包括数组（arrays）, 连接（joins）和视图（Window Functions）等等。</p>
+<p>另一个原因是出现了“replace Oracle”的口号, PL/pgSQL 的设计非常类似 Oracle PL/SQL。这正是EnterpriseDB 多年以来一直提倡的，同时获得了 美国金融业监管局(Financial Industry Regulatory Authority，FINRA) 的支持。FINRA 将大约 650 个 Oracle 实例迁移入云（ Amazon RDS for PostgreSQL），作为一个更大战略的一部分, 将其整个部署在 IT 基础设施上的业务迁移到 AWS。根据 FINRA 首席开发者 Steve Downs 的说法，对于  Oracle DBA 而言，在 PostgreSQL 中使用诸如对象/关系映射（object/relational mappings）、存储过程（stored procedures）以及利用视图（view）支持复杂查询的功能，给人一种似曾相识的感觉。</p>
+<p>然而, 作为两种不同的数据（包括 SQL 实现）PostgreSQL 和 Oracle 之间毕竟存在显著差异。例如数据库如何处理数字和可变字符字段、同义词、复制 (replication，PostgreSQL 不像 Oracle 那样成熟 ) 以及实例化视图刷新等等。</p>
+<p>PostgreSQL 有它独特的优势，即作为第三方寻求自主数据库产品的开源平台。重要的是, 去年秋季发布的最新 10.0 版本（2017年11月09日）, 解决了在 Oracle 或 SQL Server 产品中被视为理所当然的功能，包括声明式表分区（declarative table partitioning）、改进后的复制功能（replication）, 发布/订阅（publish/subscribe）、仲裁提交（quorum commits，对于云部署可能非常有用)。</p>
+<p>总之，PostgreSQL 还有很多需要追赶的领域,  Oracle 或 SQL Server 用户也仍然有理由继续使用他们的平台。大部分的差异将体现在数据库的实施, 而不是一些具体的功能特性。这种差异将主要体现在数据库弹性、自动化、基础架构选型以及云计算的规模等方面。有了 AWS、Azure 和 Google Cloud 的加持（非常值得注意的一个信号），若干年后 PostgreSQL 可能最终走出阴影。</p>
+<h2 id="PostgreSQL-简史"><a href="#PostgreSQL-简史" class="headerlink" title="PostgreSQL 简史"></a>PostgreSQL 简史</h2><p>PostgreSQL 开始于 UC Berkeley 的 Ingres 计划，经历了长时间的演变。</p>
+<p>Ingres 计划的领导者 Michael Stonebraker（迈克尔·斯通布雷克，2015 年图灵奖得主，目前是麻省理工学院兼职教授）在 1982 年离开 Berkeley 进入商业公司 Ingres，1985年又返回 Berkeley 开始新项目 Postgres 。Postgres 项目组从1986年开始发表了一些描述系统基本原理的论文并发行了版本1、2、3 、4，到1993年就有大量的用户存在了。尽管 Postgres计划正式的终止了，BSD许可证却使开发者可以获得副本并进一步开发系统。1994年，两个 UC Berkeley 的研究生 Andrew Yu 和 Jolly Chen 增加了一个SQL语言解释器来替代早先的基于 Ingres 的 QUEL 系统，创建了 Postgres95。</p>
+<p>1996年重命名为：PostgreSQL。（版本 6.0 ）</p>
+<p>2000年，前 Red Hat 投资者筹组了一间名为Great Bridge的公司来商业化PostgreSQL，以和其他商用数据库厂商竞争。2001年末，Great Bridge 因市场原因终止营运。2001年，Command Prompt, Inc. 发布了最老牌的PostgreSQL 商业软件 Mammoth PostgreSQL，并提供开发者赞助和贡献 PL/Perl、PL/php、维护 PostgreSQL Build Farm 等。</p>
+<p>2005年1月 ，Pervasive Software 宣布参与社区及商业支持，直到 2006 年 7 月退出。2005年1月19日，版本 8.0 发行。自 8.0 后，PostgreSQL以原生（Native）的方式，运行于Windows系统。2006年6月，Solaris 10 包含 PostgreSQL一起发布。</p>
+<p>2012年09月10日，PostgreSQL 发布 9.2 版本，主要在性能方面的提升，也包括一些新的 SQL 特性。<br>2016年10月27日，PostgreSQL 发布 9.6.1 版本。<br>2017年11月09日，PostgreSQL 发布 10.1 版本。</p>
+<h2 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install</span></div><div class="line">$ brew install postgresql</div><div class="line"><span class="comment"># version</span></div><div class="line">$ pg_ctl -V</div><div class="line">pg_ctl (PostgreSQL) 10.1</div><div class="line"><span class="comment"># initdb -- 创建一个新的PostgreSQL数据库簇（cluster）,单个服务端实例管理的多个数据库的集合。</span></div><div class="line"><span class="comment"># 创建数据库数据的宿主目录，生成共享的系统表 （不属于任何特定数据库的表）和创建template1 和postgres数据库</span></div><div class="line">$ initdb /Users/yanrui/Data/TestPG</div><div class="line"><span class="comment"># start</span></div><div class="line">$ pg_ctl -D /Users/yanrui/Data/TestPG start</div><div class="line">waiting <span class="keyword">for</span> server to start....2018-01-03 14:13:17.005 CST [37621] LOG:  listening on IPv4 address <span class="string">"127.0.0.1"</span>, port 5432</div><div class="line">2018-01-03 14:13:17.005 CST [37621] LOG:  listening on IPv6 address <span class="string">"::1"</span>, port 5432</div><div class="line">2018-01-03 14:13:17.006 CST [37621] LOG:  listening on Unix socket <span class="string">"/tmp/.s.PGSQL.5432"</span></div><div class="line">2018-01-03 14:13:17.048 CST [37623] LOG:  database system was shut down at 2018-01-03 14:11:30 CST</div><div class="line">2018-01-03 14:13:17.066 CST [37621] LOG:  database system is ready to accept connections</div><div class="line"> <span class="keyword">done</span></div><div class="line">server started</div><div class="line"><span class="comment"># port listen</span></div><div class="line">bash-3.2$ netstat -an | grep LISTEN     </div><div class="line">tcp6       0      0  ::1.5432               *.*                    LISTEN</div><div class="line"><span class="comment"># createdb</span></div><div class="line">bash-3.2$ createdb -O[owner] test_db</div><div class="line"><span class="comment"># default [当前登录系统用户名]</span></div><div class="line">bash-3.2$ psql</div><div class="line">2018-01-03 18:14:37.537 CST [45864] FATAL:  database <span class="string">"yanrui"</span> does not exist</div><div class="line">psql: FATAL:  database <span class="string">"yanrui"</span> does not exist</div><div class="line">You have new mail <span class="keyword">in</span> /var/mail/yanrui</div><div class="line"><span class="comment"># login in</span></div><div class="line">bash-3.2$ psql test_db</div><div class="line">psql (10.1)</div><div class="line">Type <span class="string">"help"</span> <span class="keyword">for</span> help.</div><div class="line"></div><div class="line"><span class="comment"># log out</span></div><div class="line">test_db=<span class="comment"># \q  (Ctrl+D)</span></div><div class="line"></div><div class="line"><span class="comment"># 卸载</span></div><div class="line">$ brew uninstall postgres</div><div class="line"><span class="comment"># 开机</span></div><div class="line">$ launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist</div><div class="line">$ rm -rf ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist</div></pre></td></tr></table></figure>
+<h2 id="Architecture-OverView"><a href="#Architecture-OverView" class="headerlink" title="Architecture OverView"></a>Architecture OverView</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png" alt=""></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="http://packagemain.blogspot.it/2016/05/data-model-generation-for-postgresql.html" target="_blank" rel="external">Data Model Generation for PostgreSQL</a></li>
+<li><a href="https://postgresconf.org/conferences/2018/program/proposals/finra-placeholder" target="_blank" rel="external">How FINRA is Migrating to Postgres</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html" target="_blank" rel="external">PostgreSQL新手入门</a></li>
+<li><a href="http://rachbelaid.com/postgres-full-text-search-is-good-enough/" target="_blank" rel="external">Postgres full-text search is Good Enough! | JULY 13,2015</a></li>
+<li><a href="https://hackernoon.com/showdown-mysql-8-vs-postgresql-10-3fe23be5c19e" target="_blank" rel="external">Showdown: MySQL 8 vs PostgreSQL 10</a></li>
+<li><a href="https://aws.amazon.com/cn/about-aws/whats-new/2018/06/amazon-aurora-postgresql-compatibility-in-aws-govcloud-us/" target="_blank" rel="external">兼容 PostgreSQL 的 Amazon Aurora 已在 AWS GovCloud（美国）区域推出 | Jun 14,2018</a></li>
+<li><a href="https://aws.amazon.com/cn/rds/aurora/" target="_blank" rel="external">Amazon Aurora 产品信息</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjq6z2h2m00afxfbm8va646hk" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/">Engineering</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/07/History-Tang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          关于唐史
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/01/Check2018/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Autobiography:我的2018年度盘点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-的时代到来了吗"><span class="toc-number">2.</span> <span class="toc-text">PostgreSQL 的时代到来了吗 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-简史"><span class="toc-number">3.</span> <span class="toc-text">PostgreSQL 简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABC"><span class="toc-number">4.</span> <span class="toc-text">ABC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-OverView"><span class="toc-number">5.</span> <span class="toc-text">Architecture OverView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

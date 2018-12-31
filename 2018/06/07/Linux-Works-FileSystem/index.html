@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux FileSystems | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 LVM iSCSI">
+<meta name="keywords" content="SRE,DevOps,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux FileSystems">
+<meta property="og:url" content="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 LVM iSCSI">
+<meta property="og:updated_time" content="2018-12-15T12:37:23.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux FileSystems">
+<meta name="twitter:description" content="摘要 LVM iSCSI">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Works-FileSystem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/07/Linux-Works-FileSystem/" class="article-date">
+  <time datetime="2018-06-07T09:45:08.000Z" itemprop="datePublished">2018-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux FileSystems
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/" data-id="cjq6z2h1g0078xfbmjh7q67b3" class="article-share-link">Share</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>LVM</li>
+<li>iSCSI</li>
+</ul>
+<a id="more"></a>
+<h2 id="LVM"><a href="#LVM" class="headerlink" title="LVM"></a>LVM</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">  -- create partitions on disk drives (type <span class="number">8</span>e in fdsik)</div><div class="line">  -- create physical volumes from the partitions                 </div><div class="line">     --&gt; $ sudo pvcreate /dev/sda1</div><div class="line">  -- create the volumes group                                     </div><div class="line">     --&gt; $ sudo vgcreate -<span class="keyword">s</span> <span class="number">16</span><span class="keyword">m</span> vg /dev/sda1</div><div class="line">  -- allocate logical volumes from the volume group               </div><div class="line">     --&gt; $ sudo lvcreate -l <span class="number">50</span>g -n mylvm vg</div><div class="line">  -- <span class="keyword">format</span> the logical volumes                                   </div><div class="line">     --&gt; $ sudo mkfs -t ext4 /dev/vg/mylvm</div><div class="line">  -- mount the logical volumes (also update /etc/fstab as needed)</div><div class="line">     --&gt; $ <span class="keyword">mkdir</span> /mylvm,</div><div class="line"></div><div class="line">then --&gt; $ sudo mount /dev/vg/mylvm /mylvm,</div><div class="line">then add --&gt; <span class="regexp">/dev/vg</span><span class="regexp">/mylvm /mylvm</span> ext4 defaults <span class="number">0</span> <span class="number">0</span>  to the /etc/fstab</div></pre></td></tr></table></figure>
+<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cat /etc/fstab</div><div class="line">df -T -h  </div><div class="line"></div><div class="line"><span class="comment"># 查看卷组信息</span></div><div class="line">vgdisplay</div><div class="line"></div><div class="line"><span class="comment"># 查看逻辑卷信息</span></div><div class="line">lvdispaly</div><div class="line"></div><div class="line"><span class="comment"># lsblk</span></div><div class="line">NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</div><div class="line">sda                              <span class="number">8</span>:<span class="number">0</span>    <span class="number">0</span>  <span class="number">500</span>G  <span class="number">0</span> disk</div><div class="line">├─sda1                           <span class="number">8</span>:<span class="number">1</span>    <span class="number">0</span>  <span class="number">500</span>M  <span class="number">0</span> part /boot</div><div class="line">├─sda2                           <span class="number">8</span>:<span class="number">2</span>    <span class="number">0</span> <span class="number">19.5</span>G  <span class="number">0</span> part</div><div class="line">│ ├─vg_nwtest68-lv_root (dm-<span class="number">0</span>) <span class="number">253</span>:<span class="number">0</span>    <span class="number">0</span>   <span class="number">35</span>G  <span class="number">0</span> lvm  /</div><div class="line">│ └─vg_nwtest68-lv_swap (dm-<span class="number">1</span>) <span class="number">253</span>:<span class="number">1</span>    <span class="number">0</span>    <span class="number">2</span>G  <span class="number">0</span> lvm  [SWAP]</div><div class="line">├─sda3                           <span class="number">8</span>:<span class="number">3</span>    <span class="number">0</span>   <span class="number">20</span>G  <span class="number">0</span> part</div><div class="line">│ └─vg_nwtest68-lv_root (dm-<span class="number">0</span>) <span class="number">253</span>:<span class="number">0</span>    <span class="number">0</span>   <span class="number">35</span>G  <span class="number">0</span> lvm  /</div><div class="line">└─sda4                           <span class="number">8</span>:<span class="number">4</span>    <span class="number">0</span>   <span class="number">10</span>G  <span class="number">0</span> part</div></pre></td></tr></table></figure>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">umount  /home</div><div class="line"></div><div class="line"><span class="comment"># 删除逻辑卷，注意：检查目录是否为空</span></div><div class="line"></div><div class="line">lvremove  /dev/mapper/VolGroup-lv_home</div></pre></td></tr></table></figure>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在卷组 (name:VolGroup) 上创建逻辑卷</span></div><div class="line"></div><div class="line">lvcreate -L <span class="number">375</span>GB -n lv_slview VolGroup     </div><div class="line"></div><div class="line"><span class="comment"># 格式化新建的逻辑卷</span></div><div class="line">mkfs.ext4 /dev/mapper/VolGroup-lv_slview</div><div class="line"></div><div class="line"><span class="comment"># 创建挂载点</span></div><div class="line"><span class="keyword">mkdir</span> /slview</div><div class="line"></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/mapper/VolGroup/lv_slview /slview</div><div class="line"></div><div class="line"><span class="comment"># 修改 fstab 重启后自动挂载（风险点）</span></div><div class="line">vi /etc/fstab</div><div class="line"></div><div class="line"><span class="comment"># reboot</span></div><div class="line"></div><div class="line"><span class="comment"># fstab 异常处理</span></div><div class="line">mount -o remount rw /.</div></pre></td></tr></table></figure>
+<h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">fdisk -l</div><div class="line"></div><div class="line"># df -kh</div><div class="line">Filesystem            Size  Used Avail Use% Mounted on</div><div class="line">/dev/mapper/VolGroup-lv_root</div><div class="line">                       <span class="number">35</span>G   <span class="number">23</span>G  <span class="number">9.9</span>G  <span class="number">70</span>% /</div><div class="line">tmpfs                 <span class="number">932</span>M  <span class="number">208</span>K  <span class="number">932</span>M   <span class="number">1</span>% /dev/shm</div><div class="line">/dev/sda1             <span class="number">477</span>M   <span class="number">41</span>M  <span class="number">411</span>M  <span class="number">10</span>% /boot</div><div class="line">/dev/mapper/VolGroup-lv_oradata1</div><div class="line">                      <span class="number">2.5</span>G  <span class="number">3.8</span>M  <span class="number">2.4</span>G   <span class="number">1</span>% /oradata1</div><div class="line"></div><div class="line"># pvs</div><div class="line">  PV         VG          Fmt  Attr PSize  PFree</div><div class="line">  /dev/sda2  VolGroup lvm2 a--u <span class="number">19.51</span>g    <span class="number">0</span></div><div class="line">  /dev/sda3  VolGroup lvm2 a--u <span class="number">19.99</span>g    <span class="number">0</span></div><div class="line"></div><div class="line"># pvcreate /dev/sda4</div><div class="line">  Physical volume <span class="string">"/dev/sda4"</span> successfully created</div><div class="line"></div><div class="line"># pvs</div><div class="line">  PV         VG          Fmt  Attr PSize  PFree</div><div class="line">/dev/sda2  VolGroup lvm2 a--u <span class="number">19.51</span>g     <span class="number">0</span></div><div class="line">/dev/sda3  VolGroup lvm2 a--u <span class="number">19.99</span>g     <span class="number">0</span></div><div class="line">/dev/sda4              lvm2 ---- <span class="number">10.00</span>g <span class="number">10.00</span>g</div><div class="line"></div><div class="line"># vgdisplay</div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               VolGroup</div><div class="line">  ......</div><div class="line">  Act PV                <span class="number">2</span></div><div class="line">  VG Size               <span class="number">39.50</span> GiB</div><div class="line">  PE Size               <span class="number">4.00</span> MiB</div><div class="line">  Total PE              <span class="number">10112</span></div><div class="line">  Alloc PE / Size       <span class="number">10112</span> / <span class="number">39.50</span> GiB</div><div class="line">  Free  PE / Size       <span class="number">0</span> / <span class="number">0</span>   </div><div class="line"></div><div class="line"># vgextend VolGroup /dev/sda4</div><div class="line">  Volume group <span class="string">"VolGroup"</span> successfully extended</div><div class="line"></div><div class="line"># vgdisplay</div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               VolGroup</div><div class="line">  ......</div><div class="line">  Act PV                <span class="number">3</span></div><div class="line">  VG Size               <span class="number">49.50</span> GiB</div><div class="line">  PE Size               <span class="number">4.00</span> MiB</div><div class="line">  Total PE              <span class="number">12672</span></div><div class="line">  Alloc PE / Size       <span class="number">10112</span> / <span class="number">39.50</span> GiB</div><div class="line">  Free  PE / Size       <span class="number">2560</span> / <span class="number">10.00</span> GiB</div><div class="line"></div><div class="line"># lvextend -L +<span class="number">10</span>GB /dev/mapper/VolGroup-lv_oradata1</div><div class="line">Size of logical volume VolGroup/lv_oradata1 changed from <span class="number">2.50</span> GiB (<span class="number">640</span> extents) to <span class="number">12.50</span> GiB (<span class="number">3200</span> extents).</div><div class="line">  Logical volume lv_oradata1 successfully resized.</div><div class="line"></div><div class="line"># vgdisplay</div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               VolGroup</div><div class="line">  ......</div><div class="line">  Act PV                <span class="number">3</span></div><div class="line">  VG Size               <span class="number">49.50</span> GiB</div><div class="line">  PE Size               <span class="number">4.00</span> MiB</div><div class="line">  Total PE              <span class="number">12672</span></div><div class="line">  Alloc PE / Size       <span class="number">12672</span> / <span class="number">49.50</span> GiB</div><div class="line">  Free  PE / Size       <span class="number">0</span> / <span class="number">0</span>   </div><div class="line"></div><div class="line"># resize2fs /dev/mapper/VolGroup-lv_oradata1</div><div class="line">resize2fs <span class="number">1.41</span><span class="number">.12</span> (<span class="number">17</span>-May<span class="number">-2010</span>)</div><div class="line">Filesystem at /dev/mapper/VolGroup-lv_oradata1 is mounted on /oradata1;</div><div class="line">on-line resizing required</div><div class="line">old desc_blocks = <span class="number">1</span>, new_desc_blocks = <span class="number">1</span></div><div class="line">Performing an on-line resize of /dev/mapper/vg_nwtest68-lv_oradata1 to <span class="number">3276800</span> (<span class="number">4</span>k) blocks.</div><div class="line">The filesystem on /dev/mapper/vg_nwtest68-lv_oradata1 is now <span class="number">3276800</span> blocks long.</div><div class="line"></div><div class="line"># df -kh</div><div class="line">Filesystem            Size  Used Avail Use% Mounted on</div><div class="line">/dev/mapper/VolGroup-lv_root</div><div class="line">                       <span class="number">35</span>G   <span class="number">23</span>G  <span class="number">9.9</span>G  <span class="number">70</span>% /</div><div class="line">tmpfs                 <span class="number">932</span>M  <span class="number">288</span>K  <span class="number">932</span>M   <span class="number">1</span>% /dev/shm</div><div class="line">/dev/sda1             <span class="number">477</span>M   <span class="number">41</span>M  <span class="number">411</span>M  <span class="number">10</span>% /boot</div><div class="line">/dev/mapper/VolGroup-lv_oradata1</div><div class="line">                       <span class="number">13</span>G  <span class="number">6.3</span>M   <span class="number">12</span>G   <span class="number">1</span>% /oradata1</div></pre></td></tr></table></figure>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="SCSI"><a href="#SCSI" class="headerlink" title="SCSI"></a>SCSI</h4><p>小型计算机系统接口（SCSI，Small Computer System Interface）是一种用于计算机及其周边设备之间（硬盘、软驱、光驱、打印机、扫描仪等）系统级接口的独立处理器标准。最大部分的应用是在存储设备上（例如硬盘、磁带机）。</p>
+<p>iSCSI（Internet Small Computer System Interface，发音为/ˈаɪskʌzi/），Internet小型计算机系统接口，又称为IP-SAN，是一种基于因特网及SCSI-3协议下的存储技术，由IETF提出，并于2003年2月11日成为正式的标准。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># iqn</span></div><div class="line">vi /etc/iscsi/initiatorname.iscsi</div><div class="line"></div><div class="line"><span class="comment"># 查找iSCSI目标</span></div><div class="line">$ iscsiadm -m discovery -t st -p &lt;组IP地址&gt;:3260</div><div class="line"><span class="comment"># 登录</span></div><div class="line">$ iscsiadm -m node -T &lt;完整的目标名称,iqn.xxxxxx&gt; <span class="_">-l</span> -p &lt;组IP&gt;:3260</div><div class="line"><span class="comment"># 注销</span></div><div class="line">$ iscsiadm -m node -u -T &lt;完整的目标名称&gt;-p &lt;组IP地址&gt;:3260</div></pre></td></tr></table></figure>
+<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2><ul>
+<li><a href="https://achainofblocks.com/2018/10/05/ipfs-interplanetary-file-system-simply-explained/" target="_blank" rel="external">IPFS The Interplanetary File System | Simply Explained</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://opensource.com/article/17/5/introduction-ext4-filesystem" target="_blank" rel="external">An introduction to Linux’s EXT4 filesystem</a></li>
+<li><a href="https://www.rootusers.com/how-to-increase-the-size-of-a-linux-lvm-by-adding-a-new-disk/" target="_blank" rel="external">How to Increase the size of a Linux LVM by adding a new disk</a></li>
+<li><a href="https://askubuntu.com/questions/934947/unable-to-add-physical-volume-dev-hda-to-volume-group" target="_blank" rel="external">Unable to add physical volume ‘/dev/hda’ to volume group</a></li>
+<li><a href="http://www.cnblogs.com/gaojun/archive/2012/08/22/2650229.html" target="_blank" rel="external">Linux LVM硬盘管理及LVM扩容</a></li>
+<li><a href="https://docs.oracle.com/cd/E26926_01/html/E25884/fscreate-6.html" target="_blank" rel="external">创建和挂载 Oracle Solaris 文件系统</a></li>
+<li><a href="http://www.sansky.net/article/2007-12-03-iscsi-storage.html" target="_blank" rel="external">iSCSI存储技术全攻略|2007</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/10/exfat.html" target="_blank" rel="external">exFAT 文件系统指南</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/" data-id="cjq6z2h1g0078xfbmjh7q67b3" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/11/Linux-Perf-App/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断：Web Server
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/05/TeamWork-Project-Risk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TeamWork-Project-Risk</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LVM"><span class="toc-number">2.</span> <span class="toc-text">LVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看"><span class="toc-number">2.0.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-number">2.0.2.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">2.0.3.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容"><span class="toc-number">2.0.4.</span> <span class="toc-text">扩容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">3.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SCSI"><span class="toc-number">3.0.1.</span> <span class="toc-text">SCSI</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#待续"><span class="toc-number">4.</span> <span class="toc-text">待续</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

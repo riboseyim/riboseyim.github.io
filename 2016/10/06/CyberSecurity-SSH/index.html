@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Cyber-Security:OpenSSH并不绝对安全 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。">
+<meta name="keywords" content="DevOps,Linux,Cyber-Security,网络协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber-Security:OpenSSH并不绝对安全">
+<meta property="og:url" content="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。">
+<meta property="og:updated_time" content="2018-12-25T09:13:49.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cyber-Security:OpenSSH并不绝对安全">
+<meta name="twitter:description" content="摘要OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CyberSecurity-SSH" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/06/CyberSecurity-SSH/" class="article-date">
+  <time datetime="2016-10-06T10:03:08.000Z" itemprop="datePublished">2016-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cyber-Security:OpenSSH并不绝对安全
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjq6z2gxx0025xfbmaigm3ft7" class="article-share-link">Share</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络协议/">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。</p>
+<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>某系统按照安全管理要求，需对全系统主机的OpenSSH版本升级。<br>第一次测试：系统自有服务器。主机：RedHat Linux ／SunOS：系统内全部主机升级，内部互通没有问题<br>第二次测试：主机到网络设备SSH互通性</p>
+<h4 id="国外厂商"><a href="#国外厂商" class="headerlink" title="国外厂商"></a>国外厂商</h4><p>思科（系统版本IOS 12.0系列，IOS 4.0系列），RedBack（系统版本SEOS-12系列，SEOS-6.0系列）。<br>目前仅支持diffie-hellman-group1-sha1、ssh-dss两种算法。<br>当然不排除今年国产化运动影响，国外厂商维保过期等原因导致的售后升级服务滞后。</p>
+<h4 id="国内厂商"><a href="#国内厂商" class="headerlink" title="国内厂商"></a>国内厂商</h4><p>华为，无论是城域骨干网设备，还是IPRAN 各型号，甚至老式交换机都完全兼容。<br>中兴，只有较新的CTN9000-E V3.00.10系列能有限支持diffie-hellman-group1-sha1，<br>其它各型号在服务器OpenSSH7.0以上版本后都无法正常访问。</p>
+<h3 id="原因解析"><a href="#原因解析" class="headerlink" title="原因解析"></a>原因解析</h3><h4 id="直接原因：OpenSSH7-0安全特性升级"><a href="#直接原因：OpenSSH7-0安全特性升级" class="headerlink" title="直接原因：OpenSSH7.0安全特性升级"></a>直接原因：OpenSSH7.0安全特性升级</h4><p>基于安全考虑，OpenSSH7.0将diffie-hellman-group1-sha1，ssh-dss等运行时状态默认变更为禁用。<br>Support for the 1024-bit diffie-hellman-group1-sha1 key exchange is disabled by default at run-time.<br>Support for ssh-dss, ssh-dss-cert-<em> host and user keys is disabled by default at run-time</em></p>
+<h4 id="采购原因：国产化运动"><a href="#采购原因：国产化运动" class="headerlink" title="采购原因：国产化运动"></a>采购原因：国产化运动</h4><p>国产化是近年以来的国家战略，各行各业都有涉及。在本次案例中，国际大厂Cicso,RedBack,Juniper等，个人以为更大的可能不是无法更新，而是基于商务原因。既然你不在维保合同期之内，又没有继续采购的计划，那我干嘛还给你升级？<br>甚至由此可以推论：针对在网国外厂商设备，漏洞多又没有升级保障，会变成攻击和防护的重灾区。</p>
+<h4 id="软件质量：厂商系统架构水平差异"><a href="#软件质量：厂商系统架构水平差异" class="headerlink" title="软件质量：厂商系统架构水平差异"></a>软件质量：厂商系统架构水平差异</h4><p>同样是国内厂家，测试对比结果却非常强烈！！这其实是没有想到的。通过这个小细节，可以看出华为的系统架构与中兴早已拉开境界上的差距。结合近年来，华为出入开源社区的身影，更可以说明其对系统内核的理解和掌握已经到了相当的程度。<br>个人揣测，其早期版本可能也没有多好的支持。由于架构设计较好，又有更高的自我要求，逐步通过补丁升级，不动声色地就更新好了。持续升级能力，可以作为评价企业长期</p>
+<h3 id="OpenSSH7-0以后的演进"><a href="#OpenSSH7-0以后的演进" class="headerlink" title="OpenSSH7.0以后的演进"></a>OpenSSH7.0以后的演进</h3><p>针对密钥强度和加密算法方面更新会持续加强，必须有所准备<br>We plan on retiring more legacy cryptography in the next releaseincluding:</p>
+<ul>
+<li>Refusing all RSA keys smaller than 1024 bits (the current minimumis 768 bits)</li>
+<li>Several ciphers will be disabled by default: blowfish-cbc,cast128-cbc, all arcfour variants and the rijndael-cbc aliasesfor AES.</li>
+<li>MD5-based HMAC algorithms will be disabled by default.</li>
+</ul>
+<h4 id="延伸：Logjam-Attack"><a href="#延伸：Logjam-Attack" class="headerlink" title="延伸：Logjam Attack"></a>延伸：Logjam Attack</h4><p>（本人没查到对应的中文名称，暂翻译为“僵尸攻击”，欢迎指正）<br>一种针对Diffie-Hellman密钥交换技术发起的攻击，而这项技术应用于诸多流行的加密协议，比如HTTPS、TLS、SMTPS、SSH及其他协议。一个国外计算机科学家团队2015-5-20公开发布。</p>
+<h4 id="延伸：开源组件演进追踪"><a href="#延伸：开源组件演进追踪" class="headerlink" title="延伸：开源组件演进追踪"></a>延伸：开源组件演进追踪</h4><p>本案例实际操作过程中，开头走了很多弯路，并没有一下找到要害。<br>根源在于团队缺乏关注开源产品演进方向的意识和习惯，也缺乏直接阅读、理解官方文档的习惯。</p>
+<h3 id="OpenSSH-7-0-变更说明"><a href="#OpenSSH-7-0-变更说明" class="headerlink" title="OpenSSH 7.0 变更说明"></a>OpenSSH 7.0 变更说明</h3><h1 id="Changes-since-OpenSSH-6-9"><a href="#Changes-since-OpenSSH-6-9" class="headerlink" title="Changes since OpenSSH 6.9"></a>Changes since OpenSSH 6.9</h1><p>This focus of this release is primarily to deprecate weak, legacyand/or unsafe cryptography.<br>Security————</p>
+<ul>
+<li><p>sshd(8): OpenSSH 6.8 and 6.9 incorrectly set TTYs to be world-<br>writable. Local attackers may be able to write arbitrary messages<br>to logged-in users, including terminal escape sequences.<br>Reported by Nikolay Edigaryev.</p>
+</li>
+<li><p>sshd(8): Portable OpenSSH only: Fixed a privilege separation<br>weakness related to PAM support. Attackers who could successfully<br>compromise the pre-authentication process for remote code<br>execution and who had valid credentials on the host could<br>impersonate other users.  Reported by Moritz Jodeit.</p>
+</li>
+<li><p>sshd(8): Portable OpenSSH only: Fixed a use-after-free bug<br>related to PAM support that was reachable by attackers who could<br>compromise the pre-authentication process for remote code<br>execution. Also reported by Moritz Jodeit.</p>
+</li>
+<li><p>sshd(8): fix circumvention of MaxAuthTries using keyboard-<br>interactive authentication. By specifying a long, repeating<br>keyboard-interactive “devices” string, an attacker could request<br>the same authentication method be tried thousands of times in<br>a single pass. The LoginGraceTime timeout in sshd(8) and any<br>authentication failure delays implemented by the authentication<br>mechanism itself were still applied.</p>
+</li>
+</ul>
+<p>Found by Kingcope.</p>
+<h2 id="Potentially-incompatible-Changes"><a href="#Potentially-incompatible-Changes" class="headerlink" title="Potentially-incompatible Changes"></a>Potentially-incompatible Changes</h2><ul>
+<li>Support for the legacy SSH version 1 protocol is disabled by<br>default at compile time.</li>
+<li>Support for the 1024-bit diffie-hellman-group1-sha1 key exchange<br>is disabled by default at run-time. It may be re-enabled using<br>the instructions at<a href="http://www.openssh.com/legacy.html" target="_blank" rel="external">http://www.openssh.com/legacy.html</a></li>
+<li>Support for ssh-dss, ssh-dss-cert-* host and user keys is disabled<br>by default at run-time. These may be re-enabled using the<br>instructions at <a href="http://www.openssh.com/legacy.html" target="_blank" rel="external">http://www.openssh.com/legacy.html</a></li>
+<li>Support for the legacy v00 cert format has been removed.</li>
+<li>The default for the sshd_config(5) PermitRootLogin option has changed from “yes” to “prohibit-password”.</li>
+<li>PermitRootLogin=without-password/prohibit-password now bans all<br>interactive authentication methods, allowing only public-key,hostbased and GSSAPI authentication (previously it permitted keyboard-interactive and password-less authentication if those were enabled).</li>
+</ul>
+<h4 id="解决方案（翻译）"><a href="#解决方案（翻译）" class="headerlink" title="解决方案（翻译）"></a>解决方案（翻译）</h4><p>OpenSSH实现了所有符合SSH标准的加密算法，使得应用之间可以互相兼容，但是自从一些老式的算法被发现不够强壮以来，并不是所有的算法都会默认启用。<br>当OpenSSH拒绝连接一个只支持老式算法的应用时，我们该如何做呢？<br>当一个SSH客户端与一个服务端建立连接的时候，两边会互相交换连接参数清单。清单包括用于加密连接的编码信息，消息认证码（MAC）用于防止网络嗅探篡改，<br>公钥算法可以让服务端向客户端证明它是李刚（我就是我，而不是另一个“我”），密钥交换算法是用来生成每次连接的密钥。在一次成功的连接中，这里的每个参数必须有一组互相支持的选择。<br>当客户端和服务端通讯的时候，不能匹配到一组互相支持的参数配置，那么这个连接将会失败。<br>OpenSSH(7.0及以上版本）将输出一个类似的错误信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Unable to negotiate with 127.0.0.1: no matching key exchange method found.</div><div class="line">Their offer: diffie-hellman-group1-sha1</div></pre></td></tr></table></figure></p>
+<p>在这种情况下，客户端和服务端不能够就密钥交换算法达成一致。服务端只提供了一个单一的算法 ：diffie-hellman-group1-sha1。<br>OpenSSH可以支持这种算法，但是它默认不启用，因为这个算法非常弱，理论上存在僵尸攻击的风险。<br>这个问题的最好的解决方案是升级软件。<br>OpenSSH禁用的算法，都是那些我们明确不推荐使用的，因为众所周知它们是不安全的。<br>在某些情况下，立科升级也许是不可能的，你可能需要临时地重新启用这个较弱的算法以保持访问。<br>在上面这种错误信息的情况下，OpenSSH可以配置启用diffie-hellman-group1-sha1 密钥交换算法（或者任何其它被默认禁用的），<br>可通过KexAlgorithm选项－或者在命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 user@127.0.0.1</div></pre></td></tr></table></figure></p>
+<p>或者在 ~/.ssh/config 配置文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Host somehost.example.org</div><div class="line">KexAlgorithms +diffie-hellman-group1-sha1</div></pre></td></tr></table></figure></p>
+<p>命令行中ssh和“＋”号之间连接算法选项的配置，对客户端默认设置来说相当于替换。通过附加信息，你可以自动升级到最佳支持算法，当服务端开始支持它的时候。另一个例子，主机验证过程中，当客户端和服务端未能就公钥算法达成一致的时候：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Unable to negotiate with 127.0.0.1: no matching host key type found.</div><div class="line">Their offer: ssh-dss</div></pre></td></tr></table></figure>
+<p>OpenSSH 7.0及以上版本同样禁用了ssh-css(DSA)公钥交换算法。<br>它也太弱了，我们强烈不建议使用它。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -oHostKeyAlgorithms=+ssh-dss user@127.0.0.1</div></pre></td></tr></table></figure></p>
+<p>或者在 ~/.ssh/config 配置文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Host somehost.example.org</div><div class="line">HostkeyAlgorithms ssh-dss</div></pre></td></tr></table></figure></p>
+<p>视服务端配置情况而定，验证过程中其它连接参数也可能失败。<br>你启用它们的时候，也许需要确定编码方式或者消息验证码配置选项。<br>延伸：查询 SSH 已支持的算法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh -Q cipher       # 支持的编码方式</div><div class="line">ssh -Q mac          # 支持的消息验证码</div><div class="line">ssh -Q key          # 支持的公钥类型</div><div class="line">ssh -Q kex          # 支持的密钥交换算法</div></pre></td></tr></table></figure></p>
+<p>最后，当你需要试图连接一个特殊主机的时候，也可以通过－G选项查询实际使用ssh配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -G  user@somehost.example.com</div></pre></td></tr></table></figure></p>
+<p>将列出所有的配置选项，包括被选用的编码方式，消息验证码，公钥算法，密钥算法参数的值。</p>
+<h2 id="服务端安全性增强"><a href="#服务端安全性增强" class="headerlink" title="服务端安全性增强"></a>服务端安全性增强</h2><h4 id="RSA-modulus-too-small"><a href="#RSA-modulus-too-small" class="headerlink" title="RSA modulus too small"></a>RSA modulus too small</h4><p>现象：ssh 客户端提示 RSA modulus too small<br>解决方案：增强服务端密钥长度</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ssh user@192.<span class="number">168.3</span>.<span class="number">1</span></div><div class="line">ssh_rsa_verify: RSA modulus too small:</div><div class="line"> <span class="number">512</span> &lt; minimum <span class="number">768</span> bits</div><div class="line">key_verify failed <span class="keyword">for</span> server_host_key</div></pre></td></tr></table></figure>
+<ul>
+<li><p>思科路由器 <strong>crypto key generate rsa</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cisco(config)#crypto key zeroize rsa</div><div class="line"> % All RSA keys will be removed.</div><div class="line"> % All router certs issued using these keys will also be removed.</div><div class="line"> Do you really want to remove these keys? [yes/no]: yes</div><div class="line"></div><div class="line"> cisco7200(config)#crypto key generate rsa</div><div class="line"> The name for the keys will be: liyi-cisco7200.liyi.liyi.com</div><div class="line"> Choose the size of the key modulus in the range of 360 to 2048 for your</div><div class="line">   General Purpose Keys. Choosing a key modulus greater than 512 may take</div><div class="line">   a few minutes.</div><div class="line"></div><div class="line"> How many bits in the modulus [512]: 1024</div><div class="line"> % Generating 1024 bit RSA keys ...[OK]</div></pre></td></tr></table></figure>
+</li>
+<li><p>华为路由器 <strong>rsa local-key-pair create</strong></p>
+</li>
+</ul>
+<p>如果RSA密钥已经存在，将提示用户确认是否替换原有密钥。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ system-view <span class="comment">#进入系统视图</span></div><div class="line">[HUAWEI]rsa <span class="built_in">local</span>-key-pair create</div><div class="line">The key name will be: HUAWEI_Host                                               </div><div class="line">% RSA keys defined <span class="keyword">for</span> HUAWEI_Host already exist.                               </div><div class="line">Confirm to replace them? [Y/N]:y                                                </div><div class="line">The range of public key size is (512 ~ 2048).                                   </div><div class="line">NOTES: If the key modulus is greater than 512,                                  </div><div class="line">       It will take a few minutes.                                              </div><div class="line">Input the bits <span class="keyword">in</span> the modulus[default = 512]:1024                               </div><div class="line">Generating keys...</div></pre></td></tr></table></figure>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h4><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install telnet telnet-server</div></pre></td></tr></table></figure>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/xinetd.d/telnet</div><div class="line">service telnet</div><div class="line">&#123;</div><div class="line">        flags           = REUSE</div><div class="line">        socket_type     = stream</div><div class="line">        <span class="keyword">wait</span>            = <span class="keyword">no</span></div><div class="line">        user            = root</div><div class="line">        server          = <span class="regexp">/usr/sbin</span><span class="regexp">/in.telnetd</span></div><div class="line">        log_on_failure  += USERID</div><div class="line">        disable         = yes ##默认值 no     </div><div class="line">&#125;</div><div class="line"></div><div class="line">$ service xinetd start</div><div class="line">$ /etc<span class="regexp">/init.d/xinetd</span> start</div></pre></td></tr></table></figure>
+<ul>
+<li>验证服务状态</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ less /etc/services | <span class="keyword">grep</span> telnet</div><div class="line">telnet  <span class="number">23</span>/tcp</div><div class="line">telnet  <span class="number">23</span>/udp</div></pre></td></tr></table></figure>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Cyber-Security-Master》"><a href="#《The-Cyber-Security-Master》" class="headerlink" title="《The Cyber-Security Master》"></a><a href="https://www.gitbook.com/book/riboseyim/cyber-security-manual" target="_blank" rel="external">《The Cyber-Security Master》</a></h4><ul>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="external">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/" target="_blank" rel="external">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/" target="_blank" rel="external">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/" target="_blank" rel="external">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="external">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="external">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://www.shaobin.wang/post/6.html" target="_blank" rel="external">SSH登录旧设备的常见问题及解决方案</a></li>
+<li><a href="https://smallstep.com/blog/everything-pki.html" target="_blank" rel="external">Everything you should know about certificates and PKI but are too afraid to ask</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/24552307" target="_blank" rel="external">赵亚：令人作呕的OpenSSL</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjq6z2gxx0025xfbmaigm3ft7" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络协议/">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/07/CyberSecurity/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Cyber-Security:网络安全专题合集
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/24/DevOps-GOPS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">技术社群：高效运维(GOPS)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#国外厂商"><span class="toc-number">1.1.1.</span> <span class="toc-text">国外厂商</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#国内厂商"><span class="toc-number">1.1.2.</span> <span class="toc-text">国内厂商</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原因解析"><span class="toc-number">1.2.</span> <span class="toc-text">原因解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接原因：OpenSSH7-0安全特性升级"><span class="toc-number">1.2.1.</span> <span class="toc-text">直接原因：OpenSSH7.0安全特性升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#采购原因：国产化运动"><span class="toc-number">1.2.2.</span> <span class="toc-text">采购原因：国产化运动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软件质量：厂商系统架构水平差异"><span class="toc-number">1.2.3.</span> <span class="toc-text">软件质量：厂商系统架构水平差异</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSH7-0以后的演进"><span class="toc-number">1.3.</span> <span class="toc-text">OpenSSH7.0以后的演进</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#延伸：Logjam-Attack"><span class="toc-number">1.3.1.</span> <span class="toc-text">延伸：Logjam Attack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#延伸：开源组件演进追踪"><span class="toc-number">1.3.2.</span> <span class="toc-text">延伸：开源组件演进追踪</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSH-7-0-变更说明"><span class="toc-number">1.4.</span> <span class="toc-text">OpenSSH 7.0 变更说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Changes-since-OpenSSH-6-9"><span class="toc-number"></span> <span class="toc-text">Changes since OpenSSH 6.9</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Potentially-incompatible-Changes"><span class="toc-number">1.</span> <span class="toc-text">Potentially-incompatible Changes</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案（翻译）"><span class="toc-number">1.0.1.</span> <span class="toc-text">解决方案（翻译）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端安全性增强"><span class="toc-number">2.</span> <span class="toc-text">服务端安全性增强</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA-modulus-too-small"><span class="toc-number">2.0.1.</span> <span class="toc-text">RSA modulus too small</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">3.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Telnet"><span class="toc-number">3.0.1.</span> <span class="toc-text">Telnet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#《The-Cyber-Security-Master》"><span class="toc-number">4.0.1.</span> <span class="toc-text">《The Cyber-Security Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

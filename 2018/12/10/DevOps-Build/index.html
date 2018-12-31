@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>DevOps 漫谈:全生命周期构建管理 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 从源代码到产品 构建全生命周期管理：以 Golang 为例">
+<meta name="keywords" content="DevOps,Engineering,Golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 漫谈:全生命周期构建管理">
+<meta property="og:url" content="https://riboseyim.com/2018/12/10/DevOps-Build/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 从源代码到产品 构建全生命周期管理：以 Golang 为例">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/build_process_go_v1.png">
+<meta property="og:updated_time" content="2018-12-30T17:45:17.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DevOps 漫谈:全生命周期构建管理">
+<meta name="twitter:description" content="摘要 从源代码到产品 构建全生命周期管理：以 Golang 为例">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/build_process_go_v1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/2017/07/06/Visualization">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">愿交天下士，罄我怀中藏。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DevOps-Build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/10/DevOps-Build/" class="article-date">
+  <time datetime="2018-12-10T02:39:51.000Z" itemprop="datePublished">2018-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DevOps 漫谈:全生命周期构建管理
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/12/10/DevOps-Build/" data-id="cjq6z2gyl002lxfbmm8j8emo0" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/">Golang</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>从源代码到产品</li>
+<li>构建全生命周期管理：以 Golang 为例</li>
+</ul>
+<a id="more"></a>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h2 id="构建生命周期"><a href="#构建生命周期" class="headerlink" title="构建生命周期"></a>构建生命周期</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/build_process_go_v1.png" alt=""></p>
+<ul>
+<li>Pre Step: clean、variables(project,module,version,timestamp)</li>
+<li>Build: compile、package</li>
+<li>Install: install Deps</li>
+<li>Test:</li>
+<li>Release: Tag、build archive</li>
+</ul>
+<h2 id="基于-Mage-构建管理"><a href="#基于-Mage-构建管理" class="headerlink" title="基于 Mage 构建管理"></a>基于 Mage 构建管理</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd $project/test</div><div class="line">$ mage build</div><div class="line">$ mage -compile ./static-output</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//magefile.go</span></div><div class="line"><span class="comment">// +build mage</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"errors"</span></div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"os"</span></div><div class="line">	<span class="string">"os/exec"</span></div><div class="line">	<span class="string">"time"</span></div><div class="line"></div><div class="line">	<span class="string">"github.com/magefile/mage/mg"</span> <span class="comment">// mg contains helpful utility functions, like Deps</span></div><div class="line">	<span class="string">"github.com/magefile/mage/sh"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="comment">// ProjectName</span></div><div class="line">	os.Setenv(<span class="string">"MATTEL_REPO"</span>, <span class="string">"go-chilopod"</span>)</div><div class="line">	os.Setenv(<span class="string">"TAG"</span>, <span class="string">"v0.1.2"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Default target to run when none is specified</span></div><div class="line"><span class="comment">// If not set, running mage will list available targets</span></div><div class="line"><span class="comment">// var Default = Build</span></div><div class="line"></div><div class="line"><span class="comment">// A build step that requires additional params, or platform specific steps for example</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build_v1</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(InstallDeps)</div><div class="line">	fmt.Println(<span class="string">"Building..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"MyApp"</span>, <span class="string">"."</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Dep)</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"$MATTEL_REPO"</span>, <span class="string">"-ldflags="</span>+ldflags(), <span class="string">"github.com/riboseyim/$MATTEL_REPO"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Dep</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"dep"</span>, <span class="string">"ensure"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// A custom install step if you need your bin someplace other than go/bin</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Install</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Build)</div><div class="line">	fmt.Println(<span class="string">"Installing..."</span>)</div><div class="line">	<span class="keyword">return</span> os.Rename(<span class="string">"./MyApp"</span>, <span class="string">"/usr/bin/MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Manage your deps, or running package managers.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">InstallDeps</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"get"</span>, <span class="string">"github.com/stretchr/piglatin"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Clean up after yourself</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Clean</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Cleaning..."</span>)</div><div class="line">	os.RemoveAll(<span class="string">"MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Tools</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	<span class="comment">//mg.Deps(Protoc)</span></div><div class="line"></div><div class="line">	update := envBool(<span class="string">"UPDATE"</span>)</div><div class="line"></div><div class="line">	retool := <span class="string">"github.com/twitchtv/retool"</span></div><div class="line"></div><div class="line">	args := []<span class="keyword">string</span>&#123;<span class="string">"get"</span>, retool&#125;</div><div class="line">	<span class="keyword">if</span> update &#123;</div><div class="line">		args = []<span class="keyword">string</span>&#123;<span class="string">"get"</span>, <span class="string">"-u"</span>, retool&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> err := sh.Run(<span class="string">"go"</span>, args...); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> sh.Run(<span class="string">"retool"</span>, <span class="string">"sync"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// retool runs a command using a retool-cached binary.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">retool</span><span class="params">(cmd <span class="keyword">string</span>, args ...<span class="keyword">string</span>)</span> <span class="title">error</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> sh.Run(<span class="string">"retool"</span>, <span class="built_in">append</span>([]<span class="keyword">string</span>&#123;<span class="string">"do"</span>, cmd&#125;, args...)...)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Release</span><span class="params">()</span> <span class="params">(err error)</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> os.Getenv(<span class="string">"TAG"</span>) == <span class="string">""</span> &#123;</div><div class="line">		<span class="keyword">return</span> errors.New(<span class="string">"TAG environment variable is required"</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> err := sh.RunV(<span class="string">"git"</span>, <span class="string">"tag"</span>, <span class="string">"-a"</span>, <span class="string">"$TAG"</span>, <span class="string">"-m"</span>, <span class="string">"add tag $TAG by mage tools"</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> err := sh.RunV(<span class="string">"git"</span>, <span class="string">"push"</span>, <span class="string">"origin"</span>, <span class="string">"$TAG"</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">			sh.RunV(<span class="string">"git"</span>, <span class="string">"tag"</span>, <span class="string">"--delete"</span>, <span class="string">"$TAG"</span>)</div><div class="line">			sh.RunV(<span class="string">"git"</span>, <span class="string">"push"</span>, <span class="string">"--delete"</span>, <span class="string">"origin"</span>, <span class="string">"$TAG"</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;()</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"goreleaser"</span>, <span class="string">"release"</span>, <span class="string">"--skip-publish"</span>, <span class="string">"--rm-dist"</span>)</div><div class="line">	<span class="comment">//return retool("goreleaser")</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">ldflags</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	timestamp := time.Now().Format(time.RFC3339)</div><div class="line">	hash := hash()</div><div class="line">	tag := tag()</div><div class="line">	<span class="keyword">if</span> tag == <span class="string">""</span> &#123;</div><div class="line">		tag = <span class="string">"dev"</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> fmt.Sprintf(<span class="string">`-X "github.com/riboseyim/project/proj.timestamp=%s" `</span>+</div><div class="line">		<span class="string">`-X "github.com/riboseyim/project/proj.commitHash=%s" `</span>+</div><div class="line">		<span class="string">`-X "github.com/riboseyim/project/proj.gitTag=%s"`</span>, timestamp, hash, tag)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// tag returns the git tag for the current branch or "" if none.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tag</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	s, _ := sh.Output(<span class="string">"git"</span>, <span class="string">"describe"</span>, <span class="string">"--tags"</span>)</div><div class="line">	<span class="keyword">return</span> s</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// hash returns the git hash for the current repo or "" if none.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">hash</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	hash, _ := sh.Output(<span class="string">"git"</span>, <span class="string">"rev-parse"</span>, <span class="string">"--short"</span>, <span class="string">"HEAD"</span>)</div><div class="line">	<span class="keyword">return</span> hash</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">envBool</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	value := os.Getenv(key)</div><div class="line">	<span class="keyword">if</span> value != <span class="string">""</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ mage build</div><div class="line">Installing Deps...</div><div class="line"># github.com/riboseyim/<span class="keyword">go</span>-chilopod/vendor/<span class="keyword">go</span>.opencensus.io/trace</div><div class="line">vendor/<span class="keyword">go</span>.opencensus.io/trace/trace_go11.<span class="keyword">go</span>:<span class="number">30</span>:<span class="number">9</span>: undefined: trace.NewContext</div><div class="line">Error: running <span class="string">"go build -o go-chilopod -ldflags=-X "</span>github.com/riboseyim/project/proj.timestamp=<span class="number">2018</span><span class="number">-12</span><span class="number">-30</span>T21:<span class="number">54</span>:<span class="number">20</span>+<span class="number">08</span>:<span class="number">00</span><span class="string">" -X "</span>github.com/riboseyim/project/proj.commitHash=<span class="number">042e38</span>b<span class="string">" -X "</span>github.com/riboseyim/project/proj.gitTag=v0<span class="number">.1</span><span class="number">.1</span><span class="string">" github.com/riboseyim/go-chilopod"</span> failed with exit code <span class="number">2</span></div><div class="line"></div><div class="line">$ dep ensure -update</div></pre></td></tr></table></figure>
+<h2 id="构建工具集"><a href="#构建工具集" class="headerlink" title="构建工具集"></a>构建工具集</h2><ul>
+<li>集成管理：mage</li>
+<li>依赖管理：godep、retool</li>
+<li>发布管理：goreleaser</li>
+</ul>
+<h4 id="依赖管理工具定位"><a href="#依赖管理工具定位" class="headerlink" title="依赖管理工具定位"></a>依赖管理工具定位</h4><ul>
+<li>go get：管理 $GOPATH 代码</li>
+<li>依赖管理工具定位为管理应用代码</li>
+</ul>
+<h4 id="依赖分析工具：godag"><a href="#依赖分析工具：godag" class="headerlink" title="依赖分析工具：godag"></a>依赖分析工具：godag</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">godag --pkg_name=github.com/magefile/mage --pkg_path=/Users/yanrui/go/src/github.com/magefile/mage --depth=1 --dot_file_path=mage.dot</div></pre></td></tr></table></figure>
+<h4 id="go-dep"><a href="#go-dep" class="headerlink" title="go dep"></a>go dep</h4><blockquote>
+<p>Dep is a tool for managing dependencies for Go projects</p>
+</blockquote>
+<ul>
+<li>dep init: Gopkg.toml、vendor</li>
+<li>dep ensure: Gopkg.lock</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ dep</div><div class="line">Commands:</div><div class="line">  init     Set up a <span class="built_in">new</span> Go project, or migrate an existing one</div><div class="line">  status   Report the status of the projects dependencies</div><div class="line">  ensure   Ensure a dependency is safely vendored in the project</div><div class="line">  version  Show the dep version information</div><div class="line">  check    Check <span class="keyword">if</span> imports, Gopkg.toml, and Gopkg.lock are in sync</div><div class="line"></div><div class="line">Examples:</div><div class="line">  dep init                               set up a <span class="built_in">new</span> project</div><div class="line">  dep ensure                             install the projects dependencies</div><div class="line">  dep ensure -update                     update the locked versions of all dependencies</div><div class="line">  dep ensure -add github.com/pkg/errors  add a dependency to the project</div><div class="line"></div><div class="line"><span class="comment">// Error</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$ dep init</div><div class="line">Importing configuration from govendor.</div><div class="line">These are only initial constraints, and are further refined during the solve process.</div><div class="line">Detected govendor configuration file...</div><div class="line">Converting from vendor.json...</div><div class="line">  Trying * (b1433c2) as initial lock <span class="keyword">for</span> imported dep github.com/Shopify/sarama</div><div class="line">  Trying * (ecdeabc) as initial lock <span class="keyword">for</span> imported dep github.com/davecgh/<span class="keyword">go</span>-spew</div><div class="line">  Trying * (b1fe83b) as initial lock <span class="keyword">for</span> imported dep github.com/eapache/<span class="keyword">go</span>-resiliency</div><div class="line">  Trying * (bb955e0) as initial lock <span class="keyword">for</span> imported dep github.com/eapache/<span class="keyword">go</span>-xerial-snappy</div><div class="line">  Using ^<span class="number">1.1</span><span class="number">.0</span> as initial constraint <span class="keyword">for</span> imported dep github.com/eapache/queue</div><div class="line">	..........</div><div class="line">  Locking in  (e19ae14) <span class="keyword">for</span> direct dep golang.org/x/text</div><div class="line">  Locking in v1<span class="number">.17</span><span class="number">.0</span> (df01485) <span class="keyword">for</span> transitive dep google.golang.org/grpc</div><div class="line">  Locking in  (<span class="number">7560714</span>) <span class="keyword">for</span> direct dep github.com/google/goexpect</div><div class="line">  Locking in  (fe724d1) <span class="keyword">for</span> direct dep github.com/magefile/mage</div><div class="line">Old vendor backed up to /Users/yanrui/<span class="keyword">go</span>/src/github.com/riboseyim/<span class="keyword">go</span>-chilopod/_vendor<span class="number">-20181230213719</span></div><div class="line"></div><div class="line"></div><div class="line">aca80164:<span class="keyword">go</span>-chilopod kurui$ dep status</div><div class="line">PROJECT                              CONSTRAINT     VERSION        REVISION  LATEST   PKGS USED</div><div class="line">github.com/Shopify/sarama            *                             b1433c2            <span class="number">1</span>   </div><div class="line"><span class="keyword">go</span>.opencensus.io                     *                             <span class="number">9f</span>6adc5            <span class="number">3</span>  </div><div class="line">github.com/eapache/queue             v1<span class="number">.1</span><span class="number">.0</span>         v1<span class="number">.1</span><span class="number">.0</span>         <span class="number">44</span>cc805   v1<span class="number">.1</span><span class="number">.0</span>   <span class="number">1</span>     </div><div class="line">github.com/pierrec/lz4               v1<span class="number">.1</span>           v1<span class="number">.1</span>           <span class="number">2f</span>cda4c   v1<span class="number">.1</span>     <span class="number">1</span>  </div><div class="line">github.com/soniah/gosnmp             branch master  branch master  cd9a07a   cd9a07a  <span class="number">1</span>  </div><div class="line">github.com/sparrc/<span class="keyword">go</span>-ping            branch master  branch master  ef3ab45   ef3ab45  <span class="number">1</span>  </div><div class="line">google.golang.org/grpc               v1<span class="number">.17</span><span class="number">.0</span>        v1<span class="number">.17</span><span class="number">.0</span>        df01485   v1<span class="number">.17</span><span class="number">.0</span>  <span class="number">1</span></div></pre></td></tr></table></figure>
+<h4 id="godep"><a href="#godep" class="headerlink" title="godep"></a>godep</h4><blockquote>
+<p>Godep is a tool for managing Go package dependencies.</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">godep <span class="keyword">go</span> run</div><div class="line">godep <span class="keyword">go</span> build</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>1) 如果使用 godep 包管理工具则不能在使用 go run 和 go build，否则还是会到 $GOPATH 目录匹配第三方库。</li>
+<li>2) 目录结构 ./Godeps 、./vendor</li>
+<li>3) 安装问题：墙内用户可能会遇到 can not found golang.org/x/…</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ godep</div><div class="line">Usage:</div><div class="line">	godep command [arguments]</div><div class="line"></div><div class="line">The commands are:</div><div class="line">    save     list and <span class="built_in">copy</span> dependencies into Godeps</div><div class="line">    <span class="keyword">go</span>       run the <span class="keyword">go</span> tool with saved dependencies</div><div class="line">    get      download and install packages with specified dependencies</div><div class="line">    path     <span class="built_in">print</span> GOPATH <span class="keyword">for</span> dependency code</div><div class="line">    restore  check out listed dependency versions in GOPATH</div><div class="line">    update   update selected packages or the <span class="keyword">go</span> version</div><div class="line">    diff     shows the diff between current and previously saved set of dependencies</div><div class="line">    version  show version info</div><div class="line"></div><div class="line"><span class="comment">//官方:GFW Error can not found golang.org/x/.......</span></div><div class="line"><span class="keyword">go</span> get github.com/tools/godep</div><div class="line"></div><div class="line"><span class="comment">//镜像:https://github.com/golang/tools</span></div><div class="line"></div><div class="line"><span class="keyword">go</span> get github.com/golang/tools</div><div class="line"></div><div class="line">mkdir $GOPATH/src/golang.org/x</div><div class="line"></div><div class="line"><span class="comment">// 安装 godep -&gt; $GOPATH\bin</span></div><div class="line"><span class="keyword">go</span> get github.com/tools/godep</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">$ godep save</div><div class="line">drwxr-xr-x   <span class="number">4</span> kurui  staff   <span class="number">128</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Godeps</div><div class="line">$ ls -rlt Godeps</div><div class="line">-rw-r--r--  <span class="number">1</span> kurui  staff   <span class="number">136</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Readme</div><div class="line">-rw-r--r--  <span class="number">1</span> kurui  staff  <span class="number">4074</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Godeps.json</div><div class="line"></div><div class="line">$ more Godeps/Godeps.json</div><div class="line">&#123;</div><div class="line">        <span class="string">"ImportPath"</span>: <span class="string">"github.com/riboseyim/go-chilopod"</span>,</div><div class="line">        <span class="string">"GoVersion"</span>: <span class="string">"go1.11"</span>,</div><div class="line">        <span class="string">"GodepVersion"</span>: <span class="string">"v80"</span>,</div><div class="line">        <span class="string">"Deps"</span>: [</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/Shopify/sarama"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.15.0-13-gb1433c2"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"b1433c29241f23cec4704daf4d25358b7b3fbf9e"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/davecgh/go-spew/spew"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.1.0-9-gecdeabc"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"ecdeabc65495df2dec95d7c4a4c3e021903035e5"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/eapache/go-resiliency/breaker"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.0.0-6-gb1fe83b"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"b1fe83b5b03f624450823b751b662259ffc6af70"</span></div><div class="line">                &#125;,</div><div class="line">				.......</div><div class="line">				]</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ ls -rlt vendor/</div><div class="line">drwxr-xr-x  <span class="number">14</span> kurui  staff   <span class="number">448</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> github.com</div><div class="line">drwxr-xr-x   <span class="number">3</span> kurui  staff    <span class="number">96</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> golang.org</div><div class="line">-rw-r--r--   <span class="number">1</span> kurui  staff  <span class="number">8279</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> vendor.json</div><div class="line">drwxr-xr-x   <span class="number">6</span> kurui  staff   <span class="number">192</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> <span class="keyword">go</span>.opencensus.io</div><div class="line"></div><div class="line"><span class="comment">// 更新</span></div><div class="line">$ <span class="keyword">go</span> get a/b/xxx</div><div class="line">$ godep update a/b/..</div></pre></td></tr></table></figure>
+<h4 id="Retool"><a href="#Retool" class="headerlink" title="Retool"></a>Retool</h4><ul>
+<li><a href="https://github.com/twitchtv/retool" target="_blank" rel="external">Project Retool</a></li>
+</ul>
+<blockquote>
+<p>It’s like dep but for go tools, pinning revisions so that all your developers run the exact same version.</p>
+</blockquote>
+<h4 id="Goreleaser"><a href="#Goreleaser" class="headerlink" title="Goreleaser"></a>Goreleaser</h4><ul>
+<li><a href="https://goreleaser.com/" target="_blank" rel="external">Project Goreleaser</a></li>
+</ul>
+<blockquote>
+<p>GoReleaser will build the binaries for your app for Windows, Linux and macOS, both amd64 and i386 architectures</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ brew install goreleaser</div><div class="line">$ cp /usr/<span class="built_in">local</span>/Cellar/goreleaser/0.94.0/bin/goreleaser /user/<span class="built_in">local</span>/bin/</div><div class="line">$</div><div class="line">$ goreleaser init</div><div class="line">• Generating .goreleaser.yml file</div><div class="line">• config created; please edit accordingly to your needs file=.goreleaser.yml</div><div class="line">$</div></pre></td></tr></table></figure>
+<ul>
+<li>goreleaser.yml</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This is an example goreleaser.yaml file with some sane defaults.</span></div><div class="line"><span class="comment"># Make sure to check the documentation at http://goreleaser.com</span></div><div class="line">before:</div><div class="line">  hooks:</div><div class="line">    <span class="comment"># you may remove this if you don't use vgo</span></div><div class="line">    - go mod download</div><div class="line">    <span class="comment"># you may remove this if you don't need go generate</span></div><div class="line">    - go generate ./...</div><div class="line">builds:</div><div class="line">- env:</div><div class="line">  - CGO_ENABLED=0</div><div class="line">archive:</div><div class="line">  replacements:</div><div class="line">    darwin: Darwin</div><div class="line">    linux: Linux</div><div class="line">    windows: Windows</div><div class="line">    386: i386</div><div class="line">    amd64: x86_64</div><div class="line">checksum:</div><div class="line">  name_template: <span class="string">'checksums.txt'</span></div><div class="line">snapshot:</div><div class="line">  name_template: <span class="string">"&#123;&#123; .Tag &#125;&#125;-next"</span></div><div class="line">changelog:</div><div class="line">  sort: asc</div><div class="line">  filters:</div><div class="line">    exclude:</div><div class="line">    - <span class="string">'^docs:'</span></div><div class="line">    - <span class="string">'^test:'</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">$ git tag -a v0<span class="number">.1</span><span class="number">.0</span> -m <span class="string">"First release"</span></div><div class="line">$ git push --tags origin master</div><div class="line">$ goreleaser release --skip-publish</div><div class="line"></div><div class="line">   • releasing using goreleaser <span class="number">0.94</span><span class="number">.0</span>...</div><div class="line">   • loading config file       file=.goreleaser.yml</div><div class="line">   • RUNNING BEFORE HOOKS</div><div class="line">      • running <span class="keyword">go</span> generate ./...</div><div class="line">   • GETTING AND VALIDATING GIT STATE</div><div class="line">      • releasing v0<span class="number">.1</span><span class="number">.0</span>, commit <span class="number">1f</span>47832dffd1c84f65a16ed01868bb29f1419e0e</div><div class="line">   • SETTING DEFAULTS</div><div class="line">      • Invalid value %!s(MISSING) <span class="keyword">for</span> prerelease. Should be auto, <span class="literal">true</span> or <span class="literal">false</span></div><div class="line">   • CHECKING ./DIST  </div><div class="line">   • WRITING EFFECTIVE CONFIG FILE</div><div class="line">      • writing                   config=dist/config.yaml</div><div class="line">   • GENERATING CHANGELOG</div><div class="line">      • writing                   changelog=dist/CHANGELOG.md</div><div class="line">   • LOADING ENVIRONMENT VARIABLES</div><div class="line">      • skipped                   reason=publishing is disabled</div><div class="line">   • BUILDING BINARIES</div><div class="line">      • building                  binary=dist/linux_386/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/darwin_amd64/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/darwin_386/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/linux_amd64/<span class="keyword">go</span>-chilopod</div><div class="line">   • ARCHIVES         </div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_i386.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_i386.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_x86_64.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_x86_64.tar.gz</div><div class="line">   • LINUX PACKAGES WITH NFPM</div><div class="line">      • skipped                   reason=no output formats configured</div><div class="line">   • SNAPCRAFT PACKAGES</div><div class="line">      • skipped                   reason=no summary nor description were provided</div><div class="line">   • CALCULATING CHECKSUMS</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_x86_64.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_i386.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_i386.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_x86_64.tar.gz</div><div class="line">   • SIGNING ARTIFACTS</div><div class="line">      • skipped                   reason=artifact signing is disabled</div><div class="line">   • DOCKER IMAGES    </div><div class="line">      • skipped                   reason=docker section is not configured</div><div class="line">   • PUBLISHING       </div><div class="line">      • skipped                   reason=publishing is disabled</div><div class="line">   • release succeeded after <span class="number">13.70s</span></div></pre></td></tr></table></figure>
+<h4 id="Mage"><a href="#Mage" class="headerlink" title="Mage"></a>Mage</h4><ul>
+<li><a href="https://magefile.org" target="_blank" rel="external">Project Mage</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">go</span> get -u -d github.com/magefile/mage</div><div class="line">$ cd $GOPATH/src/github.com/magefile/mage</div><div class="line">$ <span class="keyword">go</span> run bootstrap.<span class="keyword">go</span></div><div class="line">Running target: Install</div><div class="line">exec: <span class="keyword">go</span> env GOPATH</div><div class="line">exec: git rev-parse --short HEAD</div><div class="line">exec: git describe --tags</div><div class="line">exec: <span class="keyword">go</span> build -o /Users/yanrui/<span class="keyword">go</span>/bin/mage -ldflags=-X <span class="string">"github.com/magefile/mage/mage.timestamp=2018-12-10T10:36:22+08:00"</span> -X <span class="string">"github.com/magefile/mage/mage.commitHash=fe724d1"</span> -X <span class="string">"github.com/magefile/mage/mage.gitTag=v1.7.1-2-gfe724d1"</span> github.com/magefile/mage</div><div class="line"></div><div class="line">$ cd $project/test</div><div class="line">$ mage build</div><div class="line">$ mage -compile ./static-output</div></pre></td></tr></table></figure>
+<ul>
+<li>default magefile.go</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mage -init</span></div><div class="line"><span class="comment">// +build mage</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"os"</span></div><div class="line">	<span class="string">"os/exec"</span></div><div class="line"></div><div class="line">	<span class="string">"github.com/magefile/mage/mg"</span> <span class="comment">// mg contains helpful utility functions, like Deps</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// Default target to run when none is specified</span></div><div class="line"><span class="comment">// If not set, running mage will list available targets</span></div><div class="line"><span class="comment">// var Default = Build</span></div><div class="line"></div><div class="line"><span class="comment">// A build step that requires additional params, or platform specific steps for example</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line"><span class="comment">//</span></div><div class="line">	mg.Deps(Dep)</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"project"</span>, <span class="string">"-ldflags="</span>+ldflags(), <span class="string">"github.com/riboseyim/chilopod"</span>)</div><div class="line"><span class="comment">//</span></div><div class="line">		<span class="comment">//mg.Deps(Dep)</span></div><div class="line">    <span class="comment">//return sh.RunV("go", "build", "-o", "$MATTEL_REPO", "-ldflags="+ldflags(), "github.com/riboseyim/$MATTEL_REPO")</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// A custom install step if you need your bin someplace other than go/bin</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Install</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Build)</div><div class="line">	fmt.Println(<span class="string">"Installing..."</span>)</div><div class="line">	<span class="keyword">return</span> os.Rename(<span class="string">"./MyApp"</span>, <span class="string">"/usr/bin/MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Manage your deps, or running package managers.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">InstallDeps</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"get"</span>, <span class="string">"github.com/stretchr/piglatin"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Clean up after yourself</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Clean</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Cleaning..."</span>)</div><div class="line">	os.RemoveAll(<span class="string">"MyApp"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>mage options</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">mage [options] [target]</div><div class="line"></div><div class="line">Mage is a make-like command runner.  See https://magefile.org for full docs.</div><div class="line"></div><div class="line">Commands:</div><div class="line">  -clean    clean out old generated binaries from CACHE_DIR</div><div class="line">  -compile &lt;string&gt;</div><div class="line">            output a static binary to the given path</div><div class="line">  -init     create a starting template if no mage files exist</div><div class="line">  -l        list mage targets in this directory</div><div class="line">  -h        show this help</div><div class="line">  -version  show version info for the mage binary</div><div class="line"></div><div class="line">Options:</div><div class="line">  -d &lt;string&gt;</div><div class="line">          run magefiles in the given directory (default ".")</div><div class="line">  -debug  turn on debug messages</div><div class="line">  -h      show description of a target</div><div class="line">  -f      force recreation of compiled magefile</div><div class="line">  -keep   keep intermediate mage files around after running</div><div class="line">  -gocmd &lt;string&gt;</div><div class="line">          use the given go binary to compile the output (default: "go")</div><div class="line">  -t &lt;string&gt;</div><div class="line">          timeout in duration parsable format (e.g. 5m30s)</div><div class="line">  -v      show verbose output when running mage targets</div></pre></td></tr></table></figure>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="external">DevOps 漫谈系列</a></h4><ul>
+<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="external">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="external">Kanban 看板管理实践</a></li>
+<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="external">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="external">工程师的自我修养：全英文技术学习实践</a></li>
+</ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="external">DevOps 实践的本质是文化</a></h4><ul>
+<li>学习力－团队生命之根</li>
+<li>带领团队翻译书籍</li>
+<li>Don’t make me think</li>
+<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://blog.gopheracademy.com/advent-2018/mage-best-practices/" target="_blank" rel="external">Best Practices for Using Mage To Build Your Project  </a></li>
+<li><a href="https://studygolang.com/articles/10589" target="_blank" rel="external">Golang官方依赖管理工具：dep</a></li>
+<li><a href="https://blog.gopheracademy.com/advent-2018/building-ci-cd-slack-bot/" target="_blank" rel="external">Building a CI/CD Bot with Slack and Kubernetes.</a></li>
+<li><a href="https://gocn.vip/article/414" target="_blank" rel="external">官方依赖管理工具：dep</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/12/10/DevOps-Build/" data-id="cjq6z2gyl002lxfbmm8j8emo0" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/">Golang</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/16/Visualization-SocialNetwork/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          数据可视化（八）Program,Data and Classical Music
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/08/Economist-Books-Year-2018/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">The Economist 2018年度推荐书单</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建生命周期"><span class="toc-number">3.</span> <span class="toc-text">构建生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于-Mage-构建管理"><span class="toc-number">4.</span> <span class="toc-text">基于 Mage 构建管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建工具集"><span class="toc-number">5.</span> <span class="toc-text">构建工具集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#依赖管理工具定位"><span class="toc-number">5.0.1.</span> <span class="toc-text">依赖管理工具定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#依赖分析工具：godag"><span class="toc-number">5.0.2.</span> <span class="toc-text">依赖分析工具：godag</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#go-dep"><span class="toc-number">5.0.3.</span> <span class="toc-text">go dep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#godep"><span class="toc-number">5.0.4.</span> <span class="toc-text">godep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Retool"><span class="toc-number">5.0.5.</span> <span class="toc-text">Retool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Goreleaser"><span class="toc-number">5.0.6.</span> <span class="toc-text">Goreleaser</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mage"><span class="toc-number">5.0.7.</span> <span class="toc-text">Mage</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">6.0.1.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">6.0.2.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2018 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/2017/07/06/Visualization" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://riboseyim.com/cdn/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
