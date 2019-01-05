@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/History_macOS_Linux.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OS_Kernel_Model.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2019-01-05T02:22:02.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谁是王者：macOS vs Linux Kernels ？">
 <meta name="twitter:description" content="谁是王者：macOS vs Linux Kernels ？ Mac 快键键">
@@ -153,10 +153,10 @@ ga('send', 'pageview');
 </thead>
 <tbody>
 <tr>
-<td>查看二进制文件</td>
-<td>ldd</td>
-<td>otool -L</td>
-<td>——</td>
+<td>字符匹配</td>
+<td>grep</td>
+<td>grep</td>
+<td>findstr</td>
 </tr>
 <tr>
 <td>查看网卡</td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
 <td>netstat -an</td>
 </tr>
 <tr>
-<td>动态链接库</td>
+<td>更新动态库</td>
 <td>ldconfig</td>
 <td>update_dyld_shared_cache</td>
 <td>——</td>
@@ -186,12 +186,22 @@ ga('send', 'pageview');
 <td>hosts</td>
 <td>/etc/hosts//private/etc/hosts</td>
 <td>——-</td>
+<td></td>
 </tr>
 <tr>
 <td>debug</td>
 <td>strace</td>
 <td>dtruss</td>
 <td>——-</td>
+</tr>
+<tr>
+<td>查看库依赖</td>
+<td>ldd</td>
+<td>otool -L</td>
+<td>——</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -214,6 +224,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>预测未来的最佳方式就是创造未来。<br>——  个人电脑之父 艾伦·凯(Alan Kay)</p>
 </blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum info google-chrome-stable</span></div><div class="line">google-chrome                                                                                                 | 1.3 kB     00:00     </div><div class="line">google-chrome/primary                                                                                         | 1.7 kB     00:00     </div><div class="line">google-chrome                                                                                                                                            3/3</div><div class="line">可安装的软件包</div><div class="line">Name        : google-chrome-stable</div><div class="line">Arch        : x86_64</div><div class="line">Version     : 71.0.3578.98</div><div class="line">Release     : 1</div><div class="line">Size        : 54 M</div><div class="line">Repo        : google-chrome</div><div class="line">Summary     : Google Chrome</div><div class="line">URL         : https://chrome.google.com/</div><div class="line">License     : Multiple, see https://chrome.google.com/</div><div class="line">Description : The web browser from Google</div><div class="line">            :</div><div class="line">            : Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.</div><div class="line"></div><div class="line"><span class="comment"># yum install google-chrome-stable</span></div><div class="line">设置安装进程</div><div class="line">解决依赖关系</div><div class="line">--&gt; 执行事务检查</div><div class="line">---&gt; Package google-chrome-stable.x86_64 0:71.0.3578.98-1 will be 安装</div><div class="line">--&gt; 处理依赖关系 libnss3.so(NSS_3.22)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libc.so.6(GLIBC_2.16)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 liberation-fonts，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libssl3.so(NSS_3.28)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libgtk-3.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libappindicator3.so.1()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libatspi.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libgdk-3.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 处理依赖关系 libatk-bridge-2.0.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</div><div class="line">--&gt; 完成依赖关系计算</div><div class="line"> You could try using --skip-broken to work around the problem</div><div class="line"> You could try running: rpm -Va --nofiles --nodigest</div></pre></td></tr></table></figure>
 <h2 id="Mac-快键键"><a href="#Mac-快键键" class="headerlink" title="Mac 快键键"></a>Mac 快键键</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">⌘——Command ()</div><div class="line"></div><div class="line">⌃ ——Control</div><div class="line"></div><div class="line">⌥——Option (alt)</div><div class="line"></div><div class="line">⇧——Shift</div><div class="line"></div><div class="line">⇪——Caps Lock</div><div class="line"></div><div class="line">fn——功能键</div></pre></td></tr></table></figure>
 <h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
