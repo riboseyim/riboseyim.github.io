@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-4.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-5.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2019-01-06T18:17:45.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 性能诊断:JVM">
 <meta name="twitter:description" content="摘要 Uber 开源 Java 分布式应用追踪工具：JVM Profiler">
@@ -62,7 +62,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -125,7 +125,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="cjqbuo4bo006zf1bmim6e7aof" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="cjql8xyb4006yay8yia4x1nyt" class="article-share-link">Share</a>
         
         
         
@@ -213,12 +213,12 @@ ga('send', 'pageview');
 <p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-5.png" alt=""></p>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">$ mvn package</div><div class="line">[INFO] Scanning <span class="keyword">for</span> projects...</div><div class="line">[INFO]</div><div class="line">[INFO] -----------------------&lt; com.uber:jvm-profiler &gt;------------------------</div><div class="line">[INFO] Building uber-jvm-profiler <span class="number">0.0</span><span class="number">.7</span></div><div class="line">[INFO] --------------------------------[ jar ]---------------------------------</div><div class="line">[INFO] Including org.apache.kafka:kafka-clients:jar:<span class="number">0.11</span><span class="number">.0</span><span class="number">.2</span> in the shaded jar.</div><div class="line">[INFO] Including net.jpountz.lz4:lz4:jar:<span class="number">1.3</span><span class="number">.0</span> in the shaded jar.</div><div class="line">[INFO] Including org.xerial.snappy:snappy-java:jar:<span class="number">1.1</span><span class="number">.2</span><span class="number">.6</span> in the shaded jar.</div><div class="line">[INFO] Including org.slf4j:slf4j-api:jar:<span class="number">1.7</span><span class="number">.25</span> in the shaded jar.</div><div class="line">[INFO] Including org.apache.commons:commons-lang3:jar:<span class="number">3.5</span> in the shaded jar.</div><div class="line">[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:<span class="number">2.8</span><span class="number">.9</span> in the shaded jar.</div><div class="line">[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:<span class="number">2.8</span><span class="number">.9</span> in the shaded jar.</div><div class="line">[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:<span class="number">2.8</span><span class="number">.0</span> in the shaded jar.</div><div class="line">[INFO] Including org.javassist:javassist:jar:<span class="number">3.21</span><span class="number">.0</span>-GA in the shaded jar.</div><div class="line">[INFO] Including org.yaml:snakeyaml:jar:<span class="number">1.18</span> in the shaded jar.</div><div class="line">[INFO] Including org.apache.httpcomponents:httpclient:jar:<span class="number">4.3</span><span class="number">.6</span> in the shaded jar.</div><div class="line">[INFO] Including org.apache.httpcomponents:httpcore:jar:<span class="number">4.3</span><span class="number">.3</span> in the shaded jar.</div><div class="line">[INFO] Including commons-logging:commons-logging:jar:<span class="number">1.1</span><span class="number">.3</span> in the shaded jar.</div><div class="line">[INFO] Including commons-codec:commons-codec:jar:<span class="number">1.6</span> in the shaded jar.</div><div class="line">[INFO] Including redis.clients:jedis:jar:<span class="number">2.9</span><span class="number">.0</span> in the shaded jar.</div><div class="line">[INFO] Including org.apache.commons:commons-pool2:jar:<span class="number">2.4</span><span class="number">.2</span> in the shaded jar.</div><div class="line">[INFO] Replacing original artifact with shaded artifact.</div><div class="line">[INFO] Replacing /Users/yanrui/project-third/jvm-profiler/target/jvm-profiler<span class="number">-0.0</span><span class="number">.7</span>.jar with /Users/yanrui/project-third/jvm-profiler/target/jvm-profiler<span class="number">-0.0</span><span class="number">.7</span>-shaded.jar</div><div class="line">[INFO] Dependency-reduced POM written at: /Users/yanrui/project-third/jvm-profiler/dependency-reduced-pom.xml</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: <span class="number">03</span>:<span class="number">38</span> min</div><div class="line">[INFO] Finished at: <span class="number">2018</span><span class="number">-08</span><span class="number">-07</span>T09:<span class="number">50</span>:<span class="number">26</span>+<span class="number">08</span>:<span class="number">00</span></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">bash<span class="number">-3.2</span>$</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## MVN</span></div><div class="line">$ wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz</div><div class="line">$ tar -xvf apache-maven-3.5.4-bin.tar.gz</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'export M2_HOME="/usr/local/apache-maven-3.5.4" '</span> &gt;&gt;  ~/.bash_profile</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH=$M2_HOME/bin:$PATH'</span> &gt;&gt; ~/.bash_profile</div><div class="line">$ . ~/.bash_profile</div><div class="line">$ mvn -v</div><div class="line">Apache Maven 3.5.4</div></pre></td></tr></table></figure>
-<h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
 <li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
@@ -226,7 +226,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
 <li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
 </ul>
-<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
@@ -242,7 +242,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="cjqbuo4bo006zf1bmim6e7aof" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="cjql8xyb4006yay8yia4x1nyt" class="article-share-link">Share</a>
       
       
       
@@ -266,7 +266,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -309,7 +309,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/08/07/OpenSource-DB-Redis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           开源技术架构漫谈：Redis
@@ -319,7 +319,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/08/01/OpenSource-Hadoop/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">开源技术架构漫谈：Hadoop</div>
     </a>
   
@@ -351,9 +351,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uber-开源-Java-分布式应用追踪工具：JVM-Profiler"><span class="toc-number"></span> <span class="toc-text">Uber 开源 Java 分布式应用追踪工具：JVM Profiler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Profiling-challenges"><span class="toc-number">1.</span> <span class="toc-text">Profiling challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#目标1：应用级指标监控"><span class="toc-number">1.0.1.</span> <span class="toc-text">目标1：应用级指标监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目标2：不侵入用户代码"><span class="toc-number">1.0.2.</span> <span class="toc-text">目标2：不侵入用户代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-简介"><span class="toc-number">2.</span> <span class="toc-text">JVM Profiler 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-典型用例"><span class="toc-number">2.0.1.</span> <span class="toc-text">JVM Profiler 典型用例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-实现"><span class="toc-number">2.0.2.</span> <span class="toc-text">JVM Profiler 实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-扩展"><span class="toc-number">2.0.3.</span> <span class="toc-text">JVM Profiler 扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据基础设施整合"><span class="toc-number">2.0.4.</span> <span class="toc-text">数据基础设施整合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-应用"><span class="toc-number">3.</span> <span class="toc-text">JVM Profiler 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use-the-profiler-to-profile-the-Spark-application"><span class="toc-number">3.0.1.</span> <span class="toc-text">Use the profiler to profile the Spark application</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指标查询"><span class="toc-number">3.0.2.</span> <span class="toc-text">指标查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">4.</span> <span class="toc-text">Next</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">5.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uber-开源-Java-分布式应用追踪工具：JVM-Profiler"><span class="toc-number"></span> <span class="toc-text">Uber 开源 Java 分布式应用追踪工具：JVM Profiler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Profiling-challenges"><span class="toc-number">1.</span> <span class="toc-text">Profiling challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#目标1：应用级指标监控"><span class="toc-number">1.0.1.</span> <span class="toc-text">目标1：应用级指标监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目标2：不侵入用户代码"><span class="toc-number">1.0.2.</span> <span class="toc-text">目标2：不侵入用户代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-简介"><span class="toc-number">2.</span> <span class="toc-text">JVM Profiler 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-典型用例"><span class="toc-number">2.0.1.</span> <span class="toc-text">JVM Profiler 典型用例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-实现"><span class="toc-number">2.0.2.</span> <span class="toc-text">JVM Profiler 实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-扩展"><span class="toc-number">2.0.3.</span> <span class="toc-text">JVM Profiler 扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据基础设施整合"><span class="toc-number">2.0.4.</span> <span class="toc-text">数据基础设施整合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-应用"><span class="toc-number">3.</span> <span class="toc-text">JVM Profiler 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use-the-profiler-to-profile-the-Spark-application"><span class="toc-number">3.0.1.</span> <span class="toc-text">Use the profiler to profile the Spark application</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指标查询"><span class="toc-number">3.0.2.</span> <span class="toc-text">指标查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">4.</span> <span class="toc-text">Next</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">5.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">6.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">6.0.2.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">6.0.3.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -391,7 +391,7 @@ ga('send', 'pageview');
   </div>
   <div class="outer">
     <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
