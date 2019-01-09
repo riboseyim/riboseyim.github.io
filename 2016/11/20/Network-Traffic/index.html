@@ -3,15 +3,15 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>性能优化思路：从珠海航展交通管控实践谈起 | Ribose Yim&#39;s Home</title>
+  <title>珠海航展交通管控实践 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交">
+  <meta name="description" content="摘要 工程案例">
 <meta name="keywords" content="SRE,DevOps,Linux,Engineering,网络协议">
 <meta property="og:type" content="article">
-<meta property="og:title" content="性能优化思路：从珠海航展交通管控实践谈起">
+<meta property="og:title" content="珠海航展交通管控实践">
 <meta property="og:url" content="https://riboseyim.com/2016/11/20/Network-Traffic/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
-<meta property="og:description" content="摘要从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交">
+<meta property="og:description" content="摘要 工程案例">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_02.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_030.png">
@@ -21,10 +21,10 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_09.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_12.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_11.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2019-01-09T05:48:24.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="性能优化思路：从珠海航展交通管控实践谈起">
-<meta name="twitter:description" content="摘要从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交">
+<meta name="twitter:title" content="珠海航展交通管控实践">
+<meta name="twitter:description" content="摘要 工程案例">
 <meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
@@ -121,14 +121,14 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      性能优化思路：从珠海航展交通管控实践谈起
+      珠海航展交通管控实践
     </h1>
   
 
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="cjql8xyca00aeay8yux2i4x1u" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="cjqoumkx700aja4h2bq6bqt2o" class="article-share-link">Share</a>
         
         
         
@@ -141,8 +141,12 @@ ga('send', 'pageview');
       
         <!-- Table of Contents -->
         
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。<br>2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交通流量管控实践，是否可以为解决信息系统性能问题、架构设计优化提供借鉴思路呢？谨以此文，聊作记录。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>工程案例</li>
+</ul>
 <a id="more"></a>
+<p>从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。</p>
+<p>2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交通流量管控实践，是否可以为解决信息系统性能问题、架构设计优化提供借鉴思路呢？谨以此文，聊作记录。</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>展馆位于珠海市三灶机场。机场本身是在一个南面临海的半岛，展会期间的主要流量方向来自市区、珠三角城市群、外地经广深中转人群。主要的人、车流量会从北、东、西三个方面汇入，穿越市区，经过跨海大桥以及机场高速，进入珠海西部区域。如图所示：<br><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png" alt=""></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_02.png" alt=""></p>
 <p>这是一个典型的流量突发峰值场景：<br>1、东部区域为主要流量入口，西部区域交通路网稀疏，对接容量不足；沿途多山靠海，地形地貌蜿蜒复杂，任意一点出现延时，会很快扩散，回旋空间小；<br>2、航展两年举办一次，每次一周。特别为此硬性扩容，经济性太差；<br>3、整个业务链条存在明显的薄弱环节：珠海大桥（珠海大道主干道单向4车道，辅道单向3车道，7条车道的车流集中汇集在珠海大桥上桥处，而珠海大桥单向只有3车道）；</p>
@@ -166,23 +170,21 @@ ga('send', 'pageview');
 <p>上述方案能够落实到位，我相信是与大量引用新型技术密不可分的。<br><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_09.png" alt=""></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_12.png" alt=""></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_11.png" alt=""></p>
-<hr>
-<h3 id="2016珠海航展图集"><a href="#2016珠海航展图集" class="headerlink" title="2016珠海航展图集"></a>2016珠海航展图集</h3><p><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 中国八一飞行表演队 </a></p>
-<p><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 俄罗斯勇士&amp;雨燕飞行表演队 </a></p>
-<p><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 英国皇家空军红箭飞行表演队 </a></p>
-<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2><p>拥塞控制：排队理论，控制理论</p>
-<ul>
-<li><a href="http://blog.csdn.net/dog250/article/details/72849985" target="_blank" rel="external">Bomb250@排队系统拥塞控制的位置</a></li>
+<h2 id="2016珠海航展图集"><a href="#2016珠海航展图集" class="headerlink" title="2016珠海航展图集"></a>2016珠海航展图集</h2><ul>
+<li><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 中国八一飞行表演队</a></li>
+<li><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 俄罗斯勇士&amp;雨燕飞行表演队</a></li>
+<li><a href="http://www.jianshu.com/p/0d67dc1a0ad4" target="_blank" rel="external">2016珠海航展 英国皇家空军红箭飞行表演队</a></li>
 </ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="http://zhangyi.farbox.com/post/architecture/traffic-jam-and-performance-tuning" target="_blank" rel="external">张逸：交通堵塞与性能优化</a></li>
 <li><a href="http://coolshell.cn/articles/17416.html" target="_blank" rel="external">酷壳：缓存更新的套路</a></li>
+<li>拥塞控制：排队理论，控制理论<a href="http://blog.csdn.net/dog250/article/details/72849985" target="_blank" rel="external">Bomb250@排队系统拥塞控制的位置</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="cjql8xyca00aeay8yux2i4x1u" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="cjqoumkx700aja4h2bq6bqt2o" class="article-share-link">Share</a>
       
       
       
@@ -252,7 +254,7 @@ ga('send', 'pageview');
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          动态追踪技术专题
+          专题：动态追踪技术
         
       </div>
     </a>
@@ -293,7 +295,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、总量预算"><span class="toc-number">3.1.</span> <span class="toc-text">一、总量预算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、流量路径规划"><span class="toc-number">3.2.</span> <span class="toc-text">二、流量路径规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016珠海航展图集"><span class="toc-number">3.3.</span> <span class="toc-text">2016珠海航展图集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#待续"><span class="toc-number">4.</span> <span class="toc-text">待续</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、总量预算"><span class="toc-number">3.1.</span> <span class="toc-text">一、总量预算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、流量路径规划"><span class="toc-number">3.2.</span> <span class="toc-text">二、流量路径规划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2016珠海航展图集"><span class="toc-number">4.</span> <span class="toc-text">2016珠海航展图集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -424,25 +426,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

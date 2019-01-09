@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-01-06T18:21:16.228Z</updated>
+  <updated>2019-01-09T06:52:11.335Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>专题：数据科学</title>
+    <link href="https://riboseyim.com/2019/01/09/Data-Science/"/>
+    <id>https://riboseyim.com/2019/01/09/Data-Science/</id>
+    <published>2019-01-09T05:50:44.000Z</published>
+    <updated>2019-01-09T06:52:11.335Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>数据科学工具箱 | Data Science Toolbox</li>
+</ul>
+<a id="more"></a>
+<h2 id="数据科学工具箱"><a href="#数据科学工具箱" class="headerlink" title="数据科学工具箱"></a>数据科学工具箱</h2><h4 id="Data-Science-Toolbox"><a href="#Data-Science-Toolbox" class="headerlink" title="Data Science Toolbox"></a>Data Science Toolbox</h4><ul>
+<li><a href="https://www.datascienceatthecommandline.com/index.html" target="_blank" rel="external">Data Science at the Command Line | Jeroen Janssens</a></li>
+<li><a href="http://www.ituring.com.cn/book/1539" target="_blank" rel="external">命令行中的数据科学| Jeroen Janssens (作者) 王晓伟 , 刘峰 (译者)</a></li>
+</ul>
+<h4 id="Obtainging-Data-数据获取"><a href="#Obtainging-Data-数据获取" class="headerlink" title="Obtainging Data | 数据获取"></a>Obtainging Data | 数据获取</h4><ul>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
+<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
+</ul>
+<h4 id="Scrubbing-Data-数据清洗"><a href="#Scrubbing-Data-数据清洗" class="headerlink" title="Scrubbing Data | 数据清洗"></a>Scrubbing Data | 数据清洗</h4><ul>
+<li>Drake  </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/Factual/drake.git</div></pre></td></tr></table></figure>
+<h4 id="Exploring-Data-数据探索"><a href="#Exploring-Data-数据探索" class="headerlink" title="Exploring Data | 数据探索"></a>Exploring Data | 数据探索</h4><ul>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+</ul>
+<h4 id="Data-Visualization-数据可视化"><a href="#Data-Visualization-数据可视化" class="headerlink" title="Data Visualization | 数据可视化"></a><a href="https://riboseyim.github.io/2017/07/06/Visualization/" target="_blank" rel="external">Data Visualization | 数据可视化</a></h4><ul>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+</ul>
+<h4 id="Modeling-Data-数据建模"><a href="#Modeling-Data-数据建模" class="headerlink" title="Modeling Data | 数据建模"></a>Modeling Data | 数据建模</h4><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;数据科学工具箱 | Data Science Toolbox&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+      <category term="DataScience" scheme="https://riboseyim.com/tags/DataScience/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>专题：工程学</title>
+    <link href="https://riboseyim.com/2019/01/07/Engineering/"/>
+    <id>https://riboseyim.com/2019/01/07/Engineering/</id>
+    <published>2019-01-06T19:07:36.000Z</published>
+    <updated>2019-01-09T06:54:42.406Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="Introducing-Engineering"><a href="#Introducing-Engineering" class="headerlink" title="Introducing Engineering"></a>Introducing Engineering</h2><p>工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
+<blockquote>
+<p>The activity of applying scientific knowledge to the design, building, and control of machines,roads, bridges, electrical equipment,etc. ——《牛津英语词典》</p>
+<p>Engineering is the application of knowledge, typically in the form of science, mathematics, and empirical evidence, to the innovation, design, construction, operation and maintenance of structures, machines, materials, devices, systems, processes, and organizations. —— Wiki</p>
+</blockquote>
+<h2 id="创新"><a href="#创新" class="headerlink" title="创新"></a>创新</h2><h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><h4 id="工程设计原则"><a href="#工程设计原则" class="headerlink" title="工程设计原则"></a>工程设计原则</h4><ul>
+<li><a href="https://riboseyim.github.io/2019/01/01/Engineering-DisasterRecovery/" target="_blank" rel="external">工程设计原则：容灾</a></li>
+</ul>
+<h4 id="工程设计过程"><a href="#工程设计过程" class="headerlink" title="工程设计过程"></a>工程设计过程</h4><h2 id="协作"><a href="#协作" class="headerlink" title="协作"></a>协作</h2><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h4 id="个人生产力"><a href="#个人生产力" class="headerlink" title="个人生产力"></a>个人生产力</h4><ul>
+<li><a href="https://riboseyim.github.io/2016/04/26/Tools/" target="_blank" rel="external">场景化过程改进之个人效率提升</a></li>
+</ul>
+<h4 id="软件工程领域"><a href="#软件工程领域" class="headerlink" title="软件工程领域"></a>软件工程领域</h4><ul>
+<li>[ ] <a href="https://arxiv.org/ftp/arxiv/papers/1702/1702.01715.pdf" target="_blank" rel="external">Software Engineering of Google</a></li>
+</ul>
+<h4 id="建筑工程领域"><a href="#建筑工程领域" class="headerlink" title="建筑工程领域"></a>建筑工程领域</h4><ul>
+<li><a href="https://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《建筑的复杂性与矛盾性》</a></li>
+</ul>
+<h4 id="交通工程领域"><a href="#交通工程领域" class="headerlink" title="交通工程领域"></a>交通工程领域</h4><ul>
+<li><a href="https://riboseyim.github.io/2017/05/28/History-Caoyun/" target="_blank" rel="external">黄仁宇:《明代的漕运》</a></li>
+<li><a href="https://riboseyim.com/2016/11/20/Network-Traffic/">珠海航展交通管控实践</a></li>
+</ul>
+<h4 id="艺术领域"><a href="#艺术领域" class="headerlink" title="艺术领域"></a>艺术领域</h4><ul>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+</ul>
+<h4 id="其它领域"><a href="#其它领域" class="headerlink" title="其它领域"></a>其它领域</h4><h2 id="Engineering-Resources"><a href="#Engineering-Resources" class="headerlink" title="Engineering Resources"></a>Engineering Resources</h2><ul>
+<li><a href="https://riboseyim.com/2018/09/15/Engineering-Blog/">Engineering Blog</a></li>
+<li><a href="https://riboseyim.com/2018/09/11/Engineering-Index/">Engineering Index</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
   
   <entry>
     <title>玩转编程语言：C 语言</title>
@@ -62,7 +160,7 @@
     <link href="https://riboseyim.com/2019/01/07/Writing-Community/"/>
     <id>https://riboseyim.com/2019/01/07/Writing-Community/</id>
     <published>2019-01-06T17:32:34.000Z</published>
-    <updated>2019-01-06T18:04:22.210Z</updated>
+    <updated>2019-01-06T19:32:16.261Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>写作这门手艺</li>
@@ -79,10 +177,11 @@
 <li><a href="https://riboseyim.github.io/2017/09/15/Visualization-OmniGraffle/" target="_blank" rel="external">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
 </ul>
 <h4 id="读者社区运营"><a href="#读者社区运营" class="headerlink" title="读者社区运营"></a>读者社区运营</h4><ul>
-<li>基于用户需求和最大传播效果为目标的内容创作</li>
-<li><a href="https://riboseyim.github.io/2017/07/05/Technology-Writing-Reader-Question/" target="_blank" rel="external">&gt;&gt;&gt;&gt;&gt; 读者反馈问题汇编 &lt;&lt;&lt;&lt;&lt;&lt;</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/05/Writing-Reader-Question/" target="_blank" rel="external">| &gt;&gt;&gt;&gt;&gt; 读者反馈问题汇编 &lt;&lt;&lt;&lt;&lt;&lt; |</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/10/Writing-MediaData/" target="_blank" rel="external">基于用户需求和最大传播效果为目标的内容创作</a></li>
 </ul>
 <h4 id="写作与职业发展"><a href="#写作与职业发展" class="headerlink" title="写作与职业发展"></a>写作与职业发展</h4><ul>
+<li><a href="https://riboseyim.github.io/2017/10/22/Writing-Technology/" target="_blank" rel="external">技术写作与出版</a></li>
 <li><a href="https://riboseyim.com/2018/12/02/Writing-Technical/">Uber 技术团队中的作家</a></li>
 </ul>
 <h2 id="产品孵化"><a href="#产品孵化" class="headerlink" title="产品孵化"></a>产品孵化</h2><h4 id="一般路径"><a href="#一般路径" class="headerlink" title="一般路径"></a>一般路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">digraph  aa&#123;</div><div class="line">  Series[label=&quot;Series 主题&quot;,shape=&quot;Mrecord&quot;];</div><div class="line">  eBook_Preview[label=&quot;电子书【预备】&quot;,shape=&quot;Mrecord&quot;];</div><div class="line">  eBook_Publish[label=&quot;电子书【发布】&quot;,shape=&quot;Mrecord&quot;];</div><div class="line">  eBook_Grown[label=&quot;电子书【稳定】&quot;,shape=&quot;Mrecord&quot;];</div><div class="line"></div><div class="line">  Series -&gt; eBook_Preview -&gt; eBook_Publish -&gt; eBook_Grown;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -112,6 +211,9 @@
 <li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
 <li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
 </ul>
+<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><ul>
+<li><a href="http://riboseyim.github.io/2018/12/01/News-Night-20181201/" target="_blank" rel="external">Night News 20181201 | 上线一个纯洁的域名</a></li>
+</ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
     <summary type="html">
@@ -133,7 +235,7 @@
     <link href="https://riboseyim.com/2019/01/05/Mac/"/>
     <id>https://riboseyim.com/2019/01/05/Mac/</id>
     <published>2019-01-05T02:51:13.000Z</published>
-    <updated>2019-01-06T16:26:49.923Z</updated>
+    <updated>2019-01-09T07:10:09.885Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>This article is part of an <strong>Mac Operating System</strong> tutorial series. Make sure to check out my other articles as well:</p>
@@ -168,7 +270,7 @@
 </tr>
 <tr>
 <td>查看网络路由</td>
-<td>route -n / netstat -ar</td>
+<td>route -n <br> netstat -ar</td>
 <td>netstat -ar</td>
 <td>route PRINT</td>
 </tr>
@@ -186,7 +288,7 @@
 </tr>
 <tr>
 <td>hosts</td>
-<td>/etc/hosts//private/etc/hosts</td>
+<td>/etc/hosts/<br>/private/etc/hosts</td>
 <td>——-</td>
 <td></td>
 </tr>
@@ -215,6 +317,12 @@
 <td>taskkill /pid /T /F</td>
 </tr>
 <tr>
+<td>环境变量</td>
+<td>env</td>
+<td>[print]printenv <br> [init] ~/.bash_profile</td>
+<td></td>
+</tr>
+<tr>
 <td></td>
 <td></td>
 <td></td>
@@ -228,7 +336,11 @@
 </tbody>
 </table>
 </div>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s/Q2IEE4t3naR6j3iP78V29g" target="_blank" rel="external">推荐一些 Mac 上比较好用的软件</a></li>
+<li><a href="http://www.jianshu.com/p/9257e1e7ac39" target="_blank" rel="external">(力荐)scomper:OmniFocus 2 for Mac 的使用指南</a></li>
+</ul>
+]]></content>
     
     <summary type="html">
     
@@ -244,11 +356,11 @@
   </entry>
   
   <entry>
-    <title>Engineering-DisasterRecovery</title>
+    <title>Engineering DisasterRecovery</title>
     <link href="https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/"/>
     <id>https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/</id>
     <published>2018-12-31T17:06:37.000Z</published>
-    <updated>2018-12-31T17:10:55.741Z</updated>
+    <updated>2019-01-09T06:56:33.202Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
@@ -269,6 +381,8 @@
     
     </summary>
     
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
   </entry>
   
@@ -310,11 +424,11 @@
   </entry>
   
   <entry>
-    <title>Engineering-Architecture</title>
+    <title>Engineering Architecture</title>
     <link href="https://riboseyim.com/2018/12/31/Engineering-Architecture/"/>
     <id>https://riboseyim.com/2018/12/31/Engineering-Architecture/</id>
     <published>2018-12-31T12:55:08.000Z</published>
-    <updated>2018-12-31T12:57:21.850Z</updated>
+    <updated>2019-01-09T06:56:23.207Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="荐书-《建筑的复杂性与矛盾性》"><a href="#荐书-《建筑的复杂性与矛盾性》" class="headerlink" title="荐书|《建筑的复杂性与矛盾性》"></a>荐书|《建筑的复杂性与矛盾性》</h2><p>建筑师和规划师怒气冲冲地谴责一般城市面貌的平庸与粗俗，提倡在现有城市景观中采用矫揉造作的方法，消除或掩盖低级酒吧间与下等夜总会，或者在新城市景观的语汇中加以排斥。然而，他们大都无法提高也无法代替现有城市面貌，因为他们的企图是徒劳的。他们愈卖力就愈显得无能，并不断冒左右“假专家”的风险。……改进或增加传统要素，扭转周围环境，就能以最简便的方法取得最大的效果，并使我们以不同的方式看到相同的东西。《建筑的复杂性与矛盾性》076</p>
@@ -631,7 +745,7 @@
     <link href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/"/>
     <id>https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/</id>
     <published>2018-12-16T10:05:18.000Z</published>
-    <updated>2018-12-18T04:08:05.227Z</updated>
+    <updated>2019-01-09T05:55:30.091Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>基于 Go + R  可视化古典音乐作曲家社交网络</li>
@@ -699,7 +813,7 @@
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2018/04/10/Artistic-Classical/" target="_blank" rel="external">古典音乐低俗史</a></li>
 </ul>
-<h2 id="扩展阅读：数据可视化"><a href="#扩展阅读：数据可视化" class="headerlink" title="扩展阅读：数据可视化"></a>扩展阅读：数据可视化</h2><ul>
+<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><ul>
 <li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
 <li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
 <li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
@@ -1341,58 +1455,6 @@
     
     
       <category term="News" scheme="https://riboseyim.com/tags/News/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DTrace-SystemTap</title>
-    <link href="https://riboseyim.com/2018/11/30/DTrace-SystemTap/"/>
-    <id>https://riboseyim.com/2018/11/30/DTrace-SystemTap/</id>
-    <published>2018-11-30T08:10:33.000Z</published>
-    <updated>2018-12-01T06:11:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h1 id="SystemTap"><a href="#SystemTap" class="headerlink" title="SystemTap"></a>SystemTap</h1><h2 id="4-4-1-探针"><a href="#4-4-1-探针" class="headerlink" title="4.4.1 探针"></a>4.4.1 探针</h2><h2 id="4-4-2-tapset"><a href="#4-4-2-tapset" class="headerlink" title="4.4.2 tapset"></a>4.4.2 tapset</h2><h2 id="4-4-3-action和内置变量"><a href="#4-4-3-action和内置变量" class="headerlink" title="4.4.3 action和内置变量"></a>4.4.3 action和内置变量</h2><h2 id="4-4-4-示例"><a href="#4-4-4-示例" class="headerlink" title="4.4.4 示例"></a>4.4.4 示例</h2><h2 id="4-4-5-开销"><a href="#4-4-5-开销" class="headerlink" title="4.4.5 开销"></a>4.4.5 开销</h2><h2 id="4-4-6-文档和资源"><a href="#4-4-6-文档和资源" class="headerlink" title="4.4.6 文档和资源"></a>4.4.6 文档和资源</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="DTrace" scheme="https://riboseyim.com/tags/DTrace/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DTrace-Ops</title>
-    <link href="https://riboseyim.com/2018/11/30/DTrace-Ops/"/>
-    <id>https://riboseyim.com/2018/11/30/DTrace-Ops/</id>
-    <published>2018-11-30T08:10:28.000Z</published>
-    <updated>2018-12-01T06:11:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h1 id="DTrace"><a href="#DTrace" class="headerlink" title="DTrace"></a>DTrace</h1><h2 id="4-3-1-静态和动态跟踪"><a href="#4-3-1-静态和动态跟踪" class="headerlink" title="4.3.1 静态和动态跟踪"></a>4.3.1 静态和动态跟踪</h2><h2 id="4-3-2-探针"><a href="#4-3-2-探针" class="headerlink" title="4.3.2 探针"></a>4.3.2 探针</h2><p><strong>四元组</strong></p>
-<blockquote>
-<p>provider:module:function:name</p>
-</blockquote>
-<p>provider:一些相关探针的集合，类似软件库的概念<br>module&amp;function:动态产生，标记探针指示的代码位置。<br>name:探针的名字</p>
-<h2 id="4-3-3-provider"><a href="#4-3-3-provider" class="headerlink" title="4.3.3 provider"></a>4.3.3 provider</h2><p>可用的DTrace provider 取决于你的DTrace和操作系统版本。例如：</p>
-<p>syscall:系统调用自陷表<br>vminfo:虚拟内存统计<br>sysinfo:系统统计<br>profile:任意频率的采样<br>sched:内核调度事件<br>proc:进程级别事件，创建、执行、退出<br>io:磁盘<br>pid:用户级别动态追踪<br>tcp:TCP协议事件，连接、发送和接收。<br>ip:IP协议事件、发送和接收<br>fbt:内核级别动态追踪</p>
-<h2 id="4-3-4-参数"><a href="#4-3-4-参数" class="headerlink" title="4.3.4 参数"></a>4.3.4 参数</h2><p>  入口：<br>  返回：</p>
-<h2 id="4-3-5-D语言"><a href="#4-3-5-D语言" class="headerlink" title="4.3.5 D语言"></a>4.3.5 D语言</h2><p>  D语言和awk类似<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">probe_description /predicate/ ( action )</div></pre></td></tr></table></figure></p>
-<p>  action是一系列以分号分隔的语句，当探针触发时执行。<br>  predicate是可选的过滤表达式</p>
-<h2 id="4-3-6-内置变量"><a href="#4-3-6-内置变量" class="headerlink" title="4.3.6 内置变量"></a>4.3.6 内置变量</h2><h2 id="4-3-7-action"><a href="#4-3-7-action" class="headerlink" title="4.3.7 action"></a>4.3.7 action</h2><h2 id="4-3-8-变量类型"><a href="#4-3-8-变量类型" class="headerlink" title="4.3.8 变量类型"></a>4.3.8 变量类型</h2><h2 id="4-3-9-单行命令"><a href="#4-3-9-单行命令" class="headerlink" title="4.3.9 单行命令"></a>4.3.9 单行命令</h2><h2 id="4-3-10-脚本"><a href="#4-3-10-脚本" class="headerlink" title="4.3.10 脚本"></a>4.3.10 脚本</h2><h2 id="4-3-11-开销"><a href="#4-3-11-开销" class="headerlink" title="4.3.11 开销"></a>4.3.11 开销</h2><h2 id="4-3-12-文档和资源"><a href="#4-3-12-文档和资源" class="headerlink" title="4.3.12 文档和资源"></a>4.3.12 文档和资源</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="DTrace" scheme="https://riboseyim.com/tags/DTrace/"/>
     
   </entry>
   
