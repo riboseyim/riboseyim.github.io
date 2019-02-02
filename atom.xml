@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-01-09T06:52:11.335Z</updated>
+  <updated>2019-01-19T16:44:54.802Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Artistic-Antoniano</title>
+    <link href="https://riboseyim.com/2019/01/20/Artistic-Antoniano/"/>
+    <id>https://riboseyim.com/2019/01/20/Artistic-Antoniano/</id>
+    <published>2019-01-19T16:02:41.000Z</published>
+    <updated>2019-01-19T16:44:54.802Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="Piccolo-Coro-dell’Antoniano"><a href="#Piccolo-Coro-dell’Antoniano" class="headerlink" title="Piccolo Coro dell’Antoniano"></a>Piccolo Coro dell’Antoniano</h2><p>The Piccolo Coro dell’Antoniano (English: Little Choir of Antoniano) is an Italian children’s choir from Bologna.</p>
+<h2 id="曲目"><a href="#曲目" class="headerlink" title="曲目"></a>曲目</h2><ul>
+<li><a href="https://www.youtube.com/watch?v=0IGweQFlBk4" target="_blank" rel="external">《国王与女巫的爱情  Il cuore del Re sara》</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://www.antoniano.it" target="_blank" rel="external">Piccolo Coro dell’Antoniano</a></li>
+<li><a href="http://www.marieleventre.it/" target="_blank" rel="external">Mariele Ventre: la vita e le opere</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>专题：数据科学</title>
@@ -65,11 +92,11 @@
   </entry>
   
   <entry>
-    <title>专题：工程学</title>
+    <title>工程学</title>
     <link href="https://riboseyim.com/2019/01/07/Engineering/"/>
     <id>https://riboseyim.com/2019/01/07/Engineering/</id>
     <published>2019-01-06T19:07:36.000Z</published>
-    <updated>2019-01-09T06:54:42.406Z</updated>
+    <updated>2019-02-01T09:07:39.207Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="Introducing-Engineering"><a href="#Introducing-Engineering" class="headerlink" title="Introducing Engineering"></a>Introducing Engineering</h2><p>工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
@@ -87,10 +114,11 @@
 <li>[ ] <a href="https://arxiv.org/ftp/arxiv/papers/1702/1702.01715.pdf" target="_blank" rel="external">Software Engineering of Google</a></li>
 </ul>
 <h4 id="建筑工程领域"><a href="#建筑工程领域" class="headerlink" title="建筑工程领域"></a>建筑工程领域</h4><ul>
-<li><a href="https://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《建筑的复杂性与矛盾性》</a></li>
+<li>[ ] <a href="https://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《建筑的复杂性与矛盾性》</a></li>
+<li>[ ] <a href="https://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《图像中国建筑史》| 梁思成</a></li>
 </ul>
 <h4 id="交通工程领域"><a href="#交通工程领域" class="headerlink" title="交通工程领域"></a>交通工程领域</h4><ul>
-<li><a href="https://riboseyim.github.io/2017/05/28/History-Caoyun/" target="_blank" rel="external">黄仁宇:《明代的漕运》</a></li>
+<li>[x] <a href="https://riboseyim.github.io/2017/05/28/History-Caoyun/" target="_blank" rel="external">黄仁宇:《明代的漕运》</a></li>
 <li><a href="https://riboseyim.com/2016/11/20/Network-Traffic/">珠海航展交通管控实践</a></li>
 </ul>
 <h4 id="艺术领域"><a href="#艺术领域" class="headerlink" title="艺术领域"></a>艺术领域</h4><ul>
@@ -356,20 +384,20 @@
   </entry>
   
   <entry>
-    <title>Engineering DisasterRecovery</title>
+    <title>容灾设计</title>
     <link href="https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/"/>
     <id>https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/</id>
     <published>2018-12-31T17:06:37.000Z</published>
-    <updated>2019-01-09T06:56:33.202Z</updated>
+    <updated>2019-02-01T08:24:57.684Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
 <p>容灾备份是一个工程师的基本意识</p>
 </blockquote>
-<h2 id="2018-七牛云·域名"><a href="#2018-七牛云·域名" class="headerlink" title="2018 七牛云·域名"></a>2018 七牛云·域名</h2><blockquote>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="2018-七牛云·域名"><a href="#2018-七牛云·域名" class="headerlink" title="2018 七牛云·域名"></a>2018 七牛云·域名</h4><blockquote>
 <p>尊敬的七牛云用户，您好: 如果您正在使用或将要使用测试域名，请务必仔细阅读本邮件内容！ 七牛云测试域名是用户在创建云存储空间时系统自动生成的七牛域名，以 clouddn.com, qiniucdn.com, qiniudn.com, qnssl.com, qbox.me 等结尾，此类域名仅供用户测试不能用于正式生产环境。测试域名不规范使用或被当作正式域名使用，将导致域名的安全风险增加，从而影响用户的正常测试需求。 为了确保测试域名的规范使用，保障七牛云用户的权益，我们将逐步对测试域名加强管理，具体规则如下： [已上线生效] 不得使用测试域名存储、发布、传播违法违规内容。当测试域名下有非法资源时，该域名将被直接冻结并不予解封。如对七牛云及其他用户造成损害，七牛云保留进一步追责的权利。 对 2018 年 7 月 18 日起新产生的测试域名，禁止下载移动应用程序(apk,ipa 等)，请绑定自定义域名进行访问。 [预计生效时间 8 月上旬] ：流量限制 测试域名无论新老测试域名每个自然日限总流量 10GB，当日测试流量达到 10GB 上限后，禁止继续访问。 [预计生效时间 8 月中旬] ：测试域名回收机制 每个测试域名生命周期为 30 个自然日（已有测试域名自回收功能上线之日起算，新产生的测试域名自系统自动生成之日起算），超过 30 日系统将自动回收，回收即为域名删除。 在测试域名生命周期终结之前我们会邮件通知您，您也可以自行在 七牛云-管理控制台 上查看测试域名剩余的回收时间。</p>
 </blockquote>
-<h2 id="2017-小密圈"><a href="#2017-小密圈" class="headerlink" title="2017 小密圈"></a>2017 小密圈</h2><blockquote>
+<h4 id="2017-小密圈"><a href="#2017-小密圈" class="headerlink" title="2017 小密圈"></a>2017 小密圈</h4><blockquote>
 <p>亲爱的小密圈用户:<br>由于技术升级，您将暂时无法访问小密圈官网、网页版、客户端和小程序。小密圈公众号内的提现功能可正常使用。升级后，我们会更好地服务内容创作者。——小密圈团队</p>
 </blockquote>
 <p>历史再次证明关键信息放在国内根本靠不住，前有微博、B站，现有小密圈，下一个会是微信公众号吗？<br>完全有可能，谁也不知道。<strong>随时可能变成敏感词，随时可能因为技术原因被消失，白色恐怖、KGB（Komitet gosudarstvennoy bezopasnosti）莫过于此</strong></p>
@@ -424,14 +452,26 @@
   </entry>
   
   <entry>
-    <title>Engineering Architecture</title>
+    <title>建筑学</title>
     <link href="https://riboseyim.com/2018/12/31/Engineering-Architecture/"/>
     <id>https://riboseyim.com/2018/12/31/Engineering-Architecture/</id>
     <published>2018-12-31T12:55:08.000Z</published>
-    <updated>2019-01-09T06:56:23.207Z</updated>
+    <updated>2019-02-01T09:07:31.542Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="荐书-《建筑的复杂性与矛盾性》"><a href="#荐书-《建筑的复杂性与矛盾性》" class="headerlink" title="荐书|《建筑的复杂性与矛盾性》"></a>荐书|《建筑的复杂性与矛盾性》</h2><p>建筑师和规划师怒气冲冲地谴责一般城市面貌的平庸与粗俗，提倡在现有城市景观中采用矫揉造作的方法，消除或掩盖低级酒吧间与下等夜总会，或者在新城市景观的语汇中加以排斥。然而，他们大都无法提高也无法代替现有城市面貌，因为他们的企图是徒劳的。他们愈卖力就愈显得无能，并不断冒左右“假专家”的风险。……改进或增加传统要素，扭转周围环境，就能以最简便的方法取得最大的效果，并使我们以不同的方式看到相同的东西。《建筑的复杂性与矛盾性》076</p>
+<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《图像中国建筑史》"><a href="#《图像中国建筑史》" class="headerlink" title="《图像中国建筑史》"></a>《图像中国建筑史》</h4><ul>
+<li>《营造法式》| 宋代</li>
+<li>《工程做法则例》| 清代</li>
+</ul>
+<p>《营造法式》是宋微宗（1101－1125年）在位时朝廷中主管营造事务的将作监李诫编撰的。全书共三十四卷，其中十三卷是关于基础、城寨、石作及雕饰，以及大本作（即本构架、柱、梁、枋、额，斗栱等），小本作（即门、窗、幅扇、屏风、平基、佛等），砖瓦作（即砖瓦及瓦饰的官式等级及其用法）和彩画作（即彩画的官式等级和图样），其余各卷是各类术语的释义及估算各种工、料的数据。全书最后四卷是各类木作、石作和彩画的图样。</p>
+<p>《工程做法则例》是1734年「雍正十ニ年］由工部刊行的。前二十七卷是二十七种不同建筑如大殿、城楼、住宅、仓库、凉亭等等的筑造规则。每种建筑物的每个构件都有规定的尺寸。这一点与《营造法式》不同，后者只有供设计和计算时用的一般规则和比例。次十三卷是各式斗栱的尺寸和安装法，还有七卷述了门、窗、幅扇、屏风，以及砖作、石作和土作的做法。最后二十四卷是用料和用工的估算。</p>
+<p>在宋代，梁的高度与宽度之比大体上是3：2。而依清制，这一比例已改为5：4或6：5，显然是对材料力学的无知所致；更有甚者，还规定梁宽一律为“以柱径加二寸定厚”。看来这是最武断、最不合理的规定。清代所有的梁都是直的，在其官式建筑中已不再使用月梁。</p>
+<blockquote>
+<p>清代建筑一般的特征是：柱和过梁外形刻板、僵直，屋顶坡度过分陡峭，檐下斗栱很小。可能是《工程做法则例》中那些严格的、不容变通的规矩和尺寸，竟使《营造法式》时代的建筑那种柔和秀丽的动人面貌丧失殆尽。—— 梁思成 《图像中国建筑史》</p>
+</blockquote>
+<h4 id="《建筑的复杂性与矛盾性》"><a href="#《建筑的复杂性与矛盾性》" class="headerlink" title="《建筑的复杂性与矛盾性》"></a>《建筑的复杂性与矛盾性》</h4><blockquote>
+<p>建筑师和规划师怒气冲冲地谴责一般城市面貌的平庸与粗俗，提倡在现有城市景观中采用矫揉造作的方法，消除或掩盖低级酒吧间与下等夜总会，或者在新城市景观的语汇中加以排斥。然而，他们大都无法提高也无法代替现有城市面貌，因为他们的企图是徒劳的。他们愈卖力就愈显得无能，并不断冒左右“假专家”的风险。……改进或增加传统要素，扭转周围环境，就能以最简便的方法取得最大的效果，并使我们以不同的方式看到相同的东西。《建筑的复杂性与矛盾性》076</p>
+</blockquote>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
     <summary type="html">
@@ -472,16 +512,16 @@
   </entry>
   
   <entry>
-    <title>Science-Feynman</title>
+    <title>理查德·费曼</title>
     <link href="https://riboseyim.com/2018/12/31/Science-Feynman/"/>
     <id>https://riboseyim.com/2018/12/31/Science-Feynman/</id>
     <published>2018-12-31T12:42:16.000Z</published>
-    <updated>2019-01-01T12:16:07.209Z</updated>
+    <updated>2019-02-01T09:14:46.543Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="荐书-《发现的乐趣》"><a href="#荐书-《发现的乐趣》" class="headerlink" title="荐书|《发现的乐趣》"></a>荐书|《发现的乐趣》</h2><p>我们现在生活在一个没有科学的时代，几乎人们所有的交流、电视上的言论和书本，所有这些都充斥着不科学的东西。不是说那些内容不好，我是说他们是不科学的。于是，就出现了大量打着科学旗号的智力专制。</p>
-<p>科学的各个学科门类在其发展过程中都有过这样的教训：认为先辈大师们字字珠玑、说的都是绝对真理，这样的信念是很危险的。</p>
-<p>—— 理查德·费曼 1966年4月在全美科学教师协会的演讲</p>
+<h2 id="荐书-《发现的乐趣》"><a href="#荐书-《发现的乐趣》" class="headerlink" title="荐书|《发现的乐趣》"></a>荐书|《发现的乐趣》</h2><h4 id="科学精神"><a href="#科学精神" class="headerlink" title="科学精神"></a>科学精神</h4><blockquote>
+<p>我们现在生活在一个没有科学的时代，几乎人们所有的交流、电视上的言论和书本，所有这些都充斥着不科学的东西。不是说那些内容不好，我是说他们是不科学的。于是，就出现了大量打着科学旗号的智力专制。<br>科学的各个学科门类在其发展过程中都有过这样的教训：认为先辈大师们字字珠玑、说的都是绝对真理，这样的信念是很危险的。<br>—— 理查德·费曼 1966年4月在全美科学教师协会的演讲</p>
+</blockquote>
 <h4 id="《关于“挑战者号”航天飞机事故的少数派调查报告》"><a href="#《关于“挑战者号”航天飞机事故的少数派调查报告》" class="headerlink" title="《关于“挑战者号”航天飞机事故的少数派调查报告》"></a>《关于“挑战者号”航天飞机事故的少数派调查报告》</h4><p><strong>国之重器，在人不在宝</strong></p>
 <blockquote>
 <p>现在总结一下，计算机软件检测体系及其检测的仔细程度确实达到了最高水准。这里并没有出现这种情况:一边降低标准一边自欺欺人一一对于固体火箭助推器或航天飞机主发动机的安全体系来说，这种情况很明显。确实，管理层最近已经提议要减少这样复杂、耗资又如此巨大的测试——他们认为， 在航天飞机发展业已成熟的现阶段，做这些测试是没有必要的。我们必须抵制这些建议，因为持这种看法的人，他们没有认识到微妙的相互影响，整个项目的某一部分即便一个很细微的变化导致的错误也会影响到项目的其他组成部分。飞船的使用者一直在不断地提各种修改要求:要么提出新的任务，要么提出新的要求和修改意见。而按照他们的要求进行修改，代价很昂贵，因为需要做全面的测试。要省钱，合理的办法是尽可能减少变动，而不是降低每一次改动后 (必须要做的)测试的水准。</p>
@@ -498,24 +538,29 @@
     </summary>
     
     
+      <category term="Science" scheme="https://riboseyim.com/tags/Science/"/>
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
   </entry>
   
   <entry>
-    <title>History-Empire</title>
+    <title>History of Empire</title>
     <link href="https://riboseyim.com/2018/12/31/History-Empire/"/>
     <id>https://riboseyim.com/2018/12/31/History-Empire/</id>
     <published>2018-12-31T12:34:26.000Z</published>
-    <updated>2018-12-31T15:15:33.017Z</updated>
+    <updated>2019-02-01T09:59:45.978Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>荐书|《帝国的铸就》<a id="more"></a>
+<li>荐书|《帝国的铸就》</li>
+<li>荐书|《西洋国情》<a id="more"></a>
 </li>
 </ul>
 <blockquote>
 <p>通常来说，一个国家或者民族被称为“特色”的东西，是指一种缺点或特质……当今日本教育工作者喋喋不休的所谓日本人与众不同的大部分特质，将会使我们的学问更加贫困……  —— 西园寺公望</p>
 </blockquote>
-<h2 id="荐书-《西洋国情》"><a href="#荐书-《西洋国情》" class="headerlink" title="荐书|《西洋国情》"></a>荐书|《西洋国情》</h2><p>出500美元就想雇佣价值3000美元的教师去教书，岂不是荒谬之极？试问用这个价钱雇用人，他果真会心甘情愿地接受这项工作吗？从古至今，这种“合算”的买卖还闻所未闻。如果一味地以削减教育的费用为目的，即使受教育者数量增加了，但是教育的质量却下降了。这就好比不管什么商品，一旦质量下降，需求也会减少。不仅商品的品味，而且最终商品的数量也会逐渐减少。世上任何物品只要需求者减少，生产者也会减少，这个物品自然而然就减少。— p226</p>
-<h2 id="荐书-《帝国的铸就》"><a href="#荐书-《帝国的铸就》" class="headerlink" title="荐书|《帝国的铸就》"></a>荐书|《帝国的铸就》</h2><blockquote>
+<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《西洋国情》"><a href="#《西洋国情》" class="headerlink" title="《西洋国情》"></a>《西洋国情》</h4><p>出500美元就想雇佣价值3000美元的教师去教书，岂不是荒谬之极？试问用这个价钱雇用人，他果真会心甘情愿地接受这项工作吗？从古至今，这种“合算”的买卖还闻所未闻。如果一味地以削减教育的费用为目的，即使受教育者数量增加了，但是教育的质量却下降了。这就好比不管什么商品，一旦质量下降，需求也会减少。不仅商品的品味，而且最终商品的数量也会逐渐减少。世上任何物品只要需求者减少，生产者也会减少，这个物品自然而然就减少。— p226</p>
+<h4 id="《帝国的铸就》"><a href="#《帝国的铸就》" class="headerlink" title="《帝国的铸就》"></a>《帝国的铸就》</h4><blockquote>
 <p>分析现代自由政权起起落落的书成百上干，它们也描述了独裁政权的出现。从来没有一本书特别重视1861年至1871年间的几场改革，这个十年构成了人类自由编年史上最引人瞩目的篇章，也见证了恐怖和高压统治的新哲学的出现。</p>
 </blockquote>
 <h4 id="节选｜第一章-绝境边缘的三个民族"><a href="#节选｜第一章-绝境边缘的三个民族" class="headerlink" title="节选｜第一章 绝境边缘的三个民族"></a>节选｜第一章 绝境边缘的三个民族</h4><p>在日渐衰落的18世纪，俄国不再是一个奴隶制国家。但是，它也没有成为一个自由国度。国内矛盾重重。日渐衰落的专制体制，对于人民的蠢蠢欲动尚能勉强压制，然而对于他们的希望，却已然难以遏制。人民心怀不满，不再卑躬屈膝、畏缩怯懦。显而易见，危机的爆发已经为期不远。</p>
@@ -536,7 +581,8 @@
     <summary type="html">
     
       &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;荐书|《帝国的铸就》
+&lt;li&gt;荐书|《帝国的铸就》&lt;/li&gt;
+&lt;li&gt;荐书|《西洋国情》
     
     </summary>
     
@@ -552,7 +598,7 @@
     <link href="https://riboseyim.com/2018/12/31/Check2019/"/>
     <id>https://riboseyim.com/2018/12/31/Check2019/</id>
     <published>2018-12-31T12:25:24.000Z</published>
-    <updated>2019-01-06T18:43:46.248Z</updated>
+    <updated>2019-01-20T07:35:15.961Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>This article is part of an <strong>Autobiography</strong> series. Make sure to check out my other articles as well:</p>
@@ -595,6 +641,74 @@
 <h4 id="历史学"><a href="#历史学" class="headerlink" title="历史学"></a>历史学</h4><ul>
 <li><a href="https://riboseyim.github.io/2018/12/31/History-Rome/" target="_blank" rel="external">专题：罗马史</a></li>
 <li><a href="https://riboseyim.github.io/2018/12/31/History-Empire/" target="_blank" rel="external">《帝国的铸就》</a></li>
+</ul>
+<h2 id="演出活动"><a href="#演出活动" class="headerlink" title="演出活动"></a>演出活动</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>剧目</th>
+<th>演出</th>
+<th>地点</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合唱</td>
+<td>主题：安东尼亚诺小合唱团</td>
+<td>B站、Youtube</td>
+<td></td>
+<td>201801</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="户外活动"><a href="#户外活动" class="headerlink" title="户外活动"></a>户外活动</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>地点</th>
+<th>时间</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史遗址</td>
+<td>南京·明城墙</td>
+<td>201801</td>
+<td></td>
+</tr>
+<tr>
+<td>历史遗址</td>
+<td><a href="http://www.jimingsi.net" target="_blank" rel="external">南京·鸡鸣寺</a></td>
+<td>201801</td>
+<td>比丘尼佛学院</td>
+</tr>
+<tr>
+<td>博物馆</td>
+<td>南京博物院</td>
+<td>201801</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>注：鸡鸣寺为《新白娘子传奇》取景地，即白素贞为救许仙决意一步步跪上药师王塔。坊间传闻鸡鸣寺求姻缘比较灵，据现场观察年轻群众还是比较虔诚的。</li>
 </ul>
 <h4 id="2018-年遗留课题"><a href="#2018-年遗留课题" class="headerlink" title="2018 年遗留课题"></a>2018 年遗留课题</h4><ul>
 <li><a href="https://riboseyim.github.io/2018/04/27/Language-Go-lang-Web/" target="_blank" rel="external">玩转编程语言:基于Golang开发Web应用</a></li>
@@ -730,9 +844,9 @@
     </summary>
     
     
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
       <category term="数据可视化" scheme="https://riboseyim.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
       <category term="Developer" scheme="https://riboseyim.com/tags/Developer/"/>
     
@@ -841,9 +955,9 @@
     </summary>
     
     
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
       <category term="数据可视化" scheme="https://riboseyim.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
       <category term="Art" scheme="https://riboseyim.com/tags/Art/"/>
     
@@ -1399,62 +1513,6 @@
       <category term="工具癖" scheme="https://riboseyim.com/tags/%E5%B7%A5%E5%85%B7%E7%99%96/"/>
     
       <category term="Writing" scheme="https://riboseyim.com/tags/Writing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Night News 20181201</title>
-    <link href="https://riboseyim.com/2018/12/01/News-Night-20181201/"/>
-    <id>https://riboseyim.com/2018/12/01/News-Night-20181201/</id>
-    <published>2018-12-01T14:59:26.000Z</published>
-    <updated>2018-12-01T15:15:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>上线新域名：riboseyim.com</li>
-<li>恢复:七牛云图床故障</li>
-<li>发布:写作工具链v5</li>
-<li>推荐工具:AutoJump<a id="more"></a>
-</li>
-</ul>
-<h2 id="上线一个纯洁的域名"><a href="#上线一个纯洁的域名" class="headerlink" title="上线一个纯洁的域名"></a>上线一个纯洁的域名</h2><h4 id="新域名"><a href="#新域名" class="headerlink" title="新域名"></a>新域名</h4><ul>
-<li>解决七牛云“测试”域名回收导致的图床故障</li>
-<li>提高墙内用户的访问速度和稳定性</li>
-</ul>
-<h2 id="https-riboseyim-com"><a href="#https-riboseyim-com" class="headerlink" title="https://riboseyim.com"></a><a href="https://riboseyim.com">https://riboseyim.com</a></h2><h4 id="恢复：七牛云图床故障"><a href="#恢复：七牛云图床故障" class="headerlink" title="恢复：七牛云图床故障"></a>恢复：七牛云图床故障</h4><p>以下图床域名统一更新为：<a href="http://riboseyim-qiniu.riboseyim.com" target="_blank" rel="external">http://riboseyim-qiniu.riboseyim.com</a> 。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">http://o8m8ngokc.bkt.clouddn.com</div><div class="line">http://og2061b3n.bkt.clouddn.com</div><div class="line">http://ogtqvs10n.bkt.clouddn.com</div><div class="line">http://okkuj60pj.bkt.clouddn.com</div><div class="line">http://omaxozji3.bkt.clouddn.com</div><div class="line">http://omb2onfvy.bkt.clouddn.com</div><div class="line">http://ombx24fbq.bkt.clouddn.com</div><div class="line">http://osgiyhxhy.bkt.clouddn.com</div><div class="line">http://ot6idm48o.bkt.clouddn.com</div><div class="line">http://p11slcnom.bkt.clouddn.com</div></pre></td></tr></table></figure>
-<h4 id="发布：写作工具链v5"><a href="#发布：写作工具链v5" class="headerlink" title="发布：写作工具链v5"></a>发布：写作工具链v5</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_5.png" alt=""></p>
-<ul>
-<li>add 独立域名 <a href="https://riboseyim.com">https://riboseyim.com</a> [Ribose Yim’s Tech Blog] 【腾讯云】</li>
-<li>故障修复：图床域名更换 xxx.clouddn.com to <a href="http://riboseyim-qiniu.riboseyim.com" target="_blank" rel="external">http://riboseyim-qiniu.riboseyim.com</a> 【七牛云】</li>
-<li>add hexo theme <a href="https://github.com/giscafer/hexo-theme-cafe" target="_blank" rel="external">Cafe</a></li>
-<li>auto syn workflow: from riboseyim.github.io to project riboseyim.com</li>
-<li>add Xmind replace MindManager,201807</li>
-<li>更多细节请查看 <a href="https://riboseyim.github.io/2017/06/03/Writing-WriterToolChain/" target="_blank" rel="external">《我的写作工具链》</a></li>
-</ul>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 主题</span></div><div class="line">$ git clone https:<span class="regexp">//github</span>.com/giscafer/hexo-theme-cafe.git themes/cafe</div><div class="line"></div><div class="line"><span class="comment"># 素材链接替换</span></div><div class="line">$ <span class="keyword">grep</span> <span class="string">'clouddn.com'</span> ./*.md | awk -F <span class="string">'('</span> <span class="string">'&#123;print $2&#125;'</span> | awk -F <span class="string">'.com'</span> <span class="string">'&#123;print $1&#125;'</span> &gt; oldomain.log</div><div class="line">$ <span class="keyword">sort</span> -n oldomain.log  | uniq &gt; oldomin.list</div><div class="line">$ gsed -e <span class="string">"s/old/new/g"</span> sourcefile  &gt;  targetfile</div></pre></td></tr></table></figure>
-<h4 id="推荐工具-AutoJump"><a href="#推荐工具-AutoJump" class="headerlink" title="推荐工具:AutoJump"></a>推荐工具:AutoJump</h4><p>autojump 记录你访问过的文件夹（包括记录访问频率进而调整权重），通过路径 cache 实现文件夹位置快速切换。<br>了解更多细节请查看 <a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">DevOps 资讯 | 是时候升级你的命令行了</a></p>
-<ul>
-<li>Install</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># source</span></div><div class="line">git <span class="built_in">clone</span> git://github.com/wting/autojump.git</div><div class="line"><span class="built_in">cd</span> autojump</div><div class="line">./install.py or ./uninstall.py</div></pre></td></tr></table></figure>
-<ul>
-<li>Example</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">aca80164:~ kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">109:	 total weight</div><div class="line">3:	 number of entries</div><div class="line">0.00:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:~ kurui$</div><div class="line">aca80164:~ kurui$ cd project/ebook-linuxperfmaster/</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">14.1:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">124:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">14.14:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:ebook-linuxperfmaster kurui$</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j post</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ pwd</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">22.4:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">52.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">134:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">51.96:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:_posts kurui$</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;上线新域名：riboseyim.com&lt;/li&gt;
-&lt;li&gt;恢复:七牛云图床故障&lt;/li&gt;
-&lt;li&gt;发布:写作工具链v5&lt;/li&gt;
-&lt;li&gt;推荐工具:AutoJump
-    
-    </summary>
-    
-    
-      <category term="News" scheme="https://riboseyim.com/tags/News/"/>
     
   </entry>
   

@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要">
-<meta property="og:updated_time" content="2018-09-17T02:32:27.000Z">
+<meta property="og:updated_time" content="2019-01-22T02:23:09.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源技术架构漫谈：Redis">
 <meta name="twitter:description" content="摘要">
@@ -55,7 +55,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -118,7 +118,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/" data-id="cjqoumkxc00b1a4h2u5siw19j" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/" data-id="cjrn4iabx00b6mjbmxmbqir6q" class="article-share-link">分享</a>
         
         
         
@@ -135,11 +135,24 @@ ga('send', 'pageview');
 <h2 id="Introduction-Redis-简介"><a href="#Introduction-Redis-简介" class="headerlink" title="Introduction | Redis 简介"></a>Introduction | Redis 简介</h2><h2 id="Core-Concept-Redis-核心概念"><a href="#Core-Concept-Redis-核心概念" class="headerlink" title="Core Concept | Redis 核心概念"></a>Core Concept | Redis 核心概念</h2><ul>
 <li><a href="#">art</a></li>
 </ul>
-<h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Redis-架构"><a href="#Architecture-Redis-架构" class="headerlink" title="Architecture | Redis 架构"></a>Architecture | Redis 架构</h2><h2 id="Best-Practice-Redis-最佳实践"><a href="#Best-Practice-Redis-最佳实践" class="headerlink" title="Best Practice | Redis 最佳实践"></a>Best Practice | Redis 最佳实践</h2><h2 id="Redis-ABC"><a href="#Redis-ABC" class="headerlink" title="Redis ABC"></a>Redis ABC</h2><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+<h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Redis-架构"><a href="#Architecture-Redis-架构" class="headerlink" title="Architecture | Redis 架构"></a>Architecture | Redis 架构</h2><h2 id="Best-Practice-Redis-最佳实践"><a href="#Best-Practice-Redis-最佳实践" class="headerlink" title="Best Practice | Redis 最佳实践"></a>Best Practice | Redis 最佳实践</h2><h2 id="Redis-ABC"><a href="#Redis-ABC" class="headerlink" title="Redis ABC"></a>Redis ABC</h2><h2 id="Redis-Tips"><a href="#Redis-Tips" class="headerlink" title="Redis Tips"></a>Redis Tips</h2><h4 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h4><p>Redis 访问控制较弱，仅提供轻量级的认证方式，通过编辑 redis.conf 配置启用。</p>
+<ul>
+<li>初始化密码</li>
+</ul>
+<p>redis.conf 参数： requirepass<br>参考配置（重启 Redis 生效）： requirepass test123</p>
+<ul>
+<li>不重启设置密码</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">redis 127.0.0.1:6379&gt; config <span class="built_in">set</span> requirepass <span class="built_in">test</span>123</div><div class="line">redis 127.0.0.1:6379&gt; config get requirepass</div><div class="line">1) <span class="string">"requirepass"</span></div><div class="line">2) <span class="string">"test123"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>密码验证</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.1.2 -p 6379 <span class="_">-a</span> <span class="built_in">test</span>123</div><div class="line">redis 127.0.0.1:6379&gt; auth <span class="built_in">test</span>123</div><div class="line">OK</div></pre></td></tr></table></figure>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/" data-id="cjqoumkxc00b1a4h2u5siw19j" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/" data-id="cjrn4iabx00b6mjbmxmbqir6q" class="article-share-link">分享</a>
       
       
       
@@ -163,7 +176,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -206,7 +219,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/08/07/OpenSource-DB-ES/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           OpenSource-DB-ES
@@ -216,7 +229,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/08/07/Linux-Perf-JVM/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Linux 性能诊断:JVM</div>
     </a>
   
@@ -248,9 +261,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-Redis-简介"><span class="toc-number">2.</span> <span class="toc-text">Introduction | Redis 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-Redis-核心概念"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | Redis 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Redis-架构"><span class="toc-number">4.</span> <span class="toc-text">Architecture | Redis 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-Redis-最佳实践"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | Redis 最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-ABC"><span class="toc-number">6.</span> <span class="toc-text">Redis ABC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-Redis-简介"><span class="toc-number">2.</span> <span class="toc-text">Introduction | Redis 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-Redis-核心概念"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | Redis 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Redis-架构"><span class="toc-number">4.</span> <span class="toc-text">Architecture | Redis 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-Redis-最佳实践"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | Redis 最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-ABC"><span class="toc-number">6.</span> <span class="toc-text">Redis ABC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-Tips"><span class="toc-number">7.</span> <span class="toc-text">Redis Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#密码"><span class="toc-number">7.0.1.</span> <span class="toc-text">密码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -288,7 +301,7 @@ ga('send', 'pageview');
   </div>
   <div class="outer">
     <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -381,6 +394,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
