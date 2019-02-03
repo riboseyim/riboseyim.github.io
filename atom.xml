@@ -146,9 +146,12 @@
     <link href="https://riboseyim.com/2019/01/07/Language-C-lang/"/>
     <id>https://riboseyim.com/2019/01/07/Language-C-lang/</id>
     <published>2019-01-06T18:20:18.000Z</published>
-    <updated>2019-01-06T18:21:16.228Z</updated>
+    <updated>2019-02-02T18:02:47.699Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<blockquote>
+<p>如果你想进入真正的编程领域，则必须学习 <strong>C</strong>，这是 UNIX 的核心语言。C++ 和 C 的关系很密切；如果你懂其中一个，学另一个并不会太难。不过，这两种语言都不是好的入门语言。 其他对黑客而言比较重要的语言有 <strong><a href="http://www.perl.com" target="_blank" rel="external">Perl</a></strong> 和 <strong>LISP</strong>。—— 《大教堂与集市》</p>
+</blockquote>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
     <summary type="html">
@@ -456,9 +459,12 @@
     <link href="https://riboseyim.com/2018/12/31/Engineering-Architecture/"/>
     <id>https://riboseyim.com/2018/12/31/Engineering-Architecture/</id>
     <published>2018-12-31T12:55:08.000Z</published>
-    <updated>2019-02-01T09:07:31.542Z</updated>
+    <updated>2019-02-02T16:53:17.816Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<blockquote>
+<p>接手建筑公司的活儿，接着完成基地的建设。一开始的时候，物理学家们，尤其是实验物理学家，在他们的实验大楼和设备还没有准备就绪之前，他们无事可做，所以他们就去盖房子，或是帮着盖房子。理论物理学家就不同了，他们不用待在农舍里，可以直接住在基地里，因为他们马上可以开始工作。所以我们立即投入到工作中。当然，这意味着我们每个人都有一块移动黑板，那种有轮子的、可以推来推去的黑板。— 理查德·费曼 《发现的乐趣》</p>
+</blockquote>
 <h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《图像中国建筑史》"><a href="#《图像中国建筑史》" class="headerlink" title="《图像中国建筑史》"></a>《图像中国建筑史》</h4><ul>
 <li>《营造法式》| 宋代</li>
 <li>《工程做法则例》| 清代</li>
@@ -486,19 +492,20 @@
   </entry>
   
   <entry>
-    <title>History-Rome</title>
+    <title>罗马史</title>
     <link href="https://riboseyim.com/2018/12/31/History-Rome/"/>
     <id>https://riboseyim.com/2018/12/31/History-Rome/</id>
     <published>2018-12-31T12:43:57.000Z</published>
-    <updated>2019-01-01T02:19:58.821Z</updated>
+    <updated>2019-02-02T18:23:11.927Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="荐书-《罗马帝国衰亡史》"><a href="#荐书-《罗马帝国衰亡史》" class="headerlink" title="荐书|《罗马帝国衰亡史》"></a>荐书|《罗马帝国衰亡史》</h2><p>君士坦丁发布了一道敕令 ，明确表示他真的 ，或假装着怀疑有人正在阴谋策划推翻他本人和他的政府 。他还以荣誉或重金报酬为诱饵 ，呼唤各种层次的告密者可以放胆告发他的执政官或大臣 ，他的朋友或最贴身的亲信 ，无一例外 ；他还庄严宣布 ，他将亲自聆听这些指控 ，并将亲自对有害于他的人进行报复 ；最后 ，他还用一段祷告结束他的敕令 ，这祷词倒真是表露出了他对某种危险的担忧 ，他祈求最高的神灵仍一如既往保佑皇帝和帝国的安全 。——《罗马帝国衰亡史》</p>
-<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940487&amp;idx=1&amp;sn=65e67860424f2b723daa68c406b7085f&amp;chksm=bd5789958a2000834c3f4c3d5e23f3694eb2320af9c838c5853734a46c005361a9b0384546b2#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《罗马帝国衰亡史》</a></li>
-</ul>
+<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《罗马帝国衰亡史》"><a href="#《罗马帝国衰亡史》" class="headerlink" title="《罗马帝国衰亡史》"></a>《罗马帝国衰亡史》</h4><blockquote>
+<p>君士坦丁发布了一道敕令 ，明确表示他真的 ，或假装着怀疑有人正在阴谋策划推翻他本人和他的政府 。他还以荣誉或重金报酬为诱饵 ，呼唤各种层次的告密者可以放胆告发他的执政官或大臣 ，他的朋友或最贴身的亲信 ，无一例外 ；他还庄严宣布 ，他将亲自聆听这些指控 ，并将亲自对有害于他的人进行报复 ；最后 ，他还用一段祷告结束他的敕令 ，这祷词倒真是表露出了他对某种危险的担忧 ，他祈求最高的神灵仍一如既往保佑皇帝和帝国的安全 。</p>
+<p>罗马教会以暴力保卫他们以欺骗手段得来的帝国；一个和平和仁慈的体系很快就被放逐令、战争、屠杀以及宗教法庭的建立而弄得乌烟瘴气。而由于改革派更受到热爱民权和宗教自由的人们的鼓舞，天主教的亲王们便把自己的利益同教士的利益结合起来，并不惜用火与剑来推行宗教惩罚的恐怖。</p>
+</blockquote>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/45617772" target="_blank" rel="external">国家能力的信息基础：来自神圣罗马帝国的证据</a><br>获取农业收成信息更容易的国家，享有更多的税收、更大的疆域和更长久的国祚</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940487&amp;idx=1&amp;sn=65e67860424f2b723daa68c406b7085f&amp;chksm=bd5789958a2000834c3f4c3d5e23f3694eb2320af9c838c5853734a46c005361a9b0384546b2#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《罗马帝国衰亡史》</a></li>
 </ul>
 ]]></content>
     
@@ -509,6 +516,8 @@
     </summary>
     
     
+      <category term="History" scheme="https://riboseyim.com/tags/History/"/>
+    
   </entry>
   
   <entry>
@@ -516,16 +525,28 @@
     <link href="https://riboseyim.com/2018/12/31/Science-Feynman/"/>
     <id>https://riboseyim.com/2018/12/31/Science-Feynman/</id>
     <published>2018-12-31T12:42:16.000Z</published>
-    <updated>2019-02-01T09:14:46.543Z</updated>
+    <updated>2019-02-03T05:54:05.851Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="荐书-《发现的乐趣》"><a href="#荐书-《发现的乐趣》" class="headerlink" title="荐书|《发现的乐趣》"></a>荐书|《发现的乐趣》</h2><h4 id="科学精神"><a href="#科学精神" class="headerlink" title="科学精神"></a>科学精神</h4><blockquote>
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>费曼留给我们的宝贵财富是他全身心投入科学研究以及忠实践行科学的精神——这包括科学的逻辑架构和研究方法、拒绝教条主义，还有对质疑精神的无限包容。</p>
+<a id="more"></a>
+<h2 id="《发现的乐趣》"><a href="#《发现的乐趣》" class="headerlink" title="《发现的乐趣》"></a>《发现的乐趣》</h2><h4 id="发现的乐趣"><a href="#发现的乐趣" class="headerlink" title="发现的乐趣"></a>发现的乐趣</h4><p>为了寻找一个问题的答案，我们要通宵达旦地工作；为了更深入理解一个问题，哪怕是增加一点点的认识，我们也要翻越最险峻的高峰；而最终有所发现时的欢欣愉悦，仅仅是探究世界的乐趣的一部分而已。</p>
+<p>奖赏就是发现的乐趣以及看到人们运用我的研究成果，这都是真真切切的奖赏，而荣誉对我没有意义。我不追求荣誉，荣誉是个烦人的东西，在我心目中，荣誉就是肩章，荣誉就是人们穿的制服。从小我爸爸就是这么教我的。荣誉这东西，我无福消受，它只会伤害</p>
+<h4 id="科学精神"><a href="#科学精神" class="headerlink" title="科学精神"></a>科学精神</h4><blockquote>
+<p>人类特有的心智有缺陷——其中一点就是它会被自己的迷信思想蒙蔽和迷惑。科学方法的发现最终为它找到了一条出路，使其能够反映客观世界，这样科学家才能朝某个研究方向迈出一小步，取得些许的进步，而不是一直兜圈子、止步不前。</p>
+<p>科学的方法是先做试验。但是也不能忽视另外一个非常重要的方法，一个很关键的方法，那就是把所有的想法放在一起，然后尝试在你所知的这些事情里找到一种内在的逻辑联系。把你知道的所有事情联系起来，看看它们是否有内在联系，这种做法很有用处。找出不同的事物之间的内在一致性，这种尝试越多，得到的结果越好。</p>
+<p>不能只挑选自己喜欢的证据，而是<strong>要考虑所有证据，要做到客观对待</strong>——足以让检验工作进行下去——也不能完全依靠权威理论。</p>
 <p>我们现在生活在一个没有科学的时代，几乎人们所有的交流、电视上的言论和书本，所有这些都充斥着不科学的东西。不是说那些内容不好，我是说他们是不科学的。于是，就出现了大量打着科学旗号的智力专制。<br>科学的各个学科门类在其发展过程中都有过这样的教训：认为先辈大师们字字珠玑、说的都是绝对真理，这样的信念是很危险的。<br>—— 理查德·费曼 1966年4月在全美科学教师协会的演讲</p>
 </blockquote>
-<h4 id="《关于“挑战者号”航天飞机事故的少数派调查报告》"><a href="#《关于“挑战者号”航天飞机事故的少数派调查报告》" class="headerlink" title="《关于“挑战者号”航天飞机事故的少数派调查报告》"></a>《关于“挑战者号”航天飞机事故的少数派调查报告》</h4><p><strong>国之重器，在人不在宝</strong></p>
+<h4 id="生活伦理"><a href="#生活伦理" class="headerlink" title="生活伦理"></a>生活伦理</h4><blockquote>
+<p>冯·诺依曼的一个想法很有意思：<strong>你没有义务为你所在的这个世界负责</strong>。这是他教会我的一件事情。冯·诺依曼的这个忠告，让我卸掉了一个普通个体无法承受之重——就一个个体背负整个社会的责任而言。从此之后，我变成了一个很快乐的人。这是冯·诺依曼在我心里种下的种子，他教会我不用把全世界的痛苦都背在自己身上。</p>
+</blockquote>
+<h4 id="国之重器"><a href="#国之重器" class="headerlink" title="国之重器"></a>国之重器</h4><ul>
+<li>《关于“挑战者号”航天飞机事故的少数派调查报告》</li>
+</ul>
 <blockquote>
 <p>现在总结一下，计算机软件检测体系及其检测的仔细程度确实达到了最高水准。这里并没有出现这种情况:一边降低标准一边自欺欺人一一对于固体火箭助推器或航天飞机主发动机的安全体系来说，这种情况很明显。确实，管理层最近已经提议要减少这样复杂、耗资又如此巨大的测试——他们认为， 在航天飞机发展业已成熟的现阶段，做这些测试是没有必要的。我们必须抵制这些建议，因为持这种看法的人，他们没有认识到微妙的相互影响，整个项目的某一部分即便一个很细微的变化导致的错误也会影响到项目的其他组成部分。飞船的使用者一直在不断地提各种修改要求:要么提出新的任务，要么提出新的要求和修改意见。而按照他们的要求进行修改，代价很昂贵，因为需要做全面的测试。要省钱，合理的办法是尽可能减少变动，而不是降低每一次改动后 (必须要做的)测试的水准。</p>
 </blockquote>
+<p><strong>国之重器，在人不在宝</strong></p>
 <h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940500&amp;idx=1&amp;sn=36a6663e996058a543fa13d4d3f4b4fe&amp;chksm=bd5789868a2000902acbda3adde45326aa04edc4db4cc582fdb58c0a8285f3abe762760528a3&amp;token=1403618953&amp;lang=zh_CN#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《发现的乐趣》</a></li>
 </ul>
@@ -533,7 +554,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;费曼留给我们的宝贵财富是他全身心投入科学研究以及忠实践行科学的精神——这包括科学的逻辑架构和研究方法、拒绝教条主义，还有对质疑精神的无限包容。&lt;/p&gt;
     
     </summary>
     
@@ -598,7 +619,7 @@
     <link href="https://riboseyim.com/2018/12/31/Check2019/"/>
     <id>https://riboseyim.com/2018/12/31/Check2019/</id>
     <published>2018-12-31T12:25:24.000Z</published>
-    <updated>2019-01-20T07:35:15.961Z</updated>
+    <updated>2019-02-03T04:51:12.687Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>This article is part of an <strong>Autobiography</strong> series. Make sure to check out my other articles as well:</p>
@@ -632,7 +653,9 @@
 <li><a href="https://riboseyim.github.io/2018/12/31/Commander-Decision/" target="_blank" rel="external">《如何作出正确决策》</a></li>
 </ul>
 <h4 id="工程应用"><a href="#工程应用" class="headerlink" title="工程应用"></a>工程应用</h4><ul>
+<li><a href="https://riboseyim.com/2016/04/26/OpenSource/">《大教堂与集市》</a></li>
 <li><a href="#">《写作这门手艺》</a></li>
+<li><a href="http://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《图像中国建筑史》</a></li>
 <li><a href="http://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《建筑的复杂性与矛盾性》</a></li>
 <li>Preview<a href="https://riboseyim.github.io/2018/11/30/DTrace-SystemTap/" target="_blank" rel="external">DTrace-SystemTap</a></li>
 <li>Preview<a href="https://riboseyim.github.io/2018/11/21/Protocol-Route/" target="_blank" rel="external">Protocol-Route</a></li>
@@ -754,13 +777,16 @@
   </entry>
   
   <entry>
-    <title>Mathmetics-Algorithm</title>
+    <title>算法</title>
     <link href="https://riboseyim.com/2018/12/31/Mathmetics-Algorithm/"/>
     <id>https://riboseyim.com/2018/12/31/Mathmetics-Algorithm/</id>
     <published>2018-12-31T04:08:13.000Z</published>
-    <updated>2018-12-31T04:21:32.164Z</updated>
+    <updated>2019-02-02T16:50:13.046Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>任何一种计算方法——除非它能提供一种编写程序的方法，否则不会有太大的用处。— 理查德·费曼</p>
+</blockquote>
+<a id="more"></a>
 <h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ul>
 <li><p><a href="https://www.youtube.com/watch?v=DG5-UyRBQD4" target="_blank" rel="external">3Blue1Brown: Very Basic Intro to Neural Networks</a><br>3Blue1Brown 是一个数学学习频道。其发布的视频通过动画演示和讲解，帮助观者在头脑中构建有关数学概念定义定理的最生动直观的理解，致力于将复杂得数学概念可视化。</p>
 </li>
@@ -798,10 +824,14 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;任何一种计算方法——除非它能提供一种编写程序的方法，否则不会有太大的用处。— 理查德·费曼&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
+    
+      <category term="数学与算法" scheme="https://riboseyim.com/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
