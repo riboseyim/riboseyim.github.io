@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-02-04T13:41:01.923Z</updated>
+  <updated>2019-02-05T19:35:22.233Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -16,11 +16,224 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>工业设计</title>
+    <link href="https://riboseyim.com/2019/02/06/Engineering-Design/"/>
+    <id>https://riboseyim.com/2019/02/06/Engineering-Design/</id>
+    <published>2019-02-05T19:22:35.000Z</published>
+    <updated>2019-02-05T19:35:22.233Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>工程设计</strong> 的一种定义是，运用工程原理和知识去满足一种实际需要的活动。设计的对象可以是实际设备，如机器、电路或者桥梁结构，也可以是较为抽象的东西，如软件工程、操作系统、网络设备、制造过程或者控制算法。</p>
+<p>工程师要完成的是满足一组预先设定的需求，设计的目的是收敛到最佳可能的解决方案。这里的“最佳”包括许多因素：</p>
+<ul>
+<li>可行性（Feasibility）</li>
+<li>准确性（Accuracy）</li>
+<li>成本（Cost）</li>
+<li>耐久性（Durability）</li>
+<li>鲁棒性（Robustness）</li>
+<li>安全性（Safety）</li>
+</ul>
+<h2 id="优秀的设计和糟糕的设计"><a href="#优秀的设计和糟糕的设计" class="headerlink" title="优秀的设计和糟糕的设计"></a>优秀的设计和糟糕的设计</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>优秀的设计</th>
+<th>糟糕的设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>符合所有技术需求</td>
+<td>只符合一部分技术需求</td>
+</tr>
+<tr>
+<td>一直工作</td>
+<td>起初工作，但一段时间后停止工作</td>
+</tr>
+<tr>
+<td>符合成本需求</td>
+<td>超过了预计的成本</td>
+</tr>
+<tr>
+<td>需要很少或不需要维护</td>
+<td>需要频繁维护</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>对用户造成危害</td>
+</tr>
+<tr>
+<td>不存在伦理困境</td>
+<td>产生道德问题</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>沟通管理</title>
+    <link href="https://riboseyim.com/2019/02/06/Project-Communications/"/>
+    <id>https://riboseyim.com/2019/02/06/Project-Communications/</id>
+    <published>2019-02-05T18:19:53.000Z</published>
+    <updated>2019-02-05T19:53:02.628Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<p>在美国和加拿大负责评审工程学校专业的国家工程与技术组织委员会（Accreditation Board for Engineering and Technlogy,ABET）指出：</p>
+<blockquote>
+<p>在任何学科，口头和书面表达能力将成为工程专业培养的必要组成部分。</p>
+</blockquote>
+<p>沟通形式：</p>
+<ul>
+<li>口头</li>
+<li>书面表达</li>
+<li>倾听</li>
+</ul>
+<p>培养形式：</p>
+<ul>
+<li>写作讲习班</li>
+<li>英语系列课程（包括在核心课程中注重培养学生的口语演讲能力）</li>
+</ul>
+<p>沟通场景：</p>
+<ul>
+<li>会谈</li>
+<li>演讲</li>
+<li>会议</li>
+<li>邮件</li>
+<li>备忘录</li>
+<li>长篇技术报告</li>
+<li>期刊论文</li>
+</ul>
+<h2 id="会谈"><a href="#会谈" class="headerlink" title="会谈"></a>会谈</h2><p>一页简短的、突出重点的文档对于非正式会议是非常有帮助的。</p>
+<ul>
+<li>项目状态审查：列出自上次会议以来所完成的工作</li>
+<li>最近测试情况的报告：表格或图形</li>
+<li>产品设计的审查：为正在开发的产品撰写一页文档，列出设计理念的关键特点及优势</li>
+<li>公司程序的更改：针对组织变化</li>
+</ul>
+<h2 id="正式演讲"><a href="#正式演讲" class="headerlink" title="正式演讲"></a>正式演讲</h2><p>准备正式演讲的一般流程：</p>
+<ul>
+<li>1）了解报告听众的知识背景，包括与会者对报告内容的了解程度、水平，调整报告的内容</li>
+<li>2）假设参会人员第一次接触报告的主题</li>
+<li>3）在参会人员入场前检查好视听设备</li>
+<li>4）穿着得体</li>
+<li>5）在最初几分钟内就引出报告的目的</li>
+<li>6）告诉参会人员为什么由你来做报告</li>
+<li>7）在报告开始时展示出报告的内容大纲，给出将要介绍的内容概述</li>
+<li>8）想出一个简短的方式来打破报告开始时的尴尬状态</li>
+<li>9）谈话方式简单易懂。将技术细节留在报告后的讨论环节</li>
+<li>10）保持谈话简短。讲稿最好只用掉被分配时间的50%-60%，预留时间才能准时结束。</li>
+<li>11）自问自答。尽量做到所有的幻灯片格式一致，保持与听众的视线交流。</li>
+<li>12）不要给听众展示公式</li>
+<li>13）以“谢谢，还有其他问题吗？”来结束报告。或者通过一张总结性的幻灯片来结束报告内容</li>
+<li>14）讨论环节。回答者复述提问者的问题，有助于阐明内容、使得所有参会人员都能听到，同时争取思考时间</li>
+</ul>
+<h4 id="为非技术人员做演进报告"><a href="#为非技术人员做演进报告" class="headerlink" title="为非技术人员做演进报告"></a>为非技术人员做演进报告</h4><p>可以遵循以下几个基本原则：</p>
+<ul>
+<li>1）假设观众对你的话题一无所知。</li>
+<li>2）不使用专业术语解释背景材料。（包括那些看似普通的专用词汇）</li>
+<li>3）用一张大的图片作为开场。</li>
+<li>4）假设你在跟四年级的小学生讲话。</li>
+<li>5）避免向非技术观众展示公式。</li>
+</ul>
+<h2 id="撰写邮件"><a href="#撰写邮件" class="headerlink" title="撰写邮件"></a>撰写邮件</h2><p>撰写一封好的电子邮件应该注意以下几个方面：</p>
+<ul>
+<li>邮件头：正确邮件头的的设计将为传递消息确定基调</li>
+<li>标题行：简洁、醒目</li>
+<li>第一句：邮件第一句的结构直接决定了正文能否被接受，并确保读者不会曲解你写邮件的原因</li>
+<li>正文：邮件主体应包含信息传递的关键点。每个想法或观点都应该独立成段，并且每个段落都不能只包含一个句子。段落之间应该具有相应的逻辑联系。（技巧：现在文档编辑器中编写，当对内容满意时，再将其剪切并粘贴到邮件正文中）</li>
+</ul>
+<h2 id="技术报告"><a href="#技术报告" class="headerlink" title="技术报告"></a>技术报告</h2><p>典型技术报告的篇幅在2~20页之间。大多数技术报告应包含以下内容：简介（或背景）、实验搭建、理论、数据、分析和结论。</p>
+<ul>
+<li>如果包括实验结果，应详细描述实验平台的搭建过程。内容包括描述设备、技术、尺寸及其他关键参数，使对此感兴趣的工程人员能够重建实验平台及实验过程。</li>
+</ul>
+<h2 id="期刊论文"><a href="#期刊论文" class="headerlink" title="期刊论文"></a>期刊论文</h2><h2 id="提案"><a href="#提案" class="headerlink" title="提案"></a>提案</h2><p>提案的主要目的通常是申请资金支持。除了技术报告部分，提案还包括关于目标、预算、背景及人员等。</p>
+<h2 id="说明手册"><a href="#说明手册" class="headerlink" title="说明手册"></a>说明手册</h2><p>说明手册主要向用户介绍产品的相关信息及有关产品的安装、操作和使用等内容。一份好的产品说明手册还应包括安全信息、故障排除、维修和操作理论（适用原则）等。</p>
+<ul>
+<li>注意：内容的重复。文档中的多个衔接处需要对某些信息进行重复描述。<strong>不要认为读者所有看过的内容都能记住</strong>，编写者需要考虑到每一个细微处的设计。</li>
+</ul>
+<p>常规格式：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="section">## 一、简介</span></div><div class="line"><span class="section">## 二、安装</span></div><div class="line"><span class="section">## 三、操作</span></div><div class="line"><span class="section">##  四、安全性</span></div><div class="line"><span class="section">## 五、故障排除</span></div><div class="line"><span class="section">#### 1)症状</span></div><div class="line"><span class="bullet">- </span>可能的原因</div><div class="line"><span class="bullet">- </span>解决方法</div><div class="line"><span class="section">#### 2)症状</span></div><div class="line"><span class="bullet">- </span>可能的原因</div><div class="line"><span class="bullet">- </span>解决方法</div><div class="line"><span class="section">## 六、附录</span></div><div class="line"><span class="bullet">- </span>原理图</div><div class="line"><span class="bullet">- </span>分解图</div><div class="line"><span class="bullet">- </span>理论</div><div class="line"><span class="bullet">- </span>XX列表</div></pre></td></tr></table></figure></p>
+<h2 id="工程日志"><a href="#工程日志" class="headerlink" title="工程日志"></a>工程日志</h2><p>工程日志包括涉及过程中产生的所有想法、计算结果、创新和测试结果。每个项目成员都应保留单独的日志，对应分配给每个人的任务，当项目完成后，所有团队成员的日志都放在一起，形成项目活动的完整记录。</p>
+<p><strong>完整的日志还可以用作发明权的证据。</strong></p>
+<p><strong>记录没有成功的工作与记录成功的工作同样重要。</strong> 确保错误不会在将来重演。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>项目管理</title>
+    <link href="https://riboseyim.com/2019/02/06/Project/"/>
+    <id>https://riboseyim.com/2019/02/06/Project/</id>
+    <published>2019-02-05T18:15:19.000Z</published>
+    <updated>2019-02-05T20:14:08.849Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="引论-Introduction"><a href="#引论-Introduction" class="headerlink" title="引论 | Introduction"></a>引论 | Introduction</h2><h2 id="项目运行环境-The-Environment-in-which-Projects-Operate"><a href="#项目运行环境-The-Environment-in-which-Projects-Operate" class="headerlink" title="项目运行环境 | The Environment in which Projects Operate"></a>项目运行环境 | The Environment in which Projects Operate</h2><h4 id="事业环境因素-Enterprise-Environment-Factors"><a href="#事业环境因素-Enterprise-Environment-Factors" class="headerlink" title="事业环境因素 | Enterprise Environment Factors"></a>事业环境因素 | Enterprise Environment Factors</h4><h4 id="组织过程资产-Organizational-Process-Assets"><a href="#组织过程资产-Organizational-Process-Assets" class="headerlink" title="组织过程资产 | Organizational Process Assets"></a>组织过程资产 | Organizational Process Assets</h4><h2 id="项目经理的角色-The-Role-of-The-Project-Manager"><a href="#项目经理的角色-The-Role-of-The-Project-Manager" class="headerlink" title="项目经理的角色 | The Role of The Project Manager"></a>项目经理的角色 | The Role of The Project Manager</h2><h2 id="项目整合管理-Project-Integration-Management"><a href="#项目整合管理-Project-Integration-Management" class="headerlink" title="项目整合管理 | Project Integration Management"></a>项目整合管理 | Project Integration Management</h2><h2 id="项目范围管理-Project-Scope-Management"><a href="#项目范围管理-Project-Scope-Management" class="headerlink" title="项目范围管理 | Project Scope Management"></a>项目范围管理 | Project Scope Management</h2><h2 id="项目进度管理-Project-Schedule-Management"><a href="#项目进度管理-Project-Schedule-Management" class="headerlink" title="项目进度管理 | Project Schedule Management"></a>项目进度管理 | Project Schedule Management</h2><h2 id="项目成本管理-Project-Cost-Management"><a href="#项目成本管理-Project-Cost-Management" class="headerlink" title="项目成本管理 | Project Cost Management"></a>项目成本管理 | Project Cost Management</h2><h2 id="项目质量管理-Project-Quality-Management"><a href="#项目质量管理-Project-Quality-Management" class="headerlink" title="项目质量管理 | Project Quality Management"></a>项目质量管理 | Project Quality Management</h2><h2 id="项目资源管理-Project-Resource-Management"><a href="#项目资源管理-Project-Resource-Management" class="headerlink" title="项目资源管理 | Project Resource Management"></a>项目资源管理 | Project Resource Management</h2><h2 id="项目沟通管理-Project-Communications-Management"><a href="#项目沟通管理-Project-Communications-Management" class="headerlink" title="项目沟通管理 | Project Communications Management"></a>项目沟通管理 | Project Communications Management</h2><h2 id="项目风险管理-Project-Risk-Management"><a href="#项目风险管理-Project-Risk-Management" class="headerlink" title="项目风险管理 | Project Risk Management"></a>项目风险管理 | Project Risk Management</h2><h2 id="项目采购管理-Project-Procurement-Management"><a href="#项目采购管理-Project-Procurement-Management" class="headerlink" title="项目采购管理 | Project Procurement Management"></a>项目采购管理 | Project Procurement Management</h2><h2 id="项目相关方管理-Project-Stakeholder-Management"><a href="#项目相关方管理-Project-Stakeholder-Management" class="headerlink" title="项目相关方管理 | Project Stakeholder Management"></a>项目相关方管理 | Project Stakeholder Management</h2><h2 id="项目管理过程组-Project-Management-Process-Groups"><a href="#项目管理过程组-Project-Management-Process-Groups" class="headerlink" title="项目管理过程组 | Project Management Process Groups"></a>项目管理过程组 | Project Management Process Groups</h2><h4 id="启动过程组-Initiating-Process-Group"><a href="#启动过程组-Initiating-Process-Group" class="headerlink" title="启动过程组 | Initiating Process Group"></a>启动过程组 | Initiating Process Group</h4><h4 id="规划过程组-Planning-Process-Group"><a href="#规划过程组-Planning-Process-Group" class="headerlink" title="规划过程组 | Planning Process Group"></a>规划过程组 | Planning Process Group</h4><h4 id="执行过程组-Executing-Process-Group"><a href="#执行过程组-Executing-Process-Group" class="headerlink" title="执行过程组 | Executing Process Group"></a>执行过程组 | Executing Process Group</h4><h4 id="监控过程组-Monitoring-and-Controlling-Process-Group"><a href="#监控过程组-Monitoring-and-Controlling-Process-Group" class="headerlink" title="监控过程组 | Monitoring and Controlling Process Group"></a>监控过程组 | Monitoring and Controlling Process Group</h4><h4 id="收尾过程组-Closing-Process-Group"><a href="#收尾过程组-Closing-Process-Group" class="headerlink" title="收尾过程组 | Closing Process Group"></a>收尾过程组 | Closing Process Group</h4><h2 id="工具与技术"><a href="#工具与技术" class="headerlink" title="工具与技术"></a>工具与技术</h2><h4 id="甘特图（Gantt-Chart）"><a href="#甘特图（Gantt-Chart）" class="headerlink" title="甘特图（Gantt Chart）"></a>甘特图（Gantt Chart）</h4><h4 id="PERT图"><a href="#PERT图" class="headerlink" title="PERT图"></a>PERT图</h4><p>项目评估与审查技术（Project Evaluation and Review Technique,PERT）由美国海军首次提出，并于1958年由 Booz、Allen 和 Hamilton 的咨询公司开发。最早的用途是协调涉及北极星导弹研发计划的 10 000 多个分包商的活动。PERT 类似关键路径方法(CPM)，是一种用于优化和调度复杂的、相关关联的活动的方法。</p>
+<h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><ul>
+<li>《PMBOK》</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Intelligence</title>
+    <link href="https://riboseyim.com/2019/02/04/Intelligence/"/>
+    <id>https://riboseyim.com/2019/02/04/Intelligence/</id>
+    <published>2019-02-04T15:12:53.000Z</published>
+    <updated>2019-02-04T15:14:13.579Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《情报驱动应急响应》"><a href="#《情报驱动应急响应》" class="headerlink" title="《情报驱动应急响应》"></a>《情报驱动应急响应》</h4><ul>
+<li>Intelligence-Driven Incident Response:Outwitting the Adversary</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>国之重器，在人不在宝</title>
     <link href="https://riboseyim.com/2019/02/04/Engineering-Ethics/"/>
     <id>https://riboseyim.com/2019/02/04/Engineering-Ethics/</id>
     <published>2019-02-04T02:55:55.000Z</published>
-    <updated>2019-02-04T13:41:01.923Z</updated>
+    <updated>2019-02-05T18:08:12.400Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
@@ -47,7 +260,7 @@
 <h4 id="事故调查《罗杰斯报告》"><a href="#事故调查《罗杰斯报告》" class="headerlink" title="事故调查《罗杰斯报告》"></a>事故调查《罗杰斯报告》</h4><p>美国总统罗纳德·里根下令组织一个特别委员会——航天飞机挑战者号事故总统调查委员会(以其主席的名字,常称作 <strong>罗杰斯委员会</strong>)负责此次事故的调查工作。</p>
 <p>罗杰斯委员会工作了几个月后于1986年6月9日发表了一份长达225页的研究报告（<a href="https://history.nasa.gov/rogersrep/genindex.htm" target="_blank" rel="external">《罗杰斯报告·正文》</a>）。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Rogers_Report_Theme.png" alt=""></p>
-<p>调查报告指出挑战者号的意外是由右侧固体火箭助推器尾部一个密封接缝的O型环失效，导致加压的热气和火焰从紧邻的外加燃料舱的封口喷出，造成结构损坏。O型环的失效则归因于设计上的缺陷，因而太容易损坏。报告也考虑到了意外的成因。最明显的就是NASA与承包商的疏忽，莫顿·塞奥科公司承认了他们在设计上存在的缺陷。罗杰斯报告的正式结论是“一场肇由历史的事故”。</p>
+<p>调查报告指出挑战者号的意外是由右侧固体火箭助推器尾部一个密封接缝的O型环失效，导致加压的热气和火焰从紧邻的外加燃料舱的封口喷出，造成结构损坏。O型环的失效则归因于设计上的缺陷，密封环没有针对寒冷天气设计，发射当天佛罗里达州异常寒冷（零下2摄氏度），过度冰冷的密封圈会因为太僵硬而不能很好地密封火箭助推器，或者在异常低温条件下变脆、破裂。报告也考虑到了意外的成因。最明显的就是NASA与承包商的疏忽，莫顿·塞奥科公司承认了他们在设计上存在的缺陷。罗杰斯报告的正式结论是“一场肇由历史的事故”。</p>
 <blockquote>
 <p>在沟通上的失败……发射决策是创建在不完善与时常误导的信息上的。冲突存在于…..一个允许航天飞机管理层忽略掉潜在的飞行安全问题的NASA管理结构之间。</p>
 </blockquote>
@@ -127,6 +340,7 @@
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://en.wikipedia.org/wiki/Rogers_Commission_Report" target="_blank" rel="external">Rogers Commission Report</a></li>
 <li><a href="https://zh.wikipedia.org/wiki/%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E5%8F%B7%E8%88%AA%E5%A4%A9%E9%A3%9E%E6%9C%BA%E7%81%BE%E9%9A%BE" target="_blank" rel="external">哥伦比亚号航天飞机灾难</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ZHKlrxrWTzfZOM0n6KaJiA" target="_blank" rel="external">加班越狠，出成绩就越多吗？在NASA，这叫做Go Fever |原创： 余晟  余晟以为</a><br>长期加班就会导致工作重心的变化，关注的不是最终目的的完成，而只是程序性地完成每天的工作量。但是，高科技项目往往需要去发现并解决各种事先想不到的问题，而这恰恰是程序性工作的空白——“阿波罗1号”的悲剧就是最好注解。</li>
 </ul>
 ]]></content>
     
@@ -224,7 +438,7 @@
     <link href="https://riboseyim.com/2019/01/07/Engineering/"/>
     <id>https://riboseyim.com/2019/01/07/Engineering/</id>
     <published>2019-01-06T19:07:36.000Z</published>
-    <updated>2019-02-01T09:07:39.207Z</updated>
+    <updated>2019-02-05T18:14:27.032Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="Introducing-Engineering"><a href="#Introducing-Engineering" class="headerlink" title="Introducing Engineering"></a>Introducing Engineering</h2><p>工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
@@ -246,6 +460,7 @@
 <li>[ ] <a href="https://riboseyim.github.io/2018/12/31/Engineering-Architecture/" target="_blank" rel="external">《图像中国建筑史》| 梁思成</a></li>
 </ul>
 <h4 id="交通工程领域"><a href="#交通工程领域" class="headerlink" title="交通工程领域"></a>交通工程领域</h4><ul>
+<li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">工程伦理：国之重器，在人不在宝 | 挑战者号航天飞机事故调查</a></li>
 <li>[x] <a href="https://riboseyim.github.io/2017/05/28/History-Caoyun/" target="_blank" rel="external">黄仁宇:《明代的漕运》</a></li>
 <li><a href="https://riboseyim.com/2016/11/20/Network-Traffic/">珠海航展交通管控实践</a></li>
 </ul>
@@ -256,7 +471,11 @@
 <li><a href="https://riboseyim.com/2018/09/15/Engineering-Blog/">Engineering Blog</a></li>
 <li><a href="https://riboseyim.com/2018/09/11/Engineering-Index/">Engineering Index</a></li>
 </ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+<h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><h5 id="《工程思维-Design-Concepts-for-Engineers》"><a href="#《工程思维-Design-Concepts-for-Engineers》" class="headerlink" title="《工程思维 Design Concepts for Engineers》"></a>《工程思维 Design Concepts for Engineers》</h5><ul>
+<li>作者：马克 N.霍伦斯坦(Mark N.Horenstein)，</li>
+<li>翻译：宫晓利/南开大学 张金/南开大学 赵子平/天津师范大学</li>
+</ul>
+<h5 id="《-To-Engineer-is-Human-The-Role-of-Failure-in-Successful-Design-1985-》-Henry-Petroski"><a href="#《-To-Engineer-is-Human-The-Role-of-Failure-in-Successful-Design-1985-》-Henry-Petroski" class="headerlink" title="《 To Engineer is Human: The Role of Failure in Successful Design (1985)》|Henry Petroski"></a>《 To Engineer is Human: The Role of Failure in Successful Design (1985)》|<a href="https://en.wikipedia.org/wiki/Henry_Petroski" target="_blank" rel="external">Henry Petroski</a></h5><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
     <summary type="html">
     
@@ -519,19 +738,22 @@
     <link href="https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/"/>
     <id>https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/</id>
     <published>2018-12-31T17:06:37.000Z</published>
-    <updated>2019-02-04T03:08:41.962Z</updated>
+    <updated>2019-02-05T18:12:17.601Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h2><h4 id="Henry-Petroski"><a href="#Henry-Petroski" class="headerlink" title="Henry Petroski"></a><a href="https://en.wikipedia.org/wiki/Henry_Petroski" target="_blank" rel="external">Henry Petroski</a></h4><ul>
-<li>《 To Engineer is Human: The Role of Failure in Successful Design (1985)》</li>
-</ul>
+<h4 id="设计中的失败准备"><a href="#设计中的失败准备" class="headerlink" title="设计中的失败准备"></a>设计中的失败准备</h4><blockquote>
+<p>没有琢磨不透的事故，只有意想不到的事故。—— 马克 N.霍伦斯坦</p>
+</blockquote>
 <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="2018-七牛云·域名"><a href="#2018-七牛云·域名" class="headerlink" title="2018 七牛云·域名"></a>2018 七牛云·域名</h4><blockquote>
 <p>尊敬的七牛云用户，您好: 如果您正在使用或将要使用测试域名，请务必仔细阅读本邮件内容！ 七牛云测试域名是用户在创建云存储空间时系统自动生成的七牛域名，以 clouddn.com, qiniucdn.com, qiniudn.com, qnssl.com, qbox.me 等结尾，此类域名仅供用户测试不能用于正式生产环境。测试域名不规范使用或被当作正式域名使用，将导致域名的安全风险增加，从而影响用户的正常测试需求。 为了确保测试域名的规范使用，保障七牛云用户的权益，我们将逐步对测试域名加强管理，具体规则如下： [已上线生效] 不得使用测试域名存储、发布、传播违法违规内容。当测试域名下有非法资源时，该域名将被直接冻结并不予解封。如对七牛云及其他用户造成损害，七牛云保留进一步追责的权利。 对 2018 年 7 月 18 日起新产生的测试域名，禁止下载移动应用程序(apk,ipa 等)，请绑定自定义域名进行访问。 [预计生效时间 8 月上旬] ：流量限制 测试域名无论新老测试域名每个自然日限总流量 10GB，当日测试流量达到 10GB 上限后，禁止继续访问。 [预计生效时间 8 月中旬] ：测试域名回收机制 每个测试域名生命周期为 30 个自然日（已有测试域名自回收功能上线之日起算，新产生的测试域名自系统自动生成之日起算），超过 30 日系统将自动回收，回收即为域名删除。 在测试域名生命周期终结之前我们会邮件通知您，您也可以自行在 七牛云-管理控制台 上查看测试域名剩余的回收时间。</p>
 </blockquote>
 <h4 id="2017-小密圈"><a href="#2017-小密圈" class="headerlink" title="2017 小密圈"></a>2017 小密圈</h4><blockquote>
 <p>亲爱的小密圈用户:<br>由于技术升级，您将暂时无法访问小密圈官网、网页版、客户端和小程序。小密圈公众号内的提现功能可正常使用。升级后，我们会更好地服务内容创作者。——小密圈团队</p>
 </blockquote>
-<p>历史再次证明关键信息放在国内根本靠不住，前有微博、B站，现有小密圈，下一个会是微信公众号吗？<br>完全有可能，谁也不知道。<strong>随时可能变成敏感词，随时可能因为技术原因被消失，白色恐怖、KGB（Komitet gosudarstvennoy bezopasnosti）莫过于此</strong></p>
+<p>历史再次证明关键信息放在国内根本靠不住，前有微博、B站，现有小密圈，下一个会是微信公众号吗？<br>完全有可能，谁也不知道。<strong>随时可能变成敏感词，随时可能因为技术原因被消失，白色恐怖、KGB（Komitet gosudarstvennoy bezopasnosti）莫过于此。</strong></p>
+<h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><ul>
+<li>《 To Engineer is Human: The Role of Failure in Successful Design (1985)》| <a href="https://en.wikipedia.org/wiki/Henry_Petroski" target="_blank" rel="external">Henry Petroski</a></li>
+</ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
     <summary type="html">
@@ -587,13 +809,13 @@
     <link href="https://riboseyim.com/2018/12/31/Engineering-Architecture/"/>
     <id>https://riboseyim.com/2018/12/31/Engineering-Architecture/</id>
     <published>2018-12-31T12:55:08.000Z</published>
-    <updated>2019-02-02T16:53:17.816Z</updated>
+    <updated>2019-02-04T15:11:29.075Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
 <p>接手建筑公司的活儿，接着完成基地的建设。一开始的时候，物理学家们，尤其是实验物理学家，在他们的实验大楼和设备还没有准备就绪之前，他们无事可做，所以他们就去盖房子，或是帮着盖房子。理论物理学家就不同了，他们不用待在农舍里，可以直接住在基地里，因为他们马上可以开始工作。所以我们立即投入到工作中。当然，这意味着我们每个人都有一块移动黑板，那种有轮子的、可以推来推去的黑板。— 理查德·费曼 《发现的乐趣》</p>
 </blockquote>
-<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《图像中国建筑史》"><a href="#《图像中国建筑史》" class="headerlink" title="《图像中国建筑史》"></a>《图像中国建筑史》</h4><ul>
+<h2 id="荐书"><a href="#荐书" class="headerlink" title="荐书"></a>荐书</h2><h4 id="《无为与有位—日本第一位城市规划师浅田孝》"><a href="#《无为与有位—日本第一位城市规划师浅田孝》" class="headerlink" title="《无为与有位—日本第一位城市规划师浅田孝》"></a>《无为与有位—日本第一位城市规划师浅田孝》</h4><h4 id="《图像中国建筑史》"><a href="#《图像中国建筑史》" class="headerlink" title="《图像中国建筑史》"></a>《图像中国建筑史》</h4><ul>
 <li>《营造法式》| 宋代</li>
 <li>《工程做法则例》| 清代</li>
 </ul>
@@ -653,7 +875,7 @@
     <link href="https://riboseyim.com/2018/12/31/Science-Feynman/"/>
     <id>https://riboseyim.com/2018/12/31/Science-Feynman/</id>
     <published>2018-12-31T12:42:16.000Z</published>
-    <updated>2019-02-04T13:42:09.724Z</updated>
+    <updated>2019-02-05T18:09:37.905Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>费曼留给我们的宝贵财富是他全身心投入科学研究以及忠实践行科学的精神——这包括科学的逻辑架构和研究方法、拒绝教条主义，还有对质疑精神的无限包容。</p>
 <a id="more"></a>
@@ -671,16 +893,15 @@
 <h4 id="国之重器"><a href="#国之重器" class="headerlink" title="国之重器"></a>国之重器</h4><p><strong>挑战者号航天飞机灾难</strong> 发生于美国东部时间1986年1月28日上午11时39分：在美国佛罗里达州上空刚起飞73秒的挑战者号航天飞机发生解体，机上7名机组人员丧命。</p>
 <p>这次灾难性事故导致美国的航天飞机飞行计划被冻结了长达32个月之久。这次事故的媒体报导的覆盖面极为的广，一项民意调查显示有 85% 的美国人在事故发生后一个小时内就已经听闻这次事件的新闻。</p>
 <p>美国总统罗纳德·里根下令组织一个特别委员会——航天飞机挑战者号事故总统调查委员会(以其主席的名字,常称作 <strong>罗杰斯委员会</strong>)负责此次事故的调查工作。罗杰斯委员会发现美国国家航空航天局的组织文化与决策过程中的缺陷与错误成了导致这次事件的关键因素。</p>
-<ul>
-<li>《关于“挑战者号”航天飞机事故的少数派调查报告》</li>
-</ul>
+<p>《关于“挑战者号”航天飞机事故的少数派调查报告》：</p>
 <blockquote>
-<p>现在总结一下，计算机软件检测体系及其检测的仔细程度确实达到了最高水准。</p>
 <p>这里并没有出现这种情况:一边降低标准一边自欺欺人一一对于固体火箭助推器或航天飞机主发动机的安全体系来说，这种情况很明显。确实，管理层最近已经提议要减少这样复杂、耗资又如此巨大的测试——他们认为， 在航天飞机发展业已成熟的现阶段，做这些测试是没有必要的。我们必须抵制这些建议，因为持这种看法的人，他们没有认识到微妙的相互影响，整个项目的某一部分即便一个很细微的变化导致的错误也会影响到项目的其他组成部分。</p>
-<p>飞船的使用者一直在不断地提各种修改要求:要么提出新的任务，要么提出新的要求和修改意见。而按照他们的要求进行修改，代价很昂贵，因为需要做全面的测试。要省钱，合理的办法是尽可能减少变动，而不是降低每一次改动后 (必须要做的)测试的水准。</p>
+<p>NASA的管理层都夸大了其产品的可靠性，达到了幻想的程度。</p>
+<p>在签订合同、估算成本和评估项目难度等环节，他们也一定要秉承实事求是的态度。他们提出的飞行计划的时间安排一定要合理和切合实际，实施过程中也不至于为了赶期限导致状况百出。<strong>如果他们一一照做了，却得不到政府的支持，那就随他去吧</strong>。</p>
+<p>对于一项成功的技术来说，<strong>尊重现实一定要凌驾于公共关系之上</strong>，因为你不能愚弄自然。</p>
 </blockquote>
 <h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
-<li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">工程伦理：国之重器，在人不在宝</a></li>
+<li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">工程伦理：国之重器，在人不在宝 | 挑战者号航天飞机事故调查</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651940500&amp;idx=1&amp;sn=36a6663e996058a543fa13d4d3f4b4fe&amp;chksm=bd5789868a2000902acbda3adde45326aa04edc4db4cc582fdb58c0a8285f3abe762760528a3&amp;token=1403618953&amp;lang=zh_CN#rd" target="_blank" rel="external">微信公众号@睿哥杂货铺：推荐|《发现的乐趣》</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
@@ -692,9 +913,9 @@
     </summary>
     
     
-      <category term="Science" scheme="https://riboseyim.com/tags/Science/"/>
-    
       <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+      <category term="Science" scheme="https://riboseyim.com/tags/Science/"/>
     
   </entry>
   
@@ -969,625 +1190,6 @@
     
     
       <category term="数学与算法" scheme="https://riboseyim.com/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据可视化（九）探索数据结构之美</title>
-    <link href="https://riboseyim.com/2018/12/23/Visualization-DataStruct/"/>
-    <id>https://riboseyim.com/2018/12/23/Visualization-DataStruct/</id>
-    <published>2018-12-23T15:10:50.000Z</published>
-    <updated>2018-12-23T17:25:10.817Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<blockquote>
-<p>在建筑中没有固定不变的定律，但也不是一切都能在一栋建筑或一座城市中通行无阻。建筑师的主要职责在于仔细衡量得失，作出决定。<br>他必须决定什么可行，什么有可能妥协，什么可以放弃，在何处和怎样做。他并不忽视或排斥设计要求和结构在法则中的矛盾。<br>———— 罗伯特·文丘里《建筑的复杂性与矛盾性》p69</p>
-</blockquote>
-<p>This article is part of an <strong>Data Visualization</strong> tutorial series. Make sure to check out my other articles as well:</p>
-<ul>
-<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
-<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
-</ul>
-<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
-<li><a href="https://github.com/Arafatk/DataViz" target="_blank" rel="external">Project DataViz</a>:Build and Visualize data structures in Golang</li>
-<li><a href="https://github.com/bradleyjkemp/memviz" target="_blank" rel="external">Project memviz</a>:Visualize your data structures using graphviz</li>
-<li><p><a href="https://github.com/emirpasic/gods/tree/master/examples" target="_blank" rel="external">Project GoDS (Go Data Structures)</a><br>GoDS (Go Data Structures). Containers (Sets, Lists, Stacks, Maps, Trees), Sets (HashSet, TreeSet, LinkedHashSet), Lists (ArrayList, SinglyLinkedList, DoublyLinkedList), Stacks (LinkedListStack, ArrayStack), Maps (HashMap, TreeMap, HashBidiMap, TreeBidiMap, LinkedHashMap), Trees (RedBlackTree, AVLTree, BTree, BinaryHeap), Comparators, Iterators, …</p>
-</li>
-<li><p><a href="https://medium.com/@Arafat./introducing-glot-the-plotting-library-for-golang-3133399948a1" target="_blank" rel="external">Introducing Glot the plotting library for Golang</a></p>
-</li>
-<li><a href="https://medium.com/basecs/painting-nodes-black-with-red-black-trees-60eacb2be9a5" target="_blank" rel="external">Painting Nodes Black With Red-Black Trees</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://blog.csdn.net/chouisbo/article/details/54969264" target="_blank" rel="external">Binary Heap(二叉堆)</a></li>
-<li><a href="https://blog.csdn.net/v_JULY_v/article/details/6105630" target="_blank" rel="external">初步了解红黑树</a></li>
-<li><a href="https://blog.csdn.net/v_JULY_v/article/details/6531399" target="_blank" rel="external">从2-3-4树谈到Red-Black Tree（红黑树）</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="数据可视化" scheme="https://riboseyim.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="Developer" scheme="https://riboseyim.com/tags/Developer/"/>
-    
-      <category term="数学与算法" scheme="https://riboseyim.com/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据可视化（八）Program,Data and Classical Music</title>
-    <link href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/"/>
-    <id>https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/</id>
-    <published>2018-12-16T10:05:18.000Z</published>
-    <updated>2019-01-09T05:55:30.091Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>基于 Go + R  可视化古典音乐作曲家社交网络</li>
-<li>Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。</li>
-<li>Key Words: Go , R , Composer , Visualization</li>
-</ul>
-<a id="more"></a>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-Theme-2.png" alt=""></p>
-<ul>
-<li>原标题：Using Data to Visualize Connections Between Composers</li>
-<li>链接：<a href="https://overthinkdciscores.com/2018/12/03/using-data-to-visualize-connections-between-composers" target="_blank" rel="external">https://overthinkdciscores.com/2018/12/03/using-data-to-visualize-connections-between-composers</a></li>
-<li>作者：<a href="https://github.com/EMurray16" target="_blank" rel="external">Evan Murray</a></li>
-<li>发表时间：12/03/2018</li>
-</ul>
-<p>编程很有趣。我们能够制作很酷的东西，甚至无需考虑它对现实世界是否有实际用途。Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。通过可视化应用 —— 我们可以从一个新的角度理解古典音乐作曲家以及他们之间的微妙联系。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-1.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-2.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-3.png" alt=""></p>
-<p>该项目得以实现归功于纽约爱乐乐团这座艺术宝库 —— 它们建立了一个 <a href="https://github.com/nyphilarchive/PerformanceHistory" target="_blank" rel="external">Github 库</a>以保存该团历史上所有的演出曲目。库中包含了大量信息，包括演出时间、地点，作曲家信息，独奏者信息，甚至是幕间休息的数据。这些数据都以 XML 或 JSON 格式编码，任何编程语言都可以解析和分析。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"programs"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="string">"id"</span>: <span class="string">"38e072a7-8fc9-4f9a-8eac-3957905c0002"</span>, <span class="comment">// GUID</span></div><div class="line">      <span class="string">"programID"</span>: <span class="string">"3853"</span>, <span class="comment">// NYP Local ID</span></div><div class="line">      <span class="string">"orchestra"</span>: <span class="string">"New York Philharmonic"</span>,</div><div class="line">      <span class="string">"season"</span>: <span class="string">"1842-43"</span>,</div><div class="line">      <span class="string">"concerts"</span>: [</div><div class="line">        &#123;</div><div class="line">           <span class="string">"eventType"</span>: <span class="string">"Subscription Season"</span>,</div><div class="line">           <span class="string">"Location"</span>: <span class="string">"Manhattan, NY"</span>,</div><div class="line">           <span class="string">"Venue"</span>: <span class="string">"Apollo Rooms"</span>,</div><div class="line">           <span class="string">"Date"</span>: <span class="string">"1842-12-07T05:00:00Z"</span>,</div><div class="line">           <span class="string">"Time"</span>: <span class="string">"8:00PM"</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/* A program can have multiple concerts */</span></div><div class="line">      ],</div><div class="line">      <span class="string">"works"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"ID"</span>: <span class="string">"8834*4"</span>, <span class="comment">// e.g. "1234*1" - first part is the Work ID, second part is the NYP Movement ID</span></div><div class="line">          <span class="string">"composerName"</span>: <span class="string">"Weber,  Carl  Maria Von"</span>,</div><div class="line">          <span class="string">"workTitle"</span>: <span class="string">"OBERON"</span>,</div><div class="line">          <span class="string">"movement"</span>: <span class="string">"\"Ozean, du Ungeheuer\" (Ocean, thou mighty monster), Reiza (Scene and Aria), Act II"</span>,</div><div class="line">          <span class="string">"conductorName"</span>: <span class="string">"Timm, Henry C."</span>,</div><div class="line">          <span class="string">"soloists"</span>: [</div><div class="line">            &#123;</div><div class="line">              <span class="string">"soloistName"</span>: <span class="string">"Otto, Antoinette"</span>,</div><div class="line">              <span class="string">"soloistInstrument"</span>: <span class="string">"Soprano"</span>,</div><div class="line">              <span class="string">"soloistRoles"</span>: <span class="string">"S"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="comment">/* more soloists, if applicable. If no soloists, this will be an empty array */</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/* a program will usually have multiple works */</span></div><div class="line">        &#123;</div><div class="line">          <span class="string">"ID"</span>: <span class="string">"0*"</span>,</div><div class="line">          <span class="string">"interval"</span>: <span class="string">"Intermission"</span>,</div><div class="line">          <span class="string">"soloists"</span>: []</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/* Intermissions will also appear in the works array */</span></div><div class="line">      ]</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">/* more programs */</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="定义指标"><a href="#定义指标" class="headerlink" title="定义指标"></a>定义指标</h4><ul>
-<li>定义新指标：Coperformance</li>
-</ul>
-<p>鉴于演出历史库包含丰富的数据，我们最直接简单的想法是探索作曲家之间的联系 —— 作曲家在同一个演出中出现的频率是多少？我们使用这个指标是因为音乐总监经常根据主题将不同曲目放在一起，比如浪漫英雄主义（Romantic heroism），例如芝加哥交响乐团在安娜堡（Ann Arbor，密歇根州）演出曲目，包括贝多芬第五交响曲和马勒第一交响曲。</p>
-<p>连接两个作曲家的原因多种多样。可能是缘于他们都创作类似的音乐——使用相同的形式和技巧、以不同的方式，或者由一个有趣的传记联系在一起。无论是什么，我们都期望它会导致两个作曲家比其他人更频繁地编排在一起。我们可以基于纽约爱乐乐团的数据库探索这些联系，因为数据的特殊性和令人难以置信的时间跨度，甚至可以追溯到爱乐乐团历史上的第一季。</p>
-<p>为此，首先定义一个名为“Coperformance”指标。 Coperformance 值为：两位作曲家在同一节目中出现的次数和随机出现次数的比率。如果它的值大于 1，可以说两位作曲家以某种非常规的方式联系在一起。如果它的值小于或等于1，那么可以说这两位作曲家直接没有联系。</p>
-<p>例子。假设每 100 场节目中就有 1 场同时出现两位作曲家。为了简化数学运算，数据库中有一百万场演出。如果作曲家只是随机出现，我们假设所有节目中有第一位作曲家出现的概率为 1％ ，第二位作曲家出现的概率也为 1％，即所有节目中两位作曲家同时出现的概率为 0.01％（本例中为100场）。事实上，如果两位作曲家一起出现在 200 个程序中，那么 Coperformance 值就是2，数据显示他们之间的联系非常紧密。如果他们只出现在 90 个节目中，那么从数据上看，没有证据表明两位作曲家之间有任何联系，除了他们都是古典音乐作曲家而已。</p>
-<p>需要说明的是，Coperformance 指标只能衡量作曲家之间的链接数量，并不知道驱动链接的原因。如前所述，可能有各种各样的事物将作曲家联系起来并提高 Coperformance 值，从音乐风格到传记信息，“也许音乐总监喜欢两位作曲家的美学”。要弄清楚具体是什么驱动链接，需要另外检查它们出现在相同演出的原因，看看是否存在共同主题。</p>
-<h4 id="指标可视化"><a href="#指标可视化" class="headerlink" title="指标可视化"></a>指标可视化</h4><p>Coperformance 指标可视化可以基于社交网络（Social networks）实现。</p>
-<p>交友软件一般都是典型的社交网络，例如 Facebook/QQ/微信。社交网络主要由两部分组成：节点(nodes)和边(edges)。节点是网络中的个人，边是连接两个节点的线，就像两个 Facebook 好友一样。在我们的例子中，边是二元的和非定向的（两个人要么是、要么不是朋友；如果你不是我的朋友，我不能成为你的朋友）。实际上，边可以有不同的权重，也可以是定向的。</p>
-<p>在作曲家网络中，每个节点都是一个单独的作曲家，边是加权的，并通过 Coperformance 值表示具有相同链接的作曲家。如果一对作曲家的 Coperformance 值大于 1，他们之间就具有强化联系，如果 Coperformance 值小于或等于 1 就不会。我们可以通过调整边的权重，使得变的线条更大、颜色更深（通过Coperformance 表现强化链接）进一步可视化网络。也可以对节点做类似的事情，使作曲家的节点根据他们在演出历史中出现的次数而变得越来越大或越来越小。</p>
-<p>最后，可视化工具为了使网络更加漂亮，可以将作曲家分组为集群（clusters）或社区（communities）。如果几个作曲家交织在一起，那么他们彼此都会有很高的 Coperformance 值。这有点类似于 Facebook 上的社交圈（social clique）。集群可视化的实现方式简单说就是根据它们所属的社区对节点进行着色。对此，有两点需要特别说明：</p>
-<p>首先，关于聚类算法的工作原理超出了本文的范围，可以参考 <a href="https://en.wikipedia.org/wiki/Social_network_analysis" target="_blank" rel="external">Wikipedia page on social network analysis</a> 。</p>
-<p>其次，就像 Coperformance 值无法解释将作曲家链接在一起的原因一样，聚类算法也无法解释到底是什么原因导致聚集发生。这是属于音乐导演和音乐学家需要回答的问题，而不属于数学领域。</p>
-<p>总而言之，作曲家网络的节点代表单个作曲家，并且具有两个属性：大小表示他们上演的频率和颜色表示他们在网络中所属的集群。网络中的边表示作曲家之间的链接情况，随着连接变得越来越强边也就变得越来越大、颜色越来越深。</p>
-<h4 id="可视化编程"><a href="#可视化编程" class="headerlink" title="可视化编程"></a>可视化编程</h4><p>构建作曲家网络的过程可以分为三个主要步骤：从格式化文件中读取数据，迭代数据中的所有成对出现的作曲家以计算其 Coperformance 值，网络可视化。</p>
-<p>Go 语言在前两个步骤中表现非常棒，但它没有任何网络可视化软件包可以在易用性和功能性方面媲美 R igraph 和 R visNetwork 。此外，相比于类似的 Go 软件包，Rstudio shiny 在构建用户界面和下载数据方面更具优势。自然地，该项目使用 sexp 包（注：原作者编写的开源代码库）。上述所有元素组合在一起部署在服务器上，就可以实现作曲家网络及可视化应用。</p>
-<p>使用说明。用户指定数据范围（开始和结束时间）以及网络中需要包含的作曲家的Coperformance 指标最小值。</p>
-<p>首先，程序将这些数据文件的名称从 R（和 shiny 包）传递给 Go （使用 sexp 包）。然后，Go 读取文件，根据用户的规范解析数据，计算网络中所有作曲家成对出现的 Coperformance 值，并将结果写入用户可以下载的 JSON 和 csv 数据文件。接下来从 Go 获取数据文件名（通过 sexp 传递），计算网络中的集群，并将其可视化。</p>
-<p>在这个项目中，虽然在没有 sexp 软件包的情况下几乎不会像现在这样干净，但它确实暴露了 sexp 软件包的弱点。通过文件连接 R 语言和 Go 语言太麻烦了，因为 sexp 不支持在 R 语言和 Go 语言之间传递矩阵（matrix）或字符串向量 (vector)。使 sexp 软件包更加灵活、缩小这一差距，将是我接下来的首要工作。</p>
-<p>如果利用统计数据还可以改进作曲家网络。从统计学上讲，两位作曲家随机出现的出场次数不是一个特定的数字（如上例中的 100），而是基于概率的一系列数字。</p>
-<p>如果将实际观测到的次数与我们认为合适的显着性水平（可能为95％）的上限进行比较，则可能更准确。例如，在上面的案例中将是 101 而不是 100 。(编者注：由于假设检验是根据样本提供的信息进行推断的，也就有犯错误的可能。例如，原假设正确，而我们却把它当成错误的加以拒绝。犯这种错误的概率用 α 表示，统计上把 α 称为假设检验中的显著性水平，也就是决策中所面临的风险。它是公认的小概率事件的概率值，必须在每一次统计检验之前确定，通常取α＝0.05 或 α＝0.01 。这表明，当作出接受原假设的决定时，其正确的可能性/概率为 95％ 或 99％）</p>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="New-York-Philharmonic"><a href="#New-York-Philharmonic" class="headerlink" title="New York Philharmonic"></a>New York Philharmonic</h4><p>纽约爱乐（New York Philharmonic），正式全名为纽约爱乐交响乐协会（Philharmonic-Symphony Society of New York, Inc.），世界上历史最悠久的乐队之一， 1842 年在美国纽约市成立。纽约爱乐是美国成立时间最长的乐团，属于美国五大管弦乐团之一。纽约爱乐完成过多个音乐作品的美国首演，例如贝多芬的《第九交响曲》。纽约爱乐目前一年大约演出 180 场音乐会。</p>
-<ul>
-<li>官方网站（可检索自）：<a href="https://archives.nyphil.org" target="_blank" rel="external">https://archives.nyphil.org</a></li>
-</ul>
-<blockquote>
-<p>芝加哥交响乐团（穆蒂的新东家）的特点是有力量，以机床般强劲的铜管乐器为核心，这主要是由指挥弗里茨·莱纳(Fritz Reiner)带动起来的，后被格奥尔格·佐尔蒂(Georg Solti)进行了略带夸张的演绎；波士顿交响乐团的特点是稍微有点狂热，具有穿透力，很适合它演奏的法国音乐，指挥是查尔斯·明希(Charles Munch)和皮埃尔·蒙度(Pierre Monteux)；伦纳德·伯恩斯坦(Leonard Bernstein)领导下的纽约爱乐乐团的特点是态度轻松、随意。—— 《纽约时报》</p>
-</blockquote>
-<h4 id="Chicago-Youth-Symphony-Orchestra"><a href="#Chicago-Youth-Symphony-Orchestra" class="headerlink" title="Chicago Youth Symphony Orchestra"></a>Chicago Youth Symphony Orchestra</h4><ul>
-<li><a href="https://github.com/GPSBach/CYSOadvancements" target="_blank" rel="external">Chicago Youth Symphony Orchestra college advancement statistics for diversity initiative</a></li>
-</ul>
-<p>These statistics are of great concern to those within the classical music world, and especially amongst orchestras in Chicago, which is one of America’s most diverse cities.  To this end, several of the city’s leading classical music teaching institutions have formed a partnership to understand and enhance their roles in cultivating diverse professional musicians of tomorrow.  This group, the Chicago Musical Pathways Initiative, was built to identify talented, motivated students early in their training, provide them with the resources they need to help them achieve their full musical potential, and ultimately to increase diversity in America’s professional, musical landscape.</p>
-<p><img src="https://extraordinaryleastsquares.files.wordpress.com/2018/11/presentation1.png?w=1000&amp;h=562" alt=""></p>
-<h2 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h2><ul>
-<li><a href="https://overthinkdciapps.com/coperformance/" target="_blank" rel="external">Project Coperformance Site</a></li>
-<li><a href="https://github.com/EMurray16/coperformance" target="_blank" rel="external">Project Code:New York Philharmonic and Social Network Analysis</a></li>
-<li><a href="https://github.com/nyphilarchive/PerformanceHistory" target="_blank" rel="external">New York Philharmonic Performance History repository</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Social_network_analysis" target="_blank" rel="external">Wikipedia page on social network analysis</a></li>
-<li><a href="http://shiny.rstudio.com/" target="_blank" rel="external">R Shiny</a><br>Shiny is an R package that makes it easy to build interactive web apps straight from R. You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.</li>
-<li><a href="https://datastorm-open.github.io/visNetwork/" target="_blank" rel="external">R visNetwork</a><br>visNetwork is an R package for network visualization, using vis.js javascript library (<a href="http://visjs.org/" target="_blank" rel="external">http://visjs.org/</a>)</li>
-<li><a href="https://igraph.org/" target="_blank" rel="external">Project igraph</a><br>igraph is a collection of network analysis tools with the emphasis on efficiency, portability and ease of use. igraph is open source and free. igraph can be programmed in R, Python, Mathematica and C/C++.</li>
-<li><a href="https://github.com/EMurray16/Rgo/tree/master/sexp" target="_blank" rel="external">Project sexp (Rgo)</a></li>
-</ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2018/04/10/Artistic-Classical/" target="_blank" rel="external">古典音乐低俗史</a></li>
-</ul>
-<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><ul>
-<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
-<li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
-<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
-<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
-<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
-<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
-<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
-<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
-<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://zh.wikipedia.org/wiki/%E7%BA%BD%E7%BA%A6%E7%88%B1%E4%B9%90" target="_blank" rel="external">纽约爱乐</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/%E8%8A%9D%E5%8A%A0%E5%93%A5%E4%BA%A4%E5%93%8D%E4%B9%90%E5%9B%A2" target="_blank" rel="external">芝加哥交响乐团</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;基于 Go + R  可视化古典音乐作曲家社交网络&lt;/li&gt;
-&lt;li&gt;Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。&lt;/li&gt;
-&lt;li&gt;Key Words: Go , R , Composer , Visualization&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="数据可视化" scheme="https://riboseyim.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="Art" scheme="https://riboseyim.com/tags/Art/"/>
-    
-      <category term="Developer" scheme="https://riboseyim.com/tags/Developer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DevOps 漫谈:全生命周期构建管理</title>
-    <link href="https://riboseyim.com/2018/12/10/DevOps-Build/"/>
-    <id>https://riboseyim.com/2018/12/10/DevOps-Build/</id>
-    <published>2018-12-10T02:39:51.000Z</published>
-    <updated>2018-12-31T03:36:22.074Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>从源代码到产品</li>
-<li>构建全生命周期管理：以 Golang 为例</li>
-</ul>
-<a id="more"></a>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h2 id="构建生命周期"><a href="#构建生命周期" class="headerlink" title="构建生命周期"></a>构建生命周期</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/build_process_go_v1.png" alt=""></p>
-<ul>
-<li>Pre Step: clean、variables(project,module,version,timestamp)</li>
-<li>Build: compile、package</li>
-<li>Install: install Deps</li>
-<li>Test:</li>
-<li>Release: Tag、build archive</li>
-</ul>
-<h2 id="基于-Mage-构建管理"><a href="#基于-Mage-构建管理" class="headerlink" title="基于 Mage 构建管理"></a>基于 Mage 构建管理</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd $project/test</div><div class="line">$ mage build</div><div class="line">$ mage -compile ./static-output</div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//magefile.go</span></div><div class="line"><span class="comment">// +build mage</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"errors"</span></div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"os"</span></div><div class="line">	<span class="string">"os/exec"</span></div><div class="line">	<span class="string">"time"</span></div><div class="line"></div><div class="line">	<span class="string">"github.com/magefile/mage/mg"</span> <span class="comment">// mg contains helpful utility functions, like Deps</span></div><div class="line">	<span class="string">"github.com/magefile/mage/sh"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="comment">// ProjectName</span></div><div class="line">	os.Setenv(<span class="string">"MATTEL_REPO"</span>, <span class="string">"go-chilopod"</span>)</div><div class="line">	os.Setenv(<span class="string">"TAG"</span>, <span class="string">"v0.1.2"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Default target to run when none is specified</span></div><div class="line"><span class="comment">// If not set, running mage will list available targets</span></div><div class="line"><span class="comment">// var Default = Build</span></div><div class="line"></div><div class="line"><span class="comment">// A build step that requires additional params, or platform specific steps for example</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build_v1</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(InstallDeps)</div><div class="line">	fmt.Println(<span class="string">"Building..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"MyApp"</span>, <span class="string">"."</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Dep)</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"$MATTEL_REPO"</span>, <span class="string">"-ldflags="</span>+ldflags(), <span class="string">"github.com/riboseyim/$MATTEL_REPO"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Dep</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"dep"</span>, <span class="string">"ensure"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// A custom install step if you need your bin someplace other than go/bin</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Install</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Build)</div><div class="line">	fmt.Println(<span class="string">"Installing..."</span>)</div><div class="line">	<span class="keyword">return</span> os.Rename(<span class="string">"./MyApp"</span>, <span class="string">"/usr/bin/MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Manage your deps, or running package managers.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">InstallDeps</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"get"</span>, <span class="string">"github.com/stretchr/piglatin"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Clean up after yourself</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Clean</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Cleaning..."</span>)</div><div class="line">	os.RemoveAll(<span class="string">"MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Tools</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	<span class="comment">//mg.Deps(Protoc)</span></div><div class="line"></div><div class="line">	update := envBool(<span class="string">"UPDATE"</span>)</div><div class="line"></div><div class="line">	retool := <span class="string">"github.com/twitchtv/retool"</span></div><div class="line"></div><div class="line">	args := []<span class="keyword">string</span>&#123;<span class="string">"get"</span>, retool&#125;</div><div class="line">	<span class="keyword">if</span> update &#123;</div><div class="line">		args = []<span class="keyword">string</span>&#123;<span class="string">"get"</span>, <span class="string">"-u"</span>, retool&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> err := sh.Run(<span class="string">"go"</span>, args...); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> sh.Run(<span class="string">"retool"</span>, <span class="string">"sync"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// retool runs a command using a retool-cached binary.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">retool</span><span class="params">(cmd <span class="keyword">string</span>, args ...<span class="keyword">string</span>)</span> <span class="title">error</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> sh.Run(<span class="string">"retool"</span>, <span class="built_in">append</span>([]<span class="keyword">string</span>&#123;<span class="string">"do"</span>, cmd&#125;, args...)...)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Release</span><span class="params">()</span> <span class="params">(err error)</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> os.Getenv(<span class="string">"TAG"</span>) == <span class="string">""</span> &#123;</div><div class="line">		<span class="keyword">return</span> errors.New(<span class="string">"TAG environment variable is required"</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> err := sh.RunV(<span class="string">"git"</span>, <span class="string">"tag"</span>, <span class="string">"-a"</span>, <span class="string">"$TAG"</span>, <span class="string">"-m"</span>, <span class="string">"add tag $TAG by mage tools"</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> err := sh.RunV(<span class="string">"git"</span>, <span class="string">"push"</span>, <span class="string">"origin"</span>, <span class="string">"$TAG"</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> err</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">			sh.RunV(<span class="string">"git"</span>, <span class="string">"tag"</span>, <span class="string">"--delete"</span>, <span class="string">"$TAG"</span>)</div><div class="line">			sh.RunV(<span class="string">"git"</span>, <span class="string">"push"</span>, <span class="string">"--delete"</span>, <span class="string">"origin"</span>, <span class="string">"$TAG"</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;()</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"goreleaser"</span>, <span class="string">"release"</span>, <span class="string">"--skip-publish"</span>, <span class="string">"--rm-dist"</span>)</div><div class="line">	<span class="comment">//return retool("goreleaser")</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">ldflags</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	timestamp := time.Now().Format(time.RFC3339)</div><div class="line">	hash := hash()</div><div class="line">	tag := tag()</div><div class="line">	<span class="keyword">if</span> tag == <span class="string">""</span> &#123;</div><div class="line">		tag = <span class="string">"dev"</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> fmt.Sprintf(<span class="string">`-X "github.com/riboseyim/project/proj.timestamp=%s" `</span>+</div><div class="line">		<span class="string">`-X "github.com/riboseyim/project/proj.commitHash=%s" `</span>+</div><div class="line">		<span class="string">`-X "github.com/riboseyim/project/proj.gitTag=%s"`</span>, timestamp, hash, tag)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// tag returns the git tag for the current branch or "" if none.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tag</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	s, _ := sh.Output(<span class="string">"git"</span>, <span class="string">"describe"</span>, <span class="string">"--tags"</span>)</div><div class="line">	<span class="keyword">return</span> s</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// hash returns the git hash for the current repo or "" if none.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">hash</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	hash, _ := sh.Output(<span class="string">"git"</span>, <span class="string">"rev-parse"</span>, <span class="string">"--short"</span>, <span class="string">"HEAD"</span>)</div><div class="line">	<span class="keyword">return</span> hash</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">envBool</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	value := os.Getenv(key)</div><div class="line">	<span class="keyword">if</span> value != <span class="string">""</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ mage build</div><div class="line">Installing Deps...</div><div class="line"># github.com/riboseyim/<span class="keyword">go</span>-chilopod/vendor/<span class="keyword">go</span>.opencensus.io/trace</div><div class="line">vendor/<span class="keyword">go</span>.opencensus.io/trace/trace_go11.<span class="keyword">go</span>:<span class="number">30</span>:<span class="number">9</span>: undefined: trace.NewContext</div><div class="line">Error: running <span class="string">"go build -o go-chilopod -ldflags=-X "</span>github.com/riboseyim/project/proj.timestamp=<span class="number">2018</span><span class="number">-12</span><span class="number">-30</span>T21:<span class="number">54</span>:<span class="number">20</span>+<span class="number">08</span>:<span class="number">00</span><span class="string">" -X "</span>github.com/riboseyim/project/proj.commitHash=<span class="number">042e38</span>b<span class="string">" -X "</span>github.com/riboseyim/project/proj.gitTag=v0<span class="number">.1</span><span class="number">.1</span><span class="string">" github.com/riboseyim/go-chilopod"</span> failed with exit code <span class="number">2</span></div><div class="line"></div><div class="line">$ dep ensure -update</div></pre></td></tr></table></figure>
-<h2 id="构建工具集"><a href="#构建工具集" class="headerlink" title="构建工具集"></a>构建工具集</h2><ul>
-<li>集成管理：mage</li>
-<li>依赖管理：godep、retool</li>
-<li>发布管理：goreleaser</li>
-</ul>
-<h4 id="依赖管理工具定位"><a href="#依赖管理工具定位" class="headerlink" title="依赖管理工具定位"></a>依赖管理工具定位</h4><ul>
-<li>go get：管理 $GOPATH 代码</li>
-<li>依赖管理工具定位为管理应用代码</li>
-</ul>
-<h4 id="依赖分析工具：godag"><a href="#依赖分析工具：godag" class="headerlink" title="依赖分析工具：godag"></a>依赖分析工具：godag</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">godag --pkg_name=github.com/magefile/mage --pkg_path=/Users/yanrui/go/src/github.com/magefile/mage --depth=1 --dot_file_path=mage.dot</div></pre></td></tr></table></figure>
-<h4 id="go-dep"><a href="#go-dep" class="headerlink" title="go dep"></a>go dep</h4><blockquote>
-<p>Dep is a tool for managing dependencies for Go projects</p>
-</blockquote>
-<ul>
-<li>dep init: Gopkg.toml、vendor</li>
-<li>dep ensure: Gopkg.lock</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ dep</div><div class="line">Commands:</div><div class="line">  init     Set up a <span class="built_in">new</span> Go project, or migrate an existing one</div><div class="line">  status   Report the status of the projects dependencies</div><div class="line">  ensure   Ensure a dependency is safely vendored in the project</div><div class="line">  version  Show the dep version information</div><div class="line">  check    Check <span class="keyword">if</span> imports, Gopkg.toml, and Gopkg.lock are in sync</div><div class="line"></div><div class="line">Examples:</div><div class="line">  dep init                               set up a <span class="built_in">new</span> project</div><div class="line">  dep ensure                             install the projects dependencies</div><div class="line">  dep ensure -update                     update the locked versions of all dependencies</div><div class="line">  dep ensure -add github.com/pkg/errors  add a dependency to the project</div><div class="line"></div><div class="line"><span class="comment">// Error</span></div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$ dep init</div><div class="line">Importing configuration from govendor.</div><div class="line">These are only initial constraints, and are further refined during the solve process.</div><div class="line">Detected govendor configuration file...</div><div class="line">Converting from vendor.json...</div><div class="line">  Trying * (b1433c2) as initial lock <span class="keyword">for</span> imported dep github.com/Shopify/sarama</div><div class="line">  Trying * (ecdeabc) as initial lock <span class="keyword">for</span> imported dep github.com/davecgh/<span class="keyword">go</span>-spew</div><div class="line">  Trying * (b1fe83b) as initial lock <span class="keyword">for</span> imported dep github.com/eapache/<span class="keyword">go</span>-resiliency</div><div class="line">  Trying * (bb955e0) as initial lock <span class="keyword">for</span> imported dep github.com/eapache/<span class="keyword">go</span>-xerial-snappy</div><div class="line">  Using ^<span class="number">1.1</span><span class="number">.0</span> as initial constraint <span class="keyword">for</span> imported dep github.com/eapache/queue</div><div class="line">	..........</div><div class="line">  Locking in  (e19ae14) <span class="keyword">for</span> direct dep golang.org/x/text</div><div class="line">  Locking in v1<span class="number">.17</span><span class="number">.0</span> (df01485) <span class="keyword">for</span> transitive dep google.golang.org/grpc</div><div class="line">  Locking in  (<span class="number">7560714</span>) <span class="keyword">for</span> direct dep github.com/google/goexpect</div><div class="line">  Locking in  (fe724d1) <span class="keyword">for</span> direct dep github.com/magefile/mage</div><div class="line">Old vendor backed up to /Users/yanrui/<span class="keyword">go</span>/src/github.com/riboseyim/<span class="keyword">go</span>-chilopod/_vendor<span class="number">-20181230213719</span></div><div class="line"></div><div class="line"></div><div class="line">aca80164:<span class="keyword">go</span>-chilopod kurui$ dep status</div><div class="line">PROJECT                              CONSTRAINT     VERSION        REVISION  LATEST   PKGS USED</div><div class="line">github.com/Shopify/sarama            *                             b1433c2            <span class="number">1</span>   </div><div class="line"><span class="keyword">go</span>.opencensus.io                     *                             <span class="number">9f</span>6adc5            <span class="number">3</span>  </div><div class="line">github.com/eapache/queue             v1<span class="number">.1</span><span class="number">.0</span>         v1<span class="number">.1</span><span class="number">.0</span>         <span class="number">44</span>cc805   v1<span class="number">.1</span><span class="number">.0</span>   <span class="number">1</span>     </div><div class="line">github.com/pierrec/lz4               v1<span class="number">.1</span>           v1<span class="number">.1</span>           <span class="number">2f</span>cda4c   v1<span class="number">.1</span>     <span class="number">1</span>  </div><div class="line">github.com/soniah/gosnmp             branch master  branch master  cd9a07a   cd9a07a  <span class="number">1</span>  </div><div class="line">github.com/sparrc/<span class="keyword">go</span>-ping            branch master  branch master  ef3ab45   ef3ab45  <span class="number">1</span>  </div><div class="line">google.golang.org/grpc               v1<span class="number">.17</span><span class="number">.0</span>        v1<span class="number">.17</span><span class="number">.0</span>        df01485   v1<span class="number">.17</span><span class="number">.0</span>  <span class="number">1</span></div></pre></td></tr></table></figure>
-<h4 id="godep"><a href="#godep" class="headerlink" title="godep"></a>godep</h4><blockquote>
-<p>Godep is a tool for managing Go package dependencies.</p>
-</blockquote>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">godep <span class="keyword">go</span> run</div><div class="line">godep <span class="keyword">go</span> build</div></pre></td></tr></table></figure>
-<p>注意：</p>
-<ul>
-<li>1) 如果使用 godep 包管理工具则不能在使用 go run 和 go build，否则还是会到 $GOPATH 目录匹配第三方库。</li>
-<li>2) 目录结构 ./Godeps 、./vendor</li>
-<li>3) 安装问题：墙内用户可能会遇到 can not found golang.org/x/…</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ godep</div><div class="line">Usage:</div><div class="line">	godep command [arguments]</div><div class="line"></div><div class="line">The commands are:</div><div class="line">    save     list and <span class="built_in">copy</span> dependencies into Godeps</div><div class="line">    <span class="keyword">go</span>       run the <span class="keyword">go</span> tool with saved dependencies</div><div class="line">    get      download and install packages with specified dependencies</div><div class="line">    path     <span class="built_in">print</span> GOPATH <span class="keyword">for</span> dependency code</div><div class="line">    restore  check out listed dependency versions in GOPATH</div><div class="line">    update   update selected packages or the <span class="keyword">go</span> version</div><div class="line">    diff     shows the diff between current and previously saved set of dependencies</div><div class="line">    version  show version info</div><div class="line"></div><div class="line"><span class="comment">//官方:GFW Error can not found golang.org/x/.......</span></div><div class="line"><span class="keyword">go</span> get github.com/tools/godep</div><div class="line"></div><div class="line"><span class="comment">//镜像:https://github.com/golang/tools</span></div><div class="line"></div><div class="line"><span class="keyword">go</span> get github.com/golang/tools</div><div class="line"></div><div class="line">mkdir $GOPATH/src/golang.org/x</div><div class="line"></div><div class="line"><span class="comment">// 安装 godep -&gt; $GOPATH\bin</span></div><div class="line"><span class="keyword">go</span> get github.com/tools/godep</div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">$ godep save</div><div class="line">drwxr-xr-x   <span class="number">4</span> kurui  staff   <span class="number">128</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Godeps</div><div class="line">$ ls -rlt Godeps</div><div class="line">-rw-r--r--  <span class="number">1</span> kurui  staff   <span class="number">136</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Readme</div><div class="line">-rw-r--r--  <span class="number">1</span> kurui  staff  <span class="number">4074</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> Godeps.json</div><div class="line"></div><div class="line">$ more Godeps/Godeps.json</div><div class="line">&#123;</div><div class="line">        <span class="string">"ImportPath"</span>: <span class="string">"github.com/riboseyim/go-chilopod"</span>,</div><div class="line">        <span class="string">"GoVersion"</span>: <span class="string">"go1.11"</span>,</div><div class="line">        <span class="string">"GodepVersion"</span>: <span class="string">"v80"</span>,</div><div class="line">        <span class="string">"Deps"</span>: [</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/Shopify/sarama"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.15.0-13-gb1433c2"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"b1433c29241f23cec4704daf4d25358b7b3fbf9e"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/davecgh/go-spew/spew"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.1.0-9-gecdeabc"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"ecdeabc65495df2dec95d7c4a4c3e021903035e5"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                        <span class="string">"ImportPath"</span>: <span class="string">"github.com/eapache/go-resiliency/breaker"</span>,</div><div class="line">                        <span class="string">"Comment"</span>: <span class="string">"v1.0.0-6-gb1fe83b"</span>,</div><div class="line">                        <span class="string">"Rev"</span>: <span class="string">"b1fe83b5b03f624450823b751b662259ffc6af70"</span></div><div class="line">                &#125;,</div><div class="line">				.......</div><div class="line">				]</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ ls -rlt vendor/</div><div class="line">drwxr-xr-x  <span class="number">14</span> kurui  staff   <span class="number">448</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> github.com</div><div class="line">drwxr-xr-x   <span class="number">3</span> kurui  staff    <span class="number">96</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> golang.org</div><div class="line">-rw-r--r--   <span class="number">1</span> kurui  staff  <span class="number">8279</span> <span class="number">12</span> <span class="number">23</span> <span class="number">21</span>:<span class="number">12</span> vendor.json</div><div class="line">drwxr-xr-x   <span class="number">6</span> kurui  staff   <span class="number">192</span> <span class="number">12</span> <span class="number">24</span> <span class="number">11</span>:<span class="number">18</span> <span class="keyword">go</span>.opencensus.io</div><div class="line"></div><div class="line"><span class="comment">// 更新</span></div><div class="line">$ <span class="keyword">go</span> get a/b/xxx</div><div class="line">$ godep update a/b/..</div></pre></td></tr></table></figure>
-<h4 id="Retool"><a href="#Retool" class="headerlink" title="Retool"></a>Retool</h4><ul>
-<li><a href="https://github.com/twitchtv/retool" target="_blank" rel="external">Project Retool</a></li>
-</ul>
-<blockquote>
-<p>It’s like dep but for go tools, pinning revisions so that all your developers run the exact same version.</p>
-</blockquote>
-<h4 id="Goreleaser"><a href="#Goreleaser" class="headerlink" title="Goreleaser"></a>Goreleaser</h4><ul>
-<li><a href="https://goreleaser.com/" target="_blank" rel="external">Project Goreleaser</a></li>
-</ul>
-<blockquote>
-<p>GoReleaser will build the binaries for your app for Windows, Linux and macOS, both amd64 and i386 architectures</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ brew install goreleaser</div><div class="line">$ cp /usr/<span class="built_in">local</span>/Cellar/goreleaser/0.94.0/bin/goreleaser /user/<span class="built_in">local</span>/bin/</div><div class="line">$</div><div class="line">$ goreleaser init</div><div class="line">• Generating .goreleaser.yml file</div><div class="line">• config created; please edit accordingly to your needs file=.goreleaser.yml</div><div class="line">$</div></pre></td></tr></table></figure>
-<ul>
-<li>goreleaser.yml</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This is an example goreleaser.yaml file with some sane defaults.</span></div><div class="line"><span class="comment"># Make sure to check the documentation at http://goreleaser.com</span></div><div class="line">before:</div><div class="line">  hooks:</div><div class="line">    <span class="comment"># you may remove this if you don't use vgo</span></div><div class="line">    - go mod download</div><div class="line">    <span class="comment"># you may remove this if you don't need go generate</span></div><div class="line">    - go generate ./...</div><div class="line">builds:</div><div class="line">- env:</div><div class="line">  - CGO_ENABLED=0</div><div class="line">archive:</div><div class="line">  replacements:</div><div class="line">    darwin: Darwin</div><div class="line">    linux: Linux</div><div class="line">    windows: Windows</div><div class="line">    386: i386</div><div class="line">    amd64: x86_64</div><div class="line">checksum:</div><div class="line">  name_template: <span class="string">'checksums.txt'</span></div><div class="line">snapshot:</div><div class="line">  name_template: <span class="string">"&#123;&#123; .Tag &#125;&#125;-next"</span></div><div class="line">changelog:</div><div class="line">  sort: asc</div><div class="line">  filters:</div><div class="line">    exclude:</div><div class="line">    - <span class="string">'^docs:'</span></div><div class="line">    - <span class="string">'^test:'</span></div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">$ git tag -a v0<span class="number">.1</span><span class="number">.0</span> -m <span class="string">"First release"</span></div><div class="line">$ git push --tags origin master</div><div class="line">$ goreleaser release --skip-publish</div><div class="line"></div><div class="line">   • releasing using goreleaser <span class="number">0.94</span><span class="number">.0</span>...</div><div class="line">   • loading config file       file=.goreleaser.yml</div><div class="line">   • RUNNING BEFORE HOOKS</div><div class="line">      • running <span class="keyword">go</span> generate ./...</div><div class="line">   • GETTING AND VALIDATING GIT STATE</div><div class="line">      • releasing v0<span class="number">.1</span><span class="number">.0</span>, commit <span class="number">1f</span>47832dffd1c84f65a16ed01868bb29f1419e0e</div><div class="line">   • SETTING DEFAULTS</div><div class="line">      • Invalid value %!s(MISSING) <span class="keyword">for</span> prerelease. Should be auto, <span class="literal">true</span> or <span class="literal">false</span></div><div class="line">   • CHECKING ./DIST  </div><div class="line">   • WRITING EFFECTIVE CONFIG FILE</div><div class="line">      • writing                   config=dist/config.yaml</div><div class="line">   • GENERATING CHANGELOG</div><div class="line">      • writing                   changelog=dist/CHANGELOG.md</div><div class="line">   • LOADING ENVIRONMENT VARIABLES</div><div class="line">      • skipped                   reason=publishing is disabled</div><div class="line">   • BUILDING BINARIES</div><div class="line">      • building                  binary=dist/linux_386/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/darwin_amd64/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/darwin_386/<span class="keyword">go</span>-chilopod</div><div class="line">      • building                  binary=dist/linux_amd64/<span class="keyword">go</span>-chilopod</div><div class="line">   • ARCHIVES         </div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_i386.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_i386.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_x86_64.tar.gz</div><div class="line">      • creating                  archive=dist/<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_x86_64.tar.gz</div><div class="line">   • LINUX PACKAGES WITH NFPM</div><div class="line">      • skipped                   reason=no output formats configured</div><div class="line">   • SNAPCRAFT PACKAGES</div><div class="line">      • skipped                   reason=no summary nor description were provided</div><div class="line">   • CALCULATING CHECKSUMS</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_x86_64.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_i386.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Linux_i386.tar.gz</div><div class="line">      • checksumming              file=<span class="keyword">go</span>-chilopod_0<span class="number">.1</span><span class="number">.0</span>_Darwin_x86_64.tar.gz</div><div class="line">   • SIGNING ARTIFACTS</div><div class="line">      • skipped                   reason=artifact signing is disabled</div><div class="line">   • DOCKER IMAGES    </div><div class="line">      • skipped                   reason=docker section is not configured</div><div class="line">   • PUBLISHING       </div><div class="line">      • skipped                   reason=publishing is disabled</div><div class="line">   • release succeeded after <span class="number">13.70s</span></div></pre></td></tr></table></figure>
-<h4 id="Mage"><a href="#Mage" class="headerlink" title="Mage"></a>Mage</h4><ul>
-<li><a href="https://magefile.org" target="_blank" rel="external">Project Mage</a></li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">go</span> get -u -d github.com/magefile/mage</div><div class="line">$ cd $GOPATH/src/github.com/magefile/mage</div><div class="line">$ <span class="keyword">go</span> run bootstrap.<span class="keyword">go</span></div><div class="line">Running target: Install</div><div class="line">exec: <span class="keyword">go</span> env GOPATH</div><div class="line">exec: git rev-parse --short HEAD</div><div class="line">exec: git describe --tags</div><div class="line">exec: <span class="keyword">go</span> build -o /Users/yanrui/<span class="keyword">go</span>/bin/mage -ldflags=-X <span class="string">"github.com/magefile/mage/mage.timestamp=2018-12-10T10:36:22+08:00"</span> -X <span class="string">"github.com/magefile/mage/mage.commitHash=fe724d1"</span> -X <span class="string">"github.com/magefile/mage/mage.gitTag=v1.7.1-2-gfe724d1"</span> github.com/magefile/mage</div><div class="line"></div><div class="line">$ cd $project/test</div><div class="line">$ mage build</div><div class="line">$ mage -compile ./static-output</div></pre></td></tr></table></figure>
-<ul>
-<li>default magefile.go</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mage -init</span></div><div class="line"><span class="comment">// +build mage</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"os"</span></div><div class="line">	<span class="string">"os/exec"</span></div><div class="line"></div><div class="line">	<span class="string">"github.com/magefile/mage/mg"</span> <span class="comment">// mg contains helpful utility functions, like Deps</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// Default target to run when none is specified</span></div><div class="line"><span class="comment">// If not set, running mage will list available targets</span></div><div class="line"><span class="comment">// var Default = Build</span></div><div class="line"></div><div class="line"><span class="comment">// A build step that requires additional params, or platform specific steps for example</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Build</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line"><span class="comment">//</span></div><div class="line">	mg.Deps(Dep)</div><div class="line">	<span class="keyword">return</span> sh.RunV(<span class="string">"go"</span>, <span class="string">"build"</span>, <span class="string">"-o"</span>, <span class="string">"project"</span>, <span class="string">"-ldflags="</span>+ldflags(), <span class="string">"github.com/riboseyim/chilopod"</span>)</div><div class="line"><span class="comment">//</span></div><div class="line">		<span class="comment">//mg.Deps(Dep)</span></div><div class="line">    <span class="comment">//return sh.RunV("go", "build", "-o", "$MATTEL_REPO", "-ldflags="+ldflags(), "github.com/riboseyim/$MATTEL_REPO")</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// A custom install step if you need your bin someplace other than go/bin</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Install</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	mg.Deps(Build)</div><div class="line">	fmt.Println(<span class="string">"Installing..."</span>)</div><div class="line">	<span class="keyword">return</span> os.Rename(<span class="string">"./MyApp"</span>, <span class="string">"/usr/bin/MyApp"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Manage your deps, or running package managers.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">InstallDeps</span><span class="params">()</span> <span class="title">error</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Installing Deps..."</span>)</div><div class="line">	cmd := exec.Command(<span class="string">"go"</span>, <span class="string">"get"</span>, <span class="string">"github.com/stretchr/piglatin"</span>)</div><div class="line">	<span class="keyword">return</span> cmd.Run()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Clean up after yourself</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Clean</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"Cleaning..."</span>)</div><div class="line">	os.RemoveAll(<span class="string">"MyApp"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>mage options</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">mage [options] [target]</div><div class="line"></div><div class="line">Mage is a make-like command runner.  See https://magefile.org for full docs.</div><div class="line"></div><div class="line">Commands:</div><div class="line">  -clean    clean out old generated binaries from CACHE_DIR</div><div class="line">  -compile &lt;string&gt;</div><div class="line">            output a static binary to the given path</div><div class="line">  -init     create a starting template if no mage files exist</div><div class="line">  -l        list mage targets in this directory</div><div class="line">  -h        show this help</div><div class="line">  -version  show version info for the mage binary</div><div class="line"></div><div class="line">Options:</div><div class="line">  -d &lt;string&gt;</div><div class="line">          run magefiles in the given directory (default ".")</div><div class="line">  -debug  turn on debug messages</div><div class="line">  -h      show description of a target</div><div class="line">  -f      force recreation of compiled magefile</div><div class="line">  -keep   keep intermediate mage files around after running</div><div class="line">  -gocmd &lt;string&gt;</div><div class="line">          use the given go binary to compile the output (default: "go")</div><div class="line">  -t &lt;string&gt;</div><div class="line">          timeout in duration parsable format (e.g. 5m30s)</div><div class="line">  -v      show verbose output when running mage targets</div></pre></td></tr></table></figure>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="external">DevOps 漫谈系列</a></h4><ul>
-<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="external">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="external">Kanban 看板管理实践</a></li>
-<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="external">DevOps 漫谈：基础设施部署和配置管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="external">工程师的自我修养：全英文技术学习实践</a></li>
-</ul>
-<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="external">DevOps 实践的本质是文化</a></h4><ul>
-<li>学习力－团队生命之根</li>
-<li>带领团队翻译书籍</li>
-<li>Don’t make me think</li>
-<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://blog.gopheracademy.com/advent-2018/mage-best-practices/" target="_blank" rel="external">Best Practices for Using Mage To Build Your Project  </a></li>
-<li><a href="https://studygolang.com/articles/10589" target="_blank" rel="external">Golang官方依赖管理工具：dep</a></li>
-<li><a href="https://blog.gopheracademy.com/advent-2018/building-ci-cd-slack-bot/" target="_blank" rel="external">Building a CI/CD Bot with Slack and Kubernetes.</a></li>
-<li><a href="https://gocn.vip/article/414" target="_blank" rel="external">官方依赖管理工具：dep</a></li>
-<li><a href="https://halfrost.com/go_command/" target="_blank" rel="external">初探 Go 的编译命令执行过程</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;从源代码到产品&lt;/li&gt;
-&lt;li&gt;构建全生命周期管理：以 Golang 为例&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="Golang" scheme="https://riboseyim.com/tags/Golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Economist 2018年度推荐书单</title>
-    <link href="https://riboseyim.com/2018/12/08/Economist-Books-Year-2018/"/>
-    <id>https://riboseyim.com/2018/12/08/Economist-Books-Year-2018/</id>
-    <published>2018-12-08T11:23:36.000Z</published>
-    <updated>2018-12-09T16:55:56.483Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li><a href="https://riboseyim.github.io/2018/12/08/Economist-Books-Year-2018/" target="_blank" rel="external">The Economist:Books of the Year 2018</a></li>
-<li><a href="https://riboseyim.github.io/2018/01/30/Economist-Books-Year-2017/" target="_blank" rel="external">The Economist:Books of the Year 2017</a></li>
-<li><a href="https://riboseyim.github.io/2016/12/09/Economist-Books-Year-2016/" target="_blank" rel="external">The Economist:Books of the Year 2016</a></li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><a href="https://www.economist.com/books-and-arts/2018/12/01/the-economists-books-of-the-year" target="_blank" rel="external">原文链接 The Economist’s books of the year</a></li>
-</ul>
-<blockquote>
-<p>They are about corruption, blood, slavery, survivalism, espionage and a drifting second-world-war veteran.</p>
-</blockquote>
-<h2 id="重点推荐"><a href="#重点推荐" class="headerlink" title="重点推荐"></a>重点推荐</h2><h2 id="政策类"><a href="#政策类" class="headerlink" title="政策类"></a>政策类</h2><h4 id="Moneyland-Why-Thieves-And-Crooks-Now-Rule-The-World-And-How-To-Take-It-Back"><a href="#Moneyland-Why-Thieves-And-Crooks-Now-Rule-The-World-And-How-To-Take-It-Back" class="headerlink" title="Moneyland:Why Thieves And Crooks Now Rule The World And How To Take It Back"></a>Moneyland:Why Thieves And Crooks Now Rule The World And How To Take It Back</h4><ul>
-<li>作者：奥利弗·布洛（Oliver Bullough）</li>
-<li>售价：298 pages; £20 | St Martin’s Press in May $28.99 | ￥196（精装）</li>
-<li><p>链接：<a href="https://www.amazon.cn/dp/125020870X" target="_blank" rel="external">https://www.amazon.cn/dp/125020870X</a></p>
-</li>
-<li><p>内容概要</p>
-</li>
-</ul>
-<p>Moneyland是作者布洛虚构的一个词汇，指的是一个让全世界富豪权贵们洗钱的地方。</p>
-<p>富人怎样把超级财富藏到税务局不找到的地方？作者以苏联遗贵为主线，收集了律师、会计、金融诈骗集团的多方故事，勾勒出财产转移的世界地图。在这本书里，布洛讲讲述他在 Moneyland 的发现 —— 这是由一群无法无天，无国籍的超级富豪组成的秘密国家。你将会在书中看到欧洲和美国的机构如何为这些洗钱的人服务，从而破坏了西方世界稳定的根源。你会了解到整个世界为这种无秩序的商业活动付出的代价，还有有志之士是如何反击他们的。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>奥利弗·布洛（Oliver Bullough）著有两部关于俄罗斯历史和政治的非虚构作品，《俄罗斯的最后一人》（THE LAST MAN IN RUSSIA）以及《声名鹊起》（LET OUR FAME BE GREAT），并凭此入围英国奥威尔奖（Orwell Prize）短名单，获得美国科尼利厄斯·瑞安奖（Cornelius Ryan）。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Economist_2018_MoneyLand.jpg-1024_800_nologo" alt=""></p>
-<h4 id="Shadows-of-Empire"><a href="#Shadows-of-Empire" class="headerlink" title="Shadows of Empire"></a>Shadows of Empire</h4><ul>
-<li>作者：Michael Kenny and Nick Pearce</li>
-<li>售价：200 pages; $19.95 and £14.99</li>
-<li>链接：<a href="https://www.amazon.co.uk/Shadows-Empire-Anglosphere-British-Politics/dp/1509516611" target="_blank" rel="external">https://www.amazon.co.uk/Shadows-Empire-Anglosphere-British-Politics/dp/1509516611</a></li>
-<li>内容概要</li>
-</ul>
-<p>基于对英国，美国，加拿大，澳大利亚和新西兰英语国家之间特殊联系的信念，被支持者称为“Anglosphere”，批评者称之为“Empire 2.0”。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Economist_2018_Anglosphere_Map.png-1024_800_nologo" alt=""></p>
-<p>“Anglosphere”（中文常译为：英语圈） 并不是一个常用术语。首先是由美国科幻作家尼尔·斯蒂芬森在他的《钻石年代》（1995年出版）中创造出的，最初并没有详细定义。 《韦氏字典》将其定义为“这个世界上英语语言及文化主宰的国家”（the countries of the world in which the English language and cultural values predominate）。</p>
-<p>在这本书中，迈克尔·肯尼（Michael Kenny）和尼克·皮尔斯（Nick Pearce）将这一想法的历史渊源追溯到大英帝国在维多利亚时代晚期。他们展示了英国政治人物，从丘吉尔到撒切尔，如何不断改写它以及如何通过一群右翼政治家，历史学家和小册子来恢复它。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Economist_2018_Queen_Elizabeth_1956.jpg-1024_800_nologo" alt=""></p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p><a href="https://www.polis.cam.ac.uk/Staff_and_Students/professor-micheal-kenny" target="_blank" rel="external">Michael Kenny</a> 剑桥大学公共政策教授。苏格兰议会专家小组成员，就英国退欧的宪法影响提供政策建议。</p>
-<p><a href="https://www.bath.ac.uk/profiles/director-of-the-institute-for-policy-research-ipr-and-professor-of-public-policy-nick-pearce/" target="_blank" rel="external">Nick Pearce</a> 英国巴斯大学（University of Bath）公共政策教授。政策研究所（The Institute for Policy Research,IPR）主任，领导政策研究所（IPR）的研究，教学，政策计划和公众参与活动。</p>
-<h2 id="历史类"><a href="#历史类" class="headerlink" title="历史类"></a>历史类</h2><h4 id="A-History-of-America-in-100-Maps"><a href="#A-History-of-America-in-100-Maps" class="headerlink" title="A History of America in 100 Maps"></a>A History of America in 100 Maps</h4><ul>
-<li>作者：Susan Schulten</li>
-<li>售价：University of Chicago Press; 256 pages; $35. British Library; £30 | ￥259</li>
-<li>链接：<a href="https://www.amazon.cn/dp/022645861X" target="_blank" rel="external">https://www.amazon.cn/dp/022645861X</a></li>
-<li>内容概要</li>
-</ul>
-<p>在本书中，Susan Schulten 使用地图探索了美国五个世纪的历史，从大航海时代到数字时代。</p>
-<p>全书 100 幅全彩色地图主要来自英国图书馆档案，并按照时间顺序编成九个章节。其中一些地图是由成熟的制图员制作的，而另一些是由不知名的人制作的，例如切诺基部落领导人，前线士兵和第一代正式接受教育的女孩。有些是政治和外交的工具，有些则是社会改革甚至广告和娱乐的工具。作者发掘了每一幅地图的特征，并就其更大的历史意义进行讨论，从而传达对过去的全新视角。</p>
-<p>本书提供富有想象力和视觉吸引力的美国历史之旅，向读者展示了一种驾驭自己世界的新方式。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p><a href="https://en.wikipedia.org/wiki/Susan_Schulten" target="_blank" rel="external">Susan Schulten</a> 美国丹佛大学教授，历史学家。本科毕业于加州大学伯克利分校，并从宾夕法尼亚大学获得博士学位。</p>
-<h4 id="The-China-Mission-George-Marshall’s-Unfinished-War-1945-1947"><a href="#The-China-Mission-George-Marshall’s-Unfinished-War-1945-1947" class="headerlink" title="The China Mission: George Marshall’s Unfinished War, 1945-1947"></a>The China Mission: George Marshall’s Unfinished War, 1945-1947</h4><ul>
-<li>作者：Daniel Kurtz-Phelan</li>
-<li>售价：W.W. Norton &amp; Company; 496 pages; $28.95</li>
-<li>链接：<a href="https://www.amazon.com/China-Mission-Marshalls-Unfinished-1945-1947/dp/0393240959" target="_blank" rel="external">https://www.amazon.com/China-Mission-Marshalls-Unfinished-1945-1947/dp/0393240959</a></li>
-<li>内容概要</li>
-</ul>
-<p>乔治·卡特利特·马歇尔(George Catlett Marshall)堪称美国历史上最伟大的军人政治家之一，他的成就可比德怀特·艾森豪威尔(Dwight Eisenhower)，或许还堪与乔治·华盛顿(George Washington)本人相提并论。 1939年，他被富兰克林·罗斯福(Franklin Roosevelt)任命为参谋长，负责将美国陆军从一支弱小、萎靡的部队，转变为一座强大的战争机器。他被哈利·杜鲁门(Harry Truman)誉为「二战中最伟大的人物」，被温斯顿·邱吉尔(Winston Churchill)誉为真正的「胜利建筑师」，在塑造战后不稳定的和平之中，他也发挥了重要作用。</p>
-<p>但是，在马歇尔的众多成功之中，夹杂着一次重大失败。他在退伍后回到了位于维吉尼亚州利斯堡的家中，但是没休息几天就肩负特殊使命飞往中国。然而，这一使命以失败为终，中国陷入了内战。这本书即讲述了一位战士和政治家的经历，同时提醒了现代读者：美国的影响力有其边界。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p><a href="https://www.cfr.org/expert/daniel-kurtz-phelan" target="_blank" rel="external">Daniel Kurtz-Phelan</a> 《外交》（Foreign Affairs）杂志执行编辑(2017年10月~)。曾担任美国国务院政策规划团队（The Policy Planning Staff）成员。</p>
-<p>《外交》（Foreign Affairs），由美国著名的智库美国外交关系协会主办，为美国国际事务及外交政策研究领域最权威、影响力最大的学术杂志之一。杂志于1922年开始出版。1947年7月，《外交》刊登了乔治·凯南的文章X Article，使外界首次了解到遏制战略思想。</p>
-<p>The Policy Planning Staff，内部缩写 S/P，是美国国务院的主要战略部门。有时也称为政策规划委员会/办公室。它由着名的外交官乔治·凯南（George F. Kennan）于1947年根据国务卿乔治·马歇尔（George Marshall）的要求创建，“作为国务卿独立政策分析和建议的来源”。该委员会的的第一个任务是设计马歇尔计划。</p>
-<h2 id="商业经济类"><a href="#商业经济类" class="headerlink" title="商业经济类"></a>商业经济类</h2><h4 id="We-the-Corporations-How-American-Businesses-Won-Their-Civil-Rights"><a href="#We-the-Corporations-How-American-Businesses-Won-Their-Civil-Rights" class="headerlink" title="We the Corporations: How American Businesses Won Their Civil Rights"></a>We the Corporations: How American Businesses Won Their Civil Rights</h4><ul>
-<li>作者：亚当·温克勒（Adam Winkler）</li>
-<li>售价：Liveright; 496 pages; $28.95</li>
-<li>链接：<a href="https://www.amazon.com/We-Corporations-American-Businesses-Rights/dp/0871407124" target="_blank" rel="external">https://www.amazon.com/We-Corporations-American-Businesses-Rights/dp/0871407124</a></li>
-<li>内容概要</li>
-</ul>
-<p>本书记载了美国历史上最成功但最不为人知的“民权运动”的故事。</p>
-<p>​​​亚当·温克勒（Adam Winkler）从殖民时代开始他的叙述，重点分析了美国最高法院历史上最具争议的裁决之一：2010年对联合公民（Citizen United）诉联邦选举委员会一案的裁决，揭示了公司对民主和宪法本身形成的深远影响。关于公司权利的第一个最高法院案件开始于 1809 年，相较于关于非裔美国人或妇女权利的第一个可比案例还要早半个世纪。从那以后，企业开展了一场持久而卓有成效的运动，以赢得越来越多的个人权利。</p>
-<p>企业是与个人具有同等意义的“公民”，还是一种具有与个体不同权利和责任的实体？一系列法庭胜利让美国企业逐步争取到了越来越多的“公民权”，但企业人格化背后还有更多复杂的政治问题。本书为所有对美国历史、法律和政治感兴趣的人带来了富有启发的阅读。</p>
-<p>本书同时入围2018年非小说类国家图书奖、纽约时报年度书籍、华盛顿邮报年度书籍、经济学人年度最佳书籍。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>​​亚当·温克勒（Adam Winkler），加州大学洛杉矶分校宪法教授。<br>温克勒是奥斯卡获奖电影制片人欧文·温克勒的最小儿子。小时候，他在电影中扮演过小角色。</p>
-<p>其它作品：《Gunfight: The Battle over the Right to Bear Arms in America》</p>
-<h4 id="AI-Superpowers-China-Silicon-Valley-and-the-New-World-Order"><a href="#AI-Superpowers-China-Silicon-Valley-and-the-New-World-Order" class="headerlink" title="AI Superpowers: China, Silicon Valley and the New World Order"></a>AI Superpowers: China, Silicon Valley and the New World Order</h4><ul>
-<li>作者：李开复（Kai-Fu Lee）</li>
-<li>售价：Houghton Mifflin Harcourt; 272 pages; $28 | RMB 99 ebook</li>
-<li>链接：<a href="https://www.amazon.co.uk/AI-Superpowers-China-Silicon-Valley/dp/132854639X" target="_blank" rel="external">https://www.amazon.co.uk/AI-Superpowers-China-Silicon-Valley/dp/132854639X</a></li>
-<li>内容概要</li>
-</ul>
-<p>李开复，现任创新工场的董事长兼首席执行官。IT 业界知名经理人和计算机科学家。曾在苹果、SGI、微软和 Google 等多家 IT 公司担当要职。<br>李开复在本书中预言中国将主宰人工智能。他认为中国将粉碎硅谷，因为它拥有更多的数据，蔑视隐私，并且更加无情地竞争。<br>李开复说，“如果数据是新的石油，那么中国就是新的沙特阿拉伯。”</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>美国参议员马克·华纳（Mark Warner，参议院民主党党团副主席，曾任维吉尼亚州州长）将《AI Superpowers》一书列入他的2018年推荐阅读书单<a href="https://www.politico.com/interactives/2018/politico-50-book-picks/" target="_blank" rel="external">The 2018 POLITICO 50 Reading List</a>。</p>
-<h2 id="科学技术类"><a href="#科学技术类" class="headerlink" title="科学技术类"></a>科学技术类</h2><h4 id="Beyond-Weird"><a href="#Beyond-Weird" class="headerlink" title="Beyond Weird"></a>Beyond Weird</h4><ul>
-<li>作者：Philip Ball</li>
-<li>售价：University of Chicago Press; 384 pages; $26. Bodley Head; £17.99</li>
-<li>链接：<a href="https://www.amazon.com/Beyond-Weird-Philip-Ball-ebook/dp/B0732LTBQT" target="_blank" rel="external">https://www.amazon.com/Beyond-Weird-Philip-Ball-ebook/dp/B0732LTBQT</a></li>
-<li>内容概要</li>
-</ul>
-<p>大多数关于量子力学的书都强调它的古怪，大众通常也觉得非常令人困惑、难以理解。<br>本书作者尝试以轻松简单的方式入手，简单而深思熟虑地解释主题，揭示了理论的真正力量。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p><a href="https://en.wikipedia.org/wiki/Philip_Ball" target="_blank" rel="external">菲利普·鲍尔（Philip Ball）</a> 英国科学作家。 二十多年来，他一直是《自然》杂志编辑及《观点》杂志(Prospect)、《化学世界》（Chemistry World）、《自然材料》（Nature Materials ）和 《BBC Future》的专栏作家。</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Critical_Mass_(book" target="_blank" rel="external">《Critical Mass: How One Thing Leads to Another》</a>) 2005 Royal Society Winton Prize for Science Books</li>
-<li><a href="#">《Serving the Reich: The Struggle for the Soul of Physics under Hitler》</a> 2014</li>
-</ul>
-<h4 id="Rocket-Men"><a href="#Rocket-Men" class="headerlink" title="Rocket Men"></a>Rocket Men</h4><ul>
-<li>作者：Robert Kurson</li>
-<li>售价：Random House; 384 pages; $28. Scribe; £18.99 | ￥204</li>
-<li>链接：<br><a href="https://item.jd.com/1343455498.html" target="_blank" rel="external">https://item.jd.com/1343455498.html</a><br><a href="https://www.amazon.com/Rocket-Men-Odyssey-Astronauts-Journey/dp/0812988701" target="_blank" rel="external">https://www.amazon.com/Rocket-Men-Odyssey-Astronauts-Journey/dp/0812988701</a></li>
-<li>内容概要</li>
-</ul>
-<p>详细讲述阿波罗8号航天任务，人类历史上第一次绕月载人航天飞行。</p>
-<p>美国国家航空航天局（NASA）针对阿波罗8号的准备工作只花了四个月时间。计划中采用的硬件只被使用过几次：土星5号火箭此前只发射过两次，而阿波罗航天器也只执行过一次载人任务（阿波罗7号）。通过与宇航员，他们的亲人，宇航局人员和无数专家数百小时的一对一采访，以及充满生动和令人难忘的细节，揭示了所涉及的史诗般的危险，以及人类第一次离开地球并进入一个新世界所带来的独特勇气。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>罗伯特·库森（Robert A. Kurson)，美国作家。毕业于哈佛法学院，职业写作生涯始于芝加哥太阳时报。</p>
-<ul>
-<li>2004 年畅销书《Shadow Divers》。讲述两位美国潜水员探索第二次世界大战时期德国U型潜艇沉船的故事。</li>
-</ul>
-<h4 id="Nine-Pints-A-Journey-Through-the-Money-Medicine-and-Mysteries-of-Blood"><a href="#Nine-Pints-A-Journey-Through-the-Money-Medicine-and-Mysteries-of-Blood" class="headerlink" title="Nine Pints: A Journey Through the Money, Medicine and Mysteries of Blood"></a>Nine Pints: A Journey Through the Money, Medicine and Mysteries of Blood</h4><ul>
-<li>作者：Rose George</li>
-<li>售价：Metropolitan Books; 368 pages; $30. Portobello Books; £14.99</li>
-<li>链接：<a href="https://www.amazon.com/Nine-Pints-Journey-Medicine-Mysteries/dp/1627796371" target="_blank" rel="external">https://www.amazon.com/Nine-Pints-Journey-Medicine-Mysteries/dp/1627796371</a></li>
-<li>内容概要</li>
-</ul>
-<p>《Nine Pints》跨越科学，政治，故事和全球流行病，以全新的眼光揭示我们生命的血液。</p>
-<p>作者将我们从古老的放血实践带到了“液体活检”的突破，这有望通过简单的验血来诊断癌症和其他疾病。介绍了Janet Vaughan，他在Blitz期间建立了世界上第一个大规模献血系统，以及Arunachalam Muruganantham，因其在发展中国家的卫生巾方面的工作而被称为“月经人”。探讨了等离子体输血的利润丰厚的业务，其中美国被称为“血浆的欧佩克”。作者展望未来，研究人员试图将合成血液带到您附近的医院。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>罗斯·乔治（Rose George），英国记者和作家。毕业于牛津大学、宾夕法尼亚大学，能说流利的法语和意大利语。曾作为科索沃“康德纳斯旅行者”杂志的战地记者，两次在萨达姆 侯赛因的生日聚会上做客。</p>
-<ul>
-<li>A Life Removed (Penguin Books, 2004) ISBN 978-0141019055 | 探讨了利比里亚境内难民和流离失所者的日常</li>
-<li>The Big Necessity (Metropolitan/Portobello, 2008) ISBN 9780805090833 | 世界上最被忽视的公共卫生问题危机，体面厕所的基本必要性</li>
-<li>Ninety Percent of Everything (Metropolitan Books New York, 2013) ISBN 9780805092639</li>
-<li>Deep Sea and Foreign Going (Portobello London 2013) ISBN 9781846272998</li>
-<li>Nine Pints: a Journey Through the Money, Medicine, and Mysteries of Blood (Metropolitan Books, 2018) ISBN 9781627796378</li>
-</ul>
-<h2 id="书单明细"><a href="#书单明细" class="headerlink" title="书单明细"></a>书单明细</h2><h2 id="Politics-and-current-affairs"><a href="#Politics-and-current-affairs" class="headerlink" title="Politics and current affairs"></a>Politics and current affairs</h2><h4 id="Moneyland"><a href="#Moneyland" class="headerlink" title="Moneyland"></a>Moneyland</h4><ul>
-<li>作者：Oliver Bullough</li>
-<li>售价：298 pages; $35 | St Martin’s Press in May; $28.99</li>
-<li>链接：<a href="https://www.amazon.cn/dp/125020870X" target="_blank" rel="external">https://www.amazon.cn/dp/125020870X</a></li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>Moneyland is the author’s term for the virtual country into which the world’s mega-rich smuggle their (sometimes ill-gotten) wealth, so insulating it from the attention of tax and other officials. Focused in part on the kleptocrats of the former Soviet Union, the book ranges across the world and a wide cast of lawyers, accountants and mountebanks who see to it that money stolen in poor, ill-run countries can be invested in rich, safe ones. An urgent exposé of a vital subject.</p>
-<h4 id="Enlightenment-Now-The-Case-for-Reason-Science-Humanism-and-Progress"><a href="#Enlightenment-Now-The-Case-for-Reason-Science-Humanism-and-Progress" class="headerlink" title="Enlightenment Now: The Case for Reason, Science, Humanism and Progress"></a>Enlightenment Now: The Case for Reason, Science, Humanism and Progress</h4><ul>
-<li>作者：Steven Pinker</li>
-<li>售价：576 pages; $35 |Allen Lane; £25</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>His critics regard him as Panglossian, and suspect he cherry-picks statistics, but the author’s case for global optimism is entertaining and well-argued. The Enlightenment virtues of reason and education, allied to trade and technology, have made the world richer, safer and even happier, he contends, and the improvements are likely to continue. Populists and demagogues are merely a blip in this consoling counterpoint to the misery of the news.</p>
-<h4 id="Fascism-A-Warning"><a href="#Fascism-A-Warning" class="headerlink" title="Fascism: A Warning"></a>Fascism: A Warning</h4><ul>
-<li>作者：Madeleine Albright</li>
-<li>售价：254 pages; Harper Collins; $27.99 and £16.99</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>The former secretary of state—and a longtime professor of international relations at Georgetown University—fled both Nazism and communism as a child. She does not deploy the term “fascism” loosely and deplores those who do; instead she cooly analyses the way countries can descend into tyranny. In uncertain times, she observes, many people no longer want to be asked what they think: “We want to be told where to march.”</p>
-<h4 id="First-Raise-a-Flag-How-South-Sudan-Won-the-Longest-War-but-Lost-the-Peace"><a href="#First-Raise-a-Flag-How-South-Sudan-Won-the-Longest-War-but-Lost-the-Peace" class="headerlink" title="First Raise a Flag: How South Sudan Won the Longest War but Lost the Peace"></a>First Raise a Flag: How South Sudan Won the Longest War but Lost the Peace</h4><ul>
-<li>作者：Peter Martell</li>
-<li>售价：Hurst; 320 pages; £25</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>A correspondent based in Juba, capital of the new, troubled country of South Sudan, explains its tragic predicament. A history of slave raids, imperialism and brutal rule by Khartoum leads to independence and civil war. The saga is enlivened by interviews with retired spooks and elderly veterans of the colonial administration.</p>
-<h4 id="Into-the-Hands-of-the-Soldiers-Freedom-and-Chaos-in-Egypt-and-the-Middle-East"><a href="#Into-the-Hands-of-the-Soldiers-Freedom-and-Chaos-in-Egypt-and-the-Middle-East" class="headerlink" title="Into the Hands of the Soldiers: Freedom and Chaos in Egypt and the Middle East"></a>Into the Hands of the Soldiers: Freedom and Chaos in Egypt and the Middle East</h4><ul>
-<li>作者：David Kirkpatrick</li>
-<li>售价：384 pages; $28. Bloomsbury Publishing; £25</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>In this pellucid chronicle of Egypt’s trajectory since the toppling of Hosni Mubarak in 2011, the former Cairo bureau chief of the New York Times is almost as scathing about the bungling foreign policy of successive American administrations as he is about Abdel-Fattah al-Sisi, Egypt’s strongman president. The country’s so-called stability, he suggests, is again breeding misery and extremism.</p>
-<h4 id="Shadows-of-Empire-1"><a href="#Shadows-of-Empire-1" class="headerlink" title="Shadows of Empire"></a>Shadows of Empire</h4><ul>
-<li>作者：Michael Kenny and Nick Pearce</li>
-<li>售价：200 pages; $19.95 and £14.99</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>The “Anglosphere” is not a term in common parlance. This timely and enlightening book shows that, throughout the 20th century, the idea of a fraternity of English-speaking nations exerted a powerful influence on British politicians, including Churchill and Thatcher. It has resurfaced in Brexiteers’ dreams of invigorated Commonwealth trade.</p>
-<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><h4 id="A-History-of-America-in-100-Maps-1"><a href="#A-History-of-America-in-100-Maps-1" class="headerlink" title="A History of America in 100 Maps"></a>A History of America in 100 Maps</h4><ul>
-<li>作者：Susan Schulten</li>
-<li>售价：University of Chicago Press; 256 pages; $35. British Library; £30</li>
-<li>链接：</li>
-<li>内容概要</li>
-<li>相关作品</li>
-</ul>
-<p>A collection of maps, by turns beautiful and eccentric, which charts the making of America. It shows the role of maps in exploration and conquest and proves that, while some aspects of American political geography are enduring, much in the country’s make-up has, like the banks of the Mississippi, always been in flux.</p>
-<h4 id="Pogrom-Kishinev-and-the-Tilt-of-History"><a href="#Pogrom-Kishinev-and-the-Tilt-of-History" class="headerlink" title="Pogrom: Kishinev and the Tilt of History"></a>Pogrom: Kishinev and the Tilt of History</h4><ul>
-<li>作者：Steven Zipperstein</li>
-<li>售价：Liveright; 288 pages; $27.95 and £20</li>
-<li>链接：</li>
-<li>内容概要</li>
-</ul>
-<p>1903 年基什尼奥夫犹太人屠杀。</p>
-<ul>
-<li>相关作品</li>
-</ul>
-<p>The pogrom in Kishinev in 1903 became a byword for anti-Semitic violence for Jews everywhere, its victims blamed variously for their passivity and for having resisted their attackers. The event roused Zionists and Jew-haters alike, and was instrumental in both the publication of the “Protocols of the Elders of Zion” and the establishment (in New York) of the naacp. A gripping, scrupulous history of a seminal but mythologised atrocity.</p>
-<h4 id="The-China-Mission-George-Marshall’s-Unfinished-War-1945-1947-1"><a href="#The-China-Mission-George-Marshall’s-Unfinished-War-1945-1947-1" class="headerlink" title="The China Mission: George Marshall’s Unfinished War, 1945-1947"></a>The China Mission: George Marshall’s Unfinished War, 1945-1947</h4><ul>
-<li>作者：Daniel Kurtz-Phelan</li>
-<li>售价：W.W. Norton &amp; Company; 496 pages; $28.95</li>
-<li>链接：</li>
-<li><p>内容概要</p>
-</li>
-<li><p>相关作品</p>
-</li>
-</ul>
-<p>Marshall’s mission to China is much less well-known than his effort to rebuild Europe after the second world war. The former, unlike the latter, failed; China descended into civil war and then a communist dictatorship. This account of the debacle by a former diplomat is both a compelling portrait of a remarkable soldier and statesman and an instructive lesson in the limits of American power, even at its zenith.</p>
-<h4 id="Rise-and-Kill-First-The-Secret-History-of-Israel’s-Targeted-Assassinations"><a href="#Rise-and-Kill-First-The-Secret-History-of-Israel’s-Targeted-Assassinations" class="headerlink" title="Rise and Kill First: The Secret History of Israel’s Targeted Assassinations"></a>Rise and Kill First: The Secret History of Israel’s Targeted Assassinations</h4><p>By Ronen Bergman. Random House; 784 pages; $35. John Murray; £19.99</p>
-<p>For this impressive work of reportage, the author not only spoke to hundreds of Israeli spies but also convinced them to hand over a trove of documents. Then he constructed a thrilling narrative of extreme bravery and compromised morality.</p>
-<h2 id="Business-and-economics"><a href="#Business-and-economics" class="headerlink" title="Business and economics"></a>Business and economics</h2><h4 id="We-the-Corporations-How-American-Businesses-Won-Their-Civil-Rights-1"><a href="#We-the-Corporations-How-American-Businesses-Won-Their-Civil-Rights-1" class="headerlink" title="We the Corporations: How American Businesses Won Their Civil Rights"></a>We the Corporations: How American Businesses Won Their Civil Rights</h4><ul>
-<li>作者：Adam Winkler</li>
-<li>售价：Liveright; 496 pages; $28.95</li>
-<li>链接：</li>
-<li><p>内容概要</p>
-</li>
-<li><p>相关作品</p>
-</li>
-</ul>
-<p>“For most of American history”, the author comments, “the Supreme Court failed to protect the dispossessed and the marginalised, with the justices claiming to be powerless in the face of hostile public sentiment.” Meanwhile “the court has insisted that broad public sentiment favouring business regulation must bend to the demands of the constitution.” A lively survey of a neglected but important feature of American history.</p>
-<h4 id="AI-Superpowers-China-Silicon-Valley-and-the-New-World-Order-1"><a href="#AI-Superpowers-China-Silicon-Valley-and-the-New-World-Order-1" class="headerlink" title="AI Superpowers: China, Silicon Valley and the New World Order"></a>AI Superpowers: China, Silicon Valley and the New World Order</h4><ul>
-<li>作者：Kai-Fu Lee</li>
-<li>售价：Houghton Mifflin Harcourt; 272 pages; $28</li>
-<li>链接：</li>
-<li><p>内容概要</p>
-</li>
-<li><p>相关作品</p>
-</li>
-</ul>
-<p>A former manager at assorted American tech giants—and now the boss of a Chinese venture-capitalist fund—anticipates the coming contest to dominate artificial intelligence. He thinks China will crush Silicon Valley because it has more data, disdains privacy and competes more ruthlessly. Thought-provoking, if not altogether convincing.</p>
-<h4 id="Radical-Markets-Uprooting-Capitalism-and-Democracy-for-a-Just-Society"><a href="#Radical-Markets-Uprooting-Capitalism-and-Democracy-for-a-Just-Society" class="headerlink" title="Radical Markets: Uprooting Capitalism and Democracy for a Just Society"></a>Radical Markets: Uprooting Capitalism and Democracy for a Just Society</h4><ul>
-<li>作者：Eric Posner and E. Glen Weyl</li>
-<li>售价：Princeton University Press; 368 pages; $29.95 and £24.95</li>
-<li>链接：</li>
-<li><p>内容概要</p>
-</li>
-<li><p>相关作品</p>
-</li>
-</ul>
-<p>A law professor and an economist argue that the way out of liberalism’s impasse is to expand the role of markets, not to subdue them. Some of their ideas—on property rights, elections, immigration and much besides—are impractical, and others eccentric; but together they point to a possible response to the challenges of populism and protectionism.</p>
-<h4 id="EuroTragedy-A-Drama-in-Nine-Acts"><a href="#EuroTragedy-A-Drama-in-Nine-Acts" class="headerlink" title="EuroTragedy: A Drama in Nine Acts"></a>EuroTragedy: A Drama in Nine Acts</h4><p>By Ashoka Mody. Oxford University Press; 672 pages; $34.95 and £25.49</p>
-<p>A comprehensive and authoritative history of the euro which argues that the project was a predictable error. Written by a former senior official at the imf, the book laments the intellectual failures present at the foundation of the single-currency area and in the mishandled response to the sovereign-debt crisis after 2010.</p>
-<h4 id="Crashed-How-a-Decade-of-Financial-Crises-Changed-the-World"><a href="#Crashed-How-a-Decade-of-Financial-Crises-Changed-the-World" class="headerlink" title="Crashed: How a Decade of Financial Crises Changed the World"></a>Crashed: How a Decade of Financial Crises Changed the World</h4><p>By Adam Tooze. Viking; 720 pages; $35. Allen Lane; £30</p>
-<p>This panoramic survey of the aftermath of the financial crash of 2008 has four main themes: the immediate response, in which the banks were rescued; the euro-zone crisis; the shift in the developed world after 2010 to more austere fiscal policies; and the rise of populist politics in Europe and America in the wake of the debacle. The author has little faith in the ability of governments to take decisive action when the next crisis hits.</p>
-<h2 id="Biography-and-memoir"><a href="#Biography-and-memoir" class="headerlink" title="Biography and memoir"></a>Biography and memoir</h2><h4 id="The-Wife’s-Tale-A-Personal-History"><a href="#The-Wife’s-Tale-A-Personal-History" class="headerlink" title="The Wife’s Tale: A Personal History"></a>The Wife’s Tale: A Personal History</h4><p>By Aida Edemariam. Harper; 314 pages; $26.99. Fourth Estate; £16.99</p>
-<p>The author’s Ethiopian grandmother, Yetemegnu, was married at the age of eight to a religious student more than 20 years her senior. By 14 she was a mother. She fled her husband’s mistreatment, yet when he was arrested she petitioned the emperor on his behalf; on his death she mourned “my husband, who raised me”. The family sought sanctuary in the mountains when the Italians invaded in 1935. This intimate memoir is also an oblique chronicle of Ethiopia’s turbulent history.</p>
-<h4 id="Educated"><a href="#Educated" class="headerlink" title="Educated"></a>Educated</h4><p>By Tara Westover. Random House; 385 pages; $28. Hutchinson; £14.99</p>
-<p>A riveting memoir of a brutal upbringing. The author grew up in a normally opaque environment: a Mormon survivalist household in Idaho, where she endured abuse and received no education. Despite not setting foot in a classroom until she was 17, she made it to university and wound up with a  phd from Cambridge.</p>
-<h4 id="Barracoon"><a href="#Barracoon" class="headerlink" title="Barracoon"></a>Barracoon</h4><p>By Zora Neale Hurston. Amistad; 208 pages; $24.99. HQ; £12.99</p>
-<p>Zora Neale Hurston’s study of Kossula, later called Cudjo Lewis, one of the last Africans to be kidnapped into slavery in America, has never been commercially published before. Interviewed at his home in Alabama in 1927-28, he vividly recalled his capture and illegal transportation on the eve of America’s civil war: “I think maybe I die in my sleep when I dream about my mama.” A devastating book.</p>
-<h4 id="Napoleon-A-Life"><a href="#Napoleon-A-Life" class="headerlink" title="Napoleon: A Life"></a>Napoleon: A Life</h4><p>By Adam Zamoyski. Basic Books; 784 pages; $40. William Collins; £30</p>
-<p>Some of his critics portray him as a monster; enthusiasts have characterised him as a demi-god. In this superlative account, Napoleon is a mortal, with great virtues and equally great flaws, at once dazzling and gauche. “From the sublime to the ridiculous”, Napoleon himself said after his disastrous campaign in Russia, “there is but one step.”</p>
-<h4 id="Churchill-Walking-with-Destiny"><a href="#Churchill-Walking-with-Destiny" class="headerlink" title="Churchill: Walking with Destiny"></a>Churchill: Walking with Destiny</h4><p>By Andrew Roberts. Viking; 1,152 pages; $30. Allen Lane; £35</p>
-<p>Of the many biographies of Winston Churchill, this is the fullest. Acknowledging its subject’s flaws and sometimes catastrophic mistakes, it nevertheless makes a compelling case for his greatness, both as a statesman and a writer. More unusually, by evoking his wit, generosity and courage, it also succeeds in making him lovable. “I was not the lion,” Churchill said, “but it fell to me to give the lion’s roar.”</p>
-<h4 id="Gandhi-The-Years-That-Changed-the-World-1914-1948"><a href="#Gandhi-The-Years-That-Changed-the-World-1914-1948" class="headerlink" title="Gandhi: The Years That Changed the World 1914-1948"></a>Gandhi: The Years That Changed the World 1914-1948</h4><p>By Ramachandra Guha. Knopf; 1,104 pages; $40. Allen Lane; £40</p>
-<p>At a time of rising Hindu nationalism, the Mahatma’s values and example are as relevant as ever in his homeland. This second volume of a magisterial biography begins in 1914, when Gandhi returned to India from South Africa. It conveys his charisma, his intellect and the evolution of his political beliefs, including his advocacy of Hindu-Muslim reconciliation.</p>
-<h4 id="The-Spy-and-the-Traitor-The-Greatest-Espionage-Story-of-the-Cold-War"><a href="#The-Spy-and-the-Traitor-The-Greatest-Espionage-Story-of-the-Cold-War" class="headerlink" title="The Spy and the Traitor: The Greatest Espionage Story of the Cold War"></a>The Spy and the Traitor: The Greatest Espionage Story of the Cold War</h4><p>By Ben Macintyre. Crown; 368 pages; $28. Viking; £25</p>
-<p>Oleg Gordievsky, a vital Western asset inside the kgb, was smuggled across the Soviet Union’s border with Finland in the boot of a car. The story of Mr Gordievsky’s life, and that of Aldrich Ames, the renegade cia officer who outed him, is told with the gusto of a thriller. A fitting tribute to a brave but lonely man.</p>
-<h2 id="Culture"><a href="#Culture" class="headerlink" title="Culture"></a>Culture</h2><h4 id="The-Personality-Brokers"><a href="#The-Personality-Brokers" class="headerlink" title="The Personality Brokers"></a>The Personality Brokers</h4><p>By Merve Emre. Doubleday; 336 pages; $27.95. Published in Britain by William Collins as “What’s Your Type?”; £20</p>
-<p>The Myers-Briggs Type Indicator, the best-known personality test, is the focus of an entertaining cultural history of the personality-assessment industry. It was invented by a mother-and-daughter team, under the influence of Carl Jung. Its enduring popularity ought not to be surprising: after all, it offers both the “rush of self-discovery” and “the comfort of solidarity” with others of the same type.</p>
-<h4 id="The-Prodigal-Tongue"><a href="#The-Prodigal-Tongue" class="headerlink" title="The Prodigal Tongue"></a>The Prodigal Tongue</h4><p>By Lynne Murphy. Penguin Books; 368 pages; $17. Oneworld; £16.99</p>
-<p>The first and perhaps only book on the relative merits of American and British English that is dominated by facts and analysis rather than nationalistic prejudice. For all its scholarship, this is also a funny and rollicking read.</p>
-<h4 id="Space-Odyssey-Stanley-Kubrick-Arthur-C-Clarke-and-the-Making-of-a-Masterpiece"><a href="#Space-Odyssey-Stanley-Kubrick-Arthur-C-Clarke-and-the-Making-of-a-Masterpiece" class="headerlink" title="Space Odyssey: Stanley Kubrick, Arthur C. Clarke and the Making of a Masterpiece"></a>Space Odyssey: Stanley Kubrick, Arthur C. Clarke and the Making of a Masterpiece</h4><p>By Michael Benson. Simon &amp; Schuster; 512 pages; $30 and £25</p>
-<p>An illuminating account of a collaboration that resulted in a landmark film. The author’s scientific background helps him to explain its pathbreaking visual effects. The making of a great work of art has rarely been anatomised so thoroughly.</p>
-<h4 id="Astounding-John-W-Campbell-Isaac-Asimov-Robert-A-Heinlein-L-Ron-Hubbard-and-the-Golden-Age-of-Science-Fiction"><a href="#Astounding-John-W-Campbell-Isaac-Asimov-Robert-A-Heinlein-L-Ron-Hubbard-and-the-Golden-Age-of-Science-Fiction" class="headerlink" title="Astounding: John W. Campbell, Isaac Asimov, Robert A. Heinlein, L. Ron Hubbard and the Golden Age of Science Fiction"></a>Astounding: John W. Campbell, Isaac Asimov, Robert A. Heinlein, L. Ron Hubbard and the Golden Age of Science Fiction</h4><p>By Alec Nevala-Lee. Dey Street Books; 544 pages; $28.99. To be released in Britain in August; £10.99</p>
-<p>An indispensable book for anyone trying to understand the birth and meaning of modern science fiction in America from the 1930s to the 1950s—a genre that reshaped how people think about the future, for good and ill.</p>
-<h4 id="Boom-Town"><a href="#Boom-Town" class="headerlink" title="Boom Town"></a>Boom Town</h4><p>By Sam Anderson. Crown; 448 pages; $28</p>
-<p>The fortunes of the Thunder, Oklahoma City’s basketball team, become a metaphor for the city’s own history in a hymn to an unsung metropolis. In this colourful compendium of heroism, skulduggery, land-grabs, oil and violence, its subject emerges as equal parts Wild West and Oz.</p>
-<h4 id="Fryderyk-Chopin-A-Life-and-Times"><a href="#Fryderyk-Chopin-A-Life-and-Times" class="headerlink" title="Fryderyk Chopin: A Life and Times"></a>Fryderyk Chopin: A Life and Times</h4><p>By Alan Walker. Farrar, Straus and Giroux; 768 pages; $40. Faber &amp; Faber; £30</p>
-<p>Chopin’s romantic life—he was a child prodigy who ran off with George Sand before dying at 39—has had many chroniclers. This definitive account draws on new sources to shed light on his career and volatile times. The man behind the myth emerges as an amiable perfectionist.</p>
-<h2 id="Fiction"><a href="#Fiction" class="headerlink" title="Fiction"></a>Fiction</h2><h4 id="The-Long-Take"><a href="#The-Long-Take" class="headerlink" title="The Long Take"></a>The Long Take</h4><p>By Robin Robertson. Knopf; 256 pages; $27. Picador; £14.99</p>
-<p>The wondrous story of a Canadian veteran of the second world war who washes up in New York and then Los Angeles—told mostly in verse. Walker, the protagonist, is haunted by his experiences in combat and by memories of his youth, and pained by the neglect of the homeless in California. Probably the best novel of the year.</p>
-<h4 id="The-Silence-of-the-Girls"><a href="#The-Silence-of-the-Girls" class="headerlink" title="The Silence of the Girls"></a>The Silence of the Girls</h4><p>By Pat Barker. Doubleday; 304 pages; $27.95. Hamish Hamilton; £18.99</p>
-<p>The “Iliad” reimagined from the perspective of Briseis, the captured slave-girl who is the cause of the quarrel between Achilles and Agamemnon that animates Homer’s epic—and in the original is almost silent. The technicolour horrors of war are accompanied by similes of almost Homeric brilliance.</p>
-<h4 id="Washington-Black"><a href="#Washington-Black" class="headerlink" title="Washington Black"></a>Washington Black</h4><p>By Esi Edugyan. Knopf; 352 pages; $26.95. Serpent’s Tail; £14.99</p>
-<p>The title character of this poignant saga is born into slavery on a sugar plantation in Barbados; he escapes in the company of an eccentric inventor, a slave-catcher on his trail, before wandering across several continents. An original and compulsive exploration of a tragic subject.</p>
-<h4 id="Milkman"><a href="#Milkman" class="headerlink" title="Milkman"></a>Milkman</h4><p>By Anna Burns. Graywolf Press; 360 pages; $16. Faber &amp; Faber; £8.99</p>
-<p>The winner of this year’s Man Booker prize is set during the Troubles in Northern Ireland in an unnamed city that looks like Belfast. “Middle sister”, the protagonist (nobody in the book has a conventional name), is stalked by a paramilitary. A haunting depiction of the impact of violence on ordinary lives.</p>
-<h4 id="Love-is-Blind"><a href="#Love-is-Blind" class="headerlink" title="Love is Blind"></a>Love is Blind</h4><p>By William Boyd. Knopf; 384 pages; $26.95. Viking; £18.99</p>
-<p>The tale of a Scottish piano-tuner infatuated with a Russian opera singer gallops across fin-de-siècle Europe, from Paris to St Petersburg to Trieste, then onwards to the Andaman Islands. A treat for the author’s many fans and a masterclass in old-fashioned storytelling.</p>
-<h4 id="Normal-People"><a href="#Normal-People" class="headerlink" title="Normal People"></a>Normal People</h4><p>By Sally Rooney. Faber &amp; Faber; 266 pages; £14.99. To be published in America by Hogarth in April; $26</p>
-<p>A beautiful portrait of an on-off relationship between two Irish youngsters, at school and university. The scrutiny of their self-deceptions is at once unforgiving and tender. The tango of power is masterfully conveyed in their dialogue.</p>
-<h4 id="Fire-Sermon"><a href="#Fire-Sermon" class="headerlink" title="Fire Sermon"></a>Fire Sermon</h4><p>By Jamie Quatro. Grove Press; 224 pages; $24. Picador; £14.99</p>
-<p>A lyrical, experimental novel about faith and adultery, divine and erotic love, worship and transgression, from an accomplished writer of short stories.</p>
-<h2 id="Science-and-Technology"><a href="#Science-and-Technology" class="headerlink" title="Science and Technology"></a>Science and Technology</h2><h4 id="Beyond-Weird-1"><a href="#Beyond-Weird-1" class="headerlink" title="Beyond Weird"></a>Beyond Weird</h4><p>By Philip Ball. University of Chicago Press; 384 pages; $26. Bodley Head; £17.99</p>
-<p>Most books on quantum mechanics emphasise its weirdness, a built-in excuse for being baffling. Wearing deep learning lightly, this author explains his subject simply and thoughtfully, revealing the theory’s true power as a way of knowing what can be said about nature.</p>
-<h4 id="Rocket-Men-1"><a href="#Rocket-Men-1" class="headerlink" title="Rocket Men"></a>Rocket Men</h4><p>By Robert Kurson. Random House; 384 pages; $28. Scribe; £18.99</p>
-<p>A gripping account of Apollo 8, the first manned space flight around the Moon. The story of the dangerous mission that laid the ground for the Moon landing has not been told in such detail until now.</p>
-<h4 id="Nine-Pints-A-Journey-Through-the-Money-Medicine-and-Mysteries-of-Blood-1"><a href="#Nine-Pints-A-Journey-Through-the-Money-Medicine-and-Mysteries-of-Blood-1" class="headerlink" title="Nine Pints: A Journey Through the Money, Medicine and Mysteries of Blood"></a>Nine Pints: A Journey Through the Money, Medicine and Mysteries of Blood</h4><p>By Rose George. Metropolitan Books; 368 pages; $30. Portobello Books; £14.99</p>
-<p>This history of blood takes its name from the quantity in a human body. The author visits high-tech facilities, a South African slum and Nepalese villages to convey, scintillatingly, what is known and what remains mysterious about the liquid.</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.ft.com/content/2893ce0c-5903-11e8-b8b2-d6ceb45fa9d0" target="_blank" rel="external">FT | Shadows of Empire,A fascinating account of the influence the ‘Anglosphere’ has had on British politics</a></li>
-<li><a href="https://cn.nytimes.com/culture/20180607/daniel-kurtz-phelan-china-mission/zh-hant/dual/" target="_blank" rel="external">纽约时报|《中國任務》：馬歇爾未能阻止的國共殊死之爭</a></li>
-<li><a href="https://weibo.com/ttarticle/p/show?id=2309404241347656727811&amp;infeed=1" target="_blank" rel="external">法人是怎样一步步获得公民权的？ | 书评 </a></li>
-<li><a href="https://www.state.gov/s/p/" target="_blank" rel="external">Policy Planning Staff</a></li>
-<li><a href="https://t.qianzhan.com/caijing/detail/180802-91b4be44.html" target="_blank" rel="external">现实世界是真实存在的吗？还是这一切都只是我们的想象？</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://riboseyim.github.io/2018/12/08/Economist-Books-Year-2018/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Economist:Books of the Year 2018&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://riboseyim.github.io/2018/01/30/Economist-Books-Year-2017/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Economist:Books of the Year 2017&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://riboseyim.github.io/2016/12/09/Economist-Books-Year-2016/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Economist:Books of the Year 2016&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="Economist" scheme="https://riboseyim.com/tags/Economist/"/>
     
   </entry>
   
