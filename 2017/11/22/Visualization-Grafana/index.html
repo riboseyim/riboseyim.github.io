@@ -118,7 +118,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/11/22/Visualization-Grafana/" data-id="cjrs7e04o00g4tibm5ak67tw2" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/11/22/Visualization-Grafana/" data-id="cjrx7v04500ge2dbm98dhk3rc" class="article-share-link">Share</a>
         
         
         
@@ -159,7 +159,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/11/22/Visualization-Grafana/" data-id="cjrs7e04o00g4tibm5ak67tw2" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/11/22/Visualization-Grafana/" data-id="cjrx7v04500ge2dbm98dhk3rc" class="article-share-link">Share</a>
       
       
       
@@ -401,6 +401,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-02-05T19:35:22.233Z</updated>
+  <updated>2019-02-06T05:35:33.065Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows</title>
+    <link href="https://riboseyim.com/2019/02/06/Windows/"/>
+    <id>https://riboseyim.com/2019/02/06/Windows/</id>
+    <published>2019-02-06T03:37:48.000Z</published>
+    <updated>2019-02-06T05:35:33.065Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="Upgrade-win10-from-win7"><a href="#Upgrade-win10-from-win7" class="headerlink" title="Upgrade win10 from win7"></a>Upgrade win10 from win7</h2><ul>
+<li>要求：C 盘剩余空间：8GB</li>
+</ul>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li>磁盘分析工具 SpaceSniffer.exe</li>
+<li><a href="https://live.sysinternals.com/" target="_blank" rel="external">Windows sysinternals</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>工业设计</title>
@@ -186,10 +212,188 @@
     <link href="https://riboseyim.com/2019/02/06/Project/"/>
     <id>https://riboseyim.com/2019/02/06/Project/</id>
     <published>2019-02-05T18:15:19.000Z</published>
-    <updated>2019-02-05T20:14:08.849Z</updated>
+    <updated>2019-02-09T08:26:10.147Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="引论-Introduction"><a href="#引论-Introduction" class="headerlink" title="引论 | Introduction"></a>引论 | Introduction</h2><h2 id="项目运行环境-The-Environment-in-which-Projects-Operate"><a href="#项目运行环境-The-Environment-in-which-Projects-Operate" class="headerlink" title="项目运行环境 | The Environment in which Projects Operate"></a>项目运行环境 | The Environment in which Projects Operate</h2><h4 id="事业环境因素-Enterprise-Environment-Factors"><a href="#事业环境因素-Enterprise-Environment-Factors" class="headerlink" title="事业环境因素 | Enterprise Environment Factors"></a>事业环境因素 | Enterprise Environment Factors</h4><h4 id="组织过程资产-Organizational-Process-Assets"><a href="#组织过程资产-Organizational-Process-Assets" class="headerlink" title="组织过程资产 | Organizational Process Assets"></a>组织过程资产 | Organizational Process Assets</h4><h2 id="项目经理的角色-The-Role-of-The-Project-Manager"><a href="#项目经理的角色-The-Role-of-The-Project-Manager" class="headerlink" title="项目经理的角色 | The Role of The Project Manager"></a>项目经理的角色 | The Role of The Project Manager</h2><h2 id="项目整合管理-Project-Integration-Management"><a href="#项目整合管理-Project-Integration-Management" class="headerlink" title="项目整合管理 | Project Integration Management"></a>项目整合管理 | Project Integration Management</h2><h2 id="项目范围管理-Project-Scope-Management"><a href="#项目范围管理-Project-Scope-Management" class="headerlink" title="项目范围管理 | Project Scope Management"></a>项目范围管理 | Project Scope Management</h2><h2 id="项目进度管理-Project-Schedule-Management"><a href="#项目进度管理-Project-Schedule-Management" class="headerlink" title="项目进度管理 | Project Schedule Management"></a>项目进度管理 | Project Schedule Management</h2><h2 id="项目成本管理-Project-Cost-Management"><a href="#项目成本管理-Project-Cost-Management" class="headerlink" title="项目成本管理 | Project Cost Management"></a>项目成本管理 | Project Cost Management</h2><h2 id="项目质量管理-Project-Quality-Management"><a href="#项目质量管理-Project-Quality-Management" class="headerlink" title="项目质量管理 | Project Quality Management"></a>项目质量管理 | Project Quality Management</h2><h2 id="项目资源管理-Project-Resource-Management"><a href="#项目资源管理-Project-Resource-Management" class="headerlink" title="项目资源管理 | Project Resource Management"></a>项目资源管理 | Project Resource Management</h2><h2 id="项目沟通管理-Project-Communications-Management"><a href="#项目沟通管理-Project-Communications-Management" class="headerlink" title="项目沟通管理 | Project Communications Management"></a>项目沟通管理 | Project Communications Management</h2><h2 id="项目风险管理-Project-Risk-Management"><a href="#项目风险管理-Project-Risk-Management" class="headerlink" title="项目风险管理 | Project Risk Management"></a>项目风险管理 | Project Risk Management</h2><h2 id="项目采购管理-Project-Procurement-Management"><a href="#项目采购管理-Project-Procurement-Management" class="headerlink" title="项目采购管理 | Project Procurement Management"></a>项目采购管理 | Project Procurement Management</h2><h2 id="项目相关方管理-Project-Stakeholder-Management"><a href="#项目相关方管理-Project-Stakeholder-Management" class="headerlink" title="项目相关方管理 | Project Stakeholder Management"></a>项目相关方管理 | Project Stakeholder Management</h2><h2 id="项目管理过程组-Project-Management-Process-Groups"><a href="#项目管理过程组-Project-Management-Process-Groups" class="headerlink" title="项目管理过程组 | Project Management Process Groups"></a>项目管理过程组 | Project Management Process Groups</h2><h4 id="启动过程组-Initiating-Process-Group"><a href="#启动过程组-Initiating-Process-Group" class="headerlink" title="启动过程组 | Initiating Process Group"></a>启动过程组 | Initiating Process Group</h4><h4 id="规划过程组-Planning-Process-Group"><a href="#规划过程组-Planning-Process-Group" class="headerlink" title="规划过程组 | Planning Process Group"></a>规划过程组 | Planning Process Group</h4><h4 id="执行过程组-Executing-Process-Group"><a href="#执行过程组-Executing-Process-Group" class="headerlink" title="执行过程组 | Executing Process Group"></a>执行过程组 | Executing Process Group</h4><h4 id="监控过程组-Monitoring-and-Controlling-Process-Group"><a href="#监控过程组-Monitoring-and-Controlling-Process-Group" class="headerlink" title="监控过程组 | Monitoring and Controlling Process Group"></a>监控过程组 | Monitoring and Controlling Process Group</h4><h4 id="收尾过程组-Closing-Process-Group"><a href="#收尾过程组-Closing-Process-Group" class="headerlink" title="收尾过程组 | Closing Process Group"></a>收尾过程组 | Closing Process Group</h4><h2 id="工具与技术"><a href="#工具与技术" class="headerlink" title="工具与技术"></a>工具与技术</h2><h4 id="甘特图（Gantt-Chart）"><a href="#甘特图（Gantt-Chart）" class="headerlink" title="甘特图（Gantt Chart）"></a>甘特图（Gantt Chart）</h4><h4 id="PERT图"><a href="#PERT图" class="headerlink" title="PERT图"></a>PERT图</h4><p>项目评估与审查技术（Project Evaluation and Review Technique,PERT）由美国海军首次提出，并于1958年由 Booz、Allen 和 Hamilton 的咨询公司开发。最早的用途是协调涉及北极星导弹研发计划的 10 000 多个分包商的活动。PERT 类似关键路径方法(CPM)，是一种用于优化和调度复杂的、相关关联的活动的方法。</p>
+<h2 id="引论-Introduction"><a href="#引论-Introduction" class="headerlink" title="引论 | Introduction"></a>引论 | Introduction</h2><h4 id="项目的三重制约（triple-constraint）"><a href="#项目的三重制约（triple-constraint）" class="headerlink" title="项目的三重制约（triple constraint）"></a>项目的三重制约（triple constraint）</h4><p>在实际的项目管理中，三重制约各要素的优先权不同。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S 范围</td>
+<td>S 范围</td>
+</tr>
+<tr>
+<td>T 时间</td>
+<td>T 时间</td>
+</tr>
+<tr>
+<td>Q 质量</td>
+<td>Q 质量</td>
+</tr>
+<tr>
+<td>C 成本</td>
+<td>C 费用</td>
+</tr>
+<tr>
+<td></td>
+<td>R 资源</td>
+</tr>
+<tr>
+<td></td>
+<td>R 风险</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="目标管理（MBO-Management-by-Objectives）"><a href="#目标管理（MBO-Management-by-Objectives）" class="headerlink" title="目标管理（MBO,Management by Objectives）"></a>目标管理（MBO,Management by Objectives）</h4><p>实施目标管理的三个步骤：</p>
+<p>1）树立目标（SMART）</p>
+<ul>
+<li>具体的 Specific</li>
+<li>可衡量的 Measurable</li>
+<li>可达到的 Achievable</li>
+<li>现实的 Realistic</li>
+<li>基于时间的 Timebased</li>
+</ul>
+<p>2）定期评估目标可否达到<br>3）采取修正措施</p>
+<h4 id="项目管理环境"><a href="#项目管理环境" class="headerlink" title="项目管理环境"></a>项目管理环境</h4><ul>
+<li>项目组合 Portfolios : 战略业务目标，相互无关</li>
+<li>项目集 Programs : 相互关联</li>
+<li>项目 Project</li>
+</ul>
+<ul>
+<li>组织级项目管理（OPM）</li>
+</ul>
+<h4 id="项目管理逻辑过程"><a href="#项目管理逻辑过程" class="headerlink" title="项目管理逻辑过程"></a>项目管理逻辑过程</h4><p>项目管理逻辑过程（ITTO）:</p>
+<ul>
+<li>输入 Input</li>
+<li>工具与技术 Tool &amp; Technology</li>
+<li>输出 Output</li>
+</ul>
+<h4 id="项目管理生命周期"><a href="#项目管理生命周期" class="headerlink" title="项目管理生命周期"></a>项目管理生命周期</h4><p>五大项目管理过程组：启动、规划、执行、监控、收尾</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">digraph process&#123;</div><div class="line">   Initiating-&gt;Planning;</div><div class="line">   Planning-&gt;Executing;</div><div class="line">   Controlling-&gt;Planning;</div><div class="line">   Controlling-&gt;Executing;</div><div class="line">   Executing-&gt;Controlling;</div><div class="line">   Controlling-&gt;Closing;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="PMP-知识框架"><a href="#PMP-知识框架" class="headerlink" title="PMP 知识框架"></a>PMP 知识框架</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>知识领域</th>
+<th>启动过程组</th>
+<th>规划过程组</th>
+<th>执行过程组</th>
+<th>监控过程组</th>
+<th>收尾过程组</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 项目整合管理</td>
+<td>4.1 制定项目章程</td>
+<td>4.2 制定项目管理计划</td>
+<td>4.3 指导与管理项目工作 <br> 4.4 管理项目知识</td>
+<td>4.5 监控项目工作 <br> 4.6 实施整体变更控制</td>
+<td>4.7 结束项目或阶段</td>
+<td></td>
+</tr>
+<tr>
+<td>5. 项目范围管理</td>
+<td></td>
+<td>5.1 规划范围管理 <br> 5.2 收集需求 <br> 5.3 定义范围 <br> 5.4 创建WBS</td>
+<td></td>
+<td>5.5 确认范围 <br> 5.6 控制范围</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6. 项目进度管理</td>
+<td></td>
+<td>6.1 规划进度管理 <br> 6.2 定义活动 6.3 排列活动顺序 6.4 估算活动持续时间 6.5 制定进度计划</td>
+<td></td>
+<td>6.5 控制进度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7. 项目成本管理</td>
+<td></td>
+<td>7.1 规划成本管理 7.2 估算成本 7.3 制定预算</td>
+<td></td>
+<td>7.4 控制成本</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8. 项目质量管理</td>
+<td></td>
+<td>8.1 规划质量管理 8.2 管理质量</td>
+<td>8.3 控制质量</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9. 项目资源管理</td>
+<td></td>
+<td>9.1 规划资源管理 9.2 估算活动资源</td>
+<td>9.3 获取资源 9.4 建设团队 9.5 管理团队</td>
+<td>9.6 控制资源</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>10. 项目沟通管理</td>
+<td></td>
+<td>10.1 规划沟通管理</td>
+<td>10.2 管理沟通</td>
+<td>10.3 监督沟通</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>11. 项目风险管理</td>
+<td></td>
+<td>11.1 规划风险管理 11.2 识别风险 11.3 实施定性风险分析 11.4 实施定量风险分析  11.5 规划风险应对</td>
+<td>11.6 实施风险应对</td>
+<td>11.7 监督风险</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>12. 项目采购管理</td>
+<td></td>
+<td>12.1 规划采购管理</td>
+<td>12.2 实施采购</td>
+<td>12.3 控制采购</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>13. 项目相关方管理</td>
+<td>13.1 识别相关方</td>
+<td>13.2 规划相关方参与</td>
+<td>13.3 管理相关方参与</td>
+<td>13.4 监督相关方参与</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="项目运行环境-The-Environment-in-which-Projects-Operate"><a href="#项目运行环境-The-Environment-in-which-Projects-Operate" class="headerlink" title="项目运行环境 | The Environment in which Projects Operate"></a>项目运行环境 | The Environment in which Projects Operate</h2><h4 id="事业环境因素-Enterprise-Environment-Factors"><a href="#事业环境因素-Enterprise-Environment-Factors" class="headerlink" title="事业环境因素 | Enterprise Environment Factors"></a>事业环境因素 | Enterprise Environment Factors</h4><h4 id="组织过程资产-Organizational-Process-Assets"><a href="#组织过程资产-Organizational-Process-Assets" class="headerlink" title="组织过程资产 | Organizational Process Assets"></a>组织过程资产 | Organizational Process Assets</h4><h2 id="项目经理的角色-The-Role-of-The-Project-Manager"><a href="#项目经理的角色-The-Role-of-The-Project-Manager" class="headerlink" title="项目经理的角色 | The Role of The Project Manager"></a>项目经理的角色 | The Role of The Project Manager</h2><h2 id="项目整合管理-Project-Integration-Management"><a href="#项目整合管理-Project-Integration-Management" class="headerlink" title="项目整合管理 | Project Integration Management"></a>项目整合管理 | Project Integration Management</h2><h2 id="项目范围管理-Project-Scope-Management"><a href="#项目范围管理-Project-Scope-Management" class="headerlink" title="项目范围管理 | Project Scope Management"></a>项目范围管理 | Project Scope Management</h2><h2 id="项目进度管理-Project-Schedule-Management"><a href="#项目进度管理-Project-Schedule-Management" class="headerlink" title="项目进度管理 | Project Schedule Management"></a>项目进度管理 | Project Schedule Management</h2><h2 id="项目成本管理-Project-Cost-Management"><a href="#项目成本管理-Project-Cost-Management" class="headerlink" title="项目成本管理 | Project Cost Management"></a>项目成本管理 | Project Cost Management</h2><h2 id="项目质量管理-Project-Quality-Management"><a href="#项目质量管理-Project-Quality-Management" class="headerlink" title="项目质量管理 | Project Quality Management"></a>项目质量管理 | Project Quality Management</h2><h2 id="项目资源管理-Project-Resource-Management"><a href="#项目资源管理-Project-Resource-Management" class="headerlink" title="项目资源管理 | Project Resource Management"></a>项目资源管理 | Project Resource Management</h2><h2 id="项目沟通管理-Project-Communications-Management"><a href="#项目沟通管理-Project-Communications-Management" class="headerlink" title="项目沟通管理 | Project Communications Management"></a>项目沟通管理 | Project Communications Management</h2><h2 id="项目风险管理-Project-Risk-Management"><a href="#项目风险管理-Project-Risk-Management" class="headerlink" title="项目风险管理 | Project Risk Management"></a>项目风险管理 | Project Risk Management</h2><h2 id="项目采购管理-Project-Procurement-Management"><a href="#项目采购管理-Project-Procurement-Management" class="headerlink" title="项目采购管理 | Project Procurement Management"></a>项目采购管理 | Project Procurement Management</h2><h2 id="项目相关方管理-Project-Stakeholder-Management"><a href="#项目相关方管理-Project-Stakeholder-Management" class="headerlink" title="项目相关方管理 | Project Stakeholder Management"></a>项目相关方管理 | Project Stakeholder Management</h2><h2 id="项目管理过程组-Project-Management-Process-Groups"><a href="#项目管理过程组-Project-Management-Process-Groups" class="headerlink" title="项目管理过程组 | Project Management Process Groups"></a>项目管理过程组 | Project Management Process Groups</h2><h4 id="启动过程组-Initiating-Process-Group"><a href="#启动过程组-Initiating-Process-Group" class="headerlink" title="启动过程组 | Initiating Process Group"></a>启动过程组 | Initiating Process Group</h4><h4 id="规划过程组-Planning-Process-Group"><a href="#规划过程组-Planning-Process-Group" class="headerlink" title="规划过程组 | Planning Process Group"></a>规划过程组 | Planning Process Group</h4><h4 id="执行过程组-Executing-Process-Group"><a href="#执行过程组-Executing-Process-Group" class="headerlink" title="执行过程组 | Executing Process Group"></a>执行过程组 | Executing Process Group</h4><h4 id="监控过程组-Monitoring-and-Controlling-Process-Group"><a href="#监控过程组-Monitoring-and-Controlling-Process-Group" class="headerlink" title="监控过程组 | Monitoring and Controlling Process Group"></a>监控过程组 | Monitoring and Controlling Process Group</h4><h4 id="收尾过程组-Closing-Process-Group"><a href="#收尾过程组-Closing-Process-Group" class="headerlink" title="收尾过程组 | Closing Process Group"></a>收尾过程组 | Closing Process Group</h4><h2 id="工具与技术"><a href="#工具与技术" class="headerlink" title="工具与技术"></a>工具与技术</h2><h4 id="甘特图（Gantt-Chart）"><a href="#甘特图（Gantt-Chart）" class="headerlink" title="甘特图（Gantt Chart）"></a>甘特图（Gantt Chart）</h4><h4 id="PERT图"><a href="#PERT图" class="headerlink" title="PERT图"></a>PERT图</h4><p>项目评估与审查技术（Project Evaluation and Review Technique,PERT）由美国海军首次提出，并于1958年由 Booz、Allen 和 Hamilton 的咨询公司开发。最早的用途是协调涉及北极星导弹研发计划的 10 000 多个分包商的活动。PERT 类似关键路径方法(CPM)，是一种用于优化和调度复杂的、相关关联的活动的方法。</p>
 <h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><ul>
 <li>《PMBOK》</li>
 </ul>
@@ -973,7 +1177,7 @@
     <link href="https://riboseyim.com/2018/12/31/Check2019/"/>
     <id>https://riboseyim.com/2018/12/31/Check2019/</id>
     <published>2018-12-31T12:25:24.000Z</published>
-    <updated>2019-02-04T13:45:00.285Z</updated>
+    <updated>2019-02-05T20:19:31.270Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>This article is part of an <strong>Autobiography</strong> series. Make sure to check out my other articles as well:</p>
@@ -985,11 +1189,8 @@
 <li><a href="https://riboseyim.github.io/2017/04/28/Check2012/" target="_blank" rel="external">我的 2012 阅读书单</a></li>
 </ul>
 <h2 id="Core-Topics"><a href="#Core-Topics" class="headerlink" title="Core Topics"></a>Core Topics</h2><ul>
-<li>Engineering</li>
-<li>Mathmetics</li>
-<li>Visualization</li>
-<li>Decision</li>
-<li>Writing</li>
+<li>Engineering: R language、Mathmetics &amp; Data Science</li>
+<li>Project Management: Planning、Decision、Writing</li>
 </ul>
 <h4 id="Introducing-of-Engineering"><a href="#Introducing-of-Engineering" class="headerlink" title="Introducing of Engineering"></a>Introducing of Engineering</h4><p>工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
 <blockquote>
@@ -997,6 +1198,7 @@
 <p>Engineering is the application of knowledge, typically in the form of science, mathematics, and empirical evidence, to the innovation, design, construction, operation and maintenance of structures, machines, materials, devices, systems, processes, and organizations. —— Wiki</p>
 </blockquote>
 <h4 id="数学"><a href="#数学" class="headerlink" title="数学"></a><a href="https://riboseyim.github.io/2017/06/14/Mathmetics" target="_blank" rel="external">数学</a></h4><ul>
+<li>Preview<a href="https://riboseyim.github.io/2019/01/09/Data-Science" target="_blank" rel="external">数据科学工具箱</a></li>
 <li>Preview<a href="https://riboseyim.github.io/2018/12/23/Visualization-DataStruct/" target="_blank" rel="external">数据可视化（九）：探索数据结构之美</a></li>
 <li>Priview<a href="https://riboseyim.github.io/2018/02/02/Mathmetics-Tools/" target="_blank" rel="external">数学工具指南</a></li>
 <li>Preview<a href="https://riboseyim.github.io/2018/12/31/Mathmetics-Algorithm/" target="_blank" rel="external">数学与算法</a></li>
@@ -1131,65 +1333,6 @@
     
     
       <category term="我的自传" scheme="https://riboseyim.com/tags/%E6%88%91%E7%9A%84%E8%87%AA%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法</title>
-    <link href="https://riboseyim.com/2018/12/31/Mathmetics-Algorithm/"/>
-    <id>https://riboseyim.com/2018/12/31/Mathmetics-Algorithm/</id>
-    <published>2018-12-31T04:08:13.000Z</published>
-    <updated>2019-02-02T16:50:13.046Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>任何一种计算方法——除非它能提供一种编写程序的方法，否则不会有太大的用处。— 理查德·费曼</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ul>
-<li><p><a href="https://www.youtube.com/watch?v=DG5-UyRBQD4" target="_blank" rel="external">3Blue1Brown: Very Basic Intro to Neural Networks</a><br>3Blue1Brown 是一个数学学习频道。其发布的视频通过动画演示和讲解，帮助观者在头脑中构建有关数学概念定义定理的最生动直观的理解，致力于将复杂得数学概念可视化。</p>
-</li>
-<li><p><a href="http://coolshell.cn/articles/12052.html" target="_blank" rel="external">Leetcode 编程训练</a></p>
-<blockquote>
-<p>Leetcode这个网站上的题都是一些经典的公司用来面试应聘者的面试题，很多人通过刷这些题来应聘一些喜欢面试算法的公司</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="掌握算法是IT工程师的基本功"><a href="#掌握算法是IT工程师的基本功" class="headerlink" title="掌握算法是IT工程师的基本功"></a>掌握算法是IT工程师的基本功</h4><ul>
-<li><p>掌握优点和缺点:折中的思维不仅体现在算法上，在架构上也是一样的。</p>
-</li>
-<li><p>通过图上推演来思考:推荐自己画图，然后向别人说明。先从基本操作入手，再掌握更详细的操作和异常操作，不要试图一下子理解所有细致末节。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_2.png" alt=""></p>
-</li>
-<li><p>日常生活中的算法例子</p>
-</li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_3.png" alt=""></p>
-<ul>
-<li><p>比较算法优劣:我们会忽略一些微小的系统开销。我们应该关注的是随着数据个数的变化，所花费的时间会以怎样的曲线发生变化。因为有一些算法，在数据只有一两个的时候性能很好，但是当数据个数达到几千到几万的时候，性能会急剧下降。</p>
-</li>
-<li><p>评价算法的指标</p>
-</li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_4.png" alt=""></p>
-<ul>
-<li>通过复杂度来评价算法</li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_5.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_6.png" alt=""></p>
-<ul>
-<li>掌握算法要靠编程:对于新人来说，编程经验不足会成为瓶颈.没有编程经验，就无法进行整体的把握，不能举一反三，只能死记硬背。</li>
-<li>算法例子:数组、链表、树、散列算法、队列、栈、排序、缓存、锁</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;任何一种计算方法——除非它能提供一种编写程序的方法，否则不会有太大的用处。— 理查德·费曼&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="数学与算法" scheme="https://riboseyim.com/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
