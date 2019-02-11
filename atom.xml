@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-02-11T16:41:49.355Z</updated>
+  <updated>2019-02-11T17:06:51.187Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://riboseyim.com/2019/02/10/Psychology-Biases/"/>
     <id>https://riboseyim.com/2019/02/10/Psychology-Biases/</id>
     <published>2019-02-10T14:21:42.000Z</published>
-    <updated>2019-02-11T16:41:49.355Z</updated>
+    <updated>2019-02-11T17:06:51.187Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>What is Trap</li>
@@ -307,6 +307,7 @@
 <li>1954年12月2日美国参议院以65票对22票通过了对约瑟夫·麦卡锡的谴责，称其“有将参议院陷入耻辱和恶名的趋势。”</li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="http://riboseyim.github.io/2019/02/10/Psychology-Biases/" target="_blank" rel="external">情绪的动物：认知、偏见与决策</a></li>
 <li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">工程伦理：国之重器，在人不在宝 | 挑战者号航天飞机事故调查</a></li>
 <li><a href="https://riboseyim.github.io/2018/02/04/Redology-Intelligence/" target="_blank" rel="external">红楼故事：康熙的秘密情报系统</a></li>
 </ul>
@@ -928,7 +929,7 @@
     <link href="https://riboseyim.com/2019/02/04/Intelligence/"/>
     <id>https://riboseyim.com/2019/02/04/Intelligence/</id>
     <published>2019-02-04T15:12:53.000Z</published>
-    <updated>2019-02-11T14:20:37.487Z</updated>
+    <updated>2019-02-11T17:06:28.180Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
@@ -1034,9 +1035,11 @@
 <h4 id="美军《Joint-Publication-2-0》"><a href="#美军《Joint-Publication-2-0》" class="headerlink" title="美军《Joint Publication 2-0》"></a>美军《Joint Publication 2-0》</h4><ul>
 <li><a href="https://www.jcs.mil/Portals/36/Documents/Doctrine/pubs/jp2_0.pdf" target="_blank" rel="external">《Joint Publication 2-0 : Joint Intelligence》</a></li>
 </ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/%20Systems-Oriented%20Event%20Template.png" alt=""></p>
 <h4 id="英军《Joint-Doctrine-Publication-2-00》"><a href="#英军《Joint-Doctrine-Publication-2-00》" class="headerlink" title="英军《Joint Doctrine Publication 2-00》"></a>英军《Joint Doctrine Publication 2-00》</h4><ul>
 <li><a href="https://www.gov.uk/government/publications/jdp-2-00-understanding-and-intelligence-support-to-joint-operations" target="_blank" rel="external">Understanding and intelligence support to joint operations (JDP 2-00)</a></li>
 </ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/%20The%20Interrelationship.png" alt=""></p>
 <h2 id="Tool-amp-Technology"><a href="#Tool-amp-Technology" class="headerlink" title="Tool &amp; Technology"></a>Tool &amp; Technology</h2><h4 id="竞争性假设分析-ACH"><a href="#竞争性假设分析-ACH" class="headerlink" title="竞争性假设分析 ACH"></a>竞争性假设分析 ACH</h4><p>竞争性假设分析(Analysis of Competing Hypotheses,ACH)是 CIA 使用30年以上的研究方法论，ACH 帮助面对巨大量数据和假设条件时，进行有逻辑性的分析，指导研究人员识别争论的焦点，进行富有成效的讨论。</p>
 <p>竞争性假设分析法强制分析人员考虑全部可能性，而不是凭直觉挑出来某一假设，再找证据支持这一假设。</p>
 <h4 id="杀伤链-Kill-Chains"><a href="#杀伤链-Kill-Chains" class="headerlink" title="杀伤链 Kill Chains"></a>杀伤链 Kill Chains</h4><ul>
@@ -1058,6 +1061,7 @@
 <li>Paper <a href="https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/csi-studies/studies/vol51no2/the-state-of-strategic-intelligence.html" target="_blank" rel="external">The State of Strategic Analysis</a></li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="http://riboseyim.github.io/2019/02/10/Psychology-Biases/" target="_blank" rel="external">情绪的动物：认知、偏见与决策</a></li>
 <li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">工程伦理：国之重器，在人不在宝 | 挑战者号航天飞机事故调查</a></li>
 <li><a href="https://riboseyim.github.io/2018/02/04/Redology-Intelligence/" target="_blank" rel="external">红楼故事：康熙的秘密情报系统</a></li>
 </ul>
@@ -1078,6 +1082,11 @@
 <li>Title:Intelligence-Driven Incident Response:Outwitting the Adversary</li>
 <li>Author: Scott J. Roberts</li>
 <li>Author: Rebekah Brown</li>
+</ul>
+<h5 id="《如何作出正确决策》"><a href="#《如何作出正确决策》" class="headerlink" title="《如何作出正确决策》"></a>《如何作出正确决策》</h5><ul>
+<li>作者：加里·克莱因</li>
+<li>如何作出正确决策:直击决策真相，揭秘是什么在影响你作决定</li>
+<li>中国青年出版社</li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
     
