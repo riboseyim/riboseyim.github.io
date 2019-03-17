@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-03-17T19:04:05.542Z</updated>
+  <updated>2019-03-17T19:15:31.265Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://riboseyim.com/2019/03/17/International-Relations-Kaplan/"/>
     <id>https://riboseyim.com/2019/03/17/International-Relations-Kaplan/</id>
     <published>2019-03-17T06:00:34.000Z</published>
-    <updated>2019-03-17T19:04:05.542Z</updated>
+    <updated>2019-03-17T19:15:31.265Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>旅行家</li>
@@ -102,6 +102,8 @@
     
     </summary>
     
+    
+      <category term="Travel" scheme="https://riboseyim.com/tags/Travel/"/>
     
       <category term="Intelligence" scheme="https://riboseyim.com/tags/Intelligence/"/>
     
