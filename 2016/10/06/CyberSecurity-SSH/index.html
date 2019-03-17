@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。">
-<meta property="og:updated_time" content="2019-01-29T02:37:18.185Z">
+<meta property="og:updated_time" content="2019-03-01T09:07:52.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cyber-Security:OpenSSH并不绝对安全">
 <meta name="twitter:description" content="摘要OpenSSH7.0做出了一些变更，默认禁用了一些较低版本的密钥算法。受此影响，在同一系统中的主机、网络设备必须同步升级，或者开启兼容选项。 实测中，也有某些厂家产品内核的原因，甚至无法升级。由此案例，关于系统版本管理、安全、架构、开源文档，甚至采购方面，都可以引发很多思考。">
@@ -118,7 +118,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjrx7uzyj00262dbmehm823kw" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjtd9hhoc002cglbmymcc0ws0" class="article-share-link">分享</a>
         
         
         
@@ -206,6 +206,10 @@ ga('send', 'pageview');
 <li>验证服务状态</li>
 </ul>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ less /etc/services | <span class="keyword">grep</span> telnet</div><div class="line">telnet  <span class="number">23</span>/tcp</div><div class="line">telnet  <span class="number">23</span>/udp</div></pre></td></tr></table></figure>
+<ul>
+<li>Upgrade OpenSSL &amp; OpenSSH</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#### Upgrade OpenSSL #######</span></div><div class="line">tar -xvf openssl*.tar.gz</div><div class="line"><span class="built_in">cd</span> openssl*</div><div class="line">./config shared</div><div class="line">make</div><div class="line">make install</div><div class="line"><span class="built_in">export</span> INSTALL_SSL_DATE=`date +%Y%m%d`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">mv /usr/bin/openssl /usr/bin/openssl_<span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">mv /usr/include/openssl/ /usr/include/openssl_<span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/ssl/bin/openssl /usr/bin/openssl</div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/ssl/include/openssl /usr/include/openssl</div><div class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/ssl/lib"</span> &gt;&gt; /etc/ld.so.conf</div><div class="line">ldconfig -v</div><div class="line"></div><div class="line"><span class="comment">#### Upgrade OpenSSH #######</span></div><div class="line"></div><div class="line">tar -xvf openssh*7.7.tar.gz</div><div class="line"><span class="built_in">cd</span> openssh*</div><div class="line">./configure --with-ssl-dir=/usr/<span class="built_in">local</span>/ssl --with-md5-passwords</div><div class="line">make</div><div class="line">make install</div><div class="line"></div><div class="line"><span class="built_in">export</span> INSTALL_SSL_DATE=`date +%Y%m%d`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">mv /etc/ssh /etc/ssh_<span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">mv /usr/bin/ssh /usr/bin/ssh_<span class="variable">$INSTALL_SSL_DATE</span></div><div class="line">mv /usr/sbin/sshd /usr/sbin/sshd_<span class="variable">$INSTALL_SSL_DATE</span></div><div class="line"></div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/bin/ssh /usr/bin/ssh</div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/sbin/sshd /usr/sbin/sshd</div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"Protocol 2,1"</span> &gt;&gt; /usr/<span class="built_in">local</span>/etc/ssh_config</div><div class="line">chmod 755 /slview/.ssh</div><div class="line">chmod 600 /slview/.ssh/authorized_keys</div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/etc /etc/ssh</div><div class="line">service sshd restart</div><div class="line"><span class="built_in">echo</span> <span class="string">"ssh-service running!!!!"</span></div><div class="line">ssh -V</div></pre></td></tr></table></figure>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Cyber-Security-Master》"><a href="#《The-Cyber-Security-Master》" class="headerlink" title="《The Cyber-Security Master》"></a><a href="https://www.gitbook.com/book/riboseyim/cyber-security-manual" target="_blank" rel="external">《The Cyber-Security Master》</a></h4><ul>
 <li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Cyber-Security: Linux 容器安全的十重境界</a></li>
 <li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="external">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
@@ -222,6 +226,7 @@ ga('send', 'pageview');
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://www.shaobin.wang/post/6.html" target="_blank" rel="external">SSH登录旧设备的常见问题及解决方案</a></li>
+<li><a href="https://www.cnblogs.com/kevingrace/p/6110842.html" target="_blank" rel="external">Linux系统下的ssh使用(依据个人经验总结)</a></li>
 <li><a href="https://smallstep.com/blog/everything-pki.html" target="_blank" rel="external">Everything you should know about certificates and PKI but are too afraid to ask</a></li>
 <li><a href="http://blog.csdn.net/dog250/article/details/24552307" target="_blank" rel="external">赵亚：令人作呕的OpenSSL</a></li>
 </ul>
@@ -229,7 +234,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjrx7uzyj00262dbmehm823kw" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/10/06/CyberSecurity-SSH/" data-id="cjtd9hhoc002cglbmymcc0ws0" class="article-share-link">分享</a>
       
       
       
