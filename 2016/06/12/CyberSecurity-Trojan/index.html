@@ -6,7 +6,7 @@
   <title>木马来袭:Linux/XOR.DDoS样本分析 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="摘要 Linux/XOR.DDoS 木马入侵分析">
-<meta name="keywords" content="DevOps,Linux,Cyber-Security,网络协议,Developer">
+<meta name="keywords" content="DevOps,Cyber-Security,Linux,Developer,网络协议">
 <meta property="og:type" content="article">
 <meta property="og:title" content="木马来袭:Linux&#x2F;XOR.DDoS样本分析">
 <meta property="og:url" content="https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/index.html">
@@ -124,7 +124,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/" data-id="cjtd9hhoe002fglbmvrrh2z5p" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/" data-id="cjtxoxe5g00c5yuh2cy9fo04j" class="article-share-link">Share</a>
         
         
         
@@ -224,7 +224,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/" data-id="cjtd9hhoe002fglbmvrrh2z5p" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/" data-id="cjtxoxe5g00c5yuh2cy9fo04j" class="article-share-link">Share</a>
       
       
       
@@ -466,6 +466,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

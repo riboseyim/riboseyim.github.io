@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/11/21/Protocol-Route/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要">
-<meta property="og:updated_time" content="2019-03-05T03:26:37.780Z">
+<meta property="og:updated_time" content="2019-03-28T13:57:19.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Protocol-Route">
 <meta name="twitter:description" content="摘要">
@@ -117,7 +117,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/11/21/Protocol-Route/" data-id="cjtd9hht300daglbm5vfncc0z" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/11/21/Protocol-Route/" data-id="cjtxoxe7200fryuh2oi1deuzn" class="article-share-link">Share</a>
         
         
         
@@ -129,14 +129,29 @@ ga('send', 'pageview');
         <!-- Table of Contents -->
         
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="GRE"><a href="#GRE" class="headerlink" title="GRE"></a>GRE</h2><p>GRE（Generic Routing Encapsulation，通用路由封装）协议用来对某种协议（如IP、MPLS、以太网）的数据报文进行封装，使这些被封装的数据报文能够在另一个网络中传输。封装后的数据报文在网络中传输的路径，称为 GRE 隧道。GRE隧道是一个虚拟的点到点的连接，其两端的设备分别对数据报文进行封装及解封装。</p>
+<p>GRE封装后的报文包括如下几个部分：</p>
+<ul>
+<li>载荷包（ Payload packet ）：需要封装和传输的数据报文。净荷数据的协议类型，称为乘客协议（Passenger Protocol）。乘客协议可以是任意的网络层协议。</li>
+<li>GRE Header ：采用GRE协议对净荷数据进行封装所添加的报文头，包括封装层数、版本、乘客协议类型、校验和信息、Key信息等内容。添加GRE头后的报文称为GRE报文。对净荷数据进行封装的GRE协议，称为封装协议（Encapsulation Protocol）。</li>
+<li>传输协议的报文头（Delivery header）：在GRE报文上添加的报文头，以便传输协议对GRE报文进行转发处理。传输协议（Delivery Protocol 或者 Transport Protocol）是指负责转发GRE报文的网络层协议。</li>
+</ul>
 <h2 id="IGP"><a href="#IGP" class="headerlink" title="IGP"></a>IGP</h2><h4 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h4><h4 id="IS-IS"><a href="#IS-IS" class="headerlink" title="IS-IS"></a>IS-IS</h4><h4 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h4><ul>
 <li>最短路径树算法</li>
 </ul>
-<h2 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h2><h4 id="路由反射器-RR"><a href="#路由反射器-RR" class="headerlink" title="路由反射器 RR"></a>路由反射器 RR</h4><h4 id="路由与VPN"><a href="#路由与VPN" class="headerlink" title="路由与VPN"></a>路由与VPN</h4><h2 id="NetFlow"><a href="#NetFlow" class="headerlink" title="NetFlow"></a>NetFlow</h2><h2 id="MPLS-VPN"><a href="#MPLS-VPN" class="headerlink" title="MPLS VPN"></a>MPLS VPN</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+<h2 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h2><h4 id="路由反射器-RR"><a href="#路由反射器-RR" class="headerlink" title="路由反射器 RR"></a>路由反射器 RR</h4><h4 id="路由与VPN"><a href="#路由与VPN" class="headerlink" title="路由与VPN"></a>路由与VPN</h4><h2 id="NetFlow"><a href="#NetFlow" class="headerlink" title="NetFlow"></a>NetFlow</h2><h2 id="MPLS-VPN"><a href="#MPLS-VPN" class="headerlink" title="MPLS VPN"></a>MPLS VPN</h2><h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ul>
+<li><a href="http://www.clnchina.com.cn/nextlevel/" target="_blank" rel="external">思科网络学习空间</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://www.clnchina.com.cn/nextlevel/BGP-route-reflector.pdf" target="_blank" rel="external">教程|BGP技术：路由反射器|Ender.joe(周亚军)|RS CCIE,SP CCIE,思科认证讲师#34708</a></li>
+<li><a href="http://www.h3c.com/cn/d_201901/1143179_30005_0.htm#_Toc533785111" target="_blank" rel="external">H3C|三层技术-IP业务配置指导|GRE简介</a></li>
+<li><a href="https://ccieblog.co.uk/bgp/bgp-always-compare-med" target="_blank" rel="external">CCIE Blog|BGP Always-Compare-Med</a></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/11/21/Protocol-Route/" data-id="cjtd9hht300daglbm5vfncc0z" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/11/21/Protocol-Route/" data-id="cjtxoxe7200fryuh2oi1deuzn" class="article-share-link">Share</a>
       
       
       
@@ -245,7 +260,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IGP"><span class="toc-number">2.</span> <span class="toc-text">IGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSPF"><span class="toc-number">2.0.1.</span> <span class="toc-text">OSPF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IS-IS"><span class="toc-number">2.0.2.</span> <span class="toc-text">IS-IS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由算法"><span class="toc-number">2.0.3.</span> <span class="toc-text">路由算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGP"><span class="toc-number">3.</span> <span class="toc-text">BGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由反射器-RR"><span class="toc-number">3.0.1.</span> <span class="toc-text">路由反射器 RR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由与VPN"><span class="toc-number">3.0.2.</span> <span class="toc-text">路由与VPN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NetFlow"><span class="toc-number">4.</span> <span class="toc-text">NetFlow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPLS-VPN"><span class="toc-number">5.</span> <span class="toc-text">MPLS VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GRE"><span class="toc-number">2.</span> <span class="toc-text">GRE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IGP"><span class="toc-number">3.</span> <span class="toc-text">IGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSPF"><span class="toc-number">3.0.1.</span> <span class="toc-text">OSPF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IS-IS"><span class="toc-number">3.0.2.</span> <span class="toc-text">IS-IS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由算法"><span class="toc-number">3.0.3.</span> <span class="toc-text">路由算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGP"><span class="toc-number">4.</span> <span class="toc-text">BGP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由反射器-RR"><span class="toc-number">4.0.1.</span> <span class="toc-text">路由反射器 RR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由与VPN"><span class="toc-number">4.0.2.</span> <span class="toc-text">路由与VPN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NetFlow"><span class="toc-number">5.</span> <span class="toc-text">NetFlow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPLS-VPN"><span class="toc-number">6.</span> <span class="toc-text">MPLS VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源"><span class="toc-number">7.</span> <span class="toc-text">资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -376,6 +391,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

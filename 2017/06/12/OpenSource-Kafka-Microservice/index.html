@@ -6,7 +6,7 @@
   <title>开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="概要本文中我们将讨论如何借助 Kafka 实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。  第一部分 引子、环境准备、整体">
-<meta name="keywords" content="DevOps,SRE,Linux,OpenSource,Engineering,Developer,Golang,Database">
+<meta name="keywords" content="DevOps,Engineering,Linux,SRE,Developer,Golang,OpenSource,Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务">
 <meta property="og:url" content="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/index.html">
@@ -126,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjtd9hhsa00baglbmcvjbzv57" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjtxoxebf00uyyuh28hkxdha2" class="article-share-link">Share</a>
         
         
         
@@ -295,7 +295,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjtd9hhsa00baglbmcvjbzv57" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjtxoxebf00uyyuh28hkxdha2" class="article-share-link">Share</a>
       
       
       
@@ -537,6 +537,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

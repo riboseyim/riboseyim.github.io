@@ -281,6 +281,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2019/03/27/Project-Construction/">工程项目管理</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/17/International-Relations-Kaplan/">行走的思想家:罗伯特·D.卡普兰</a>
           </li>
         
@@ -294,10 +298,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2019/03/08/Protocol-RADIUS/">Protocol-RADIUS</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/05/Protocol-Routing-Emulator/">Protocol-Routing-Emulator</a>
           </li>
         
       </ul>
@@ -423,6 +423,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

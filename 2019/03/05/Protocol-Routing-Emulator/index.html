@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要">
-<meta property="og:updated_time" content="2019-03-08T07:39:59.339Z">
+<meta property="og:updated_time" content="2019-03-28T11:27:42.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Protocol-Routing-Emulator">
 <meta name="twitter:description" content="摘要">
@@ -117,7 +117,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/" data-id="cjtd9hht500ddglbmpbvpzcbi" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/" data-id="cjtxoxe7400fxyuh2ax22p6a9" class="article-share-link">Share</a>
         
         
         
@@ -129,18 +129,7 @@ ga('send', 'pageview');
         <!-- Table of Contents -->
         
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h2 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h2><h4 id="What-is-Zebra"><a href="#What-is-Zebra" class="headerlink" title="What is Zebra?"></a>What is Zebra?</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
-<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
-<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
-<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
-<ul>
-<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
-<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
-<li>User can dynamically change configuration from terminal interface.</li>
-<li>User can use command line completion and history in terminal interface.</li>
-<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
-</ul>
-<h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
+<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
 <p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
 <div class="table-container">
 <table>
@@ -178,12 +167,24 @@ ga('send', 'pageview');
 <td>IS-IS with support for IPv4 and IPv6</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>vtysh</td>
+<td>vtysh</td>
+<td>shell tools              </td>
 </tr>
 </tbody>
 </table>
 </div>
+<h4 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
+<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
+<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
+<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
+<ul>
+<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
+<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
+<li>User can dynamically change configuration from terminal interface.</li>
+<li>User can use command line completion and history in terminal interface.</li>
+<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
+</ul>
 <h4 id="Zerba-Supported-Platforms"><a href="#Zerba-Supported-Platforms" class="headerlink" title="Zerba Supported Platforms"></a>Zerba Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
 <ul>
 <li>GNU/Linux</li>
@@ -196,7 +197,9 @@ ga('send', 'pageview');
 <li>INRIA IPv6</li>
 </ul>
 <h4 id="Zerba-ABC"><a href="#Zerba-ABC" class="headerlink" title="Zerba ABC"></a>Zerba ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
-<h2 id="同类项目"><a href="#同类项目" class="headerlink" title="同类项目"></a>同类项目</h2><ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
+<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
 <li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
 <li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
 </ul>
@@ -208,7 +211,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/" data-id="cjtd9hht500ddglbmpbvpzcbi" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/" data-id="cjtxoxe7400fxyuh2ax22p6a9" class="article-share-link">Share</a>
       
       
       
@@ -317,7 +320,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenSource-Routing-Projects"><span class="toc-number">2.</span> <span class="toc-text">OpenSource Routing Projects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zebra"><span class="toc-number">3.</span> <span class="toc-text">Zebra</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Zebra"><span class="toc-number">3.0.1.</span> <span class="toc-text">What is Zebra?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Quagga"><span class="toc-number">3.0.2.</span> <span class="toc-text">What is Quagga?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zerba-Supported-Platforms"><span class="toc-number">3.0.3.</span> <span class="toc-text">Zerba Supported Platforms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zerba-ABC"><span class="toc-number">3.0.4.</span> <span class="toc-text">Zerba ABC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同类项目"><span class="toc-number">4.</span> <span class="toc-text">同类项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenSource-Routing-Projects"><span class="toc-number">2.</span> <span class="toc-text">OpenSource Routing Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Quagga"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is Quagga?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zebra"><span class="toc-number">2.0.2.</span> <span class="toc-text">Zebra</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zerba-Supported-Platforms"><span class="toc-number">2.0.3.</span> <span class="toc-text">Zerba Supported Platforms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zerba-ABC"><span class="toc-number">2.0.4.</span> <span class="toc-text">Zerba ABC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">3.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -448,6 +451,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

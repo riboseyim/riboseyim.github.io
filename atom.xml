@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-03-17T19:15:31.265Z</updated>
+  <updated>2019-03-31T11:46:23.627Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,236 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>工程项目管理</title>
+    <link href="https://riboseyim.com/2019/03/27/Project-Construction/"/>
+    <id>https://riboseyim.com/2019/03/27/Project-Construction/</id>
+    <published>2019-03-27T05:43:53.000Z</published>
+    <updated>2019-03-31T11:46:23.627Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>《工程项目管理》| 同济大学MOOC课程学习笔记</li>
+<li>理论：组织论、信息论、项目控制论</li>
+<li>重点：投资控制、进度控制、质量控制、风险控制</li>
+<li>技术：网络规划技术、项目管理软件（MS Project/P3/P6）、BIM</li>
+<li>案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场</li>
+</ul>
+<a id="more"></a>
+<h1 id="《工程项目管理》-同济大学-MOOC-课程"><a href="#《工程项目管理》-同济大学-MOOC-课程" class="headerlink" title="《工程项目管理》| 同济大学 MOOC 课程"></a>《工程项目管理》| 同济大学 MOOC 课程</h1><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>简介</th>
+<th>主讲内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丁士昭</td>
+<td>同济大学工程管理研究所创始人、名誉所长。<br> 德国达姆斯塔特工业大学，工学博士</td>
+<td>概论、组织理论、工程控制论、工程顾问、工程监理、政策法律</td>
+</tr>
+<tr>
+<td>何清华</td>
+<td>研究领域：建设工程项目管理、重大/复杂工程管理、精益建设</td>
+<td>动态控制原理（目标控制、进度控制、质量控制）案例（）</td>
+</tr>
+<tr>
+<td>乐云</td>
+<td>研究领域：建设工程项目管理，包括项目前期策划、大型复杂工程项目组织管理、承发包模式与合同管理、工程管理信息化等</td>
+<td>项目策划、案例（上海世博会工程进度总控）</td>
+</tr>
+<tr>
+<td>张建国</td>
+<td>研究领域主要有工程造价管理理论与方法、工程进度优化与控制、可持续建设、建筑服务贸易、IT在工程管理中应用等</td>
+<td>工程项目投资控制、案例（上海虹桥综合交通枢纽交通中心工程、浦东国际机场扩建工程投资控制）</td>
+</tr>
+<tr>
+<td>高欣</td>
+<td>研究领域：城市管理与建设工程管理、项目管理、大型建设工程进度规划与控制、建设工程风险管理与保险</td>
+<td>网络规划技术、案例（广州白云国际机场扩建工程总进度控制）</td>
+</tr>
+<tr>
+<td>贾广社</td>
+<td></td>
+<td>案例（上海虹桥交通枢纽工程进度总控）</td>
+</tr>
+<tr>
+<td>王广斌</td>
+<td>研究领域：项目管理、工程管理信息化、项目投融资</td>
+<td>案例（中德友好医院）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>丁士昭。1940年9月26日出生于上海。1963年毕业于同济大学建筑工程系，同济大学工程管理研究所创始人、名誉所长。主要从事建筑经济、建设项目策划、项目管理等方面的研究。</li>
+<li>何清华。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学复杂工程管理研究院副院长兼精益建设研究中心主任。</li>
+<li>乐云。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学复杂工程管理研究院副院长。研究领域为建设工程项目管理，包括项目前期策划、大型复杂工程项目组织管理、承发包模式与合同管理、工程管理信息化等。（教育部2015年7月6日通报同济大学经济与管理学院建设管理与房地产系存在公款出国旅游问题，系主任乐云受到党内严重警告处分）</li>
+<li>张建国。管理学博士。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学工程管理研究所所长。研究领域主要有工程造价管理理论与方法、工程进度优化与控制、可持续建设、建筑服务贸易、IT在工程管理中应用等。</li>
+<li>高欣。同济大学经济与管理学院建设管理与房地产系教授，博士生导师。同济大学基建处长。研究领域：城市管理与建设工程管理、项目管理、大型建设工程进度规划与控制、建设工程风险管理与保险。</li>
+<li>贾广社。同济大学经济与管理学院建设管理与房地产系教授。1982年，新疆工学院获工学学士学位 工民建专业，2000年，同济大学获管理学博士学位 工程管理专业。研究与领域工程项目管理、大型建设工程项目总控、项目管理成熟度，跨学科研究：建设工程社会学、工程哲学。</li>
+<li>王广斌。同济大学经济与管理学院副院长。中国图学学会BIM委员会副主任委员、中国建设教育协会BIM委员会副主任委员、中国工程建设标准化协会建筑信息模型BIM专业委员会理事。</li>
+<li>曹吉鸣（1960.1- ），男，博士、教授、博士生导师，同济大学复杂工程管理研究院副院长，设施管理研究中心主任。</li>
+</ul>
+<h2 id="1-1-工程项目管理概论（丁士昭）（推荐）"><a href="#1-1-工程项目管理概论（丁士昭）（推荐）" class="headerlink" title="1.1 工程项目管理概论（丁士昭）（推荐）"></a>1.1 工程项目管理概论（丁士昭）（推荐）</h2><ul>
+<li>推荐</li>
+</ul>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>英语：<strong>Professional Management in Construction</strong> （1997年华盛顿会议）</li>
+<li>美国：Construction Management</li>
+<li>项目控制论（“总控”）：Project Controlling</li>
+</ul>
+<h2 id="1-2-项目管理的组织理论（丁士昭）（推荐）"><a href="#1-2-项目管理的组织理论（丁士昭）（推荐）" class="headerlink" title="1.2 项目管理的组织理论（丁士昭）（推荐）"></a>1.2 项目管理的组织理论（丁士昭）（推荐）</h2><ul>
+<li>推荐</li>
+</ul>
+<h4 id="组织论是项目管理的母学科"><a href="#组织论是项目管理的母学科" class="headerlink" title="组织论是项目管理的母学科"></a>组织论是项目管理的母学科</h4><h2 id="1-3-The-Domain-of-Project-Management（Monique-Aubry）"><a href="#1-3-The-Domain-of-Project-Management（Monique-Aubry）" class="headerlink" title="1.3 The Domain of Project Management（Monique Aubry）"></a>1.3 The Domain of Project Management（Monique Aubry）</h2><h2 id="2-1-工程项目目标控制的基本原理（何清华）（推荐）"><a href="#2-1-工程项目目标控制的基本原理（何清华）（推荐）" class="headerlink" title="2.1 工程项目目标控制的基本原理（何清华）（推荐）"></a>2.1 工程项目目标控制的基本原理（何清华）（推荐）</h2><h4 id="动态控制原理在目标控制的应用"><a href="#动态控制原理在目标控制的应用" class="headerlink" title="动态控制原理在目标控制的应用"></a>动态控制原理在目标控制的应用</h4><h4 id="动态控制原理在投资控制的应用"><a href="#动态控制原理在投资控制的应用" class="headerlink" title="动态控制原理在投资控制的应用"></a>动态控制原理在投资控制的应用</h4><h4 id="动态控制原理在质量控制的应用"><a href="#动态控制原理在质量控制的应用" class="headerlink" title="动态控制原理在质量控制的应用"></a>动态控制原理在质量控制的应用</h4><h4 id="2-1-6-项目风险管理基本原理"><a href="#2-1-6-项目风险管理基本原理" class="headerlink" title="2.1.6 项目风险管理基本原理"></a>2.1.6 项目风险管理基本原理</h4><h4 id="2-1-7-工程项目风险管理"><a href="#2-1-7-工程项目风险管理" class="headerlink" title="2.1.7 工程项目风险管理"></a>2.1.7 工程项目风险管理</h4><ul>
+<li>风险定性分析方法：P-I矩阵</li>
+</ul>
+<h2 id="2-2-项目策划（乐云）（推荐）"><a href="#2-2-项目策划（乐云）（推荐）" class="headerlink" title="2.2 项目策划（乐云）（推荐）"></a>2.2 项目策划（乐云）（推荐）</h2><h4 id="2-2-1-基本原理"><a href="#2-2-1-基本原理" class="headerlink" title="2.2.1 基本原理"></a>2.2.1 基本原理</h4><h4 id="2-2-2-环境调查与分析"><a href="#2-2-2-环境调查与分析" class="headerlink" title="2.2.2 环境调查与分析"></a>2.2.2 环境调查与分析</h4><h4 id="2-2-3-项目定义与项目功能分析"><a href="#2-2-3-项目定义与项目功能分析" class="headerlink" title="2.2.3 项目定义与项目功能分析"></a>2.2.3 项目定义与项目功能分析</h4><h4 id="2-2-4"><a href="#2-2-4" class="headerlink" title="2.2.4"></a>2.2.4</h4><h4 id="2-2-5-项目实施策划"><a href="#2-2-5-项目实施策划" class="headerlink" title="2.2.5 项目实施策划"></a>2.2.5 项目实施策划</h4><ul>
+<li>案例：上海世博会工程总进度计划（2007年11月）</li>
+</ul>
+<h4 id="2-2-6"><a href="#2-2-6" class="headerlink" title="2.2.6"></a>2.2.6</h4><h4 id="2-2-7-项目实施的组织策划"><a href="#2-2-7-项目实施的组织策划" class="headerlink" title="2.2.7 项目实施的组织策划"></a>2.2.7 项目实施的组织策划</h4><ul>
+<li>组织结构策划</li>
+<li>任务分工策划</li>
+<li>管理职能分工策划</li>
+<li>工作流程策划</li>
+</ul>
+<h4 id="2-2-8-项目实施的目标控制策划"><a href="#2-2-8-项目实施的目标控制策划" class="headerlink" title="2.2.8 项目实施的目标控制策划"></a>2.2.8 项目实施的目标控制策划</h4><ul>
+<li>进度目标控制策划</li>
+<li>投资目标控制策划</li>
+<li>质量目标控制策划</li>
+</ul>
+<h2 id="3-1-工程项目投资控制（张建国）（推荐）"><a href="#3-1-工程项目投资控制（张建国）（推荐）" class="headerlink" title="3.1 工程项目投资控制（张建国）（推荐）"></a>3.1 工程项目投资控制（张建国）（推荐）</h2><h4 id="3-1-5-谁对项目投资费用有影响"><a href="#3-1-5-谁对项目投资费用有影响" class="headerlink" title="3.1.5 谁对项目投资费用有影响"></a>3.1.5 谁对项目投资费用有影响</h4><h2 id="3-2-网络计划技术（高欣）（推荐）"><a href="#3-2-网络计划技术（高欣）（推荐）" class="headerlink" title="3.2 网络计划技术（高欣）（推荐）"></a>3.2 网络计划技术（高欣）（推荐）</h2><ul>
+<li>工程项目进度计划的编制方法</li>
+<li>工程项目进度计划系统</li>
+<li>工程项目进度控制</li>
+</ul>
+<h4 id="3-2-9-工程项目进度管理案例"><a href="#3-2-9-工程项目进度管理案例" class="headerlink" title="3.2.9 工程项目进度管理案例"></a>3.2.9 工程项目进度管理案例</h4><ul>
+<li>广州白云国际机场扩建工程总进度计划</li>
+</ul>
+<h2 id="3-3-案例教学-上海虹桥交通枢纽工程进度总控（贾广社）（推荐）"><a href="#3-3-案例教学-上海虹桥交通枢纽工程进度总控（贾广社）（推荐）" class="headerlink" title="3.3 案例教学|上海虹桥交通枢纽工程进度总控（贾广社）（推荐）"></a>3.3 案例教学|上海虹桥交通枢纽工程进度总控（贾广社）（推荐）</h2><h4 id="项目总控理论概述"><a href="#项目总控理论概述" class="headerlink" title="项目总控理论概述"></a>项目总控理论概述</h4><h4 id="进度总控实践"><a href="#进度总控实践" class="headerlink" title="进度总控实践"></a>进度总控实践</h4><h4 id="进度总控实践与创新"><a href="#进度总控实践与创新" class="headerlink" title="进度总控实践与创新"></a>进度总控实践与创新</h4><h2 id="4-1-工程项目质量控制和安全管理（贾广社）"><a href="#4-1-工程项目质量控制和安全管理（贾广社）" class="headerlink" title="4.1 工程项目质量控制和安全管理（贾广社）"></a>4.1 工程项目质量控制和安全管理（贾广社）</h2><h2 id="4-2-计算机、网络平台和BIM在建设项目管理中的应用（王广斌）"><a href="#4-2-计算机、网络平台和BIM在建设项目管理中的应用（王广斌）" class="headerlink" title="4.2 计算机、网络平台和BIM在建设项目管理中的应用（王广斌）"></a>4.2 计算机、网络平台和BIM在建设项目管理中的应用（王广斌）</h2><ul>
+<li>案例：中德友好医院</li>
+</ul>
+<h2 id="4-3-案例与实务-Virtual-Design-amp-Construction-An-Introduction（）"><a href="#4-3-案例与实务-Virtual-Design-amp-Construction-An-Introduction（）" class="headerlink" title="4.3 案例与实务| Virtual Design &amp; Construction - An Introduction（）"></a>4.3 案例与实务| Virtual Design &amp; Construction - An Introduction（）</h2><h1 id="以下未完成"><a href="#以下未完成" class="headerlink" title="================ 以下未完成"></a>================ 以下未完成</h1><h2 id="5-1-工程设计阶段的项目管理（李永奎，副教授）"><a href="#5-1-工程设计阶段的项目管理（李永奎，副教授）" class="headerlink" title="5.1 工程设计阶段的项目管理（李永奎，副教授）"></a>5.1 工程设计阶段的项目管理（李永奎，副教授）</h2><h4 id="5-5-1-设计任务的委托和设计合同管理"><a href="#5-5-1-设计任务的委托和设计合同管理" class="headerlink" title="5.5.1 设计任务的委托和设计合同管理"></a>5.5.1 设计任务的委托和设计合同管理</h4><h2 id="5-2-工程项目的采购管理（孙继德，副教授）"><a href="#5-2-工程项目的采购管理（孙继德，副教授）" class="headerlink" title="5.2 工程项目的采购管理（孙继德，副教授）"></a>5.2 工程项目的采购管理（孙继德，副教授）</h2><h2 id="6-1-施工阶段的项目管理（曹吉鸣）"><a href="#6-1-施工阶段的项目管理（曹吉鸣）" class="headerlink" title="6.1 施工阶段的项目管理（曹吉鸣）"></a>6.1 施工阶段的项目管理（曹吉鸣）</h2><h2 id="6-2-建设项目的运营管理（曹吉鸣）"><a href="#6-2-建设项目的运营管理（曹吉鸣）" class="headerlink" title="6.2 建设项目的运营管理（曹吉鸣）"></a>6.2 建设项目的运营管理（曹吉鸣）</h2><h2 id="6-3-案例与实务-国际建筑业绩效管理的现状与实践（戴久坤）"><a href="#6-3-案例与实务-国际建筑业绩效管理的现状与实践（戴久坤）" class="headerlink" title="6.3 案例与实务|国际建筑业绩效管理的现状与实践（戴久坤）"></a>6.3 案例与实务|国际建筑业绩效管理的现状与实践（戴久坤）</h2><h2 id="6-4-关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）"><a href="#6-4-关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）" class="headerlink" title="6.4 关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）"></a>6.4 关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）</h2><h2 id="7-1-案例与实务-中国2010年上海世博会工程建设项目管理（乐云）（推荐）"><a href="#7-1-案例与实务-中国2010年上海世博会工程建设项目管理（乐云）（推荐）" class="headerlink" title="7.1 案例与实务|中国2010年上海世博会工程建设项目管理（乐云）（推荐）"></a>7.1 案例与实务|中国2010年上海世博会工程建设项目管理（乐云）（推荐）</h2><h2 id="7-2-新时期施工管理的新问题（施骞）（推荐）"><a href="#7-2-新时期施工管理的新问题（施骞）（推荐）" class="headerlink" title="7.2 新时期施工管理的新问题（施骞）（推荐）"></a>7.2 新时期施工管理的新问题（施骞）（推荐）</h2><ul>
+<li>施工质量安全控制中的关键问题</li>
+</ul>
+<h2 id="8-1-案例教学-上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）"><a href="#8-1-案例教学-上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）" class="headerlink" title="8.1 案例教学|上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）"></a>8.1 案例教学|上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）</h2><ul>
+<li>重大项目策划</li>
+</ul>
+<h2 id="8-2-案例教学-大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）"><a href="#8-2-案例教学-大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）" class="headerlink" title="8.2 案例教学|大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）"></a>8.2 案例教学|大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）</h2><h2 id="8-3-案例与实务-基础设施项目群建设管理：长春市案例（李永奎，副教授）"><a href="#8-3-案例与实务-基础设施项目群建设管理：长春市案例（李永奎，副教授）" class="headerlink" title="8.3 案例与实务|基础设施项目群建设管理：长春市案例（李永奎，副教授）"></a>8.3 案例与实务|基础设施项目群建设管理：长春市案例（李永奎，副教授）</h2><h2 id="9-1-哲学视野中的工程（殷瑞钰，原冶金部副部长）"><a href="#9-1-哲学视野中的工程（殷瑞钰，原冶金部副部长）" class="headerlink" title="9.1 哲学视野中的工程（殷瑞钰，原冶金部副部长）"></a>9.1 哲学视野中的工程（殷瑞钰，原冶金部副部长）</h2><h2 id="9-2-三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）"><a href="#9-2-三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）" class="headerlink" title="9.2 三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）"></a>9.2 三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）</h2><h2 id="10-1-工程管理创新与实践（丁士昭）"><a href="#10-1-工程管理创新与实践（丁士昭）" class="headerlink" title="10.1 工程管理创新与实践（丁士昭）"></a>10.1 工程管理创新与实践（丁士昭）</h2><h2 id="10-2-The-Past-Present-and-Future-of-Project-Management（Dr-Ediwin-J-Andrews）"><a href="#10-2-The-Past-Present-and-Future-of-Project-Management（Dr-Ediwin-J-Andrews）" class="headerlink" title="10.2 The Past,Present and Future of Project Management（Dr. Ediwin J. Andrews）"></a>10.2 The Past,Present and Future of Project Management（Dr. Ediwin J. Andrews）</h2><h2 id="10-3-升级中的中国对外承包业（吴之昕-中建一局总工）"><a href="#10-3-升级中的中国对外承包业（吴之昕-中建一局总工）" class="headerlink" title="10.3 升级中的中国对外承包业（吴之昕|中建一局总工）"></a>10.3 升级中的中国对外承包业（吴之昕|中建一局总工）</h2><h2 id="案例作业"><a href="#案例作业" class="headerlink" title="案例作业"></a>案例作业</h2><ul>
+<li>美国国防部“北极星”项目</li>
+<li>上海地铁一号线建设的组织策划（1990）；</li>
+<li>上海虹桥交通枢纽（虹桥机场+高铁上海站）项目</li>
+<li>广州地铁首期工程建设项目管理总体方案（1991.11—1992.5）；</li>
+<li>广州新白云机场建设总进度计划纲要（2000.11—2001.2）</li>
+</ul>
+<h2 id="阅读作业"><a href="#阅读作业" class="headerlink" title="阅读作业"></a>阅读作业</h2><h4 id="组织论"><a href="#组织论" class="headerlink" title="组织论"></a>组织论</h4><ul>
+<li>《组织理论与设计》</li>
+</ul>
+<h4 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h4><h4 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h4><ul>
+<li>《项目管理-计划、进度和控制的系统方法》| 哈罗德·柯兹纳(Harold Kerzner)</li>
+<li>《PMBOK》|PMI 项目管理知识体系指南</li>
+</ul>
+<h4 id="专业组织"><a href="#专业组织" class="headerlink" title="专业组织"></a>专业组织</h4><ul>
+<li>英国：皇家特许建造学会（The Chartered Institute of Building，缩写：CIOB），1834年3月6日在伦敦成立，当时名为营造师协会，并由15名总营造师组成，包括汤玛斯·邱比特和威廉·丘比特，以抗衡当时英国建造业工会的势力。</li>
+<li>英国：皇家建筑师协会（Royal Institute of British Architects，缩写：RIBA），建筑师职业协会。</li>
+<li>英国：里丁大学/雷丁大学（University of Reading）</li>
+<li>美国：美国建造师协会（ AIC ）</li>
+<li>德国：</li>
+</ul>
+<h5 id="英国建筑业议会成员单位"><a href="#英国建筑业议会成员单位" class="headerlink" title="英国建筑业议会成员单位"></a>英国建筑业议会成员单位</h5><ul>
+<li>ACAI Association of Consultant Approved Inspectors</li>
+<li>ACE Association for Consultancy and Engineering</li>
+<li>APM Association for Project Management</li>
+<li>APS Association for Project Safety</li>
+<li>ASFP Association for Specialist Fire Protection</li>
+<li>BAFE British Approvals for Fire Equipment</li>
+<li>BCS Chartered Institute for IT</li>
+<li>BIID British Institute of Interior Design</li>
+<li>BRE Building Research Establishment</li>
+<li>BSRIA Building Services Research and Information Association</li>
+<li>CABE Chartered Association of Building Engineers</li>
+<li>CIAT Chartered Institute of Architectural Technologists</li>
+<li>CIBSE Chartered Institution of Building Services Engineers</li>
+<li>CIOB Chartered Institute of Building</li>
+<li>CIHT Chartered Institution of Highways &amp; Transportation</li>
+<li>CIPHE Chartered Institute of Plumbing and Heating Engineering</li>
+<li>CIRIA Construction Industry Research and Information Association</li>
+<li>GF Ground Forum</li>
+<li>ICE Institution of Civil Engineers</li>
+<li>ICES Chartered Institution of Civil Engineering Surveyors</li>
+<li>ICWCI Institute of Clerks of Works and Construction Inspectorate                                                       </li>
+<li>​IET-BES Institution of Engineering and Technology - Built Environment Sector</li>
+<li>IFE Institution of Fire Engineers</li>
+<li>IIRSM International Institute of Risk and Safety Management</li>
+<li>ISSE Institute of Specialist Surveyors and Engineers</li>
+<li>IStructE Institution of Structural Engineers                                                                                        </li>
+<li>IWFM Institute of Workplace and Facilities Management</li>
+<li>LABC Local Authorities Building Control</li>
+<li>LI Landscape Institute</li>
+<li>NHBC National House-Building Council</li>
+<li>RIBA Royal Institute of British Architects</li>
+<li>RICS Royal Institution of Chartered Surveyors</li>
+<li>RTPI Royal Town Planning Institute</li>
+<li>SAFed The Safety Assessment Federation</li>
+</ul>
+<h2 id="专家"><a href="#专家" class="headerlink" title="专家"></a>专家</h2><h2 id="丁士昭"><a href="#丁士昭" class="headerlink" title="丁士昭"></a>丁士昭</h2><h4 id="工作履历"><a href="#工作履历" class="headerlink" title="工作履历"></a>工作履历</h4><p>1952—1955，上海，南洋模范中学，初中<br>1955—1958，上海，上海中学，高中<br>1958—1963，上海，同济大学 建筑工程系，建筑工程经济与组织专业<br>1963—1978，同济大学 建筑施工组织教研室，助教<br>1978—1985，同济大学 建筑管理教研室，讲师<br>1980.10—1982.10，联邦德国，达姆斯塔特技术大学（Technische Universitaet Darmstadt），科研、进修<br>1983—1985，同济大学 建筑管理教研室，主任<br>1985.4—1985.12，联邦德国，达姆斯塔特技术大学，土木工程系，工学博士（1985.10）<br>1986—1987，同济大学 经济信息系，副教授<br>1987年—经济信息系 教授、副系主任、经济管理学院副院长<br>1988.10—1989.2, 联邦德国，Integrata 软件公司，科研、进修<br>1991—至今，同济大学 工程管理研究所所长，教授<br>1998.7—1999.1， 日本 名古屋大学客座教授<br>2000.8—2000.10, 联邦德国，Integrata 基金会</p>
+<h4 id="主要讲授课程"><a href="#主要讲授课程" class="headerlink" title="主要讲授课程"></a>主要讲授课程</h4><ul>
+<li>项目管理</li>
+<li>建设监理</li>
+<li>建筑经济</li>
+<li>算法语言</li>
+<li>网络计划技术</li>
+<li>建筑施工组织与计划</li>
+<li>专业德语</li>
+</ul>
+<h4 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h4><p>1963—1975，主要从事网络计划技术的研究<br>1975—1980，主要从事资源进度计划的研究和编制网络计划和资源进度计划的程序<br>1980—1985，主要从事群体网络计划系统—多阶网络法的研究，1985年所完成的博士论文—多阶网络法的数学模型、解法和程序</p>
+<ul>
+<li>建筑经济</li>
+<li>建设项目策划，DM—Development Management</li>
+<li>项目管理，PM—Project Management</li>
+<li>CM模式—Construction Management</li>
+<li>项目管理信息系统，PMIS—Project Management Information System</li>
+<li>项目总控， Project Controlling</li>
+<li>在英特网平台上的项目管理与控制， Web-based Project Management and Project Controlling</li>
+<li>工程管理信息化</li>
+<li>建设项目集成化管理－建设项目全寿命管理</li>
+<li>风险管理和工程保险</li>
+<li>物业管理</li>
+</ul>
+<h4 id="科研成果"><a href="#科研成果" class="headerlink" title="科研成果"></a>科研成果</h4><ul>
+<li>主持研制和开发“上海地铁工程项目管理信息系统”，上海市科委组织鉴定，鉴定结论：国内首创，1991年10月</li>
+<li>主持编写“广州地铁首期工程项目管理总体方案”，建设部组织鉴定，1992年1月</li>
+<li>主持研究“建设项目总承包的理论、方法与手段”，上海市建委组织鉴定，鉴定结论：国内领先，1992年，（该课题由同济大学工程管理研究所、上海华东建筑设计院、中建总公司上海分公司联合研究）</li>
+<li>主持研制和开发“上海合流污水处理投资控制信息系统“,上海合流污水处理工程指挥部委托， 1993年</li>
+<li>主持研究“中国建设监理模式”，上海市建委组织鉴定、建设部参加鉴定，建设部七五重点项目，鉴定结论：国内领先水平。1995年6月，（该课题由10余人参加，编写科研报告27份）</li>
+<li>主持研制和开发“DP-1/CC计算机辅助投资控制系统”，建设部组织鉴定，鉴定结论：国际先进水平，1996年11月，（该课题由同济大学工程管理研究所 与Infoage软件公司联合开发）</li>
+<li>主持研究“德国建设管理体制及相关制度的研究”，建设部委托,1998年</li>
+<li>主持研究“国际建筑业管理体制、法制与机制的研究”，建设部组织鉴定，中国高校科学技术进步奖，二等奖，2000年</li>
+<li>主持研制和开发“长江口深水航道治理工程信息系统”，长江口深水航道治理工程公司委托,1998-2000年</li>
+<li>主持研制和开发“天津基础设施综合管理信息系统（TIIMIS）”，天津市建委委托，世界银行贷款项目,1998-2000年</li>
+</ul>
+<h4 id="出版的书籍和发表的论文"><a href="#出版的书籍和发表的论文" class="headerlink" title="出版的书籍和发表的论文"></a>出版的书籍和发表的论文</h4><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;《工程项目管理》| 同济大学MOOC课程学习笔记&lt;/li&gt;
+&lt;li&gt;理论：组织论、信息论、项目控制论&lt;/li&gt;
+&lt;li&gt;重点：投资控制、进度控制、质量控制、风险控制&lt;/li&gt;
+&lt;li&gt;技术：网络规划技术、项目管理软件（MS Project/P3/P6）、BIM&lt;/li&gt;
+&lt;li&gt;案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
   
   <entry>
     <title>行走的思想家:罗伯特·D.卡普兰</title>
@@ -254,7 +484,7 @@
     <link href="https://riboseyim.com/2019/03/08/Protocol-RADIUS/"/>
     <id>https://riboseyim.com/2019/03/08/Protocol-RADIUS/</id>
     <published>2019-03-08T07:41:11.000Z</published>
-    <updated>2019-03-08T07:41:11.515Z</updated>
+    <updated>2019-03-08T07:41:11.516Z</updated>
     
     <summary type="html">
     
@@ -268,21 +498,10 @@
     <link href="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/"/>
     <id>https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/</id>
     <published>2019-03-05T03:00:55.000Z</published>
-    <updated>2019-03-08T07:39:59.339Z</updated>
+    <updated>2019-03-28T11:27:42.980Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h2 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h2><h4 id="What-is-Zebra"><a href="#What-is-Zebra" class="headerlink" title="What is Zebra?"></a>What is Zebra?</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
-<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
-<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
-<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
-<ul>
-<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
-<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
-<li>User can dynamically change configuration from terminal interface.</li>
-<li>User can use command line completion and history in terminal interface.</li>
-<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
-</ul>
-<h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
+<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
 <p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
 <div class="table-container">
 <table>
@@ -320,12 +539,24 @@
 <td>IS-IS with support for IPv4 and IPv6</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>vtysh</td>
+<td>vtysh</td>
+<td>shell tools              </td>
 </tr>
 </tbody>
 </table>
 </div>
+<h4 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
+<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
+<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
+<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
+<ul>
+<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
+<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
+<li>User can dynamically change configuration from terminal interface.</li>
+<li>User can use command line completion and history in terminal interface.</li>
+<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
+</ul>
 <h4 id="Zerba-Supported-Platforms"><a href="#Zerba-Supported-Platforms" class="headerlink" title="Zerba Supported Platforms"></a>Zerba Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
 <ul>
 <li>GNU/Linux</li>
@@ -338,7 +569,9 @@
 <li>INRIA IPv6</li>
 </ul>
 <h4 id="Zerba-ABC"><a href="#Zerba-ABC" class="headerlink" title="Zerba ABC"></a>Zerba ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
-<h2 id="同类项目"><a href="#同类项目" class="headerlink" title="同类项目"></a>同类项目</h2><ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
+<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
 <li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
 <li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
 </ul>
@@ -362,7 +595,7 @@
     <link href="https://riboseyim.com/2019/02/10/Psychology-Biases/"/>
     <id>https://riboseyim.com/2019/02/10/Psychology-Biases/</id>
     <published>2019-02-10T14:21:42.000Z</published>
-    <updated>2019-02-11T17:06:51.187Z</updated>
+    <updated>2019-02-11T17:06:51.188Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>What is Trap</li>
@@ -709,7 +942,7 @@
     <link href="https://riboseyim.com/2019/02/06/Engineering-Design/"/>
     <id>https://riboseyim.com/2019/02/06/Engineering-Design/</id>
     <published>2019-02-05T19:22:35.000Z</published>
-    <updated>2019-02-05T19:35:22.233Z</updated>
+    <updated>2019-02-05T19:35:22.234Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>工程设计</strong> 的一种定义是，运用工程原理和知识去满足一种实际需要的活动。设计的对象可以是实际设备，如机器、电路或者桥梁结构，也可以是较为抽象的东西，如软件工程、操作系统、网络设备、制造过程或者控制算法。</p>
@@ -777,7 +1010,7 @@
     <link href="https://riboseyim.com/2019/02/06/Project-Communications/"/>
     <id>https://riboseyim.com/2019/02/06/Project-Communications/</id>
     <published>2019-02-05T18:19:53.000Z</published>
-    <updated>2019-02-05T19:53:02.628Z</updated>
+    <updated>2019-02-05T19:53:02.629Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>在美国和加拿大负责评审工程学校专业的国家工程与技术组织委员会（Accreditation Board for Engineering and Technlogy,ABET）指出：</p>
@@ -1271,7 +1504,7 @@
     <link href="https://riboseyim.com/2019/02/04/Intelligence/"/>
     <id>https://riboseyim.com/2019/02/04/Intelligence/</id>
     <published>2019-02-04T15:12:53.000Z</published>
-    <updated>2019-03-17T19:03:49.224Z</updated>
+    <updated>2019-03-17T19:03:49.225Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <blockquote>
@@ -1620,7 +1853,7 @@
     <link href="https://riboseyim.com/2019/01/09/Data-Science/"/>
     <id>https://riboseyim.com/2019/01/09/Data-Science/</id>
     <published>2019-01-09T05:50:44.000Z</published>
-    <updated>2019-01-09T06:52:11.335Z</updated>
+    <updated>2019-01-09T06:52:11.336Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>数据科学工具箱 | Data Science Toolbox</li>
@@ -1669,7 +1902,7 @@
     <link href="https://riboseyim.com/2019/01/07/Engineering/"/>
     <id>https://riboseyim.com/2019/01/07/Engineering/</id>
     <published>2019-01-06T19:07:36.000Z</published>
-    <updated>2019-02-05T18:14:27.032Z</updated>
+    <updated>2019-02-05T18:14:27.033Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="Introducing-Engineering"><a href="#Introducing-Engineering" class="headerlink" title="Introducing Engineering"></a>Introducing Engineering</h2><p>工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
@@ -1746,7 +1979,7 @@
     <link href="https://riboseyim.com/2019/01/07/Language-Java-lang/"/>
     <id>https://riboseyim.com/2019/01/07/Language-Java-lang/</id>
     <published>2019-01-06T18:15:27.000Z</published>
-    <updated>2019-01-06T18:19:26.424Z</updated>
+    <updated>2019-01-06T18:19:26.425Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="JVM-性能分析与优化"><a href="#JVM-性能分析与优化" class="headerlink" title="JVM 性能分析与优化"></a>JVM 性能分析与优化</h2><ul>
@@ -1769,7 +2002,7 @@
     <link href="https://riboseyim.com/2019/01/07/Writing-Community/"/>
     <id>https://riboseyim.com/2019/01/07/Writing-Community/</id>
     <published>2019-01-06T17:32:34.000Z</published>
-    <updated>2019-01-06T19:32:16.261Z</updated>
+    <updated>2019-01-06T19:32:16.262Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>写作这门手艺</li>
@@ -1844,7 +2077,7 @@
     <link href="https://riboseyim.com/2019/01/05/Mac/"/>
     <id>https://riboseyim.com/2019/01/05/Mac/</id>
     <published>2019-01-05T02:51:13.000Z</published>
-    <updated>2019-01-09T07:10:09.885Z</updated>
+    <updated>2019-01-09T07:10:09.886Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <p>This article is part of an <strong>Mac Operating System</strong> tutorial series. Make sure to check out my other articles as well:</p>
@@ -1961,40 +2194,6 @@
       <category term="Mac" scheme="https://riboseyim.com/tags/Mac/"/>
     
       <category term="工具癖" scheme="https://riboseyim.com/tags/%E5%B7%A5%E5%85%B7%E7%99%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>容灾设计</title>
-    <link href="https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/"/>
-    <id>https://riboseyim.com/2019/01/01/Engineering-DisasterRecovery/</id>
-    <published>2018-12-31T17:06:37.000Z</published>
-    <updated>2019-02-05T18:12:17.601Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h4 id="设计中的失败准备"><a href="#设计中的失败准备" class="headerlink" title="设计中的失败准备"></a>设计中的失败准备</h4><blockquote>
-<p>没有琢磨不透的事故，只有意想不到的事故。—— 马克 N.霍伦斯坦</p>
-</blockquote>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="2018-七牛云·域名"><a href="#2018-七牛云·域名" class="headerlink" title="2018 七牛云·域名"></a>2018 七牛云·域名</h4><blockquote>
-<p>尊敬的七牛云用户，您好: 如果您正在使用或将要使用测试域名，请务必仔细阅读本邮件内容！ 七牛云测试域名是用户在创建云存储空间时系统自动生成的七牛域名，以 clouddn.com, qiniucdn.com, qiniudn.com, qnssl.com, qbox.me 等结尾，此类域名仅供用户测试不能用于正式生产环境。测试域名不规范使用或被当作正式域名使用，将导致域名的安全风险增加，从而影响用户的正常测试需求。 为了确保测试域名的规范使用，保障七牛云用户的权益，我们将逐步对测试域名加强管理，具体规则如下： [已上线生效] 不得使用测试域名存储、发布、传播违法违规内容。当测试域名下有非法资源时，该域名将被直接冻结并不予解封。如对七牛云及其他用户造成损害，七牛云保留进一步追责的权利。 对 2018 年 7 月 18 日起新产生的测试域名，禁止下载移动应用程序(apk,ipa 等)，请绑定自定义域名进行访问。 [预计生效时间 8 月上旬] ：流量限制 测试域名无论新老测试域名每个自然日限总流量 10GB，当日测试流量达到 10GB 上限后，禁止继续访问。 [预计生效时间 8 月中旬] ：测试域名回收机制 每个测试域名生命周期为 30 个自然日（已有测试域名自回收功能上线之日起算，新产生的测试域名自系统自动生成之日起算），超过 30 日系统将自动回收，回收即为域名删除。 在测试域名生命周期终结之前我们会邮件通知您，您也可以自行在 七牛云-管理控制台 上查看测试域名剩余的回收时间。</p>
-</blockquote>
-<h4 id="2017-小密圈"><a href="#2017-小密圈" class="headerlink" title="2017 小密圈"></a>2017 小密圈</h4><blockquote>
-<p>亲爱的小密圈用户:<br>由于技术升级，您将暂时无法访问小密圈官网、网页版、客户端和小程序。小密圈公众号内的提现功能可正常使用。升级后，我们会更好地服务内容创作者。——小密圈团队</p>
-</blockquote>
-<p>历史再次证明关键信息放在国内根本靠不住，前有微博、B站，现有小密圈，下一个会是微信公众号吗？<br>完全有可能，谁也不知道。<strong>随时可能变成敏感词，随时可能因为技术原因被消失，白色恐怖、KGB（Komitet gosudarstvennoy bezopasnosti）莫过于此。</strong></p>
-<h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><ul>
-<li>《 To Engineer is Human: The Role of Failure in Successful Design (1985)》| <a href="https://en.wikipedia.org/wiki/Henry_Petroski" target="_blank" rel="external">Henry Petroski</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
   </entry>
   
