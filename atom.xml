@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-03-31T11:46:23.627Z</updated>
+  <updated>2019-04-05T16:34:58.469Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -16,21 +16,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Project-PMIS</title>
+    <link href="https://riboseyim.com/2019/04/06/Project-PMIS/"/>
+    <id>https://riboseyim.com/2019/04/06/Project-PMIS/</id>
+    <published>2019-04-05T16:32:40.000Z</published>
+    <updated>2019-04-05T16:34:58.469Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<blockquote>
+<p>信息化带来的价值可以占到总投资的10%以上。换句话说，一个工程项目如果管理信息化工作成功了，可以节省十分之一的投资，这是一个非常可观的数据。所以如何做好工程管理信息化，如何将信息资源开发好，将信息技术利用好，对现在乃至将来的工程建设有着重大的意义。—— 丁士昭</p>
+</blockquote>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>工程项目管理</title>
     <link href="https://riboseyim.com/2019/03/27/Project-Construction/"/>
     <id>https://riboseyim.com/2019/03/27/Project-Construction/</id>
     <published>2019-03-27T05:43:53.000Z</published>
-    <updated>2019-03-31T11:46:23.627Z</updated>
+    <updated>2019-04-06T10:20:13.076Z</updated>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>《工程项目管理》| 同济大学MOOC课程学习笔记</li>
+<li>《工程项目管理》| 同济大学MOOC课程</li>
 <li>理论：组织论、信息论、项目控制论</li>
 <li>重点：投资控制、进度控制、质量控制、风险控制</li>
 <li>技术：网络规划技术、项目管理软件（MS Project/P3/P6）、BIM</li>
 <li>案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场</li>
 </ul>
 <a id="more"></a>
-<h1 id="《工程项目管理》-同济大学-MOOC-课程"><a href="#《工程项目管理》-同济大学-MOOC-课程" class="headerlink" title="《工程项目管理》| 同济大学 MOOC 课程"></a>《工程项目管理》| 同济大学 MOOC 课程</h1><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><div class="table-container">
+<h1 id="《工程项目管理》-同济大学"><a href="#《工程项目管理》-同济大学" class="headerlink" title="《工程项目管理》| 同济大学"></a>《工程项目管理》| 同济大学</h1><ul>
+<li><a href="http://www.icourse163.org/course/tongji-46008" target="_blank" rel="external">MOOC 课程表</a></li>
+</ul>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -190,7 +215,7 @@
 <li>RTPI Royal Town Planning Institute</li>
 <li>SAFed The Safety Assessment Federation</li>
 </ul>
-<h2 id="专家"><a href="#专家" class="headerlink" title="专家"></a>专家</h2><h2 id="丁士昭"><a href="#丁士昭" class="headerlink" title="丁士昭"></a>丁士昭</h2><h4 id="工作履历"><a href="#工作履历" class="headerlink" title="工作履历"></a>工作履历</h4><p>1952—1955，上海，南洋模范中学，初中<br>1955—1958，上海，上海中学，高中<br>1958—1963，上海，同济大学 建筑工程系，建筑工程经济与组织专业<br>1963—1978，同济大学 建筑施工组织教研室，助教<br>1978—1985，同济大学 建筑管理教研室，讲师<br>1980.10—1982.10，联邦德国，达姆斯塔特技术大学（Technische Universitaet Darmstadt），科研、进修<br>1983—1985，同济大学 建筑管理教研室，主任<br>1985.4—1985.12，联邦德国，达姆斯塔特技术大学，土木工程系，工学博士（1985.10）<br>1986—1987，同济大学 经济信息系，副教授<br>1987年—经济信息系 教授、副系主任、经济管理学院副院长<br>1988.10—1989.2, 联邦德国，Integrata 软件公司，科研、进修<br>1991—至今，同济大学 工程管理研究所所长，教授<br>1998.7—1999.1， 日本 名古屋大学客座教授<br>2000.8—2000.10, 联邦德国，Integrata 基金会</p>
+<h2 id="专家简历-丁士昭"><a href="#专家简历-丁士昭" class="headerlink" title="专家简历|丁士昭"></a>专家简历|丁士昭</h2><h4 id="工作履历"><a href="#工作履历" class="headerlink" title="工作履历"></a>工作履历</h4><p>1952—1955，上海，南洋模范中学，初中<br>1955—1958，上海，上海中学，高中<br>1958—1963，上海，同济大学 建筑工程系，建筑工程经济与组织专业<br>1963—1978，同济大学 建筑施工组织教研室，助教<br>1978—1985，同济大学 建筑管理教研室，讲师<br>1980.10—1982.10，联邦德国，达姆斯塔特技术大学（Technische Universitaet Darmstadt），科研、进修。<br>1983—1985，同济大学 建筑管理教研室，主任<br>1985.4—1985.12，联邦德国，达姆斯塔特技术大学，土木工程系，工学博士（1985.10）。博士论文—多阶网络法的数学模型、解法和程序。<br>1986—1987，同济大学 经济信息系，副教授<br>1987年—经济信息系 教授、副系主任、经济管理学院副院长<br>1988.10—1989.2, 联邦德国，Integrata 软件公司，科研、进修<br>1991—至今，同济大学 工程管理研究所所长，教授<br>1998.7—1999.1， 日本 名古屋大学客座教授<br>2000.8—2000.10, 联邦德国，Integrata 基金会</p>
 <h4 id="主要讲授课程"><a href="#主要讲授课程" class="headerlink" title="主要讲授课程"></a>主要讲授课程</h4><ul>
 <li>项目管理</li>
 <li>建设监理</li>
@@ -199,20 +224,6 @@
 <li>网络计划技术</li>
 <li>建筑施工组织与计划</li>
 <li>专业德语</li>
-</ul>
-<h4 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h4><p>1963—1975，主要从事网络计划技术的研究<br>1975—1980，主要从事资源进度计划的研究和编制网络计划和资源进度计划的程序<br>1980—1985，主要从事群体网络计划系统—多阶网络法的研究，1985年所完成的博士论文—多阶网络法的数学模型、解法和程序</p>
-<ul>
-<li>建筑经济</li>
-<li>建设项目策划，DM—Development Management</li>
-<li>项目管理，PM—Project Management</li>
-<li>CM模式—Construction Management</li>
-<li>项目管理信息系统，PMIS—Project Management Information System</li>
-<li>项目总控， Project Controlling</li>
-<li>在英特网平台上的项目管理与控制， Web-based Project Management and Project Controlling</li>
-<li>工程管理信息化</li>
-<li>建设项目集成化管理－建设项目全寿命管理</li>
-<li>风险管理和工程保险</li>
-<li>物业管理</li>
 </ul>
 <h4 id="科研成果"><a href="#科研成果" class="headerlink" title="科研成果"></a>科研成果</h4><ul>
 <li>主持研制和开发“上海地铁工程项目管理信息系统”，上海市科委组织鉴定，鉴定结论：国内首创，1991年10月</li>
@@ -226,12 +237,24 @@
 <li>主持研制和开发“长江口深水航道治理工程信息系统”，长江口深水航道治理工程公司委托,1998-2000年</li>
 <li>主持研制和开发“天津基础设施综合管理信息系统（TIIMIS）”，天津市建委委托，世界银行贷款项目,1998-2000年</li>
 </ul>
-<h4 id="出版的书籍和发表的论文"><a href="#出版的书籍和发表的论文" class="headerlink" title="出版的书籍和发表的论文"></a>出版的书籍和发表的论文</h4><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+<h2 id="术语表"><a href="#术语表" class="headerlink" title="术语表"></a>术语表</h2><ul>
+<li>项目策划，DM—Development Management</li>
+<li>项目管理，PM—Project Management</li>
+<li>营建管理，CM—Construction Management</li>
+<li>项目管理信息系统，PMIS—Project Management Information System</li>
+<li>项目总控，Project Controlling</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://www.wenxuecity.com/book/?act=view&amp;chapterID=4054413&amp;bookID=60360184" target="_blank" rel="external">中国投资体制改革30年研究 &gt; 第三节 项目管理的科学化</a></li>
+<li><a href="http://www.iolaw.org.cn/showArticle.aspx?id=2390" target="_blank" rel="external">政府投资与投资体制改革三十年 | 作者：席月民 | 中国法学网</a></li>
+<li><a href="http://www.scca.sh.cn/shownews.aspx?id=3742" target="_blank" rel="external">面向可持续建设的工程管理——访同济大学教授、建设工程领域专家学者丁士昭</a></li>
+</ul>
+]]></content>
     
     <summary type="html">
     
       &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;《工程项目管理》| 同济大学MOOC课程学习笔记&lt;/li&gt;
+&lt;li&gt;《工程项目管理》| 同济大学MOOC课程&lt;/li&gt;
 &lt;li&gt;理论：组织论、信息论、项目控制论&lt;/li&gt;
 &lt;li&gt;重点：投资控制、进度控制、质量控制、风险控制&lt;/li&gt;
 &lt;li&gt;技术：网络规划技术、项目管理软件（MS Project/P3/P6）、BIM&lt;/li&gt;
@@ -1891,9 +1914,9 @@
     </summary>
     
     
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
       <category term="DataScience" scheme="https://riboseyim.com/tags/DataScience/"/>
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
   </entry>
   
@@ -2069,131 +2092,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Mac OS</title>
-    <link href="https://riboseyim.com/2019/01/05/Mac/"/>
-    <id>https://riboseyim.com/2019/01/05/Mac/</id>
-    <published>2019-01-05T02:51:13.000Z</published>
-    <updated>2019-01-09T07:10:09.886Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<p>This article is part of an <strong>Mac Operating System</strong> tutorial series. Make sure to check out my other articles as well:</p>
-<ul>
-<li><a href="https://riboseyim.com/2017/12/19/Linux-Win-Mac/">谁是王者：macOS vs Linux Kernels ？</a></li>
-<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle for Mac 使用指南</a></li>
-<li><a href="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/">我的写作工具链</a></li>
-</ul>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="Mac-快键键"><a href="#Mac-快键键" class="headerlink" title="Mac 快键键"></a>Mac 快键键</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">⌘——Command ()</div><div class="line"></div><div class="line">⌃ ——Control</div><div class="line"></div><div class="line">⌥——Option (alt)</div><div class="line"></div><div class="line">⇧——Shift</div><div class="line"></div><div class="line">⇪——Caps Lock</div><div class="line"></div><div class="line">fn——功能键</div></pre></td></tr></table></figure>
-<h4 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>Linux</th>
-<th>Mac</th>
-<th>Windows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>字符匹配</td>
-<td>grep</td>
-<td>grep</td>
-<td>findstr</td>
-</tr>
-<tr>
-<td>查看网卡</td>
-<td>ifconfig</td>
-<td>ifconfig</td>
-<td>ipconfig</td>
-</tr>
-<tr>
-<td>查看网络路由</td>
-<td>route -n <br> netstat -ar</td>
-<td>netstat -ar</td>
-<td>route PRINT</td>
-</tr>
-<tr>
-<td>查看网络连接</td>
-<td>netstat -an</td>
-<td>netstat -an</td>
-<td>netstat -an</td>
-</tr>
-<tr>
-<td>更新动态库</td>
-<td>ldconfig</td>
-<td>update_dyld_shared_cache</td>
-<td>——</td>
-</tr>
-<tr>
-<td>hosts</td>
-<td>/etc/hosts/<br>/private/etc/hosts</td>
-<td>——-</td>
-<td></td>
-</tr>
-<tr>
-<td>debug</td>
-<td>strace</td>
-<td>dtruss</td>
-<td>——-</td>
-</tr>
-<tr>
-<td>查看库依赖</td>
-<td>ldd</td>
-<td>otool -L</td>
-<td>——</td>
-</tr>
-<tr>
-<td>进程管理</td>
-<td>ps</td>
-<td>ps</td>
-<td>tasklist</td>
-</tr>
-<tr>
-<td>进程管理</td>
-<td>kill</td>
-<td>kill</td>
-<td>taskkill /pid /T /F</td>
-</tr>
-<tr>
-<td>环境变量</td>
-<td>env</td>
-<td>[print]printenv <br> [init] ~/.bash_profile</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://mp.weixin.qq.com/s/Q2IEE4t3naR6j3iP78V29g" target="_blank" rel="external">推荐一些 Mac 上比较好用的软件</a></li>
-<li><a href="http://www.jianshu.com/p/9257e1e7ac39" target="_blank" rel="external">(力荐)scomper:OmniFocus 2 for Mac 的使用指南</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="Mac" scheme="https://riboseyim.com/tags/Mac/"/>
-    
-      <category term="工具癖" scheme="https://riboseyim.com/tags/%E5%B7%A5%E5%85%B7%E7%99%96/"/>
     
   </entry>
   
