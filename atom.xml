@@ -517,13 +517,18 @@
   </entry>
   
   <entry>
-    <title>Protocol-Routing-Emulator</title>
-    <link href="https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/"/>
-    <id>https://riboseyim.com/2019/03/05/Protocol-Routing-Emulator/</id>
+    <title>操作系统原理:How Linux Works(五):Route</title>
+    <link href="https://riboseyim.com/2019/03/05/Linux-Works-Route/"/>
+    <id>https://riboseyim.com/2019/03/05/Linux-Works-Route/</id>
     <published>2019-03-05T03:00:55.000Z</published>
-    <updated>2019-03-28T11:27:42.980Z</updated>
+    <updated>2019-04-06T10:29:36.734Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>编辑中</li>
+<li>路由协议</li>
+<li>router based linux kernel</li>
+</ul>
+<a id="more"></a>
 <h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
 <p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
 <div class="table-container">
@@ -580,7 +585,7 @@
 <li>User can use command line completion and history in terminal interface.</li>
 <li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
 </ul>
-<h4 id="Zerba-Supported-Platforms"><a href="#Zerba-Supported-Platforms" class="headerlink" title="Zerba Supported Platforms"></a>Zerba Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
+<h4 id="Supported-Platforms"><a href="#Supported-Platforms" class="headerlink" title="Supported Platforms"></a>Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
 <ul>
 <li>GNU/Linux</li>
 <li>FreeBSD/NetBSD/OpenBSD</li>
@@ -591,12 +596,32 @@
 <li>KAME</li>
 <li>INRIA IPv6</li>
 </ul>
-<h4 id="Zerba-ABC"><a href="#Zerba-ABC" class="headerlink" title="Zerba ABC"></a>Zerba ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
+<h4 id="Quagga-ABC"><a href="#Quagga-ABC" class="headerlink" title="Quagga ABC"></a>Quagga ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
 <li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
 <li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
 <li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
+</ul>
+<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://www.ibm.com/developerworks/cn/linux/l-emu/index.html" target="_blank" rel="external">在 Linux 上构建网络路由器 | Dominique Cimafranca 和 Rex Young | 2004 年 3 月 09 日发布</a></li>
@@ -606,10 +631,22 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;编辑中&lt;/li&gt;
+&lt;li&gt;路由协议&lt;/li&gt;
+&lt;li&gt;router based linux kernel&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
+    
+      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
+    
+      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
+    
+      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
+    
+      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
     
   </entry>
   
