@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>SDN 技术指南（一）：架构概览 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/05/12/SDN/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Background：为什么需要 SDN SDN的主要解决方案 SDN的整体应用架构 SDN与网络安全 OpenFlow工作原理 OpenFlow在SDN架构中的角色">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_Solutions_201708.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_Arch_OpenFlow_201708.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_Ecosystem.png">
@@ -46,7 +47,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -59,7 +60,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -122,7 +123,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/05/12/SDN/" data-id="cjuqfn64200r65ih2a3kxv7g6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/05/12/SDN/" data-id="cjuqfn64200r65ih2a3kxv7g6" class="article-share-link">分享</a>
         
         
         
@@ -152,7 +153,7 @@ ga('send', 'pageview');
 <p>越来越多的网络新协议和新算法使得网络控制平面变得越来越复杂，但是现在的网络用户却对网络的易用性有更高的要求，希望网络具有更多的可编程能力，从而自动化、智能化网络管理。正如 SDN 的倡导者 <a href="https://en.wikipedia.org/wiki/Scott_Shenker" target="_blank" rel="external">Scott Shenker,U.C. Berkeley Professor</a> 所言，网络发展目前还处于“管理复杂性”阶段，这样的架构严重阻碍了网络创新进程的开展。</p>
 <h2 id="SDN-Solutions"><a href="#SDN-Solutions" class="headerlink" title="SDN Solutions"></a>SDN Solutions</h2><p>如何解决从“管理复杂性”阶段转变到“提取简单性”阶段呢？最先取得成功商用经验的是互联网企业Google。</p>
 <h4 id="Google-的-SDN-实践"><a href="#Google-的-SDN-实践" class="headerlink" title="Google 的 SDN 实践"></a>Google 的 SDN 实践</h4><p>Google 基于 SDN 技术改造其骨干网 G-scale（Backbone Network，也称WAN网）。WAN网的主要任务是负责全球12个数据中心之间的互联，数据流量的内容包括：1. 用户数据备份，例如视频、图片、语音等；2. 跨数据中心存储访问，例如计算资源和存储资源分布不同；3. 大规模的数据同步。WAN 网成本高昂（包括很多海底光缆），而且存在数据流量大但是链路带宽利用率低的问题：为了实现负载均衡，同时避免大流量都被分发到同一个链路上导致丢包，Google不得不使用过量链路，提供比实际需要多得多的带宽，实际链路带宽利用率只有30%~40%，而且仍不可避免有的链路很空闲，有的链路产生拥塞，设备必须支持很大的包缓存，成本高。为了增强网络的可管理性，Google 首先在带宽分配和路径计算方面尝试。解决思路是当一个新的数据要开始传输时，应用程序会评估所需要耗用的带宽，为它选择一条最优路径（如负载最轻但非最短路径，虽不丢包但延时大），然后把这个应用对应的策略通过控制器（Controller）下发到定制的交换机中，跟选择的路径绑定在一起，从而整体上使链路带宽利用率达到最优。</p>
-<p>SDN 架构中最显著的一个特点就是采用集中式控制器（Controller）：<br><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Solutions_201708.png" alt=""></p>
+<p>SDN 架构中最显著的一个特点就是采用集中式控制器（Controller）：<br><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Solutions_201708.png" alt></p>
 <h2 id="SDN-Architecture"><a href="#SDN-Architecture" class="headerlink" title="SDN Architecture"></a>SDN Architecture</h2><p>SDN在应用中大体上可以可以划分为三层体系结构：</p>
 <ul>
 <li>应用层（Application Layer）</li>
@@ -164,7 +165,7 @@ ga('send', 'pageview');
 <li>北向接口（Northbound interface）</li>
 <li>南向接口（Sorthbound interface）</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Arch_OpenFlow_201708.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Arch_OpenFlow_201708.png" alt></p>
 <h4 id="控制层（-Control-Layer-）"><a href="#控制层（-Control-Layer-）" class="headerlink" title="控制层（ Control Layer ）"></a>控制层（ Control Layer ）</h4><p>控制层是 SDN 控制器管理网络的基础设施，可以根据需要灵活选择多种控制器。<br>在这一层中，控制器中包含大量业务逻辑，以获取和维护不同类型的网络信息、状态详细信息、拓扑细节、统计详细信息等。<br>由于 SDN 控制器是用于管理网络的，所以它必须具有用于现实世界网络使用情况的控制逻辑，如交换、路由、二层VPN、三层VPN、防火墙安全规则、DNS、DHCP和集群，网络供应商和开源社区需要在自己的 SDN 控制器中实现自己的服务。这些服务会向上层（应用层）公开自己的API（通常是基于 <a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="external">REST</a> ，这使网络管理员可以方便地使用应用程序上的 SDN 控制器的配置、管理和监控网络。</p>
 <p>目前市场上的 SDN 控制器解决方案大致可以分为两类：大型网络设备厂商提供商业方案，例如 Cisco Open SDN controller, Juniper Contrail, Brocade SDN controller, 和来自 NEC 公司的 PFC SDN controller ；社区组织提供的开源方案，例如 OpenDaylight, Floodlight, Beacon, Ryu 等等。</p>
 <p>Commercial Solutions:</p>
@@ -221,7 +222,7 @@ ga('send', 'pageview');
 <li><p>ITU-T （国际电信联盟通信标准化组织）<br>由 ITU-T 指定的国际标准通常被称为建议（Recommendations）,2012年开始 SDN 与电信网络结合的标准研究。</p>
 </li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Ecosystem.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Ecosystem.png" alt></p>
 <h2 id="SDN-与网络安全-（待补充）"><a href="#SDN-与网络安全-（待补充）" class="headerlink" title="SDN 与网络安全 （待补充）"></a>SDN 与网络安全 （待补充）</h2><h4 id="高可用性支持"><a href="#高可用性支持" class="headerlink" title="高可用性支持"></a>高可用性支持</h4><ul>
 <li>如果 SDN 控制器只配置了一条源和目的路径，一旦链路失效如何快速将流量路由到正常链路？（持续监控网络拓扑、实时性）</li>
 <li>外部连接的高可用性，支持VRRP（Virtual Router Redundancy Protocol）, MC-LAG(Multi-Chassis Link Aggregation Group)等</li>
@@ -278,7 +279,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/05/12/SDN/" data-id="cjuqfn64200r65ih2a3kxv7g6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/05/12/SDN/" data-id="cjuqfn64200r65ih2a3kxv7g6" class="article-share-link">分享</a>
       
       
       
@@ -302,7 +303,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -345,7 +346,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/05/12/Virtualization/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           虚拟化 | Overview of Virtualization
@@ -355,7 +356,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/05/09/CyberSecurity-Hacker/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Cyber-Security:黑客与技术、产业及其精神世界</div>
     </a>
   
@@ -387,9 +388,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">2.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-Solutions"><span class="toc-number">3.</span> <span class="toc-text">SDN Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Google-的-SDN-实践"><span class="toc-number">3.0.1.</span> <span class="toc-text">Google 的 SDN 实践</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-Architecture"><span class="toc-number">4.</span> <span class="toc-text">SDN Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#控制层（-Control-Layer-）"><span class="toc-number">4.0.1.</span> <span class="toc-text">控制层（ Control Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础设施层（-Infrastructure-Layer-）"><span class="toc-number">4.0.2.</span> <span class="toc-text">基础设施层（ Infrastructure Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用层（-Application-Layer-）"><span class="toc-number">4.0.3.</span> <span class="toc-text">应用层（ Application Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#南向接口（-Southbound-interface-）"><span class="toc-number">4.0.4.</span> <span class="toc-text">南向接口（ Southbound interface ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#北向接口（-Northbound-interface-）"><span class="toc-number">4.0.5.</span> <span class="toc-text">北向接口（ Northbound interface ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN-世界的两大山头"><span class="toc-number">4.0.6.</span> <span class="toc-text">SDN 世界的两大山头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN-标准化组织"><span class="toc-number">4.0.7.</span> <span class="toc-text">SDN 标准化组织</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-与网络安全-（待补充）"><span class="toc-number">5.</span> <span class="toc-text">SDN 与网络安全 （待补充）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#高可用性支持"><span class="toc-number">5.0.1.</span> <span class="toc-text">高可用性支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#企业级的授权和隔离"><span class="toc-number">5.0.2.</span> <span class="toc-text">企业级的授权和隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抗恶意攻击能力"><span class="toc-number">5.0.3.</span> <span class="toc-text">抗恶意攻击能力</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#专题合辑：Software-Defined-Network"><span class="toc-number">6.</span> <span class="toc-text">专题合辑：Software Defined Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-技术指南（二）：OpenFlow"><span class="toc-number">7.</span> <span class="toc-text">SDN 技术指南（二）：OpenFlow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-SDN-技术指南（三）：OpenDaylight-or-Floodlight"><span class="toc-number">8.</span> <span class="toc-text">Preview SDN 技术指南（三）：OpenDaylight or Floodlight ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-技术指南（四）：Open-vSwitch"><span class="toc-number">9.</span> <span class="toc-text">SDN 技术指南（四）：Open vSwitch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-SDN-技术指南（五）：NFV"><span class="toc-number">10.</span> <span class="toc-text">Preview SDN 技术指南（五）：NFV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuss"><span class="toc-number">11.</span> <span class="toc-text">Discuss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">12.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">2.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-Solutions"><span class="toc-number">3.</span> <span class="toc-text">SDN Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Google-的-SDN-实践"><span class="toc-number">3.0.1.</span> <span class="toc-text">Google 的 SDN 实践</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-Architecture"><span class="toc-number">4.</span> <span class="toc-text">SDN Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#控制层（-Control-Layer-）"><span class="toc-number">4.0.1.</span> <span class="toc-text">控制层（ Control Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础设施层（-Infrastructure-Layer-）"><span class="toc-number">4.0.2.</span> <span class="toc-text">基础设施层（ Infrastructure Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用层（-Application-Layer-）"><span class="toc-number">4.0.3.</span> <span class="toc-text">应用层（ Application Layer ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#南向接口（-Southbound-interface-）"><span class="toc-number">4.0.4.</span> <span class="toc-text">南向接口（ Southbound interface ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#北向接口（-Northbound-interface-）"><span class="toc-number">4.0.5.</span> <span class="toc-text">北向接口（ Northbound interface ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN-世界的两大山头"><span class="toc-number">4.0.6.</span> <span class="toc-text">SDN 世界的两大山头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN-标准化组织"><span class="toc-number">4.0.7.</span> <span class="toc-text">SDN 标准化组织</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-与网络安全-（待补充）"><span class="toc-number">5.</span> <span class="toc-text">SDN 与网络安全 （待补充）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#高可用性支持"><span class="toc-number">5.0.1.</span> <span class="toc-text">高可用性支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#企业级的授权和隔离"><span class="toc-number">5.0.2.</span> <span class="toc-text">企业级的授权和隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抗恶意攻击能力"><span class="toc-number">5.0.3.</span> <span class="toc-text">抗恶意攻击能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#专题合辑：Software-Defined-Network"><span class="toc-number">6.</span> <span class="toc-text">专题合辑：Software Defined Network</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-技术指南（二）：OpenFlow"><span class="toc-number">7.</span> <span class="toc-text">SDN 技术指南（二）：OpenFlow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-SDN-技术指南（三）：OpenDaylight-or-Floodlight"><span class="toc-number">8.</span> <span class="toc-text">Preview SDN 技术指南（三）：OpenDaylight or Floodlight ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDN-技术指南（四）：Open-vSwitch"><span class="toc-number">9.</span> <span class="toc-text">SDN 技术指南（四）：Open vSwitch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preview-SDN-技术指南（五）：NFV"><span class="toc-number">10.</span> <span class="toc-text">Preview SDN 技术指南（五）：NFV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuss"><span class="toc-number">11.</span> <span class="toc-text">Discuss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">12.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -417,7 +418,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -426,8 +427,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -457,7 +458,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

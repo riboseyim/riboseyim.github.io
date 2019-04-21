@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>开源技术架构漫谈：Kafka | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/08/15/OpenSource-Kafka/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 一、How Kafka Works 二、Kafka Application：基于 Kafka 构建事件溯源模式的微服务 三、Best Practice | Kafka 最佳实践 ：LinkedIn 开源 Kafka Monitor">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-2.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-3.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-1.jpg">
@@ -46,7 +47,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -59,7 +60,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -122,7 +123,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">分享</a>
         
         
         
@@ -164,7 +165,7 @@ ga('send', 'pageview');
 <h4 id="设计概览"><a href="#设计概览" class="headerlink" title="设计概览"></a>设计概览</h4><p>Kafka Monitor 使得这些事情变得很容易：<br>在真实的生产集群中，开发和执行长时间运行特定的Kafka系统测试，基于用户提供的SLA监控已经部署的Kafka。</p>
 <p>开发者可以创建新的测试，通过组装可复用的组件，用来仿真各种各样的场景（例如 GC 中断，代理被硬杀，回滚，磁盘故障，等等），收集指标；用户可以运行 K afka Monitor测试用例，在这些场景执行的时候可以伴随用户定义的定时任务，无论是测试集群还是生产集群，都能够验证，Kafka在这些场景下，是否能够达到预期效果。 为了实现上述目标，Kafka Monitor 的设计模型包含一系列测试结果收集器和服务。</p>
 <p>一个Kafka Monitor 实例运行在一个单独的Java进程，在相同的进程里可以再产生多个测试用例和服务。下面的示意图表达了服务，测试用例和Kafka Monitor实例之间的关系，也可以知道Kafka  Monitor 如何在Kafka集群和用户之间相互作用。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-2.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-2.jpg" alt></p>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>一个典型的测试，将仿真一系列场景，基于某些前期已经定义的定时任务，需要启动一些生产者／消费者，上报指标，验证指标值是否符合前期定义的断言。举个例子，Kafka Monitor 能够启动一个生产者，一个消费者，每五分钟反射一个随机代理（比方说，如果说它是监控一个测试集群）。Kafka Monitor 接下来就可以度量可用性，消息丢包率，揭露JMX指标，用户可以在一个实时的健康仪表盘看到这些信息。<br> 如果消息丢包率比一些阀值还要大，它能发出告警，这些阀值基于用户特定的可用性模型确定。</p>
 <h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><p>我们概括了仿真逻辑，针对持续长时间场景的服务，目的是为了加快、简化从复用组件组装测试的过程。<br>一个服务将再产生它自己的线程，去执行那些场景、测量指标。举例说明，我们现在已经具备如下服务：</p>
 <ul>
@@ -174,7 +175,7 @@ ga('send', 'pageview');
 </ul>
 <p>一种测试需要由许多服务组成，验证一系列超时场景。举例来说，我们可以创建一个测试，包含一个生产者服务，一个消费者服务，以及一个代理反射服务。这个生产者服务和消费者服务，将被配置为从同一个主题发送和接收消息。那么这个测试将验证消息丢包率持续为0。</p>
 <h4 id="使用多个Kafka-Monitor实例进行集群间性能测试"><a href="#使用多个Kafka-Monitor实例进行集群间性能测试" class="headerlink" title="使用多个Kafka Monitor实例进行集群间性能测试"></a>使用多个Kafka Monitor实例进行集群间性能测试</h4><p>当所有的服务和相同的Kafka Monitor实例必须运行在同一个物理机器上的时候，我们可以启动多个Kafka Monitor 实例在不同的集群，<br>一起协作完成一个精密控制的端到端测试。在下面这个测试示意图中，我们启动了两个Kafka Monitor 实例在两个集群中。<br>第一个Kafka Monitor 实例包含一个生产者服务，提供给Kafka 集群1。消息从集群1反射到集群2。<br>最后，在第二个Kafka Monitor 实例的消费者服务，处理了消息，来自集群2中的同一个主题，并且报告了通过集群通道的端到端时延。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-3.jpg" alt="">     </p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-3.jpg" alt>     </p>
 <h3 id="Kafka-Monitor-在-LinkedIn-的应用"><a href="#Kafka-Monitor-在-LinkedIn-的应用" class="headerlink" title="Kafka Monitor 在 LinkedIn 的应用"></a>Kafka Monitor 在 LinkedIn 的应用</h3><ul>
 <li><p>监控Kafka集群部署情况<br>在2016年早些时候，我们部署了Kafka Monitor用来监控可用性和端到端时延，包括LinkedIn的每一个Kafka集群。<br>本项目的 wiki 展示了更多细节，以及这些指标是如何度量的。这些基本但是关键的指标，对于积极地监控我们Kafka集群的SLA非常有用。</p>
 </li>
@@ -185,7 +186,7 @@ ga('send', 'pageview');
 </ul>
 <h4 id="相关工作的比较"><a href="#相关工作的比较" class="headerlink" title="相关工作的比较"></a>相关工作的比较</h4><p>Kafka Monitor 对其它公司而言也是有用的，可以帮助验证他们自己的客户端库和Kafka集群。<br>当然 Microsoft 也已经在 Github 上有了一个开源项目，也是监控室Kafka集群的可用性和端到端时延。<br>同样地，在这篇发表的博客中，Netflix介绍了一种监控服务，即发送持续的心跳消息，同时度量这些消息的时延。<br>Kafka Monitor自己的特点就是专注于可扩展性，模块化以及客户端库和多样化场景支持。</p>
 <h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>Kafka Monitor的源代码可以从 Github 下载，基于Apache 2.0 授权协议。使用指南，设计文档和未来规划在README文件和项目wiki中可以查阅。我们很乐于听到你对该项目的反馈意见。当Kafka Monitor被设计用来作为，测试和监控Kafka部署情况的框架的时候，我们视线了一个基本的但是有用的测试，确保你能开箱即用。这些测试可以度量可用性，端到端时延，消息丢包率以及消息复制速率，通过运行一个生产者和一个消费者，它们使用同一个主题生产／处理消息。你可以在终端看到这些指标，基于HTTP GET请求、程序化地获得它们的值，甚至随着时间查看它们的值，通过一个简单（快速启动）的图形界面，如下面的截图所示。关于如何运行测试、查看指标的详细介绍内容请参阅项目网站。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-1.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/KafkaMonitor-1.jpg" alt></p>
 <h4 id="未来的工作"><a href="#未来的工作" class="headerlink" title="未来的工作"></a>未来的工作</h4><p>我们的计划中有许多工作要做，改进、提升 Kafka Monitor，使它更有用。</p>
 <ul>
 <li><p>增强测试场景<br>每次执行代码 check-in 的时候，Apache Kafka 包含了一大批系统测试。我们计划在Kafka Monitor中实现一个简单的测试，<br>然后部署到LinkedIn的测试集群，最终做到持续运行这些测试。这使得我们可以在问题发生的时候进行性能回溯，<br>还可以验证各种特性的是否可用，例如限额、管理操作，授权，等等。</p>
@@ -212,7 +213,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">分享</a>
       
       
       
@@ -236,7 +237,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -279,7 +280,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2016/09/01/AAA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           基于LVS的AAA负载均衡架构实践
@@ -289,7 +290,7 @@ ga('send', 'pageview');
   
   
     <a href="/2016/07/28/DevOps/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">专题：DevOps 漫谈系列</div>
     </a>
   
@@ -321,7 +322,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、How-Kafka-Works"><span class="toc-number">2.</span> <span class="toc-text">一、How Kafka Works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Kafka-Application"><span class="toc-number">3.</span> <span class="toc-text">二、Kafka Application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-Kafka-最佳实践"><span class="toc-number">4.</span> <span class="toc-text">Best Practice | Kafka 最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedIn-开源-Kafka-Monitor"><span class="toc-number">4.1.</span> <span class="toc-text">LinkedIn 开源 Kafka Monitor</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设计概览"><span class="toc-number">4.1.1.</span> <span class="toc-text">设计概览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试"><span class="toc-number">4.1.2.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务"><span class="toc-number">4.1.3.</span> <span class="toc-text">服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用多个Kafka-Monitor实例进行集群间性能测试"><span class="toc-number">4.1.4.</span> <span class="toc-text">使用多个Kafka Monitor实例进行集群间性能测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-Monitor-在-LinkedIn-的应用"><span class="toc-number">4.2.</span> <span class="toc-text">Kafka Monitor 在 LinkedIn 的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相关工作的比较"><span class="toc-number">4.2.1.</span> <span class="toc-text">相关工作的比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始"><span class="toc-number">4.2.2.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#未来的工作"><span class="toc-number">4.2.3.</span> <span class="toc-text">未来的工作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源架构技术漫谈"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
@@ -351,7 +352,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -360,8 +361,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -391,7 +392,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

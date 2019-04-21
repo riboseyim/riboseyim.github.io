@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>数据可视化（五）基于网络爬虫制作可视化图表 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/05/12/Visualization-Charts/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 基于网络爬虫的可视化图表:golang,goquery 案例：最近十年全国彩票销售变化情况 案例：中国科学院院士分布 数据可视化技术方案:基于 SVG (D3、Raphael)、基于 Canvas（Echarts）">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%C2%B7%E9%99%A2%E5%A3%AB%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%C2%B7201801.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-3.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/usa-traffic-1980.png">
@@ -54,7 +55,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -67,7 +68,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -130,7 +131,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="cjuqfn64500rc5ih227d9gnsw" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="cjuqfn64500rc5ih227d9gnsw" class="article-share-link">分享</a>
         
         
         
@@ -160,7 +161,7 @@ ga('send', 'pageview');
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%C2%B7%E9%99%A2%E5%A3%AB%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%C2%B7201801.png" alt="中科院院士分布情况|201801"></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-3.png" alt="全国彩票销售情况"></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/usa-traffic-1980.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/usa-traffic-1980.png" alt></p>
 <p>为了实现上述图表，相关技术方案的要点如下：</p>
 <ul>
 <li>开发语言：<br>基于 <a href="https://riboseyim.github.io/2017/05/05/Language-Go-lang/" target="_blank" rel="external">Golang</a> 实现爬虫基本功能，主要考虑 <a href="https://riboseyim.github.io/2017/05/05/Language-Go-lang/" target="_blank" rel="external">Go 语言</a> 自身对于网络方面的强大支持，语言级 Goroutines 提供并发高性能支持。</li>
@@ -193,7 +194,7 @@ ga('send', 'pageview');
 <h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ul>
 <li>默认调色板(palette)</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Coror-Default.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Coror-Default.png" alt></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Navy    — #001f3f</div><div class="line">Blue    — #0074d9</div><div class="line">Aqua    — #7fdbff</div><div class="line">Teal    — #39cccc</div><div class="line">Olive   — #3d9970</div><div class="line">Green   — #2ecc40</div><div class="line">Lime    — #01ff70</div><div class="line">Yellow  — #ffdc00</div><div class="line">Orange  — #ff851b</div><div class="line">Red     — #ff4136</div><div class="line">Maroon  — #85144b</div><div class="line">Fuchsia — #f012be</div><div class="line">Purple  — #b10dc9</div><div class="line">Black   — #111111</div><div class="line">Gray    — #aaaaaa</div><div class="line">Silver  — #dddddd</div><div class="line">White   — #ffffff</div></pre></td></tr></table></figure>
 <ul>
 <li><p>优化图表JS生成模板<br>图表定型之后，可以通过模板固化配置，根据需要动态生成目标文件（html,js,svg等等），详见<a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="external">基于 Markdown 的 HTML 网页模板</a>。</p>
@@ -225,7 +226,7 @@ ga('send', 'pageview');
 </li>
 <li><p><a href="http://www.highcharts.com" target="_blank" rel="external">HighCharts</a><br>国外开源产品，JavaScript 编写，自带主题、动态交互方便，目前公司新版业务视图、地图应用、交互式流量图等是基于这个库实现。<br>不足：缺少中文文档，开源许可证只允许个人用户和非商业用途，规模应用存在法律风险。</p>
 </li>
-<li><p><a href="http://echarts.baidu.com" target="_blank" rel="external">Baidu ECharts</a><br>最早源于百度各种业务系统报表需求，底层画图基于 Canvas 。2013年开源，完全免费的BSD协议。<br>特点：拖拽重计算，第三方标准格式支持，中文社区支持<br>实例：<a href="http://echarts.baidu.com/doc/example.html" target="_blank" rel="external">http://echarts.baidu.com/doc/example.html</a><br>Github: <a href="https://github.com/ecomfe/echarts" target="_blank" rel="external">https://github.com/ecomfe/echarts</a><br><img src="http://riboseyim-qiniu.riboseyim.com/echarts-%E5%9B%BD%E5%AE%B6%E7%BB%9F%E8%AE%A1%E5%B1%80.png" alt=""></p>
+<li><p><a href="http://echarts.baidu.com" target="_blank" rel="external">Baidu ECharts</a><br>最早源于百度各种业务系统报表需求，底层画图基于 Canvas 。2013年开源，完全免费的BSD协议。<br>特点：拖拽重计算，第三方标准格式支持，中文社区支持<br>实例：<a href="http://echarts.baidu.com/doc/example.html" target="_blank" rel="external">http://echarts.baidu.com/doc/example.html</a><br>Github: <a href="https://github.com/ecomfe/echarts" target="_blank" rel="external">https://github.com/ecomfe/echarts</a><br><img src="http://riboseyim-qiniu.riboseyim.com/echarts-%E5%9B%BD%E5%AE%B6%E7%BB%9F%E8%AE%A1%E5%B1%80.png" alt></p>
 </li>
 <li><p><a href="http://www.oschina.net/p/kartograph?fromerr=tZ15BKGv" target="_blank" rel="external">Kartograph</a><br>Kartograph 是个构建交互式地图的简单、轻量级类库。它包含两个库，一个用Python写的，用于产生漂亮和压缩的SVG地图，另一个是js类库用于前端展示地图用。</p>
 </li>
@@ -251,7 +252,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="cjuqfn64500rc5ih227d9gnsw" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="cjuqfn64500rc5ih227d9gnsw" class="article-share-link">分享</a>
       
       
       
@@ -275,7 +276,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -318,7 +319,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/05/12/Language-Compiler/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           玩转编程语言:编译器与编译原理
@@ -328,7 +329,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/05/12/Visualization-GIS/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">数据可视化（四）开源地理信息系统简史</div>
     </a>
   
@@ -360,9 +361,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于网络爬虫的可视化图表"><span class="toc-number">2.</span> <span class="toc-text">基于网络爬虫的可视化图表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例"><span class="toc-number">2.0.1.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化图表：以-ECharts-为例"><span class="toc-number">2.0.2.</span> <span class="toc-text">可视化图表：以 ECharts 为例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最佳实践"><span class="toc-number">2.0.3.</span> <span class="toc-text">最佳实践</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源工具与案例"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：开源工具与案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线词云"><span class="toc-number">3.0.1.</span> <span class="toc-text">在线词云</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#golang-based-library"><span class="toc-number">3.0.2.</span> <span class="toc-text">golang-based library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化图表案例"><span class="toc-number">3.0.3.</span> <span class="toc-text">可视化图表案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可视化图表技术方案"><span class="toc-number">4.</span> <span class="toc-text">可视化图表技术方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：数据可视化"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于网络爬虫的可视化图表"><span class="toc-number">2.</span> <span class="toc-text">基于网络爬虫的可视化图表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例"><span class="toc-number">2.0.1.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化图表：以-ECharts-为例"><span class="toc-number">2.0.2.</span> <span class="toc-text">可视化图表：以 ECharts 为例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最佳实践"><span class="toc-number">2.0.3.</span> <span class="toc-text">最佳实践</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源工具与案例"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：开源工具与案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线词云"><span class="toc-number">3.0.1.</span> <span class="toc-text">在线词云</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#golang-based-library"><span class="toc-number">3.0.2.</span> <span class="toc-text">golang-based library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化图表案例"><span class="toc-number">3.0.3.</span> <span class="toc-text">可视化图表案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可视化图表技术方案"><span class="toc-number">4.</span> <span class="toc-text">可视化图表技术方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：数据可视化"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -390,7 +391,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -399,8 +400,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -430,7 +431,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>数据可视化（三）基于 Graphviz 实现程序化绘图 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/09/15/Visualization-Graphviz/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 从 OmniGraffle 自动布局说起 背景知识：图论 Graphviz 简介 最佳 Graphviz 实践(一)：流程图、数据结构图、网络路径 Trace Route 最佳 Graphviz 实践(二)：社会关系链分析（《红楼梦》、《权力的游戏》） 最佳 Graphviz 实践(三)：可视化函数调用、算法和数据结构可视化">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DATA_DOT_%E5%9B%BE%E8%AE%BA_%E6%9F%AF%E5%B0%BC%E6%96%AF%E5%A0%A1%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DATA_DOT_Jisu_dot.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DATA_DOT_Jisu_Twopi.png">
@@ -54,7 +55,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -67,7 +68,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -130,7 +131,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/09/15/Visualization-Graphviz/" data-id="cjuqfn65000uk5ih2teay7m70" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/09/15/Visualization-Graphviz/" data-id="cjuqfn65000uk5ih2teay7m70" class="article-share-link">分享</a>
         
         
         
@@ -166,7 +167,7 @@ ga('send', 'pageview');
 <li>柯尼斯堡七桥问题</li>
 </ul>
 <p>东普鲁士柯尼斯堡（今日俄罗斯加里宁格勒）市区跨普列戈利亚河两岸，河中心有两个小岛。小岛与河的两岸有七条桥连接。在所有桥都只能走一遍的前提下，如何才能把这个地方所有的桥都走遍？</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DATA_DOT_%E5%9B%BE%E8%AE%BA_%E6%9F%AF%E5%B0%BC%E6%96%AF%E5%A0%A1%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DATA_DOT_%E5%9B%BE%E8%AE%BA_%E6%9F%AF%E5%B0%BC%E6%96%AF%E5%A0%A1%E4%B8%83%E6%A1%A5%E9%97%AE%E9%A2%98.png" alt></p>
 <p>许多数学家都尝试去寻找这类问题的解决方案，后来发展成为了数学中的图论。图论史上第一篇重要文献是莱昂哈德·欧拉在1736年发表在圣彼得堡科学院的《柯尼斯堡的七桥》。该论文证明了柯尼斯堡七桥问题中，符合条件的走法并不存在，同时提出和解决了一笔画问题。过桥问题可以抽象简化为平面上的点与线组合，每一座桥视为一条线，桥所连接的地区视为点。从这个点出发的线有奇数条称为奇点，从这个点出发的线有偶数条称为偶点。任意一种河──桥图能否全部走一次的判定法则： 如果存在两个以上（不包括两个）奇顶点，路线不存在；且有n个奇顶点的图至少需要n/2笔画出。</p>
 <h4 id="1、经典适用场景"><a href="#1、经典适用场景" class="headerlink" title="1、经典适用场景"></a>1、经典适用场景</h4><ul>
 <li>路径问题（柯尼斯堡七桥问题），最小生成树问题，斯坦纳树</li>
@@ -272,7 +273,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/09/15/Visualization-Graphviz/" data-id="cjuqfn65000uk5ih2teay7m70" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/09/15/Visualization-Graphviz/" data-id="cjuqfn65000uk5ih2teay7m70" class="article-share-link">分享</a>
       
       
       
@@ -296,7 +297,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -339,7 +340,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/09/15/Visualization-OmniGraffle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           数据可视化（一）思维利器 OmniGraffle for Mac 使用指南
@@ -349,7 +350,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/09/08/Policy-Poverty/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">政府行为模型及预测:贫困问题(Poverty)</div>
     </a>
   
@@ -381,9 +382,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、背景知识：图论-Graph-theory"><span class="toc-number">2.</span> <span class="toc-text">一、背景知识：图论(Graph theory)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、经典适用场景"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、经典适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、经典算法"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、经典算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Graphviz-简明指南"><span class="toc-number">3.</span> <span class="toc-text">二、Graphviz 简明指南</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、Graphviz-布局器"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、Graphviz 布局器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、Hello-World"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、Hello World!</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、twopi-径向布局"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、twopi 径向布局</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">4.</span> <span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、软件工程领域"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、软件工程领域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、通信工程领域"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、通信工程领域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、社会工程领域"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、社会工程领域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resources"><span class="toc-number">4.1.</span> <span class="toc-text">Resources</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：数据可视化"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#一、背景知识：图论-Graph-theory"><span class="toc-number">2.</span> <span class="toc-text">一、背景知识：图论(Graph theory)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、经典适用场景"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、经典适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、经典算法"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、经典算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Graphviz-简明指南"><span class="toc-number">3.</span> <span class="toc-text">二、Graphviz 简明指南</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、Graphviz-布局器"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、Graphviz 布局器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、Hello-World"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、Hello World!</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、twopi-径向布局"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、twopi 径向布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">4.</span> <span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、软件工程领域"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、软件工程领域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、通信工程领域"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、通信工程领域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、社会工程领域"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、社会工程领域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resources"><span class="toc-number">4.1.</span> <span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：数据可视化"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -411,7 +412,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -420,8 +421,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -451,7 +452,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

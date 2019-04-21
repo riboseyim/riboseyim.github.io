@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>DevOps 漫谈：分布式追踪系统体系概要 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/05/18/DevOps-OpenTracing/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Key Words: metrics、logging、tracing Google Dapper Family : Uber Jaeger、淘宝 EagleEye、微博 Watchman、京东 CallGraph、美团 MTrace 数据可视化 | Exporters">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-MetricsTracingLogging-v2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/zipkin-%E4%B8%B2%E8%A1%8C.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/zipkin-%E5%B9%B6%E8%A1%8C.png">
@@ -52,7 +53,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -65,7 +66,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -128,7 +129,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/05/18/DevOps-OpenTracing/" data-id="cjuqfn63900q25ih279aqffmt" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/05/18/DevOps-OpenTracing/" data-id="cjuqfn63900q25ih279aqffmt" class="article-share-link">分享</a>
         
         
         
@@ -155,17 +156,17 @@ ga('send', 'pageview');
 <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>讨论分布式追踪技术，首先需要明确的是：什么是跟踪 ？</p>
 <h4 id="metrics"><a href="#metrics" class="headerlink" title="metrics"></a>metrics</h4><p>度量（metrics）的特征是聚合: 它们是在一段时间内组成单一逻辑标尺、计数器或直方图的跨度。例如：HTTP 请求的数量可以建模为计数器(counter）, 其更新逻辑很简单，只需通过加法聚合; 如果设定一段持续的观察时间，请求数可以被建模成一个直方图。<a href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/" target="_blank" rel="external">《基于Ganglia实现服务集群性能态势感知》</a> 介绍的就是以记录度量为主的故障监控系统。</p>
 <h4 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h4><p>日志（logging）的特征是处理离散事件。按照事件发生的源可以分为 Application Events、System Events、Service Events、DNS Events 等。通常也包含针对原始记录的处理过程，例如：通过 Syslog 将应用程序调试或错误消息发送到 Elasticsearch ; 审计记录通过 Kafka 将数据推送到类似 BigTable 的数据池; 从服务调用中提取特定的请求元数据, 并发送错误跟踪服务（例如 <a href="https://ruby-china.org/topics/22379" target="_blank" rel="external">NewRelic</a>）。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-MetricsTracingLogging-v2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-MetricsTracingLogging-v2.png" alt></p>
 <h4 id="tracing"><a href="#tracing" class="headerlink" title="tracing"></a>tracing</h4><p>跟踪（tracing）的特征：跟踪处理的是请求范围内的信息（request-scoped），例如 SQL 语句在数据库的实际执行时间或 HTTP 请求耗时。以 DTrace &amp; SystemTap 为代表的 <a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术</a> 基于操作系统内核，不需要埋点就可以提供高级性能分析和调试功能。但是在分布式架构场景中也有一些不足，例如某些功能需要多次调用 RPC 远程服务，这些服务分布在多台不同的 host/vm/docker 中，如果需要测量该功能响应的完整持续时间就有难度。</p>
 <h4 id="示例（Use-OpenCensus-with-OpenZipkin）"><a href="#示例（Use-OpenCensus-with-OpenZipkin）" class="headerlink" title="示例（Use OpenCensus with OpenZipkin）"></a>示例（Use OpenCensus with OpenZipkin）</h4><p><a href="https://riboseyim.github.io/2018/05/18/DevOps-OpenTracing/" target="_blank" rel="external">OpenCensus</a> 作为埋点 API ，导出 tracing data 到 OpenZipkin，由 Zipkin 的 Web UI 提供数据展示和交互能力，可以很清晰地看到函数调用顺序和耗时。从理解系统行为的角度上说，与动态追踪技术中的火焰图（flame graph）有异曲同工之妙。</p>
 <ul>
 <li>串行调用函数方法，包括网络访问和持久化操作</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E4%B8%B2%E8%A1%8C.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E4%B8%B2%E8%A1%8C.png" alt></p>
 <ul>
 <li>示例（OpenCensus with OpenZipkin）：并行调用函数方法（Go routine）</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E5%B9%B6%E8%A1%8C.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E5%B9%B6%E8%A1%8C.png" alt></p>
 <h2 id="Google-Dapper-Family"><a href="#Google-Dapper-Family" class="headerlink" title="Google Dapper Family"></a>Google Dapper Family</h2><p>讨论分布式跟踪，就一定会谈到 Dapper —— Google 公司研发并应用于自己生产环境的一款跟踪系统（设计之初参考了一些 Magpie 和 X-Trace 的理念 ）。Dapper 不仅为业内提供了非常有参考价值的实现，同步发表论文的也成为了当前分布式跟踪系统的重要理论基础。Google Dapper 的理念影响了一批分布式跟踪系统的发展，例如 2012 年，Twitter 公司严格按照 Dapper 论文的要求实现了 Zipkin （Scala 编写，集成到 Twitter 公司自己的分布式服务 Finagle ）；Uber 公司基于 Google Dapper 和 Twitter Zipkin 的灵感，开发了开源分布式跟踪系统 Jaeger。</p>
 <ul>
 <li><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/papers/dapper-2010-1.pdf" target="_blank" rel="external">《Dapper, a Large-Scale Distributed Systems Tracing Infrastructure|Google Technical Report dapper-2010-1, April 2010》</a></li>
@@ -182,7 +183,7 @@ ga('send', 'pageview');
 <li>jaeger-ui：一个基于 React 的前端 webui</li>
 <li>jaeger spark: 是一个基于 Spark 聚合数据管道，用以完成服务依赖分析</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Uber-Jaeger.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Uber-Jaeger.png" alt></p>
 <h4 id="淘宝-EagleEye（鹰眼）"><a href="#淘宝-EagleEye（鹰眼）" class="headerlink" title="淘宝 EagleEye（鹰眼）"></a>淘宝 EagleEye（鹰眼）</h4><p><a href="http://jm.taobao.org/2014/03/04/3465/" target="_blank" rel="external">EagleEye（鹰眼）</a> 是Google 的分布式调用跟踪系统 Dapper 在淘宝的实现。主要特点是通过每台应用机器上的 Agent 实时抓取 EagleEye 日志，按照日志类型不分别处理：</p>
 <ul>
 <li>全量原始日志直接存储到 HDFS ；创建 MapReduce 任务完成调用链合并、分析和统计；</li>
@@ -295,11 +296,11 @@ ga('send', 'pageview');
 <ul>
 <li><a href="https://logz.io/blog/zipkin-elk/?utm_source=twitter&amp;utm_medium=social&amp;utm_content=zipkin-elk/&amp;utm_campaign=blog_post" target="_blank" rel="external">扩展阅读 | Distributed Tracing with Zipkin and ELK</a></li>
 </ul>
-<p><img src="https://logz.io/wp-content/uploads/2018/05/zipkin_and_elk_-_article.jpg" alt=""></p>
+<p><img src="https://logz.io/wp-content/uploads/2018/05/zipkin_and_elk_-_article.jpg" alt></p>
 <ul>
 <li><a href="https://medium.com/merapar/exposing-zipkin-trace-id-and-span-id-in-logging-for-use-in-kibana-25d1e5b6bfbb" target="_blank" rel="external">扩展阅读 | Tracing microservices with Zipkin and Kibana</a></li>
 </ul>
-<p><img src="https://cdn-images-1.medium.com/max/1600/1*edyzJ1zutH1IA2jpITp5Pg.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*edyzJ1zutH1IA2jpITp5Pg.png" alt></p>
 <h2 id="OpenCensus-vs-OpenTracing"><a href="#OpenCensus-vs-OpenTracing" class="headerlink" title="OpenCensus vs OpenTracing"></a><a href="https://zipkin.io" target="_blank" rel="external">OpenCensus</a> vs <a href="http://opentracing.io/" target="_blank" rel="external">OpenTracing</a></h2><div class="table-container">
 <table>
 <thead>
@@ -338,8 +339,8 @@ ga('send', 'pageview');
 
 <h2 id="Sensor-Sensibility-Format"><a href="#Sensor-Sensibility-Format" class="headerlink" title="Sensor Sensibility Format"></a>Sensor Sensibility Format</h2><p>The Sensor Sensibility Format — or SSF for short — is a language agnostic format for transmitting observability data such as trace spans, metrics, events and more. <a href="https://github.com/stripe/veneur/tree/master/ssf" target="_blank" rel="external">https://github.com/stripe/veneur/tree/master/ssf</a></p>
 <h2 id="管理负载-Managing-Tracing-Overhead"><a href="#管理负载-Managing-Tracing-Overhead" class="headerlink" title="管理负载 Managing Tracing Overhead"></a>管理负载 Managing Tracing Overhead</h2><p>目前多数分布式追踪系统采用异步写入日志、建立缓冲存储（基于内存或者内存数据库）、设置采样阈值策略（包括一定情况下直接丢弃）的方式控制追踪负载。Google Dapper 公布的性能损耗测评数据如下：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-1.jpg" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-2.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-1.jpg" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-2.jpg" alt></p>
 <p><strong>淘宝 EagleEye</strong> ：1）专属日志输出实现，日志异步写入来避免 hang 住业务线程，可调节日志输出缓冲大小，控制每秒写日志的 IO 次数等。2）全局采样开关，在运行期控制调用链的采样率（根据 TraceId 来决定当前的这一次访问日志是否输出）。比如采样率被设置为 10，一部分调用链日志完全不输出，只有 hash(traceId) mod 10 的值等于0的日志才会输出。例如核心入口的调用量样本空间足够大（每日百万次以上级别），假设统计误差 0.1% ，即使开启1/10的采样总和误差也是可以接受的。</p>
 <p><strong>微博 Watchman</strong>：如某个服务由于瞬时访问高峰，造成底层资源压力变大从而服务响应时间变长，控制策略可以根据设定随机丢弃后续的请求，如果情况加剧就会自动降级该服务，保证核心服务路径。</p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="分布式追踪系统"><a href="#分布式追踪系统" class="headerlink" title="分布式追踪系统"></a>分布式追踪系统</h4><ul>
@@ -382,7 +383,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/05/18/DevOps-OpenTracing/" data-id="cjuqfn63900q25ih279aqffmt" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/05/18/DevOps-OpenTracing/" data-id="cjuqfn63900q25ih279aqffmt" class="article-share-link">分享</a>
       
       
       
@@ -406,7 +407,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -449,7 +450,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/06/05/Project-Risk/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           项目风险管理
@@ -459,7 +460,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/05/14/Addiction-Decision-Coffee/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">嗑药简史：咖啡上瘾，喝还是不喝？</div>
     </a>
   
@@ -491,9 +492,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绪论"><span class="toc-number">2.</span> <span class="toc-text">绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#metrics"><span class="toc-number">2.0.1.</span> <span class="toc-text">metrics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#logging"><span class="toc-number">2.0.2.</span> <span class="toc-text">logging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tracing"><span class="toc-number">2.0.3.</span> <span class="toc-text">tracing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例（Use-OpenCensus-with-OpenZipkin）"><span class="toc-number">2.0.4.</span> <span class="toc-text">示例（Use OpenCensus with OpenZipkin）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Dapper-Family"><span class="toc-number">3.</span> <span class="toc-text">Google Dapper Family</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Uber-Jaeger"><span class="toc-number">3.0.1.</span> <span class="toc-text">Uber Jaeger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#淘宝-EagleEye（鹰眼）"><span class="toc-number">3.0.2.</span> <span class="toc-text">淘宝 EagleEye（鹰眼）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#国内其他衍生系统"><span class="toc-number">3.0.3.</span> <span class="toc-text">国内其他衍生系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exporters-数据可视化"><span class="toc-number">4.</span> <span class="toc-text">Exporters | 数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prometheus-普罗米修斯"><span class="toc-number">4.1.</span> <span class="toc-text">Prometheus|普罗米修斯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stackdriver"><span class="toc-number">4.2.</span> <span class="toc-text">Stackdriver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SignalFX"><span class="toc-number">4.3.</span> <span class="toc-text">SignalFX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-AWS-X-Ray"><span class="toc-number">4.4.</span> <span class="toc-text">Amazon AWS X-Ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zipkin"><span class="toc-number">4.5.</span> <span class="toc-text">Zipkin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-vs-OpenTracing"><span class="toc-number">5.</span> <span class="toc-text">OpenCensus vs OpenTracing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sensor-Sensibility-Format"><span class="toc-number">6.</span> <span class="toc-text">Sensor Sensibility Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理负载-Managing-Tracing-Overhead"><span class="toc-number">7.</span> <span class="toc-text">管理负载 Managing Tracing Overhead</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式追踪系统"><span class="toc-number">8.0.1.</span> <span class="toc-text">分布式追踪系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">8.0.2.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开源架构技术漫谈"><span class="toc-number">8.0.3.</span> <span class="toc-text">开源架构技术漫谈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绪论"><span class="toc-number">2.</span> <span class="toc-text">绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#metrics"><span class="toc-number">2.0.1.</span> <span class="toc-text">metrics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#logging"><span class="toc-number">2.0.2.</span> <span class="toc-text">logging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tracing"><span class="toc-number">2.0.3.</span> <span class="toc-text">tracing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例（Use-OpenCensus-with-OpenZipkin）"><span class="toc-number">2.0.4.</span> <span class="toc-text">示例（Use OpenCensus with OpenZipkin）</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Dapper-Family"><span class="toc-number">3.</span> <span class="toc-text">Google Dapper Family</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Uber-Jaeger"><span class="toc-number">3.0.1.</span> <span class="toc-text">Uber Jaeger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#淘宝-EagleEye（鹰眼）"><span class="toc-number">3.0.2.</span> <span class="toc-text">淘宝 EagleEye（鹰眼）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#国内其他衍生系统"><span class="toc-number">3.0.3.</span> <span class="toc-text">国内其他衍生系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exporters-数据可视化"><span class="toc-number">4.</span> <span class="toc-text">Exporters | 数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prometheus-普罗米修斯"><span class="toc-number">4.1.</span> <span class="toc-text">Prometheus|普罗米修斯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stackdriver"><span class="toc-number">4.2.</span> <span class="toc-text">Stackdriver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SignalFX"><span class="toc-number">4.3.</span> <span class="toc-text">SignalFX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-AWS-X-Ray"><span class="toc-number">4.4.</span> <span class="toc-text">Amazon AWS X-Ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zipkin"><span class="toc-number">4.5.</span> <span class="toc-text">Zipkin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-vs-OpenTracing"><span class="toc-number">5.</span> <span class="toc-text">OpenCensus vs OpenTracing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sensor-Sensibility-Format"><span class="toc-number">6.</span> <span class="toc-text">Sensor Sensibility Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理负载-Managing-Tracing-Overhead"><span class="toc-number">7.</span> <span class="toc-text">管理负载 Managing Tracing Overhead</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式追踪系统"><span class="toc-number">8.0.1.</span> <span class="toc-text">分布式追踪系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">8.0.2.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开源架构技术漫谈"><span class="toc-number">8.0.3.</span> <span class="toc-text">开源架构技术漫谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -521,7 +522,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -530,8 +531,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -561,7 +562,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

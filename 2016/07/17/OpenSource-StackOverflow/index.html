@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>开源技术架构漫谈：Stack Overflow 架构全解析 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Stack Overflow 架构解析，其架构既有商业外包服务，也大量采用开源软件，可以全景式展现当代主流架构的风貌。Stack Overflow 由 Jeff Atwood 和 Joel Spolsky 这两个非常著名的 Blogger 在 2008 年创建。   第一篇：总体架构第二篇：硬件清单第三篇：部署流程 (未翻译)">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/StackOverflow-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png">
@@ -73,7 +74,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -86,7 +87,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -149,7 +150,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">分享</a>
         
         
         
@@ -165,7 +166,7 @@ ga('send', 'pageview');
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
 <p>Stack Overflow 架构解析，其架构既有商业外包服务，也大量采用开源软件，可以全景式展现当代主流架构的风貌。<br>Stack Overflow 由 Jeff Atwood 和 Joel Spolsky 这两个非常著名的 Blogger 在 2008 年创建。</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png" alt></p>
 <p>第一篇：总体架构<br>第二篇：硬件清单<br>第三篇：部署流程 (未翻译)</p>
 <a id="more"></a>
 <blockquote>
@@ -194,7 +195,7 @@ ga('send', 'pageview');
 <p>Web Tier Web层<br>IIS 8.5, ASP.Net MVC 5.2.3, and .Net 4.6.1<br>Service Tier 服务层<br>IIS, ASP.Net MVC 5.2.3, .Net 4.6.1, and HTTP.SYS<br>Cache缓存<br>Redis<br>L1级别：HTTP 缓存</p>
 <p>L2级别：L1级别缓存失败之后，通过Redis获取数据</p>
 <p>L1&amp;L2都是无法命中的情况下，会从数据库查询，并更新到缓存和Redis。</p>
-<p>缓存更新：基于发布／订阅模型，利用这个机制来清除其他服务上的 L1 缓存，用来保持 web 服务器上的缓存一致性。<br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png" alt=""><br>另外Redis实例的CPU都很低，不到2%，这点很惊人。</p>
+<p>缓存更新：基于发布／订阅模型，利用这个机制来清除其他服务上的 L1 缓存，用来保持 web 服务器上的缓存一致性。<br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png" alt><br>另外Redis实例的CPU都很低，不到2%，这点很惊人。</p>
 <h4 id="Push推送"><a href="#Push推送" class="headerlink" title="Push推送"></a>Push推送</h4><p>开源库：NetGrain<br>使用 <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">Websocket</a> 向用户推送实时的更新内容，比如顶部栏中的通知、投票数、新导航数、新的答案和评论。在高峰时刻，大约有 50 万个并发的  <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">Websocket</a>  连接，这可是一大堆浏览器。</p>
 <p>一个有趣的事实：其中一些浏览器已经打开超过 18 个月了。Someone should go check if those developers are still alive！！</p>
 <p>问题：临时端口、负载均衡上的文件句柄耗尽，都是非常有趣的问题，我们稍后会提到它们。</p>
@@ -209,8 +210,8 @@ ga('send', 'pageview');
 <p>elastic search</p>
 <p>exception logs</p>
 <p>haproxy</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-HAProxy.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-DBTier.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-WebTier.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-HAProxy.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-DBTier.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-WebTier.png" alt></p>
 <p>数据库CPU very low</p>
 <h1 id="Stack-Overflow-The-Hardware-2016-Edition"><a href="#Stack-Overflow-The-Hardware-2016-Edition" class="headerlink" title="Stack Overflow: The Hardware - 2016 Edition"></a>Stack Overflow: The Hardware - 2016 Edition</h1><p>这是关于Stack Overflow架构的一系列文章中的第二篇。<br>前一篇：《 Stack Overflow: 架构》（2016版）<br>后一篇：《 Stack Overflow: 我们是如何做部署的》（2016版）</p>
 <p>有人对硬件感兴趣吗？好吧，我感兴趣，这篇博客就是关于这个话题，所以，我赢了。如果你不关系硬件，那么可以走开并关闭浏览器了。还在这儿吗？真棒。<br>假如你的网页访问非常非常慢，在这种情况下，你应该考虑采购一些新的硬件。</p>
@@ -419,7 +420,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">分享</a>
       
       
       
@@ -443,7 +444,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -486,7 +487,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2016/07/28/Policy-Publish/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           政府行为模型及预测：关于出版业的过去、现在和将来
@@ -496,7 +497,7 @@ ga('send', 'pageview');
   
   
     <a href="/2016/07/03/Reading/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">关于藏书与阅读</div>
     </a>
   
@@ -528,9 +529,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总体架构"><span class="toc-number"></span> <span class="toc-text">总体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#First-Rule-Everything-is-redundant"><span class="toc-number">0.0.1.</span> <span class="toc-text">First Rule:Everything is redundant</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#物理架构"><span class="toc-number">0.0.2.</span> <span class="toc-text">物理架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑架构"><span class="toc-number">0.0.3.</span> <span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Push推送"><span class="toc-number">0.0.4.</span> <span class="toc-text">Push推送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search搜索"><span class="toc-number">0.0.5.</span> <span class="toc-text">Search搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Database数据库"><span class="toc-number">0.0.6.</span> <span class="toc-text">Database数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控系统"><span class="toc-number">0.0.7.</span> <span class="toc-text">监控系统</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stack-Overflow-The-Hardware-2016-Edition"><span class="toc-number"></span> <span class="toc-text">Stack Overflow: The Hardware - 2016 Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-We-Do-Hardware"><span class="toc-number">0.1.</span> <span class="toc-text">How We Do Hardware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-Overflow-amp-Stack-Exchange-站点服务器"><span class="toc-number">0.2.</span> <span class="toc-text">Stack Overflow & Stack Exchange 站点服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#纽约数据中心"><span class="toc-number">0.2.1.</span> <span class="toc-text">纽约数据中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#丹佛数据中心"><span class="toc-number">0.2.2.</span> <span class="toc-text">丹佛数据中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它服务器"><span class="toc-number">0.3.</span> <span class="toc-text">其它服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接下来？"><span class="toc-number">0.4.</span> <span class="toc-text">接下来？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">1.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#总体架构"><span class="toc-number"></span> <span class="toc-text">总体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#First-Rule-Everything-is-redundant"><span class="toc-number">0.0.1.</span> <span class="toc-text">First Rule:Everything is redundant</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#物理架构"><span class="toc-number">0.0.2.</span> <span class="toc-text">物理架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑架构"><span class="toc-number">0.0.3.</span> <span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Push推送"><span class="toc-number">0.0.4.</span> <span class="toc-text">Push推送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search搜索"><span class="toc-number">0.0.5.</span> <span class="toc-text">Search搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Database数据库"><span class="toc-number">0.0.6.</span> <span class="toc-text">Database数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控系统"><span class="toc-number">0.0.7.</span> <span class="toc-text">监控系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stack-Overflow-The-Hardware-2016-Edition"><span class="toc-number"></span> <span class="toc-text">Stack Overflow: The Hardware - 2016 Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-We-Do-Hardware"><span class="toc-number">0.1.</span> <span class="toc-text">How We Do Hardware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-Overflow-amp-Stack-Exchange-站点服务器"><span class="toc-number">0.2.</span> <span class="toc-text">Stack Overflow &amp; Stack Exchange 站点服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#纽约数据中心"><span class="toc-number">0.2.1.</span> <span class="toc-text">纽约数据中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#丹佛数据中心"><span class="toc-number">0.2.2.</span> <span class="toc-text">丹佛数据中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它服务器"><span class="toc-number">0.3.</span> <span class="toc-text">其它服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接下来？"><span class="toc-number">0.4.</span> <span class="toc-text">接下来？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">1.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -558,7 +559,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -567,8 +568,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -598,7 +599,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

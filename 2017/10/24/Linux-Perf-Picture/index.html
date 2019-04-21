@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Linux 性能诊断:荐书《图解性能优化》 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 性能分析的基础:吞吐和响应的区别 实际系统中的性能分析 性能调优 性能测试 虚拟化环境下的性能 云环境下的性能">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_7.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_2-7.png">
@@ -69,7 +70,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -82,7 +83,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -145,7 +146,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">分享</a>
         
         
         
@@ -168,23 +169,23 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h3 id="一、性能分析的基础"><a href="#一、性能分析的基础" class="headerlink" title="一、性能分析的基础"></a>一、性能分析的基础</h3><ul>
-<li><p>响应和吞吐的区别（初学者可能经常会混淆的概念）<br>响应：表示应答的快慢<br>吞吐：表示处理数量的多少<br>案例：“明明优化了机器的配置，但性能并没有提高”。响应有问题，却增加了CPU核心数，只是增加了空转的CPU核心而已。所以要养成习惯，先确认问题是出在响应还是吞吐上。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_7.png" alt=""></p>
+<li><p>响应和吞吐的区别（初学者可能经常会混淆的概念）<br>响应：表示应答的快慢<br>吞吐：表示处理数量的多少<br>案例：“明明优化了机器的配置，但性能并没有提高”。响应有问题，却增加了CPU核心数，只是增加了空转的CPU核心而已。所以要养成习惯，先确认问题是出在响应还是吞吐上。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_suanfa_7.png" alt></p>
 </li>
 <li><p>性能分析从测量开始，性能必须是能够测量的<br>性能信息的3种类型：<br>1、概要形式:例如sar、vmstat,作为入手点调查过去发生了什么，“现象”<br>2、事件记录形式:例如网络抓包（Packet Capture）<br>3、快照（Snapshot）：例如ps和top</p>
 </li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_2-7.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_2-7.png" alt></p>
 <ul>
 <li><p>扩展阅读：<a href="http://www.jianshu.com/p/fd6e35f529c1" target="_blank" rel="external">《Linux性能分析模型－In 60 Seconds》</a></p>
 </li>
-<li><p>性能分析中的重要理论：等待队列理论<br>从性能的稳定性方面来考虑，带宽控制思维方式。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1_2.png" alt=""></p>
+<li><p>性能分析中的重要理论：等待队列理论<br>从性能的稳定性方面来考虑，带宽控制思维方式。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1_2.png" alt></p>
 </li>
 </ul>
 <h3 id="二、实际系统中的性能分析"><a href="#二、实际系统中的性能分析" class="headerlink" title="二、实际系统中的性能分析"></a>二、实际系统中的性能分析</h3><h4 id="AP服务器的性能测量"><a href="#AP服务器的性能测量" class="headerlink" title="AP服务器的性能测量"></a>AP服务器的性能测量</h4><p>不同语言的性能信息获取: Java：GC（垃圾回收）日志 ，全GC（Stop the world）</p>
 <h4 id="DB服务器的性能测量"><a href="#DB服务器的性能测量" class="headerlink" title="DB服务器的性能测量"></a>DB服务器的性能测量</h4><p>DB服务器本身的特点就是集中管理数据，需要频繁地查看线程（会话）之间的交互，因此很容易出现资源竞争的情况，因此在进行DBMS性能分析的时候，一定要考虑多个线程的存在。</p>
 <h4 id="存储性能分析的思路"><a href="#存储性能分析的思路" class="headerlink" title="存储性能分析的思路"></a>存储性能分析的思路</h4><p>思路：重视IOPS<br>术语：响应时间、IOPS（Input Output Per Second）<br>类型：物理磁盘、SSD</p>
 <p>缓存命中率：在存储的世界里，磁盘、存储、OS等各处都存在着缓存，使用缓存命中率作为表示缓存工作效率的指标。<br>脏数据（或者脏数据块）：已经更新但没有写入的数据。脏数据不可以丢弃，如果在缓存上堆积了大量的脏数据，I／O就无法有效运作，进而就会导致问题的发生。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_2.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_3.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_3_12.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_2.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_3.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_device_3_12.png" alt></p>
 <h4 id="网络性能分析的思路"><a href="#网络性能分析的思路" class="headerlink" title="网络性能分析的思路"></a>网络性能分析的思路</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_N_1.png" alt="ACK机制"></p>
 <h4 id="调查原因"><a href="#调查原因" class="headerlink" title="调查原因"></a>调查原因</h4><ul>
 <li>陷阱1:关注受害者，“疑犯”与“真凶”</li>
@@ -200,8 +201,8 @@ ga('send', 'pageview');
 <li><p>应用技巧：<br>1、省略循环<br>2、访问频率高的数据存放入键值存储<br>3、访问频率高的数据存放在使用位置附近<br>4、把同步变成异步<br>5、带宽控制<br>6、LRU算法<br>7、分割处理或者细化锁的力度<br>8、回写缓存、多层缓存<br>9、巨帧和高速网络<br>10、负载均衡 <a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="external">基于LVS的AAA负载均衡架构实践</a><br>11、写时复制</p>
 </li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Copy_1.png" alt=""></p>
-<h3 id="四、性能测试"><a href="#四、性能测试" class="headerlink" title="四、性能测试"></a>四、性能测试</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Process_1.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Copy_1.png" alt></p>
+<h3 id="四、性能测试"><a href="#四、性能测试" class="headerlink" title="四、性能测试"></a>四、性能测试</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Process_1.png" alt></p>
 <h4 id="项目工程环境"><a href="#项目工程环境" class="headerlink" title="项目工程环境"></a>项目工程环境</h4><p>基于项目整理来确保应用程序的性能。</p>
 <p>应用程序设计负责人一般不会考虑系统整体的性能，而是满脑子考虑如何使用新的框架和中间件来实现需要的业务和功能。</p>
 <h4 id="常见的失败情况：9种反面模式"><a href="#常见的失败情况：9种反面模式" class="headerlink" title="常见的失败情况：9种反面模式"></a>常见的失败情况：9种反面模式</h4><ul>
@@ -229,24 +230,24 @@ ga('send', 'pageview');
 <h4 id="需求定义"><a href="#需求定义" class="headerlink" title="需求定义"></a>需求定义</h4><p>三要素：吞吐（T）、响应时间（R）、用户并发度（U）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">U x R = T</div></pre></td></tr></table></figure>
 <p>并发并不是作为性能目标通过听取客户意见来推导出来的，而是通常根据吞吐和响应时间计算出一个合适的值（客户即使了解业务中同时使用的人数，但是对于系统瞬间运行的并发处理的情况，他们并不清楚）。</p>
-<h4 id="集成测试：多并发运行测试"><a href="#集成测试：多并发运行测试" class="headerlink" title="集成测试：多并发运行测试"></a>集成测试：多并发运行测试</h4><h4 id="系统测试：压力测试、临界测试、耐久测试"><a href="#系统测试：压力测试、临界测试、耐久测试" class="headerlink" title="系统测试：压力测试、临界测试、耐久测试"></a>系统测试：压力测试、临界测试、耐久测试</h4><h4 id="运维测试：性能监控测试、故障测试"><a href="#运维测试：性能监控测试、故障测试" class="headerlink" title="运维测试：性能监控测试、故障测试"></a>运维测试：性能监控测试、故障测试</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_Day_1.png" alt=""></p>
-<h3 id="五、虚拟化环境下的性能"><a href="#五、虚拟化环境下的性能" class="headerlink" title="五、虚拟化环境下的性能"></a>五、虚拟化环境下的性能</h3><p>在虚拟化环境中，多个VM（虚拟机）运行在一台服务器上，因此可以更加有效地共享资源，有利于削减成本。而反过来，若资源被共享过度，则会发生竞争，可能导致性能的下降。因此，在资源效率和性能之间取得平衡就变得尤为重要。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VMM_TYPE_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_2.png" alt=""></p>
+<h4 id="集成测试：多并发运行测试"><a href="#集成测试：多并发运行测试" class="headerlink" title="集成测试：多并发运行测试"></a>集成测试：多并发运行测试</h4><h4 id="系统测试：压力测试、临界测试、耐久测试"><a href="#系统测试：压力测试、临界测试、耐久测试" class="headerlink" title="系统测试：压力测试、临界测试、耐久测试"></a>系统测试：压力测试、临界测试、耐久测试</h4><h4 id="运维测试：性能监控测试、故障测试"><a href="#运维测试：性能监控测试、故障测试" class="headerlink" title="运维测试：性能监控测试、故障测试"></a>运维测试：性能监控测试、故障测试</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_Day_1.png" alt></p>
+<h3 id="五、虚拟化环境下的性能"><a href="#五、虚拟化环境下的性能" class="headerlink" title="五、虚拟化环境下的性能"></a>五、虚拟化环境下的性能</h3><p>在虚拟化环境中，多个VM（虚拟机）运行在一台服务器上，因此可以更加有效地共享资源，有利于削减成本。而反过来，若资源被共享过度，则会发生竞争，可能导致性能的下降。因此，在资源效率和性能之间取得平衡就变得尤为重要。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VMM_TYPE_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_2.png" alt></p>
 <h4 id="虚拟化的性能管理（CPU）"><a href="#虚拟化的性能管理（CPU）" class="headerlink" title="虚拟化的性能管理（CPU）"></a>虚拟化的性能管理（CPU）</h4><p>虚拟环境下Guest OS发出的特权命令会被更改，因此和物理环境相比需要更多的处理时间。另外，物理环境下也不需要将逻辑CPU分配个VM的调度处理，如果CPU的分配发生了竞争，这个等待时间就会影响性能。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_Cloud.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_Cloud.png" alt></p>
 <h3 id="六、云计算环境下的性能"><a href="#六、云计算环境下的性能" class="headerlink" title="六、云计算环境下的性能"></a>六、云计算环境下的性能</h3><ul>
 <li>构成计算资源的技术元素并没有大的变化</li>
 <li>网络访问和资源的使用及提供形态发生了变化</li>
 <li>LAN网络的变化</li>
 <li>WAN网络的变化</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Cloud_deploy_1.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Cloud_deploy_1.png" alt></p>
 <p>云计算的一个大的变化就是LAN网络。具体来说，本地部署环境下物理路由器和交换机实现的部分被隐藏起来，通过虚拟的网络来组成。</p>
 <p>WAN连接方法：<br>1、专线连接：主要依赖于所选择的通信运营商的服务特性，带宽保证和性能的成本与之前相比并没有太大变化。<br>2、互联网连接：云计算服务可以非常优惠的加个来利用共享的互联网带宽，可以减轻高峰时带宽限制的顾虑。云计算服务中提供的CDN（Contents Delivery Network）或Global DNS等功能，能够很方便地提高互联网服务的速度。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_front_web.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_front_web.png" alt></p>
 <p>随着存储的网络化，直接连接到普通的LAN的情况也越来越多，磁盘I/O变为网络I／O的情况也越来越多。在NAS（Network Attached Storage）以及云环境下，磁盘I/O在普通的TCP／IP网络中完成的情况也很多。（具体第7章）</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Store_Change.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_Cloud.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change_2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Store_Change.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_Cloud.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change_2.png" alt></p>
 <h4 id="云计算环境中开发阶段的思维方式"><a href="#云计算环境中开发阶段的思维方式" class="headerlink" title="云计算环境中开发阶段的思维方式"></a>云计算环境中开发阶段的思维方式</h4><p>在云计算环境下，比起技术方面的差异，思维方式上的差异更为明显。在实际业务层面最大的变化就是对以往的以硬件配置为前提的开发运维流程的影响。</p>
 <p>1、基本设计：估算（Sizing）<br>2、系统测试：性能测试<br>3、项目管理</p>
 <p>云计算环境中不需要准备硬件，但是并不代表不需要进行估算。<br>观点一：成本估算。成本会根据选定的资源大小而有所变化。<br>观点二：临界估算。在本地部署环境下，企业级系统很多都是集中式的处理方式，如果按照这种方式原封不懂地迁移到云计算环境，可能就会碰到瓶颈，为了消除这种风险，就需要进行估算，考虑临界容量的可实现性。</p>
@@ -258,7 +259,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
@@ -278,7 +279,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">分享</a>
       
       
       
@@ -302,7 +303,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -345,7 +346,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/10/29/CyberSecurity-WiFi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Cyber-Security:警惕Wi-Fi漏洞
@@ -355,7 +356,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/10/24/Linux-Perf-Wan/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Linux 性能诊断:Web 应用性能优化</div>
     </a>
   
@@ -387,7 +388,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、性能分析的基础"><span class="toc-number">1.1.</span> <span class="toc-text">一、性能分析的基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、实际系统中的性能分析"><span class="toc-number">1.2.</span> <span class="toc-text">二、实际系统中的性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AP服务器的性能测量"><span class="toc-number">1.2.1.</span> <span class="toc-text">AP服务器的性能测量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DB服务器的性能测量"><span class="toc-number">1.2.2.</span> <span class="toc-text">DB服务器的性能测量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储性能分析的思路"><span class="toc-number">1.2.3.</span> <span class="toc-text">存储性能分析的思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络性能分析的思路"><span class="toc-number">1.2.4.</span> <span class="toc-text">网络性能分析的思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调查原因"><span class="toc-number">1.2.5.</span> <span class="toc-text">调查原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、性能调优"><span class="toc-number">1.3.</span> <span class="toc-text">三、性能调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、性能测试"><span class="toc-number">1.4.</span> <span class="toc-text">四、性能测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目工程环境"><span class="toc-number">1.4.1.</span> <span class="toc-text">项目工程环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的失败情况：9种反面模式"><span class="toc-number">1.4.2.</span> <span class="toc-text">常见的失败情况：9种反面模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#需求定义"><span class="toc-number">1.4.3.</span> <span class="toc-text">需求定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集成测试：多并发运行测试"><span class="toc-number">1.4.4.</span> <span class="toc-text">集成测试：多并发运行测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统测试：压力测试、临界测试、耐久测试"><span class="toc-number">1.4.5.</span> <span class="toc-text">系统测试：压力测试、临界测试、耐久测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运维测试：性能监控测试、故障测试"><span class="toc-number">1.4.6.</span> <span class="toc-text">运维测试：性能监控测试、故障测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、虚拟化环境下的性能"><span class="toc-number">1.5.</span> <span class="toc-text">五、虚拟化环境下的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟化的性能管理（CPU）"><span class="toc-number">1.5.1.</span> <span class="toc-text">虚拟化的性能管理（CPU）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、云计算环境下的性能"><span class="toc-number">1.6.</span> <span class="toc-text">六、云计算环境下的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#云计算环境中开发阶段的思维方式"><span class="toc-number">1.6.1.</span> <span class="toc-text">云计算环境中开发阶段的思维方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol>
           </div>
@@ -417,7 +418,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -426,8 +427,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -457,7 +458,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

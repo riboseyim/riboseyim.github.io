@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>How Linux Works：Linux Commands Extension | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/09/03/Linux-Commands-New/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="DevOps 资讯 | 是时候升级你的命令行了 autojump &amp;gt; cd bat &amp;gt; cat prettyping &amp;gt; ping fzf &amp;gt; ctrl+r htop &amp;gt; top diff-so-fancy &amp;gt; diff fd &amp;gt; find ncdu &amp;gt; du tldr &amp;gt; man ack || ag &amp;gt; grep jq &amp;gt; gr">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-3.png">
@@ -56,7 +57,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -69,7 +70,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -132,7 +133,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/09/03/Linux-Commands-New/" data-id="cjuqfn60300fn5ih2jf2b1cs2" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/09/03/Linux-Commands-New/" data-id="cjuqfn60300fn5ih2jf2b1cs2" class="article-share-link">分享</a>
         
         
         
@@ -173,15 +174,15 @@ ga('send', 'pageview');
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">aca80164:~ kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">109:	 total weight</div><div class="line">3:	 number of entries</div><div class="line">0.00:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:~ kurui$</div><div class="line">aca80164:~ kurui$ cd project/ebook-linuxperfmaster/</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">14.1:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">50.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">124:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">14.14:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:ebook-linuxperfmaster kurui$</div><div class="line">aca80164:ebook-linuxperfmaster kurui$ j post</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ pwd</div><div class="line">/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">aca80164:_posts kurui$ j -s</div><div class="line">10.0:	/Users/yanrui/project/riboseyim.com</div><div class="line">22.4:	/Users/yanrui/project/ebook-linuxperfmaster</div><div class="line">50.0:	/Users/yanrui/project-third/autojump</div><div class="line">52.0:	/Users/yanrui/project/riboseyim.github.io/source/_posts</div><div class="line">________________________________________</div><div class="line"></div><div class="line">134:	 total weight</div><div class="line">4:	 number of entries</div><div class="line">51.96:	 current directory weight</div><div class="line"></div><div class="line">data:	 /Users/yanrui/Library/autojump/autojump.txt</div><div class="line">aca80164:_posts kurui$</div></pre></td></tr></table></figure>
 <h4 id="bat-gt-cat"><a href="#bat-gt-cat" class="headerlink" title="bat &gt; cat"></a>bat &gt; cat</h4><p>cat 被用于打印文件内容。ccat 工具还提供像语法高亮显示这样的功能。在此基础之上，bat 还支持 分页, 行号和 git 集成。同时允许在输出中搜索 (当输出长于屏幕高度时) 。更多信息：<a href="https://github.com/sharkdp/bat" target="_blank" rel="external">https://github.com/sharkdp/bat</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-1.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-2.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-3.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-1.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-2.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-bat-3.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Linux</div><div class="line">wget https://github.com/sharkdp/bat/releases/download/v0.6.1/bat-v0.6.1-x86_64-unknown-linux-gnu.tar.gz</div><div class="line">make install</div><div class="line"></div><div class="line"># Mac</div><div class="line">brew install bat</div><div class="line"></div><div class="line">#</div><div class="line">alias cat=&apos;bat&apos;</div></pre></td></tr></table></figure>
 <h4 id="prettyping-gt-ping"><a href="#prettyping-gt-ping" class="headerlink" title="prettyping &gt; ping"></a>prettyping &gt; ping</h4><p>ping 是一种非常有用的网络工具。原理是向目标主机传出一个ICMP echo@要求数据包，并等待接收 echo 回应数据包。程序会按时间和成功响应的次数估算丢失数据包率（丢包率）和数据包往返时间（网络时延，Round-trip delay time）。不过默认的 ping 命令输出比较乏味。prettyping 则提供了更友好、更美观的输出，包括彩色点图表示网络连通性。prettyping 基于 bash 和 awk 编写能，够兼容大部分操作系统 (例如 Linux, BSD, Mac OS X, …)。更多信息：<a href="http://denilson.sa.nom.br/prettyping/" target="_blank" rel="external">http://denilson.sa.nom.br/prettyping/</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180903-ping.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180903-ping.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl -O https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping</div><div class="line">chmod +x prettyping</div><div class="line">./prettyping baiud.com</div><div class="line"></div><div class="line">alias ping=&apos;prettyping --nolegend&apos;</div></pre></td></tr></table></figure>
 <h4 id="fzf-gt-ctrl-r"><a href="#fzf-gt-ctrl-r" class="headerlink" title="fzf &gt; ctrl+r"></a>fzf &gt; ctrl+r</h4><p>在终端中使用 ctrl + r 组合键可以向后搜索历史操作记录（ 尽管有点繁琐 ）。fzf 工具是对 ctrl + r 的增强。支持对终端操作历史的模糊搜索, 预览可能的匹配结果。除了历史搜索之外, fzf 还可以预览和打开文件。<br>更多信息：<a href="https://github.com/junegunn/fzf" target="_blank" rel="external">https://github.com/junegunn/fzf</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fzf.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fzf.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Linux</div><div class="line">git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</div><div class="line">~/.fzf/install</div><div class="line"># Mac</div><div class="line">brew install fzf</div><div class="line"></div><div class="line"># alias</div><div class="line">alias preview=&quot;fzf --preview &apos;bat --color \&quot;always\&quot; &#123;&#125;&apos;&quot;</div><div class="line"># add support for ctrl+o to open selected file in VS Code</div><div class="line">export FZF_DEFAULT_OPTS=&quot;--bind=&apos;ctrl-o:execute(code &#123;&#125;)+abor</div></pre></td></tr></table></figure>
 <h4 id="htop-gt-top"><a href="#htop-gt-top" class="headerlink" title="htop &gt; top"></a>htop &gt; top</h4><p>top 是一个快速诊断系统性能的工具。值得一提的是 top for Mac 与 Linux 上的输出不太一样。htop 优化了顶部输出格式，并支持大量的颜色, 键盘快键键和视图, 帮助我们洞察进程行为。更多信息：<a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-htop.png" alt="htop"></p>
@@ -194,23 +195,23 @@ ga('send', 'pageview');
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alias top=&quot;sudo htop&quot; # alias top</div></pre></td></tr></table></figure>
 <h4 id="diff-so-fancy-gt-diff"><a href="#diff-so-fancy-gt-diff" class="headerlink" title="diff-so-fancy &gt; diff"></a>diff-so-fancy &gt; diff</h4><p>GIT 版本控制系统中使用 git diff 来显示两个版本之间差别(包括文件、元数据和改动等)。diff-so-fancy 是一个用 node.js 实现的命令行工具，提供更友好的输出样式和定制能力。更多信息：<a href="https://github.com/so-fancy/diff-so-fancy" target="_blank" rel="external">https://github.com/so-fancy/diff-so-fancy</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-diff-so-fancy.jpg" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-git-diff.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-diff-so-fancy.jpg" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-git-diff.jpg" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># download</div><div class="line">wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy</div><div class="line">chmod +x diff-so-fancy</div><div class="line"># npm</div><div class="line">npm install -g diff-so-fancy</div><div class="line"># 直接调用</div><div class="line">git diff --color | diff-so-fancy</div></pre></td></tr></table></figure>
 <p>在 git diff 和 git show 中启用  diff-so-fancy ，需要修改 gitconfig :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[pager]</div><div class="line">	   diff = diff-so-fancy | less --tabs=1,5 -RFX</div><div class="line">	   show = diff-so-fancy | less --tabs=1,5 -RFX</div></pre></td></tr></table></figure></p>
 <p>除了默认样式优化，diff-so-fancy 还支持颜色和显示项定制，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">git config --global color.ui true</div><div class="line"></div><div class="line">git config --global color.diff-highlight.oldNormal    &quot;red bold&quot;</div><div class="line">git config --global color.diff-highlight.oldHighlight &quot;red bold 52&quot;</div><div class="line">git config --global color.diff-highlight.newNormal    &quot;green bold&quot;</div><div class="line">git config --global color.diff-highlight.newHighlight &quot;green bold 22&quot;</div><div class="line"></div><div class="line">git config --global color.diff.meta       &quot;yellow&quot;</div><div class="line">git config --global color.diff.frag       &quot;magenta bold&quot;</div><div class="line">git config --global color.diff.commit     &quot;yellow bold&quot;</div><div class="line">git config --global color.diff.old        &quot;red bold&quot;</div><div class="line">git config --global color.diff.new        &quot;green bold&quot;</div><div class="line">git config --global color.diff.whitespace &quot;red reverse&quot;</div><div class="line"></div><div class="line">git config --bool --global diff-so-fancy.markEmptyLines false</div></pre></td></tr></table></figure></p>
 <h4 id="fd-gt-find"><a href="#fd-gt-find" class="headerlink" title="fd &gt; find"></a>fd &gt; find</h4><p>fd 非常快。有意思的是 fd 与 bat 的作者是同一个人（David Peter）。更多信息：<a href="https://github.com/sharkdp/fd/" target="_blank" rel="external">https://github.com/sharkdp/fd/</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fd.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-fd.png" alt></p>
 <p>常用的命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">## SourceCode</div><div class="line">git clone https://github.com/sharkdp/fd</div><div class="line">cd fd</div><div class="line">cargo build</div><div class="line">cargo test</div><div class="line">cargo install</div><div class="line"></div><div class="line"># Mac</div><div class="line">brew install fd</div><div class="line"></div><div class="line">## Usage</div><div class="line">fd cli # 查找所有包含&quot;cli&quot;的文件名</div><div class="line">fd -e md # 查找所有 .md 文件</div><div class="line">fd cli -x wc -w # 查找 &quot;cli&quot; 并运行 `wc -w`</div></pre></td></tr></table></figure></p>
 <h4 id="ncdu-gt-du"><a href="#ncdu-gt-du" class="headerlink" title="ncdu &gt; du"></a>ncdu &gt; du</h4><p>了解磁盘空间占用情况是一项非常重要的工作。常用的命令是 du -sh  (-sh 表示摘要、便于人工阅读), 但我们经常需要挖掘目录的空间占用。ncdu 是一个替代选择（完全基于 C 语言编写，MIT 许可证）。ncdu 提供了一个交互式界面, 支持快速扫描哪些文件夹或文件占用空间, 并且导航非常方便。更多信息：<a href="https://dev.yorhel.nl/ncdu" target="_blank" rel="external">https://dev.yorhel.nl/ncdu</a></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu-nav.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-nudu-nav.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">git clone git://g.blicky.net/ncdu.git/</div><div class="line"></div><div class="line"># release</div><div class="line">wget https://dev.yorhel.nl/download/ncdu-1.13.tar.gz</div><div class="line">tar -xvf ncdu-1.13.tar.gz</div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div><div class="line"></div><div class="line"># Usage</div><div class="line">ncdu path</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">alias du=&quot;ncdu --color dark -rr -x --exclude .git --exclude node_modules&quot;</div><div class="line"></div><div class="line"># 扩展选项</div><div class="line">--color dark - use a colour scheme</div><div class="line">-rr - read-only mode (prevents delete and spawn shell)</div><div class="line">--exclude ignore directories I won&apos;t do anything about</div></pre></td></tr></table></figure>
 <h4 id="tldr-gt-man"><a href="#tldr-gt-man" class="headerlink" title="tldr &gt; man"></a>tldr &gt; man</h4><p>几乎每一个命令行工具都可以通过手工输入 man 命令获得帮助信息。TL;DR 项目(“too long; didn’t read”)是一个由社区驱动的命令行文档系统，以非常简洁的方式提供命令行参数列表、使用说明和示例。更多信息：<a href="https://tldr.sh" target="_blank" rel="external">https://tldr.sh/</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"># Install</div><div class="line">npm install -g tldr</div><div class="line"></div><div class="line">alias help=&apos;tldr&apos;</div><div class="line"></div><div class="line"># Usage</div><div class="line">Options:</div><div class="line"></div><div class="line">  -V, --version            output the version number</div><div class="line">  -l, --list               List all commands for the chosen platform in the cache</div><div class="line">  -a, --list-all           List all commands in the cache</div><div class="line">  -1, --single-column      List single command per line (use with options -l or -a)</div><div class="line">  -r, --random             Show a random command</div><div class="line">  -e, --random-example     Show a random example</div><div class="line">  -f, --render [file]      Render a specific markdown [file]</div><div class="line">  -m, --markdown           Output in markdown format</div><div class="line">  -o, --os [type]          Override the operating system [linux, osx, sunos]</div><div class="line">  --linux                  Override the operating system with Linux</div><div class="line">  --osx                    Override the operating system with OSX</div><div class="line">  --sunos                  Override the operating system with SunOS</div><div class="line">  -t, --theme [theme]      Color theme (simple, base16, ocean)</div><div class="line">  -s, --search [keywords]  Search pages using keywords</div><div class="line">  -u, --update             Update the local cache</div><div class="line">  -c, --clear-cache        Clear the local cache</div><div class="line">  -h, --help               output usage information</div><div class="line"></div><div class="line"># Example</div><div class="line">bash-3.2$ tldr tar</div><div class="line">✔ Page not found. Updating cache</div><div class="line">✔ Creating index</div><div class="line"></div><div class="line">  tar</div><div class="line"></div><div class="line">  Archiving utility.</div><div class="line">  Often combined with a compression method, such as gzip or bzip.</div><div class="line"></div><div class="line">  - Create an archive from files:</div><div class="line">    tar cf target.tar file1 file2 file3</div><div class="line"></div><div class="line">  - Create a gzipped archive:</div><div class="line">    tar czf target.tar.gz file1 file2 file3</div><div class="line"></div><div class="line">  - Extract an archive in a target folder:</div><div class="line">    tar xf source.tar -C folder</div></pre></td></tr></table></figure>
 <h4 id="ack-ag-gt-grep"><a href="#ack-ag-gt-grep" class="headerlink" title="ack || ag &gt; grep"></a>ack || ag &gt; grep</h4><p>grep 无疑是一个强大的命令行工具, 但多年来它已被许多工具所取代，包括 ack 和 ag 。更多信息：[<a href="https://beyondgrep.com/" target="_blank" rel="external">https://beyondgrep.com/</a>]</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-ack.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CLI-20180902-ack.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl https://beyondgrep.com/ack-2.24-single-file &gt; ~/bin/ack &amp;&amp; chmod 0755 ~/bin/ack</div></pre></td></tr></table></figure>
 <p>ack 和 ag 默认情况下使用正则表达式进行搜索,可以指定文件类型 —— 使用像 —js 或 —html 标志搜索。ack 和 ag  工具都支持 grep 选项, 如 -B (表示输出匹配行和其之后(after)的N行)。</p>
 <p>ack 默认没有支持 markdown 格式，可以在 .ackrc 文件定制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">--type-set=md=.md,.mkd,.markdown</div><div class="line">--pager=less -FRX</div></pre></td></tr></table></figure></p>
@@ -225,7 +226,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
@@ -256,7 +257,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/09/03/Linux-Commands-New/" data-id="cjuqfn60300fn5ih2jf2b1cs2" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/09/03/Linux-Commands-New/" data-id="cjuqfn60300fn5ih2jf2b1cs2" class="article-share-link">分享</a>
       
       
       
@@ -280,7 +281,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -323,7 +324,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/09/11/Engineering-Index/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Engineering Index
@@ -333,7 +334,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/08/23/Language-Lua-lang/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Language-Lua-lang</div>
     </a>
   
@@ -365,9 +366,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DevOps-资讯-是时候升级你的命令行了"><span class="toc-number">1.</span> <span class="toc-text">DevOps 资讯 | 是时候升级你的命令行了</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AutoJump-gt-cd"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">AutoJump > cd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bat-gt-cat"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">bat > cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prettyping-gt-ping"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">prettyping > ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fzf-gt-ctrl-r"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">fzf > ctrl+r</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#htop-gt-top"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">htop > top</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diff-so-fancy-gt-diff"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">diff-so-fancy > diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fd-gt-find"><span class="toc-number">1.0.0.7.</span> <span class="toc-text">fd > find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ncdu-gt-du"><span class="toc-number">1.0.0.8.</span> <span class="toc-text">ncdu > du</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tldr-gt-man"><span class="toc-number">1.0.0.9.</span> <span class="toc-text">tldr > man</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ack-ag-gt-grep"><span class="toc-number">1.0.0.10.</span> <span class="toc-text">ack || ag > grep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jq-gt-grep-et-al"><span class="toc-number">1.0.0.11.</span> <span class="toc-text">jq > grep et al</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">1.0.0.12.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">1.0.0.13.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">1.0.0.14.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">1.0.0.15.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">1.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DevOps-资讯-是时候升级你的命令行了"><span class="toc-number">1.</span> <span class="toc-text">DevOps 资讯 | 是时候升级你的命令行了</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AutoJump-gt-cd"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">AutoJump &gt; cd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bat-gt-cat"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">bat &gt; cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prettyping-gt-ping"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">prettyping &gt; ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fzf-gt-ctrl-r"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">fzf &gt; ctrl+r</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#htop-gt-top"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">htop &gt; top</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diff-so-fancy-gt-diff"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">diff-so-fancy &gt; diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fd-gt-find"><span class="toc-number">1.0.0.7.</span> <span class="toc-text">fd &gt; find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ncdu-gt-du"><span class="toc-number">1.0.0.8.</span> <span class="toc-text">ncdu &gt; du</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tldr-gt-man"><span class="toc-number">1.0.0.9.</span> <span class="toc-text">tldr &gt; man</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ack-ag-gt-grep"><span class="toc-number">1.0.0.10.</span> <span class="toc-text">ack || ag &gt; grep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jq-gt-grep-et-al"><span class="toc-number">1.0.0.11.</span> <span class="toc-text">jq &gt; grep et al</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">1.0.0.12.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">1.0.0.13.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">1.0.0.14.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">1.0.0.15.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">1.1.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -395,7 +396,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -404,8 +405,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -435,7 +436,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

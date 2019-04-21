@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>专题：动态追踪技术 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/11/26/DTrace/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 动态追踪技术：DTrace for Linux Linux 追踪器选型   应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp;amp; Painters）">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Choose.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png">
@@ -48,7 +49,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -61,7 +62,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -124,7 +125,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="cjuqfn5zr00ev5ih2c7mgbjpq" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="cjuqfn5zr00ev5ih2c7mgbjpq" class="article-share-link">分享</a>
         
         
         
@@ -151,13 +152,13 @@ ga('send', 'pageview');
 <h4 id="History-of-DTrace"><a href="#History-of-DTrace" class="headerlink" title="History of DTrace"></a>History of DTrace</h4><blockquote>
 <p>当时 Solaris 操作系统的几个工程师花了几天几夜去排查一个看似非常诡异的线上问题。<br>开始他们以为是很高级的问题，就特别卖力，结果折腾了几天，最后发现其实是一个非常愚蠢的、某个不起眼的地方的配置问题。<br>自从那件事情之后，这些工程师就痛定思痛，创造了 DTrace 这样一个非常高级的调试工具，来帮助他们在未来的工作当中避免把过多精力花费在愚蠢问题上面。<br>毕竟大部分所谓的“诡异问题”其实都是低级问题，属于那种“调不出来很郁闷，调出来了更郁闷”的类型。—-《漫谈动态追踪技术》</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png" alt></p>
 <p>通观DTrace的演变过程，几乎相当于一部现代操作系统系统的发展史，细查起来，极其复杂。但是有两个人非常值得关注，一个是国际级的布道师，一个是国内的代表人物，初学者完全可以通过阅读他们的文章、代码，甚至微博／Twitter动态，了解动态追踪技术的实际应用情况。</p>
 <p><strong>Brendan Gregg</strong><br>前SUN性能工程师，最早的DTrace用户，出版了包括《性能之巅》在内的一大批书籍，囊括了性能问题领域的技术、工具、方法论等方方面面。他是动态追踪技术当之无愧的首席布道师，维护的个人博客发布了大量的原创内容，并且持续保持着相当的活跃度。可以作为第一手的学习资料。</p>
 <p><a href="https://twitter.com/brendangregg" target="_blank" rel="external">Twitter：</a><br><a href="http://www.brendangregg.com" target="_blank" rel="external">个人网站：</a></p>
 <p><strong>章亦春</strong><br>网名 agentzh。开源项目OpenResty创始人，编写了很多 Nginx 的第三方模块， Perl 开源模块，以及最近一些年写的很多 Lua 方面的库。他发表过的<a href="https://openresty.org/posts/dynamic-tracing" target="_blank" rel="external">《漫谈动态追踪技术》</a>，是目前唯一由Brendan认证的中文资料，入门首选。另外，他本人也在目前的工作、开源项目运营中大量使用动态追踪技术。<br><a href="http://weibo.com/agentzh" target="_blank" rel="external">微博：</a></p>
 <h4 id="Linux-追踪器选型"><a href="#Linux-追踪器选型" class="headerlink" title="Linux 追踪器选型"></a>Linux 追踪器选型</h4><p>动态追踪技术最复杂的地方在于追踪器种类繁多，让人一时无从下手。根据前人的一些经验总结，建议按照以下路径进行选择：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Choose.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Choose.png" alt></p>
 <h4 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h4><p>适用于：开发者, 系统管理员, DevOps, SRE</p>
 <p><strong>CPU分析</strong></p>
 <p>perf_events的应用很广泛，配合Brendan Gregg老师研究的火焰图工具，可以分析程序在所有代码基的资源消耗，精确定位到函数级。例如：<br><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png" alt="火焰图实例"></p>
@@ -166,7 +167,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>Understanding all the Linux tracers to make a rational decision between them a huge undertaking.</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png" alt></p>
 <p>0、dtrace</p>
 <ul>
 <li>案例：<a href="https://ipfans.github.io/2016/09/tracing-python-program-with-dtrace/" target="_blank" rel="external">ipfans:使用dtrace跟踪Python应用</a></li>
@@ -217,7 +218,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
@@ -246,7 +247,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="cjuqfn5zr00ev5ih2c7mgbjpq" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="cjuqfn5zr00ev5ih2c7mgbjpq" class="article-share-link">分享</a>
       
       
       
@@ -270,7 +271,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -313,7 +314,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2016/12/09/Economist-Books-Year-2016/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           The Economist 2016年度推荐书单
@@ -323,7 +324,7 @@ ga('send', 'pageview');
   
   
     <a href="/2016/11/20/Network-Traffic/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">珠海航展交通管控实践</div>
     </a>
   
@@ -355,9 +356,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-DTrace"><span class="toc-number">2.</span> <span class="toc-text">Introduction to DTrace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-DTrace"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-of-DTrace"><span class="toc-number">2.0.2.</span> <span class="toc-text">History of DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-追踪器选型"><span class="toc-number">2.0.3.</span> <span class="toc-text">Linux 追踪器选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通模式"><span class="toc-number">2.0.4.</span> <span class="toc-text">普通模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HARD模式"><span class="toc-number">2.0.5.</span> <span class="toc-text">HARD模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#火焰图应用案例"><span class="toc-number">2.0.6.</span> <span class="toc-text">火焰图应用案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#勘误"><span class="toc-number">3.</span> <span class="toc-text">勘误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-DTrace"><span class="toc-number">2.</span> <span class="toc-text">Introduction to DTrace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-DTrace"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-of-DTrace"><span class="toc-number">2.0.2.</span> <span class="toc-text">History of DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-追踪器选型"><span class="toc-number">2.0.3.</span> <span class="toc-text">Linux 追踪器选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通模式"><span class="toc-number">2.0.4.</span> <span class="toc-text">普通模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HARD模式"><span class="toc-number">2.0.5.</span> <span class="toc-text">HARD模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#火焰图应用案例"><span class="toc-number">2.0.6.</span> <span class="toc-text">火焰图应用案例</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#勘误"><span class="toc-number">3.</span> <span class="toc-text">勘误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -385,7 +386,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -394,8 +395,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -425,7 +426,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

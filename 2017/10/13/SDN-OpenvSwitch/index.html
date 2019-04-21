@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>SDN 技术指南（四）：Open vSwitch | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Open vSwitch 安装 Open vSwitch 命令行 Open vSwitch 运行原理 Open vSwitch 性能监控">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Build.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-VM.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Login.png">
@@ -49,7 +50,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -62,7 +63,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -125,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">分享</a>
         
         
         
@@ -154,9 +155,9 @@ ga('send', 'pageview');
 <p><a href="http://www.openswitch.net" target="_blank" rel="external">Open Source Virtual Switch</a>:Community-Based, Open Source,. Full-Featured Network Operating System.</p>
 </blockquote>
 <h2 id="一、Open-vSwitch-安装"><a href="#一、Open-vSwitch-安装" class="headerlink" title="一、Open vSwitch 安装"></a>一、Open vSwitch 安装</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 第一步：Getting the Code</div><div class="line">git clone https:<span class="comment">//git.openswitch.net/openswitch/ops-build</span></div><div class="line"></div><div class="line"># 第一步：选择编译模式</div><div class="line"></div><div class="line"># 模式一：To a supported white box <span class="keyword">switch</span> ( 例如 VMware vSwitch、vDS、Nexus <span class="number">1000</span>V)</div><div class="line"><span class="built_in">make</span> configure genericx86<span class="number">-64</span></div><div class="line"></div><div class="line"># 模式二：OVA （可以直接导入虚拟机，例如 Oracle Virtual box ）</div><div class="line"><span class="built_in">make</span> configure appliance</div><div class="line"></div><div class="line"># 第三步：打包</div><div class="line"><span class="built_in">make</span></div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Build.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-VM.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Login.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Build.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-VM.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Login.png" alt></p>
 <h2 id="二、Open-vSwitch-命令行"><a href="#二、Open-vSwitch-命令行" class="headerlink" title="二、Open vSwitch 命令行"></a>二、Open vSwitch 命令行</h2><h4 id="2-1-核心概念"><a href="#2-1-核心概念" class="headerlink" title="2.1 核心概念"></a>2.1 核心概念</h4><ul>
 <li>Bridge ：网桥，对应一个以太网交换机（Switch），一个主机中可以创建一个或者多个 Bridge 设备。</li>
 <li>Port ：Port 与物理交换机的端口概念类似, 每个 Port 都属于一个特定的 Bridge 。端口类型：Normal、Internal、Patch、Tunnel。</li>
@@ -214,7 +215,7 @@ ga('send', 'pageview');
 <li>sFlow does not use flow cache, so realtime charts more accurately reflect traffic trend</li>
 <li>NetFlow spikes caused by flow cache active-timeout for long running connections</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDV-OVS-sFlow-NetFlow.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDV-OVS-sFlow-NetFlow.png" alt></p>
 <h4 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h4><ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDU2MTU5MA==&amp;mid=208243964&amp;idx=1&amp;sn=161fdc0288aa36a93ca34d488f321b88&amp;scene=1#rd" target="_blank" rel="external">传统券商的互联网技术之路——泛前端、交易云与金融电商</a></li>
 </ul>
@@ -254,7 +255,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">分享</a>
       
       
       
@@ -278,7 +279,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -321,7 +322,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/10/16/SDN-Controller/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           SDN 技术指南（三）：OpenDaylight or Floodlight
@@ -331,7 +332,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/10/04/Redology-DunMing/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">红楼故事：佩刀沽酒作长歌</div>
     </a>
   
@@ -363,9 +364,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Open-vSwitch-安装"><span class="toc-number">2.</span> <span class="toc-text">一、Open vSwitch 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Open-vSwitch-命令行"><span class="toc-number">3.</span> <span class="toc-text">二、Open vSwitch 命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-核心概念"><span class="toc-number">3.0.1.</span> <span class="toc-text">2.1 核心概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-基本操作"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.2 基本操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Open-vSwitch-运行原理"><span class="toc-number">4.</span> <span class="toc-text">三、Open vSwitch 运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-Open-vSwitch-内部结构"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.1 Open vSwitch 内部结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Open-vSwitch-的协议支持情况"><span class="toc-number">4.0.2.</span> <span class="toc-text">3.2 Open vSwitch 的协议支持情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Open-vSwitch-的-OpenFlow-支持情况"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.3 Open vSwitch 的 OpenFlow 支持情况</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Open-vSwitch-性能监控"><span class="toc-number">5.</span> <span class="toc-text">四、Open vSwitch 性能监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-sFlow-监控示例"><span class="toc-number">5.0.1.</span> <span class="toc-text">4.1 sFlow 监控示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-Connect-Open-vSwitch-to-OpenFlow-controller"><span class="toc-number">5.0.2.</span> <span class="toc-text">4.2 Connect Open vSwitch to OpenFlow controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-Traffic-analytics-sFlow-vs-NetFlow"><span class="toc-number">5.0.3.</span> <span class="toc-text">4.3 Traffic analytics : sFlow vs NetFlow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用案例"><span class="toc-number">5.0.4.</span> <span class="toc-text">应用案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：Network-Engineering"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读：Network Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Open-vSwitch-安装"><span class="toc-number">2.</span> <span class="toc-text">一、Open vSwitch 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Open-vSwitch-命令行"><span class="toc-number">3.</span> <span class="toc-text">二、Open vSwitch 命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-核心概念"><span class="toc-number">3.0.1.</span> <span class="toc-text">2.1 核心概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-基本操作"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.2 基本操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Open-vSwitch-运行原理"><span class="toc-number">4.</span> <span class="toc-text">三、Open vSwitch 运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-Open-vSwitch-内部结构"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.1 Open vSwitch 内部结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Open-vSwitch-的协议支持情况"><span class="toc-number">4.0.2.</span> <span class="toc-text">3.2 Open vSwitch 的协议支持情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Open-vSwitch-的-OpenFlow-支持情况"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.3 Open vSwitch 的 OpenFlow 支持情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Open-vSwitch-性能监控"><span class="toc-number">5.</span> <span class="toc-text">四、Open vSwitch 性能监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-sFlow-监控示例"><span class="toc-number">5.0.1.</span> <span class="toc-text">4.1 sFlow 监控示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-Connect-Open-vSwitch-to-OpenFlow-controller"><span class="toc-number">5.0.2.</span> <span class="toc-text">4.2 Connect Open vSwitch to OpenFlow controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-Traffic-analytics-sFlow-vs-NetFlow"><span class="toc-number">5.0.3.</span> <span class="toc-text">4.3 Traffic analytics : sFlow vs NetFlow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用案例"><span class="toc-number">5.0.4.</span> <span class="toc-text">应用案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：Network-Engineering"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读：Network Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -393,7 +394,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -402,8 +403,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -433,7 +434,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

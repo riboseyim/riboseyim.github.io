@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>我的写作工具链 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Atom-Markdown-en.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tools-Preview-mdv.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_5.png">
@@ -50,7 +51,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -63,7 +64,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -126,7 +127,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/" data-id="cjuqfn64h00ro5ih2pzaw6sm6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/" data-id="cjuqfn64h00ro5ih2pzaw6sm6" class="article-share-link">分享</a>
         
         
         
@@ -174,14 +175,14 @@ ga('send', 'pageview');
 </li>
 <li>add 留言箱 <a href="https://github.com/riboseyim/riboseyim.com.comment" target="_blank" rel="external">https://github.com/riboseyim/riboseyim.com.comment</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Atom-Markdown-en.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Atom-Markdown-en.png" alt></p>
 <h4 id="Styled-Terminal-Markdown-Viewer"><a href="#Styled-Terminal-Markdown-Viewer" class="headerlink" title="Styled Terminal Markdown Viewer"></a>Styled Terminal Markdown Viewer</h4><p>mdv 在终端下渲染出 Markdown 文档的样式，包含多个主题、支持表格、源代码高亮显示、文件更改监视等功能。</p>
 <ul>
 <li><a href="https://github.com/axiros/terminal_markdown_viewer" target="_blank" rel="external">project mdv github link</a></li>
 </ul>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install mdv</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Tools-Preview-mdv.png" alt=""></p>
-<h3 id="v5-20181124"><a href="#v5-20181124" class="headerlink" title="v5:20181124"></a>v5:20181124</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_5.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tools-Preview-mdv.png" alt></p>
+<h3 id="v5-20181124"><a href="#v5-20181124" class="headerlink" title="v5:20181124"></a>v5:20181124</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_5.png" alt></p>
 <ul>
 <li>add 独立域名 <a href="https://riboseyim.com">https://riboseyim.com</a> [Ribose Yim’s Tech Blog] 【腾讯云】</li>
 <li>故障修复：图床域名更换 xxx.clouddn.com to <a href="http://riboseyim-qiniu.riboseyim.com" target="_blank" rel="external">http://riboseyim-qiniu.riboseyim.com</a> 【七牛云】</li>
@@ -196,7 +197,7 @@ ga('send', 'pageview');
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 主题</span></div><div class="line">$ git clone https:<span class="regexp">//github</span>.com/giscafer/hexo-theme-cafe.git themes/cafe</div><div class="line"></div><div class="line"><span class="comment"># 素材链接替换</span></div><div class="line">$ <span class="keyword">grep</span> <span class="string">'clouddn.com'</span> ./*.md | awk -F <span class="string">'('</span> <span class="string">'&#123;print $2&#125;'</span> | awk -F <span class="string">'.com'</span> <span class="string">'&#123;print $1&#125;'</span> &gt; oldomain.log</div><div class="line">$ <span class="keyword">sort</span> -n oldomain.log  | uniq &gt; oldomin.list</div><div class="line">http:<span class="regexp">//o</span>8m8ngokc.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//og</span>2061b3n.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//ogtqvs</span>10n.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//okkuj</span>60pj.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//omaxozji</span>3.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//omb</span>2onfvy.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//ombx</span>24fbq.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//osgiyhxhy</span>.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//ot</span>6idm48o.bkt.clouddn.com</div><div class="line">http:<span class="regexp">//p</span>11slcnom.bkt.clouddn.com</div><div class="line"></div><div class="line">$ gsed -e <span class="string">"s/old/new/g"</span> sourcefile  &gt;  targetfile</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ landslide Machine-Learning-Algorithms.md -i -o &gt; test.html &amp;&amp; open test.html</div></pre></td></tr></table></figure>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">## pip 安装</div><div class="line">$ sudo pip install landslide</div><div class="line">The directory '/Users/yanrui/Library/Caches/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.</div><div class="line">The directory '/Users/yanrui/Library/Caches/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.</div><div class="line">Collecting landslide</div><div class="line">Requirement already satisfied: Markdown in /usr/local/lib/python2.7/site-packages (from landslide) (2.6.11)</div><div class="line">Requirement already satisfied: Jinja2 in /usr/local/lib/python2.7/site-packages (from landslide) (2.10)</div><div class="line">Requirement already satisfied: docutils in /usr/local/lib/python2.7/site-packages (from landslide) (0.14)</div><div class="line">Requirement already satisfied: Pygments in /usr/local/lib/python2.7/site-packages (from landslide) (2.2.0)</div><div class="line">Requirement already satisfied: six in /usr/local/lib/python2.7/site-packages (from landslide) (1.11.0)</div><div class="line">Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python2.7/site-packages (from Jinja2-&gt;landslide) (1.0)</div><div class="line">Installing collected packages: landslide</div><div class="line">Successfully installed landslide-1.1.3</div><div class="line"></div><div class="line">## 源码安装</div><div class="line">$ git clone https://github.com/adamzap/landslide.git</div><div class="line">$ cd landslide</div><div class="line">$ python setup.py build</div><div class="line">$ sudo python setup.py install</div></pre></td></tr></table></figure>
-<h3 id="v4-201801"><a href="#v4-201801" class="headerlink" title="v4:201801"></a>v4:201801</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_4.png" alt=""></p>
+<h3 id="v4-201801"><a href="#v4-201801" class="headerlink" title="v4:201801"></a>v4:201801</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Writer_Tools_Chain_4.png" alt></p>
 <h4 id="更新内容："><a href="#更新内容：" class="headerlink" title="更新内容："></a>更新内容：</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/05/12/Visualization-Charts/" target="_blank" rel="external">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="external">基于 Node.js 实现程序化文本编辑</a></li>
@@ -241,7 +242,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/" data-id="cjuqfn64h00ro5ih2pzaw6sm6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/06/03/Writing-WriterToolChain/" data-id="cjuqfn64h00ro5ih2pzaw6sm6" class="article-share-link">分享</a>
       
       
       
@@ -265,7 +266,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -308,7 +309,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/06/12/OpenSource-Kafka-Microservice/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务
@@ -318,7 +319,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/05/29/Linux-Works-Boots/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">How Linux Works:Boots</div>
     </a>
   
@@ -350,7 +351,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-number">2.</span> <span class="toc-text">Question</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#History"><span class="toc-number">3.</span> <span class="toc-text">History</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v6-（-Current-）"><span class="toc-number">3.1.</span> <span class="toc-text">v6 （ Current ）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目管理-网络规划技术（以OmniPlan为例）"><span class="toc-number">3.1.1.</span> <span class="toc-text">项目管理-网络规划技术（以OmniPlan为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LaTex-语法-全面增强数学公式支持"><span class="toc-number">3.1.2.</span> <span class="toc-text">LaTex 语法:全面增强数学公式支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Styled-Terminal-Markdown-Viewer"><span class="toc-number">3.1.3.</span> <span class="toc-text">Styled Terminal Markdown Viewer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v5-20181124"><span class="toc-number">3.2.</span> <span class="toc-text">v5:20181124</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#add-hexo-theme-Cafe"><span class="toc-number">3.2.1.</span> <span class="toc-text">add hexo theme Cafe</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v4-201801"><span class="toc-number">3.3.</span> <span class="toc-text">v4:201801</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新内容："><span class="toc-number">3.3.1.</span> <span class="toc-text">更新内容：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v3-201706"><span class="toc-number">3.4.</span> <span class="toc-text">v3:201706</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新内容：-1"><span class="toc-number">3.4.1.</span> <span class="toc-text">更新内容：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v2-201701"><span class="toc-number">3.5.</span> <span class="toc-text">v2:201701</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新内容：-2"><span class="toc-number">3.5.1.</span> <span class="toc-text">更新内容：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v1-201606"><span class="toc-number">3.6.</span> <span class="toc-text">v1:201606</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新内容：-3"><span class="toc-number">3.6.1.</span> <span class="toc-text">更新内容：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
@@ -380,7 +381,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -389,8 +390,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -420,7 +421,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

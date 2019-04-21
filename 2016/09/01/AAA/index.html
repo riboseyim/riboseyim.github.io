@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>基于LVS的AAA负载均衡架构实践 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/09/01/AAA/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="概要本次分享将从一次实际的负载均衡改造案例出发，通过介绍项目背景、选型思路、测试方法和问题分析等方面展开，总结负载均衡架构的一般套路和经验教训。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Now.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-AAA-HAProxy.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Flow.png">
@@ -49,7 +50,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -62,7 +63,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -125,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/09/01/AAA/" data-id="cjuqfn5z900e35ih229v8zk01" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/09/01/AAA/" data-id="cjuqfn5z900e35ih229v8zk01" class="article-share-link">分享</a>
         
         
         
@@ -144,7 +145,7 @@ ga('send', 'pageview');
 <p>AAA 服务是基于 TACACS+协议（Terminal Access Controller Access Control System Plus），TACACS＋是在 TACACS 协议的基础上进行了功能增强的安全协议，最早由Cicso提出并开放标准。该协议与 RADIUS 协议的功能类似，采用客户端/服务器模式实现 网元与 TACACS+ 服务器之间的通信，使用TCP 49端口。</p>
 <p>每次TACACS+ 交互主要实现：<br>认证 (Authentication): 确认访问网络的用户身份，判断访问者是否合法<br>授权( Authorization ): 对通过认证的用户，授权其可以使用哪些服务<br>记账( Accounting )：记录用户的操作行为、发生时间</p>
 <h4 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a><strong>1.问题描述</strong></h4><p>系统架构如下图所示，服务器采用一主一备模式，一般情况下由Master服务器处理请求，如果它故障或者负荷过高、无法快速响应请求，网元会将请求发送到BackUP服务器处理。AAA Server上运行守护进程处理请求，记为TACACSD。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Now.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Now.png" alt></p>
 <p><strong>容量计算</strong></p>
 <blockquote>
 <p>服务端资源需求T＝ 认证请求规模g(n) ／ TACACSD运算能力 f(n)  </p>
@@ -162,13 +163,13 @@ ga('send', 'pageview');
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vi haproxy.cfg</div><div class="line">listen AAA-Cluster</div><div class="line">         mode tcp      </div><div class="line">         <span class="built_in">bind</span> 49</div><div class="line">         option tcplog</div><div class="line">         <span class="built_in">source</span> 0.0.0.0 usesrc clientip</div><div class="line">         server AAA-Server-210 192.168.3.10:49</div><div class="line">         server AAA-Server-211 192.168.3.11:49</div></pre></td></tr></table></figure>
 <h4 id="1-HAProxy-TProxy"><a href="#1-HAProxy-TProxy" class="headerlink" title="1.HAProxy+TProxy"></a><strong>1.HAProxy+TProxy</strong></h4><p>当我们满怀希望地推进之时，一个要命的问题摆在面前：后端的AAA服务器上看到的连接的Source IP都不再是用户原始的IP，而是前端的HAProxy服务器的IP，</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-HAProxy.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-HAProxy.png" alt></p>
 <p>官方文档对于source调度算法的描述：</p>
 <blockquote>
 <p>source<br>The source IP address is hashed and divided by the total weight of the &gt;<br>running servers to designate which server will receive the request.<br>This ensures that the same client IP address will always reach the same<br>server as long as no server goes down or up.<br>If the hash result changes due to the number of running servers<br>changing, many clients will be directed to a different server.</p>
 </blockquote>
 <p>TACACSD进程必须获取到认证请求的Source IP，为此我们尝试引入TProxy。<br>它允许你”模仿”用户的访问IP，就像负载均衡设备不存在一样，TProxy名字中的T表示的就是transparent(透明)。当网元发起的认证请求到达后端的AAA服务器时，可以通过抓包看到的请求Source IP就是网元的真实IP。</p>
-<p>即使用上“HAProxy+TProxy”的组合拳，还是存在另外一个问题：<br><strong>设备对于认证结果报文，似乎需要请求报文的目标地址（代理服务器）与结果报文的发送端（Real  AAA Server）一致。</strong><br><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Flow.png" alt=""></p>
+<p>即使用上“HAProxy+TProxy”的组合拳，还是存在另外一个问题：<br><strong>设备对于认证结果报文，似乎需要请求报文的目标地址（代理服务器）与结果报文的发送端（Real  AAA Server）一致。</strong><br><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-Flow.png" alt></p>
 <p>过程描述：网络设备会发送该用户的凭证到 TACACS+ 服务器进行验证，然后决定分配访问相关设备的权限，并将这些决定的结果包含在应答数据包中并发送到网络设备上，再由网络设备发送到用户终端。<br><strong>至于是否真的是这个校验规则，或者我们还没有找到更好的解释。暂且搁置，引述一段RFC 1492的说明，日后再补充这个问题。</strong><br>CONNECT(username, password, line, destinationIP, destinationPort)<br>returns (result1, result2, result3)</p>
 <p>This request can only be issued when the username and line specify<br>an already-existing connection.  As such, no authentication is<br>required and the password will in general be the empty string. It<br>asks, in the context of that connection, whether a TCP connection<br>can be opened to the specified destination IP address and port.</p>
 <h4 id="2-IPTABLES-NAT"><a href="#2-IPTABLES-NAT" class="headerlink" title="2.IPTABLES NAT"></a><strong>2.IPTABLES NAT</strong></h4><p>为了解决上述Proxy无法传递Source IP 的问题，我们还尝试过基于 iptables 实现网络地址转换的方式，It’s Working !!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 49 -j DNAT --to 192.168.3.10-192.168.3.13</div></pre></td></tr></table></figure></p>
@@ -219,12 +220,12 @@ ga('send', 'pageview');
 <p>基于之前NAT方面的不良体验，我们这次直接选择了LVS-DR模式，<br>LVS支持八种调度算法，我们选择轮询调度（Round-Robin Scheduling）。</p>
 <p>LVS只处理一般连接,将请求给后端real server,然后由real server处理请求直接相应给用户,Direct Routing与IP Tunneling相比，没有IP封装的开销。</p>
 <p>缺点：由于采用物理层,所以DR模式的调度器和后端real server必须在一个物理网段里,中间不能过路由器。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Single.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Single.png" alt></p>
 <p>另外，为了防止LVS控制机的单点故障问题，还选用了Keepalived，负责LVS控制机和备用机的自动故障切换。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Cluster.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Cluster.png" alt></p>
 <p>LVS依赖项：IPVS内核模块和ipvsadm工具包。<br>具体配置不做过多说明，可以自行检索，关键注意以下几点：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1）检查服务器是否已支持ipvs</span></div><div class="line">modprobe <span class="_">-l</span> |grep itvs</div><div class="line"></div><div class="line"><span class="comment"># 2）检查依赖包：</span></div><div class="line">rpm -q kernel-devel</div><div class="line">rpm -q gcc</div><div class="line">rpm -q openssl</div><div class="line">rpm -q openssl-devel</div><div class="line">rpm -q popt</div><div class="line"></div><div class="line"><span class="comment"># 3）配置realserver节点ARP及VIP绑定脚本</span></div><div class="line">vi /etc/init.d/lvs</div><div class="line"></div><div class="line"><span class="comment"># 4）启动LVS-DR</span></div><div class="line">/etc/init.d/lvsdr start</div><div class="line"></div><div class="line"><span class="comment"># 5）查看VIP 情况</span></div><div class="line">ip addr list</div><div class="line"></div><div class="line"><span class="comment">#6）启动realserver节点LVS</span></div><div class="line"></div><div class="line">/etc/init.d/lvs start</div></pre></td></tr></table></figure>
-<h2 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h2><h4 id="1-各种负载均衡实现在网络中的位置"><a href="#1-各种负载均衡实现在网络中的位置" class="headerlink" title="1. 各种负载均衡实现在网络中的位置"></a><strong>1. 各种负载均衡实现在网络中的位置</strong></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/LB-Normal-Model.png" alt=""></p>
+<h2 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h2><h4 id="1-各种负载均衡实现在网络中的位置"><a href="#1-各种负载均衡实现在网络中的位置" class="headerlink" title="1. 各种负载均衡实现在网络中的位置"></a><strong>1. 各种负载均衡实现在网络中的位置</strong></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/LB-Normal-Model.png" alt></p>
 <p>四层负载均衡的特点一般是在网络和网络传输层(TCP/IP)做负载均衡，而七层则是指在应用层做负载均衡。<br>四层负载均衡对于应用侵入比较小，对应用的感知较也少，同时应用接入基本不需要对此做特殊改造。<br>七层负载均衡一般对应用本身的感知比较多，可以结合一些通用的业务负载逻辑做成很细致的方案，比如我们通常用HAProxy/Nginx来做网站流量的分发。</p>
 <blockquote>
 <p>实践再次教育我们，天下没有一招鲜，任何技术都有它的江湖位置。</p>
@@ -256,7 +257,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/09/01/AAA/" data-id="cjuqfn5z900e35ih229v8zk01" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/09/01/AAA/" data-id="cjuqfn5z900e35ih229v8zk01" class="article-share-link">分享</a>
       
       
       
@@ -280,7 +281,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -323,7 +324,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2016/09/10/Lincoln/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Lincoln Research:电影评论|灵魂解码《林肯》
@@ -333,7 +334,7 @@ ga('send', 'pageview');
   
   
     <a href="/2016/08/15/OpenSource-Kafka/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">开源技术架构漫谈：Kafka</div>
     </a>
   
@@ -365,9 +366,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、背景"><span class="toc-number">2.</span> <span class="toc-text">一、背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-选型要求"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.选型要求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、前戏"><span class="toc-number">3.</span> <span class="toc-text">二、前戏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-HAProxy-TProxy"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.HAProxy+TProxy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-IPTABLES-NAT"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.IPTABLES NAT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、终极杀器"><span class="toc-number">4.</span> <span class="toc-text">三、终极杀器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、小结"><span class="toc-number">5.</span> <span class="toc-text">五、小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-各种负载均衡实现在网络中的位置"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 各种负载均衡实现在网络中的位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-仿真能力"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 仿真能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-花边故事"><span class="toc-number">5.0.3.</span> <span class="toc-text">3.花边故事</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#续集"><span class="toc-number">5.1.</span> <span class="toc-text">续集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">6.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、背景"><span class="toc-number">2.</span> <span class="toc-text">一、背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-选型要求"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.选型要求</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、前戏"><span class="toc-number">3.</span> <span class="toc-text">二、前戏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-HAProxy-TProxy"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.HAProxy+TProxy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-IPTABLES-NAT"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.IPTABLES NAT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、终极杀器"><span class="toc-number">4.</span> <span class="toc-text">三、终极杀器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、小结"><span class="toc-number">5.</span> <span class="toc-text">五、小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-各种负载均衡实现在网络中的位置"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 各种负载均衡实现在网络中的位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-仿真能力"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 仿真能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-花边故事"><span class="toc-number">5.0.3.</span> <span class="toc-text">3.花边故事</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#续集"><span class="toc-number">5.1.</span> <span class="toc-text">续集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">6.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li>
           </div>
       </div>
     </div>
@@ -395,7 +396,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -404,8 +405,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -435,7 +436,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

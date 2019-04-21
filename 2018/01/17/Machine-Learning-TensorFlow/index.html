@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Machine Learning Workflow Problem: 宠物分类、勋章识别、美女打分 Demo: Hello TensorFlow ! TensorFlow C library / Go binding">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Inception-Go-C.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-demo-Black.png">
@@ -49,7 +50,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -62,7 +63,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -125,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="cjuqfn60p00gp5ih2tyyao8wi" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="cjuqfn60p00gp5ih2tyyao8wi" class="article-share-link">分享</a>
         
         
         
@@ -151,7 +152,7 @@ ga('send', 'pageview');
 <li>Then try something more complicated.</li>
 </ul>
 <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>人类喜欢将所有事物都纳入鄙视链的范畴，宠物当然也不例外。一般来说，拥有一只纯种宠物可以让主人占据鄙视链的云端，进而鄙视那些混血或者流浪宠物。甚至还发展出了专业的鉴定机构，可以颁发《血统证明书》。但是考究各类纯种鉴定的常规方法，主要标准是眼睛的大小、颜色、鼻子的特点、身躯长度、尾巴特征、毛发等特征，当然也包括一些比较玄幻的属性，例如宠物家族的个性、气质等等。</p>
-<p><a href="https://riboseyim.github.io/2017/04/09/Medal/" target="_blank" rel="external">外军研究：美军授勋及嘉奖制度观察</a>一文中提到，世界各国军队都有自己的制服、军衔、勋章体系，它们既是军人荣誉的体现，也包含了丰富的职业信息。但是体系过于庞大也会带来识别困难，例如下图中的两位美军士兵，是否可以有一种方案可以自动、准确地识别各类徽章的意义呢？<br><img src="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png" alt=""></p>
+<p><a href="https://riboseyim.github.io/2017/04/09/Medal/" target="_blank" rel="external">外军研究：美军授勋及嘉奖制度观察</a>一文中提到，世界各国军队都有自己的制服、军衔、勋章体系，它们既是军人荣誉的体现，也包含了丰富的职业信息。但是体系过于庞大也会带来识别困难，例如下图中的两位美军士兵，是否可以有一种方案可以自动、准确地识别各类徽章的意义呢？<br><img src="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png" alt></p>
 <p>中文网络上有一个特殊名词：颜值。通常用来表示人物颜容英俊或靓丽的数值。人们希望有一个衡量标准可以用来评价、测量和比较人物容貌，许多社交软件甚至可以利用计算机视觉识别技术分析颜值、年龄、性别，甚至与好友一起进行颜值 PK ，当然这些软件的 “颜值” 算法总是备受争议。</p>
 <ul>
 <li><a href="https://www.zhihu.com/question/56607562" target="_blank" rel="external">哪种类型算是中国式标准美女？</a></li>
@@ -168,7 +169,7 @@ ga('send', 'pageview');
 <li>Go binding;</li>
 </ul>
 <p>下面是一个简单的实例：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Inception-Go-C.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Inception-Go-C.png" alt></p>
 <h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
 <li><p>安装 TensorFlow  C library,包含一个头文件 c_api.h 和 libtensorflow.so</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz</div><div class="line"></div><div class="line"><span class="comment">## options</span></div><div class="line"><span class="comment"># Change to "gpu" for GPU support</span></div><div class="line">TF_TYPE=<span class="string">"cpu"</span></div><div class="line">TF_VERSION=<span class="string">'1.5.0'</span></div><div class="line">curl -L \</div><div class="line">  <span class="string">"https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-<span class="variable">$&#123;TF_TYPE&#125;</span>-<span class="variable">$(go env GOOS)</span>-x86_64-<span class="variable">$&#123;TF_VERSION&#125;</span>.tar.gz"</span> |</div><div class="line"></div><div class="line"><span class="comment">## 查看 tensorflow 版本</span></div><div class="line">$ python -c <span class="string">'import tensorflow as tf; print(tf.__version__)'</span>  <span class="comment"># for Python 2</span></div><div class="line">$ python3 -c <span class="string">'import tensorflow as tf; print(tf.__version__)'</span>  <span class="comment"># for Python 3</span></div></pre></td></tr></table></figure>
@@ -219,7 +220,7 @@ ga('send', 'pageview');
 </blockquote>
 </li>
 </ul>
-<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt></p>
 <ul>
 <li><a href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/" target="_blank" rel="external">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
 <li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="external">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
@@ -248,7 +249,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="cjuqfn60p00gp5ih2tyyao8wi" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="cjuqfn60p00gp5ih2tyyao8wi" class="article-share-link">分享</a>
       
       
       
@@ -272,7 +273,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -315,7 +316,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/01/17/History-Tang-DiRenjie/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           唐史人物：狄仁杰
@@ -325,7 +326,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/01/15/Machine-Learning-OpenCV/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</div>
     </a>
   
@@ -357,9 +358,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Machine-Learning-Workflow"><span class="toc-number">2.</span> <span class="toc-text">Machine Learning Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">3.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo-Hello-TensorFlow"><span class="toc-number">4.</span> <span class="toc-text">Demo: Hello TensorFlow !</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境准备"><span class="toc-number">4.0.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tensorflow-Model-Function"><span class="toc-number">4.0.2.</span> <span class="toc-text">Tensorflow Model Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Classifying-Workflow"><span class="toc-number">4.0.3.</span> <span class="toc-text">Classifying Workflow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Testing"><span class="toc-number">4.0.4.</span> <span class="toc-text">Testing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lessons"><span class="toc-number">5.</span> <span class="toc-text">Lessons</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Machine-Learning-Workflow"><span class="toc-number">2.</span> <span class="toc-text">Machine Learning Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">3.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo-Hello-TensorFlow"><span class="toc-number">4.</span> <span class="toc-text">Demo: Hello TensorFlow !</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境准备"><span class="toc-number">4.0.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tensorflow-Model-Function"><span class="toc-number">4.0.2.</span> <span class="toc-text">Tensorflow Model Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Classifying-Workflow"><span class="toc-number">4.0.3.</span> <span class="toc-text">Classifying Workflow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Testing"><span class="toc-number">4.0.4.</span> <span class="toc-text">Testing</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Lessons"><span class="toc-number">5.</span> <span class="toc-text">Lessons</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -387,7 +388,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -396,8 +397,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -427,7 +428,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

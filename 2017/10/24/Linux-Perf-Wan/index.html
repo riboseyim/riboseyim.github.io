@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Linux 性能诊断:Web 应用性能优化 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 一、常见性能优化要求 二、优化分析过程 三、性能分析工具箱 四、系统基础问题检查 万老师多年前的一篇内部分享，发布出来供有需要的同学参考。虽然今天的应用系统的复杂度跟过去会有所不同，性能观测工具、数据规模也不可以同日而语，但是正所谓一切历史都是当代史（“Ogni storia e la storia contemporanea”），厘清过去的问题是为了更好地理解现在和未来。为了保持原貌，编辑">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_3.png">
@@ -50,7 +51,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -63,7 +64,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -126,7 +127,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">分享</a>
         
         
         
@@ -184,14 +185,14 @@ ga('send', 'pageview');
 <li>性能数据收集<br>  这一步是性能优化的基础，如果问题系统之前没有部署监控工具的话，那么就要部署监控工具，收集一段时间的数据后才能开始分析；当然也有例外，幸运的话，性能问题正在发生并且如此显著，比如某个程序长时间无法挂起，或者某个进程把整台主机的CPU都吃掉，或者某个功能查询很慢,次次如此。当然这种问题也就很少需要到我这，你就可以直接找开发人员解决了。<br>  很多情况，问题可能不是那么明显，也不是那么规律，可能也涉及到系统的多项功能，这个时候，我们就必须要借助于工具来进行数据的收集。</li>
 <li>性能数据分析<br>  如果没有数据收集，分析工作可能很神秘，完全依赖于专家的个人经验。以前听过一个故事，一个工厂的打印机总是莫名其妙的在某个时间出现故障，后来请了一个专家，搬了把椅子坐在打印机附近，几个星期后，叫工人把地板的某个角修好，之后这个问题再也没有出现。<br>  但是有了之前收集的数据，观察CPU，IO，应用时延，网络性能等不同指标的曲线，观察问题出现的时间点，存在问题的功能，任何一个IT业者，都应该具备从这些数据中发现问题的能力。<br>例如某台采集机SYSLOG处理经常出现会滞后的情况。而这台机器的网络丢包是这个样子的，那么问题是不是显而易见？</li>
 </ol>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png" alt></p>
 <p>再比如有一个巡检功能，数据某个时段总是大量入库失败，那你看到数据库CPU和连接数在这个时段是这样的，数据库连接数增加，CPU空闲率为0，那么是不是问题也很明显了。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_2.png" alt></p>
 <ol>
 <li>实施优化工作<br>  这一步主要是针对之前发现的问题，采取措施。可能是系统维护人员调整采集负载，让负荷更均匀；或者调整主机或数据库参数；当然更多的可能是程序需要优化</li>
 <li>评估优化效果<br>  譬如上述第二个例子，采取优化措施后，无论是网络连接数还是数据库主机负载，都已经很平稳，而问题也不再出现。</li>
 </ol>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_3.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_3.png" alt></p>
 <p>如果没有达到，则不断重复上述四步，继续优化。</p>
 <h2 id="三、性能分析工具箱"><a href="#三、性能分析工具箱" class="headerlink" title="三、性能分析工具箱"></a>三、性能分析工具箱</h2><p>这个工具箱是我常用的性能分析工具，曾协助我解决了很多的性能优化难题</p>
 <ul>
@@ -202,7 +203,7 @@ ga('send', 'pageview');
 </ul>
 <p>AssayFilter作为一个拦截器，统计的是访问请求进入resin之后和应答离开resin之前的时长，访问时延=resin处理时长+主应用到数据库网络时延+oracle的SQL执行时长</p>
 <p>主应用到数据库都在一个交换机上，所以主应用到数据库网络时延可以忽略不计。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_4.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_4.png" alt></p>
 <p>所以，这个工具完全避免了网络延迟对访问时延统计的影响，让我们的精力完全聚焦在WEB应用自身的性能上.</p>
 <ul>
 <li><p>b) 主机监控探针wd_probe<br>   部署在主机上<br>   这个监控探针除了能起到主机告警通知的作用，也是一个我依赖的性能分析工具，他能够记录各个时间点的CPU,SWAP,磁盘IO,网络性能，进程数量，网络连接数量的性能数据，当CPU超过预设阀值时会输出系统当时的进程快照用于事后的分析。<br>   在探针主目录的data/perf下有性能数据，在data/tmp下有系统进程快照</p>
@@ -210,7 +211,7 @@ ga('send', 'pageview');
 <li><p>c) 数据库超长SQL收集工具<br>   部署在主应用上，可以在cron里每分钟执行一次<br>   这个程序会不断捕捉执行时间超过6秒的sql,记录进 /tmp/sql.csv文件中，运行结果如下：<br>   从发起端看可分为两类，通常从APP发起的JDBC程序就是用户前台访问执行的SQL,而这种SQL执行时间超过6秒就是我们需要优化的SQL.</p>
 </li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_5.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_5.png" alt></p>
 <h2 id="四、系统基础问题检查"><a href="#四、系统基础问题检查" class="headerlink" title="四、系统基础问题检查"></a>四、系统基础问题检查</h2><ol>
 <li>主机基础故障问题</li>
 </ol>
@@ -237,7 +238,7 @@ ga('send', 'pageview');
 </li>
 </ul>
 <p>这条命令把当前JVM里所有的线程调用堆栈输出。在前台访问无响应的时候，排查故障根源时特别有用。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_6.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_6.png" alt></p>
 <p>上述Thread-831被38f06e88的线程所阻塞，而根据调用堆栈，可以准确的定位到执行程序，进行排查。</p>
 <ul>
 <li>c. 查看错误日志是否有内存溢出错误<br>日志在resin/logs/error.log或者resin/log/jvm-default.log<br>如果有java.lang.OutOfMemoryError: PermGen space 说明JVM的永久内存区不足<pre><code>          -XX:MaxPermSize=256m     可根据永久内存区利用率调整到256M
@@ -269,7 +270,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
@@ -289,7 +290,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">分享</a>
       
       
       
@@ -313,7 +314,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -356,7 +357,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/10/24/Linux-Perf-Picture/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Linux 性能诊断:荐书《图解性能优化》
@@ -366,7 +367,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/10/23/Accounting/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">会计学 | Overview of Accounting</div>
     </a>
   
@@ -398,7 +399,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、常见性能优化要求"><span class="toc-number">2.</span> <span class="toc-text">一、常见性能优化要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、优化分析过程"><span class="toc-number">3.</span> <span class="toc-text">二、优化分析过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、性能分析工具箱"><span class="toc-number">4.</span> <span class="toc-text">三、性能分析工具箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、系统基础问题检查"><span class="toc-number">5.</span> <span class="toc-text">四、系统基础问题检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
@@ -428,7 +429,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -437,8 +438,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -468,7 +469,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

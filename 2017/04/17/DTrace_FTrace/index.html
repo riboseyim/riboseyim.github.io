@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>动态追踪技术(三) ：Tracing your kernel Functions! | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/04/17/DTrace_FTrace/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要Ftrace 是一个设计用来帮助开发者和设计者监视内核的追踪器，可用于调试或分析延迟以及性能问题。ftrace 令人印象最深刻的是作为一个 function tracer，内核函数调用、耗时等情况一览无余。另外，ftrace 最常见的用途是事件追踪，通过内核是成百上千的静态事件点，看到系统内核的哪些部分在运行。实际上，ftrace 更是一个追踪框架，它具备丰富工具集：延迟跟踪检查、何时发生中断">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_ftrace_tracers.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_ftrace_arch.png">
 <meta property="og:image" content="https://static.lwn.net/images/2011/ks-success-zoom-task.png">
@@ -47,7 +48,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -60,7 +61,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -123,7 +124,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/04/17/DTrace_FTrace/" data-id="cjuqfn5zo00er5ih27zg474ne" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/04/17/DTrace_FTrace/" data-id="cjuqfn5zo00er5ih27zg474ne" class="article-share-link">分享</a>
         
         
         
@@ -186,9 +187,9 @@ ga('send', 'pageview');
 <li><a href="https://lwn.net/Articles/425583/" target="_blank" rel="external">Using KernelShark to analyze the real-time scheduler (2011, Steven Rostedt)</a></li>
 <li><a href="https://lwn.net/Articles/608497/" target="_blank" rel="external">Ftrace: The hidden light switch (2014, Brendan Gregg)</a></li>
 <li><a href="https://www.kernel.org/doc/Documentation/trace/ftrace.txt" target="_blank" rel="external">(Key)the kernel documentation:ftrace.txt</a></li>
-<li><a href="">documentation on events you can trace Documentation/events.txt</a></li>
-<li><a href="">some docs on ftrace design for linux kernel devs (not as useful, but interesting)</a></li>
-<li><a href="">Documentation/ftrace-design.txt</a></li>
+<li><a href>documentation on events you can trace Documentation/events.txt</a></li>
+<li><a href>some docs on ftrace design for linux kernel devs (not as useful, but interesting)</a></li>
+<li><a href>Documentation/ftrace-design.txt</a></li>
 <li><a href="http://rostedt.homelinux.com/kernelshark/" target="_blank" rel="external">trace-cmd图形化工具：KernelShark</a></li>
 <li><a href="https://www.youtube.com/watch?v=ABRtzVtUVBo" target="_blank" rel="external">Youtube:ELC2011 Ftrace GUI (KernelShark)</a></li>
 <li><a href="http://elinux.org/images/6/64/Elc2011_rostedt.pdf" target="_blank" rel="external">(Key)StevenRostedt:ELC2011_KernelShark(quick tutorial)(PDF)</a></li>
@@ -198,7 +199,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/04/17/DTrace_FTrace/" data-id="cjuqfn5zo00er5ih27zg474ne" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/04/17/DTrace_FTrace/" data-id="cjuqfn5zo00er5ih27zg474ne" class="article-share-link">分享</a>
       
       
       
@@ -222,7 +223,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -265,7 +266,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/04/20/MrGuZhun/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           豪侠列传|顾准
@@ -275,7 +276,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/04/13/Artistic-Les-Miserables/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">世纪小说《悲惨世界》</div>
     </a>
   
@@ -307,7 +308,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Introduction"><span class="toc-number">2.</span> <span class="toc-text">一、Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、ABC"><span class="toc-number">3.</span> <span class="toc-text">二、ABC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、BASIC"><span class="toc-number">4.</span> <span class="toc-text">三、BASIC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Function-tracer"><span class="toc-number">4.1.</span> <span class="toc-text">1. Function tracer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Function-graph-tracer"><span class="toc-number">4.2.</span> <span class="toc-text">2. Function graph tracer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、体系结构"><span class="toc-number">5.</span> <span class="toc-text">四、体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Useful-Tools"><span class="toc-number">6.</span> <span class="toc-text">五、Useful Tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-trace-cmd"><span class="toc-number">6.1.</span> <span class="toc-text">1. trace-cmd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-perf-tools"><span class="toc-number">6.2.</span> <span class="toc-text">2. perf-tools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、可视化工具-KernelShark"><span class="toc-number">7.</span> <span class="toc-text">六、可视化工具:KernelShark</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
@@ -337,7 +338,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -346,8 +347,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -377,7 +378,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

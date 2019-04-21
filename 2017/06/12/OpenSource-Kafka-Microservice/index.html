@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="概要本文中我们将讨论如何借助 Kafka 实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。  第一部分 引子、环境准备、整体">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroServices_Math_Demo.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing.png">
@@ -50,7 +51,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -63,7 +64,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -126,7 +127,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjuqfn64v00ue5ih2us53zo2a" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjuqfn64v00ue5ih2us53zo2a" class="article-share-link">分享</a>
         
         
         
@@ -150,16 +151,16 @@ ga('send', 'pageview');
 <h5 id="Conway’s-law（康威定律）"><a href="#Conway’s-law（康威定律）" class="headerlink" title="Conway’s law（康威定律）"></a>Conway’s law（康威定律）</h5><blockquote>
 <p><strong>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization’s communication structure.（任何组织在设计一套系统（广义概念上的系统）时，所交付的设计方案在结构上都与该组织的通信结构保持一致）<br>— Melvyn Conway, 1967</strong></p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png" alt></p>
 <blockquote>
 <p>《人月神话》：Adding manpower to a late software project makes it later —Fred Brooks, (1975)</p>
 </blockquote>
 <p>为了赶进度加程序员就像用水去灭油锅里的火一样，原因在于：沟通成本 = n(n-1)/2，沟通成本随着项目或者组织的人员增加呈指数级增长。很多项目在经过一段时间的发展之后，都会有不少恐龙级代码，无人敢挑战。比如一个类的规模就多达数千行，核心方法近千行，大量重复代码，每次调整都以失败告终。庞大的系统规模导致团队新成员接手困难，项目组人员增加导致的代码冲突问题，系统复杂度的增加导致的不确定上线风险、引入新技术困难等。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroServices_Math_Demo.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroServices_Math_Demo.png" alt></p>
 <p>微服务 (Microservices)是解决这些困难的众多方案之一。它本质上是一种软件架构风格，它是以专注于单一责任与功能的小型功能区块 (Small Building Blocks) 为基础，利用模组化的方式组合出复杂的大型应用程序，各功能区块使用与语言无关 (Language-Independent/Language agnostic) 的 API 集相互通讯。</p>
 <h5 id="Event-Sourcing（事件溯源）"><a href="#Event-Sourcing（事件溯源）" class="headerlink" title="Event Sourcing（事件溯源）"></a>Event Sourcing（事件溯源）</h5><p>真正构建一个微服务是非常具有挑战性的。其中一个最重要的挑战就是原子化————如何处理分布式数据，如何设计服务的粒度。例如，常见的客户、工单场景，如果拆分成两个服务，查询都变成了一个难题：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">order</span> o, customer c</div><div class="line">  <span class="keyword">where</span> o.customer_id = c.id</div><div class="line">  <span class="keyword">and</span> o.gross_amount &gt; <span class="number">50000</span></div><div class="line">  <span class="keyword">and</span> o.status = <span class="string">'PAID'</span></div><div class="line">  <span class="keyword">and</span> c.country = <span class="string">'INDONESIA'</span>;</div></pre></td></tr></table></figure></p>
 <p>在DDD领域（Domain-Driven Design，领域驱动设计）有一种架构风格被广泛应用，即CQRS （Command Query Responsibility Seperation，命令查询职责分离）。CQRS最核心的概念是Command、Event，“将数据(Data)看做是事实(Fact)。每个事实都是过去的痕迹，虽然这种过去可以遗忘，但却无法改变。” 这一思想直接发展了Event Source，即将这些事件的发生过程记录下来，使得我们可以追溯业务流程。CQRS对设计者的影响，是将领域逻辑，尤其是业务流程，皆看做是一种领域对象状态迁移的过程。这一点与REST将HTTP应用协议看做是应用状态迁移的引擎，有着异曲同工之妙。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing.png" alt></p>
 <h2 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h2><h3 id="Kafka-in-a-Nutshell"><a href="#Kafka-in-a-Nutshell" class="headerlink" title="Kafka in a Nutshell"></a>Kafka in a Nutshell</h3><p>Apache Kafka是由Apache软件基金会开发的一个开源消息中间件项目，由Scala写成。Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高吞吐、低延迟的平台。Kafka使用Zookeeper作为其分布式协调框架，很好的将消息生产、消息存储、消息消费的过程结合在一起。同时借助Zookeeper，kafka能够生产者、消费者和broker在内的所以组件在无状态的情况下，建立起生产者和消费者的订阅关系，并实现生产者与消费者的负载均衡。</p>
 <ul>
 <li>Kafka Core Words<br>Broker:Kafka集群包含一个或多个服务器，这种服务器被称为broker<br>Topic:每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。Topic相当于数据库中的Table，行数据以log的形式存储，非常类似Git中commit log。物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上但用户只需指定消息的Topic即可生产或消费数据而不必关心数据存于何处。<br>Partition:Parition是物理上的概念，每个Topic包含一个或多个Partition.<br>Producer:消息生产者，负责发布消息到Kafka broker<br>Consumer:消息消费者，向Kafka broker读取消息的客户端。<br>Consumer Group：每个Consumer属于一个特定的Consumer Group（可为每个Consumer指定group name，若不指定则属于默认的group）。</li>
@@ -174,7 +175,7 @@ ga('send', 'pageview');
 </ul>
 <p><strong>领域模型：账户（Account）</strong><br>holder’s name:持有人名称<br>balance：余额<br>registration date：开户日期<br>……</p>
 <p><strong>领域模型：事件（Event）</strong><br>name:事件名称<br>ID：序号<br>……</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing_Classes.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing_Classes.png" alt></p>
 <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
 <li>第一步，启动<a href="https://zookeeper.apache.org/" target="_blank" rel="external">ZooKeeper</a>:</li>
 </ul>
@@ -249,9 +250,9 @@ ga('send', 'pageview');
 <p>The enabling idea of infrastructure as code is that the systems and devices which are used to run software can be treated as if they, themselves, are software. — Kief Morris</p>
 </blockquote>
 <p>云带来的好的一方面是它让公司中的任何人都可以轻松部署、配置和管理他们需要的基础设施。虽然很多基础设施团队采用了云和自动化技术，却没有采用相应的自动化测试和发布流程。它们把这些当作一门过于复杂的脚本语言来使用。他们会为每一次具体的改动编写手册、配置文件和执行脚本，再针对一部分指定的服务器手工运行它们，也就是说每一次改动都还需要花费专业知识、时间和精力。这种工作方式意味着基础设施团队没有把他们自己从日常的重复性劳动中解放出来。目前已经有很多商业云平台提供了Docker服务，只需要将自己的 <strong>git repository</strong> 链接到平台，即可以自动帮你完成部署，在云上完成集成测试。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_UseDocker.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_UseDocker.jpg" alt></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker-compose build</div><div class="line">docker-compose run app ginkgo</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_CloudTest.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_CloudTest.png" alt></p>
 <h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
 <li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">Stack Overflow：2017年最赚钱的编程语言</a></li>
 <li><a href="https://riboseyim.github.io/2018/04/27/DevOps-OpenCensus" target="_blank" rel="external">DevOps 漫谈：基于OpenCensus构建分布式跟踪系统</a></li>
@@ -295,7 +296,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjuqfn64v00ue5ih2us53zo2a" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="cjuqfn64v00ue5ih2us53zo2a" class="article-share-link">分享</a>
       
       
       
@@ -319,7 +320,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -362,7 +363,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/06/14/Mathmetics/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Catalog:数学
@@ -372,7 +373,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/06/03/Writing-WriterToolChain/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">我的写作工具链</div>
     </a>
   
@@ -404,9 +405,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一部分-引子、环境准备、整体设计及实现"><span class="toc-number"></span> <span class="toc-text">第一部分 引子、环境准备、整体设计及实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要微服务"><span class="toc-number">1.</span> <span class="toc-text">为什么需要微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Conway’s-law（康威定律）"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Conway’s law（康威定律）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Event-Sourcing（事件溯源）"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">Event Sourcing（事件溯源）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方案"><span class="toc-number">2.</span> <span class="toc-text">实现方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-in-a-Nutshell"><span class="toc-number">2.1.</span> <span class="toc-text">Kafka in a Nutshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整体设计"><span class="toc-number">2.2.</span> <span class="toc-text">整体设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.3.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#domain-model"><span class="toc-number">2.3.1.</span> <span class="toc-text">domain model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka-amp-Redis-library"><span class="toc-number">2.3.2.</span> <span class="toc-text">Kafka & Redis library</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息生产者Producer"><span class="toc-number">2.4.</span> <span class="toc-text">消息生产者Producer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二部分-消息消费者Consumer及其集群化"><span class="toc-number"></span> <span class="toc-text">第二部分 消息消费者Consumer及其集群化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重构main"><span class="toc-number">0.0.1.</span> <span class="toc-text">重构main</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群化消息消费者"><span class="toc-number">0.1.</span> <span class="toc-text">集群化消息消费者</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三部分：测试驱动开发、Docker部署和持续集成"><span class="toc-number"></span> <span class="toc-text">第三部分：测试驱动开发、Docker部署和持续集成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用vendor管理Golang项目依赖"><span class="toc-number">0.0.1.</span> <span class="toc-text">使用vendor管理Golang项目依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试：ginkgo-Test-Suite"><span class="toc-number">0.0.2.</span> <span class="toc-text">单元测试：ginkgo Test Suite</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试的四个阶段"><span class="toc-number">0.0.3.</span> <span class="toc-text">单元测试的四个阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker部署"><span class="toc-number">0.1.</span> <span class="toc-text">Docker部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Infrastructure-as-Code-基础设施即代码"><span class="toc-number">0.2.</span> <span class="toc-text">Infrastructure as Code(基础设施即代码)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源架构技术漫谈"><span class="toc-number">1.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory"><span class="toc-number">2.0.1.</span> <span class="toc-text">Theory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Microservices"><span class="toc-number">2.0.2.</span> <span class="toc-text">Microservices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-Sourcing"><span class="toc-number">2.0.3.</span> <span class="toc-text">Event Sourcing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zookeeper-amp-Kafka"><span class="toc-number">2.0.4.</span> <span class="toc-text">Zookeeper & Kafka</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#第一部分-引子、环境准备、整体设计及实现"><span class="toc-number"></span> <span class="toc-text">第一部分 引子、环境准备、整体设计及实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要微服务"><span class="toc-number">1.</span> <span class="toc-text">为什么需要微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Conway’s-law（康威定律）"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Conway’s law（康威定律）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Event-Sourcing（事件溯源）"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">Event Sourcing（事件溯源）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方案"><span class="toc-number">2.</span> <span class="toc-text">实现方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-in-a-Nutshell"><span class="toc-number">2.1.</span> <span class="toc-text">Kafka in a Nutshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整体设计"><span class="toc-number">2.2.</span> <span class="toc-text">整体设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.3.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#domain-model"><span class="toc-number">2.3.1.</span> <span class="toc-text">domain model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka-amp-Redis-library"><span class="toc-number">2.3.2.</span> <span class="toc-text">Kafka &amp; Redis library</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息生产者Producer"><span class="toc-number">2.4.</span> <span class="toc-text">消息生产者Producer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二部分-消息消费者Consumer及其集群化"><span class="toc-number"></span> <span class="toc-text">第二部分 消息消费者Consumer及其集群化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重构main"><span class="toc-number">0.0.1.</span> <span class="toc-text">重构main</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群化消息消费者"><span class="toc-number">0.1.</span> <span class="toc-text">集群化消息消费者</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三部分：测试驱动开发、Docker部署和持续集成"><span class="toc-number"></span> <span class="toc-text">第三部分：测试驱动开发、Docker部署和持续集成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用vendor管理Golang项目依赖"><span class="toc-number">0.0.1.</span> <span class="toc-text">使用vendor管理Golang项目依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试：ginkgo-Test-Suite"><span class="toc-number">0.0.2.</span> <span class="toc-text">单元测试：ginkgo Test Suite</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试的四个阶段"><span class="toc-number">0.0.3.</span> <span class="toc-text">单元测试的四个阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker部署"><span class="toc-number">0.1.</span> <span class="toc-text">Docker部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Infrastructure-as-Code-基础设施即代码"><span class="toc-number">0.2.</span> <span class="toc-text">Infrastructure as Code(基础设施即代码)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源架构技术漫谈"><span class="toc-number">1.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory"><span class="toc-number">2.0.1.</span> <span class="toc-text">Theory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Microservices"><span class="toc-number">2.0.2.</span> <span class="toc-text">Microservices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-Sourcing"><span class="toc-number">2.0.3.</span> <span class="toc-text">Event Sourcing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zookeeper-amp-Kafka"><span class="toc-number">2.0.4.</span> <span class="toc-text">Zookeeper &amp; Kafka</span></a></li></ol></li>
           </div>
       </div>
     </div>
@@ -434,7 +435,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -443,8 +444,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -474,7 +475,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

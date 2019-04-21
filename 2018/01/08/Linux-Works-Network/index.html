@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>How Linux Works:Network | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/01/08/Linux-Works-Network/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 一、How DNS Works 二、How Route Works 三、How ARP Works">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-DNS-Overview.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DNS_Package_Message.jpeg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-NSSwitch.png">
@@ -48,7 +49,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -154,7 +155,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>The DNS assumes that messages will be transmitted as datagrams or in a byte stream carried by a virtual circuit. While virtual circuits can be used for any DNS activity, datagrams are preferred for queries due to their lower overhead and better performance.  — 《<a href="https://tools.ietf.org/html/rfc1035" target="_blank" rel="external">RFC-1035 DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a>》</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DNS_Package_Message.jpeg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DNS_Package_Message.jpeg" alt></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ping</span> baidu.com | head -1</div><div class="line">PING baidu.com (220.181.57.216) 56(84) bytes of data.</div><div class="line"></div><div class="line"><span class="variable">$host</span> baidu.com</div><div class="line">baidu.com has address 220.181.57.216</div><div class="line">baidu.com has address 123.125.115.110</div></pre></td></tr></table></figure>
 <h4 id="unknown-host"><a href="#unknown-host" class="headerlink" title="unknown host"></a>unknown host</h4><p><strong>strace</strong> 是 Linux 环境下的一款程序调试工具，用来监视一个应用程序所使用的系统调用及它所接收的系统信息。借助 strace 我们可以更好地理解 DNS 工作原理。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ping</span> baidu.com</div><div class="line">ping: unknown host baidu.com</div><div class="line"></div><div class="line"><span class="comment"># strace -e trace=open -f ping -c1 baidu.com</span></div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libcap.so.2"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libidn.so.11"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libc.so.6"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/lib64/libattr.so.1"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/usr/lib/locale/locale-archive"</span>, O_RDONLY|O_CLOEXEC) = 3</div><div class="line">open(<span class="string">"/etc/resolv.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/nsswitch.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libnss_files.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/host.conf"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/etc/hosts"</span>, O_RDONLY|O_CLOEXEC)  = 4</div><div class="line">open(<span class="string">"/etc/ld.so.cache"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libnss_dns.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">open(<span class="string">"/lib64/libresolv.so.2"</span>, O_RDONLY|O_CLOEXEC) = 4</div><div class="line">ping: unknown host baidu.com</div><div class="line">+++ exited with 2 +++</div></pre></td></tr></table></figure>
@@ -181,7 +182,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>NSSwitch is not just for DNS lookups. It’s also used for passwords and user lookup information.</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-Call.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-Call.png" alt></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># more /etc/nsswitch.conf</span></div><div class="line">passwd:     files sss</div><div class="line">shadow:     files sss</div><div class="line">group:      files sss</div><div class="line">hosts:      files dns</div><div class="line">bootparams: nisplus [NOTFOUND=<span class="built_in">return</span>] files</div><div class="line">ethers:     files</div><div class="line">netmasks:   files</div><div class="line">networks:   files</div><div class="line">protocols:  files</div><div class="line">rpc:        files</div><div class="line">services:   files sss</div><div class="line">netgroup:   files sss</div><div class="line">publickey:  nisplus</div><div class="line">automount:  files sss</div><div class="line">aliases:    files nisplus</div></pre></td></tr></table></figure>
 <h4 id="dig-Domain-Information-Groper"><a href="#dig-Domain-Information-Groper" class="headerlink" title="dig | Domain Information Groper"></a>dig | Domain Information Groper</h4><p><strong>dig</strong>（Domain Information Groper，域信息搜索器）命令是一个用于查询 DNS 的工具。dig 总共有42个查询选项，涉及到 DNS 信息的方方面面，在 DNS 问题诊断时可以将整个过程信息输出。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dig +nocmd google.com  输出过滤版本信息</div><div class="line">dig +short google.com  输出最精简的CNAME信息和A记录</div><div class="line">dig +nostat google.com 输出过滤统计信息</div><div class="line">dig +trace google.com 输出跟踪，从根域查询直到最终结果</div></pre></td></tr></table></figure>
@@ -217,7 +218,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
@@ -372,7 +373,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-DNS-Works"><span class="toc-number">2.</span> <span class="toc-text">How DNS Works</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unknown-host"><span class="toc-number">2.0.1.</span> <span class="toc-text">unknown host</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hosts-static-table-lookup-for-hostnames"><span class="toc-number">2.0.2.</span> <span class="toc-text">hosts - static table lookup for hostnames</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-resolv-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">/etc/resolv.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSwitch"><span class="toc-number">2.0.4.</span> <span class="toc-text">NSSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig-Domain-Information-Groper"><span class="toc-number">2.0.5.</span> <span class="toc-text">dig | Domain Information Groper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Coding-API"><span class="toc-number">2.0.6.</span> <span class="toc-text">DNS Coding API</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">3.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Tools"><span class="toc-number">4.0.1.</span> <span class="toc-text">DNS Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bond"><span class="toc-number">4.0.2.</span> <span class="toc-text">bond</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.3.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.5.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.6.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-DNS-Works"><span class="toc-number">2.</span> <span class="toc-text">How DNS Works</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unknown-host"><span class="toc-number">2.0.1.</span> <span class="toc-text">unknown host</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hosts-static-table-lookup-for-hostnames"><span class="toc-number">2.0.2.</span> <span class="toc-text">hosts - static table lookup for hostnames</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-resolv-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">/etc/resolv.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSwitch"><span class="toc-number">2.0.4.</span> <span class="toc-text">NSSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig-Domain-Information-Groper"><span class="toc-number">2.0.5.</span> <span class="toc-text">dig | Domain Information Groper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Coding-API"><span class="toc-number">2.0.6.</span> <span class="toc-text">DNS Coding API</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">3.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Tools"><span class="toc-number">4.0.1.</span> <span class="toc-text">DNS Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bond"><span class="toc-number">4.0.2.</span> <span class="toc-text">bond</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.3.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.5.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.6.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -400,7 +401,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -409,7 +410,7 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
         主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
@@ -440,7 +441,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {
@@ -503,25 +504,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

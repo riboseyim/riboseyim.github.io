@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>计算机网络协议：IPv6 与网络安全 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/08/09/Protocol-IPv6/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="概要 IPv6 Overview IPv6 &amp;amp; Cyber-Security:IPsec,TLS/SSL, NAT,Source routing IPv6 &amp;amp; Linux Security:iptables vs ip6tables,SSH/SCP/Rsync">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.linux.com/sites/lcom/files/styles/rendered_file/public/ip-address-allocation.png?itok=ajvQlGr-">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_IPv6_Packet.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_Procotol_Security.png">
@@ -47,7 +48,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -60,7 +61,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -123,7 +124,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/08/09/Protocol-IPv6/" data-id="cjuqfn60y00h95ih2o08x1vz2" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/08/09/Protocol-IPv6/" data-id="cjuqfn60y00h95ih2o08x1vz2" class="article-share-link">分享</a>
         
         
         
@@ -145,7 +146,7 @@ ga('send', 'pageview');
 <h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><p>IPv6(Internet Protocol version 6)是互联网协议的最新版本，用于分组交换互联网络的网络层协议，旨在解决IPv4地址枯竭问题。IPv6二进位制下为128位长度，以16位为一组，每组以冒号“:”隔开，可以分为8组，每组以4位十六进制方式表示。例如：2001:0db8:85a3:08d3:1319:8a2e:0370:7344 是一个合法的IPv6地址。</p>
 <p><img src="https://www.linux.com/sites/lcom/files/styles/rendered_file/public/ip-address-allocation.png?itok=ajvQlGr-" alt="Allocation of IPv4 address space: the United States uses more than a third of the available IPv4 addresses."></p>
 <h4 id="IPv6-报文包格式"><a href="#IPv6-报文包格式" class="headerlink" title="IPv6 报文包格式"></a>IPv6 报文包格式</h4><p>定义：<a href="https://tools.ietf.org/html/rfc1883" target="_blank" rel="external">RFC 1883</a>中定义的原始版本，<a href="https://tools.ietf.org/html/rfc2460" target="_blank" rel="external">RFC 2460</a>中描述的现在提议的标准版本。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_IPv6_Packet.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_IPv6_Packet.png" alt></p>
 <h4 id="IPv6地址分类"><a href="#IPv6地址分类" class="headerlink" title="IPv6地址分类"></a>IPv6地址分类</h4><ul>
 <li>单播地址（unicast）：单播地址标示一个网络接口，协议会把送往地址的数据包送往给其接口。单播地址包括可聚类的全球单播地址、链路本地地址等。</li>
 <li>多播地址（multicast）：多播地址也称组播地址。多播地址也被指定到一群不同的接口，送到多播地址的数据包会被发送到所有的地址。</li>
@@ -155,8 +156,8 @@ ga('send', 'pageview');
 <h2 id="IPv6-amp-Cyber-Security"><a href="#IPv6-amp-Cyber-Security" class="headerlink" title="IPv6 &amp; Cyber-Security"></a>IPv6 &amp; Cyber-Security</h2><p>对我们网络的攻击来自各种各样的来源：社会工程（Social Engineering）、粗心、垃圾邮件、网络钓鱼、操作系统漏洞、应用程序漏洞、广告网络、跟踪和数据收集、服务提供商窥探等。作为一个新兴的网络协议，安全问题同样无法避免。</p>
 <h4 id="IPsec-TLS-SSL-SSH"><a href="#IPsec-TLS-SSL-SSH" class="headerlink" title="IPsec/TLS/SSL/SSH"></a>IPsec/TLS/SSL/SSH</h4><p>IPsec（网际网络安全协议，Internet Protocol Security，<a href="https://tools.ietf.org/html/rfc4301" target="_blank" rel="external">RFC 4301</a>、<a href="https://tools.ietf.org/html/rfc4309" target="_blank" rel="external">RFC 4309</a> ），旨在在网络层为IP分组提供安全服务，包括访问控制、数据完整性、身份验证、防止重放和数据机密性。IPsec原本是为IPv6开发，但是在IPv4中已被大量部署。最初，IPsec是IPv6协议组中不可少的一部分，但现在是可选的。</p>
 <p>在传输模式下，IPsec在IP报头和高层协议之间插入一个报头，IP报头与原始IP报头相同，只是IP协议字段被改为ESP或者AH，并重新计算IP报头的校验和。IPsec假定IP端点是可达的，源端头不会修改IP报头中的目标IP地址。IPsec 工作在网络层。其它加密协议如 TLS/SSL 和 SSH，工作在传输层之上，是针对具体应用的。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_Procotol_Security.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_IPsec_PacketHeader.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_Procotol_Security.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_IPsec_PacketHeader.png" alt></p>
 <h4 id="NAT-Security"><a href="#NAT-Security" class="headerlink" title="NAT = Security ?"></a>NAT = Security ?</h4><blockquote>
 <p>NAT is not and never has been about security.</p>
 </blockquote>
@@ -193,7 +194,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/08/09/Protocol-IPv6/" data-id="cjuqfn60y00h95ih2o08x1vz2" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/08/09/Protocol-IPv6/" data-id="cjuqfn60y00h95ih2o08x1vz2" class="article-share-link">分享</a>
       
       
       
@@ -217,7 +218,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -260,7 +261,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/08/15/Commander-Sergeant/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           外军研究|美军士官制度研究
@@ -270,7 +271,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/08/06/TeamWork-Kanban/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">DevOps 漫谈:基于看板（Kanban）的管理实践</div>
     </a>
   
@@ -302,9 +303,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6"><span class="toc-number">2.</span> <span class="toc-text">IPv6</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6-报文包格式"><span class="toc-number">2.0.1.</span> <span class="toc-text">IPv6 报文包格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6地址分类"><span class="toc-number">2.0.2.</span> <span class="toc-text">IPv6地址分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-amp-Cyber-Security"><span class="toc-number">3.</span> <span class="toc-text">IPv6 & Cyber-Security</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPsec-TLS-SSL-SSH"><span class="toc-number">3.0.1.</span> <span class="toc-text">IPsec/TLS/SSL/SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT-Security"><span class="toc-number">3.0.2.</span> <span class="toc-text">NAT = Security ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source-routing"><span class="toc-number">3.0.3.</span> <span class="toc-text">Source routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大就是强-？"><span class="toc-number">3.0.4.</span> <span class="toc-text">大就是强 ？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-amp-Linux-Security"><span class="toc-number">4.</span> <span class="toc-text">IPv6 & Linux Security</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iptables-amp-ip6tables"><span class="toc-number">4.0.1.</span> <span class="toc-text">iptables & ip6tables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Rules"><span class="toc-number">4.0.2.</span> <span class="toc-text">Example Rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH-and-SCP"><span class="toc-number">4.0.3.</span> <span class="toc-text">SSH and SCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rsync"><span class="toc-number">4.0.4.</span> <span class="toc-text">Rsync</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Carla-Schroder"><span class="toc-number">5.</span> <span class="toc-text">Master: Carla Schroder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6"><span class="toc-number">2.</span> <span class="toc-text">IPv6</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6-报文包格式"><span class="toc-number">2.0.1.</span> <span class="toc-text">IPv6 报文包格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv6地址分类"><span class="toc-number">2.0.2.</span> <span class="toc-text">IPv6地址分类</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-amp-Cyber-Security"><span class="toc-number">3.</span> <span class="toc-text">IPv6 &amp; Cyber-Security</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IPsec-TLS-SSL-SSH"><span class="toc-number">3.0.1.</span> <span class="toc-text">IPsec/TLS/SSL/SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT-Security"><span class="toc-number">3.0.2.</span> <span class="toc-text">NAT = Security ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source-routing"><span class="toc-number">3.0.3.</span> <span class="toc-text">Source routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大就是强-？"><span class="toc-number">3.0.4.</span> <span class="toc-text">大就是强 ？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-amp-Linux-Security"><span class="toc-number">4.</span> <span class="toc-text">IPv6 &amp; Linux Security</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iptables-amp-ip6tables"><span class="toc-number">4.0.1.</span> <span class="toc-text">iptables &amp; ip6tables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Rules"><span class="toc-number">4.0.2.</span> <span class="toc-text">Example Rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH-and-SCP"><span class="toc-number">4.0.3.</span> <span class="toc-text">SSH and SCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rsync"><span class="toc-number">4.0.4.</span> <span class="toc-text">Rsync</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Carla-Schroder"><span class="toc-number">5.</span> <span class="toc-text">Master: Carla Schroder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -332,7 +333,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -341,8 +342,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -372,7 +373,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

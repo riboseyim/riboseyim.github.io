@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>开源技术架构漫谈：PostgreSQL 数据库 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png">
 <meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
 <meta name="twitter:card" content="summary">
@@ -44,7 +45,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -57,7 +58,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -120,7 +121,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjuqfn60t00gz5ih2r3spn83s" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjuqfn60t00gz5ih2r3spn83s" class="article-share-link">分享</a>
         
         
         
@@ -161,7 +162,7 @@ ga('send', 'pageview');
 <p>2005年1月 ，Pervasive Software 宣布参与社区及商业支持，直到 2006 年 7 月退出。2005年1月19日，版本 8.0 发行。自 8.0 后，PostgreSQL以原生（Native）的方式，运行于Windows系统。2006年6月，Solaris 10 包含 PostgreSQL一起发布。</p>
 <p>2012年09月10日，PostgreSQL 发布 9.2 版本，主要在性能方面的提升，也包括一些新的 SQL 特性。<br>2016年10月27日，PostgreSQL 发布 9.6.1 版本。<br>2017年11月09日，PostgreSQL 发布 10.1 版本。</p>
 <h2 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install</span></div><div class="line">$ brew install postgresql</div><div class="line"><span class="comment"># version</span></div><div class="line">$ pg_ctl -V</div><div class="line">pg_ctl (PostgreSQL) 10.1</div><div class="line"><span class="comment"># initdb -- 创建一个新的PostgreSQL数据库簇（cluster）,单个服务端实例管理的多个数据库的集合。</span></div><div class="line"><span class="comment"># 创建数据库数据的宿主目录，生成共享的系统表 （不属于任何特定数据库的表）和创建template1 和postgres数据库</span></div><div class="line">$ initdb /Users/yanrui/Data/TestPG</div><div class="line"><span class="comment"># start</span></div><div class="line">$ pg_ctl -D /Users/yanrui/Data/TestPG start</div><div class="line">waiting <span class="keyword">for</span> server to start....2018-01-03 14:13:17.005 CST [37621] LOG:  listening on IPv4 address <span class="string">"127.0.0.1"</span>, port 5432</div><div class="line">2018-01-03 14:13:17.005 CST [37621] LOG:  listening on IPv6 address <span class="string">"::1"</span>, port 5432</div><div class="line">2018-01-03 14:13:17.006 CST [37621] LOG:  listening on Unix socket <span class="string">"/tmp/.s.PGSQL.5432"</span></div><div class="line">2018-01-03 14:13:17.048 CST [37623] LOG:  database system was shut down at 2018-01-03 14:11:30 CST</div><div class="line">2018-01-03 14:13:17.066 CST [37621] LOG:  database system is ready to accept connections</div><div class="line"> <span class="keyword">done</span></div><div class="line">server started</div><div class="line"><span class="comment"># port listen</span></div><div class="line">bash-3.2$ netstat -an | grep LISTEN     </div><div class="line">tcp6       0      0  ::1.5432               *.*                    LISTEN</div><div class="line"><span class="comment"># createdb</span></div><div class="line">bash-3.2$ createdb -O[owner] test_db</div><div class="line"><span class="comment"># default [当前登录系统用户名]</span></div><div class="line">bash-3.2$ psql</div><div class="line">2018-01-03 18:14:37.537 CST [45864] FATAL:  database <span class="string">"yanrui"</span> does not exist</div><div class="line">psql: FATAL:  database <span class="string">"yanrui"</span> does not exist</div><div class="line">You have new mail <span class="keyword">in</span> /var/mail/yanrui</div><div class="line"><span class="comment"># login in</span></div><div class="line">bash-3.2$ psql test_db</div><div class="line">psql (10.1)</div><div class="line">Type <span class="string">"help"</span> <span class="keyword">for</span> help.</div><div class="line"></div><div class="line"><span class="comment"># log out</span></div><div class="line">test_db=<span class="comment"># \q  (Ctrl+D)</span></div><div class="line"></div><div class="line"><span class="comment"># 卸载</span></div><div class="line">$ brew uninstall postgres</div><div class="line"><span class="comment"># 开机</span></div><div class="line">$ launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist</div><div class="line">$ rm -rf ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist</div></pre></td></tr></table></figure>
-<h2 id="Architecture-OverView"><a href="#Architecture-OverView" class="headerlink" title="Architecture OverView"></a>Architecture OverView</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png" alt=""></p>
+<h2 id="Architecture-OverView"><a href="#Architecture-OverView" class="headerlink" title="Architecture OverView"></a>Architecture OverView</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="http://packagemain.blogspot.it/2016/05/data-model-generation-for-postgresql.html" target="_blank" rel="external">Data Model Generation for PostgreSQL</a></li>
 <li><a href="https://postgresconf.org/conferences/2018/program/proposals/finra-placeholder" target="_blank" rel="external">How FINRA is Migrating to Postgres</a></li>
@@ -177,7 +178,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjuqfn60t00gz5ih2r3spn83s" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/01/03/OpenSource-DB-PostgreSQL/" data-id="cjuqfn60t00gz5ih2r3spn83s" class="article-share-link">分享</a>
       
       
       
@@ -201,7 +202,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -244,7 +245,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/01/07/History-Tang/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           唐史 | History of Empire
@@ -254,7 +255,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/01/01/Check2018/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">我的2018年度盘点</div>
     </a>
   
@@ -286,7 +287,7 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-的时代到来了吗"><span class="toc-number">2.</span> <span class="toc-text">PostgreSQL 的时代到来了吗 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-简史"><span class="toc-number">3.</span> <span class="toc-text">PostgreSQL 简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABC"><span class="toc-number">4.</span> <span class="toc-text">ABC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-OverView"><span class="toc-number">5.</span> <span class="toc-text">Architecture OverView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
           </div>
@@ -316,7 +317,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -325,8 +326,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -356,7 +357,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

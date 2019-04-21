@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Cyber-Security:Linux容器安全的十重境界 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/11/12/DevOps-Container-Security/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要容器安全解决方案需要考虑不同技术栈和容器生命周期的不同阶段。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-5.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-1.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-4.png">
@@ -47,7 +48,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -60,7 +61,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -123,7 +124,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">分享</a>
         
         
         
@@ -157,13 +158,13 @@ ga('send', 'pageview');
 <li>10.角色和访问控制管理</li>
 </ul>
 <p>容器提供了一种简单的应用程序打包方法将它们无缝地从开发、测试环境部署到生产环境。它有助于确保各种环境中的一致性，包括物理服务器、虚拟机（VM）或私有或公共云。领先的组织基于这些好处迅速采用容器，以便轻松地开发和管理增加业务价值的应用程序。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-5.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-5.png" alt></p>
 <p>企业应用需要强壮的安全性，任何在容器中运行基础服务的人都会问：“容器是安全的吗？”、“可以让我们的应用程序信任容器吗？”</p>
 <p>保护容器非常类似于确保任何正在运行的进程。在部署和运行容器之前，您需要考虑整个解决方案技术栈的安全性。您还需要考虑在应用程序和容器的完整生命周期的安全性。</p>
 <p>请尝试在这 10 个方面加强容器的不同层次、不同技术栈和不同生命周期阶段的安全性。</p>
 <h4 id="1-容器操作系统与多租户"><a href="#1-容器操作系统与多租户" class="headerlink" title="1. 容器操作系统与多租户"></a>1. 容器操作系统与多租户</h4><p>对于开发人员来说，容器使得他们更容易地构建和升级应用程序，它可以作为一个应用单元的被依赖，通过在共享主机上部署启用多租户应用程序来最大限度地利用服务器资源。容器很容易在单个主机上部署多应用程序，并根据需要开启和关闭单个容器。为了充分利用这种打包和部署技术，运维团队需要正确的运行容器环境。运维人员需要一个操作系统，该系统可以在边界处保护容器，使主机内核与容器隔离并确保容器彼此之间安全。</p>
 <p>容器是隔离和约束资源的 Linux 进程，使您能够在共享宿主内核中运行沙盒应用程序。您保护容器的方法应该与确保 Linux 上任何正在运行的进程的安全方法相同。放弃特权是重要的，目前仍然是最佳实践。更好的方法是创建尽可能少的特权容器。容器应该作为普通用户运行，而不是 root 用户。接下来，利用 Linux 中可用的多种级别的安全特性确保容器的安全： Linux 命名空间，安全增强的Linux（SELinux）， cgroups，capabilities 和安全计算模式（seccomp）。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-1.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-1.jpg" alt></p>
 <h4 id="2-容器内容（使用可信源）"><a href="#2-容器内容（使用可信源）" class="headerlink" title="2. 容器内容（使用可信源）"></a>2. 容器内容（使用可信源）</h4><p>当说到安全性的时候，对于容器内容来说意味着什么呢？。一段时间以来，应用程序和基础设施都是由现成的组件组成的。很多都来自于开源软件，例如如 Linux 操作系统，Apache Web 服务器，红帽 JBoss 企业应用平台，PostgreSQL 和 Node.js。基于容器的各种软件包版本现在一应俱全，所以你不需要建立自己。但是，与从外部源下载的任何代码一样，您需要知道包的起源、它们是由谁创建，以及它们内部是否存在恶意代码。</p>
 <h4 id="3-容器注册-容器镜像加密访问"><a href="#3-容器注册-容器镜像加密访问" class="headerlink" title="3. 容器注册 (容器镜像加密访问)"></a>3. 容器注册 (容器镜像加密访问)</h4><p>你的团队构建容器的时候基于下载的公共容器镜像，<br>所以对它的访问管理和更新下载是管理的关键，需以同样的方式管理容器镜像、内建的镜像及其他类型的二进制文件。许多私有仓库注册服务器支持存储容器镜像。选择一个私有的、存储使用的容器镜像自动化策略的注册服务器。</p>
 <h4 id="4-构建过程安全"><a href="#4-构建过程安全" class="headerlink" title="4. 构建过程安全"></a>4. 构建过程安全</h4><p>在一个容器化的环境里，软件的构建是整个生命周期的一个阶段，应用程序代码需要与运行库集成。管理此构建过程是确保软件栈安全的关键。坚持“一次构建，到处部署（build once, deploy everywhere）”的理念，确保构建过程的产品正是生产中部署的产品。这一点对于维护容器持续稳定也非常重要，换句话说，不要为运行的容器打补丁；而是应该重新构建、重新部署它们。<br>无论您是在高度规范的行业中工作，还是仅仅想优化团队的工作，需要设计容器镜像的管理和构建过程，以利用容器层实现控制分离，从而使：</p>
@@ -173,7 +174,7 @@ ga('send', 'pageview');
 <li>开发团队仅仅专注于应用层和代码</li>
 </ul>
 <p>最后，对定制的容器签名，这样可以确保它们在构建和部署环节之间不会被篡改。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-4.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-4.png" alt></p>
 <h4 id="5-控制集群中可部署的内容"><a href="#5-控制集群中可部署的内容" class="headerlink" title="5. 控制集群中可部署的内容"></a>5. 控制集群中可部署的内容</h4><p>为了防备在构建过程中发生任何问题，或者在部署一个镜像后发现漏洞，需要增加以自动化的、基于策略的部署的另一层安全性。</p>
 <p>让我们看一下构建应用程序的三个容器镜像层：核心层（core）、中间件层（middleware）和应用层（application）。一个问题如果在核心镜像被发现，镜像会重新构建。一旦构建完成，镜像将被推入容器平台注册服务器。平台可以检测到镜像发生了变化。对于依赖于此镜像并有定义触发器的构建，该平台将自动重建应用程序并整合已经修复的库。</p>
 <p>一旦构建完成，镜像将被推入容器平台的内部注册服务器。内部注册服务器中镜像的变化能立即检测到，通过应用程序中定义的触发器自动部署更新镜像，确保生产中运行的代码总是与最近更新的镜像相同。所有这些功能协同工作，将安全功能集成到您的持续集成和持续部署（CI / CD）过程中。</p>
@@ -189,7 +190,7 @@ ga('send', 'pageview');
 <li>如何使开发者在自助服务的同时满足安全需求？</li>
 </ul>
 <p>考虑到开发人员和运维人员拥有的广泛能力，强大的基于角色的访问控制是容器平台的关键元素。例如，编排管理服务器是访问的中心点，应该得到最高级别的安全检查。API 是大规模自动化容器管理的关键，用于验证和配置容器、服务和复制控制器的数据；对传入的请求执行项目验证；并调用其他主要系统组件上的触发器。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-3.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Containers-Security-3.png" alt></p>
 <h4 id="7-网络隔离"><a href="#7-网络隔离" class="headerlink" title="7. 网络隔离"></a>7. 网络隔离</h4><p>在容器部署现代微服务应用程序往往意味着在多个节点分布式部署多个容器。考虑到网络防御，您需要一种在集群中隔离应用程序的方法。</p>
 <p>一个典型的公共云服务，例如Google Container Engine (GKE),Azure Container Services, 或者 Amazon Web Services (AWS) Container Service，都是单租户服务。它们允许在您启动的 VM 集群上运行容器。为了实现多租户容器安全，您需要一个容器平台，允许您选择单个集群并将流量分段，以隔离该集群中的不同用户、团队、应用程序和环境。</p>
 <p>通过网络命名空间，每个容器集合（称为“POD”）获得自己的IP和端口绑定范围，从而在节点上隔离 POD 网络。</p>
@@ -236,7 +237,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">分享</a>
       
       
       
@@ -260,7 +261,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -303,7 +304,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/11/15/DevOps-Container-Kubernetes/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           DevOps-Container-Kubernetes
@@ -313,7 +314,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/11/06/Addiction-Decision-Fentanyl/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">嗑药简史：扰动大国外交的China Girl(芬太尼)</div>
     </a>
   
@@ -345,9 +346,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提纲"><span class="toc-number">2.</span> <span class="toc-text">提纲</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-容器操作系统与多租户"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 容器操作系统与多租户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-容器内容（使用可信源）"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 容器内容（使用可信源）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-容器注册-容器镜像加密访问"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. 容器注册 (容器镜像加密访问)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-构建过程安全"><span class="toc-number">2.0.4.</span> <span class="toc-text">4. 构建过程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-控制集群中可部署的内容"><span class="toc-number">2.0.5.</span> <span class="toc-text">5. 控制集群中可部署的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-容器编排：加强容器平台安全"><span class="toc-number">2.0.6.</span> <span class="toc-text">6. 容器编排：加强容器平台安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-网络隔离"><span class="toc-number">2.0.7.</span> <span class="toc-text">7. 网络隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-存储"><span class="toc-number">2.0.8.</span> <span class="toc-text">8. 存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-API-管理-终端安全和单点登录-SSO"><span class="toc-number">2.0.9.</span> <span class="toc-text">9. API 管理, 终端安全和单点登录 (SSO)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-角色和访问控制管理（Cluster-Federation）"><span class="toc-number">2.0.10.</span> <span class="toc-text">10. 角色和访问控制管理（Cluster Federation）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络安全专题合辑《Cyber-Security-Manual》"><span class="toc-number">4.0.1.</span> <span class="toc-text">网络安全专题合辑《Cyber-Security Manual》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">4.0.2.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">4.0.3.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提纲"><span class="toc-number">2.</span> <span class="toc-text">提纲</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-容器操作系统与多租户"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 容器操作系统与多租户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-容器内容（使用可信源）"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 容器内容（使用可信源）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-容器注册-容器镜像加密访问"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. 容器注册 (容器镜像加密访问)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-构建过程安全"><span class="toc-number">2.0.4.</span> <span class="toc-text">4. 构建过程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-控制集群中可部署的内容"><span class="toc-number">2.0.5.</span> <span class="toc-text">5. 控制集群中可部署的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-容器编排：加强容器平台安全"><span class="toc-number">2.0.6.</span> <span class="toc-text">6. 容器编排：加强容器平台安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-网络隔离"><span class="toc-number">2.0.7.</span> <span class="toc-text">7. 网络隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-存储"><span class="toc-number">2.0.8.</span> <span class="toc-text">8. 存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-API-管理-终端安全和单点登录-SSO"><span class="toc-number">2.0.9.</span> <span class="toc-text">9. API 管理, 终端安全和单点登录 (SSO)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-角色和访问控制管理（Cluster-Federation）"><span class="toc-number">2.0.10.</span> <span class="toc-text">10. 角色和访问控制管理（Cluster Federation）</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络安全专题合辑《Cyber-Security-Manual》"><span class="toc-number">4.0.1.</span> <span class="toc-text">网络安全专题合辑《Cyber-Security Manual》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">4.0.2.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">4.0.3.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li>
           </div>
       </div>
     </div>
@@ -375,7 +376,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -384,8 +385,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -415,7 +416,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

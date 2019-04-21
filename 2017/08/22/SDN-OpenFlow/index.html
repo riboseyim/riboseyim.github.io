@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>SDN 技术指南（二）：OpenFlow | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/08/22/SDN-OpenFlow/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 OpenFlow 简史（SDN != OpenFlow ; 版本问题） OpenFlow 工作原理 OpenFlow is a communications protocol 支持 OpenFlow 的开源交换机：Open vSwitch">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_Theme.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_Paper_OpenFlow_Page88.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Workflow.png">
@@ -49,7 +50,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -62,7 +63,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -125,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">分享</a>
         
         
         
@@ -150,7 +151,7 @@ ga('send', 'pageview');
 <li>SDN的主要解决方案</li>
 <li>SDN的整体应用架构</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Theme.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Theme.png" alt></p>
 <h2 id="History-OpenFlow-SDN"><a href="#History-OpenFlow-SDN" class="headerlink" title="History: OpenFlow != SDN"></a>History: OpenFlow != SDN</h2><p>OpenFlow 最早由斯坦福大学提出，目前知识产权由开放网络基金会（Open Networking Foundation，ONF)持有。<br>SDN 和 OpenFlow 两个概念经常会被混淆和误读。这也难怪，从历史上看，两者还这是你中有我、我中有你。首先，作为一个开放的协议，OpenFlow 协议是众多 SDN 控制器解决方案的实现基础；另外，定义 SDN 概念和架构背后的许多重要人物开始在 OpenFlow 领域取得了突破，进而推动 SDN 概念走向成熟。</p>
 <blockquote>
 <p>OpenFlow is a key protocol in many SDN solutions.</p>
@@ -167,7 +168,7 @@ ga('send', 'pageview');
 <li>July 2012: VMware buys Nicira for $1.26B</li>
 <li>Nov 6, 2013: Cisco buys Insieme for $838M</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Paper_OpenFlow_Page88.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_Paper_OpenFlow_Page88.png" alt></p>
 <h4 id="OpenFlow-的版本问题"><a href="#OpenFlow-的版本问题" class="headerlink" title="OpenFlow 的版本问题"></a>OpenFlow 的版本问题</h4><p>OpenFlow 协议简单来说就是把路由器的控制平面（Control Plane，管理路由表、负责网络配置和系统管理等）从转发平面（Forward Plane，转发决策和输出链路调度等）中分离出来，以软件方式实现。从第一个正式商用版本 v1.0 开始，OpenFlow 有先后推出了v1.1,v1.2,v1.3,v1.4 等，版本之间存在不兼容的内容， OpenFlow 交换机或者其它解决方案也存在版本支持不尽相同的情况，版本兼容的问题需要尤其关注。</p>
 <ul>
 <li>OpenFlow V1.0 (2009)</li>
@@ -183,7 +184,7 @@ ga('send', 'pageview');
 <h2 id="OpenFlow的工作原理"><a href="#OpenFlow的工作原理" class="headerlink" title="OpenFlow的工作原理"></a>OpenFlow的工作原理</h2><blockquote>
 <p>OpenFlow is a communications protocol.</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Workflow.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Workflow.png" alt></p>
 <p>OpenFlow 提供了一个在 SDN 控制器和网络设备（如交换机）之间通讯的标准协议。他允许由 SDN 控制器下发到转发规则（forwarding rules）、安全规则（security rules）到底层网络交换机，完成路由决策、流量控制。OpenFlow 协议相当于一种共同语言，所以SDN 控制器和交换机都需要实现OpenFlow 协议，以便他们能够理解 OpenFlow 消息（message）。</p>
 <p>SDN 控制器和交换机之间需要建立通讯连接才能进行配置、管理和监控。通讯连接基于 TCP （或者 TLS）协议之上，监听 6653 端口 。初始化模式：1）网络交换机发起，发送连接请求到控制器 2）控制器发起，交换机需要设置被动模式（ passive mode）开启监听。 无论使用哪种模式，一旦通讯连接建立，OpenFlow 消息将通过 TCP／TLS 连接传递。</p>
 <p>基于 OpenFlow 消息，该协议还可以支持网络交换机监控：为了监控网络交换机，OpenFlow 协议提供了从交换机抓取网络统计信息、事件消息的请求／响应报文，方便控制器获得从交换机一侧感知人工操作和失败信息的能力,包括流移除事件，端口状态 UP/DOWN 变化等。为了能够支持第三方厂商可以在 OpenFlow 交换机上执行特定的任务，OpenFlow 协议提供可扩展的自定义消息结构，允许控制器和交换机之间传递信息。那是怎样的 OpenFlow 被许多SDN应用程序用来提供简单的网络控制和管理解决方案。</p>
@@ -196,7 +197,7 @@ ga('send', 'pageview');
 <li>端口镜像策略（port mirroring rules）</li>
 <li>包变更策略（packet modification rules）</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture_Mod.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture_Mod.png" alt></p>
 <p>大体上，流（flow）中包含三种类型的信息：</p>
 <ol>
 <li>Match fields：他们将定义在包头字段：L2（源目的地 以太网地址，VLAN ID，VLAN优先级等），L3（IPv4和IPv6 源目的地 地址、协议类型、DSCP、等），L4领域（TCP/UDP/SCTP源目的端口），ARP ICMP字段，字段，MPLS域等等。</li>
@@ -217,7 +218,7 @@ ga('send', 'pageview');
 </blockquote>
 <p>市场中支持 OpenFlow 的硬件交换机包括 VMware 推出的vSwitch、vDS等虚拟交换机，Cisco与VMware合作发布了基于VMware kernel API开发的分布式虚拟交换机Nexus 1000V（功能对应于VMware的vDS），Citrix 迫于Open vSwitch快速追赶，推出了的Distributed Virtual Switch解决方案，这些方案都是收费的。</p>
 <p>除了硬件交换机还可以通过软件支持并实现虚拟机互联，Open vSwitch(Open Source Virtual Switch)就是是一款基于软件实现的开源虚拟交换机。它采用 C 语言编写，遵循 Apache 2.0 许可。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenvSwitch.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SDN_OpenvSwitch.jpg" alt></p>
 <p>Open vSwitch 的周边生态情况：</p>
 <ul>
 <li>支持的操作系统（Linux, Ubuntu, Debian，FreeBSD 和 NetBSD）</li>
@@ -261,7 +262,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">分享</a>
       
       
       
@@ -285,7 +286,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -328,7 +329,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/08/28/Redology/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           红学 | Overview of Redology
@@ -338,7 +339,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/08/21/DevOps-Docker/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">DevOps 漫谈：Docker</div>
     </a>
   
@@ -370,9 +371,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾-SDN-技术指南（一）：架构概览"><span class="toc-number">1.0.1.</span> <span class="toc-text">回顾 SDN 技术指南（一）：架构概览</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#History-OpenFlow-SDN"><span class="toc-number">2.</span> <span class="toc-text">History: OpenFlow != SDN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenFlow-的版本问题"><span class="toc-number">2.0.1.</span> <span class="toc-text">OpenFlow 的版本问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenFlow的工作原理"><span class="toc-number">3.</span> <span class="toc-text">OpenFlow的工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流表（Flow-Table）"><span class="toc-number">3.0.1.</span> <span class="toc-text">流表（Flow Table）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持-OpenFlow-的开源交换机：Open-vSwitch"><span class="toc-number">4.</span> <span class="toc-text">支持 OpenFlow 的开源交换机：Open vSwitch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuss"><span class="toc-number">5.</span> <span class="toc-text">Discuss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#专题合辑：Network-Engineering"><span class="toc-number">6.</span> <span class="toc-text">专题合辑：Network Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾-SDN-技术指南（一）：架构概览"><span class="toc-number">1.0.1.</span> <span class="toc-text">回顾 SDN 技术指南（一）：架构概览</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#History-OpenFlow-SDN"><span class="toc-number">2.</span> <span class="toc-text">History: OpenFlow != SDN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenFlow-的版本问题"><span class="toc-number">2.0.1.</span> <span class="toc-text">OpenFlow 的版本问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenFlow的工作原理"><span class="toc-number">3.</span> <span class="toc-text">OpenFlow的工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流表（Flow-Table）"><span class="toc-number">3.0.1.</span> <span class="toc-text">流表（Flow Table）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持-OpenFlow-的开源交换机：Open-vSwitch"><span class="toc-number">4.</span> <span class="toc-text">支持 OpenFlow 的开源交换机：Open vSwitch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuss"><span class="toc-number">5.</span> <span class="toc-text">Discuss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#专题合辑：Network-Engineering"><span class="toc-number">6.</span> <span class="toc-text">专题合辑：Network Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -400,7 +401,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -409,8 +410,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -440,7 +441,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

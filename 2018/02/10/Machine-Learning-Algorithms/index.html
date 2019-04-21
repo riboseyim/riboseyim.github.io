@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>AI技术原理|机器学习算法 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 机器学习算法分类：监督学习、半监督学习、无监督学习、强化学习 基本的机器学习算法：线性回归、支持向量机(SVM)、最近邻居(KNN)、逻辑回归、决策树、k平均、随机森林、朴素贝叶斯、降维、梯度增强 公式、图示、案例">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="https://semiengineering.com/wp-content/uploads/2018/06/Machine-Learning-Algorithms-2.jpg.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ML_Alg_LR.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Linear_Regression_2.jpg">
@@ -60,7 +61,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -73,7 +74,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -136,7 +137,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/" data-id="cjuqfn63h00qh5ih2jmmsu6m6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/" data-id="cjuqfn63h00qh5ih2jmmsu6m6" class="article-share-link">分享</a>
         
         
         
@@ -193,27 +194,27 @@ ga('send', 'pageview');
 </ul>
 <h2 id="1-线性回归算法-Linear-Regression"><a href="#1-线性回归算法-Linear-Regression" class="headerlink" title="1. 线性回归算法 Linear Regression"></a>1. 线性回归算法 Linear Regression</h2><p>回归分析（Regression Analysis）是统计学的数据分析方法，目的在于了解两个或多个变量间是否相关、相关方向与强度，并建立数学模型以便观察特定变量来预测其它变量的变化情况。</p>
 <p>线性回归算法（Linear Regression）的建模过程就是使用数据点来寻找最佳拟合线。公式，y = m<em>x + c，其中 y 是因变量，x 是自变量，利用给定的数据集求 m 和 c 的值。<br>线性回归又分为两种类型，即 <strong>简单线性回归（simple linear regression)</strong>，只有 1 个自变量；<em>*多变量回归（multiple regression)</em></em>，至少两组以上自变量。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_LR.png" alt=""> <img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Linear_Regression_2.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_LR.png" alt> <img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Linear_Regression_2.jpg" alt></p>
 <p>下面是一个线性回归示例：基于 Python scikit-learn 工具包描述。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model, datasets</div><div class="line"></div><div class="line"><span class="comment">#digit dataset from sklearn</span></div><div class="line">digits = datasets.load_digits()</div><div class="line"><span class="comment">#create the LinearRegression model</span></div><div class="line">clf = linear_model.LinearRegression()</div><div class="line"></div><div class="line"><span class="comment">#set training set</span></div><div class="line">x, y = digits.data[:<span class="number">-1</span>], digits.target[:<span class="number">-1</span>]</div><div class="line"><span class="comment">#train model</span></div><div class="line">clf.fit(x, y)</div><div class="line"></div><div class="line"><span class="comment">#predict</span></div><div class="line">y_pred = clf.predict([digits.data[<span class="number">-1</span>]])</div><div class="line">y_true = digits.target[<span class="number">-1</span>]</div><div class="line"></div><div class="line">print(y_pred)</div><div class="line">print(y_true)</div></pre></td></tr></table></figure>
 <h2 id="2-支持向量机算法-Support-Vector-Machine-SVM"><a href="#2-支持向量机算法-Support-Vector-Machine-SVM" class="headerlink" title="2. 支持向量机算法(Support Vector Machine,SVM)"></a>2. 支持向量机算法(Support Vector Machine,SVM)</h2><p>支持向量机/网络算法(SVM)属于分类型算法。SVM模型将实例表示为空间中的点，将使用一条直线分隔数据点。需要注意的是，支持向量机需要对输入数据进行完全标记，仅直接适用于两类任务，应用将多类任务需要减少到几个二元问题。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_SVM.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_SupportVectorMachine.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_SVM.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_SupportVectorMachine.jpg" alt></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm, datasets</div><div class="line"></div><div class="line"><span class="comment">#digit dataset from sklearn</span></div><div class="line">digits = datasets.load_digits()</div><div class="line"></div><div class="line"><span class="comment">#create the  Support Vector Classifier</span></div><div class="line">clf = svm.SVC(gamma = <span class="number">0.001</span>, C = <span class="number">100</span>)</div><div class="line"></div><div class="line"><span class="comment">#set training set</span></div><div class="line">x, y = digits.data[:<span class="number">-1</span>], digits.target[:<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="comment">#train model</span></div><div class="line">clf.fit(x, y)</div><div class="line"></div><div class="line"><span class="comment">#predict</span></div><div class="line">y_pred = clf.predict([digits.data[<span class="number">-1</span>]])</div><div class="line">y_true = digits.target[<span class="number">-1</span>]</div><div class="line"></div><div class="line">print(y_pred)</div><div class="line">print(y_true)</div></pre></td></tr></table></figure>
 <h2 id="3-最近邻居-k-近邻算法-K-Nearest-Neighbors-KNN"><a href="#3-最近邻居-k-近邻算法-K-Nearest-Neighbors-KNN" class="headerlink" title="3. 最近邻居/k-近邻算法 (K-Nearest Neighbors,KNN)"></a>3. 最近邻居/k-近邻算法 (K-Nearest Neighbors,KNN)</h2><p>KNN算法是一种基于实例的学习，或者是局部近似和将所有计算推迟到分类之后的惰性学习。用最近的邻居（k）来预测未知数据点。k 值是预测精度的一个关键因素，无论是分类还是回归，衡量邻居的权重都非常有用，较近邻居的权重比较远邻居的权重大。</p>
 <p>KNN 算法的缺点是对数据的局部结构非常敏感。计算量大，需要对数据进行规范化处理，使每个数据点都在相同的范围。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_KNN.gif" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_NearestNeighbors.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_KNN.gif" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_NearestNeighbors.png" alt></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</div><div class="line"></div><div class="line"><span class="comment">#digit dataset from sklearn</span></div><div class="line">digits = datasets.load_digits()</div><div class="line"></div><div class="line"><span class="comment">#create the  KNeighborsClassifier</span></div><div class="line">clf = KNeighborsClassifier(n_neighbors=<span class="number">6</span>)</div><div class="line"></div><div class="line"><span class="comment">#set training set</span></div><div class="line">x, y = digits.data[:<span class="number">-1</span>], digits.target[:<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="comment">#train model</span></div><div class="line">clf.fit(x, y)</div><div class="line"></div><div class="line"><span class="comment">#predict</span></div><div class="line">y_pred = clf.predict([digits.data[<span class="number">-1</span>]])</div><div class="line">y_true = digits.target[<span class="number">-1</span>]</div><div class="line"></div><div class="line">print(y_pred)</div><div class="line">print(y_true)</div></pre></td></tr></table></figure>
 <p>延伸：KNN 的一个缺点是依赖于整个训练数据集，学习向量量化（Learning Vector Quantization，LVQ)是一种监督学习的人神经网络算法，允许你选择训练实例。LVQ 由数据驱动，搜索距离它最近的两个神经元，对于同类神经元采取拉拢，异类神经元采取排斥，最终得到数据的分布模式。如果基于 KNN 可以获得较好的数据集分类效果，利用 LVQ 可以减少存储训练数据集存储规模。典型的学习矢量量化算法有LVQ1、LVQ2和LVQ3，尤以LVQ2的应用最为广泛。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Learning_Vector_Quantization.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Learning_Vector_Quantization.png" alt></p>
 <h2 id="4-逻辑回归算法-Logistic-Regression"><a href="#4-逻辑回归算法-Logistic-Regression" class="headerlink" title="4. 逻辑回归算法 Logistic Regression"></a>4. 逻辑回归算法 Logistic Regression</h2><p>逻辑回归算法（Logistic Regression）一般用于需要明确输出的场景，如某些事件的发生（预测是否会发生降雨）。通常，逻辑回归使用某种函数将概率值压缩到某一特定范围。<br>例如，Sigmoid 函数（S 函数）是一种具有 S 形曲线、用于二元分类的函数。它将发生某事件的概率值转换为 0, 1 的范围表示。</p>
 <blockquote>
 <p>Y = E ^（b0＋b1 <em> x）/（1 + E ^（b0＋b1 </em> x ））</p>
 </blockquote>
 <p>以上是一个简单的逻辑回归方程，B0，B1是常数。这些常数值将被计算获得，以确保预测值和实际值之间的误差最小。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Logistic_Regression_1.gif" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Logistic_Regression.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Logistic_Regression_1.gif" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Logistic_Regression.jpg" alt></p>
 <h2 id="5-决策树算法-Decision-Tree"><a href="#5-决策树算法-Decision-Tree" class="headerlink" title="5. 决策树算法 Decision Tree"></a>5. 决策树算法 Decision Tree</h2><p>决策树（Decision tree）是一种特殊的树结构，由一个决策图和可能的结果（例如成本和风险）组成，用来辅助决策。机器学习中，决策树是一个预测模型，树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，通常该算法用于解决分类问题。</p>
 <p>一个决策树包含三种类型的节点：</p>
 <ul>
@@ -222,14 +223,14 @@ ga('send', 'pageview');
 <li>终结点：通常用三角形来表示</li>
 </ul>
 <p>简单决策树算法案例，确定人群中谁喜欢使用信用卡。考虑人群的年龄和婚姻状况，如果年龄在30岁或是已婚，人们更倾向于选择信用卡，反之则更少。<br>通过确定合适的属性来定义更多的类别，可以进一步扩展此决策树。在这个例子中，如果一个人结婚了，他超过30岁，他们更有可能拥有信用卡（100% 偏好）。测试数据用于生成决策树。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_DT.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_DecisionTree.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_DT.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_DecisionTree.png" alt></p>
 <p><strong>注意</strong>：对于那些各类别样本数量不一致的数据，在决策树当中信息增益的结果偏向于那些具有更多数值的特征。</p>
 <h2 id="6-k-平均算法-K-Means"><a href="#6-k-平均算法-K-Means" class="headerlink" title="6. k-平均算法 K-Means"></a>6. k-平均算法 K-Means</h2><p>k-平均算法(K-Means)是一种无监督学习算法，为聚类问题提供了一种解决方案。<br>K-Means 算法把 n 个点（可以是样本的一次观察或一个实例）划分到 k 个集群（cluster），使得每个点都属于离他最近的均值（即聚类中心，centroid）对应的集群。重复上述过程一直持续到重心不改变。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_KM.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_KM.png" alt></p>
 <h2 id="7-随机森林算法-Random-Forest"><a href="#7-随机森林算法-Random-Forest" class="headerlink" title="7. 随机森林算法 Random Forest"></a>7. 随机森林算法 Random Forest</h2><p>随机森林算法（Random Forest）的名称由 1995 年由贝尔实验室提出的random decision forests 而来，正如它的名字所说的那样，随机森林可以看作一个决策树的集合。<br>随机森林中每棵决策树估计一个分类，这个过程称为“投票（vote）”。理想情况下，我们根据每棵决策树的每个投票，选择最多投票的分类。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_RF.jpg" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_RandomForest.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_RF.jpg" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_RandomForest.png" alt></p>
 <ul>
 <li><strong>Paper</strong><a href="https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf" target="_blank" rel="external">Random Forest |Leo Breiman | Statistics Department  University of California Berkeley</a></li>
 </ul>
@@ -238,7 +239,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>Naive Bayes is called naive because it assumes that each input variable is independent.</p>
 </blockquote>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Bayes.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML_Alg_Bayes.png" alt></p>
 <h2 id="9-降维算法-Dimensional-Reduction"><a href="#9-降维算法-Dimensional-Reduction" class="headerlink" title="9. 降维算法 Dimensional Reduction"></a>9. 降维算法 Dimensional Reduction</h2><p>在机器学习和统计学领域，降维是指在限定条件下，降低随机变量个数，得到一组“不相关”主变量的过程，并可进一步细分为特征选择和特征提取两大方法。</p>
 <p>一些数据集可能包含许多难以处理的变量。特别是资源丰富的情况下，系统中的数据将非常详细。在这种情况下，数据集可能包含数千个变量，其中大多数变量也可能是不必要的。在这种情况下，几乎不可能确定对我们的预测影响最大的变量。此时，我们需要使用降维算法，降维的过程中也可能需要用到其他算法，例如借用随机森林，决策树来识别最重要的变量。</p>
 <h2 id="10-梯度增强算法-Gradient-Boosting"><a href="#10-梯度增强算法-Gradient-Boosting" class="headerlink" title="10. 梯度增强算法 Gradient Boosting"></a>10. 梯度增强算法 Gradient Boosting</h2><p>梯度增强算法（Gradient Boosting）使用多个弱算法来创建更强大的精确算法。它与使用单个估计量不同，而是使用多个估计量创建一个更稳定和更健壮的算法。梯度增强算法有几种：</p>
@@ -246,7 +247,7 @@ ga('send', 'pageview');
 <li>XGBoost  — 使用线性和树算法</li>
 <li>LightGBM  — 只使用基于树的算法<br>梯度增强算法的特点是精度较高。此外，LightGBM 算法具有令人难以置信的高性能。</li>
 </ul>
-<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt></p>
 <ul>
 <li><a href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/" target="_blank" rel="external">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
 <li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="external">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
@@ -277,7 +278,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/" data-id="cjuqfn63h00qh5ih2jmmsu6m6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/02/10/Machine-Learning-Algorithms/" data-id="cjuqfn63h00qh5ih2jmmsu6m6" class="article-share-link">分享</a>
       
       
       
@@ -301,7 +302,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -344,7 +345,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/02/16/Machine-Learning-Law/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           AI产业资讯：机器学习技术与知识产权法
@@ -354,7 +355,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/02/09/Machine-Learning-Articles/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">AI技术原理|推荐文献</div>
     </a>
   
@@ -386,9 +387,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习算法分类"><span class="toc-number">2.</span> <span class="toc-text">机器学习算法分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习-Supervised-learning"><span class="toc-number">2.0.1.</span> <span class="toc-text">监督学习 | Supervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#半监督学习-Semi-supervised-learning"><span class="toc-number">2.0.2.</span> <span class="toc-text">半监督学习 | Semi-supervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无监督学习-Unsupervised-learning"><span class="toc-number">2.0.3.</span> <span class="toc-text">无监督学习 | Unsupervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#强化学习-Reinforcement-learning"><span class="toc-number">2.0.4.</span> <span class="toc-text">强化学习 | Reinforcement learning</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习算法列表"><span class="toc-number">3.</span> <span class="toc-text">机器学习算法列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-线性回归算法-Linear-Regression"><span class="toc-number">4.</span> <span class="toc-text">1. 线性回归算法 Linear Regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-支持向量机算法-Support-Vector-Machine-SVM"><span class="toc-number">5.</span> <span class="toc-text">2. 支持向量机算法(Support Vector Machine,SVM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-最近邻居-k-近邻算法-K-Nearest-Neighbors-KNN"><span class="toc-number">6.</span> <span class="toc-text">3. 最近邻居/k-近邻算法 (K-Nearest Neighbors,KNN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-逻辑回归算法-Logistic-Regression"><span class="toc-number">7.</span> <span class="toc-text">4. 逻辑回归算法 Logistic Regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-决策树算法-Decision-Tree"><span class="toc-number">8.</span> <span class="toc-text">5. 决策树算法 Decision Tree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-k-平均算法-K-Means"><span class="toc-number">9.</span> <span class="toc-text">6. k-平均算法 K-Means</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-随机森林算法-Random-Forest"><span class="toc-number">10.</span> <span class="toc-text">7. 随机森林算法 Random Forest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-朴素贝叶斯算法-Naive-Bayes"><span class="toc-number">11.</span> <span class="toc-text">8. 朴素贝叶斯算法 Naive Bayes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-降维算法-Dimensional-Reduction"><span class="toc-number">12.</span> <span class="toc-text">9. 降维算法 Dimensional Reduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-梯度增强算法-Gradient-Boosting"><span class="toc-number">13.</span> <span class="toc-text">10. 梯度增强算法 Gradient Boosting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">14.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">15.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习算法分类"><span class="toc-number">2.</span> <span class="toc-text">机器学习算法分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习-Supervised-learning"><span class="toc-number">2.0.1.</span> <span class="toc-text">监督学习 | Supervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#半监督学习-Semi-supervised-learning"><span class="toc-number">2.0.2.</span> <span class="toc-text">半监督学习 | Semi-supervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无监督学习-Unsupervised-learning"><span class="toc-number">2.0.3.</span> <span class="toc-text">无监督学习 | Unsupervised learning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#强化学习-Reinforcement-learning"><span class="toc-number">2.0.4.</span> <span class="toc-text">强化学习 | Reinforcement learning</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习算法列表"><span class="toc-number">3.</span> <span class="toc-text">机器学习算法列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-线性回归算法-Linear-Regression"><span class="toc-number">4.</span> <span class="toc-text">1. 线性回归算法 Linear Regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-支持向量机算法-Support-Vector-Machine-SVM"><span class="toc-number">5.</span> <span class="toc-text">2. 支持向量机算法(Support Vector Machine,SVM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-最近邻居-k-近邻算法-K-Nearest-Neighbors-KNN"><span class="toc-number">6.</span> <span class="toc-text">3. 最近邻居/k-近邻算法 (K-Nearest Neighbors,KNN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-逻辑回归算法-Logistic-Regression"><span class="toc-number">7.</span> <span class="toc-text">4. 逻辑回归算法 Logistic Regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-决策树算法-Decision-Tree"><span class="toc-number">8.</span> <span class="toc-text">5. 决策树算法 Decision Tree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-k-平均算法-K-Means"><span class="toc-number">9.</span> <span class="toc-text">6. k-平均算法 K-Means</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-随机森林算法-Random-Forest"><span class="toc-number">10.</span> <span class="toc-text">7. 随机森林算法 Random Forest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-朴素贝叶斯算法-Naive-Bayes"><span class="toc-number">11.</span> <span class="toc-text">8. 朴素贝叶斯算法 Naive Bayes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-降维算法-Dimensional-Reduction"><span class="toc-number">12.</span> <span class="toc-text">9. 降维算法 Dimensional Reduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-梯度增强算法-Gradient-Boosting"><span class="toc-number">13.</span> <span class="toc-text">10. 梯度增强算法 Gradient Boosting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">14.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">15.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -416,7 +417,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -425,8 +426,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -456,7 +457,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>AI技术原理|神经网络基础 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Introduction 工作流程：Forward-Propagation、Backward Propagation、Partial Derivatives、Hyper Parameters 深度网络：A single layer Neural Network、Wide Neural Network  vs  Deep Neural Network 维度诅咒、权衡">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/AI-Neurons.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-1.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-2.png">
@@ -60,7 +61,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -73,7 +74,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -136,7 +137,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/" data-id="cjuqfn60k00gf5ih25p9oa5qt" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/" data-id="cjuqfn60k00gf5ih25p9oa5qt" class="article-share-link">分享</a>
         
         
         
@@ -156,14 +157,14 @@ ga('send', 'pageview');
 <li>维度诅咒、权衡</li>
 </ul>
 <a id="more"></a>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/AI-Neurons.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/AI-Neurons.jpg" alt></p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>神经网络试图复制人脑的工作以使事情更加智能化。</p>
 <p>神经网络通常是一种有监督的学习方法。这意味着需要有一套训练集。理想情况下，训练集合包含了绝对真值（tags | 标签，classes | 类 ）的例子。例如在文本情感分析的情况下，训练集是句子列表和它们各自对应的情绪。（注意：未标记的数据集也可以用来训练神经网络，但这里仅考虑最基本的情况。）</p>
 <p>例如：将文本称为 X ，将它们的标签称为 Y 。 有一些函数可以定义 X 和 Y 之间的关系，比如是什么特征（词/短语/句子结构等）导致一个句子是否定的或肯定的的含义。早期的人们习惯于手动查找这些特征，这被称为特征工程（feature engineering）。神经网络使得这一过程实现自动化处理。</p>
 <blockquote>
 <p>So there are many ways you can understand a concept, choose whichever suits you, being persistent about the learning part. At the end knowing maths is a useful tool when it comes to optimisations or experimentations.</p>
 </blockquote>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-1.jpg" alt=""></p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-1.jpg" alt></p>
 <p>人工神经网络由3个组成部分组成：</p>
 <ul>
 <li>输入层 Input Layer</li>
@@ -175,7 +176,7 @@ ga('send', 'pageview');
 <li>前向传播 Forward-Propagation：猜测答案</li>
 <li>反向传播 Back-Propagation：最小化实际答案和猜测答案之间的误差</li>
 </ul>
-<h4 id="前向传播-Forward-Propagation"><a href="#前向传播-Forward-Propagation" class="headerlink" title="前向传播 Forward-Propagation"></a>前向传播 Forward-Propagation</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-2.png" alt=""></p>
+<h4 id="前向传播-Forward-Propagation"><a href="#前向传播-Forward-Propagation" class="headerlink" title="前向传播 Forward-Propagation"></a>前向传播 Forward-Propagation</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-2.png" alt></p>
 <p>随机初始化权重（Randomly initialize weights）</p>
 <ul>
 <li>w1</li>
@@ -186,7 +187,7 @@ ga('send', 'pageview');
 <li>h3 = (x1 * w3) + (x2 * w3)<br>隐藏层的输出通过非线性函数(激活函数)以形成猜测输出(guessed output)</li>
 <li>y_ = fn( h1 , h2, h3 )</li>
 </ul>
-<h4 id="反向传播-Backward-Propagation"><a href="#反向传播-Backward-Propagation" class="headerlink" title="反向传播 Backward Propagation"></a>反向传播 Backward Propagation</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-3.jpg" alt=""></p>
+<h4 id="反向传播-Backward-Propagation"><a href="#反向传播-Backward-Propagation" class="headerlink" title="反向传播 Backward Propagation"></a>反向传播 Backward Propagation</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-3.jpg" alt></p>
 <ul>
 <li>总误差  total_error 通过一个代价函数 (cost function) 来计算，参数为计算期望值( expected value ) y（训练集中的值）和观测值(observed value)  y_（前向传播值）</li>
 <li>按每一个权重计算误差的偏导数（这些偏微分是每一个权重在总误差中的量度）</li>
@@ -204,22 +205,22 @@ ga('send', 'pageview');
 <p>Those familiar with Taylor Series, backpropogation shares the same end result with it. But instead of an indefinite series we try to optimise the first element only.</p>
 </blockquote>
 <p>偏差（Bias）是添加到隐藏层的权重。它们也被随机初始化并以隐藏层相似的方式更新。虽然隐藏层的作用是映射数据中底层函数（underlying function）的模型，但偏差的作用是横向移动学习函数（the learned function），使其与原始函数（the original function）重叠。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-4.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-4.jpg" alt></p>
 <h4 id="偏导数-Partial-Derivatives"><a href="#偏导数-Partial-Derivatives" class="headerlink" title="偏导数 Partial Derivatives"></a>偏导数 Partial Derivatives</h4><p>计算偏导数使我们能够知道每个权重对误差的贡献。</p>
 <p>导数的需求是显而易见的。例如：假设一个试图找到自动驾驶汽车最佳速度的神经网络。现在，如果汽车发现速度比预期的更快或者更慢，那么神经网络会通过加速或减速来改变速度。什么是加速/减速？速度的导数。</p>
 <h4 id="解释偏导数：射飞镖"><a href="#解释偏导数：射飞镖" class="headerlink" title="解释偏导数：射飞镖"></a>解释偏导数：射飞镖</h4><p>假设有几个孩子被要求向飞镖靶掷飞镖，瞄准中心。最初的结果是：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-5.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-5.jpg" alt></p>
 <p>现在如果我们确认了总误差并简单地从所有权重中减去，那么我们可以概括每个学生的误差。假设一个孩子瞄准的目标太低，但是我们要求所有的孩子都瞄准得更高一些，结果是：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-6.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-6.jpg" alt></p>
 <p>一些学生的错误可能会减少，但总体错误仍然会增加。通过查找偏导数，我们可以找出每个权重单独产生的误差。单独修正每个权重会得到以下结果：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-7.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-7.jpg" alt></p>
 <h2 id="超参数-Hyper-Parameters"><a href="#超参数-Hyper-Parameters" class="headerlink" title="超参数 Hyper Parameters"></a>超参数 Hyper Parameters</h2><p>虽然神经网络被用于自动化特征选择，但是仍然有一些参数我们必须手动输入。</p>
 <h4 id="学习速率-Learning-Rate"><a href="#学习速率-Learning-Rate" class="headerlink" title="学习速率 Learning Rate"></a>学习速率 Learning Rate</h4><p>学习速率是一个非常关键的超参数。如果学习速率太小，那么即使在长时间训练神经网络之后，它仍将远离最优结果。结果看起来像：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-8.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-8.jpg" alt></p>
 <p>相反，如果学习率太高，那么学习者就会过早地得出结论。产生以下结果：</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-9.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-9.jpg" alt></p>
 <h4 id="激活函数-Activation-Function"><a href="#激活函数-Activation-Function" class="headerlink" title="激活函数 Activation Function"></a>激活函数 Activation Function</h4><p>简单来说，激活函数（激励函数）负责决定哪些神经元将被激活，即什么信息将传递给其他层。没有激活函数，深度神经网络将失去大量的描述学习能力。</p>
-<p>这些函数的非线性负责增加学习者的自由度，使他们能够在较低维度上推广高维的问题。<br>下面是一些流行的激活函数的例子：<br><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-10.png" alt=""></p>
+<p>这些函数的非线性负责增加学习者的自由度，使他们能够在较低维度上推广高维的问题。<br>下面是一些流行的激活函数的例子：<br><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-10.png" alt></p>
 <h4 id="成本函数-Cost-Function"><a href="#成本函数-Cost-Function" class="headerlink" title="成本函数 Cost Function"></a>成本函数 Cost Function</h4><p>成本函数是神经网络的核心。它用于计算真实和观察结果的损失(loss)。我们的目标是尽量减少这种损失。因此，成本函数有效地推动了神经网络对其目标的学习。</p>
 <p>成本函数是神经网络做的“有多好”的量度，在给定训练样本和预期输出方面。它也可能取决于变量，如权重(weights)和偏差(biases)。</p>
 <p>成本函数是一个单一的值，而不是一个矢量，因为它评价了神经网络作为一个整体的效果。<br>一些最着名的成本函数是：</p>
@@ -238,7 +239,7 @@ ga('send', 'pageview');
 <li>成本函数必须能够写成平均值</li>
 <li>成本函数不能取决于除一个神经网络中的输出值以外的的任何激活值</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-11.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-11.jpg" alt></p>
 <h2 id="深度网络"><a href="#深度网络" class="headerlink" title="深度网络"></a>深度网络</h2><p>深度学习是一类机器学习算法，可以从数据中学习更深入（更抽象）的洞察力。</p>
 <ul>
 <li>使用级联，类似流水线的依次传递管道，拥有多层处理单元（非线性）进行特征提取和转换。</li>
@@ -246,12 +247,12 @@ ga('send', 'pageview');
 <li>多级表示相对应的不同抽象级别；这些级别构成了概念的层次结构。</li>
 </ul>
 <h4 id="单层神经网络-A-single-layer-Neural-Network"><a href="#单层神经网络-A-single-layer-Neural-Network" class="headerlink" title="单层神经网络 A single layer Neural Network"></a>单层神经网络 A single layer Neural Network</h4><p>单层神经网络，无论第一层（绿色神经元）如何学习，他们只需将其传递给输出即可。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-12.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-12.png" alt></p>
 <h4 id="双层神经网络-Two-layer-Neural-Network"><a href="#双层神经网络-Two-layer-Neural-Network" class="headerlink" title="双层神经网络 Two layer Neural Network"></a>双层神经网络 Two layer Neural Network</h4><p>对于两层神经网络，无论绿色隐藏层学习什么，都要传递到蓝色隐藏层，进一步学习（关于绿色层学习）。因此，隐藏层的数量越多，对先前已经学习过的概念的学习就越多。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-13.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-13.png" alt></p>
 <h4 id="Wide-Neural-Network-vs-Deep-Neural-Network"><a href="#Wide-Neural-Network-vs-Deep-Neural-Network" class="headerlink" title="Wide Neural Network  vs  Deep Neural Network"></a>Wide Neural Network  vs  Deep Neural Network</h4><p>在一层中存在更多神经元的情况下，它不会获得更深层次的洞察力。相反，它的结果是学习到更多的概念。</p>
 <p>例：学习英语语法，它需要理解大量的概念。在这种情况下，单层宽神经网络比深度神经网络的效果要好得多，而深度神经网络的宽度要小得多。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-14.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-14.png" alt></p>
 <p>但在学习傅立叶变换(Fourier Transform)的情况下，学习者（神经网络）需要深入学习，因为没有太多的概念需要学习，但每个概念都足够复杂，需要深度学习。</p>
 <p><strong>Balance is Key</strong></p>
 <p>每个任务都使用深度和宽度神经网络是非常诱人的。这可能是一个非常糟糕的主意，因为：</p>
@@ -269,11 +270,11 @@ ga('send', 'pageview');
 </ul>
 <h2 id="权衡"><a href="#权衡" class="headerlink" title="权衡"></a>权衡</h2><p><strong>It is typically impossible to have low bias and low variance.</strong></p>
 <p>在训练早期因为网络输出远未达到要求，偏差很大。由于数据影响较小，方差很小。在训练后期因为网络已经学会了潜在的功能，偏差很小。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-15.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/NeuralNetwork-Basic-15.jpg" alt></p>
 <p>然而，如果训练太长，网络也将学习该数据集特殊的噪声。这导致在不同数据集上测试的结果表现为高方差，因为不同数据集的噪声存在变化。实际上，具有高偏差的算法通常产生更简单的模型，这些模型不倾向于过度拟合，但可能会削弱其训练数据，而不能捕获重要的模式或特征的属性。具有低偏差和高方差的模型在结构上通常更复杂，使得它们能够更准确地表示训练集。然而，在这一过程中，它们也可能代表训练集中的占比较大的噪声，使得它们的预测尽管复杂性增加，但精度却不太精确。</p>
 <p>因此，低偏差和低方差同时存在通常是不可能的。</p>
 <p>目前，依靠丰富的数据和工具，我们可以轻松地创建复杂的机器学习模型。如果学习者没有提供足够的信息时，实际上偏差就发生了，处理过度拟合将变成中心工作。如果提供更多的例子，则意味着更多的变化，包括模式的数量都增加了。</p>
-<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="external">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt></p>
 <ul>
 <li><a href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/" target="_blank" rel="external">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
 <li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="external">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
@@ -296,7 +297,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/" data-id="cjuqfn60k00gf5ih25p9oa5qt" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/05/07/Machine-Learning-Neural-Network/" data-id="cjuqfn60k00gf5ih25p9oa5qt" class="article-share-link">分享</a>
       
       
       
@@ -320,7 +321,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -363,7 +364,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/05/14/Addiction-Decision-Coffee/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           嗑药简史：咖啡上瘾，喝还是不喝？
@@ -373,7 +374,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/04/27/Language-Go-lang-Web/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">玩转编程语言:基于Golang开发Web应用</div>
     </a>
   
@@ -405,9 +406,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作流程"><span class="toc-number">3.</span> <span class="toc-text">工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前向传播-Forward-Propagation"><span class="toc-number">3.0.1.</span> <span class="toc-text">前向传播 Forward-Propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向传播-Backward-Propagation"><span class="toc-number">3.0.2.</span> <span class="toc-text">反向传播 Backward Propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#偏导数-Partial-Derivatives"><span class="toc-number">3.0.3.</span> <span class="toc-text">偏导数 Partial Derivatives</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释偏导数：射飞镖"><span class="toc-number">3.0.4.</span> <span class="toc-text">解释偏导数：射飞镖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#超参数-Hyper-Parameters"><span class="toc-number">4.</span> <span class="toc-text">超参数 Hyper Parameters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习速率-Learning-Rate"><span class="toc-number">4.0.1.</span> <span class="toc-text">学习速率 Learning Rate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#激活函数-Activation-Function"><span class="toc-number">4.0.2.</span> <span class="toc-text">激活函数 Activation Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#成本函数-Cost-Function"><span class="toc-number">4.0.3.</span> <span class="toc-text">成本函数 Cost Function</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度网络"><span class="toc-number">5.</span> <span class="toc-text">深度网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单层神经网络-A-single-layer-Neural-Network"><span class="toc-number">5.0.1.</span> <span class="toc-text">单层神经网络 A single layer Neural Network</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双层神经网络-Two-layer-Neural-Network"><span class="toc-number">5.0.2.</span> <span class="toc-text">双层神经网络 Two layer Neural Network</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wide-Neural-Network-vs-Deep-Neural-Network"><span class="toc-number">5.0.3.</span> <span class="toc-text">Wide Neural Network  vs  Deep Neural Network</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#维度诅咒"><span class="toc-number">6.</span> <span class="toc-text">维度诅咒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权衡"><span class="toc-number">7.</span> <span class="toc-text">权衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作流程"><span class="toc-number">3.</span> <span class="toc-text">工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前向传播-Forward-Propagation"><span class="toc-number">3.0.1.</span> <span class="toc-text">前向传播 Forward-Propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向传播-Backward-Propagation"><span class="toc-number">3.0.2.</span> <span class="toc-text">反向传播 Backward Propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#偏导数-Partial-Derivatives"><span class="toc-number">3.0.3.</span> <span class="toc-text">偏导数 Partial Derivatives</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释偏导数：射飞镖"><span class="toc-number">3.0.4.</span> <span class="toc-text">解释偏导数：射飞镖</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#超参数-Hyper-Parameters"><span class="toc-number">4.</span> <span class="toc-text">超参数 Hyper Parameters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习速率-Learning-Rate"><span class="toc-number">4.0.1.</span> <span class="toc-text">学习速率 Learning Rate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#激活函数-Activation-Function"><span class="toc-number">4.0.2.</span> <span class="toc-text">激活函数 Activation Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#成本函数-Cost-Function"><span class="toc-number">4.0.3.</span> <span class="toc-text">成本函数 Cost Function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度网络"><span class="toc-number">5.</span> <span class="toc-text">深度网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单层神经网络-A-single-layer-Neural-Network"><span class="toc-number">5.0.1.</span> <span class="toc-text">单层神经网络 A single layer Neural Network</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双层神经网络-Two-layer-Neural-Network"><span class="toc-number">5.0.2.</span> <span class="toc-text">双层神经网络 Two layer Neural Network</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wide-Neural-Network-vs-Deep-Neural-Network"><span class="toc-number">5.0.3.</span> <span class="toc-text">Wide Neural Network  vs  Deep Neural Network</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#维度诅咒"><span class="toc-number">6.</span> <span class="toc-text">维度诅咒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权衡"><span class="toc-number">7.</span> <span class="toc-text">权衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读-《The-Machine-Learning-Master》"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -435,7 +436,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -444,8 +445,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -475,7 +476,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>计算机远程通信协议：gRPC | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/10/30/Protocol-gRPC/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 一、远程调用技术简史:从 CORBA 到 gRPC 二、gRPC 简介 三、gRPC 示例代码">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OpenSource-gRPC.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Arch_gRPC_Workflow.png">
 <meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
@@ -45,7 +46,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -58,7 +59,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -121,7 +122,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/30/Protocol-gRPC/" data-id="cjuqfn60y00hb5ih2fuckbmg0" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/10/30/Protocol-gRPC/" data-id="cjuqfn60y00hb5ih2fuckbmg0" class="article-share-link">分享</a>
         
         
         
@@ -147,7 +148,7 @@ ga('send', 'pageview');
 <h4 id="1-1-HTTP-REST-和微服务"><a href="#1-1-HTTP-REST-和微服务" class="headerlink" title="1.1 HTTP, REST 和微服务"></a>1.1 HTTP, REST 和微服务</h4><p>归功于 JavaScript 框架，Node.js 以及文档数据库的发展，REST 在 Web 开发者中广受欢迎。许多应用程序开始基于 REST 实现 ，即使是内部序列化和通信模式领域。但 HTTP 是最有效的消息交换协议吗？即使在同一上下文、同一网络，或者是同一台机器上运行的服务之间？HTTP 的便捷性与高性能之间需要作出权衡，这促使我们回到问题的起点，寻找微服务架构中最优的通信框架。</p>
 <p>进入 gRPC 时代 —— 来自谷歌，现代的轻量级通信协议。这是一个高性能的、开源的通用远程过程调用（RPC） 框架，它可以在多种开发语言、任何操作系统上运行。</p>
 <p>gRPC 在推出的第一年内就被 CoreOS，Netflix，Square 和 Cockroach Labs 等机构采用。 CoreOS 团队的 Etcd，是一种分布式键/值存储服务，采用 gRPC 实现端通信。电信公司如 Cisco，Juniper 和 Arista 都使用 gRPC 实现数据流遥测和网络设备配置。</p>
-<h4 id="1-2-什么是-gRPC"><a href="#1-2-什么是-gRPC" class="headerlink" title="1.2 什么是 gRPC ?"></a>1.2 什么是 gRPC ?</h4><p>当我第一次遇到 gRPC，它使我想到 CORBA。两个框架都基于语言无关的接口定义语言（IDL） 声明服务，通过特定的语言绑定实现。<br><img src="http://riboseyim-qiniu.riboseyim.com/OpenSource-gRPC.png" alt=""></p>
+<h4 id="1-2-什么是-gRPC"><a href="#1-2-什么是-gRPC" class="headerlink" title="1.2 什么是 gRPC ?"></a>1.2 什么是 gRPC ?</h4><p>当我第一次遇到 gRPC，它使我想到 CORBA。两个框架都基于语言无关的接口定义语言（IDL） 声明服务，通过特定的语言绑定实现。<br><img src="http://riboseyim-qiniu.riboseyim.com/OpenSource-gRPC.png" alt></p>
 <p>CORBA 和 gRPC 二者的设计，都是为了使客户端相信服务器在同一台机器。客户机在桩（Stub）上调用一个方法（method），调用过程由底层协议透明地处理。</p>
 <p>gRPC 的秘诀在于处理序列化的方式。gRPC 基于 Protocol Buffer，一个开源的用于结构化数据序列化机制，它是语言和平台无关的。Protocol Buffer  的描述非常详细，与 XML 类似。但是它们比其他的协议格式更小，更快，效率更高。任何需要序列化的自定义数据类型在 gRPC 被定义为一个 Protocol Buffer 。</p>
 <p>Protocol Buffer 的最新版本是 proto3，支持多种开发语言的代码生成，Java , C++，Python，Ruby , Java Lite , JavaScript，Objective-C 和 C # 。当一个 Protocol Buffer 编译为一个特定的语言，它的访问器（setter 和 getter）为每个字段提供定义。</p>
@@ -160,7 +161,7 @@ ga('send', 'pageview');
 <li>创建一个客户端调用服务</li>
 <li>运行服务端和客户端</li>
 </ol>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Arch_gRPC_Workflow.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Arch_gRPC_Workflow.png" alt></p>
 <p><strong>Note:Node.js 客户端不需要生成存根（Stub），只要 Protocol Buffer 文件是可访问的，它就可以直接与服务端对话。</strong></p>
 <h2 id="三、gRPC-示例代码"><a href="#三、gRPC-示例代码" class="headerlink" title="三、gRPC 示例代码"></a>三、gRPC 示例代码</h2><p>为了进一步熟悉 gRPC，我们将用 Python 语言创建一个简单的计算服务。它将同时被一个 Python 客户端和一个 Node.js 客户端调用。以下测试示例运行在 Mac OS X 。</p>
 <p>你可以从 GitHub 库 <a href="https://github.com/grpc/grpc/tree/master/examples" target="_blank" rel="external">https://github.com/grpc/grpc/tree/master/examples</a> 访问源代码，在自己的机器上运行示例。</p>
@@ -233,7 +234,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/30/Protocol-gRPC/" data-id="cjuqfn60y00hb5ih2fuckbmg0" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/10/30/Protocol-gRPC/" data-id="cjuqfn60y00hb5ih2fuckbmg0" class="article-share-link">分享</a>
       
       
       
@@ -257,7 +258,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -300,7 +301,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/11/05/History-USA-Virginia/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           私人历史文献：弗吉尼亚笔记
@@ -310,7 +311,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/10/29/CyberSecurity-WiFi/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Cyber-Security:警惕Wi-Fi漏洞</div>
     </a>
   
@@ -342,9 +343,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程通信协议：从-CORBA-到-gRPC"><span class="toc-number">2.</span> <span class="toc-text">远程通信协议：从 CORBA 到 gRPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、远程调用技术简史"><span class="toc-number">3.</span> <span class="toc-text">一、远程调用技术简史</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-HTTP-REST-和微服务"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.1 HTTP, REST 和微服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-什么是-gRPC"><span class="toc-number">3.0.2.</span> <span class="toc-text">1.2 什么是 gRPC ?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、gRPC-简介"><span class="toc-number">4.</span> <span class="toc-text">二、gRPC 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建-gRPC-服务的流程"><span class="toc-number">4.0.1.</span> <span class="toc-text">2.1 创建 gRPC 服务的流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、gRPC-示例代码"><span class="toc-number">5.</span> <span class="toc-text">三、gRPC 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附表：gRPC-年谱"><span class="toc-number">6.</span> <span class="toc-text">附表：gRPC 年谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程通信协议：从-CORBA-到-gRPC"><span class="toc-number">2.</span> <span class="toc-text">远程通信协议：从 CORBA 到 gRPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、远程调用技术简史"><span class="toc-number">3.</span> <span class="toc-text">一、远程调用技术简史</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-HTTP-REST-和微服务"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.1 HTTP, REST 和微服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-什么是-gRPC"><span class="toc-number">3.0.2.</span> <span class="toc-text">1.2 什么是 gRPC ?</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、gRPC-简介"><span class="toc-number">4.</span> <span class="toc-text">二、gRPC 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建-gRPC-服务的流程"><span class="toc-number">4.0.1.</span> <span class="toc-text">2.1 创建 gRPC 服务的流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、gRPC-示例代码"><span class="toc-number">5.</span> <span class="toc-text">三、gRPC 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附表：gRPC-年谱"><span class="toc-number">6.</span> <span class="toc-text">附表：gRPC 年谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -372,7 +373,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -381,8 +382,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -412,7 +413,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

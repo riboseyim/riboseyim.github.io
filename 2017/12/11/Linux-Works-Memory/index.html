@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>How Linux Works:Memory | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/12/11/Linux-Works-Memory/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 经典内存异常：Out of Memory (OOM) Killer 我的内存利用率为什么特别高？ Linux 内存的分类 Linux 内存的计算 Linux 进程的内存 Linux 应用内存分配">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
@@ -46,7 +47,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -59,7 +60,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -122,7 +123,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="cjuqfn60a00g15ih2kcgr7vjq" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="cjuqfn60a00g15ih2kcgr7vjq" class="article-share-link">分享</a>
         
         
         
@@ -152,7 +153,7 @@ ga('send', 'pageview');
 <li>内存利用率（概括）: free</li>
 <li>内存利用率（进程）: top</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png" alt></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">内存空闲率 = (Total - Used) / Total = (<span class="number">7982</span>M - <span class="number">7503</span>M) / <span class="number">7983</span>M X <span class="number">100</span> % = <span class="number">6</span> %</div><div class="line"></div><div class="line">“真实的” 内存空闲率 =  (<span class="built_in">free</span> + shared + buffers + cached)/ Total = <span class="number">5860</span> M / <span class="number">7983</span>M X <span class="number">100</span> % = <span class="number">73.4</span> %</div></pre></td></tr></table></figure>
 <p>实际情况是系统运行正常、不存在内存不足的情况，对于应用程序来说，“真实的” 内存空闲率是 73.4% 。如果要回答这个问题，必须了解内存管理的基础 —— 物理地址空间和逻辑地址空间。</p>
 <p>按照用途，内存可以划分为“内核内存”和“用户内存”（用户进程及磁盘高速缓存），包括内核本身在内，程序在访问物理内存时，并不直接指定物理地址，而是指定逻辑地址。CPU 上搭载的硬件 MMU （Memory Management Unit）会参照物理-逻辑地址对应关系表实现对映射后物理地址上的数据访问。x86 架构中逻辑地址空间限制在 4GB ，在 x86_64 架构中则没有此限制。</p>
@@ -187,7 +188,7 @@ ga('send', 'pageview');
 <li>VmSwap: 交换空间的使用量</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">$ cat /proc/<span class="number">30029</span>/status</div><div class="line">Name:	java</div><div class="line">State:	S (sleeping)</div><div class="line">Tgid:	<span class="number">30029</span></div><div class="line">Pid:	<span class="number">30029</span></div><div class="line">PPid:	<span class="number">29983</span></div><div class="line">TracerPid:	<span class="number">0</span></div><div class="line">Uid:	<span class="number">54322</span>	<span class="number">54322</span>	<span class="number">54322</span>	<span class="number">54322</span></div><div class="line">Gid:	<span class="number">54323</span>	<span class="number">54323</span>	<span class="number">54323</span>	<span class="number">54323</span></div><div class="line">FDSize:	<span class="number">8192</span></div><div class="line">Groups:	<span class="number">10</span> <span class="number">54323</span></div><div class="line">VmPeak:	 <span class="number">2754032</span> kB</div><div class="line">VmSize:	 <span class="number">2678836</span> kB</div><div class="line">VmLck:	       <span class="number">0</span> kB</div><div class="line">VmHWM:	 <span class="number">1337912</span> kB</div><div class="line">VmRSS:	 <span class="number">1337512</span> kB</div><div class="line">VmData:	 <span class="number">2575692</span> kB</div><div class="line">VmStk:	    <span class="number">1012</span> kB</div><div class="line">VmExe:	      <span class="number">60</span> kB</div><div class="line">VmLib:	  <span class="number">101564</span> kB</div><div class="line">VmPTE:	    <span class="number">3048</span> kB</div><div class="line">Threads:	<span class="number">98</span></div><div class="line">SigQ:	<span class="number">0</span>/<span class="number">63825</span></div><div class="line">SigPnd:	<span class="number">0000000000000000</span></div><div class="line">ShdPnd:	<span class="number">0000000000000000</span></div><div class="line">SigBlk:	<span class="number">0000000000000004</span></div><div class="line">SigIgn:	<span class="number">0000000000000001</span></div><div class="line">SigCgt:	<span class="number">1000000180005</span>cce</div><div class="line">CapInh:	<span class="number">0000000000000000</span></div><div class="line">CapPrm:	<span class="number">0000000000000000</span></div><div class="line">CapEff:	<span class="number">0000000000000000</span></div><div class="line">CapBnd:	ffffffffffffffff</div><div class="line">Cpus_allowed:	ffffffff</div><div class="line">Cpus_allowed_list:	<span class="number">0</span><span class="number">-31</span></div><div class="line">Mems_allowed:	<span class="number">00000000</span>,</div><div class="line">Mems_allowed_list:	<span class="number">0</span></div><div class="line">voluntary_ctxt_switches:	<span class="number">12468</span></div><div class="line">nonvoluntary_ctxt_switches:	<span class="number">19</span></div></pre></td></tr></table></figure>
-<h4 id="Linux-应用内存分配"><a href="#Linux-应用内存分配" class="headerlink" title="Linux 应用内存分配"></a>Linux 应用内存分配</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png" alt=""></p>
+<h4 id="Linux-应用内存分配"><a href="#Linux-应用内存分配" class="headerlink" title="Linux 应用内存分配"></a>Linux 应用内存分配</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png" alt></p>
 <p>类似 Java 之类的虚拟机应用程序可以设置内存参数，例如:<br>Xms128m JVM初始分配的堆内存<br>Xmx512m JVM最大允许分配的堆内存<br>XX:PermSize=64M JVM初始分配的非堆内存<br>XX:MaxPermSize=128M JVM最大允许分配的非堆内存</p>
 <p>如果该应用需要较大的内存空间，可以调整为 -Xmx1024m、-Xmx2048m 以保障应用程序的运行性能，XX:MaxPermSize 设置过小会导致内存溢出，java.lang.OutOfMemoryError: PermGen space。但是 <strong>需要特别注意</strong> 的是：Xmx 绝对不能超过最大物理内存，或者说需要保留一定的剩余内存空间，否则将有可能导致其它进程因为没有可用内存而阻塞，甚至无法登陆机器 。</p>
 <p>正如摔跤游戏一样，内存管理的法则就是让进程在 <strong>留有余地</strong> 的前提下搏杀。</p>
@@ -201,7 +202,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
@@ -237,7 +238,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="cjuqfn60a00g15ih2kcgr7vjq" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="cjuqfn60a00g15ih2kcgr7vjq" class="article-share-link">分享</a>
       
       
       
@@ -261,7 +262,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -304,7 +305,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/12/11/Linux-Perf-Load/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Linux 性能诊断:负载评估
@@ -314,7 +315,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/12/09/Policy-Female/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">政府行为模型及预测：女权主义与政治运动</div>
     </a>
   
@@ -346,9 +347,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存异常：-Out-of-Memory-OOM-Killer"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存异常： Out of Memory (OOM) Killer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我的内存利用率为什么特别高？"><span class="toc-number">1.0.2.</span> <span class="toc-text">我的内存利用率为什么特别高？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的分类"><span class="toc-number">1.0.3.</span> <span class="toc-text">Linux 内存的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的计算"><span class="toc-number">1.0.4.</span> <span class="toc-text">Linux 内存的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-进程的内存"><span class="toc-number">1.0.5.</span> <span class="toc-text">Linux 进程的内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-应用内存分配"><span class="toc-number">1.0.6.</span> <span class="toc-text">Linux 应用内存分配</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶阅读"><span class="toc-number">2.</span> <span class="toc-text">进阶阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">2.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">2.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存异常：-Out-of-Memory-OOM-Killer"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存异常： Out of Memory (OOM) Killer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我的内存利用率为什么特别高？"><span class="toc-number">1.0.2.</span> <span class="toc-text">我的内存利用率为什么特别高？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的分类"><span class="toc-number">1.0.3.</span> <span class="toc-text">Linux 内存的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的计算"><span class="toc-number">1.0.4.</span> <span class="toc-text">Linux 内存的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-进程的内存"><span class="toc-number">1.0.5.</span> <span class="toc-text">Linux 进程的内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-应用内存分配"><span class="toc-number">1.0.6.</span> <span class="toc-text">Linux 应用内存分配</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶阅读"><span class="toc-number">2.</span> <span class="toc-text">进阶阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">2.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">2.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -376,7 +377,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -385,8 +386,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -416,7 +417,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

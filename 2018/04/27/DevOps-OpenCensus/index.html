@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>DevOps 漫谈：开源分布式跟踪系统 OpenCensus | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/04/27/DevOps-OpenCensus/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 Distributed Tracing and Monitoring System OpenCensus: A framework for distributed tracing OpenCensus Principle: data structure 、Context">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Theme.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-2.png">
@@ -59,7 +60,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -72,7 +73,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -135,7 +136,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/04/27/DevOps-OpenCensus/" data-id="cjuqfn64t00ub5ih2hgacmico" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/04/27/DevOps-OpenCensus/" data-id="cjuqfn64t00ub5ih2hgacmico" class="article-share-link">分享</a>
         
         
         
@@ -154,7 +155,7 @@ ga('send', 'pageview');
 <li>OpenCensus Principle: data structure 、Context</li>
 </ul>
 <a id="more"></a>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Theme.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Theme.png" alt></p>
 <p>This article is part of an <strong>Distributed Tracing and Monitoring System</strong> tutorial series. Make sure to check out my other articles as well:</p>
 <ul>
 <li><a href="https://riboseyim.github.io/2018/04/27/DevOps-OpenCensus" target="_blank" rel="external">DevOps 漫谈：开源分布式跟踪系统 OpenCensus</a></li>
@@ -164,8 +165,8 @@ ga('send', 'pageview');
 <p>在单应用环境下，业务都在同一个服务器上，如果出现错误和异常只需要盯住一个点，就可以快速定位和处理问题；但是在微服务的架构下，功能模块天然是分布式部署运行的，前后台的业务流会经过很多个微服务的处理和传递，就连日志监控都会成为一个大问题（日志分散在多个服务器、无状态服务下如何查看业务流的处理顺序等），更不要说服务之间还有复杂的交互关系。</p>
 <p>用户的一个请求在系统中会经过多个子系统（或者多个微服务）的处理，而且是发生在不同机器甚至是不同集群，当发生异常时需要快速发现问题，并准确定位到是哪个环节出了问题。对系统行为进行跟踪必须持续进行，因为异常的发生是无法预料的，有些甚至难以重现。跟踪需要无所不在，否则可能会遗漏某些重要的故障点。</p>
 <p>为了解决上述问题，分布式跟踪系统 —— 一种帮助理解分布式系统行为、帮助分析性能问题的工具应运而生。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-1.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-1.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Micro-2.png" alt></p>
 <h2 id="第一部分-Google-Dapper-Distributed-Tracing-and-Monitoring-System"><a href="#第一部分-Google-Dapper-Distributed-Tracing-and-Monitoring-System" class="headerlink" title="第一部分 Google Dapper : Distributed Tracing and Monitoring System"></a>第一部分 Google Dapper : Distributed Tracing and Monitoring System</h2><blockquote>
 <p>Modern Internet services are often implemented as complex, large-scale distributed systems.These applications are constructed from collections of software modules that may be developed by different teams, perhaps in different programming languages, and could span many thousands of machines across multiple physical facilities. Tools that aid in understanding system behavior and reasoning about performance issues are invaluable in such an environment.</p>
 </blockquote>
@@ -176,12 +177,12 @@ ga('send', 'pageview');
 <li><p>跟踪树（trace tree）和 span<br>在 Dapper 跟踪树中，基本单元是树节点（分配 spanid）。节点之间通过连线表示父子关系，通过 parentId 和 spanId 把所有的关系串联起来，实现记录业务流的作用。</p>
 </li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-TraceTree-Span.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-TraceTree-Span.png" alt></p>
 <h2 id="第二部分-OpenCensus-A-framework-for-distributed-tracing"><a href="#第二部分-OpenCensus-A-framework-for-distributed-tracing" class="headerlink" title="第二部分 OpenCensus: A framework for distributed tracing"></a>第二部分 OpenCensus: A framework for distributed tracing</h2><blockquote>
 <p>OpenCensus is a framework for stats collection and distributed tracing.</p>
 </blockquote>
 <p>Google Dapper 的定位更准确的说是分析系统，并不能解决从生产服务中提取数据的难题，OpenCensus 项目为此提供了解决方案。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Logo.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Logo.png" alt></p>
 <p>OpenCensus 项目是 Google 开源的一个用来收集和追踪应用指标的第三方库。OpenCensus 能够提供了一套统一的测量工具：跨服务捕获跟踪跨度（span）、应用级别指标以及来自其他应用的元数据（例如日志）。OpenCensus 有如下一些主要特点：</p>
 <ul>
 <li>标准通信协议和一致的 API ：用于处理 metric 和 trace</li>
@@ -192,7 +193,7 @@ ga('send', 'pageview');
 <li>不需要额外的服务器或守护进程来支持 OpenCensus</li>
 <li>In process debugging：一个可选的代理程序，用于在目标主机上显示请求和指标数据</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Language.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-Language.png" alt></p>
 <h2 id="OpenCensus-Concepts"><a href="#OpenCensus-Concepts" class="headerlink" title="OpenCensus Concepts"></a>OpenCensus Concepts</h2><h4 id="Tags-标签"><a href="#Tags-标签" class="headerlink" title="Tags | 标签"></a>Tags | 标签</h4><p>OpenCensus 允许系统在记录时将度量与维度相关联。记录的数据使我们能够从各种不同的角度分析测量结果，即使在高度互连和复杂的系统中也能够应付。<br>标签以键值对的形式在上下文中传递，并且允许在当前上下文中添加或修改。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ctx, err = tag.New(ctx,</div><div class="line">	tag.Insert(osKey, <span class="string">"macOS-10.12.5"</span>),</div><div class="line">	tag.Upsert(userIDKey, <span class="string">"cde36753ed"</span>),</div><div class="line">)</div></pre></td></tr></table></figure>
 <h4 id="Stats-统计"><a href="#Stats-统计" class="headerlink" title="Stats | 统计"></a>Stats | 统计</h4><p>Stats 收集库和应用程序记录的测量结果，汇总、导出统计数据。为了实现低开销（ a low-overhead framework even if instrumentation is always enabled ），数据点记录和数据聚合是分离的，OpenCensus 统计收集分两个阶段进行：</p>
@@ -214,7 +215,7 @@ ga('send', 'pageview');
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">distAgg := view.Distribution(<span class="number">0</span>, <span class="number">1</span>&lt;&lt;<span class="number">32</span>, <span class="number">2</span>&lt;&lt;<span class="number">32</span>, <span class="number">3</span>&lt;&lt;<span class="number">32</span>)</div><div class="line">countAgg := view.Count()</div><div class="line">sumAgg := view.Sum()</div></pre></td></tr></table></figure>
 <p>示例：创建一个视图（ DistributionAggregation，指标 “videoSize” ）<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> err := view.Register(&amp;view.View&#123;</div><div class="line">	Name:        <span class="string">"my.org/video_size_distribution"</span>,</div><div class="line">	Description: <span class="string">"distribution of processed video size over time"</span>,</div><div class="line">	Measure:     videoSize,</div><div class="line">	Aggregation: view.Distribution(<span class="number">0</span>, <span class="number">1</span>&lt;&lt;<span class="number">32</span>, <span class="number">2</span>&lt;&lt;<span class="number">32</span>, <span class="number">3</span>&lt;&lt;<span class="number">32</span>),</div><div class="line">&#125;); err != <span class="literal">nil</span> &#123;</div><div class="line">	log.Fatalf(<span class="string">"Failed to subscribe to view: %v"</span>, err)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="Introspection-内省"><a href="#Introspection-内省" class="headerlink" title="Introspection | 内省"></a>Introspection | 内省</h4><p>OpenCensus 提供在线仪表板，显示进程中的诊断数据。这些页面被称为 z-pages ，它们有助于了解如何查看来自特定进程的数据，而不必依赖任何度量收集器或分布式跟踪后端。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-traceZ.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-OpenCensus-traceZ.png" alt></p>
 <h2 id="OpenCensus-Examples"><a href="#OpenCensus-Examples" class="headerlink" title="OpenCensus Examples"></a>OpenCensus Examples</h2><h4 id="创建指标"><a href="#创建指标" class="headerlink" title="创建指标"></a>创建指标</h4><ul>
 <li>定义指标类型</li>
 <li>定义显示方式</li>
@@ -242,20 +243,20 @@ ga('send', 'pageview');
 <h4 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h4><ul>
 <li>函数内容为空（微秒级）</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E7%A9%BA%E6%96%B9%E6%B3%95.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E7%A9%BA%E6%96%B9%E6%B3%95.png" alt></p>
 <ul>
 <li>串行调用函数方法，内容包括网络访问和持久化操作（毫秒级）</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E4%B8%B2%E8%A1%8C.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E4%B8%B2%E8%A1%8C.png" alt></p>
 <ul>
 <li>并行调用函数方法（Go routine），内容与上同</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E5%B9%B6%E8%A1%8C.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E5%B9%B6%E8%A1%8C.png" alt></p>
 <ul>
 <li>串行/并行混合调用</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">go</span> go_ping(ctx, <span class="string">"192.168.213.128"</span>, <span class="number">2</span>, time.Second*<span class="number">3</span>, <span class="literal">false</span>)</div><div class="line"><span class="keyword">go</span> go_ping(ctx, <span class="string">"192.168.213.128"</span>, <span class="number">2</span>, time.Second*<span class="number">3</span>, <span class="literal">false</span>)</div><div class="line"><span class="keyword">go</span> go_ping(ctx, <span class="string">"192.168.213.129"</span>, <span class="number">2</span>, time.Second*<span class="number">5</span>, <span class="literal">false</span>)</div><div class="line">go_ping(ctx, <span class="string">"192.168.213.128"</span>, <span class="number">2</span>, time.Second*<span class="number">3</span>, <span class="literal">false</span>)</div><div class="line">go_ping(ctx, <span class="string">"192.168.213.128"</span>, <span class="number">2</span>, time.Second*<span class="number">3</span>, <span class="literal">false</span>)</div><div class="line">go_ping(ctx, <span class="string">"192.168.213.128"</span>, <span class="number">2</span>, time.Second*<span class="number">3</span>, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E6%B7%B7%E5%90%88.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/zipkin-%E6%B7%B7%E5%90%88.png" alt></p>
 <ul>
 <li>多服务调用</li>
 </ul>
@@ -278,8 +279,8 @@ ga('send', 'pageview');
 <li>Links</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//go.opencensus.io/trace.go</span></div><div class="line"></div><div class="line"><span class="keyword">type</span> Span <span class="keyword">struct</span> &#123;</div><div class="line">	<span class="comment">// data contains information recorded about the span.</span></div><div class="line">	<span class="comment">//</span></div><div class="line">	<span class="comment">// It will be non-nil if we are exporting the span or recording events for it.</span></div><div class="line">	<span class="comment">// Otherwise, data is nil, and the Span is simply a carrier for the</span></div><div class="line">	<span class="comment">// SpanContext, so that the trace ID is propagated.</span></div><div class="line">	data        *SpanData</div><div class="line">   <span class="comment">// protects the contents of *data (but not the pointer value.)</span></div><div class="line">	mu          sync.Mutex</div><div class="line">	spanContext SpanContext</div><div class="line">	<span class="comment">// spanStore is the spanStore this span belongs to, if any, otherwise it is nil.</span></div><div class="line">	*spanStore</div><div class="line"></div><div class="line">	endOnce sync.Once</div><div class="line"></div><div class="line">	executionTracerTaskEnd <span class="function"><span class="keyword">func</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="title">type</span> <span class="title">SpanContext</span> <span class="title">struct</span> &#123;</div><div class="line">	TraceID      TraceID</div><div class="line">	SpanID       SpanID</div><div class="line">	TraceOptions TraceOptions</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/OpenCensus-DataModel-Base.png" alt=""></p>
-<h4 id="上下文-Context"><a href="#上下文-Context" class="headerlink" title="上下文 Context"></a>上下文 Context</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Context.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/OpenCensus-DataModel-Base.png" alt></p>
+<h4 id="上下文-Context"><a href="#上下文-Context" class="headerlink" title="上下文 Context"></a>上下文 Context</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/DTM-Context.png" alt></p>
 <p>上下文 Context 按照树型关系构建。以 Golang 为例，创建 Context 树第一步就是通过 context.Background() 得到根节点，再由 WithCancel()、WithTimeout() 等函数创建其它的子节点，孙节点。子节点从父节点复制得到，在子节点也可以设定新的状态值，如此就可以使元数据在子节点之间层层传递。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Background</span><span class="params">()</span> <span class="title">Context</span></span></div><div class="line"></div><div class="line"><span class="title">func</span> <span class="title">WithCancel</span><span class="params">(parent Context)</span> <span class="params">(ctx Context, cancel CancelFunc)</span></div><div class="line"></div><div class="line"><span class="title">func</span> <span class="title">WithDeadline</span><span class="params">(parent Context, deadline time.Time)</span> <span class="params">(Context, CancelFunc)</span></div><div class="line"></div><div class="line"><span class="title">func</span> <span class="title">WithTimeout</span><span class="params">(parent Context, timeout time.Duration)</span> <span class="params">(Context, CancelFunc)</span></div><div class="line"></div><div class="line"><span class="title">func</span> <span class="title">WithValue</span><span class="params">(parent Context, key <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">Context</span></div></pre></td></tr></table></figure>
 <ul>
@@ -312,12 +313,12 @@ ga('send', 'pageview');
 <li><a href="https://docs.microsoft.com/zh-cn/azure/application-insights/app-insights-app-map" target="_blank" rel="external">Application Map，应用程序映射|会审分布式应用程序</a></li>
 </ul>
 <p>应用程序映射可帮助发现性能瓶颈或热点失败的所有组件的分布式应用程序。在地图上的每个节点表示应用程序组件或其依赖项;并且有运行状况 KPI 和警报状态。可从任何组件单击以获得更详细的诊断，如 Application Insights 事件。 如果应用使用了 Azure 服务，还可以单击获得 Azure 诊断，如 SQL 数据库顾问建议。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MS-ApplicationMap.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MS-ApplicationMap.png" alt></p>
 <ul>
 <li><a href="https://docs.microsoft.com/zh-cn/azure/application-insights/app-insights-transaction-diagnostics" target="_blank" rel="external">End-to-End Transaction Diagnostics，端到端跨组件事务诊断</a></li>
 </ul>
 <p>事务诊断功能将所有受 Application Insights 监视的组件中的服务器端遥测关联到一个单独的视图。Application Insights 可检测基础关系，并可用于诊断导致事务缓慢或失败的应用程序组件、依赖项或异常。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/MS-PartscrossComponent.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MS-PartscrossComponent.png" alt></p>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
 <li><a href="https://github.com/orgs/census-instrumentation/people" target="_blank" rel="external">OpenCensus People</a></li>
 <li><a href="https://zipkin.io/pages/quickstart.html" target="_blank" rel="external">OpenZipkin QuickStart</a></li>
@@ -361,7 +362,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/04/27/DevOps-OpenCensus/" data-id="cjuqfn64t00ub5ih2hgacmico" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/04/27/DevOps-OpenCensus/" data-id="cjuqfn64t00ub5ih2hgacmico" class="article-share-link">分享</a>
       
       
       
@@ -385,7 +386,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -428,7 +429,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/04/27/Language-Go-lang-Web/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           玩转编程语言:基于Golang开发Web应用
@@ -438,7 +439,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/04/10/DevOps-Phoenix/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">DevOps 漫谈：从作坊到工厂的寓言故事</div>
     </a>
   
@@ -470,9 +471,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绪论"><span class="toc-number">2.</span> <span class="toc-text">绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分-Google-Dapper-Distributed-Tracing-and-Monitoring-System"><span class="toc-number">3.</span> <span class="toc-text">第一部分 Google Dapper : Distributed Tracing and Monitoring System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分-OpenCensus-A-framework-for-distributed-tracing"><span class="toc-number">4.</span> <span class="toc-text">第二部分 OpenCensus: A framework for distributed tracing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-Concepts"><span class="toc-number">5.</span> <span class="toc-text">OpenCensus Concepts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tags-标签"><span class="toc-number">5.0.1.</span> <span class="toc-text">Tags | 标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stats-统计"><span class="toc-number">5.0.2.</span> <span class="toc-text">Stats | 统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Recording-记录"><span class="toc-number">5.0.3.</span> <span class="toc-text">Recording | 记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Trace-跟踪"><span class="toc-number">5.0.4.</span> <span class="toc-text">Trace | 跟踪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#视图-Views"><span class="toc-number">5.0.5.</span> <span class="toc-text">视图 | Views</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introspection-内省"><span class="toc-number">5.0.6.</span> <span class="toc-text">Introspection | 内省</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-Examples"><span class="toc-number">6.</span> <span class="toc-text">OpenCensus Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建指标"><span class="toc-number">6.0.1.</span> <span class="toc-text">创建指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#收集指标数据"><span class="toc-number">6.0.2.</span> <span class="toc-text">收集指标数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三方数据接口-Exporter"><span class="toc-number">6.0.3.</span> <span class="toc-text">第三方数据接口 | Exporter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据可视化"><span class="toc-number">6.0.4.</span> <span class="toc-text">数据可视化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分：OpenCensus-Principle-工作原理-待续"><span class="toc-number">7.</span> <span class="toc-text">第三部分：OpenCensus Principle | 工作原理 (待续)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据结构"><span class="toc-number">7.0.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上下文-Context"><span class="toc-number">7.0.2.</span> <span class="toc-text">上下文 Context</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#视图"><span class="toc-number">7.0.3.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exporter"><span class="toc-number">7.0.4.</span> <span class="toc-text">Exporter</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensu-资讯"><span class="toc-number">8.</span> <span class="toc-text">OpenCensu 资讯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Microsoft-joins-the-OpenCensus-project-June-13-2018"><span class="toc-number">8.0.1.</span> <span class="toc-text">Microsoft joins the OpenCensus project | June 13,2018</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">9.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker"><span class="toc-number">9.0.1.</span> <span class="toc-text">Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source"><span class="toc-number">9.0.2.</span> <span class="toc-text">Source</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">10.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式追踪系统"><span class="toc-number">10.0.1.</span> <span class="toc-text">分布式追踪系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">10.0.2.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开源架构技术漫谈"><span class="toc-number">10.0.3.</span> <span class="toc-text">开源架构技术漫谈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绪论"><span class="toc-number">2.</span> <span class="toc-text">绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分-Google-Dapper-Distributed-Tracing-and-Monitoring-System"><span class="toc-number">3.</span> <span class="toc-text">第一部分 Google Dapper : Distributed Tracing and Monitoring System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分-OpenCensus-A-framework-for-distributed-tracing"><span class="toc-number">4.</span> <span class="toc-text">第二部分 OpenCensus: A framework for distributed tracing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-Concepts"><span class="toc-number">5.</span> <span class="toc-text">OpenCensus Concepts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tags-标签"><span class="toc-number">5.0.1.</span> <span class="toc-text">Tags | 标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stats-统计"><span class="toc-number">5.0.2.</span> <span class="toc-text">Stats | 统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Recording-记录"><span class="toc-number">5.0.3.</span> <span class="toc-text">Recording | 记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Trace-跟踪"><span class="toc-number">5.0.4.</span> <span class="toc-text">Trace | 跟踪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#视图-Views"><span class="toc-number">5.0.5.</span> <span class="toc-text">视图 | Views</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introspection-内省"><span class="toc-number">5.0.6.</span> <span class="toc-text">Introspection | 内省</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensus-Examples"><span class="toc-number">6.</span> <span class="toc-text">OpenCensus Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建指标"><span class="toc-number">6.0.1.</span> <span class="toc-text">创建指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#收集指标数据"><span class="toc-number">6.0.2.</span> <span class="toc-text">收集指标数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三方数据接口-Exporter"><span class="toc-number">6.0.3.</span> <span class="toc-text">第三方数据接口 | Exporter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据可视化"><span class="toc-number">6.0.4.</span> <span class="toc-text">数据可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分：OpenCensus-Principle-工作原理-待续"><span class="toc-number">7.</span> <span class="toc-text">第三部分：OpenCensus Principle | 工作原理 (待续)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据结构"><span class="toc-number">7.0.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上下文-Context"><span class="toc-number">7.0.2.</span> <span class="toc-text">上下文 Context</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#视图"><span class="toc-number">7.0.3.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exporter"><span class="toc-number">7.0.4.</span> <span class="toc-text">Exporter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCensu-资讯"><span class="toc-number">8.</span> <span class="toc-text">OpenCensu 资讯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Microsoft-joins-the-OpenCensus-project-June-13-2018"><span class="toc-number">8.0.1.</span> <span class="toc-text">Microsoft joins the OpenCensus project | June 13,2018</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">9.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker"><span class="toc-number">9.0.1.</span> <span class="toc-text">Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source"><span class="toc-number">9.0.2.</span> <span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">10.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式追踪系统"><span class="toc-number">10.0.1.</span> <span class="toc-text">分布式追踪系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">10.0.2.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开源架构技术漫谈"><span class="toc-number">10.0.3.</span> <span class="toc-text">开源架构技术漫谈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -500,7 +501,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -509,8 +510,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -540,7 +541,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

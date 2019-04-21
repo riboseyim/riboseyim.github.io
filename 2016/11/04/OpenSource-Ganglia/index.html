@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Install.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Impl.png">
@@ -59,7 +60,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -72,7 +73,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -135,7 +136,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="cjuqfn60u00h15ih2xfbju4t6" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="cjuqfn60u00h15ih2xfbju4t6" class="article-share-link">分享</a>
         
         
         
@@ -157,7 +158,7 @@ ga('send', 'pageview');
 <p>另外，很多性能问题也需要长时间的追踪、对比才能作出判断。正如任何一个高明的医生，都需要尽可能多地了解、记录病人的病史，不掌握这些情况，盲目下药，无异于庸医杀人。诚如医者曰：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">夫经方之难精，由来尚矣。今病有内同而外异，亦有内异而外，</div><div class="line">故五脏六腑之盈虚，血脉荣卫之通塞，固非耳目之所察，</div><div class="line">必先诊候以审之。世有愚者，读方三年，便谓天下无病可治；</div><div class="line">及治病三年，乃知天下无方可用。</div></pre></td></tr></table></figure>
 <p>基于 Ganglia 项目我们可以快速搭建一套高性能的监控系统，展开故障诊断分析、资源扩容预算甚至故障预测。</p>
-<h4 id="Ganglia框架简析"><a href="#Ganglia框架简析" class="headerlink" title="Ganglia框架简析"></a>Ganglia框架简析</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png" alt=""></p>
+<h4 id="Ganglia框架简析"><a href="#Ganglia框架简析" class="headerlink" title="Ganglia框架简析"></a>Ganglia框架简析</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png" alt></p>
 <!--more-->
 <p>一般应用中，需要用到两个核心组件：</p>
 <p><strong>Gmond （Ganglia Monitoring Daemon）</strong><br>Gmond承担双重角色：1、作为Agent，部署在所有需要监控的服务器上。<br>2、作为收发机，接收或转发数据包。</p>
@@ -165,12 +166,12 @@ ga('send', 'pageview');
 <p><strong>Web frontend</strong><br>Ganglia项目提供一个PHP编写的通用型的Web包，主要实现数据可视化，能提供一些简单的数据筛选UI。页面不多，大量使用了模版技术。HTTP Server方面，用Apache和Nginx都可以。</p>
 <p><strong>RRDTool (Round Robin Database)</strong><br>Gmetad收集的时间序列数据都通过RRD存储，RRDTool作为绘图引擎使用。</p>
 <p><strong>插件生态</strong><br>Ganglia最重要的特性之一就是提供了一个灵活的数据标准和插件API。<br>它使得我们可以根据系统的情况，很容易地在默认的监控指标集之上，引用或定制其他扩展指标。<br>这一特性在大数据领域也获得了认可，Hadoop,Spark等都开放了面向Ganglia的指标集。<br>在Github上也有很多现成的扩展插件。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Install.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Install.png" alt></p>
 <h4 id="Ganglia工作模式"><a href="#Ganglia工作模式" class="headerlink" title="Ganglia工作模式"></a>Ganglia工作模式</h4><p>项目的名称其实已经反映了作者的设计思路。<br>Ganglia（又作：ganglion）,直译为“神经节”、“中枢神经”。在解剖学上是一个生物组织丛集，通常是神经细胞体的集合。在神经学中，神经节主要是由核周体和附随连结的树突组合而成。神经节经常与其他神经节相互连接以形成一个复杂的神经节系统。神经节提供了身体内不同神经体系之间的依靠点和中介连结，例如周围神经系统和中枢神经系统。</p>
 <p>Ganglia的作者意图将服务器集群理解为生物神经系统，每台服务器都是独立工作神经节，通过多层次树突结构连接起来，<br>既可以横向联合，也可以从低向高，逐层传递信息。具体例证就是Ganglia的收集数据工作可以工作在单播（unicast)或多播(multicast)模式下，<br>默认为多播模式。</p>
 <p>单播：Gmond收集到的监控数据发送到特定的一台或几台机器上，可以跨网段</p>
 <p>多播：Gmond收集到的监控数据发送到同一网段内所有的机器上，同时收集同一网段内的所有机器发送过来的监控数据。<br>因为是以广播包的形式发送，因此需要同一网段内。但同一网段内，又可以定义不同的发送通道。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Impl.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Impl.png" alt></p>
 <p>vi /usr/local/ganglia/etc/gmond.conf</p>
 <p><strong>默认配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">cluster &#123;</div><div class="line">  name = &quot;cluster01&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line">udp_send_channel &#123;</div><div class="line">  mcast_join = 239.2.11.71</div><div class="line">  port = 8649</div><div class="line">  ttl = 1</div><div class="line">&#125;</div><div class="line"></div><div class="line">udp_recv_channel &#123;</div><div class="line">  mcast_join = 239.2.11.71</div><div class="line">  port = 8649</div><div class="line">  bind = 239.2.11.71</div><div class="line">  retry_bind = true</div><div class="line">&#125;</div><div class="line"></div><div class="line">tcp_accept_channel &#123;</div><div class="line">  port = 8649</div><div class="line">  gzip_output = no</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong>单播模式Gmetad增加配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">udp_recv_channel &#123;</div><div class="line">  port = 8666</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -194,7 +195,7 @@ ga('send', 'pageview');
 <p>1、告警流程框架：Ganglia本身并不具备，可以选用 Nagios 补充。<br><a href="https://www.ibm.com/developerworks/library/l-ganglia-nagios-1/" target="_blank" rel="external">https://www.ibm.com/developerworks/library/l-ganglia-nagios-1/</a><br><a href="https://www.quora.com/Ganglia-vs-collectd-vs-cacti-advantage-and-disadvantage" target="_blank" rel="external">https://www.quora.com/Ganglia-vs-collectd-vs-cacti-advantage-and-disadvantage</a></p>
 <p>2、日志管理框架：Ganglia本身并不具备，可以选用 Splunk 补充。</p>
 <p>3、性能开销预算</p>
-<p>对于单纯的Gmond节点来说，性能开销很低。主要的瓶颈在中央节点。<br><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Perf_Test.png" alt=""></p>
+<p>对于单纯的Gmond节点来说，性能开销很低。主要的瓶颈在中央节点。<br><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Perf_Test.png" alt></p>
 <p>各节点的gmond进程向中央节点发送的udp数据带来的网络开销。如果一个节点每秒发10个包，<br>1000个节点将会发出10000个，每个包有200字节，就有2m字节，10000个包的处理所需要的cpu使用也会上升。</p>
 <p>Gmetad默认15秒向gmond取一次xml数据,解析xml文件带来的CPU负荷也会随着管理节点数线性增长。</p>
 <p>格外需要注意的是RRD的写入瓶颈。实际应用中需要根据资源情况，调整采样频率、权衡指标数量、引入RRDCached等方式优化。</p>
@@ -202,7 +203,7 @@ ga('send', 'pageview');
 <p>   Firstly, the proxy allows metrics to be filtered, reducing the amount of data logged and increasing the scaleability of the Ganglia collector.</p>
 <p>   Secondly, sFlow-RT generates traffic flow metrics, making them available to Ganglia.</p>
 <p>   Finally, Ganglia is typically used in conjunction with additional monitoring tools that can all be driven using the analytics stream generated by sFlow-RT.</p>
-<p>   <img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-sFlow.jpg" alt=""></p>
+<p>   <img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-sFlow.jpg" alt></p>
 <p>5、可视化</p>
 <ul>
 <li><a href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/" target="_blank" rel="external">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
@@ -240,7 +241,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="cjuqfn60u00h15ih2xfbju4t6" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="cjuqfn60u00h15ih2xfbju4t6" class="article-share-link">分享</a>
       
       
       
@@ -264,7 +265,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -307,7 +308,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2016/11/20/Network-Traffic/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           珠海航展交通管控实践
@@ -317,7 +318,7 @@ ga('send', 'pageview');
   
   
     <a href="/2016/10/15/Artistic-Zhuhai-AirShow/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">摄影专辑:珠海航空航天展览</div>
     </a>
   
@@ -349,9 +350,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾"><span class="toc-number">1.0.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia框架简析"><span class="toc-number">1.0.2.</span> <span class="toc-text">Ganglia框架简析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia工作模式"><span class="toc-number">1.0.3.</span> <span class="toc-text">Ganglia工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看数据流向"><span class="toc-number">1.0.4.</span> <span class="toc-text">查看数据流向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据可视化"><span class="toc-number">1.1.</span> <span class="toc-text">数据可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia-Develop-Team"><span class="toc-number">2.0.1.</span> <span class="toc-text">Ganglia Develop Team</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读者讨论区"><span class="toc-number">3.</span> <span class="toc-text">读者讨论区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源架构技术漫谈"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">4.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回顾"><span class="toc-number">1.0.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia框架简析"><span class="toc-number">1.0.2.</span> <span class="toc-text">Ganglia框架简析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia工作模式"><span class="toc-number">1.0.3.</span> <span class="toc-text">Ganglia工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看数据流向"><span class="toc-number">1.0.4.</span> <span class="toc-text">查看数据流向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据可视化"><span class="toc-number">1.1.</span> <span class="toc-text">数据可视化</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia-Develop-Team"><span class="toc-number">2.0.1.</span> <span class="toc-text">Ganglia Develop Team</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读者讨论区"><span class="toc-number">3.</span> <span class="toc-text">读者讨论区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：开源架构技术漫谈"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">4.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li>
           </div>
       </div>
     </div>
@@ -379,7 +380,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -388,8 +389,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -419,7 +420,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

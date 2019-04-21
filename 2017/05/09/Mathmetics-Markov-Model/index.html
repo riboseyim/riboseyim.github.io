@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 马尔可夫模型（Markov Model ） 隐含马尔可夫模型（ Hidden Markov Model ） 隐含隐马尔可夫模型的应用 马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png">
 <meta property="og:updated_time" content="2019-02-02T16:49:25.073Z">
@@ -45,7 +46,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -58,7 +59,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -121,7 +122,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">分享</a>
         
         
         
@@ -147,11 +148,11 @@ ga('send', 'pageview');
 <li>马尔可夫链：符合这个马尔可夫假设的随机过程则称为马尔科夫过程。</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">digraph markov&#123;</div><div class="line">  label = <span class="string">" Markov 马尔可夫链"</span>;</div><div class="line">  rankdir = LR;</div><div class="line">  m1-&gt;m2[label = <span class="string">"1.0"</span>];</div><div class="line">  m2-&gt;m3[label = <span class="string">"0.6"</span>];</div><div class="line">  m3-&gt;m4[label = <span class="string">"0.3"</span>];</div><div class="line">  m2-&gt;m4[label = <span class="string">"0.4"</span>];</div><div class="line">  m3-&gt;m3[label = <span class="string">"0.7"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/markov.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov.png" alt></p>
 <ul>
 <li>隐含马尔可夫模型（ Hidden Markov Model ）<br>最早由20世纪六七十年代，<a href="#">美国数学家鲍姆（ Leonard E. Baum ）</a> 发表的一系列论文中提出。隐含马尔可夫模型是马尔可夫链的一个扩展，即任一时刻 t 的状态 St 是不可见的。但是，在每个时刻 t 会输出一个富豪 Ot ，而且 Ot 和 St 相关且仅和 St 相关。</li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png" alt></p>
 <h2 id="隐马尔可夫模型的应用"><a href="#隐马尔可夫模型的应用" class="headerlink" title="隐马尔可夫模型的应用"></a>隐马尔可夫模型的应用</h2><p>隐含马尔可夫模型成功的应用最早是语音识别（Sphinx——大词汇量连续语音识别系统）。根据应用的不同而有不同的名称,例如语音识别中的声学模型（ Acoustic Model ），机器翻译中的翻译模型（ Translation Model ）等。</p>
 <h4 id="1、应用领域：翻译"><a href="#1、应用领域：翻译" class="headerlink" title="1、应用领域：翻译"></a>1、应用领域：翻译</h4><ul>
 <li>语音识别，声学模型（ Acoustic Model ）</li>
@@ -189,7 +190,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">分享</a>
       
       
       
@@ -213,7 +214,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -256,7 +257,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/05/09/CyberSecurity-Hacker/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Cyber-Security:黑客与技术、产业及其精神世界
@@ -266,7 +267,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/05/05/Language-Go-lang/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Catalog：玩转编程语言 - Golang 专题</div>
     </a>
   
@@ -298,9 +299,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐马尔可夫模型的应用"><span class="toc-number">2.</span> <span class="toc-text">隐马尔可夫模型的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、应用领域：翻译"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、应用领域：翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、应用领域：图像识别"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、应用领域：图像识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、生物信息学-和-基因组学"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、生物信息学 和 基因组学</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐含马尔可夫模型的训练"><span class="toc-number">2.1.</span> <span class="toc-text">隐含马尔可夫模型的训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐马尔可夫模型的应用"><span class="toc-number">2.</span> <span class="toc-text">隐马尔可夫模型的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、应用领域：翻译"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、应用领域：翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、应用领域：图像识别"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、应用领域：图像识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、生物信息学-和-基因组学"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、生物信息学 和 基因组学</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐含马尔可夫模型的训练"><span class="toc-number">2.1.</span> <span class="toc-text">隐含马尔可夫模型的训练</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -328,7 +329,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -337,8 +338,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -368,7 +369,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

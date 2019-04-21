@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>DevOps 漫谈：容器技术 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 2018 Docker 用户报告 - Sysdig Edition 应用排行榜 容器运行环境 容器编排器 容器监控">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_02.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_03.png">
@@ -57,7 +58,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -70,7 +71,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -133,7 +134,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="cjuqfn63700q05ih2ramzdcor" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="cjuqfn63700q05ih2ramzdcor" class="article-share-link">分享</a>
         
         
         
@@ -163,10 +164,10 @@ ga('send', 'pageview');
 <p>根据 <a href="https://sysdig.com/opensource/" target="_blank" rel="external">Sysdig</a> 发表的年度 <a href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/" target="_blank" rel="external">Docker</a> 用户报告，在容器市场 Docker 仍然是事实上的行业标准，但是其它品牌的容器运行环境正在发展；Kubernetes 仍然是容器编排领域的王者。报告的数据来源主要依据 Sysdig Monitor 和 Sysdig Secure cloud service 提供的容器使用状况的实时快照报告，它们从容器健康、性能和安全性等方面提供度量指标和可视化服务。样本集包括垂直行业和各类规模不等的大中型企业，地域覆盖北美洲、拉丁美洲、EMEA（欧洲、中东、非洲）和亚太地区。与去年一样，这份报告并不是用来代表整个容器市场。因为数据仅限于 Sysdig 客户，所以对于那些选择商业和开源解决方案的公司来说不具有代表性。但是来自 90000 个容器用户汇总数据，确实提供了了解真实生产环境容器使用状况的独特视角。</p>
 <h2 id="2018-Docker-用户报告-Sysdig-Edition"><a href="#2018-Docker-用户报告-Sysdig-Edition" class="headerlink" title="2018 Docker 用户报告 - Sysdig Edition"></a>2018 Docker 用户报告 - Sysdig Edition</h2><h4 id="容器应用排行榜"><a href="#容器应用排行榜" class="headerlink" title="容器应用排行榜"></a>容器应用排行榜</h4><p>容器部署应用榜首：Java Virtual Machines (JVM)。在容器时代之前，Java 就广泛应用于企业级服务，目前两者 —— Java 和容器更加紧密地融合到了一起。</p>
 <p>我们还看到数据库解决方案的使用在增加, 例如在容器环境中运行 <a href="(https://riboseyim.github.io/2018/01/03/OpenSource-DB-PostgreSQL/">PostgreSQL</a>) 和 MongoDB 。这是一个信号, 表明在容器中部署有状态服务已经成为现实。容器的短暂性，让许多人对于在容器中运行高价值数据服务抱有怀疑态度, 但是市场回答了问题的解决方案—即为微服务设计的持久、便携和共享存储。数据显示, 客户开始转向完全由容器驱动的环境。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png" alt></p>
 <h4 id="容器密度"><a href="#容器密度" class="headerlink" title="容器密度"></a>容器密度</h4><p>在2017年每个主机的容器数的中位数是 10 。2018年，这个数字上升到 15，同比增长 50% 。另一方面，我们看到一个客户的单台主机上运行了 154 个容器，比我们去年观察到的最大 95 个增长了。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_02.png" alt=""></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_03.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_02.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_03.png" alt></p>
 <h4 id="容器运行环境"><a href="#容器运行环境" class="headerlink" title="容器运行环境"></a>容器运行环境</h4><blockquote>
 <p>Docker still reigns, but we’re seeing what might be the first signs of cracks in the dam.</p>
 </blockquote>
@@ -174,11 +175,11 @@ ga('send', 'pageview');
 <p>事实上，在过去的一年里, 客户对其他平台的使用增加了。CoreOS RKT 显著增长到 12% , Mesos containerizer 占有 4% 。LXC 也在增长, 尽管从业人员规模比例还较低。数据显示, 客户在生产环境中使用 “non-Docker” 解决方案更加便利了。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_04.png" alt="Container runtimes: Docker leads, followed by rkt and Mesos."></p>
 <h4 id="容器存活周期"><a href="#容器存活周期" class="headerlink" title="容器存活周期"></a>容器存活周期</h4><p>95% 的容器存活时间低于一周。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_05.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_05.png" alt></p>
 <p>容器和服务的生存时间是多少？ 我们观察了容器、容器镜像和服务的数量, 它们在短时间内开始并停止, 存活10秒或更短, 或者一周或更长。下图显示不同间隔内的容器百分比。 11% 的容器活了不到10秒。大部分容器（27%） 的生存期在五分钟之内。</p>
 <p>为什么这么多的容器寿命如此之短呢？我们知道许多定制的系统都是按照需求来扩展的。容器被创建, 做他们的工作, 然后离开。例如, 一个客户为他们在 Jenkins 创建的每个作业配置一个容器，执行变更测试, 然后关闭容器。对他们来说, 类似活动每天会发生上千次。（Jenkins：一个用 Java 编写的开源持续集成工具，MIT许可证。它支持软件配置管理工具，如CVS、Subversion 和 Git 等，可以执行基于 Apache Ant 和 Apache Maven 的项目，以及任意的Shell 脚本/批处理命令。）</p>
 <h4 id="镜像存活周期"><a href="#镜像存活周期" class="headerlink" title="镜像存活周期"></a>镜像存活周期</h4><p>我们还观察了容器镜像的使用时间。通过查看这些数据, 我们了解到客户在 DevOps CI/CD 流程的一部分中是如何频繁地进行新的容器更新部署的。 一小部分 — 一个百分点—在不到10秒内更新。69% 的容器镜像在一周的跨度内更新。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_06.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_06.png" alt></p>
 <h4 id="服务存活周期"><a href="#服务存活周期" class="headerlink" title="服务存活周期"></a>服务存活周期</h4><p>“服务的寿命是多少？” 在 Kubernetes 中, 服务抽象定义了一组提供特定函数以及如何访问它们的 Pods 。服务允许 Pods 在不影响应用程序的情况下注销和复制。例如, 一个群集可以运行一个 Node.js  JavaScript 运行时服务、MySQL 数据库服务和 NGINX 前端服务。</p>
 <p>我们看到大多数服务(67%)生存期超过一周。少量的服务在更频繁的基础上被停止, 但是对于大多数客户来说, 目标是让应用程序 24 小时持续工作。容器和 Pods 可能会来了又走, 但是服务持续处于启动并且可用状态。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_07.png" alt="Most container-based services stay up beyond a week."></p>
@@ -272,7 +273,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="cjuqfn63700q05ih2ramzdcor" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="cjuqfn63700q05ih2ramzdcor" class="article-share-link">分享</a>
       
       
       
@@ -296,7 +297,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -339,7 +340,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2018/06/19/Project-Template/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           项目模板
@@ -349,7 +350,7 @@ ga('send', 'pageview');
   
   
     <a href="/2018/06/11/Linux-Perf-App/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">Linux 性能诊断：Web Server</div>
     </a>
   
@@ -381,9 +382,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-Docker-用户报告-Sysdig-Edition"><span class="toc-number">2.</span> <span class="toc-text">2018 Docker 用户报告 - Sysdig Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#容器应用排行榜"><span class="toc-number">2.0.1.</span> <span class="toc-text">容器应用排行榜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器密度"><span class="toc-number">2.0.2.</span> <span class="toc-text">容器密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器运行环境"><span class="toc-number">2.0.3.</span> <span class="toc-text">容器运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器存活周期"><span class="toc-number">2.0.4.</span> <span class="toc-text">容器存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像存活周期"><span class="toc-number">2.0.5.</span> <span class="toc-text">镜像存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务存活周期"><span class="toc-number">2.0.6.</span> <span class="toc-text">服务存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器编排器"><span class="toc-number">2.0.7.</span> <span class="toc-text">容器编排器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器集群大小"><span class="toc-number">2.0.8.</span> <span class="toc-text">容器集群大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kubernetes-分发版"><span class="toc-number">2.0.9.</span> <span class="toc-text">Kubernetes 分发版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器健康与应用性能监控"><span class="toc-number">2.0.10.</span> <span class="toc-text">容器健康与应用性能监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器和基础设施自定义监控指标"><span class="toc-number">2.0.11.</span> <span class="toc-text">容器和基础设施自定义监控指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器注册"><span class="toc-number">2.0.12.</span> <span class="toc-text">容器注册</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络安全专题合辑《Cyber-Security-Manual》"><span class="toc-number">3.0.1.</span> <span class="toc-text">网络安全专题合辑《Cyber-Security Manual》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">3.0.2.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">3.0.3.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-Docker-用户报告-Sysdig-Edition"><span class="toc-number">2.</span> <span class="toc-text">2018 Docker 用户报告 - Sysdig Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#容器应用排行榜"><span class="toc-number">2.0.1.</span> <span class="toc-text">容器应用排行榜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器密度"><span class="toc-number">2.0.2.</span> <span class="toc-text">容器密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器运行环境"><span class="toc-number">2.0.3.</span> <span class="toc-text">容器运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器存活周期"><span class="toc-number">2.0.4.</span> <span class="toc-text">容器存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像存活周期"><span class="toc-number">2.0.5.</span> <span class="toc-text">镜像存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务存活周期"><span class="toc-number">2.0.6.</span> <span class="toc-text">服务存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器编排器"><span class="toc-number">2.0.7.</span> <span class="toc-text">容器编排器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器集群大小"><span class="toc-number">2.0.8.</span> <span class="toc-text">容器集群大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kubernetes-分发版"><span class="toc-number">2.0.9.</span> <span class="toc-text">Kubernetes 分发版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器健康与应用性能监控"><span class="toc-number">2.0.10.</span> <span class="toc-text">容器健康与应用性能监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器和基础设施自定义监控指标"><span class="toc-number">2.0.11.</span> <span class="toc-text">容器和基础设施自定义监控指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器注册"><span class="toc-number">2.0.12.</span> <span class="toc-text">容器注册</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络安全专题合辑《Cyber-Security-Manual》"><span class="toc-number">3.0.1.</span> <span class="toc-text">网络安全专题合辑《Cyber-Security Manual》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">3.0.2.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">3.0.3.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -411,7 +412,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -420,8 +421,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -451,7 +452,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {

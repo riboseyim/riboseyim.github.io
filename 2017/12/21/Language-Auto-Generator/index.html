@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>玩转编程语言:基于Node.js构建自定义代码生成器 | Ribose Yim&#39;s Home</title>
@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://riboseyim.com/2017/12/21/Language-Auto-Generator/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要在真实的软件开发过程中，无论使用何种编程开发语言，都不可避免的会遇到代码重复的问题。如何处理重复的问题，可以选择情怀（手动再敲一遍），也可以选择 Copy-to-Copy ，或者选择代码生成器。正如在之前的文章  我的写作工具链 中，我介绍过一种 Blog 生成器 hexo ，可以将 Markdown 格式的内容自动生成方便发布的 HTML 格式。本文将还原 hexo 的运行原理，为解决类似问">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator-HTML.png">
 <meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
@@ -45,7 +46,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -58,7 +59,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
@@ -121,7 +122,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="cjuqfn5ve00365ih2xtium7qg" class="article-share-link">Share</a>
+        <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="cjuqfn5ve00365ih2xtium7qg" class="article-share-link">分享</a>
         
         
         
@@ -148,7 +149,7 @@ ga('send', 'pageview');
 <li>npm i -s markdown-it — 该模块提供 Markdown 文件解析器</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mkdir project-generator</div><div class="line">mkdir project-generator/pages</div><div class="line">mkdir project-generator/pages_meta</div><div class="line">mkdir project-generator/js</div><div class="line">mkdir project-generator/css</div><div class="line">mkdir project-generator/images</div><div class="line">mkdir project-generator/build_scripts</div><div class="line">mkdir project-generator/build</div><div class="line"></div><div class="line"><span class="built_in">cd</span> project-generator</div><div class="line">npm init </div><div class="line">npm i <span class="_">-s</span> concurrently</div><div class="line">npm i <span class="_">-s</span> fs</div><div class="line">npm i <span class="_">-s</span> fs-extra</div><div class="line">npm i <span class="_">-s</span> markdown-it</div><div class="line">npm i <span class="_">-s</span> live-server </div><div class="line">npm i <span class="_">-s</span> nodemon</div></pre></td></tr></table></figure>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png" alt></p>
 <h4 id="Step-2-准备元数据"><a href="#Step-2-准备元数据" class="headerlink" title="Step 2: 准备元数据"></a>Step 2: 准备元数据</h4><p>例如：<strong>pages/index.md</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># Home page</div><div class="line"></div><div class="line">Hello world!</div><div class="line"></div><div class="line">[Link to another page](./other.html)</div></pre></td></tr></table></figure></p>
 <p>例如：<strong>pages_meta/index.json</strong> 用于存储一些需要的元数据（参数、固定内容等），JSON 文件格式方便后面调用。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"lang"</span>: <span class="string">"en"</span>,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Index"</span>,</div><div class="line">  <span class="attr">"stylesheets"</span>: [<span class="string">"./css/style.css"</span>],</div><div class="line">  <span class="attr">"scripts"</span>: [<span class="string">"./js/main.js"</span>],</div><div class="line">  <span class="attr">"charset"</span>: <span class="string">"utf-8"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"This is a page"</span>,</div><div class="line">  <span class="attr">"keywords"</span>: <span class="string">"page, sample"</span>,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">"None"</span>,</div><div class="line">  <span class="attr">"favicon"</span>: <span class="string">"./images/favicon.png"</span>,</div><div class="line">  <span class="attr">"viewport"</span>: <span class="string">"width=device-width, initial-scale=1"</span>,</div><div class="line">  <span class="attr">"extra"</span>: []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -157,7 +158,7 @@ ga('send', 'pageview');
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageTemplate = <span class="built_in">require</span>(<span class="string">'./page_template'</span>);</div><div class="line"></div><div class="line"><span class="comment">// All paths are relative to package.json.</span></div><div class="line"><span class="keyword">var</span> pagesPath = <span class="string">'./pages'</span>;</div><div class="line"><span class="keyword">var</span> pagesMetaPath = <span class="string">'./pages_meta'</span>;</div><div class="line"><span class="keyword">var</span> copyFolders = [<span class="string">'./images'</span>, <span class="string">'./css'</span>, <span class="string">'./js'</span>];</div><div class="line"><span class="keyword">var</span> outputPath = <span class="string">'./build'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Clean</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Cleaning previous build...'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> file <span class="keyword">of</span> fs.readdirSync(outputPath))&#123;</div><div class="line">    fs.removeSync(path.join(outputPath, file));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//Loading</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Loading pages metadata...'</span>);</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> pageMeta <span class="keyword">of</span> fs.readdirSync(pagesMetaPath))&#123;</div><div class="line">    pagesMeta[pageMeta] = fs.readFileSync(path.join(pagesMetaPath,pageMeta),<span class="string">'utf8'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Generate</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Generating pages...'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> page <span class="keyword">of</span> <span class="built_in">Object</span>.entries(pages)) &#123;</div><div class="line">    <span class="keyword">var</span> pageName = page[<span class="number">0</span>].slice(<span class="number">0</span>, page[<span class="number">0</span>].lastIndexOf(<span class="string">'.'</span>));</div><div class="line">    <span class="keyword">var</span> metaData = pagesMeta.hasOwnProperty(pageName+<span class="string">'.json'</span>)</div><div class="line">      ? <span class="built_in">JSON</span>.parse(pagesMeta[pageName+<span class="string">'.json'</span>])</div><div class="line">      : &#123;&#125;;</div><div class="line">    metaData.title = metaData.title || pageName;</div><div class="line">    <span class="keyword">var</span> pageContent = page[<span class="number">1</span>];</div><div class="line">    fs.writeFileSync(</div><div class="line">      path.join(outputPath,pageName+<span class="string">'.html'</span>),</div><div class="line">      pageTemplate.generatePage(pageContent, metaData));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Copy</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Copying folders...'</span>);</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> copyFolder <span class="keyword">of</span> copyFolders)&#123;</div><div class="line">    fs.copySync(copyFolder, path.join(outputPath,copyFolder));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <p><strong>pages_template.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> md = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>)();</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">generatePage</span>: <span class="function"><span class="keyword">function</span>(<span class="params">pageContent,pageMeta</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span><span class="string">`&lt;!DOCTYPE html&gt;</span></div><div class="line">&lt;html lang="<span class="subst">$&#123;pageMeta.lang || <span class="keyword">this</span>.defaultMeta.lang&#125;</span>"&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;<span class="subst">$&#123;pageMeta.title || <span class="keyword">this</span>.defaultMeta.title&#125;</span>&lt;/title&gt;</div><div class="line">    &lt;meta charset="<span class="subst">$&#123;pageMeta.charset || <span class="keyword">this</span>.defaultMeta.charset&#125;</span>"&gt;</div><div class="line">    &lt;meta name="description" content="<span class="subst">$&#123;pageMeta.description || <span class="keyword">this</span>.defaultMeta.description&#125;</span>"&gt;</div><div class="line">    &lt;meta name="keywords" content="<span class="subst">$&#123;pageMeta.keywords || <span class="keyword">this</span>.defaultMeta.keywords&#125;</span>"&gt;</div><div class="line">    &lt;meta name="author" content="<span class="subst">$&#123;pageMeta.author || <span class="keyword">this</span>.defaultMeta.author&#125;</span>"&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  <span class="subst">$&#123;md.render(pageContent)&#125;</span></div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">    `;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="Step-4-优化任务脚本"><a href="#Step-4-优化任务脚本" class="headerlink" title="Step 4: 优化任务脚本"></a>Step 4: 优化任务脚本</h4><p>在 Step 1 步骤中，npm init 创建了一个文件：<strong>package.json</strong>，我们可以定义其中的 “scripts” , 执行 <strong>npm run start</strong> 将默认在 1080 端口开启 Web 服务。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator-HTML.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator-HTML.png" alt></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"coffee"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"beyond my coffee"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;  </div><div class="line">    <span class="attr">"build-pages"</span>: <span class="string">"node ./build_scripts/builder.js"</span>,</div><div class="line">    <span class="attr">"start"</span>: <span class="string">"concurrently --kill-others \"nodemon -e js,json,css,md -i build -x \\\"npm run build-pages\\\"\" \"live-server ./build\""</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">"@RiboseYim"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">$ npm run build-pages</div><div class="line"></div><div class="line">&gt; coffee@<span class="number">1.0</span><span class="number">.0</span> build-pages /generator-code</div><div class="line">&gt; node ./build_scripts/builder.js</div><div class="line"></div><div class="line">Cleaning previous build...</div><div class="line">Loading pages...</div><div class="line">Loading pages metadata...</div><div class="line">Generating pages...</div><div class="line">Copying folders...</div><div class="line">Done!</div><div class="line"></div><div class="line">$ npm run start</div><div class="line"></div><div class="line">&gt; coffee@<span class="number">1.0</span><span class="number">.0</span> start /Users/yanrui/project/generator-code</div><div class="line">&gt; concurrently --kill-others <span class="string">"nodemon -e js,json,css,md -i build -x \"npm run build-pages\""</span> <span class="string">"live-server ./build"</span></div><div class="line"></div><div class="line">[<span class="number">0</span>] [nodemon] <span class="number">1.14</span><span class="number">.1</span></div><div class="line">[<span class="number">0</span>] [nodemon] to restart at any time, enter <span class="string">`rs`</span></div><div class="line">[<span class="number">0</span>] [nodemon] watching: *.*</div><div class="line">[<span class="number">0</span>] [nodemon] starting <span class="string">`npm run build-pages`</span></div><div class="line">[<span class="number">1</span>] Serving <span class="string">"./build"</span> at http:<span class="comment">//127.0.0.1:8080</span></div><div class="line">[<span class="number">1</span>] Ready <span class="keyword">for</span> changes</div><div class="line">[<span class="number">1</span>] GET /js/main.js <span class="number">404</span> <span class="number">42.133</span> ms - <span class="number">23</span></div><div class="line">[<span class="number">1</span>] GET /js/main.js <span class="number">404</span> <span class="number">12.204</span> ms - <span class="number">23</span></div><div class="line">[<span class="number">0</span>]</div><div class="line">[<span class="number">0</span>] &gt; coffee@<span class="number">1.0</span><span class="number">.0</span> build-pages /Users/yanrui/project/generator-code</div><div class="line">[<span class="number">0</span>] &gt; node ./build_scripts/builder.js</div><div class="line">[<span class="number">0</span>]</div><div class="line">[<span class="number">0</span>] Cleaning previous build...</div><div class="line">[<span class="number">0</span>] Loading pages...</div><div class="line">[<span class="number">0</span>] Loading pages metadata...</div><div class="line">[<span class="number">0</span>] Generating pages...</div><div class="line">[<span class="number">0</span>] Copying folders...</div><div class="line">[<span class="number">0</span>] Done!</div><div class="line">[<span class="number">0</span>] [nodemon] clean exit - waiting <span class="keyword">for</span> changes before restart</div><div class="line">[<span class="number">1</span>] Change detected build/index.html</div><div class="line">[<span class="number">1</span>] Change detected build/images</div></pre></td></tr></table></figure>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
@@ -170,7 +171,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="cjuqfn5ve00365ih2xtium7qg" class="article-share-link">Share</a>
+      <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="cjuqfn5ve00365ih2xtium7qg" class="article-share-link">分享</a>
       
       
       
@@ -194,7 +195,7 @@ ga('send', 'pageview');
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =10
@@ -237,7 +238,7 @@ ga('send', 'pageview');
 <nav id="article-nav">
   
     <a href="/2017/12/23/Linux-Perf-WordBook/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           Linux-Perf-WordBook
@@ -247,7 +248,7 @@ ga('send', 'pageview');
   
   
     <a href="/2017/12/21/eBook-LPM/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">电子书：《Linux Perf Master》</div>
     </a>
   
@@ -279,9 +280,9 @@ ga('send', 'pageview');
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-准备环境-dependencies"><span class="toc-number">1.0.1.</span> <span class="toc-text">Step 1: 准备环境 (dependencies)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-准备元数据"><span class="toc-number">1.0.2.</span> <span class="toc-text">Step 2: 准备元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-编写模板和构建脚本（template-amp-build-Script）"><span class="toc-number">1.0.3.</span> <span class="toc-text">Step 3: 编写模板和构建脚本（template & build Script）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-4-优化任务脚本"><span class="toc-number">1.0.4.</span> <span class="toc-text">Step 4: 优化任务脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-准备环境-dependencies"><span class="toc-number">1.0.1.</span> <span class="toc-text">Step 1: 准备环境 (dependencies)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-准备元数据"><span class="toc-number">1.0.2.</span> <span class="toc-text">Step 2: 准备元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-编写模板和构建脚本（template-amp-build-Script）"><span class="toc-number">1.0.3.</span> <span class="toc-text">Step 3: 编写模板和构建脚本（template &amp; build Script）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-4-优化任务脚本"><span class="toc-number">1.0.4.</span> <span class="toc-text">Step 4: 优化任务脚本</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -309,7 +310,7 @@ ga('send', 'pageview');
       <footer id="footer">
   
   <div class="outer">
-      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
       &copy; 2008 - 2019 RiboseYim&nbsp;
       |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
       |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
@@ -318,8 +319,8 @@ ga('send', 'pageview');
     </div>
   </div>
   <div class="outer">
-    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
-        Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+    <div style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
        <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </div>
@@ -349,7 +350,7 @@ ga('send', 'pageview');
     <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
   
 </nav>
-    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
 <script>
 // Elevator script included on the page, already.
 window.onload = function() {
