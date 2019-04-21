@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-04-21T04:26:32.975Z</updated>
+  <updated>2019-04-21T04:30:18.619Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How Linux Works:User Space</title>
+    <link href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/"/>
+    <id>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</id>
+    <published>2019-04-21T04:04:15.000Z</published>
+    <updated>2019-04-21T04:30:18.619Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="How-User-Space-Starts"><a href="#How-User-Space-Starts" class="headerlink" title="How User Space Starts"></a>How User Space Starts</h2><p>用户空间启动顺序:</p>
+<ol>
+<li>init</li>
+<li>必要的低层服务例如：udevd 和 syslog</li>
+<li>网络配置</li>
+<li>中高层服务例如 ：cron , printing</li>
+<li>登录提示、图形界面及其它高层次应用</li>
+</ol>
+<h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></div><div class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</div><div class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// Mac OS</div><div class="line">bash-3.2$ ps -ef | grep init</div><div class="line">	0   243     1   0 15 517  ??         0:00.74 /System/Library/CoreServices/CrashReporterSupportHelper server-init</div><div class="line">	0   533     1   0 15 517  ??         0:02.07 /System/Library/CoreServices/SubmitDiagInfo server-init</div><div class="line">  501 52150     1   0 日01下午 ??         0:15.49 /usr/libexec/secinitd</div><div class="line">	0 69864     1   0 11:35上午 ??         0:00.20 /usr/libexec/secinitd</div><div class="line">	0 72830     1   0  1:51下午 ??         0:00.19 /usr/libexec/secinitd</div><div class="line">Darwin ACA80166.ipt.aol.com 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64</div><div class="line">bash-3.2$</div></pre></td></tr></table></figure>
+<p>在Linux发行版中，init有三种主要的实现形式：</p>
+<ol>
+<li><strong>System V init</strong>: 传统的</li>
+<li><strong>systemd</strong>: 所有主流Linux发行版中的标准init</li>
+<li><strong>Upstart</strong>: Ubuntu</li>
+</ol>
+<p>Android 和 BSD （运行存放于’/etc/rc’的初始化 shell 脚本）也有它们自己的init版本，一些发行版也将System V init 修改为类似BSD风格的实现。目前大部分Linux发行版都已采用新的systemd替代System V和Upstart，但systemd向下兼容System V。</p>
+<p><strong>System V init</strong>: 存在一个启动序列，同一时间只能启动一个任务，这种架构下，很容易解决依赖问题，但是性能方面要受一些影响。<br><strong>systemd is goal oriented.</strong> : 针对System V init的不足，systemd所有的服务都并发启动。systemd时基于目标的，需要定义要实现的目标，以及它的依赖项。systemd 将所有过程都抽象为一个配置单元，即 unit。可以认为一个服务是一个配置单元；一个挂载点是一个配置单元。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_UnitTree.png" alt="systemd Unit target Tree"></p>
+<p><strong>Upstart is reactionary.</strong>:Upstart是基于事件的，Upstart的事件驱动模型允许它以异步方式对生成的事件作出回应。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_upstart_sysV.png" alt="System V init Vs UpStart Vs Systemd"></p>
+<h2 id="The-Initial-RAM-filesystem"><a href="#The-Initial-RAM-filesystem" class="headerlink" title="The Initial RAM filesystem"></a>The Initial RAM filesystem</h2><p>Linux内核不能通过访问PC BIOS 或者 EFI接口从磁盘获取数据，所以为了mount它的root filesystem, 对于底层存储需要驱动程序支持。解决方案是在内核运行之前，由boot loader加载驱动模块及工具到内存。在启动时，内核读取相关模块到一个临时的RAM filesystem(initramfs),挂载在／根目录,initramsfs允许内核为真正的root filesystem加载必要的驱动模块。<br>最后，再挂载真正的root filesystem、启动init。</p>
+<p>Linux在很多场景下都需要创建一个基于内存的文件系统，提供一个可以接近零延迟的快速存储区域。目前有两类主要的RAM磁盘可用，她们个有优劣：ramfs和tmpfs。(注意：创建之前可以使用 <strong>free</strong> 命令查看未使用的RAM)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># mkdir /mnt/ramdisk</span></div><div class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></div><div class="line"><span class="meta"># vi /etc/fstab</span></div><div class="line"><span class="meta">#tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></div></pre></td></tr></table></figure>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
+    
+      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
+    
+      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
+    
+      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
+    
+  </entry>
   
   <entry>
     <title>How Linux Works</title>
@@ -664,6 +743,150 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>How Linux Works:Router</title>
+    <link href="https://riboseyim.com/2019/03/05/Linux-Works-Router/"/>
+    <id>https://riboseyim.com/2019/03/05/Linux-Works-Router/</id>
+    <published>2019-03-05T03:00:55.000Z</published>
+    <updated>2019-04-21T04:30:25.617Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>编辑中</li>
+<li>路由协议</li>
+<li>router based linux kernel</li>
+</ul>
+<a id="more"></a>
+<h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="BASIC-Commands"><a href="#BASIC-Commands" class="headerlink" title="BASIC Commands"></a>BASIC Commands</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">route -n</div><div class="line"><span class="comment"># To Host</span></div><div class="line">route add -host [ip] dev eth0</div><div class="line">route add -host [ip] gw [ip]</div><div class="line"><span class="comment"># To Network</span></div><div class="line">route add -net [ip] netmask [mask]</div><div class="line">route del -net [ip] netmask [mask] gw [......]</div><div class="line"><span class="comment"># default route</span></div><div class="line">route add default gw [......]</div></pre></td></tr></table></figure>
+<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
+<p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IPv4</th>
+<th>IPv6</th>
+<th>desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zebra</td>
+<td>zebra</td>
+<td>kernel interface, static routes, zserv server</td>
+</tr>
+<tr>
+<td>ripd</td>
+<td>ripngd</td>
+<td>RIPv1/RIPv2 for IPv4 and RIPng for IPv6</td>
+</tr>
+<tr>
+<td>ospfd</td>
+<td>ospf6d</td>
+<td>OSPFv2 and OSPFv3</td>
+</tr>
+<tr>
+<td>bgpd</td>
+<td>bgpd</td>
+<td>BGPv4+ (including address family support for multicast and IPv6)</td>
+</tr>
+<tr>
+<td>isisd</td>
+<td>isisd</td>
+<td>IS-IS with support for IPv4 and IPv6</td>
+</tr>
+<tr>
+<td>vtysh</td>
+<td>vtysh</td>
+<td>shell tools              </td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
+<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
+<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
+<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
+<ul>
+<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
+<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
+<li>User can dynamically change configuration from terminal interface.</li>
+<li>User can use command line completion and history in terminal interface.</li>
+<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
+</ul>
+<h4 id="Supported-Platforms"><a href="#Supported-Platforms" class="headerlink" title="Supported Platforms"></a>Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
+<ul>
+<li>GNU/Linux</li>
+<li>FreeBSD/NetBSD/OpenBSD</li>
+</ul>
+<p><strong>IPv6 支持:</strong></p>
+<ul>
+<li>NRL IPv6</li>
+<li>KAME</li>
+<li>INRIA IPv6</li>
+</ul>
+<h4 id="Quagga-ABC"><a href="#Quagga-ABC" class="headerlink" title="Quagga ABC"></a>Quagga ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
+<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
+<li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
+<li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
+</ul>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-emu/index.html" target="_blank" rel="external">在 Linux 上构建网络路由器 | Dominique Cimafranca 和 Rex Young | 2004 年 3 月 09 日发布</a></li>
+<li><a href="https://www.cnblogs.com/sanyuanempire/articles/6155254.html" target="_blank" rel="external">Linux下使用Quagga(Zebra)搭建路由器记录</a></li>
+<li><a href="https://linuxhint.com/centos7_router/" target="_blank" rel="external">How to Make a CentOS 7 Router</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;编辑中&lt;/li&gt;
+&lt;li&gt;路由协议&lt;/li&gt;
+&lt;li&gt;router based linux kernel&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
+    
+      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
+    
+      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
+    
+      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
     
   </entry>
   
@@ -2026,51 +2249,6 @@
     
     
       <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>玩转编程语言：C 语言</title>
-    <link href="https://riboseyim.com/2019/01/07/Language-C-lang/"/>
-    <id>https://riboseyim.com/2019/01/07/Language-C-lang/</id>
-    <published>2019-01-06T18:20:18.000Z</published>
-    <updated>2019-02-02T18:02:47.699Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<blockquote>
-<p>如果你想进入真正的编程领域，则必须学习 <strong>C</strong>，这是 UNIX 的核心语言。C++ 和 C 的关系很密切；如果你懂其中一个，学另一个并不会太难。不过，这两种语言都不是好的入门语言。 其他对黑客而言比较重要的语言有 <strong><a href="http://www.perl.com" target="_blank" rel="external">Perl</a></strong> 和 <strong>LISP</strong>。—— 《大教堂与集市》</p>
-</blockquote>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Language-Java-lang</title>
-    <link href="https://riboseyim.com/2019/01/07/Language-Java-lang/"/>
-    <id>https://riboseyim.com/2019/01/07/Language-Java-lang/</id>
-    <published>2019-01-06T18:15:27.000Z</published>
-    <updated>2019-01-06T18:19:26.425Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="JVM-性能分析与优化"><a href="#JVM-性能分析与优化" class="headerlink" title="JVM 性能分析与优化"></a>JVM 性能分析与优化</h2><ul>
-<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Uber 开源 Java 分布式应用追踪工具：JVM Profiler</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
-</ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
     
   </entry>
   
