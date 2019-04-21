@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-04-07T14:28:11.882Z</updated>
+  <updated>2019-04-21T04:26:32.975Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How Linux Works</title>
+    <link href="https://riboseyim.com/2019/04/21/Linux-Works/"/>
+    <id>https://riboseyim.com/2019/04/21/Linux-Works/</id>
+    <published>2019-04-21T03:49:13.000Z</published>
+    <updated>2019-04-21T04:26:32.975Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>The Big Picture</li>
+<li>一、Levels and Layers</li>
+<li>二、Hardware</li>
+<li>三、The Kernel</li>
+<li>3.1 进程管理 Process Management</li>
+<li>3.2 内存管理 Memory Management</li>
+<li>3.3 设备管理 Device Drivers and Management</li>
+<li>3.4 系统调用 System Calls</li>
+<li>四、用户空间 User Space</li>
+<li>五、用户 Users</li>
+<li>六、未来 Looking Forward</li>
+</ul>
+<a id="more"></a>
+<h1 id="The-Big-Picture"><a href="#The-Big-Picture" class="headerlink" title="The Big Picture"></a>The Big Picture</h1><h2 id="一、Levels-and-Layers"><a href="#一、Levels-and-Layers" class="headerlink" title="一、Levels and Layers"></a>一、Levels and Layers</h2><h2 id="二、Hardware"><a href="#二、Hardware" class="headerlink" title="二、Hardware"></a>二、Hardware</h2><h2 id="三、The-Kernel"><a href="#三、The-Kernel" class="headerlink" title="三、The Kernel"></a>三、The Kernel</h2><h3 id="3-1-进程管理-Process-Management"><a href="#3-1-进程管理-Process-Management" class="headerlink" title="3.1 进程管理 Process Management"></a>3.1 进程管理 Process Management</h3><h3 id="3-2-内存管理-Memory-Management"><a href="#3-2-内存管理-Memory-Management" class="headerlink" title="3.2 内存管理 Memory Management"></a>3.2 内存管理 Memory Management</h3><h3 id="3-3-设备管理-Device-Drivers-and-Management"><a href="#3-3-设备管理-Device-Drivers-and-Management" class="headerlink" title="3.3 设备管理 Device Drivers and Management"></a>3.3 设备管理 Device Drivers and Management</h3><h3 id="3-4-系统调用-System-Calls"><a href="#3-4-系统调用-System-Calls" class="headerlink" title="3.4 系统调用 System Calls"></a>3.4 系统调用 System Calls</h3><h2 id="四、用户空间-User-Space"><a href="#四、用户空间-User-Space" class="headerlink" title="四、用户空间 User Space"></a>四、用户空间 User Space</h2><h2 id="五、用户-Users"><a href="#五、用户-Users" class="headerlink" title="五、用户 Users"></a>五、用户 Users</h2><h2 id="六、未来-Looking-Forward"><a href="#六、未来-Looking-Forward" class="headerlink" title="六、未来 Looking Forward"></a>六、未来 Looking Forward</h2><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="源码阅读的一般方法"><a href="#源码阅读的一般方法" class="headerlink" title="源码阅读的一般方法"></a>源码阅读的一般方法</h4><ul>
+<li>核心子系统（例如进程管理子系统）</li>
+<li>结构体、数据结构</li>
+<li>关键程序、加载顺序</li>
+<li>主题式探索（例如：Linux 支持闰秒吗？）</li>
+</ul>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;The Big Picture&lt;/li&gt;
+&lt;li&gt;一、Levels and Layers&lt;/li&gt;
+&lt;li&gt;二、Hardware&lt;/li&gt;
+&lt;li&gt;三、The Kernel&lt;/li&gt;
+&lt;li&gt;3.1 进程管理 Process Management&lt;/li&gt;
+&lt;li&gt;3.2 内存管理 Memory Management&lt;/li&gt;
+&lt;li&gt;3.3 设备管理 Device Drivers and Management&lt;/li&gt;
+&lt;li&gt;3.4 系统调用 System Calls&lt;/li&gt;
+&lt;li&gt;四、用户空间 User Space&lt;/li&gt;
+&lt;li&gt;五、用户 Users&lt;/li&gt;
+&lt;li&gt;六、未来 Looking Forward&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
+    
+      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
+    
+      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
+    
+      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
+    
+  </entry>
   
   <entry>
     <title>温斯顿·丘吉尔</title>
@@ -578,140 +664,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统原理:How Linux Works(五):Route</title>
-    <link href="https://riboseyim.com/2019/03/05/Linux-Works-Route/"/>
-    <id>https://riboseyim.com/2019/03/05/Linux-Works-Route/</id>
-    <published>2019-03-05T03:00:55.000Z</published>
-    <updated>2019-04-06T10:29:36.734Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>编辑中</li>
-<li>路由协议</li>
-<li>router based linux kernel</li>
-</ul>
-<a id="more"></a>
-<h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
-<p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>IPv4</th>
-<th>IPv6</th>
-<th>desc</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>zebra</td>
-<td>zebra</td>
-<td>kernel interface, static routes, zserv server</td>
-</tr>
-<tr>
-<td>ripd</td>
-<td>ripngd</td>
-<td>RIPv1/RIPv2 for IPv4 and RIPng for IPv6</td>
-</tr>
-<tr>
-<td>ospfd</td>
-<td>ospf6d</td>
-<td>OSPFv2 and OSPFv3</td>
-</tr>
-<tr>
-<td>bgpd</td>
-<td>bgpd</td>
-<td>BGPv4+ (including address family support for multicast and IPv6)</td>
-</tr>
-<tr>
-<td>isisd</td>
-<td>isisd</td>
-<td>IS-IS with support for IPv4 and IPv6</td>
-</tr>
-<tr>
-<td>vtysh</td>
-<td>vtysh</td>
-<td>shell tools              </td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
-<p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
-<p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
-<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
-<ul>
-<li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
-<li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
-<li>User can dynamically change configuration from terminal interface.</li>
-<li>User can use command line completion and history in terminal interface.</li>
-<li>IP address based filtering, AS path based filtering, attribute modification by route map are supported.</li>
-</ul>
-<h4 id="Supported-Platforms"><a href="#Supported-Platforms" class="headerlink" title="Supported Platforms"></a>Supported Platforms</h4><p><strong>操作系统支持:</strong></p>
-<ul>
-<li>GNU/Linux</li>
-<li>FreeBSD/NetBSD/OpenBSD</li>
-</ul>
-<p><strong>IPv6 支持:</strong></p>
-<ul>
-<li>NRL IPv6</li>
-<li>KAME</li>
-<li>INRIA IPv6</li>
-</ul>
-<h4 id="Quagga-ABC"><a href="#Quagga-ABC" class="headerlink" title="Quagga ABC"></a>Quagga ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
-<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
-<li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
-<li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
-</ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
-<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
-<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
-</ul>
-<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
-<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
-<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
-<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/l-emu/index.html" target="_blank" rel="external">在 Linux 上构建网络路由器 | Dominique Cimafranca 和 Rex Young | 2004 年 3 月 09 日发布</a></li>
-<li><a href="https://www.cnblogs.com/sanyuanempire/articles/6155254.html" target="_blank" rel="external">Linux下使用Quagga(Zebra)搭建路由器记录</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;编辑中&lt;/li&gt;
-&lt;li&gt;路由协议&lt;/li&gt;
-&lt;li&gt;router based linux kernel&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
     
   </entry>
   
@@ -2016,9 +1968,9 @@
     </summary>
     
     
-      <category term="DataScience" scheme="https://riboseyim.com/tags/DataScience/"/>
-    
       <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+      <category term="DataScience" scheme="https://riboseyim.com/tags/DataScience/"/>
     
   </entry>
   
