@@ -127,7 +127,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="cjuqfn63m00qq5ih2404bniat" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="cjv3a7bik00qzzth2v30s9tu3" class="article-share-link">分享</a>
         
         
         
@@ -153,16 +153,16 @@ ga('send', 'pageview');
 </ul>
 <a id="more"></a>
 <h2 id="Introduction-Apache-Hadoop-简介"><a href="#Introduction-Apache-Hadoop-简介" class="headerlink" title="Introduction | Apache Hadoop 简介"></a>Introduction | Apache Hadoop 简介</h2><h2 id="Core-Concept-Apache-Hadoop-核心概念"><a href="#Core-Concept-Apache-Hadoop-核心概念" class="headerlink" title="Core Concept | Apache Hadoop 核心概念"></a>Core Concept | Apache Hadoop 核心概念</h2><ul>
-<li><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="external">MapReduce: Simplified Data Processing on Large Clusters</a></li>
-<li><a href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/035fc972c796d33122033a0614bc94cff1527999.pdf" target="_blank" rel="external">The Google File System</a><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+<li><a href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/035fc972c796d33122033a0614bc94cff1527999.pdf" target="_blank" rel="noopener">The Google File System</a><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4></li>
 </ul>
 <h2 id="Architecture-Apache-Hadoop-架构"><a href="#Architecture-Apache-Hadoop-架构" class="headerlink" title="Architecture | Apache Hadoop 架构"></a>Architecture | Apache Hadoop 架构</h2><ul>
-<li><a href="https://prestodb.io/" target="_blank" rel="external">Presto:Distributed SQL Query Engine for Big Data</a></li>
-<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/ViewFs.html" target="_blank" rel="external">ViewFs Guide</a></li>
-<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/WebHDFS.html" target="_blank" rel="external">WebHDFS REST API</a></li>
+<li><a href="https://prestodb.io/" target="_blank" rel="noopener">Presto:Distributed SQL Query Engine for Big Data</a></li>
+<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/ViewFs.html" target="_blank" rel="noopener">ViewFs Guide</a></li>
+<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/WebHDFS.html" target="_blank" rel="noopener">WebHDFS REST API</a></li>
 </ul>
 <h2 id="Best-Practice-Apache-Hadoop-最佳实践"><a href="#Best-Practice-Apache-Hadoop-最佳实践" class="headerlink" title="Best Practice | Apache Hadoop 最佳实践"></a>Best Practice | Apache Hadoop 最佳实践</h2><h1 id="Uber-Hadoop-文件系统最佳实践"><a href="#Uber-Hadoop-文件系统最佳实践" class="headerlink" title="Uber Hadoop 文件系统最佳实践"></a>Uber Hadoop 文件系统最佳实践</h1><ul>
-<li>原文：April 5, 2018 <a href="https://eng.uber.com/scaling-hdfs/" target="_blank" rel="external">Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
+<li>原文：April 5, 2018 <a href="https://eng.uber.com/scaling-hdfs/" target="_blank" rel="noopener">Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
 </ul>
 <blockquote>
 <p>How Uber implemented these improvements to facilitate the continued growth, stability, and reliability of our storage system.</p>
@@ -182,7 +182,7 @@ ga('send', 'pageview');
 </ul>
 <h2 id="Enabling-scaling-amp-improving-performance"><a href="#Enabling-scaling-amp-improving-performance" class="headerlink" title="Enabling scaling &amp; improving performance"></a>Enabling scaling &amp; improving performance</h2><p>为了确保 HDFS 高性能运行的同时持续扩展, Uber 并行开发多个解决方案, 以避免在短期内出现停机。这些解决方案使我们建立了一个更可靠和可扩展的系统, 能够支持未来的长期增长。</p>
 <p>改进方案概述如下：</p>
-<h4 id="Scaling-out-using-ViewFs"><a href="#Scaling-out-using-ViewFs" class="headerlink" title="Scaling out using ViewFs"></a>Scaling out using ViewFs</h4><p><a href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html" target="_blank" rel="external">Twitter 尝试过类似努力</a>，在他们的启发下, 我们利用可视化文件系统 (ViewFs) 将 HDFS 拆分为多个物理命名空间, 并使用 ViewFs 挂载点向用户呈现一个虚拟命名空间。</p>
+<h4 id="Scaling-out-using-ViewFs"><a href="#Scaling-out-using-ViewFs" class="headerlink" title="Scaling out using ViewFs"></a>Scaling out using ViewFs</h4><p><a href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html" target="_blank" rel="noopener">Twitter 尝试过类似努力</a>，在他们的启发下, 我们利用可视化文件系统 (ViewFs) 将 HDFS 拆分为多个物理命名空间, 并使用 ViewFs 挂载点向用户呈现一个虚拟命名空间。</p>
 <p>为了完成这一目标, 我们将 HBase（YARN 和 Presto 操作）从相同的 HDFS 集群分开。该调整不仅大大减少了主集群上的负载, 而且使我们的 HBase 更加稳定, 将 HBase 集群的重启时间从几小时减少到几分钟。</p>
 <p>我们还为聚合 YARN 应用日志创建了一个专用的 HDFS 群集。要使日志聚合支持 ViewFs, 需要 <strong>YARN-3269</strong>。我们的 Hive 临时目录也被移动到这个群集。增加集群的结果是非常令人满意的 ; 目前, 新群集的服务总写入请求数约占总数的 40%, 而且大多数文件都是小文件, 这也减轻了主群集上的文件计数压力。由于对现有应用程序而言，不需要更改客户端, 因此改转换非常顺利。</p>
 <p>最后, 我们在 ViewFs 后端实现了独立的的 HDFS 群集, 而不是基础架构中的 HDFS Federation 。通过这种设置, 可以逐步执行 HDFS 升级, 最大限度地减少大规模停机的风险; 此外, 完全隔离还有助于提高系统的可靠性。然而, 这种修复方案的一个缺点是, 保持单独的 HDFS 群集会导致更高的运营成本。</p>
@@ -197,7 +197,7 @@ ga('send', 'pageview');
 <p>通过强制使用并发标记扫描收集器 (Concurrent Mark Sweep collectors ，CMS) 防止长时间 GC 暂停, 通过调整 CMS 参数 (如 CMSInitiatingOccupancyFraction、UseCMSInitiatingOccupancyOnly 和 CMSParallelRemarkEnabled ) 来执行更具侵略性的老年代集合（注：CMS 是分代的，新生代和老年代都会发生回收。CMS 尝试通过多线程并发的方式来跟踪对象的可达性，以便减少老生代的收集时间）。虽然会增加 CPU 利用率, 但幸运的是我们有足够的空闲 CPU 来支持此功能。</p>
 <p>由于繁重的 RPC 负载, 在新生代中创建了大量短期的对象, 迫使新生代收集器频繁地执行垃圾回收暂停（stop-the-world）。通过将新生代的规模从 1.5GB 增加到 16GB , 并调整 ParGCCardsPerStrideChunk 值 (设置为 32768), 生产环境中 NameNode 在 GC 暂停时所花费的总时间从 13% 减少到 1.7% , 吞吐量增加了 10% 以上。</p>
 <p>与 GC 相关的 JVM 参数( NameNode  堆大小 160GB ）, 供参考：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">XX:+UnlockDiagnosticVMOptions</div><div class="line">XX:ParGCCardsPerStrideChunk=32768 -XX:+UseParNewGC</div><div class="line">XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled</div><div class="line">XX:CMSInitiatingOccupancyFraction=40</div><div class="line">XX:+UseCMSInitiatingOccupancyOnly</div><div class="line">XX:+CMSParallelRemarkEnabled -XX:+UseCondCardMark</div><div class="line">XX:+DisableExplicitGC</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">XX:+UnlockDiagnosticVMOptions</span><br><span class="line">XX:ParGCCardsPerStrideChunk=32768 -XX:+UseParNewGC</span><br><span class="line">XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled</span><br><span class="line">XX:CMSInitiatingOccupancyFraction=40</span><br><span class="line">XX:+UseCMSInitiatingOccupancyOnly</span><br><span class="line">XX:+CMSParallelRemarkEnabled -XX:+UseCondCardMark</span><br><span class="line">XX:+DisableExplicitGC</span><br></pre></td></tr></table></figure>
 <p>Uber 还在评估是否将第一垃圾回收器 (Garbage-First Garbage Collector , G1GC) 集成在系统中。虽然在过去使用 G1GC 时没有看到优势, 但 JVM 的新版本带来了额外的垃圾回收器性能改进, 因此重新审视收集器和配置的选择有时是必要的。</p>
 <ul>
 <li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-3.png" alt="Figure 3. By increasing the young generation size from 1.5GB to 16GB and tuning the ParGCCardsPerStrideChunk value, the total time our production NameNode spent on GC pause decreased from 13 percent to 1.7 percent."></li>
@@ -226,11 +226,11 @@ infrastructure."></li>
 </ul>
 <p>接下来重点介绍两个主要项目, 基于路由的 HFDS Federation 和 tiered storage :</p>
 <h4 id="Router-based-HDFS-Federation"><a href="#Router-based-HDFS-Federation" class="headerlink" title="Router-based HDFS Federation"></a>Router-based HDFS Federation</h4><p>Uber 目前使用 ViewFs 扩展 HDFS （当 subclusters 超载时）。此方法的主要问题是, 每次在 ViewFs 上添加或替换新的挂载点时, 都需要更改客户端配置, 而且很难在不影响生产工作流的情况下进行。这种困境是我们目前只拆分不需要大规模更改客户端数据的主要原因之一, 例如 YARN 日志聚合。</p>
-<p>Microsoft 的新倡议—基于路由的 HFDS Federation (<a href="https://issues.apache.org/jira/browse/HDFS-10467" target="_blank" rel="external">HDFS-10467</a>, <a href="https://issues.apache.org/jira/browse/HDFS-12615" target="_blank" rel="external">HDFS-12615</a>),目前包含在 HDFS 2.9 版本中, 是一个基于 ViewFs 的分区联盟的扩展。该联盟添加了一层软件集中管理 HDFS 命名空间。通过提供相同的接口 (RPC 和 WebHDFS 的组合), 它的外层为用户提供了对任何 subclusters 的透明访问, 并让 subclusters 独立地管理其数据。</p>
+<p>Microsoft 的新倡议—基于路由的 HFDS Federation (<a href="https://issues.apache.org/jira/browse/HDFS-10467" target="_blank" rel="noopener">HDFS-10467</a>, <a href="https://issues.apache.org/jira/browse/HDFS-12615" target="_blank" rel="noopener">HDFS-12615</a>),目前包含在 HDFS 2.9 版本中, 是一个基于 ViewFs 的分区联盟的扩展。该联盟添加了一层软件集中管理 HDFS 命名空间。通过提供相同的接口 (RPC 和 WebHDFS 的组合), 它的外层为用户提供了对任何 subclusters 的透明访问, 并让 subclusters 独立地管理其数据。</p>
 <p>通过提供再平衡工具( a rebalancing tool ), 联盟层( the federation layer )还将支持跨 subclusters 的透明数据移动, 用于平衡工作负载和实现分层存储。联盟层集中式维护状态存储区中全局命名空间的状态, 并允许多个活跃的路由器将用户请求定向到正确的 subclusters 时启动和运行。</p>
 <p>Uber 正在积极地与 Hadoop 社区密切协作，致力于将基于路由的 HDFS Federation 引入到生产环境, 并进一步开源改进, 包括支持 WebHDFS 。</p>
 <h4 id="Tiered-Storage"><a href="#Tiered-Storage" class="headerlink" title="Tiered Storage"></a>Tiered Storage</h4><p>随着基础架构的规模增长, 降低存储成本的重要性也同样重要。Uber 技术团队中进行的研究表明, 相较旧数据 (warm data)  用户会更频繁地访问最近的数据 (hot data)。将旧数据移动到一个单独的、占用较少资源的层将大大降低我们的存储成本。HDFS  Erasure Coding 、Router-based Federation、高密度 (250TB 以上) 硬件和数据移动服务 (在 “热” 层群集和 “暖” 层群集之间处理移动数据) 是即将进行的分层存储设计的关键组件。Uber 计划在以后的文章中分享在分层存储实现方面的经验。</p>
-<h2 id="Apache-Hadoop-ABC"><a href="#Apache-Hadoop-ABC" class="headerlink" title="Apache Hadoop ABC"></a>Apache Hadoop ABC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ hadoop version</div><div class="line">Hadoop 3.1.0</div><div class="line">Source code repository https://github.com/apache/hadoop -r 16b70619a24cdcf5d3b0fcf4b58ca77238ccbe6d</div><div class="line">Compiled by centos on 2018-03-30T00:00Z</div><div class="line">Compiled with protoc 2.5.0</div><div class="line">From <span class="built_in">source</span> with checksum 14182d20c972b3e2105580a1ad6990</div><div class="line">This <span class="built_in">command</span> was run using /usr/<span class="built_in">local</span>/Cellar/hadoop/3.1.0/libexec/share/hadoop/common/hadoop-common-3.1.0.jar</div><div class="line"></div><div class="line"><span class="comment"># 常见异常：检查 JDK 版本是否过低</span></div><div class="line">$ hadoop version</div><div class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java.lang.UnsupportedClassVersionError: org/apache/hadoop/util/VersionInfo : Unsupported major.minor version 52.0</div><div class="line">	at java.lang.ClassLoader.defineClass1(Native Method)</div></pre></td></tr></table></figure>
+<h2 id="Apache-Hadoop-ABC"><a href="#Apache-Hadoop-ABC" class="headerlink" title="Apache Hadoop ABC"></a>Apache Hadoop ABC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop version</span><br><span class="line">Hadoop 3.1.0</span><br><span class="line">Source code repository https://github.com/apache/hadoop -r 16b70619a24cdcf5d3b0fcf4b58ca77238ccbe6d</span><br><span class="line">Compiled by centos on 2018-03-30T00:00Z</span><br><span class="line">Compiled with protoc 2.5.0</span><br><span class="line">From <span class="built_in">source</span> with checksum 14182d20c972b3e2105580a1ad6990</span><br><span class="line">This <span class="built_in">command</span> was run using /usr/<span class="built_in">local</span>/Cellar/hadoop/3.1.0/libexec/share/hadoop/common/hadoop-common-3.1.0.jar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常见异常：检查 JDK 版本是否过低</span></span><br><span class="line">$ hadoop version</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java.lang.UnsupportedClassVersionError: org/apache/hadoop/util/VersionInfo : Unsupported major.minor version 52.0</span><br><span class="line">	at java.lang.ClassLoader.defineClass1(Native Method)</span><br></pre></td></tr></table></figure>
 <h4 id="Java-Garbage-Collection-Types"><a href="#Java-Garbage-Collection-Types" class="headerlink" title="Java Garbage Collection Types"></a>Java Garbage Collection Types</h4><ul>
 <li><p>Serial GC (-XX:+UseSerialGC): Serial GC uses the simple mark-sweep-compact approach for young and old generations garbage collection i.e Minor and Major GC.<br>Serial GC is useful in client-machines such as our simple stand alone applications and machines with smaller CPU. It is good for small applications with low memory footprint.</p>
 </li>
@@ -242,38 +242,38 @@ infrastructure."></li>
 </li>
 </ul>
 <h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
-<li><a href="https://riboseyim.github.io/2018/08/01/OpenSource-Hadoop/" target="_blank" rel="external">开源架构技术漫谈：Hadoop</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="external">基于Kafka构建事件溯源型微服务</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="external">基于Go语言快速构建一个RESTful API服务</a></li>
-<li><a href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/" target="_blank" rel="external">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）: 架构概览</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="external">SDN 技术指南（二）: OpenFlow </a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="external">计算机远程通信协议：从 CORBA 到 gRPC</a></li>
-<li><a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="external">基于LVS的AAA负载均衡架构实践</a></li>
-<li><a href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/" target="_blank" rel="external">基于Ganglia实现服务集群性能态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">Stack Overflow：云计算平台的趋势分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">Stack Overflow：2017年最赚钱的编程语言</a></li>
-<li><a href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/" target="_blank" rel="external">Stack Overflow: The Architecture &amp; Hardware - 2016 Edition</a></li>
+<li><a href="https://riboseyim.github.io/2018/08/01/OpenSource-Hadoop/" target="_blank" rel="noopener">开源架构技术漫谈：Hadoop</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="noopener">基于Kafka构建事件溯源型微服务</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="noopener">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/" target="_blank" rel="noopener">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）: OpenFlow </a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="noopener">计算机远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="noopener">基于LVS的AAA负载均衡架构实践</a></li>
+<li><a href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/" target="_blank" rel="noopener">基于Ganglia实现服务集群性能态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">Stack Overflow：云计算平台的趋势分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">Stack Overflow：2017年最赚钱的编程语言</a></li>
+<li><a href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/" target="_blank" rel="noopener">Stack Overflow: The Architecture &amp; Hardware - 2016 Edition</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java#java-visualvm-with-visual-gc" target="_blank" rel="external">Java (JVM) Memory Model – Memory Management in Java</a></li>
-<li><a href="https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.0.0/data-storage/content/example_viewfs_mounttable_entries.html" target="_blank" rel="external">Example of ViewFs mount table entries</a></li>
-<li><a href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html" target="_blank" rel="external">Hadoop filesystem at Twitter</a></li>
-<li><a href="http://dongxicheng.org/mapreduce/hdfs-federation-introduction/" target="_blank" rel="external">董的博客-HDFS Federation设计动机与基本原理</a></li>
-<li><a href="https://tech.meituan.com/presto.html" target="_blank" rel="external">Presto实现原理和美团的使用实践</a></li>
+<li><a href="https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java#java-visualvm-with-visual-gc" target="_blank" rel="noopener">Java (JVM) Memory Model – Memory Management in Java</a></li>
+<li><a href="https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.0.0/data-storage/content/example_viewfs_mounttable_entries.html" target="_blank" rel="noopener">Example of ViewFs mount table entries</a></li>
+<li><a href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html" target="_blank" rel="noopener">Hadoop filesystem at Twitter</a></li>
+<li><a href="http://dongxicheng.org/mapreduce/hdfs-federation-introduction/" target="_blank" rel="noopener">董的博客-HDFS Federation设计动机与基本原理</a></li>
+<li><a href="https://tech.meituan.com/presto.html" target="_blank" rel="noopener">Presto实现原理和美团的使用实践</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="cjuqfn63m00qq5ih2404bniat" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="cjv3a7bik00qzzth2v30s9tu3" class="article-share-link">分享</a>
       
       
       

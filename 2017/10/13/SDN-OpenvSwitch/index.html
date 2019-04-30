@@ -126,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjv3a7bj000rhzth2p8ufi2s1" class="article-share-link">分享</a>
         
         
         
@@ -148,13 +148,13 @@ ga('send', 'pageview');
 <a id="more"></a>
 <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>由之前发布的文章知道 Open vSwitch(Open Source Virtual Switch) 是一款基于软件实现的开源虚拟交换机。</p>
 <ul>
-<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）: 架构概览</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="external">SDN 技术指南（二）: OpenFlow </a></li>
+<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）: OpenFlow </a></li>
 </ul>
 <blockquote>
-<p><a href="http://www.openswitch.net" target="_blank" rel="external">Open Source Virtual Switch</a>:Community-Based, Open Source,. Full-Featured Network Operating System.</p>
+<p><a href="http://www.openswitch.net" target="_blank" rel="noopener">Open Source Virtual Switch</a>:Community-Based, Open Source,. Full-Featured Network Operating System.</p>
 </blockquote>
-<h2 id="一、Open-vSwitch-安装"><a href="#一、Open-vSwitch-安装" class="headerlink" title="一、Open vSwitch 安装"></a>一、Open vSwitch 安装</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 第一步：Getting the Code</div><div class="line">git clone https:<span class="comment">//git.openswitch.net/openswitch/ops-build</span></div><div class="line"></div><div class="line"># 第一步：选择编译模式</div><div class="line"></div><div class="line"># 模式一：To a supported white box <span class="keyword">switch</span> ( 例如 VMware vSwitch、vDS、Nexus <span class="number">1000</span>V)</div><div class="line"><span class="built_in">make</span> configure genericx86<span class="number">-64</span></div><div class="line"></div><div class="line"># 模式二：OVA （可以直接导入虚拟机，例如 Oracle Virtual box ）</div><div class="line"><span class="built_in">make</span> configure appliance</div><div class="line"></div><div class="line"># 第三步：打包</div><div class="line"><span class="built_in">make</span></div></pre></td></tr></table></figure>
+<h2 id="一、Open-vSwitch-安装"><a href="#一、Open-vSwitch-安装" class="headerlink" title="一、Open vSwitch 安装"></a>一、Open vSwitch 安装</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 第一步：Getting the Code</span><br><span class="line">git clone https:<span class="comment">//git.openswitch.net/openswitch/ops-build</span></span><br><span class="line"></span><br><span class="line"># 第一步：选择编译模式</span><br><span class="line"></span><br><span class="line"># 模式一：To a supported white box <span class="keyword">switch</span> ( 例如 VMware vSwitch、vDS、Nexus <span class="number">1000</span>V)</span><br><span class="line"><span class="built_in">make</span> configure genericx86<span class="number">-64</span></span><br><span class="line"></span><br><span class="line"># 模式二：OVA （可以直接导入虚拟机，例如 Oracle Virtual box ）</span><br><span class="line"><span class="built_in">make</span> configure appliance</span><br><span class="line"></span><br><span class="line"># 第三步：打包</span><br><span class="line"><span class="built_in">make</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Build.png" alt></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-VM.png" alt></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Login.png" alt></p>
@@ -168,7 +168,7 @@ ga('send', 'pageview');
 <li>ovs-appctl ：发送命令消息，运行相关 daemon；</li>
 <li>ovsdbmonitor ： GUI工具，可以远程获取 OVS 数据库和 OpenFlow 的流表。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建一个新的交换机</span></div><div class="line">$ ovs-vsctl add-br ovs-switch</div><div class="line"><span class="comment"># 创建一个端口 设置端口</span></div><div class="line"><span class="comment"># 如果在创建端口的时候没有指定 OpenFlow 端口编号，会自动生成一个</span></div><div class="line">$ ovs-vsctl add-port ovs-switch p0 -- <span class="built_in">set</span> Interface p0 ofport_request=100</div><div class="line"><span class="comment"># 设置接口类型</span></div><div class="line">$ ovs-vsctl <span class="built_in">set</span> Interface p0 <span class="built_in">type</span>=internal</div><div class="line">$ ethtool -i p0</div><div class="line"><span class="comment"># 查看交换机的端口信息</span></div><div class="line">$ ovs-ofctl show ovs-switch</div><div class="line"><span class="comment"># 查看 datapath 的信息</span></div><div class="line">$ ovs-dpctl show</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的交换机</span></span><br><span class="line">$ ovs-vsctl add-br ovs-switch</span><br><span class="line"><span class="comment"># 创建一个端口 设置端口</span></span><br><span class="line"><span class="comment"># 如果在创建端口的时候没有指定 OpenFlow 端口编号，会自动生成一个</span></span><br><span class="line">$ ovs-vsctl add-port ovs-switch p0 -- <span class="built_in">set</span> Interface p0 ofport_request=100</span><br><span class="line"><span class="comment"># 设置接口类型</span></span><br><span class="line">$ ovs-vsctl <span class="built_in">set</span> Interface p0 <span class="built_in">type</span>=internal</span><br><span class="line">$ ethtool -i p0</span><br><span class="line"><span class="comment"># 查看交换机的端口信息</span></span><br><span class="line">$ ovs-ofctl show ovs-switch</span><br><span class="line"><span class="comment"># 查看 datapath 的信息</span></span><br><span class="line">$ ovs-dpctl show</span><br></pre></td></tr></table></figure>
 <h2 id="三、Open-vSwitch-运行原理"><a href="#三、Open-vSwitch-运行原理" class="headerlink" title="三、Open vSwitch 运行原理"></a>三、Open vSwitch 运行原理</h2><h4 id="3-1-Open-vSwitch-内部结构"><a href="#3-1-Open-vSwitch-内部结构" class="headerlink" title="3.1 Open vSwitch 内部结构"></a>3.1 Open vSwitch 内部结构</h4><p>Open vSwitch 内部分为用户态和内核态。用户层（态）为守护程序实现了交换机和流表，是 Open vSwitch 的核心，提供了一些组件去管理交换机，实现数据库，对内核进行直接管理。主要包含三个守护进程：</p>
 <ul>
 <li>ovs-vswitched : 主要模块，守护进程，包括一个 Linux 内核模块。</li>
@@ -194,68 +194,68 @@ ga('send', 'pageview');
 <li>ovs-pki ：OpenFlow 交换机创建和管理公钥框架；</li>
 <li>ovs-tcpundump：tcpdump 的补丁，解析 OpenFlow 的消息；</li>
 </ul>
-<p>Open vSwitch support for OpenFlow 1.1 and beyond is a work in progress.<a href="http://docs.openvswitch.org/en/latest/topics/openflow/" target="_blank" rel="external">&gt;&gt;&gt; OpenFlow Support in Open vSwitch </a></p>
+<p>Open vSwitch support for OpenFlow 1.1 and beyond is a work in progress.<a href="http://docs.openvswitch.org/en/latest/topics/openflow/" target="_blank" rel="noopener">&gt;&gt;&gt; OpenFlow Support in Open vSwitch </a></p>
 <h2 id="四、Open-vSwitch-性能监控"><a href="#四、Open-vSwitch-性能监控" class="headerlink" title="四、Open vSwitch 性能监控"></a>四、Open vSwitch 性能监控</h2><blockquote>
 <p>“If you can’t measure it, you can’t improve it”  —— Lord Kelvin</p>
 </blockquote>
 <h4 id="4-1-sFlow-监控示例"><a href="#4-1-sFlow-监控示例" class="headerlink" title="4.1 sFlow 监控示例"></a>4.1 sFlow 监控示例</h4><ul>
 <li>启动分析器 sFlow Analyzer (以 sFlow-RT 为例)</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cd sflow-rt</div><div class="line">$ ./start.sh</div><div class="line">bash<span class="number">-3.2</span>$ ./start.sh</div><div class="line">信息: Listening, sFlow port <span class="number">6343</span></div><div class="line">信息: Listening, HTTP port <span class="number">8008</span></div><div class="line">信息: app/ovs/scripts/status.js started</div><div class="line">警告: app/ovs/scripts/status.js app/ovs/scripts/status.js</div><div class="line">信息: app/ovs/scripts/status.js stopped</div><div class="line">$ ps -ef | grep <span class="number">6343</span></div><div class="line">  <span class="number">501</span> <span class="number">30565</span> <span class="number">30431</span>   <span class="number">0</span>  <span class="number">2</span>:<span class="number">45</span>下午 ttys002    <span class="number">0</span>:<span class="number">03.90</span> /usr/bin/java -Xms200M -Xmx200M -XX:+UseG1GC -XX:MaxGCPauseMillis=<span class="number">100</span> -Dsflow.port=<span class="number">6343</span> -Dhttp.port=<span class="number">8008</span> -jar ./lib/sflowrt.jar</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cd sflow-rt</span><br><span class="line">$ ./start.sh</span><br><span class="line">bash<span class="number">-3.2</span>$ ./start.sh</span><br><span class="line">信息: Listening, sFlow port <span class="number">6343</span></span><br><span class="line">信息: Listening, HTTP port <span class="number">8008</span></span><br><span class="line">信息: app/ovs/scripts/status.js started</span><br><span class="line">警告: app/ovs/scripts/status.js app/ovs/scripts/status.js</span><br><span class="line">信息: app/ovs/scripts/status.js stopped</span><br><span class="line">$ ps -ef | grep <span class="number">6343</span></span><br><span class="line">  <span class="number">501</span> <span class="number">30565</span> <span class="number">30431</span>   <span class="number">0</span>  <span class="number">2</span>:<span class="number">45</span>下午 ttys002    <span class="number">0</span>:<span class="number">03.90</span> /usr/bin/java -Xms200M -Xmx200M -XX:+UseG1GC -XX:MaxGCPauseMillis=<span class="number">100</span> -Dsflow.port=<span class="number">6343</span> -Dhttp.port=<span class="number">8008</span> -jar ./lib/sflowrt.jar</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Connect Normal Switch to sFlow Analyzer</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 指定 analyzer</span></div><div class="line"><span class="keyword">switch</span>(root)# sflow collector <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line"><span class="comment">// 数据包采样: 1-in-4096</span></div><div class="line"><span class="comment">// 常规参考值：[100 Mb/s: 1 in 500]、[1 Bb/s: 1 in 1000]、[10 Gb/s: 1 in 2000]</span></div><div class="line"><span class="keyword">switch</span>(root)# sflow sampling <span class="number">4096</span></div><div class="line"><span class="comment">// 轮询计数器 polling counters every 20 seconds</span></div><div class="line"><span class="keyword">switch</span>(root)# sflow polling <span class="number">20</span></div><div class="line"><span class="keyword">switch</span>(root)# sflow enable</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定 analyzer</span></span><br><span class="line"><span class="keyword">switch</span>(root)# sflow collector <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"><span class="comment">// 数据包采样: 1-in-4096</span></span><br><span class="line"><span class="comment">// 常规参考值：[100 Mb/s: 1 in 500]、[1 Bb/s: 1 in 1000]、[10 Gb/s: 1 in 2000]</span></span><br><span class="line"><span class="keyword">switch</span>(root)# sflow sampling <span class="number">4096</span></span><br><span class="line"><span class="comment">// 轮询计数器 polling counters every 20 seconds</span></span><br><span class="line"><span class="keyword">switch</span>(root)# sflow polling <span class="number">20</span></span><br><span class="line"><span class="keyword">switch</span>(root)# sflow enable</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Connect Open vSwitch to sFlow Analyzer</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// e.g. connect Open vSwitch to sFlow analyzer</span></div><div class="line">ovs-vsctl — –id=@sflow create sflow agent=eth0 \target=\”<span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6343</span>\” sampling=<span class="number">1000</span> polling=<span class="number">20</span> \</div><div class="line">— set bridge br0 sflow=@sflow</div></pre></td></tr></table></figure>
-<h4 id="4-2-Connect-Open-vSwitch-to-OpenFlow-controller"><a href="#4-2-Connect-Open-vSwitch-to-OpenFlow-controller" class="headerlink" title="4.2 Connect Open vSwitch to OpenFlow controller"></a>4.2 Connect Open vSwitch to OpenFlow controller</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// e.g. connect Open vSwitch to OpenFlow controller</span></div><div class="line">ovs-vsctl set-controller br0 tcp:<span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6633</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e.g. connect Open vSwitch to sFlow analyzer</span></span><br><span class="line">ovs-vsctl — –id=@sflow create sflow agent=eth0 \target=\”<span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6343</span>\” sampling=<span class="number">1000</span> polling=<span class="number">20</span> \</span><br><span class="line">— set bridge br0 sflow=@sflow</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-Connect-Open-vSwitch-to-OpenFlow-controller"><a href="#4-2-Connect-Open-vSwitch-to-OpenFlow-controller" class="headerlink" title="4.2 Connect Open vSwitch to OpenFlow controller"></a>4.2 Connect Open vSwitch to OpenFlow controller</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e.g. connect Open vSwitch to OpenFlow controller</span></span><br><span class="line">ovs-vsctl set-controller br0 tcp:<span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6633</span></span><br></pre></td></tr></table></figure>
 <h4 id="4-3-Traffic-analytics-sFlow-vs-NetFlow"><a href="#4-3-Traffic-analytics-sFlow-vs-NetFlow" class="headerlink" title="4.3 Traffic analytics : sFlow vs NetFlow"></a>4.3 Traffic analytics : sFlow vs NetFlow</h4><ul>
 <li>sFlow does not use flow cache, so realtime charts more accurately reflect traffic trend</li>
 <li>NetFlow spikes caused by flow cache active-timeout for long running connections</li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/SDV-OVS-sFlow-NetFlow.png" alt></p>
 <h4 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h4><ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDU2MTU5MA==&amp;mid=208243964&amp;idx=1&amp;sn=161fdc0288aa36a93ca34d488f321b88&amp;scene=1#rd" target="_blank" rel="external">传统券商的互联网技术之路——泛前端、交易云与金融电商</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDU2MTU5MA==&amp;mid=208243964&amp;idx=1&amp;sn=161fdc0288aa36a93ca34d488f321b88&amp;scene=1#rd" target="_blank" rel="noopener">传统券商的互联网技术之路——泛前端、交易云与金融电商</a></li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="http://hustcat.github.io/an-introduction-to-ovs-architecture/" target="_blank" rel="external">An Introduction to OVS Architecture | YY哥</a></li>
-<li><a href="http://hustcat.github.io/ovs-flow-table-in-datapath/" target="_blank" rel="external">OVS 流表原理 | YY哥</a></li>
+<li><a href="http://hustcat.github.io/an-introduction-to-ovs-architecture/" target="_blank" rel="noopener">An Introduction to OVS Architecture | YY哥</a></li>
+<li><a href="http://hustcat.github.io/ovs-flow-table-in-datapath/" target="_blank" rel="noopener">OVS 流表原理 | YY哥</a></li>
 </ul>
 <h2 id="扩展阅读：Network-Engineering"><a href="#扩展阅读：Network-Engineering" class="headerlink" title="扩展阅读：Network Engineering"></a>扩展阅读：Network Engineering</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）: 架构概览</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="external">SDN 技术指南（二）：OpenFlow</a></li>
-<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="external">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="external">SDN 技术指南（四）：Open vSwitch</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）：OpenFlow</a></li>
+<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="noopener">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="noopener">SDN 技术指南（四）：Open vSwitch</a></li>
 <li>Preview <a href="#">SDN 技术指南（五）：NFV</a></li>
 <li>Preview <a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
 <li>Preview <a href="#">SDN 技术指南（七）：产业联盟与标准化组织</a></li>
 <li>Preview <a href="#">SDN 技术指南（八）：案例</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
-<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
-<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="noopener">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="noopener">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://kontrolissues.net/2015/10/21/installing-openswitch/" target="_blank" rel="external">kontrolissues:Installing OpenSwitch</a></li>
-<li><a href="http://www.sdnlab.com/sdn-guide/14747.html" target="_blank" rel="external">OVS初级教程：使用Open vSwitch构建虚拟网络</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/" target="_blank" rel="external">基于 Open vSwitch 的 OpenFlow 实践 | IBM@developerworks,2014</a></li>
-<li><a href="http://openvswitch.org/support/ovscon2016/7/1120-tu.pdf" target="_blank" rel="external">Offloading OVS Flow Processing using eBPF | William (Cheng-Chun) Tu VMware | OVS Conference 2016</a></li>
-<li><a href="http://openvswitch.org/support/ovscon2014/17/1400-ovs-sflow.pdf" target="_blank" rel="external">Traffic visibility and control with sFlow | Peter Phaal InMon Corp. November 2014</a></li>
-<li><a href="https://networkheresy.com/2014/11/13/accelerating-open-vswitch-to-ludicrous-speed/" target="_blank" rel="external">Accelerating Open vSwitch to “Ludicrous Speed” | Network Heresy , 2014 </a></li>
-<li><a href="http://blog.sflow.com/2015/09/open-virtual-network-ovn.html" target="_blank" rel="external">Open Virtual Network (OVN) | sflow.com ,2015 </a></li>
-<li><a href="http://openvswitch.org/support/ovscon2014/" target="_blank" rel="external">Open vSwitch 2014 Fall Conference </a></li>
-<li><a href="http://openvswitch.org/support/ovscon2015/" target="_blank" rel="external">Open vSwitch 2015 Fall Conference </a></li>
-<li><a href="http://openvswitch.org/support/ovscon2015/" target="_blank" rel="external">Open vSwitch 2016 Fall Conference </a></li>
+<li><a href="https://kontrolissues.net/2015/10/21/installing-openswitch/" target="_blank" rel="noopener">kontrolissues:Installing OpenSwitch</a></li>
+<li><a href="http://www.sdnlab.com/sdn-guide/14747.html" target="_blank" rel="noopener">OVS初级教程：使用Open vSwitch构建虚拟网络</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/" target="_blank" rel="noopener">基于 Open vSwitch 的 OpenFlow 实践 | IBM@developerworks,2014</a></li>
+<li><a href="http://openvswitch.org/support/ovscon2016/7/1120-tu.pdf" target="_blank" rel="noopener">Offloading OVS Flow Processing using eBPF | William (Cheng-Chun) Tu VMware | OVS Conference 2016</a></li>
+<li><a href="http://openvswitch.org/support/ovscon2014/17/1400-ovs-sflow.pdf" target="_blank" rel="noopener">Traffic visibility and control with sFlow | Peter Phaal InMon Corp. November 2014</a></li>
+<li><a href="https://networkheresy.com/2014/11/13/accelerating-open-vswitch-to-ludicrous-speed/" target="_blank" rel="noopener">Accelerating Open vSwitch to “Ludicrous Speed” | Network Heresy , 2014 </a></li>
+<li><a href="http://blog.sflow.com/2015/09/open-virtual-network-ovn.html" target="_blank" rel="noopener">Open Virtual Network (OVN) | sflow.com ,2015 </a></li>
+<li><a href="http://openvswitch.org/support/ovscon2014/" target="_blank" rel="noopener">Open vSwitch 2014 Fall Conference </a></li>
+<li><a href="http://openvswitch.org/support/ovscon2015/" target="_blank" rel="noopener">Open vSwitch 2015 Fall Conference </a></li>
+<li><a href="http://openvswitch.org/support/ovscon2015/" target="_blank" rel="noopener">Open vSwitch 2016 Fall Conference </a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjuqfn63z00r25ih2b84gfdhk" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/" data-id="cjv3a7bj000rhzth2p8ufi2s1" class="article-share-link">分享</a>
       
       
       

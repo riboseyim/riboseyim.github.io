@@ -126,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="cjuqfn5zk00el5ih2tjedc3yj" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="cjv3a7bdz00ewzth27jmf4dip" class="article-share-link">分享</a>
         
         
         
@@ -147,7 +147,7 @@ ga('send', 'pageview');
 </ul>
 <a id="more"></a>
 <h2 id="Cyber-Security-警惕-Wi-Fi-漏洞-KRACK"><a href="#Cyber-Security-警惕-Wi-Fi-漏洞-KRACK" class="headerlink" title="Cyber-Security: 警惕 Wi-Fi 漏洞 KRACK"></a>Cyber-Security: 警惕 Wi-Fi 漏洞 KRACK</h2><ul>
-<li><a href="https://www.linux.com/blog/2017/10/tips-secure-your-network-wake-krack" target="_blank" rel="external">原文：Tips to Secure Your Network in the Wake of KRACK | KONSTANTIN RYABITSEV OCTOBER 18, 2017</a></li>
+<li><a href="https://www.linux.com/blog/2017/10/tips-secure-your-network-wake-krack" target="_blank" rel="noopener">原文：Tips to Secure Your Network in the Wake of KRACK | KONSTANTIN RYABITSEV OCTOBER 18, 2017</a></li>
 </ul>
 <p>KRACK 攻击将目标放在你的移动设备和 Wi-Fi 接入点之间的链路，它可能是一台路由器 —— 在你的家里、办公室、社区图书馆或者你最喜欢咖啡店。 下面这些技巧能够帮助您提高网络连接的安全性。</p>
 <p>密钥重安装攻击 （KRACK, Key Reinstallation Attacks)  概要如下:</p>
@@ -164,9 +164,9 @@ ga('send', 'pageview');
 <p>实际上，这个图应该类似于这样：<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Everywhere.png" alt></p>
 <p>Wi-Fi 仅仅是我们漫长的通信链中的第一个不应该信任的环节。如果让我猜的话，你正在使用的 Wi-Fi 路由器可能从开始使用的那天起就没有收到过安全更新。更糟的是，它可能是默认的或容易被猜到的管理凭据（用户名/口令/密钥等），从来就没有更改过。除非你自己初始化并配置了路由器，同时你还能记住自己最后一次是什么时候更新它的固件，总之，你应该假设它现在是由别人控制，不能被信任。</p>
 <p>通过 Wi-Fi 路由器，我们进入了一个由各类不可信任基础设施覆盖的区域 — 取决于你的偏执狂水平。在我们的上游有各类 ISP 和服务提供商，他们中的许多人捕获，监视，改变，分析和销售我们的个人流量，试图从我们的浏览习惯中获得更多的钱。通常，他们自己的安全补丁计划留下了许多有待改进的地方，最终使我们的流量暴露在恶意人士的眼里。</p>
-<p>通常在互联网上，我们不得不担心强大的、国家级的演员操纵核心网络协议（例如 <a href="https://en.wikipedia.org/wiki/BGP_hijacking" target="_blank" rel="external">BGP hijacking，BGP 劫持</a> ） ，为了支持质量监控程序或者执行国家级的流量过滤能力。</p>
+<p>通常在互联网上，我们不得不担心强大的、国家级的演员操纵核心网络协议（例如 <a href="https://en.wikipedia.org/wiki/BGP_hijacking" target="_blank" rel="noopener">BGP hijacking，BGP 劫持</a> ） ，为了支持质量监控程序或者执行国家级的流量过滤能力。</p>
 <h4 id="2、安全通信协议：HTTPS"><a href="#2、安全通信协议：HTTPS" class="headerlink" title="2、安全通信协议：HTTPS"></a>2、安全通信协议：HTTPS</h4><p>幸运的是，我们有一个基于不安全介质进行安全通信的解决方案，我们每天都在使用它 —— HTTPS 协议对我们的 Internet 流量进行点对点加密，并确保我们可以信任我们所通信的站点。</p>
-<p>Linux 基金会发起 <a href="https://letsencrypt.org/" target="_blank" rel="external">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a>，便于网站所有者全球提供终端到终端的加密，这有助于确保任何受损的设备，我们的个人设备，我们要访问的网站之间没有通信泄密风险。</p>
+<p>Linux 基金会发起 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a>，便于网站所有者全球提供终端到终端的加密，这有助于确保任何受损的设备，我们的个人设备，我们要访问的网站之间没有通信泄密风险。</p>
 <p>好吧…只能说尽量接近没有风险。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-HTTPS.png" alt></p>
 <h4 id="3、历史遗留问题：DNS"><a href="#3、历史遗留问题：DNS" class="headerlink" title="3、历史遗留问题：DNS"></a>3、历史遗留问题：DNS</h4><p>即使我们忠实地使用 HTTPS 协议来创建一个可信的通信渠道，攻击者还有一个机会，访问我们的 Wi-Fi 路由器或改变我们的 Wi-Fi 流量 — 例如 KRACK 攻击 — 可以诱导我们同错误的网站通信。他们可以这样做事利用了另一个事实，即我们仍然十分依赖于 DNS —— 一种上世纪80年代开始应用，不加密，非常容易被欺骗协议。<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-LOLDNS.png" alt></p>
@@ -180,30 +180,30 @@ ga('send', 'pageview');
 <p><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-VPN.png" alt></p>
 <p>这里的重要警告是，在选择 VPN 提供商时，必须保证它们的合理地可信性；否则，您只是同另一组恶意行为者进行交易。远离任何提供“免费 VPN”的提供商，他们很可能把你作为间谍目标，或者出售您的流量给营销公司赚钱。 </p>
 <p>并非所有的设备都需要安装 VPN，但您每天使用的、涉及访问个人私人信息网站的—— 尤其是访问您的金钱和身份信息（政府、银行网站、社交网络等）的任何东西都必须得到安全保护。VPN 不是应对所有网络层漏洞的灵丹妙药，但它肯定会有所帮助，当你在机场使用不安全的 Wi-Fi 卡，或者下次类似 KRACK 漏洞被发现的时候。</p>
-<h2 id="扩展阅读：《The-Cyber-Security-Master》"><a href="#扩展阅读：《The-Cyber-Security-Master》" class="headerlink" title="扩展阅读：《The Cyber-Security Master》"></a>扩展阅读：<a href="https://www.gitbook.com/book/riboseyim/cyber-security-manual" target="_blank" rel="external">《The Cyber-Security Master》</a></h2><ul>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Cyber-Security: Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="external">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/" target="_blank" rel="external">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
-<li><a href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/" target="_blank" rel="external">Cyber-Security: OpenSSH 并不安全</a></li>
-<li><a href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/" target="_blank" rel="external">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
-<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
-<li><a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="external">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
-<li><a href="https://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="external">Cyber-Security: 美国网络安全立法策略</a></li>
-<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+<h2 id="扩展阅读：《The-Cyber-Security-Master》"><a href="#扩展阅读：《The-Cyber-Security-Master》" class="headerlink" title="扩展阅读：《The Cyber-Security Master》"></a>扩展阅读：<a href="https://www.gitbook.com/book/riboseyim/cyber-security-manual" target="_blank" rel="noopener">《The Cyber-Security Master》</a></h2><ul>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="noopener">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="noopener">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/" target="_blank" rel="noopener">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/" target="_blank" rel="noopener">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/" target="_blank" rel="noopener">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="noopener">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="noopener">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="noopener">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="noopener">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://en.wikipedia.org/wiki/BGP_hijacking" target="_blank" rel="external">BGP hijacking，BGP 劫持</a></li>
-<li><a href="https://letsencrypt.org/" target="_blank" rel="external">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzI5NjA0NjI5MQ==&amp;mid=402074320&amp;idx=1&amp;sn=e81d1be8ce013b813dd3a8cdd050d04f&amp;scene=1&amp;srcid=0117tzKNHcCeyGHrnkwjv2WN%23rd" target="_blank" rel="external">2015年去过凯悦？请小心你的银行卡 | 2016-01-17 安全威胁情报</a></li>
+<li><a href="https://en.wikipedia.org/wiki/BGP_hijacking" target="_blank" rel="noopener">BGP hijacking，BGP 劫持</a></li>
+<li><a href="https://letsencrypt.org/" target="_blank" rel="noopener">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI5NjA0NjI5MQ==&amp;mid=402074320&amp;idx=1&amp;sn=e81d1be8ce013b813dd3a8cdd050d04f&amp;scene=1&amp;srcid=0117tzKNHcCeyGHrnkwjv2WN%23rd" target="_blank" rel="noopener">2015年去过凯悦？请小心你的银行卡 | 2016-01-17 安全威胁情报</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="cjuqfn5zk00el5ih2tjedc3yj" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="cjv3a7bdz00ewzth27jmf4dip" class="article-share-link">分享</a>
       
       
       

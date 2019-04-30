@@ -126,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjv3a7bix00rdzth2z44p59kr" class="article-share-link">分享</a>
         
         
         
@@ -146,7 +146,7 @@ ga('send', 'pageview');
 <li>支持 OpenFlow 的开源交换机：Open vSwitch</li>
 </ul>
 <a id="more"></a>
-<h4 id="回顾-SDN-技术指南（一）：架构概览"><a href="#回顾-SDN-技术指南（一）：架构概览" class="headerlink" title="回顾 SDN 技术指南（一）：架构概览"></a>回顾 <a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）：架构概览</a></h4><ul>
+<h4 id="回顾-SDN-技术指南（一）：架构概览"><a href="#回顾-SDN-技术指南（一）：架构概览" class="headerlink" title="回顾 SDN 技术指南（一）：架构概览"></a>回顾 <a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）：架构概览</a></h4><ul>
 <li>Background：为什么需要 SDN</li>
 <li>SDN的主要解决方案</li>
 <li>SDN的整体应用架构</li>
@@ -159,9 +159,9 @@ ga('send', 'pageview');
 <p>在传统的网络交换设备中，转发平面（通常采用专门的芯片以提高性能）与控制平面（分布地部署在网络的各个节点）是紧密耦合的，被集成实现在单独的设备中。当然，从另一个角度看这样的设计也有合理性，至少能提高单个节点的灵活性和容灾能力。但是众多厂商各自为政，更出于技术保密、保持市场的考虑，对于开放接口供用户调用、建立行业标准的兴趣不大。OpenFlow 协议的推出突破了传统壁垒，有利于增加用户侧的话语权，所以 Google、Facebook 等企业是 OpenFlow 协议最坚强的拥趸，他们的数据中心都在使用 OpenFlow 协议，并倡议发起成立 ONF 来推动这个技术。</p>
 <ul>
 <li>1995: Sun Microsystems 在1995年就提出软件定义网络的概念（在公开 JAVA 编程语言之后不久）</li>
-<li>2006: <a href="https://en.wikipedia.org/wiki/Martin_Casado" target="_blank" rel="external">Martin Casado</a>(a PhD students at Stanford)及其团队首次提出了一个集中式安全控制的框架</li>
-<li>2008: OpenFlow paper <a href="http://yuba.stanford.edu/~casado/mcthesis.pdf" target="_blank" rel="external">《Architectural Support for Security Management in Enterprise Networks》</a> （人物： <strong>Nick McKeown</strong> 、<strong>Scott Shenker</strong> 、<strong>Dan Boneh</strong>）</li>
-<li>2009: Stanford 发布 OpenFlow V1.0.0 ; <a href="https://en.wikipedia.org/wiki/Martin_Casado" target="_blank" rel="external">Martin Casado</a> co-founds Nicira （主导 Open vSwitch）</li>
+<li>2006: <a href="https://en.wikipedia.org/wiki/Martin_Casado" target="_blank" rel="noopener">Martin Casado</a>(a PhD students at Stanford)及其团队首次提出了一个集中式安全控制的框架</li>
+<li>2008: OpenFlow paper <a href="http://yuba.stanford.edu/~casado/mcthesis.pdf" target="_blank" rel="noopener">《Architectural Support for Security Management in Enterprise Networks》</a> （人物： <strong>Nick McKeown</strong> 、<strong>Scott Shenker</strong> 、<strong>Dan Boneh</strong>）</li>
+<li>2009: Stanford 发布 OpenFlow V1.0.0 ; <a href="https://en.wikipedia.org/wiki/Martin_Casado" target="_blank" rel="noopener">Martin Casado</a> co-founds Nicira （主导 Open vSwitch）</li>
 <li>2010: Guido Appenzeller co-founds Big Switch Networks (head of clean slate lab at Stanford)</li>
 <li>2011: <strong>Open Networking Foundation</strong> is formed</li>
 <li>Oct 2011: First Open Networking Summit.</li>
@@ -227,42 +227,42 @@ ga('send', 'pageview');
 <li>支持云平台 Xen XenServer 6.0 ，也支持 Proxmox VE, VirtualBox, Xen KVM</li>
 <li>提供开发工具包：Data Plane Development Kit (DPDK)</li>
 <li>接口编程语言支持：C 、Python</li>
-<li>支持虚拟机通讯／监控流量统计信息，例如 NetFlow(Cisco，RFC 3954)、sFlow（RFC 3176）、NetStream（Huawei）、IPFIX（RFC 7011）,详见 <a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a> 。</li>
+<li>支持虚拟机通讯／监控流量统计信息，例如 NetFlow(Cisco，RFC 3954)、sFlow（RFC 3176）、NetStream（Huawei）、IPFIX（RFC 7011）,详见 <a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a> 。</li>
 <li>SPAN（Switched Port Analyzer ）, RSPAN（ Remote Switch Port Analyzer）：可以发送一份流量的拷贝给连接安全设备的交换机端口</li>
 </ul>
-<p>示例：Open vSwitch 通过命令和控制器建立初始化连接（TCP），控制器 IP （192.168.56.101） 端口（6653）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ovs-vsctl <span class="built_in">set</span>-controller &lt;sampleBridgeName&gt; tcp:192.168.56.101:6653</div></pre></td></tr></table></figure></p>
+<p>示例：Open vSwitch 通过命令和控制器建立初始化连接（TCP），控制器 IP （192.168.56.101） 端口（6653）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ovs-vsctl <span class="built_in">set</span>-controller &lt;sampleBridgeName&gt; tcp:192.168.56.101:6653</span><br></pre></td></tr></table></figure></p>
 <p>Intel 拥有一个自己的 Open vSwitch 版本，OpenStack 在2011年启动 Quantum 项目，通过引入了Open vSwitch 发展 Open Stack Network 。随着 OpenStack 社区的快速壮大，Open vSwitch 在虚拟交换机的领先优势逐步确立。</p>
 <h2 id="Discuss"><a href="#Discuss" class="headerlink" title="Discuss"></a>Discuss</h2><ul>
-<li><a href="https://gigaom.com/2012/04/17/googles-next-openflow-challenge-taking-sdns-to-the-consumer/" target="_blank" rel="external">资讯 | Google’s next OpenFlow challenge: taking SDNs to the consumer,Stacey Higginbotham Apr 17, 2012</a></li>
+<li><a href="https://gigaom.com/2012/04/17/googles-next-openflow-challenge-taking-sdns-to-the-consumer/" target="_blank" rel="noopener">资讯 | Google’s next OpenFlow challenge: taking SDNs to the consumer,Stacey Higginbotham Apr 17, 2012</a></li>
 </ul>
 <h2 id="专题合辑：Network-Engineering"><a href="#专题合辑：Network-Engineering" class="headerlink" title="专题合辑：Network Engineering"></a>专题合辑：Network Engineering</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）: 架构概览</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="external">SDN 技术指南（二）：OpenFlow</a></li>
-<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="external">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="external">SDN 技术指南（四）：Open vSwitch</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）：OpenFlow</a></li>
+<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="noopener">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="noopener">SDN 技术指南（四）：Open vSwitch</a></li>
 <li>Preview <a href="#">SDN 技术指南（五）：NFV</a></li>
 <li>Preview <a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
-<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
-<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="noopener">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="noopener">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.youtube.com/watch?v=l25Ukkmk6Sk" target="_blank" rel="external">David Mahler: Introduction to OpenFlow | Youtube</a></li>
-<li><a href="https://www.opennetworking.org/wp-content/uploads/2013/05/TR-535_ONF_SDN_Evolution.pdf" target="_blank" rel="external">TR-535 ONF SDN Evolution,VERSION 1.0,2016-09-08</a></li>
-<li><a href="https://www.opennetworking.org/wp-content/uploads/2014/10/openflow-switch-v1.5.1.pdf" target="_blank" rel="external">TS-025 ONF OpenFlow Switch Specification-Version 1.5.1 (Protocol version 0x06),March 26,2015</a></li>
-<li><a href="https://www.linkedin.com/in/tarun-thakur-36b67a19/" target="_blank" rel="external">Tarun Thakur</a></li>
-<li><a href="https://www.howtoforge.com/tutorial/software-defined-networking-sdn-explained-for-beginners/" target="_blank" rel="external">Software Defined Networking (SDN) explained for beginners</a></li>
-<li><a href="https://www.howtoforge.com/tutorial/software-defined-networking-sdn-architecture-and-role-of-openflow/" target="_blank" rel="external">Software Defined Networking (SDN) - Architecture and role of Openflow</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/" target="_blank" rel="external">基于 Open vSwitch 的 OpenFlow 实践 | IBM@developerworks,2014</a></li>
+<li><a href="https://www.youtube.com/watch?v=l25Ukkmk6Sk" target="_blank" rel="noopener">David Mahler: Introduction to OpenFlow | Youtube</a></li>
+<li><a href="https://www.opennetworking.org/wp-content/uploads/2013/05/TR-535_ONF_SDN_Evolution.pdf" target="_blank" rel="noopener">TR-535 ONF SDN Evolution,VERSION 1.0,2016-09-08</a></li>
+<li><a href="https://www.opennetworking.org/wp-content/uploads/2014/10/openflow-switch-v1.5.1.pdf" target="_blank" rel="noopener">TS-025 ONF OpenFlow Switch Specification-Version 1.5.1 (Protocol version 0x06),March 26,2015</a></li>
+<li><a href="https://www.linkedin.com/in/tarun-thakur-36b67a19/" target="_blank" rel="noopener">Tarun Thakur</a></li>
+<li><a href="https://www.howtoforge.com/tutorial/software-defined-networking-sdn-explained-for-beginners/" target="_blank" rel="noopener">Software Defined Networking (SDN) explained for beginners</a></li>
+<li><a href="https://www.howtoforge.com/tutorial/software-defined-networking-sdn-architecture-and-role-of-openflow/" target="_blank" rel="noopener">Software Defined Networking (SDN) - Architecture and role of Openflow</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1401_zhaoyi_openswitch/" target="_blank" rel="noopener">基于 Open vSwitch 的 OpenFlow 实践 | IBM@developerworks,2014</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjuqfn63w00r05ih28nyex8eq" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/08/22/SDN-OpenFlow/" data-id="cjv3a7bix00rdzth2z44p59kr" class="article-share-link">分享</a>
       
       
       

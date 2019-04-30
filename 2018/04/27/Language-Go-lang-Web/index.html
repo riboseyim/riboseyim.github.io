@@ -118,7 +118,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/04/27/Language-Go-lang-Web/" data-id="cjuqfn5vg003e5ih2hdw6s4ac" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2018/04/27/Language-Go-lang-Web/" data-id="cjv3a7b9o003lzth2ufsr3bar" class="article-share-link">分享</a>
         
         
         
@@ -132,27 +132,27 @@ ga('send', 'pageview');
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
 <h2 id="beego"><a href="#beego" class="headerlink" title="beego"></a>beego</h2><h4 id="Beego-ABC"><a href="#Beego-ABC" class="headerlink" title="Beego ABC"></a>Beego ABC</h4><ul>
 <li><p>lib</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">go</span> get github.com/astaxie/beego</div><div class="line"><span class="keyword">go</span> get github.com/beego/admin/src/lib</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get github.com/astaxie/beego</span><br><span class="line"><span class="keyword">go</span> get github.com/beego/admin/src/lib</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>tools<br>bee 可执行文件默认路径 $GOPATH/bin</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">go</span> get github.com/beego/bee  <span class="comment">//tools</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get github.com/beego/bee  <span class="comment">//tools</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The commands are:</div><div class="line">    new         create an application base on beego framework</div><div class="line">    run         run the app <span class="built_in">which</span> can hot compile</div><div class="line">    pack        compress an beego project</div><div class="line">    api         create an api application base on beego framework</div><div class="line">    bale        packs non-Go files to Go <span class="built_in">source</span> files</div><div class="line">    version     show the bee &amp; beego version</div><div class="line">    generate    <span class="built_in">source</span> code generator</div><div class="line">    migrate     run database migrations</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bash-3.2$ bee new hello</div><div class="line">______</div><div class="line">| ___ \</div><div class="line">| |_/ /  ___   ___</div><div class="line">| ___ \ / _ \ / _ \</div><div class="line">| |_/ /|  __/|  __/</div><div class="line">\____/  \___| \___| v1.9.1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">The commands are:</span><br><span class="line">    new         create an application base on beego framework</span><br><span class="line">    run         run the app <span class="built_in">which</span> can hot compile</span><br><span class="line">    pack        compress an beego project</span><br><span class="line">    api         create an api application base on beego framework</span><br><span class="line">    bale        packs non-Go files to Go <span class="built_in">source</span> files</span><br><span class="line">    version     show the bee &amp; beego version</span><br><span class="line">    generate    <span class="built_in">source</span> code generator</span><br><span class="line">    migrate     run database migrations</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bash-3.2$ bee new hello</span><br><span class="line">______</span><br><span class="line">| ___ \</span><br><span class="line">| |_/ /  ___   ___</span><br><span class="line">| ___ \ / _ \ / _ \</span><br><span class="line">| |_/ /|  __/|  __/</span><br><span class="line">\____/  \___| \___| v1.9.1</span><br></pre></td></tr></table></figure>
 <h4 id="Beego-Resources"><a href="#Beego-Resources" class="headerlink" title="Beego Resources"></a>Beego Resources</h4><ul>
-<li><a href="https://beego.me/docs/intro/" target="_blank" rel="external">The architecture of Beego</a></li>
-<li><a href="https://github.com/beego/tutorial/blob/master/README_zh.md" target="_blank" rel="external">beego入门教程</a></li>
-<li><a href="https://github.com/beego/admin" target="_blank" rel="external">基于beego的后台管理系统</a></li>
+<li><a href="https://beego.me/docs/intro/" target="_blank" rel="noopener">The architecture of Beego</a></li>
+<li><a href="https://github.com/beego/tutorial/blob/master/README_zh.md" target="_blank" rel="noopener">beego入门教程</a></li>
+<li><a href="https://github.com/beego/admin" target="_blank" rel="noopener">基于beego的后台管理系统</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://blog.usejournal.com/top-6-web-frameworks-for-go-as-of-2017-23270e059c4b" target="_blank" rel="external">Top 6 web frameworks for Go as of 2017</a>.doc   </li>
+<li><a href="https://blog.usejournal.com/top-6-web-frameworks-for-go-as-of-2017-23270e059c4b" target="_blank" rel="noopener">Top 6 web frameworks for Go as of 2017</a>.doc   </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/04/27/Language-Go-lang-Web/" data-id="cjuqfn5vg003e5ih2hdw6s4ac" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2018/04/27/Language-Go-lang-Web/" data-id="cjv3a7b9o003lzth2ufsr3bar" class="article-share-link">分享</a>
       
       
       

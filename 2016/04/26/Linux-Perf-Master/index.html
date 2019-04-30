@@ -5,22 +5,20 @@
   
   <title>Linux 性能诊断高级课程 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要 一、快捷方式 二、推荐书单">
+  <meta name="description" content="摘要 方法论 性能诊断指南 How Linux Works 动态追踪技术 案例与实务 推荐书单">
 <meta name="keywords" content="DevOps,Engineering,Linux,SRE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 性能诊断高级课程">
 <meta property="og:url" content="https://riboseyim.com/2016/04/26/Linux-Perf-Master/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
-<meta property="og:description" content="摘要 一、快捷方式 二、推荐书单">
+<meta property="og:description" content="摘要 方法论 性能诊断指南 How Linux Works 动态追踪技术 案例与实务 推荐书单">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png">
-<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-logo.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:27:36.299Z">
+<meta property="og:updated_time" content="2019-04-21T08:55:32.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 性能诊断高级课程">
-<meta name="twitter:description" content="摘要 一、快捷方式 二、推荐书单">
-<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png">
+<meta name="twitter:description" content="摘要 方法论 性能诊断指南 How Linux Works 动态追踪技术 案例与实务 推荐书单">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
   
@@ -123,7 +121,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/04/26/Linux-Perf-Master/" data-id="cjuqfn5vr00475ih2nsckurzg" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/04/26/Linux-Perf-Master/" data-id="cjv3a7ba0004fzth26t4m0i4z" class="article-share-link">分享</a>
         
         
         
@@ -137,12 +135,15 @@ ga('send', 'pageview');
         <!-- Table of Contents -->
         
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>一、快捷方式</li>
-<li>二、推荐书单</li>
+<li>方法论</li>
+<li>性能诊断指南</li>
+<li>How Linux Works</li>
+<li>动态追踪技术</li>
+<li>案例与实务</li>
+<li>推荐书单</li>
 </ul>
 <a id="more"></a>
-<h2 id="快捷方式"><a href="#快捷方式" class="headerlink" title="快捷方式"></a>快捷方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 按内存排序，由大到小;rsz为实际内存</div><div class="line">ps -e -o &apos;pid,comm,args,pcpu,rsz,vsz,stime,user,uid&apos; | grep oracle |  sort -nrk5</div><div class="line"></div><div class="line"># 查看打开的文件</div><div class="line">lsof</div><div class="line"></div><div class="line"># 查看 Threads</div><div class="line">ps m</div></pre></td></tr></table></figure>
-<h2 id="Linux-性能诊断：方法论"><a href="#Linux-性能诊断：方法论" class="headerlink" title="Linux 性能诊断：方法论"></a>Linux 性能诊断：方法论</h2><div class="table-container">
+<h4 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h4><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -155,6 +156,7 @@ ga('send', 'pageview');
 <th>生命周期分析</th>
 <th>实验分析</th>
 <th>假设分析</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -162,6 +164,7 @@ ga('send', 'pageview');
 <td>街灯</td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -179,6 +182,7 @@ ga('send', 'pageview');
 <td></td>
 <td>Yes</td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>责怪他人</td>
@@ -190,6 +194,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td>Yes</td>
+<td></td>
 </tr>
 <tr>
 <td>Ad Hoc 核对清单法</td>
@@ -201,10 +206,12 @@ ga('send', 'pageview');
 <td></td>
 <td>Yes</td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>问题陈述法</td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -223,6 +230,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>循环诊断法</td>
@@ -234,11 +242,13 @@ ga('send', 'pageview');
 <td>Yes</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>工具法</td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -256,6 +266,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>工作负载特征归纳</td>
@@ -267,11 +278,13 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>向下挖掘分析</td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -289,11 +302,13 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>R 方法</td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -311,11 +326,13 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>基础线统计</td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -333,6 +350,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>排队论</td>
@@ -340,6 +358,7 @@ ga('send', 'pageview');
 <td></td>
 <td>Yes</td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -355,6 +374,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>缓存调优</td>
@@ -363,6 +383,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -376,6 +397,7 @@ ga('send', 'pageview');
 <td></td>
 <td></td>
 <td>Yes</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -392,38 +414,12 @@ ga('send', 'pageview');
 </tbody>
 </table>
 </div>
-<h2 id="推荐书单：操作系统性能优化"><a href="#推荐书单：操作系统性能优化" class="headerlink" title="推荐书单：操作系统性能优化"></a>推荐书单：操作系统性能优化</h2><h4 id="电子书：《Linux-Perf-Master》"><a href="#电子书：《Linux-Perf-Master》" class="headerlink" title="电子书：《Linux Perf Master》"></a>电子书：《Linux Perf Master》</h4><p>主题以 Linux 性能为核心，覆盖评估诊断、监控、优化的工具和方法论及相关参考案例。<br>GitBook 地址: <a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></p>
-<p>特色章节：</p>
-<ul>
-<li>基于Linux单机的负载评估</li>
-<li>Netflix性能分析模型</li>
-<li>动态追踪技术：DTrace</li>
-<li>基于Ganglia实现集群性能态势感知</li>
-<li>新一代Ntopng网络流量监控—可视化和架构分析</li>
-<li>基于LVS的AAA负载均衡架构实践</li>
-<li>木马来袭：黑客入侵导致的性能问题</li>
-<li>性能优化思路：从珠海航展交通管控实践谈起</li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png" alt></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-logo.png" alt></p>
-<h4 id="读书笔记-《图解性能优化》"><a href="#读书笔记-《图解性能优化》" class="headerlink" title="读书笔记|《图解性能优化》"></a><a href="https://riboseyim.github.io/2017/10/24/LinuxPerf-Picture/" target="_blank" rel="external">读书笔记|《图解性能优化》</a></h4><ul>
-<li>性能分析的基础:吞吐和响应的区别</li>
-<li>实际系统中的性能分析</li>
-<li>性能调优 &amp; 性能测试</li>
-<li>虚拟化环境下的性能</li>
-<li>云环境下的性能</li>
-</ul>
-<h4 id="《24小时365天不间断服务》"><a href="#《24小时365天不间断服务》" class="headerlink" title="《24小时365天不间断服务》"></a><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="external">《24小时365天不间断服务》</a></h4><h4 id="《性能之巅》"><a href="#《性能之巅》" class="headerlink" title="《性能之巅》"></a><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="external">《性能之巅》</a></h4><h4 id="《Google核心技术》"><a href="#《Google核心技术》" class="headerlink" title="《Google核心技术》"></a>《Google核心技术》</h4><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
-</ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
-<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
 <li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
 </ul>
-<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
 <li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
 <li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
@@ -434,19 +430,38 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
 <li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
 </ul>
-<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
 <li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
 <li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
+<h4 id="案例与实务"><a href="#案例与实务" class="headerlink" title="案例与实务"></a>案例与实务</h4><ul>
+<li><a href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/" target="_blank" rel="noopener">最佳工程实践：Stack Overflow 架构 - 2016 Edition</a></li>
+<li><a href="https://riboseyim.github.io/2016/06/12/Technology-Oracle/" target="_blank" rel="noopener">最佳工程实践：Oracle 数据库迁移割接实践</a></li>
+<li><a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="noopener">最佳工程实践：基于LVS的AAA负载均衡架构实践</a>  </li>
+<li><a href="https://code.facebook.com/posts/1906146702752923/open-sourcing-katran-a-scalable-network-load-balancer/" target="_blank" rel="noopener">VIPServer | Facebook Open-sourcing Katran, a scalable network load balancer</a></li>
+</ul>
+<h2 id="推荐书单"><a href="#推荐书单" class="headerlink" title="推荐书单"></a>推荐书单</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
+<h4 id="读书笔记-《图解性能优化》"><a href="#读书笔记-《图解性能优化》" class="headerlink" title="读书笔记|《图解性能优化》"></a><a href="https://riboseyim.github.io/2017/10/24/LinuxPerf-Picture/" target="_blank" rel="noopener">读书笔记|《图解性能优化》</a></h4><ul>
+<li>性能分析的基础:吞吐和响应的区别</li>
+<li>实际系统中的性能分析</li>
+<li>性能调优 &amp; 性能测试</li>
+<li>虚拟化环境下的性能</li>
+<li>云环境下的性能</li>
+</ul>
+<h4 id="《24小时365天不间断服务》"><a href="#《24小时365天不间断服务》" class="headerlink" title="《24小时365天不间断服务》"></a><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="noopener">《24小时365天不间断服务》</a></h4><h4 id="《性能之巅》"><a href="#《性能之巅》" class="headerlink" title="《性能之巅》"></a><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="noopener">《性能之巅》</a></h4><h4 id="《Google核心技术》"><a href="#《Google核心技术》" class="headerlink" title="《Google核心技术》"></a>《Google核心技术》</h4><h2 id="快捷方式"><a href="#快捷方式" class="headerlink" title="快捷方式"></a>快捷方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 按内存排序，由大到小;rsz为实际内存</span><br><span class="line">ps -e -o &apos;pid,comm,args,pcpu,rsz,vsz,stime,user,uid&apos; | grep oracle |  sort -nrk5</span><br><span class="line"></span><br><span class="line"># 查看打开的文件</span><br><span class="line">lsof</span><br><span class="line"></span><br><span class="line"># 查看 Threads</span><br><span class="line">ps m</span><br></pre></td></tr></table></figure>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.toptal.com/back-end/server-side-io-performance-node-php-java-go" target="_blank" rel="external">Server-side I/O Performance: Node vs. PHP vs. Java vs. Go</a></li>
+<li><a href="https://www.toptal.com/back-end/server-side-io-performance-node-php-java-go" target="_blank" rel="noopener">Server-side I/O Performance: Node vs. PHP vs. Java vs. Go</a></li>
 <li><a href="Real-time distributed tracing for website performance and efficiency optimizations">Linkedin:Real-time distributed tracing for website performance and efficiency optimizations</a><ul>
-<li><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="external">推荐书单</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODQ2MDIyMA==&amp;mid=2650713353&amp;idx=1&amp;sn=c2a2b22eafa6be8a18542b6752f8bd24&amp;chksm=bec0635a89b7ea4c7fe653aacb981434fd604665fe6d8d1775ecb169ef3eea43528e464af3de&amp;mpshare=1&amp;scene=1&amp;srcid=0713CHRf2HiItQatKLrXoxp4%23rd" target="_blank" rel="external">程序员需要跨过性能这个坎 | 原创 2017-07-13 池建强 MacTalk</a></li>
-<li><a href="https://mp.weixin.qq.com/s/qAcr02Hwjf_9_Ks3DwjHmw" target="_blank" rel="external">望闻问切，解决Linux系统性能问题 | 2016-10-10 Brendan Gregg 开发资讯</a></li>
+<li><a href="http://www.jianshu.com/p/7a633fdada4f" target="_blank" rel="noopener">推荐书单</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODQ2MDIyMA==&amp;mid=2650713353&amp;idx=1&amp;sn=c2a2b22eafa6be8a18542b6752f8bd24&amp;chksm=bec0635a89b7ea4c7fe653aacb981434fd604665fe6d8d1775ecb169ef3eea43528e464af3de&amp;mpshare=1&amp;scene=1&amp;srcid=0713CHRf2HiItQatKLrXoxp4%23rd" target="_blank" rel="noopener">程序员需要跨过性能这个坎 | 原创 2017-07-13 池建强 MacTalk</a></li>
+<li><a href="https://mp.weixin.qq.com/s/qAcr02Hwjf_9_Ks3DwjHmw" target="_blank" rel="noopener">望闻问切，解决Linux系统性能问题 | 2016-10-10 Brendan Gregg 开发资讯</a></li>
 </ul>
 </li>
 </ul>
@@ -454,7 +469,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/04/26/Linux-Perf-Master/" data-id="cjuqfn5vr00475ih2nsckurzg" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/04/26/Linux-Perf-Master/" data-id="cjv3a7ba0004fzth26t4m0i4z" class="article-share-link">分享</a>
       
       
       
@@ -565,7 +580,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快捷方式"><span class="toc-number">2.</span> <span class="toc-text">快捷方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-性能诊断：方法论"><span class="toc-number">3.</span> <span class="toc-text">Linux 性能诊断：方法论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐书单：操作系统性能优化"><span class="toc-number">4.</span> <span class="toc-text">推荐书单：操作系统性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书：《Linux-Perf-Master》"><span class="toc-number">4.0.1.</span> <span class="toc-text">电子书：《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#读书笔记-《图解性能优化》"><span class="toc-number">4.0.2.</span> <span class="toc-text">读书笔记|《图解性能优化》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《24小时365天不间断服务》"><span class="toc-number">4.0.3.</span> <span class="toc-text">《24小时365天不间断服务》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《性能之巅》"><span class="toc-number">4.0.4.</span> <span class="toc-text">《性能之巅》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《Google核心技术》"><span class="toc-number">4.0.5.</span> <span class="toc-text">《Google核心技术》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.6.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.7.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.8.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.9.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法论"><span class="toc-number">1.0.1.</span> <span class="toc-text">方法论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能诊断指南"><span class="toc-number">1.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">1.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">1.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例与实务"><span class="toc-number">1.0.5.</span> <span class="toc-text">案例与实务</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐书单"><span class="toc-number">2.</span> <span class="toc-text">推荐书单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#读书笔记-《图解性能优化》"><span class="toc-number">2.0.2.</span> <span class="toc-text">读书笔记|《图解性能优化》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《24小时365天不间断服务》"><span class="toc-number">2.0.3.</span> <span class="toc-text">《24小时365天不间断服务》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《性能之巅》"><span class="toc-number">2.0.4.</span> <span class="toc-text">《性能之巅》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《Google核心技术》"><span class="toc-number">2.0.5.</span> <span class="toc-text">《Google核心技术》</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快捷方式"><span class="toc-number">3.</span> <span class="toc-text">快捷方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>

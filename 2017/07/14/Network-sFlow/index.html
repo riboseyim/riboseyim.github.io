@@ -130,7 +130,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="cjuqfn63l00qo5ih23dawgpto" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="cjv3a7big00qxzth2xubdxxdw" class="article-share-link">分享</a>
         
         
         
@@ -161,7 +161,7 @@ ga('send', 'pageview');
 <h2 id="二、网络分析技术"><a href="#二、网络分析技术" class="headerlink" title="二、网络分析技术"></a>二、网络分析技术</h2><p>网络流量反映了网络的运行状态，是判别网络运行是否正常的关键。如果网络所接收的流量超过其实际运载能力，就会引起网络性能下降。网络中流量的各种参数主要包括：接收和发送数据报、丢包率、数据报延迟。</p>
 <h4 id="1、SNMP"><a href="#1、SNMP" class="headerlink" title="1、SNMP"></a>1、SNMP</h4><p>SNMP（ Simple Network Management Protocol )包含一个应用层协议（application layer protocol）、数据库模型（database schema），和一组数据对象。SNMP的第一个RFC系列出现在1988年(RFC1065-1067)，第二版（RFC1441–1452）作了修订，由于第二版的新安全系统被认为过于复杂而不被广泛接受，因此出现了两个方案：SNMP v2c（基于社区，RFC1901–1908）、SNMP v2u(基于用户，RFC1909–1910)。SNMP第三版（RFC3411-3418）主要增加了安全性方面的强化：信息完整性，保证数据包在发送中没有被窜改；认证，检验信息来自正确的来源；数据包加密，避免被未授权的来源窥探。</p>
 <p>基于SNMP协议定义的计数器：ifInOctets、ifOutOctets，两次采样的差值除以间隔时间即可获得平均流量。需要注意的是计数器的数据类型有两种：counter32和counter64。counter32计数的最大值是2的32次方减1，当超过4G的时候，计数器就会清零。如果是大流量、高精度采样（间隔时间低于1分钟），需要考虑使用counter64（ifHCInOctets、ifHCOutOctets）,否则可能出现数据偏差，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">snmpwalk -v 2c -c public -u username 192.168.1.10 ifHCInOctets</div><div class="line">IF-MIB::ifHCInOctets.1 = Counter64: 5020760</div><div class="line">IF-MIB::ifHCInOctets.2 = Counter64: 12343743</div><div class="line">IF-MIB::ifHCInOctets.3 = Counter64: 7123</div><div class="line">IF-MIB::ifHCInOctets.21 = Counter64: 3854</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">snmpwalk -v 2c -c public -u username 192.168.1.10 ifHCInOctets</span><br><span class="line">IF-MIB::ifHCInOctets.1 = Counter64: 5020760</span><br><span class="line">IF-MIB::ifHCInOctets.2 = Counter64: 12343743</span><br><span class="line">IF-MIB::ifHCInOctets.3 = Counter64: 7123</span><br><span class="line">IF-MIB::ifHCInOctets.21 = Counter64: 3854</span><br></pre></td></tr></table></figure>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Flow_RRDTool_Demo_1.png" alt></p>
 <h4 id="2、RMON"><a href="#2、RMON" class="headerlink" title="2、RMON"></a>2、RMON</h4><p>SNMP是基于TCP/IP、应用最广泛的网管协议，但是也有一些明显的不足，如：SNMP使用轮询方式采集数据信息，在大型网络中轮询会产生巨大的网络管理通讯报文；不支持管理进程的分布式管理，它将收集数据的负担加在网管站上，网络管理站会成为瓶颈；只能从这些管理信息库中获得单个设备的局部信息，标准管理信息库MIB-II(RFC1213)和各厂家的专有MIB库主要提供设备端口状态、流量、错误包数等数据，要想获得一个网段的性能信息是比较困难。</p>
 <p>因此IETF提出了RMON（Remote Network Monitoring，RFC2021）以解决SNMP所面临的局限性。RMON 由 SNMP MIB 扩展而来，网络监视数据包含了一组统计数据和性能指标，它们在不同的监视器（或称探测器）和控制台系统之间相互交换。它可以主动地监测远程设备，对设备端口所连接的网段上的各种流量信息进行跟踪统计，如某段时间内某网段上报文总数等。只要给予探测器足够的资源，它还可以对数据设备进行防防性监视，设备主动地对网络性能进行诊断并记录网络性能状况，在发生故障时可以把信息及时通知管理者，相关信息分为统计量、历史、告警、事件等四个组，可以预置规则。</p>
@@ -185,21 +185,21 @@ ga('send', 'pageview');
 <p>综上所述，各种 NetFlow 方案都是基于网络硬件设施生成或者软件封包为流，不同的厂商标准不同，尤其需要考虑兼容性。同时，各种机制都可能对硬件造成性能问题，特别是旧的型号存在更大的风险，一般不轻易开启。无论是硬件（中高端设备）还是软件（nProbe、nDPI）、NetStream（IPv6），都意味着昂贵的费用，需要充分考虑成本预算。</p>
 <h4 id="4、NetFlow的其它替代方案"><a href="#4、NetFlow的其它替代方案" class="headerlink" title="4、NetFlow的其它替代方案"></a>4、NetFlow的其它替代方案</h4><p>基于软件替代路由采集，基本都是采用封包的思路，将pcap文件当作数据源或者直接从网络接口上封包，通过解析Header聚合成流格式或者更丰富的输出。常见的产品如下：</p>
 <ul>
-<li><a href="http://tools.netsa.cert.org" target="_blank" rel="external">CERT YAT(Yet Another Flowmeter)</a></li>
-<li><a href="http://bit.ly/softflowd" target="_blank" rel="external">softflowd</a></li>
-<li><a href="http://bit.ly/qo-argus" target="_blank" rel="external">QoSient Argus</a></li>
+<li><a href="http://tools.netsa.cert.org" target="_blank" rel="noopener">CERT YAT(Yet Another Flowmeter)</a></li>
+<li><a href="http://bit.ly/softflowd" target="_blank" rel="noopener">softflowd</a></li>
+<li><a href="http://bit.ly/qo-argus" target="_blank" rel="noopener">QoSient Argus</a></li>
 </ul>
 <h4 id="5、协议和用户识别"><a href="#5、协议和用户识别" class="headerlink" title="5、协议和用户识别"></a>5、协议和用户识别</h4><p>   我们可以把数据包想像成一封信。根据解析数据报报头的内容，可以分析IP地址、端口号、协议、报文格式等特征，分类后可以实现对各种应用层协议的准确识别，如P2P（迅雷）、即时通信（QQ、微信）、VPN、邮件等。当然，这只能算是“浅度”的数据包检测，就好像是看看信封上的发件人和收件人 。</p>
-<p>   “深度”的数据包检测，可以理解成对信件内容的探查──相比起暴力打开信封，这种基于机器学习的技术更具有艺术性。它并不实际解读数据包的内容，而是搜集周边信息，对数据流进行“肖像刻划”（Profiling）。国内某研究团队曾发表论文“网络流量分类，研究进展与展望”，文章提到了多种使用机器学习进行“深度数据包检测”（Deep Packet Inspection，DPI）的技术。对“墙”有兴趣的同学可以深入了解,<a href="https://riboseyim.github.io/2017/05/12/GFW/" target="_blank" rel="external">https://riboseyim.github.io/2017/05/12/GFW/</a> 。</p>
+<p>   “深度”的数据包检测，可以理解成对信件内容的探查──相比起暴力打开信封，这种基于机器学习的技术更具有艺术性。它并不实际解读数据包的内容，而是搜集周边信息，对数据流进行“肖像刻划”（Profiling）。国内某研究团队曾发表论文“网络流量分类，研究进展与展望”，文章提到了多种使用机器学习进行“深度数据包检测”（Deep Packet Inspection，DPI）的技术。对“墙”有兴趣的同学可以深入了解,<a href="https://riboseyim.github.io/2017/05/12/GFW/" target="_blank" rel="noopener">https://riboseyim.github.io/2017/05/12/GFW/</a> 。</p>
 <h2 id="三、网络数据可视化"><a href="#三、网络数据可视化" class="headerlink" title="三、网络数据可视化"></a>三、网络数据可视化</h2><h4 id="1、面向流向分析的可视化"><a href="#1、面向流向分析的可视化" class="headerlink" title="1、面向流向分析的可视化"></a>1、面向流向分析的可视化</h4><p>文中开头我们就提到测量网络的第一步就是获得网络拓扑图，如果要获得全局角度实时感知能力，需要在拓扑的基础之上叠加通过各种网络分析技术获得的流量/Flow/事件等信息，进而处理分析网络异常流量。能够实用的数据分析具有相当的复杂性，需要专门的工具软件，区分正常流量数据和异常流量数据、对于“异常模式”的算法训练都有一定门槛，因此存在大量的开源和商业解决方案。<br><img src="http://riboseyim-qiniu.riboseyim.com/Flow_DynamicTopo_LiveAction_1.png" alt></p>
 <h4 id="2、面向故障诊断的可视化"><a href="#2、面向故障诊断的可视化" class="headerlink" title="2、面向故障诊断的可视化"></a>2、面向故障诊断的可视化</h4><ul>
 <li>抓包工具：tcpdump、TShark、 WinDump</li>
 <li>图形化工具：wireshark(客户端)、ntopng(webUI)</li>
-<li>自定义编程：R、Python(<a href="http://bit.ly/scapy" target="_blank" rel="external">Python-Scapy</a>)、<a href="http://www.graphviz.org" target="_blank" rel="external">Graphviz工具包</a></li>
+<li>自定义编程：R、Python(<a href="http://bit.ly/scapy" target="_blank" rel="noopener">Python-Scapy</a>)、<a href="http://www.graphviz.org" target="_blank" rel="noopener">Graphviz工具包</a></li>
 </ul>
-<p>一个典型的故障场景：两个服务之间发生故障、无法收发信息，可以通过tcpdump的抓包，并将抓包结果在WireShark上分析，基于染色的方式通信失败的报文被高亮提示。TCP通信中客户端向服务端发送tcp zero window（表示没有window可以接收新数据），如果出现该特征一般可以确定故障是由接收端服务器TCP缓冲区占满的引起，应将排查方向锁定在接收端。关于网络数据包的捕获、过滤、分析的具体实现细节，可以参考：<a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></p>
+<p>一个典型的故障场景：两个服务之间发生故障、无法收发信息，可以通过tcpdump的抓包，并将抓包结果在WireShark上分析，基于染色的方式通信失败的报文被高亮提示。TCP通信中客户端向服务端发送tcp zero window（表示没有window可以接收新数据），如果出现该特征一般可以确定故障是由接收端服务器TCP缓冲区占满的引起，应将排查方向锁定在接收端。关于网络数据包的捕获、过滤、分析的具体实现细节，可以参考：<a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/PacketCapturing_WinZero_2015.png" alt="wireshark应用案例：TCP Window Zero"></p>
-<p>在企业应用中，网络监测数据通常需要与基础监控平台融合才能发挥最大价值（开源的方案 Zabbix/Ganglia/Nagios／<a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="external">Graphite</a> 等）。Collectd 与Ganglia 是竞争关系，都是C语言开发,数据输出都是RRDTool，性能应该差不多，Collectd不包含图形化组件。zabbix是覆盖面比较广的综合套件，除了采集还有告警等其它管理功能，专业性和大规模应用方面可能就不太强。Nagios在思路方面比较接近zabbix,走的是综合性路子，侧重于告警方案：“Ganglia is more concerned with gathering metrics and tracking them over time while Nagios has focused on being an alerting mechanism.” 在Ganglia项目中提供了一个 gmond_proxy 可以搭配 sFlow-RT 支持 NetFlow／sFlow 的数据收集，如果是自己实现 sFlow-RT 类似的组件也需要考虑对 Logstash/splunk的支持。</p>
+<p>在企业应用中，网络监测数据通常需要与基础监控平台融合才能发挥最大价值（开源的方案 Zabbix/Ganglia/Nagios／<a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="noopener">Graphite</a> 等）。Collectd 与Ganglia 是竞争关系，都是C语言开发,数据输出都是RRDTool，性能应该差不多，Collectd不包含图形化组件。zabbix是覆盖面比较广的综合套件，除了采集还有告警等其它管理功能，专业性和大规模应用方面可能就不太强。Nagios在思路方面比较接近zabbix,走的是综合性路子，侧重于告警方案：“Ganglia is more concerned with gathering metrics and tracking them over time while Nagios has focused on being an alerting mechanism.” 在Ganglia项目中提供了一个 gmond_proxy 可以搭配 sFlow-RT 支持 NetFlow／sFlow 的数据收集，如果是自己实现 sFlow-RT 类似的组件也需要考虑对 Logstash/splunk的支持。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
 <td>包含多种图形化扩展插件</td>
 </tr>
 <tr>
-<td><a href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard" target="_blank" rel="external">Grafana</a></td>
+<td><a href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard" target="_blank" rel="noopener">Grafana</a></td>
 <td>Go</td>
 <td>指标数据的可视化展现板</td>
 <td>需要提前对数据进行时序化处理，例如 InfluxDB 等</td>
@@ -247,12 +247,12 @@ ga('send', 'pageview');
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Network_sFlow_Arch.png" alt><br><img src="http://1.bp.blogspot.com/--W4Io9SdkCA/Vme0AecgIKI/AAAAAAAACOM/WRkZQRZNUVo/s1600/gmond-proxy.png" alt></p>
 <p><strong>扩展阅读</strong></p>
 <ul>
-<li><a href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/" target="_blank" rel="external">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="external">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/" target="_blank" rel="noopener">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="noopener">数据可视化（七）Graphite 体系结构详解</a></li>
 </ul>
 <h4 id="3、面向安全分析的可视化"><a href="#3、面向安全分析的可视化" class="headerlink" title="3、面向安全分析的可视化"></a>3、面向安全分析的可视化</h4><ul>
-<li>流向&amp;协议：<a href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng" target="_blank" rel="external">Ntopng</a></li>
-<li>地理位置服务，根据IP地址确定改地址的物理位置信息（坐标）：<a href="https://www.maxmind.com/zh/geoip-demo" target="_blank" rel="external">MaxMind GeoIP</a></li>
+<li>流向&amp;协议：<a href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng" target="_blank" rel="noopener">Ntopng</a></li>
+<li>地理位置服务，根据IP地址确定改地址的物理位置信息（坐标）：<a href="https://www.maxmind.com/zh/geoip-demo" target="_blank" rel="noopener">MaxMind GeoIP</a></li>
 <li>安全威胁情报服务，通过信息共享渠道了解识别攻击者的来源、类型和安全厂商确认情况，做到知己知彼。</li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/ntopng-geomap.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/Cyber-Security-Weibu-Demo.png" alt></p>
@@ -260,46 +260,46 @@ ga('send', 'pageview');
 <li>DPDK(Data Plane Development Kit)<br>运行于Intel X86平台，是 Intel 开源的一组快速处理数据包的开发平台及接口（BSD）。重载了网卡驱动，该驱动在收到数据包后不中断通知CPU，而是将数据包通过零拷贝技术存入内存，这时应用层程序就可以通过DPDK提供的接口，直接从内存读取数据包。这种处理方式节省了CPU中断时间、内存拷贝时间，并向应用层提供了简单易行且高效的数据包处理方式，使得网络应用的开发更加方便。</li>
 </ul>
 <h2 id="专题合辑：Network-Engineering"><a href="#专题合辑：Network-Engineering" class="headerlink" title="专题合辑：Network Engineering"></a>专题合辑：Network Engineering</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">SDN 技术指南（一）: 架构概览</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="external">SDN 技术指南（二）：OpenFlow</a></li>
-<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="external">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="external">SDN 技术指南（四）：Open vSwitch</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）：OpenFlow</a></li>
+<li>Preview <a href="https://riboseyim.github.io/2017/10/16/SDN-Controller/" target="_blank" rel="noopener">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/" target="_blank" rel="noopener">SDN 技术指南（四）：Open vSwitch</a></li>
 <li>Preview <a href="#">SDN 技术指南（五）：NFV</a></li>
 <li>Preview <a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
 <li>Preview <a href="#">SDN 技术指南（七）：产业联盟与标准化组织</a></li>
 <li>Preview <a href="#">SDN 技术指南（八）：案例</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
-<li><a href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
-<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng/" target="_blank" rel="noopener">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="noopener">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.ntop.org/wp-content/uploads/2018/07/SF18US_Mainardi.pdf" target="_blank" rel="external">sFlow: Theory and Practice of a Sampling Technology and Its Analysis with Wireshark</a></li>
-<li><a href="https://en.wikipedia.org/wiki/NetFlow" target="_blank" rel="external">维基百科：NetFlow</a></li>
-<li><a href="http://blog.sflow.com/2014/12/influxdb-and-grafana.html" target="_blank" rel="external">sflow.com:InfluxDB and Grafana</a></li>
-<li><a href="http://blog.sflow.com/2013/11/metric-export-to-graphite.html" target="_blank" rel="external">sflow.com:Metric export to Graphite</a></li>
-<li><a href="http://blog.sflow.com/2013/11/exporting-events-using-syslog.html" target="_blank" rel="external">sflow.com:Exporting events using syslog</a></li>
-<li><a href="http://blog.sflow.com/2013/02/cluster-performance-metrics.html" target="_blank" rel="external">sflow.com:Cluster performance metrics</a></li>
-<li><a href="http://blog.sflow.com/2015/12/using-proxy-to-feed-metrics-into-ganglia.html?m=1" target="_blank" rel="external">sflow.com:Using a proxy to feed metrics into Ganglia</a></li>
-<li><a href="http://chenguang.blog.51cto.com/350944/1761284" target="_blank" rel="external">李晨光：详解网络流量分析</a></li>
-<li><a href="http://xiaosu.blog.51cto.com/2914416/1590219" target="_blank" rel="external">飞翔的单车：解决zabbix用snmp监控网络流量不准的问题</a></li>
-<li><a href="http://lifeofzjs.com/blog/2014/07/11/nagios/" target="_blank" rel="external">lifeofzjs.com:Nagios监控工具介绍</a></li>
-<li><a href="http://www.infoq.com/cn/articles/nagios-enterprise-level-system-monitor" target="_blank" rel="external">王基立:Nagios企业级系统监控方案</a></li>
-<li><a href="https://www.pcwdld.com/best-free-netflow-analyzers-and-collectors-for-windows" target="_blank" rel="external">Top 10 Best Free Netflow Analyzers and Collectors for Windows</a></li>
-<li><a href="https://www.juniper.net/us/en/local/pdf/app-notes/3500204-en.pdf" target="_blank" rel="external">JUNIPER Networks:Juniper Flow Mornitoring</a></li>
-<li><a href="http://www.ntop.org/products/netflow/nprobe/" target="_blank" rel="external">nProbe:An Extensible NetFlow v5/v9/IPFIX Probe for IPv4/v6</a></li>
-<li><a href="https://encrypted.google.com/patents/CN1393801A?cl=zh" target="_blank" rel="external">华为：一种计算机网络远程网络监控方法，CN 1393801 A</a></li>
-<li><a href="https://www.ietf.org/rfc/rfc3954.txt" target="_blank" rel="external">Cisco Systems NetFlow Services Export Version 9</a></li>
-<li><a href="https://www.manageengine.com/products/netflow/supported-devices.html" target="_blank" rel="external">manageengine.com：NetFlow Analyzer - Supported Devices</a></li>
-<li><a href="http://www.h3c.com/cn/Products___Technology/Technology/ComwareV5/System_Management/Other_technology/Technology_recommend/200905/634610_30003_0.htm" target="_blank" rel="external">H3C.com:NetStream技术介绍</a></li>
+<li><a href="https://www.ntop.org/wp-content/uploads/2018/07/SF18US_Mainardi.pdf" target="_blank" rel="noopener">sFlow: Theory and Practice of a Sampling Technology and Its Analysis with Wireshark</a></li>
+<li><a href="https://en.wikipedia.org/wiki/NetFlow" target="_blank" rel="noopener">维基百科：NetFlow</a></li>
+<li><a href="http://blog.sflow.com/2014/12/influxdb-and-grafana.html" target="_blank" rel="noopener">sflow.com:InfluxDB and Grafana</a></li>
+<li><a href="http://blog.sflow.com/2013/11/metric-export-to-graphite.html" target="_blank" rel="noopener">sflow.com:Metric export to Graphite</a></li>
+<li><a href="http://blog.sflow.com/2013/11/exporting-events-using-syslog.html" target="_blank" rel="noopener">sflow.com:Exporting events using syslog</a></li>
+<li><a href="http://blog.sflow.com/2013/02/cluster-performance-metrics.html" target="_blank" rel="noopener">sflow.com:Cluster performance metrics</a></li>
+<li><a href="http://blog.sflow.com/2015/12/using-proxy-to-feed-metrics-into-ganglia.html?m=1" target="_blank" rel="noopener">sflow.com:Using a proxy to feed metrics into Ganglia</a></li>
+<li><a href="http://chenguang.blog.51cto.com/350944/1761284" target="_blank" rel="noopener">李晨光：详解网络流量分析</a></li>
+<li><a href="http://xiaosu.blog.51cto.com/2914416/1590219" target="_blank" rel="noopener">飞翔的单车：解决zabbix用snmp监控网络流量不准的问题</a></li>
+<li><a href="http://lifeofzjs.com/blog/2014/07/11/nagios/" target="_blank" rel="noopener">lifeofzjs.com:Nagios监控工具介绍</a></li>
+<li><a href="http://www.infoq.com/cn/articles/nagios-enterprise-level-system-monitor" target="_blank" rel="noopener">王基立:Nagios企业级系统监控方案</a></li>
+<li><a href="https://www.pcwdld.com/best-free-netflow-analyzers-and-collectors-for-windows" target="_blank" rel="noopener">Top 10 Best Free Netflow Analyzers and Collectors for Windows</a></li>
+<li><a href="https://www.juniper.net/us/en/local/pdf/app-notes/3500204-en.pdf" target="_blank" rel="noopener">JUNIPER Networks:Juniper Flow Mornitoring</a></li>
+<li><a href="http://www.ntop.org/products/netflow/nprobe/" target="_blank" rel="noopener">nProbe:An Extensible NetFlow v5/v9/IPFIX Probe for IPv4/v6</a></li>
+<li><a href="https://encrypted.google.com/patents/CN1393801A?cl=zh" target="_blank" rel="noopener">华为：一种计算机网络远程网络监控方法，CN 1393801 A</a></li>
+<li><a href="https://www.ietf.org/rfc/rfc3954.txt" target="_blank" rel="noopener">Cisco Systems NetFlow Services Export Version 9</a></li>
+<li><a href="https://www.manageengine.com/products/netflow/supported-devices.html" target="_blank" rel="noopener">manageengine.com：NetFlow Analyzer - Supported Devices</a></li>
+<li><a href="http://www.h3c.com/cn/Products___Technology/Technology/ComwareV5/System_Management/Other_technology/Technology_recommend/200905/634610_30003_0.htm" target="_blank" rel="noopener">H3C.com:NetStream技术介绍</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="cjuqfn63l00qo5ih23dawgpto" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="cjv3a7big00qxzth2xubdxxdw" class="article-share-link">分享</a>
       
       
       

@@ -122,7 +122,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjv3a7bal005mzth29saqa4oq" class="article-share-link">分享</a>
         
         
         
@@ -147,7 +147,7 @@ ga('send', 'pageview');
 <ul>
 <li>马尔可夫链：符合这个马尔可夫假设的随机过程则称为马尔科夫过程。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">digraph markov&#123;</div><div class="line">  label = <span class="string">" Markov 马尔可夫链"</span>;</div><div class="line">  rankdir = LR;</div><div class="line">  m1-&gt;m2[label = <span class="string">"1.0"</span>];</div><div class="line">  m2-&gt;m3[label = <span class="string">"0.6"</span>];</div><div class="line">  m3-&gt;m4[label = <span class="string">"0.3"</span>];</div><div class="line">  m2-&gt;m4[label = <span class="string">"0.4"</span>];</div><div class="line">  m3-&gt;m3[label = <span class="string">"0.7"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">digraph markov&#123;</span><br><span class="line">  label = <span class="string">" Markov 马尔可夫链"</span>;</span><br><span class="line">  rankdir = LR;</span><br><span class="line">  m1-&gt;m2[label = <span class="string">"1.0"</span>];</span><br><span class="line">  m2-&gt;m3[label = <span class="string">"0.6"</span>];</span><br><span class="line">  m3-&gt;m4[label = <span class="string">"0.3"</span>];</span><br><span class="line">  m2-&gt;m4[label = <span class="string">"0.4"</span>];</span><br><span class="line">  m3-&gt;m3[label = <span class="string">"0.7"</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/markov.png" alt></p>
 <ul>
 <li>隐含马尔可夫模型（ Hidden Markov Model ）<br>最早由20世纪六七十年代，<a href="#">美国数学家鲍姆（ Leonard E. Baum ）</a> 发表的一系列论文中提出。隐含马尔可夫模型是马尔可夫链的一个扩展，即任一时刻 t 的状态 St 是不可见的。但是，在每个时刻 t 会输出一个富豪 Ot ，而且 Ot 和 St 相关且仅和 St 相关。</li>
@@ -177,20 +177,20 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/08/30/Mathmetics-Beauty/" target="_blank" rel="external">读书笔记|数学之美（Beauty Of Mathmetics）</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/30/Mathmetics-Beauty/" target="_blank" rel="noopener">读书笔记|数学之美（Beauty Of Mathmetics）</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://mp.weixin.qq.com/s/1qM_J5We1iSe8_Ty-AL4Sw" target="_blank" rel="external">马尔科夫模型与离散事件系统仿真模型简析 |  则裕沙龙@立波 </a></li>
-<li><a href="http://blog.csdn.net/v_july_v/article/details/40984699" target="_blank" rel="external">从贝叶斯方法谈到贝叶斯网络 | v_JULY_v (结构之法 算法之道)</a></li>
-<li><a href="http://open.163.com/movie/2008/1/2/N/M6SGF6VB4_M6SGKSC2N.html" target="_blank" rel="external">斯坦福大学公开课-机器学习过程-马尔可夫决策过程</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555495&amp;idx=1&amp;sn=f5b46175b9a0cbd4006a193a0ca91782&amp;chksm=8b7e39bcbc09b0aa6d9b32a0d49926090fe7fb160ba4fbd51ed17cbbdb05806b234024198cf4&amp;mpshare=1&amp;scene=1&amp;srcid=0925x4UfKSwzSRQWFceVQEka%23rd" target="_blank" rel="external">从贝叶斯定理到概率分布：综述概率论基本定义 | 算法与数学之美</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555638&amp;idx=2&amp;sn=efc42acdeaa7921637924463cbf38db0&amp;chksm=8b7e382dbc09b13bc8048c762a088c0ae2b979706465aaef4b454c6289e7161a19b8998f114d&amp;mpshare=1&amp;scene=1&amp;srcid=100303yDRzK0nt5PI8G4NTcd%23rd" target="_blank" rel="external">实例详解贝叶斯推理的原理 | 2017-10-03 算法与数学之美</a></li>
+<li><a href="https://mp.weixin.qq.com/s/1qM_J5We1iSe8_Ty-AL4Sw" target="_blank" rel="noopener">马尔科夫模型与离散事件系统仿真模型简析 |  则裕沙龙@立波 </a></li>
+<li><a href="http://blog.csdn.net/v_july_v/article/details/40984699" target="_blank" rel="noopener">从贝叶斯方法谈到贝叶斯网络 | v_JULY_v (结构之法 算法之道)</a></li>
+<li><a href="http://open.163.com/movie/2008/1/2/N/M6SGF6VB4_M6SGKSC2N.html" target="_blank" rel="noopener">斯坦福大学公开课-机器学习过程-马尔可夫决策过程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555495&amp;idx=1&amp;sn=f5b46175b9a0cbd4006a193a0ca91782&amp;chksm=8b7e39bcbc09b0aa6d9b32a0d49926090fe7fb160ba4fbd51ed17cbbdb05806b234024198cf4&amp;mpshare=1&amp;scene=1&amp;srcid=0925x4UfKSwzSRQWFceVQEka%23rd" target="_blank" rel="noopener">从贝叶斯定理到概率分布：综述概率论基本定义 | 算法与数学之美</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555638&amp;idx=2&amp;sn=efc42acdeaa7921637924463cbf38db0&amp;chksm=8b7e382dbc09b13bc8048c762a088c0ae2b979706465aaef4b454c6289e7161a19b8998f114d&amp;mpshare=1&amp;scene=1&amp;srcid=100303yDRzK0nt5PI8G4NTcd%23rd" target="_blank" rel="noopener">实例详解贝叶斯推理的原理 | 2017-10-03 算法与数学之美</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjuqfn5w8005b5ih29p86f8le" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="cjv3a7bal005mzth29saqa4oq" class="article-share-link">分享</a>
       
       
       

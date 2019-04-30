@@ -123,7 +123,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjv3a7bff00hazth2ery9c0lf" class="article-share-link">分享</a>
         
         
         
@@ -146,13 +146,13 @@ ga('send', 'pageview');
 <p>Kafka is a log and not a queue.</p>
 </blockquote>
 <h2 id="二、Kafka-Application"><a href="#二、Kafka-Application" class="headerlink" title="二、Kafka Application"></a>二、Kafka Application</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="external">基于Kafka构建事件溯源模式的微服务</a><br>讨论如何借助Kafka实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。</li>
+<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="noopener">基于Kafka构建事件溯源模式的微服务</a><br>讨论如何借助Kafka实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。</li>
 </ul>
 <h2 id="Best-Practice-Kafka-最佳实践"><a href="#Best-Practice-Kafka-最佳实践" class="headerlink" title="Best Practice | Kafka 最佳实践"></a>Best Practice | Kafka 最佳实践</h2><h3 id="LinkedIn-开源-Kafka-Monitor"><a href="#LinkedIn-开源-Kafka-Monitor" class="headerlink" title="LinkedIn 开源 Kafka Monitor"></a>LinkedIn 开源 Kafka Monitor</h3><blockquote>
 <p>一个关于Kafka的监控测试框架</p>
 </blockquote>
 <ul>
-<li><a href="https://engineering.linkedin.com/blog/2016/05/open-sourcing-kafka-monitor" target="_blank" rel="external">LinkedIn.com:Open Sourcing Kafka Monitor</a></li>
+<li><a href="https://engineering.linkedin.com/blog/2016/05/open-sourcing-kafka-monitor" target="_blank" rel="noopener">LinkedIn.com:Open Sourcing Kafka Monitor</a></li>
 </ul>
 <p>Apache Kafka 已经成为了一个面向大规模流数据的，标准的消息系统。在Linkedin这样的公司，它被用作各类数据管道的主力，支持一系列关键服务。它已经成为确保企业基础架构健壮、容错和高性能的核心组件。</p>
 <p>在过去,网站高可用工程师（SRE）必须依赖Kafka服务器的报告来度量、监控一个Kafka集群（例如，访问流量，离线分区计数，under-replicated分区计数，等等）。如果任何一个指标不可用，或者任何指标的值是异常的，都有可能是某些方面出错了，SRE则 需要介入问题排查。然而，从一个Kafka集群获得这些指标并不像听起来那么容易—无论集群是否可用，一个很低的流入流出值并不没有必要告诉我们，也不能为最终用户提供一个基于可用性经验的、细粒度的参考结果(比如说，在这个事件中描述道：只是一个分区的子集异常了）。随着我们的集群增长得愈加庞大，为越来越多的重要业务提供服务，可靠、精确地度量Kafka集群可用性的能力，也就变得越来越重要。</p>
@@ -191,29 +191,29 @@ ga('send', 'pageview');
 <ul>
 <li><p>增强测试场景<br>每次执行代码 check-in 的时候，Apache Kafka 包含了一大批系统测试。我们计划在Kafka Monitor中实现一个简单的测试，<br>然后部署到LinkedIn的测试集群，最终做到持续运行这些测试。这使得我们可以在问题发生的时候进行性能回溯，<br>还可以验证各种特性的是否可用，例如限额、管理操作，授权，等等。</p>
 </li>
-<li><p>整合Graphite和类似的框架<br>它对用户来说非常有用，可以在他们的组织内，通过一个简单的 web 服务查看所有跟 Kafka 相关的指标。我们计划在 Kafka Monitor 中提升现有的报表服务，这样用户就能够导出 Kafka Monitor 的指标到 <a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="external">Graphite</a> 或者他们选择的其它框架</p>
+<li><p>整合Graphite和类似的框架<br>它对用户来说非常有用，可以在他们的组织内，通过一个简单的 web 服务查看所有跟 Kafka 相关的指标。我们计划在 Kafka Monitor 中提升现有的报表服务，这样用户就能够导出 Kafka Monitor 的指标到 <a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="noopener">Graphite</a> 或者他们选择的其它框架</p>
 </li>
 <li><p>整合故障注入框架<br>我们也计划将 Kafka Monitor 与故障注入框架整合（名叫 Simoorg），可以测试、收集Kafka在更全面的故障迁移场景中的处理能力，例如磁盘故障或者数据错误。</p>
 </li>
 </ul>
 <h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="external">Stack Overflow：2017年最赚钱的编程语言</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="external">玩转编程语言:构建自定义代码生成器</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="external">远程通信协议：从 CORBA 到 gRPC</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="external">基于Kafka构建事件溯源型微服务</a></li>
-<li><a href="https://riboseyim.github.io/2016/08/15/OpenSource-Kafka/" target="_blank" rel="external">LinkedIn 开源 Kafka Monitor</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="external">基于Go语言快速构建一个RESTful API服务</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/24/Log/" target="_blank" rel="external">应用程序开发中的日志管理(Go语言描述)</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="external">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/23/CloudComputing/" target="_blank" rel="noopener">Stack Overflow：2017年最赚钱的编程语言</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="noopener">玩转编程语言:构建自定义代码生成器</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="noopener">远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="noopener">基于Kafka构建事件溯源型微服务</a></li>
+<li><a href="https://riboseyim.github.io/2016/08/15/OpenSource-Kafka/" target="_blank" rel="noopener">LinkedIn 开源 Kafka Monitor</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="noopener">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/24/Log/" target="_blank" rel="noopener">应用程序开发中的日志管理(Go语言描述)</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/" target="_blank" rel="noopener">数据可视化（七）Graphite 体系结构详解</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://mp.weixin.qq.com/s/6s5QuE5fYep0XogrhmOwRg" target="_blank" rel="external">LinkedIn使用Kafka进行关键业务消息传输的经验总结 | 秦江杰@QCon</a></li>
+<li><a href="https://mp.weixin.qq.com/s/6s5QuE5fYep0XogrhmOwRg" target="_blank" rel="noopener">LinkedIn使用Kafka进行关键业务消息传输的经验总结 | 秦江杰@QCon</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjuqfn60v00h35ih2qvm2ofnb" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/08/15/OpenSource-Kafka/" data-id="cjv3a7bff00hazth2ery9c0lf" class="article-share-link">分享</a>
       
       
       

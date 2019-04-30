@@ -127,7 +127,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjv3a7bej00g2zth2dd2p69ei" class="article-share-link">分享</a>
         
         
         
@@ -197,7 +197,7 @@ ga('send', 'pageview');
 <h2 id="三、性能分析工具箱"><a href="#三、性能分析工具箱" class="headerlink" title="三、性能分析工具箱"></a>三、性能分析工具箱</h2><p>这个工具箱是我常用的性能分析工具，曾协助我解决了很多的性能优化难题</p>
 <ul>
 <li><p>a) web访问时延监控工具AssayFilter<br>   部署在主应用上<br>   部署后可以在resin/logs/AssayFilter.log里面看到访问时间，访问的用户，访问的URL，时延毫秒，来源IP，据此我们就可以将用户的感知定量化，数据化</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">20150227094607 zengguojin /nms/res/devicelist_down.jsp 309356 219.159.77.116 ms</div><div class="line">20150209113913 zengguojin /nms/res/devicelist_down.jsp 383042 219.159.77.116 ms</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">20150227094607 zengguojin /nms/res/devicelist_down.jsp 309356 219.159.77.116 ms</span><br><span class="line">20150209113913 zengguojin /nms/res/devicelist_down.jsp 383042 219.159.77.116 ms</span><br></pre></td></tr></table></figure>
 <p>   从这两条数据里我们可以知道这个用户在访问这个功能时候遭遇过多次等待300多秒的情况,他又会有怎样的满意度呢？<br>   针对这个工具可能有人怀疑是否准确，是否统计时延过高是网络延迟导致。这里解释一下他的工作机制，<br>如下图：     </p>
 </li>
 </ul>
@@ -228,13 +228,13 @@ ga('send', 'pageview');
 <ul>
 <li>a. 查看JVM的内存占用情况</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jstat -gcutil &lt;pid&gt; <span class="number">3</span>s <span class="number">5</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcutil &lt;pid&gt; <span class="number">3</span>s <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <pre><code> 这条命令间隔3秒钟查看JVM的内存利用率，取样5次，
  S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT  
  0.00  98.51  44.95  39.41  63.43      9    0.070     2    0.195    0.266
  永久内存区利用率63.43%, Elden和old区分别是44.95%和39.41%
 </code></pre><ul>
-<li>b. 查看JVM的堆栈调用情况<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jstack &lt;pid&gt;</div></pre></td></tr></table></figure>
+<li>b. 查看JVM的堆栈调用情况<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack &lt;pid&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>这条命令把当前JVM里所有的线程调用堆栈输出。在前台访问无响应的时候，排查故障根源时特别有用。</p>
@@ -253,7 +253,7 @@ ga('send', 'pageview');
 <li>a) 系统参数层面优化<br>  1) sga是否充分利用了系统内存，sga可以配系统内存的一半. 而我遇到过主机64G内存，sga_target设置为5G<br>  2) db_cache_size最好在sga_target-3G，因为我们的程序很多没有使用绑定变量,如果不设置db_cache_size,则渐渐的SGA都有被share_pool占用的趋势，数据被缓存的越来越少，获取数据需要从磁盘读取，这样整体性能肯定会下降。<br>  3) shared_servers设置为0，让数据库运行在专有模式而不是共享服务器模式<br>  虽然系统参数调整会在整体上带来一定的性能改善，但相比于糟糕的SQL或者程序设计以及失效的索引和过期的统计数据对性能起到的作用，还是很有限的。</li>
 <li><p>b) 应用优化层面<br>   1) 定位问题SQL</p>
 <pre><code>   这个SQL能够列出数据库当前正在执行的所有SQL,
-</code></pre><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> s.sid,s.serial#,s.blocking_session,p.spid PID,to_char(s.logon_time,<span class="string">'YYYY-MM-DD HH24:MI:SS'</span>) logontime ,</div><div class="line"><span class="keyword">substr</span>(s.machine,<span class="number">1</span>,<span class="number">15</span>) smachine,<span class="keyword">substr</span>(s.program,<span class="number">1</span>,<span class="number">20</span>) sprogram,q.sql_id,<span class="keyword">substr</span>(q.sql_text,<span class="number">1</span>,<span class="number">200</span>) <span class="keyword">sql</span> <span class="keyword">from</span> v$<span class="keyword">sql</span> q,v$<span class="keyword">session</span> s,v$process p</div><div class="line"><span class="keyword">where</span> q.hash_value=s.sql_hash_value <span class="keyword">and</span> q.address=s.sql_address  <span class="keyword">and</span> p.addr=s.paddr</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> s.sid,s.serial#,s.blocking_session,p.spid PID,to_char(s.logon_time,<span class="string">'YYYY-MM-DD HH24:MI:SS'</span>) logontime ,</span><br><span class="line"><span class="keyword">substr</span>(s.machine,<span class="number">1</span>,<span class="number">15</span>) smachine,<span class="keyword">substr</span>(s.program,<span class="number">1</span>,<span class="number">20</span>) sprogram,q.sql_id,<span class="keyword">substr</span>(q.sql_text,<span class="number">1</span>,<span class="number">200</span>) <span class="keyword">sql</span> <span class="keyword">from</span> v$<span class="keyword">sql</span> q,v$<span class="keyword">session</span> s,v$process p</span><br><span class="line"><span class="keyword">where</span> q.hash_value=s.sql_hash_value <span class="keyword">and</span> q.address=s.sql_address  <span class="keyword">and</span> p.addr=s.paddr</span><br></pre></td></tr></table></figure>
 <p>  基于两个判断标准我们能很快的找到问题SQL</p>
 <ul>
 <li>第一种是某个进程执行的SQL占用的CPU非常高，CPU利用率从Top命令获得，进程ID即PID</li>
@@ -267,30 +267,30 @@ ga('send', 'pageview');
 </ul>
 <p>性能优化非常精深，很多东西我也在学习，先把经常出现的一些问题解决经验总结出来，供大家分享。</p>
 <h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
-<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（四）：网络管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="noopener">Linux 性能诊断:负载评估</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="noopener">Linux 性能诊断:快速检查单</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（四）：网络管理</a></li>
 </ul>
 <h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
-<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
-<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
-<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="noopener">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="noopener">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="noopener">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="noopener">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjuqfn60800fx5ih2zz1irme6" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="cjv3a7bej00g2zth2dd2p69ei" class="article-share-link">分享</a>
       
       
       

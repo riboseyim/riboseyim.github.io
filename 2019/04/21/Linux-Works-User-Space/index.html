@@ -123,7 +123,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/" data-id="cjuqfouke0000b9h2ag9vlctb" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/" data-id="cjv3a7ba8004rzth2d6kf1lru" class="article-share-link">分享</a>
         
         
         
@@ -145,8 +145,8 @@ ga('send', 'pageview');
 <li>中高层服务例如 ：cron , printing</li>
 <li>登录提示、图形界面及其它高层次应用</li>
 </ol>
-<h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></div><div class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</div><div class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// Mac OS</div><div class="line">bash-3.2$ ps -ef | grep init</div><div class="line">	0   243     1   0 15 517  ??         0:00.74 /System/Library/CoreServices/CrashReporterSupportHelper server-init</div><div class="line">	0   533     1   0 15 517  ??         0:02.07 /System/Library/CoreServices/SubmitDiagInfo server-init</div><div class="line">  501 52150     1   0 日01下午 ??         0:15.49 /usr/libexec/secinitd</div><div class="line">	0 69864     1   0 11:35上午 ??         0:00.20 /usr/libexec/secinitd</div><div class="line">	0 72830     1   0  1:51下午 ??         0:00.19 /usr/libexec/secinitd</div><div class="line">Darwin ACA80166.ipt.aol.com 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64</div><div class="line">bash-3.2$</div></pre></td></tr></table></figure>
+<h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></span><br><span class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</span><br><span class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Mac OS</span><br><span class="line">bash-3.2$ ps -ef | grep init</span><br><span class="line">	0   243     1   0 15 517  ??         0:00.74 /System/Library/CoreServices/CrashReporterSupportHelper server-init</span><br><span class="line">	0   533     1   0 15 517  ??         0:02.07 /System/Library/CoreServices/SubmitDiagInfo server-init</span><br><span class="line">  501 52150     1   0 日01下午 ??         0:15.49 /usr/libexec/secinitd</span><br><span class="line">	0 69864     1   0 11:35上午 ??         0:00.20 /usr/libexec/secinitd</span><br><span class="line">	0 72830     1   0  1:51下午 ??         0:00.19 /usr/libexec/secinitd</span><br><span class="line">Darwin ACA80166.ipt.aol.com 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64</span><br><span class="line">bash-3.2$</span><br></pre></td></tr></table></figure>
 <p>在Linux发行版中，init有三种主要的实现形式：</p>
 <ol>
 <li><strong>System V init</strong>: 传统的</li>
@@ -160,10 +160,10 @@ ga('send', 'pageview');
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_upstart_sysV.png" alt="System V init Vs UpStart Vs Systemd"></p>
 <h2 id="The-Initial-RAM-filesystem"><a href="#The-Initial-RAM-filesystem" class="headerlink" title="The Initial RAM filesystem"></a>The Initial RAM filesystem</h2><p>Linux内核不能通过访问PC BIOS 或者 EFI接口从磁盘获取数据，所以为了mount它的root filesystem, 对于底层存储需要驱动程序支持。解决方案是在内核运行之前，由boot loader加载驱动模块及工具到内存。在启动时，内核读取相关模块到一个临时的RAM filesystem(initramfs),挂载在／根目录,initramsfs允许内核为真正的root filesystem加载必要的驱动模块。<br>最后，再挂载真正的root filesystem、启动init。</p>
 <p>Linux在很多场景下都需要创建一个基于内存的文件系统，提供一个可以接近零延迟的快速存储区域。目前有两类主要的RAM磁盘可用，她们个有优劣：ramfs和tmpfs。(注意：创建之前可以使用 <strong>free</strong> 命令查看未使用的RAM)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># mkdir /mnt/ramdisk</span></div><div class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></div><div class="line"><span class="meta"># vi /etc/fstab</span></div><div class="line"><span class="meta">#tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># mkdir /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># vi /etc/fstab</span></span><br><span class="line"><span class="meta">#tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></span><br></pre></td></tr></table></figure>
 <h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
@@ -184,7 +184,7 @@ ga('send', 'pageview');
 </ul>
 <h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
 <li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
 <li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
@@ -193,7 +193,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/" data-id="cjuqfouke0000b9h2ag9vlctb" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/" data-id="cjv3a7ba8004rzth2d6kf1lru" class="article-share-link">分享</a>
       
       
       
@@ -258,6 +258,15 @@ ga('send', 'pageview');
 
     
 <nav id="article-nav">
+  
+    <a href="/2019/04/22/CyberSecurity-Secrets/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Cyber-Security-Secrets
+        
+      </div>
+    </a>
   
   
     <a href="/2019/04/21/Linux-Works/" id="article-nav-older" class="article-nav-link-wrap">

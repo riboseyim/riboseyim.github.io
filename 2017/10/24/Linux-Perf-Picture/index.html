@@ -146,7 +146,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjv3a7beh00fyzth2t3iuufkj" class="article-share-link">分享</a>
         
         
         
@@ -176,7 +176,7 @@ ga('send', 'pageview');
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_A_2-7.png" alt></p>
 <ul>
-<li><p>扩展阅读：<a href="http://www.jianshu.com/p/fd6e35f529c1" target="_blank" rel="external">《Linux性能分析模型－In 60 Seconds》</a></p>
+<li><p>扩展阅读：<a href="http://www.jianshu.com/p/fd6e35f529c1" target="_blank" rel="noopener">《Linux性能分析模型－In 60 Seconds》</a></p>
 </li>
 <li><p>性能分析中的重要理论：等待队列理论<br>从性能的稳定性方面来考虑，带宽控制思维方式。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_S_1_2.png" alt></p>
 </li>
@@ -198,7 +198,7 @@ ga('send', 'pageview');
 <li>调优要循序渐进：先把大石头移开。</li>
 <li><p>具体思路：<br>1、重复使用：连接池、PreparedStatement、线程池<br>2、汇总处理：集中、Piggyback<br>3、提高速度和实现并行<br>4、纵向扩展（Scale Up）与横向扩展（Scale Out）：</p>
 </li>
-<li><p>应用技巧：<br>1、省略循环<br>2、访问频率高的数据存放入键值存储<br>3、访问频率高的数据存放在使用位置附近<br>4、把同步变成异步<br>5、带宽控制<br>6、LRU算法<br>7、分割处理或者细化锁的力度<br>8、回写缓存、多层缓存<br>9、巨帧和高速网络<br>10、负载均衡 <a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="external">基于LVS的AAA负载均衡架构实践</a><br>11、写时复制</p>
+<li><p>应用技巧：<br>1、省略循环<br>2、访问频率高的数据存放入键值存储<br>3、访问频率高的数据存放在使用位置附近<br>4、把同步变成异步<br>5、带宽控制<br>6、LRU算法<br>7、分割处理或者细化锁的力度<br>8、回写缓存、多层缓存<br>9、巨帧和高速网络<br>10、负载均衡 <a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="noopener">基于LVS的AAA负载均衡架构实践</a><br>11、写时复制</p>
 </li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Copy_1.png" alt></p>
@@ -226,9 +226,9 @@ ga('send', 'pageview');
 <p>对横跨多个领域的性能问题进行排查的时候，如果不能综合多个领域来考虑，负责人就会一直说“我负责的那部分没有问题”，导致问题无法解决。</p>
 <p>客户关心的焦点集中在“在实际生产环境中运行时是否会出现性能方面的问题”。</p>
 <p>由于不能很好地共享性能测试地整体过程，或者本来关于性能需求或性能测试设计地需求等地约定就很模糊，导致结论与评价基准等也变得很模糊，引起沟通不畅。</p>
-<p><a href="https://riboseyim.github.io/2016/06/12/Technology-Oracle/" target="_blank" rel="external">参考案例:Oracle数据库迁移割接实录</a></p>
+<p><a href="https://riboseyim.github.io/2016/06/12/Technology-Oracle/" target="_blank" rel="noopener">参考案例:Oracle数据库迁移割接实录</a></p>
 <h4 id="需求定义"><a href="#需求定义" class="headerlink" title="需求定义"></a>需求定义</h4><p>三要素：吞吐（T）、响应时间（R）、用户并发度（U）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">U x R = T</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">U x R = T</span><br></pre></td></tr></table></figure>
 <p>并发并不是作为性能目标通过听取客户意见来推导出来的，而是通常根据吞吐和响应时间计算出一个合适的值（客户即使了解业务中同时使用的人数，但是对于系统瞬间运行的并发处理的情况，他们并不清楚）。</p>
 <h4 id="集成测试：多并发运行测试"><a href="#集成测试：多并发运行测试" class="headerlink" title="集成测试：多并发运行测试"></a>集成测试：多并发运行测试</h4><h4 id="系统测试：压力测试、临界测试、耐久测试"><a href="#系统测试：压力测试、临界测试、耐久测试" class="headerlink" title="系统测试：压力测试、临界测试、耐久测试"></a>系统测试：压力测试、临界测试、耐久测试</h4><h4 id="运维测试：性能监控测试、故障测试"><a href="#运维测试：性能监控测试、故障测试" class="headerlink" title="运维测试：性能监控测试、故障测试"></a>运维测试：性能监控测试、故障测试</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Test_Day_1.png" alt></p>
 <h3 id="五、虚拟化环境下的性能"><a href="#五、虚拟化环境下的性能" class="headerlink" title="五、虚拟化环境下的性能"></a>五、虚拟化环境下的性能</h3><p>在虚拟化环境中，多个VM（虚拟机）运行在一台服务器上，因此可以更加有效地共享资源，有利于削减成本。而反过来，若资源被共享过度，则会发生竞争，可能导致性能的下降。因此，在资源效率和性能之间取得平衡就变得尤为重要。<br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VMM_TYPE_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_1.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_VM_RES_2.png" alt></p>
@@ -256,30 +256,30 @@ ga('send', 'pageview');
 <p>云计算服务的核心是根据负载使用量收费。由于这种收费模式，原来只有工程师会关注的传送量、I／O数、HTTP请求数等详细的性能指标数据会直接反映在费用上，因此需要经营者掌握这些性能指标及其含义。使用云计算后，容量与成本就联系到一起，因此云计算可能是促使经营者学习容量分析的一个有效手段。</p>
 <p>运维：除了应对峰值，在没有业务流量的时间段内动态削减多余的资源，降低成本，也是很有价值的。</p>
 <h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="external">Linux 性能诊断:负载评估</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="external">Linux 性能诊断:快速检查单</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（一）：启动</a></li>
-<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="external">操作系统原理 | How Linux Works（二）：空间管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：内存管理</a></li>
-<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="external">操作系统原理 | How Linux Works（三）：网络管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="noopener">Linux 性能诊断:负载评估</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="noopener">Linux 性能诊断:快速检查单</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（三）：网络管理</a></li>
 </ul>
 <h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
-<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="external">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
-<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="external">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="external">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
-<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="external">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+<li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="noopener">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="noopener">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="noopener">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="noopener">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjuqfn60700fv5ih2djf78se2" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Picture/" data-id="cjv3a7beh00fyzth2t3iuufkj" class="article-share-link">分享</a>
       
       
       

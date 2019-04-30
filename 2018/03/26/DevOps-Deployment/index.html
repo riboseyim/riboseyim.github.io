@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SaltStack-Logo.jpg">
 <meta property="og:image" content="https://docs.saltstack.com/en/getstarted/images/salt-subsystems.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SlatStack-Subsystem-Job.png">
-<meta property="og:updated_time" content="2018-12-24T08:48:08.079Z">
+<meta property="og:updated_time" content="2019-04-21T07:31:32.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈：基础设施部署和配置管理">
 <meta name="twitter:description" content="摘要 Ansible vs. Chef vs. Fabric vs. Puppet vs. SaltStack">
@@ -132,7 +132,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/03/26/DevOps-Deployment/" data-id="cjuqfn5zs00ez5ih23hvmmkab" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2018/03/26/DevOps-Deployment/" data-id="cjv3a7be400f6zth2lrxu2pry" class="article-share-link">分享</a>
         
         
         
@@ -177,7 +177,7 @@ ga('send', 'pageview');
 <td>——-</td>
 </tr>
 <tr>
-<td><a href="https://riboseyim.github.io/2018/09/18/DevOps-Deployment-SaltStack" target="_blank" rel="external">SaltStack</a></td>
+<td><a href="https://riboseyim.github.io/2018/09/18/DevOps-Deployment-SaltStack" target="_blank" rel="noopener">SaltStack</a></td>
 <td>Python</td>
 <td>master-client,zeromq</td>
 <td>ssh &amp; push <br> 高性能</td>
@@ -195,7 +195,7 @@ ga('send', 'pageview');
 <td>——-</td>
 </tr>
 <tr>
-<td><a href="https://riboseyim.github.io/2018/09/17/DevOps-Deployment-Puppet/" target="_blank" rel="external">Puppet</a></td>
+<td><a href="https://riboseyim.github.io/2018/09/17/DevOps-Deployment-Puppet/" target="_blank" rel="noopener">Puppet</a></td>
 <td>Ruby</td>
 <td>master-client,model-driven</td>
 <td>——-</td>
@@ -236,6 +236,9 @@ ga('send', 'pageview');
 <li>性能存在一定瓶颈</li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/Ansible-Tower-Dashboard.png" alt></p>
+<ul>
+<li><a href="https://www.howtoforge.com/ansible-guide-create-ansible-playbook-for-lemp-stack/" target="_blank" rel="noopener">Ansible Guide: Create Ansible Playbook for LEMP Stack</a></li>
+</ul>
 <h4 id="2-Chef"><a href="#2-Chef" class="headerlink" title="2. Chef"></a>2. Chef</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Chef-Logo.jpg" alt><br>￼Chef 是一个配置管理开源工具，用户群专注面向开发者。Chef 作为 master-client  模式运行，需要一个单独的工作站来控制 master 。Chef 基于 Ruby 开发，纯 Ruby 可以支持大多数元素。Chef 的设计是透明的，并遵循给定的指示，这意味着你必须确保你的指示是清楚的。</p>
 <p>何时使用它：在考虑 Chef 之前，需要确保你熟悉 Git ，因为它需要配置 Git ，你必须编写 Ruby 代码。Chef 适合以开发为中心（development-focused ）的团队和环境。对于寻求更成熟异构环境解决方案的企业来说，这是一件好事。</p>
 <p>价格：提供免费的开源版本，标准版和高级版计划以每年节点为单位定价。 Chef Automate 的价格为每个节点 137 美元，或者采用 Hosted Chef 每个节点每年节省72 美元。</p>
@@ -314,21 +317,21 @@ ga('send', 'pageview');
 <li>develop language: Python</li>
 <li>future: REAL-TIME COMMUNICATION</li>
 </ul>
-<h4 id="SaltStack-ABC"><a href="#SaltStack-ABC" class="headerlink" title="SaltStack ABC"></a>SaltStack ABC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## Install</span></div><div class="line">$ brew install saltstack</div><div class="line"><span class="comment">## Role:Master</span></div><div class="line">$ service salt-master start</div><div class="line">$ netstat -ant | grep 450 | grep LISTEN</div><div class="line">tcp4       0      0  *.4506                 *.*                    LISTEN     </div><div class="line">tcp4       0      0  *.4505                 *.*                    LISTEN</div><div class="line"><span class="comment">## Role:Master</span></div></pre></td></tr></table></figure>
+<h4 id="SaltStack-ABC"><a href="#SaltStack-ABC" class="headerlink" title="SaltStack ABC"></a>SaltStack ABC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Install</span></span><br><span class="line">$ brew install saltstack</span><br><span class="line"><span class="comment">## Role:Master</span></span><br><span class="line">$ service salt-master start</span><br><span class="line">$ netstat -ant | grep 450 | grep LISTEN</span><br><span class="line">tcp4       0      0  *.4506                 *.*                    LISTEN     </span><br><span class="line">tcp4       0      0  *.4505                 *.*                    LISTEN</span><br><span class="line"><span class="comment">## Role:Master</span></span><br></pre></td></tr></table></figure>
 <h4 id="SaltStack-Resources"><a href="#SaltStack-Resources" class="headerlink" title="SaltStack Resources"></a>SaltStack Resources</h4><ul>
-<li><a href="https://github.com/saltstack-formulas" target="_blank" rel="external">SaltStack Formulas</a></li>
+<li><a href="https://github.com/saltstack-formulas" target="_blank" rel="noopener">SaltStack Formulas</a></li>
 </ul>
 <h2 id="Ansible"><a href="#Ansible" class="headerlink" title="Ansible"></a>Ansible</h2><ul>
 <li>Arch: SSH batch tools</li>
 <li>develop language: Python<h4 id="Ansible-ABC"><a href="#Ansible-ABC" class="headerlink" title="Ansible ABC"></a>Ansible ABC</h4></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Install</span></div><div class="line">$ sudo pip install ansible</div><div class="line"><span class="comment"># 默认路径 /etc/ansible/hosts ,参数 -i 指定 hosts 文件</span></div><div class="line">$ ansible all -m shell <span class="_">-a</span> <span class="string">"hostname"</span> --ask-pass -i /yourdir/ansible_hosts</div><div class="line"><span class="comment"># 或者通过环境变量指定</span></div><div class="line">$ <span class="built_in">export</span> ANSIBLE_HOSTS=~/ansible_hosts</div><div class="line">$ <span class="built_in">echo</span> <span class="string">"127.0.0.1"</span> &gt; ~/ansible_hosts</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install</span></span><br><span class="line">$ sudo pip install ansible</span><br><span class="line"><span class="comment"># 默认路径 /etc/ansible/hosts ,参数 -i 指定 hosts 文件</span></span><br><span class="line">$ ansible all -m shell <span class="_">-a</span> <span class="string">"hostname"</span> --ask-pass -i /yourdir/ansible_hosts</span><br><span class="line"><span class="comment"># 或者通过环境变量指定</span></span><br><span class="line">$ <span class="built_in">export</span> ANSIBLE_HOSTS=~/ansible_hosts</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"127.0.0.1"</span> &gt; ~/ansible_hosts</span><br></pre></td></tr></table></figure>
 <h2 id="Puppet"><a href="#Puppet" class="headerlink" title="Puppet"></a>Puppet</h2><ul>
 <li>Arch: Agent/Server</li>
 <li>develop language: Ruby</li>
 <li>enterprise &amp; community edition</li>
 </ul>
-<h4 id="Puppet-ABC"><a href="#Puppet-ABC" class="headerlink" title="Puppet ABC"></a>Puppet ABC</h4><h2 id="WordBook"><a href="#WordBook" class="headerlink" title="WordBook"></a>WordBook</h2><h4 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a><a href="http://yaml.org" target="_blank" rel="external">YAML</a></h4><p>YAML 语言（发音 /ˈjæməl/ ）实质上是一种通用的数据串行化格式。基本语法规则如下:</p>
+<h4 id="Puppet-ABC"><a href="#Puppet-ABC" class="headerlink" title="Puppet ABC"></a>Puppet ABC</h4><h2 id="WordBook"><a href="#WordBook" class="headerlink" title="WordBook"></a>WordBook</h2><h4 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a><a href="http://yaml.org" target="_blank" rel="noopener">YAML</a></h4><p>YAML 语言（发音 /ˈjæməl/ ）实质上是一种通用的数据串行化格式。基本语法规则如下:</p>
 <ul>
 <li>大小写敏感</li>
 <li>使用缩进表示层级关系</li>
@@ -342,40 +345,40 @@ ga('send', 'pageview');
 <li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
 <li><p>纯量（scalars）：单个的、不可再分的值</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="external">YAML 语言教程</a></p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="noopener">YAML 语言教程</a></p>
 </li>
 </ul>
-<h4 id="DSL-Domain-Specific-Language-领域专用语言"><a href="#DSL-Domain-Specific-Language-领域专用语言" class="headerlink" title="DSL|Domain Specific Language,领域专用语言"></a><a href="https://en.wikipedia.org/wiki/Domain-specific_language" target="_blank" rel="external">DSL|Domain Specific Language,领域专用语言</a></h4><p>DSL的目标受众是非程序员，业务员或者最终用户。<br>DSL 最大的设计原则就是简单，通过简化语言中的元素，降低使用者的负担；无论是 Regex、SQL 还是 HTML 以及 CSS，其说明文档往往只有几页，非常易于学习和掌握。但是，由此带来的问题就是，DSL 中缺乏抽象的概念，比如：模块化、变量以及方法等。</p>
+<h4 id="DSL-Domain-Specific-Language-领域专用语言"><a href="#DSL-Domain-Specific-Language-领域专用语言" class="headerlink" title="DSL|Domain Specific Language,领域专用语言"></a><a href="https://en.wikipedia.org/wiki/Domain-specific_language" target="_blank" rel="noopener">DSL|Domain Specific Language,领域专用语言</a></h4><p>DSL的目标受众是非程序员，业务员或者最终用户。<br>DSL 最大的设计原则就是简单，通过简化语言中的元素，降低使用者的负担；无论是 Regex、SQL 还是 HTML 以及 CSS，其说明文档往往只有几页，非常易于学习和掌握。但是，由此带来的问题就是，DSL 中缺乏抽象的概念，比如：模块化、变量以及方法等。</p>
 <ul>
-<li><a href="http://www.infoq.com/cn/articles/dsl-discussion" target="_blank" rel="external">领域专用语言(DSL)迷思</a></li>
-<li><a href="http://www.infoq.com/cn/articles/dsl-discussion" target="_blank" rel="external">谈谈 DSL 以及 DSL 的应用（以 CocoaPods 为例）</a></li>
+<li><a href="http://www.infoq.com/cn/articles/dsl-discussion" target="_blank" rel="noopener">领域专用语言(DSL)迷思</a></li>
+<li><a href="http://www.infoq.com/cn/articles/dsl-discussion" target="_blank" rel="noopener">谈谈 DSL 以及 DSL 的应用（以 CocoaPods 为例）</a></li>
 </ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="external">DevOps 漫谈系列</a></h4><ul>
-<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="external">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="external">Kanban 看板管理实践</a></li>
-<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="external">DevOps 漫谈：基础设施部署和配置管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="external">工程师的自我修养：全英文技术学习实践</a></li>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="noopener">DevOps 漫谈系列</a></h4><ul>
+<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="noopener">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="noopener">Kanban 看板管理实践</a></li>
+<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="noopener">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="noopener">Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="noopener">工程师的自我修养：全英文技术学习实践</a></li>
 </ul>
-<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="external">DevOps 实践的本质是文化</a></h4><ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="noopener">DevOps 实践的本质是文化</a></h4><ul>
 <li>学习力－团队生命之根</li>
 <li>带领团队翻译书籍</li>
 <li>Don’t make me think</li>
 <li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://blog.takipi.com/deployment-management-tools-chef-vs-puppet-vs-ansible-vs-saltstack-vs-fabric/" target="_blank" rel="external">Deployment Management Tools: Chef vs. Puppet vs. Ansible vs. SaltStack vs. Fabric</a></li>
-<li><a href="https://www.zhihu.com/question/22707761" target="_blank" rel="external">SaltStack 与 Ansible 选择？| zhihu.com</a></li>
-<li><a href="http://www.saltstack.cn" target="_blank" rel="external">中国SaltStack用户组|China SaltStack User Group</a></li>
-<li><a href="http://www.saltstack.cn/kb/managing-firewall-with-salt/#managing-firewall-with-salt" target="_blank" rel="external">基于Salt管理iptables防火墙规则</a></li>
-<li><a href="https://linux.cn/article-4215-1.html#3_875" target="_blank" rel="external">Ansible ：一个配置管理和IT自动化工具</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-devops-saltstack-in-cloud/index.html" target="_blank" rel="external">自动化运维工具 SaltStack 在云计算环境中的实践</a></li>
+<li><a href="https://blog.takipi.com/deployment-management-tools-chef-vs-puppet-vs-ansible-vs-saltstack-vs-fabric/" target="_blank" rel="noopener">Deployment Management Tools: Chef vs. Puppet vs. Ansible vs. SaltStack vs. Fabric</a></li>
+<li><a href="https://www.zhihu.com/question/22707761" target="_blank" rel="noopener">SaltStack 与 Ansible 选择？| zhihu.com</a></li>
+<li><a href="http://www.saltstack.cn" target="_blank" rel="noopener">中国SaltStack用户组|China SaltStack User Group</a></li>
+<li><a href="http://www.saltstack.cn/kb/managing-firewall-with-salt/#managing-firewall-with-salt" target="_blank" rel="noopener">基于Salt管理iptables防火墙规则</a></li>
+<li><a href="https://linux.cn/article-4215-1.html#3_875" target="_blank" rel="noopener">Ansible ：一个配置管理和IT自动化工具</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-devops-saltstack-in-cloud/index.html" target="_blank" rel="noopener">自动化运维工具 SaltStack 在云计算环境中的实践</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/03/26/DevOps-Deployment/" data-id="cjuqfn5zs00ez5ih23hvmmkab" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2018/03/26/DevOps-Deployment/" data-id="cjv3a7be400f6zth2lrxu2pry" class="article-share-link">分享</a>
       
       
       

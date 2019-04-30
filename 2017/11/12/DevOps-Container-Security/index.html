@@ -124,7 +124,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjv3a7be200f2zth20e0lh75b" class="article-share-link">分享</a>
         
         
         
@@ -141,9 +141,9 @@ ga('send', 'pageview');
 <a id="more"></a>
 <p>This article is part of an <strong>Virtualization Technology</strong> tutorial series. Make sure to check out my other articles as well:</p>
 <ul>
-<li><a href="https://riboseyim.github.io/2018/06/12/DevOps-Container-Usage/" target="_blank" rel="external">2018 年度 Docker 用户报告 - Sysdig Edition </a></li>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Cyber-Security: Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/" target="_blank" rel="external">DevOps漫谈：Docker ABC</a></li>
+<li><a href="https://riboseyim.github.io/2018/06/12/DevOps-Container-Usage/" target="_blank" rel="noopener">2018 年度 Docker 用户报告 - Sysdig Edition </a></li>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="noopener">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/" target="_blank" rel="noopener">DevOps漫谈：Docker ABC</a></li>
 </ul>
 <h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><ul>
 <li>1.容器操作系统与多租户</li>
@@ -194,40 +194,40 @@ ga('send', 'pageview');
 <h4 id="7-网络隔离"><a href="#7-网络隔离" class="headerlink" title="7. 网络隔离"></a>7. 网络隔离</h4><p>在容器部署现代微服务应用程序往往意味着在多个节点分布式部署多个容器。考虑到网络防御，您需要一种在集群中隔离应用程序的方法。</p>
 <p>一个典型的公共云服务，例如Google Container Engine (GKE),Azure Container Services, 或者 Amazon Web Services (AWS) Container Service，都是单租户服务。它们允许在您启动的 VM 集群上运行容器。为了实现多租户容器安全，您需要一个容器平台，允许您选择单个集群并将流量分段，以隔离该集群中的不同用户、团队、应用程序和环境。</p>
 <p>通过网络命名空间，每个容器集合（称为“POD”）获得自己的IP和端口绑定范围，从而在节点上隔离 POD 网络。</p>
-<p>默认情况下，来自不同命名空间（项目）的 POD  不能将包发送到或接收来自不同项目的 POD 、服务的数据包，除了下文所述的选项。您可以使用这些特性来隔离集群中的开发人员、测试和生产环境；然而，IP 地址和端口的这种扩展使得网络变得更加复杂。可以投资一些工具处理这种复杂性。首选的工具是采用<a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="external">软件定义网络（SDN）</a>容器平台，它提供统一的集群网络，保证整个集群的容器之间的通信。</p>
+<p>默认情况下，来自不同命名空间（项目）的 POD  不能将包发送到或接收来自不同项目的 POD 、服务的数据包，除了下文所述的选项。您可以使用这些特性来隔离集群中的开发人员、测试和生产环境；然而，IP 地址和端口的这种扩展使得网络变得更加复杂。可以投资一些工具处理这种复杂性。首选的工具是采用<a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">软件定义网络（SDN）</a>容器平台，它提供统一的集群网络，保证整个集群的容器之间的通信。</p>
 <h4 id="8-存储"><a href="#8-存储" class="headerlink" title="8. 存储"></a>8. 存储</h4><p>对于有状态和无状态的应用程序来说，容器是非常有用的。<br>保护存储是保证有状态服务的关键要素。容器平台应提供多样化的存储插件，包括网络文件系统（NFS），AWS Elastic Block Stores（EBS，弹性块存储），GCE Persistent 磁盘，GlusterFS，iSCSI，RADOS（CEPH）、Cinder 等等。</p>
 <p>一个持久卷（PV）可以安装在由资源提供者支持的任何主机。供应商将有不同的能力，每个 PV 的访问模式可以设置为特定卷支持的特定模式。例如，NFS 可以支持多个 读/写的客户端，但一个特定的 NFS  PV 可以在服务器上仅作为只读输出。每个 PV 有它自己的一套访问模式，定义特定 PV 的性能指标，例如ReadWriteOnce, ReadOnlyMany, 和 ReadWriteMany。</p>
 <h4 id="9-API-管理-终端安全和单点登录-SSO"><a href="#9-API-管理-终端安全和单点登录-SSO" class="headerlink" title="9. API 管理, 终端安全和单点登录 (SSO)"></a>9. API 管理, 终端安全和单点登录 (SSO)</h4><p>保护应用程序安全包括管理应用程序和 API 身份验证和授权。<br>Web SSO 功能是现代应用程序的关键部分。当开发者构建他们自己的应用时，容器平台可以提供各种容器服务给他们使用。</p>
-<p>API 是<a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="external">微服务</a>应用的关键组成部分。<a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="external">微服务</a>应用具有多个独立的 API 服务，这导致服务端点的扩张，因此需要更多的治理工具。推荐使用 API 管理工具。所有 API 平台都应该提供各种 API 认证和安全的标准选项，它们可以单独使用或组合使用，发布证书和控制访问。这些选项包括标准的 API 密钥、应用ID、密钥对和 <a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="external">OAuth 2.0</a>。</p>
+<p>API 是<a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="noopener">微服务</a>应用的关键组成部分。<a href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/" target="_blank" rel="noopener">微服务</a>应用具有多个独立的 API 服务，这导致服务端点的扩张，因此需要更多的治理工具。推荐使用 API 管理工具。所有 API 平台都应该提供各种 API 认证和安全的标准选项，它们可以单独使用或组合使用，发布证书和控制访问。这些选项包括标准的 API 密钥、应用ID、密钥对和 <a href="https://riboseyim.github.io/2017/05/23/RestfulAPI/" target="_blank" rel="noopener">OAuth 2.0</a>。</p>
 <h4 id="10-角色和访问控制管理（Cluster-Federation）"><a href="#10-角色和访问控制管理（Cluster-Federation）" class="headerlink" title="10. 角色和访问控制管理（Cluster Federation）"></a>10. 角色和访问控制管理（Cluster Federation）</h4><p>2016年7月，Kubernetes 1.3  介绍了 Kubernetes Federated Cluster。这是一个令人兴奋的新功能，目前在 Kubernetes 1.6 beta 。</p>
 <p>在公共云或企业数据中心场景中，Federation 对于跨集群部署和访问应用服务是很有用的。多集群使得应用程序的高可用性成为可能，例如多个区域、多个云提供商（如AWS、Google Cloud 和 Azure）实现部署或迁移的通用管理。</p>
 <p>在管理集群联邦时，必须确保编排工具在不同的部署平台实例中提供所需的安全性。与以往一样，身份验证和授权是安全的关键 —— 能够安全地将数据传递给应用程序，无论它们在何处运行，在集群中管理应用程序多租户。</p>
 <p>Kubernetes 扩展了集群联邦包括支持联邦加密，联邦命名空间和对象入口。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://opensource.com/article/17/10/10-layers-container-security" target="_blank" rel="external">10 layers of Linux container security | Daniel Oh | Senior Specialist Solution Architect at Red Hat</a></li>
+<li><a href="https://opensource.com/article/17/10/10-layers-container-security" target="_blank" rel="noopener">10 layers of Linux container security | Daniel Oh | Senior Specialist Solution Architect at Red Hat</a></li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="网络安全专题合辑《Cyber-Security-Manual》"><a href="#网络安全专题合辑《Cyber-Security-Manual》" class="headerlink" title="网络安全专题合辑《Cyber-Security Manual》"></a>网络安全专题合辑《Cyber-Security Manual》</h4><ul>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Cyber-Security: Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="external">Cyber-Security: 警惕 Wi-Fi 漏洞，争取安全上网</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/" target="_blank" rel="external">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="external">Cyber-Security: IPv6 &amp; Security</a></li>
-<li><a href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/" target="_blank" rel="external">Cyber-Security: OpenSSH 并不安全</a></li>
-<li><a href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/" target="_blank" rel="external">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
-<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="external">浅谈基于数据分析的网络态势感知</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="external">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
-<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="external">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
-<li><a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="external">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
-<li><a href="https://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="external">Cyber-Security: 美国网络安全立法策略</a></li>
-<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="external">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="noopener">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/" target="_blank" rel="noopener">Cyber-Security: 警惕 Wi-Fi 漏洞，争取安全上网</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/" target="_blank" rel="noopener">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/" target="_blank" rel="noopener">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/" target="_blank" rel="noopener">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a href="https://riboseyim.github.io/2017/07/14/Network-sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/" target="_blank" rel="noopener">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a href="http://www.jianshu.com/p/670c4d2bb419" target="_blank" rel="noopener">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a href="https://riboseyim.github.io/2016/10/07/CyberSecurity/" target="_blank" rel="noopener">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/" target="_blank" rel="noopener">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
 </ul>
-<h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="external">DevOps 漫谈系列</a></h4><ul>
-<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="external">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
-<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="external">Kanban 看板管理实践</a></li>
-<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="external">DevOps 漫谈：基础设施部署和配置管理</a></li>
-<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="external">Linux 容器安全的十重境界</a></li>
-<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="external">工程师的自我修养：全英文技术学习实践</a></li>
+<h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a href="https://riboseyim.github.io/2016/07/28/DevOps/" target="_blank" rel="noopener">DevOps 漫谈系列</a></h4><ul>
+<li><a href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/" target="_blank" rel="noopener">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/" target="_blank" rel="noopener">Kanban 看板管理实践</a></li>
+<li><a href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/" target="_blank" rel="noopener">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/" target="_blank" rel="noopener">Linux 容器安全的十重境界</a></li>
+<li><a href="https://riboseyim.github.io/2017/06/27/Technology-English/" target="_blank" rel="noopener">工程师的自我修养：全英文技术学习实践</a></li>
 </ul>
-<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="external">DevOps 实践的本质是文化</a></h4><ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/" target="_blank" rel="noopener">DevOps 实践的本质是文化</a></h4><ul>
 <li>学习力－团队生命之根</li>
 <li>带领团队翻译书籍</li>
 <li>Don’t make me think</li>
@@ -237,7 +237,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjuqfn5zr00ex5ih2nv38i8a6" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/11/12/DevOps-Container-Security/" data-id="cjv3a7be200f2zth20e0lh75b" class="article-share-link">分享</a>
       
       
       

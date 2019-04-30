@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 编辑中 路由协议 router based linux kernel">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:30:25.617Z">
+<meta property="og:updated_time" content="2019-04-21T08:51:48.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:Router">
 <meta name="twitter:description" content="摘要 编辑中 路由协议 router based linux kernel">
@@ -121,7 +121,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2019/03/05/Linux-Works-Router/" data-id="cjuqfoukq0005b9h2aggr6jwp" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2019/03/05/Linux-Works-Router/" data-id="cjv3a7ba3004mzth234mla3tn" class="article-share-link">分享</a>
         
         
         
@@ -140,7 +140,7 @@ ga('send', 'pageview');
 <li>router based linux kernel</li>
 </ul>
 <a id="more"></a>
-<h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="BASIC-Commands"><a href="#BASIC-Commands" class="headerlink" title="BASIC Commands"></a>BASIC Commands</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">route -n</div><div class="line"><span class="comment"># To Host</span></div><div class="line">route add -host [ip] dev eth0</div><div class="line">route add -host [ip] gw [ip]</div><div class="line"><span class="comment"># To Network</span></div><div class="line">route add -net [ip] netmask [mask]</div><div class="line">route del -net [ip] netmask [mask] gw [......]</div><div class="line"><span class="comment"># default route</span></div><div class="line">route add default gw [......]</div></pre></td></tr></table></figure>
+<h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="BASIC-Commands"><a href="#BASIC-Commands" class="headerlink" title="BASIC Commands"></a>BASIC Commands</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">route -n</span><br><span class="line"><span class="comment"># To Host</span></span><br><span class="line">route add -host [ip] dev eth0</span><br><span class="line">route add -host [ip] gw [ip]</span><br><span class="line"><span class="comment"># To Network</span></span><br><span class="line">route add -net [ip] netmask [mask]</span><br><span class="line">route del -net [ip] netmask [mask] gw [......]</span><br><span class="line"><span class="comment"># default route</span></span><br><span class="line">route add default gw [......]</span><br></pre></td></tr></table></figure>
 <h2 id="OpenSource-Routing-Projects"><a href="#OpenSource-Routing-Projects" class="headerlink" title="OpenSource Routing Projects"></a>OpenSource Routing Projects</h2><h4 id="What-is-Quagga"><a href="#What-is-Quagga" class="headerlink" title="What is Quagga?"></a>What is Quagga?</h4><p>Quagga is a routing software suite, providing implementations of OSPFv2, OSPFv3, RIP v1 and v2, RIPng and BGP-4 for Unix platforms, particularly FreeBSD, Linux, Solaris and NetBSD. Quagga is a fork of GNU Zebra which was developed by Kunihiro Ishiguro.</p>
 <p>The Quagga architecture consists of a core daemon, zebra, which acts as an abstraction layer to the underlying Unix kernel and presents the Zserv API over a Unix or TCP stream to Quagga clients. It is these Zserv clients which typically implement a routing protocol and communicate routing updates to the zebra daemon. Existing Zserv implementations are:  </p>
 <div class="table-container">
@@ -189,7 +189,7 @@ ga('send', 'pageview');
 <h4 id="Zebra"><a href="#Zebra" class="headerlink" title="Zebra"></a>Zebra</h4><p>Zebra 是一个 TPC/IP 路由软件，支持 BGP、OSPF、RIP 和 RIPng。它遵循 GNU 通用公共许可协议，可以运行于 Linux 操作系统上（在 Red Hat 中已经附带了 Zebra 的 RPM 安装包）。</p>
 <p>最初的 Zebra 软件包由 Kunihiro Ishiguro 和 Yoshinari Yoshikawa 于1996年完成。现在主要由 IP Infusion 及开源志愿者维持。</p>
 <p>Zebra 采用模块的方法来管理协议。可以根据网络需要启用或者禁用协议。此外，Zebra 的配置同 Cisco IOS 极其类似，这一点对于已经熟悉 Cisco 的网络工程师来说非常方便。</p>
-<p><a href="http://www.zebra.org/" target="_blank" rel="external">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
+<p><a href="http://www.zebra.org/" target="_blank" rel="noopener">Zebra</a> is a multi-server routing software which provides TCP/IP based routing protocols. Zebra turns your machine into a full powered router. Some of the features of Zebra include:</p>
 <ul>
 <li>Common routing protocols such as RIP, OSPF, BGP supported.</li>
 <li>IPv6 routing protocols such as RIPng and BGP-4+ supported.</li>
@@ -208,16 +208,16 @@ ga('send', 'pageview');
 <li>KAME</li>
 <li>INRIA IPv6</li>
 </ul>
-<h4 id="Quagga-ABC"><a href="#Quagga-ABC" class="headerlink" title="Quagga ABC"></a>Quagga ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="external">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The default location</span></div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/sbin/zebra</div><div class="line"></div><div class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</div></pre></td></tr></table></figure>
+<h4 id="Quagga-ABC"><a href="#Quagga-ABC" class="headerlink" title="Quagga ABC"></a>Quagga ABC</h4><p><a href="https://www.quagga.net/" target="_blank" rel="noopener">Quagga</a> daemons are each configurable via a network accessible CLI (called a ‘vty’). The CLI follows a style similar to that of other routing software. There is an additional tool included with Quagga called ‘vtysh’, which acts as a single cohesive front-end to all the daemons, allowing one to administer nearly all aspects of the various Quagga daemons in one place.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The default location</span></span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/sbin/zebra</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/etc/zebra.conf</span><br></pre></td></tr></table></figure>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
-<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="external">Quagga</a></li>
-<li>The <a href="http://bird.network.cz/" target="_blank" rel="external">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
-<li>The <a href="http://www.openbgpd.org/" target="_blank" rel="external">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
+<li><a href="http://download.savannah.gnu.org/releases/quagga/" target="_blank" rel="noopener">Quagga</a></li>
+<li>The <a href="http://bird.network.cz/" target="_blank" rel="noopener">BIRD Internet Routing Daemon Project</a>, supported by cz.nic.</li>
+<li>The <a href="http://www.openbgpd.org/" target="_blank" rel="noopener">OpenBGPd and OpenOSPFd project</a>, primarily developed for OpenBSD.</li>
 </ul>
 <h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
-<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="external">https://riboseyim.gitbook.io/perf</a></li>
-<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="external">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+<li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
+<li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
 <h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
@@ -238,21 +238,27 @@ ga('send', 'pageview');
 </ul>
 <h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="external">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
 <li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
 <li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
+<h4 id="案例与实务"><a href="#案例与实务" class="headerlink" title="案例与实务"></a>案例与实务</h4><ul>
+<li><a href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/" target="_blank" rel="noopener">最佳工程实践：Stack Overflow 架构 - 2016 Edition</a></li>
+<li><a href="https://riboseyim.github.io/2016/06/12/Technology-Oracle/" target="_blank" rel="noopener">最佳工程实践：Oracle 数据库迁移割接实践</a></li>
+<li><a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="noopener">最佳工程实践：基于LVS的AAA负载均衡架构实践</a>  </li>
+<li><a href="https://code.facebook.com/posts/1906146702752923/open-sourcing-katran-a-scalable-network-load-balancer/" target="_blank" rel="noopener">VIPServer | Facebook Open-sourcing Katran, a scalable network load balancer</a></li>
+</ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/l-emu/index.html" target="_blank" rel="external">在 Linux 上构建网络路由器 | Dominique Cimafranca 和 Rex Young | 2004 年 3 月 09 日发布</a></li>
-<li><a href="https://www.cnblogs.com/sanyuanempire/articles/6155254.html" target="_blank" rel="external">Linux下使用Quagga(Zebra)搭建路由器记录</a></li>
-<li><a href="https://linuxhint.com/centos7_router/" target="_blank" rel="external">How to Make a CentOS 7 Router</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-emu/index.html" target="_blank" rel="noopener">在 Linux 上构建网络路由器 | Dominique Cimafranca 和 Rex Young | 2004 年 3 月 09 日发布</a></li>
+<li><a href="https://www.cnblogs.com/sanyuanempire/articles/6155254.html" target="_blank" rel="noopener">Linux下使用Quagga(Zebra)搭建路由器记录</a></li>
+<li><a href="https://linuxhint.com/centos7_router/" target="_blank" rel="noopener">How to Make a CentOS 7 Router</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2019/03/05/Linux-Works-Router/" data-id="cjuqfoukq0005b9h2aggr6jwp" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2019/03/05/Linux-Works-Router/" data-id="cjv3a7ba3004mzth234mla3tn" class="article-share-link">分享</a>
       
       
       
@@ -363,7 +369,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BASIC"><span class="toc-number">2.</span> <span class="toc-text">BASIC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BASIC-Commands"><span class="toc-number">2.0.1.</span> <span class="toc-text">BASIC Commands</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenSource-Routing-Projects"><span class="toc-number">3.</span> <span class="toc-text">OpenSource Routing Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Quagga"><span class="toc-number">3.0.1.</span> <span class="toc-text">What is Quagga?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zebra"><span class="toc-number">3.0.2.</span> <span class="toc-text">Zebra</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Supported-Platforms"><span class="toc-number">3.0.3.</span> <span class="toc-text">Supported Platforms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Quagga-ABC"><span class="toc-number">3.0.4.</span> <span class="toc-text">Quagga ABC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">4.</span> <span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BASIC"><span class="toc-number">2.</span> <span class="toc-text">BASIC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BASIC-Commands"><span class="toc-number">2.0.1.</span> <span class="toc-text">BASIC Commands</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenSource-Routing-Projects"><span class="toc-number">3.</span> <span class="toc-text">OpenSource Routing Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Quagga"><span class="toc-number">3.0.1.</span> <span class="toc-text">What is Quagga?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zebra"><span class="toc-number">3.0.2.</span> <span class="toc-text">Zebra</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Supported-Platforms"><span class="toc-number">3.0.3.</span> <span class="toc-text">Supported Platforms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Quagga-ABC"><span class="toc-number">3.0.4.</span> <span class="toc-text">Quagga ABC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">4.</span> <span class="toc-text">下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例与实务"><span class="toc-number">4.0.5.</span> <span class="toc-text">案例与实务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>

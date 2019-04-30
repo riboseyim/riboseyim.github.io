@@ -150,7 +150,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjv3a7bim00r1zth28r6ga67i" class="article-share-link">分享</a>
         
         
         
@@ -196,7 +196,7 @@ ga('send', 'pageview');
 <p>L2级别：L1级别缓存失败之后，通过Redis获取数据</p>
 <p>L1&amp;L2都是无法命中的情况下，会从数据库查询，并更新到缓存和Redis。</p>
 <p>缓存更新：基于发布／订阅模型，利用这个机制来清除其他服务上的 L1 缓存，用来保持 web 服务器上的缓存一致性。<br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png" alt><br>另外Redis实例的CPU都很低，不到2%，这点很惊人。</p>
-<h4 id="Push推送"><a href="#Push推送" class="headerlink" title="Push推送"></a>Push推送</h4><p>开源库：NetGrain<br>使用 <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">Websocket</a> 向用户推送实时的更新内容，比如顶部栏中的通知、投票数、新导航数、新的答案和评论。在高峰时刻，大约有 50 万个并发的  <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">Websocket</a>  连接，这可是一大堆浏览器。</p>
+<h4 id="Push推送"><a href="#Push推送" class="headerlink" title="Push推送"></a>Push推送</h4><p>开源库：NetGrain<br>使用 <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">Websocket</a> 向用户推送实时的更新内容，比如顶部栏中的通知、投票数、新导航数、新的答案和评论。在高峰时刻，大约有 50 万个并发的  <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">Websocket</a>  连接，这可是一大堆浏览器。</p>
 <p>一个有趣的事实：其中一些浏览器已经打开超过 18 个月了。Someone should go check if those developers are still alive！！</p>
 <p>问题：临时端口、负载均衡上的文件句柄耗尽，都是非常有趣的问题，我们稍后会提到它们。</p>
 <h4 id="Search搜索"><a href="#Search搜索" class="headerlink" title="Search搜索"></a>Search搜索</h4><p>Elasticsearch集群，每个ES集群都有3个Node<br>什么不用Solr？我们需要在整个网络中进行搜索（同时有多个索引），在我们进行决策的时候 Solr 还不支持这种场景。</p>
@@ -375,7 +375,7 @@ ga('send', 'pageview');
 <li>4x Intel 530 480GB SATA SSDs (RAID 10)</li>
 <li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
 </ul>
-<p>译者注：Providence，应为项目代号。Providence通过分析流量日志，给网站的访问用户打标签 (类似“web开发者” 或者 “使用Java技术栈”)  。详细可以查阅[<a href="https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/" target="_blank" rel="external">https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/</a>]</p>
+<p>译者注：Providence，应为项目代号。Providence通过分析流量日志，给网站的访问用户打标签 (类似“web开发者” 或者 “使用Java技术栈”)  。详细可以查阅[<a href="https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/" target="_blank" rel="noopener">https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/</a>]</p>
 <p><strong>机器学习服务器－Redis (Still Providence)</strong><br>这是一个为 Providence服务的redis数据集。它们通常是一台主用，一台备用，还有一个实例是用于测试，如最新版的ML算法。当它不用做Q&amp;A站点时，这些数据会服务于职位招聘的边栏广告。</p>
 <ul>
 <li>3 Dell R720xd 服务器,每台配置如下:</li>
@@ -414,13 +414,13 @@ ga('send', 'pageview');
 <p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks-Small.jpg" alt="SO-Hardware-Racks-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks2-Small.jpg" alt="SO-Hardware-Racks2-Small.jpg"></p>
 <h3 id="接下来？"><a href="#接下来？" class="headerlink" title="接下来？"></a>接下来？</h3><p>我做的这一系列工作是希望能让社区了解到最多情况。<br>通过Trello board, 它让部署看起来像是下一个最有趣的话题。预计下一次将让大家了解代码是如何从开发者的机器到生产环境，以及这个过程中解决的所有问题。它将覆盖数据库迁移，滚动构建，CI 组件，我们如何建立开发环境，所有要素如何共享信息等。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://medium.com/refraction-tech-everything/how-netflix-works-the-hugely-simplified-complex-stuff-that-happens-every-time-you-hit-play-3a40c9be254b" target="_blank" rel="external">How Netflix works: the (hugely simplified) complex stuff that happens every time you hit Play</a></li>
+<li><a href="https://medium.com/refraction-tech-everything/how-netflix-works-the-hugely-simplified-complex-stuff-that-happens-every-time-you-hit-play-3a40c9be254b" target="_blank" rel="noopener">How Netflix works: the (hugely simplified) complex stuff that happens every time you hit Play</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjuqfn63p00qs5ih2x5vulicj" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="cjv3a7bim00r1zth28r6ga67i" class="article-share-link">分享</a>
       
       
       
