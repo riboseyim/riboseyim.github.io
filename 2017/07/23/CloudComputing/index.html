@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Stack_Overflow_Trends_3.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Stack_Overflow_Trends_4.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Stack_Overflow_Trends_5.png">
-<meta property="og:updated_time" content="2019-04-07T09:38:48.357Z">
+<meta property="og:updated_time" content="2019-05-03T11:42:23.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云计算 | Overview of Cloud Computing">
 <meta name="twitter:description" content="摘要 Introducing Cloud Computing 云计算平台的选择:AWS or Azure?">
@@ -125,7 +125,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/07/23/CloudComputing/" data-id="cjv5hfp00000u8lh2ewlc4ns0" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/07/23/CloudComputing/" data-id="cjv81yj8i000p7eh2iveeh7j8" class="article-share-link">分享</a>
         
         
         
@@ -143,7 +143,17 @@ ga('send', 'pageview');
 <li>云计算平台的选择:AWS or Azure?</li>
 </ul>
 <a id="more"></a>
-<h2 id="Overview-of-Cloud-Computing"><a href="#Overview-of-Cloud-Computing" class="headerlink" title="Overview of Cloud Computing"></a>Overview of Cloud Computing</h2><h4 id="Introduction-to-Cloud-Computing"><a href="#Introduction-to-Cloud-Computing" class="headerlink" title="Introduction to Cloud Computing"></a>Introduction to Cloud Computing</h4><h2 id="云计算平台的选择-AWS-or-Azure"><a href="#云计算平台的选择-AWS-or-Azure" class="headerlink" title="云计算平台的选择:AWS or Azure?"></a>云计算平台的选择:AWS or Azure?</h2><ul>
+<h2 id="Overview-of-Cloud-Computing"><a href="#Overview-of-Cloud-Computing" class="headerlink" title="Overview of Cloud Computing"></a>Overview of Cloud Computing</h2><h4 id="Introduction-to-Cloud-Computing"><a href="#Introduction-to-Cloud-Computing" class="headerlink" title="Introduction to Cloud Computing"></a>Introduction to Cloud Computing</h4><h4 id="云计算网络"><a href="#云计算网络" class="headerlink" title="云计算网络"></a>云计算网络</h4><ul>
+<li><p>Local network（本地网络）<br>一个只允许在本服务器内通信的虚拟网络，不能跨服务器通信。<br>主要用于单节点上测试，只能做单节点的部署(all-in-one)，这是因为此网络模式下流量并不能通过真实的物理网卡流出，integration bridge并没有与真实的物理网卡做mapping，只能保证同一主机上的vm是连通的。  </p>
+</li>
+<li><p>Flat network<br>基于不使用VLAN 的物理网络实现的虚拟网络，每个物理网络最多只能实现一个虚拟网络。<br>ID数只有1个，通常不用于数据网络，因为其不具备租户隔离型。即所有的虚拟机都在一个广播域。比较传统的网络模式，需求较少。</p>
+</li>
+<li><p>VLAN network（虚拟局域网）<br>基于物理VLAN 网络实现的虚拟网络。共享同一个物理网络的多个 VLAN 网络是相互隔离的，甚至可以使用重叠的 IP 地址空间。<br>在规模不大的私有云中，往往是用 VLAN 模式，简单、可靠、能够满足规模要求；而在大型的私有云或者公有云中，往往使用VxLAN。</p>
+</li>
+<li><p>GRE network （通用路由封装网络）<br>一个使用GRE 封装网络包的虚拟网络。GRE 封装的数据包基于 IP 路由表来进行路由，因此 GRE network 不和具体的物理网络绑定。</p>
+</li>
+</ul>
+<h4 id="云计算存储"><a href="#云计算存储" class="headerlink" title="云计算存储"></a>云计算存储</h4><h2 id="云计算平台的选择-AWS-or-Azure"><a href="#云计算平台的选择-AWS-or-Azure" class="headerlink" title="云计算平台的选择:AWS or Azure?"></a>云计算平台的选择:AWS or Azure?</h2><ul>
 <li><p>原文链接：<strong><a href="https://stackoverflow.blog/2017/07/21/trends-cloud-computing-uses-aws-uses-azure/" target="_blank" rel="noopener">Stack Overflow:Trends in Cloud Computing: Who Uses AWS, Who Uses Azure?(2017)</a></strong></p>
 </li>
 <li><p>分析师 <strong><a href="https://github.com/dgrtwo" target="_blank" rel="noopener">David Robinson</a></strong>：Data Scientist at Stack Overflow, works in R and Python.</p>
@@ -204,12 +214,14 @@ ga('send', 'pageview');
 <p>大部分国家的访问记录来看，关于AWS的问题数量要多于Azure的问题。但是有一个地方例外——荷兰，关于Azure的问题数量是AWS的两倍，一种可能的解释是微软在荷兰建了一个大型数据中心，导致该地区有相对较多的Azure平台开发者。<a href="http://www.datacenterdynamics.com/content-tracks/design-build/microsofts-2bn-netherlands-data-center-revealed/96753.fullarticle" target="_blank" rel="noopener">Microsoft has built a major data center in the Netherlands</a></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://stackoverflow.blog/2017/07/21/trends-cloud-computing-uses-aws-uses-azure/" target="_blank" rel="noopener">Stack Overflow:Trends in Cloud Computing: Who Uses AWS, Who Uses Azure?(2017)</a></li>
+<li><a href="https://mp.weixin.qq.com/s/uuRa-UtzEA7ZwBPcHXnAzg" target="_blank" rel="noopener">阿里云MySQL及Redis灵异断连现象：安全组静默丢包解决方法 |纤夫张  数据和云  2月25日</a></li>
+<li><a href="https://mp.weixin.qq.com/s/G-H_ECkOJh9HZzZn0B5-5A" target="_blank" rel="noopener">一文读懂常见云计算网络 | 原创： 杨武  新钛云服  2月15日</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/07/23/CloudComputing/" data-id="cjv5hfp00000u8lh2ewlc4ns0" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/07/23/CloudComputing/" data-id="cjv81yj8i000p7eh2iveeh7j8" class="article-share-link">分享</a>
       
       
       
@@ -320,7 +332,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-of-Cloud-Computing"><span class="toc-number">2.</span> <span class="toc-text">Overview of Cloud Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Introduction-to-Cloud-Computing"><span class="toc-number">2.0.1.</span> <span class="toc-text">Introduction to Cloud Computing</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#云计算平台的选择-AWS-or-Azure"><span class="toc-number">3.</span> <span class="toc-text">云计算平台的选择:AWS or Azure?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Traffic-to-AWS-and-Azure-over-time"><span class="toc-number">3.0.1.</span> <span class="toc-text">Traffic to AWS and Azure over time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Technologies"><span class="toc-number">3.0.2.</span> <span class="toc-text">Technologies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#By-industry"><span class="toc-number">3.0.3.</span> <span class="toc-text">By industry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#By-country"><span class="toc-number">3.0.4.</span> <span class="toc-text">By country</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-of-Cloud-Computing"><span class="toc-number">2.</span> <span class="toc-text">Overview of Cloud Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Introduction-to-Cloud-Computing"><span class="toc-number">2.0.1.</span> <span class="toc-text">Introduction to Cloud Computing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#云计算网络"><span class="toc-number">2.0.2.</span> <span class="toc-text">云计算网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#云计算存储"><span class="toc-number">2.0.3.</span> <span class="toc-text">云计算存储</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#云计算平台的选择-AWS-or-Azure"><span class="toc-number">3.</span> <span class="toc-text">云计算平台的选择:AWS or Azure?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Traffic-to-AWS-and-Azure-over-time"><span class="toc-number">3.0.1.</span> <span class="toc-text">Traffic to AWS and Azure over time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Technologies"><span class="toc-number">3.0.2.</span> <span class="toc-text">Technologies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#By-industry"><span class="toc-number">3.0.3.</span> <span class="toc-text">By industry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#By-country"><span class="toc-number">3.0.4.</span> <span class="toc-text">By country</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
