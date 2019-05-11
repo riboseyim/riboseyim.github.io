@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
+    
+    <lastmod>2019-05-11T08:39:44.144Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</loc>
+    
+    <lastmod>2019-05-11T08:08:00.620Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://riboseyim.com/2019/02/06/Project/</loc>
     
     <lastmod>2019-05-05T02:05:47.780Z</lastmod>
@@ -583,13 +597,6 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</loc>
-    
-    <lastmod>2019-04-21T04:30:18.619Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2016/05/28/Linux/</loc>
     
     <lastmod>2019-04-21T04:29:17.668Z</lastmod>
@@ -621,13 +628,6 @@
     <loc>https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/</loc>
     
     <lastmod>2019-04-21T04:27:19.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
-    
-    <lastmod>2019-04-21T04:26:32.975Z</lastmod>
     
   </url>
   

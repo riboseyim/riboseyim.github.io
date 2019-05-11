@@ -5,21 +5,21 @@
   
   <title>How Linux Works:User Space | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要">
+  <meta name="description" content="摘要Linux 用户空间启动顺序">
 <meta name="keywords" content="DevOps,架构师,Linux,SRE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How Linux Works:User Space">
 <meta property="og:url" content="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
-<meta property="og:description" content="摘要">
+<meta property="og:description" content="摘要Linux 用户空间启动顺序">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_UnitTree.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_upstart_sysV.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:30:18.619Z">
+<meta property="og:updated_time" content="2019-05-11T08:08:00.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:User Space">
-<meta name="twitter:description" content="摘要">
+<meta name="twitter:description" content="摘要Linux 用户空间启动顺序">
 <meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_UnitTree.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
@@ -136,16 +136,17 @@ ga('send', 'pageview');
       
         <!-- Table of Contents -->
         
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="How-User-Space-Starts"><a href="#How-User-Space-Starts" class="headerlink" title="How User Space Starts"></a>How User Space Starts</h2><p>用户空间启动顺序:</p>
-<ol>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Linux 用户空间启动顺序</p>
+<a id="more"></a>
+<h2 id="How-User-Space-Starts"><a href="#How-User-Space-Starts" class="headerlink" title="How User Space Starts"></a>How User Space Starts</h2><ol>
 <li>init</li>
 <li>必要的低层服务例如：udevd 和 syslog</li>
 <li>网络配置</li>
 <li>中高层服务例如 ：cron , printing</li>
 <li>登录提示、图形界面及其它高层次应用</li>
 </ol>
-<h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></span><br><span class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</span><br><span class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</span><br></pre></td></tr></table></figure></p>
+<h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></span><br><span class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</span><br><span class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Mac OS</span><br><span class="line">bash-3.2$ ps -ef | grep init</span><br><span class="line">	0   243     1   0 15 517  ??         0:00.74 /System/Library/CoreServices/CrashReporterSupportHelper server-init</span><br><span class="line">	0   533     1   0 15 517  ??         0:02.07 /System/Library/CoreServices/SubmitDiagInfo server-init</span><br><span class="line">  501 52150     1   0 日01下午 ??         0:15.49 /usr/libexec/secinitd</span><br><span class="line">	0 69864     1   0 11:35上午 ??         0:00.20 /usr/libexec/secinitd</span><br><span class="line">	0 72830     1   0  1:51下午 ??         0:00.19 /usr/libexec/secinitd</span><br><span class="line">Darwin ACA80166.ipt.aol.com 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64</span><br><span class="line">bash-3.2$</span><br></pre></td></tr></table></figure>
 <p>在Linux发行版中，init有三种主要的实现形式：</p>
 <ol>
@@ -435,6 +436,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
