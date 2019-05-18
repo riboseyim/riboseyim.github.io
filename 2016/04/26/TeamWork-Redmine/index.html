@@ -13,14 +13,17 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="概要 不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png">
-<meta property="og:image" content="http://cdn.infoqstatic.com/statics_s2_20170613-0338/resource/articles/kanban-development-method/zh/resources/6.png">
-<meta property="og:updated_time" content="2019-04-30T04:34:56.158Z">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/93/8b/93cc49843b45dd772627527c8423228b.png">
+<meta property="og:updated_time" content="2019-05-12T09:56:58.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PM指南:开源项目管理平台Redmine">
 <meta name="twitter:description" content="概要 不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）">
-<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
   
@@ -123,7 +126,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="cjv81yjc400997eh2nwtirmes" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="cjvtm15cg00985wh2j2s9z1b6" class="article-share-link">分享</a>
         
         
         
@@ -144,12 +147,18 @@ ga('send', 'pageview');
 <li><a href="http://www.jianshu.com/p/cd7a12fa09bb" target="_blank" rel="noopener">基于Redmine的项目管理平台</a></li>
 </ul>
 <p>“过程有记录，责任可追踪”,开发、运营过程中需要持续关注的基础信息，都可以通过统一平台沉淀、分析和改进优化。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png" alt></p>
-<h4 id="Kanban"><a href="#Kanban" class="headerlink" title="Kanban"></a>Kanban</h4><ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png" alt></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png" alt="基于Redmine数据定制开发"></p>
+<h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="Install-Redmine"><a href="#Install-Redmine" class="headerlink" title="Install Redmine"></a>Install Redmine</h4><p><a href="http://bitnami.com" target="_blank" rel="noopener">BitName</a> 提供了一个包含 Ruby、RAILS、MySQL、Apache 等依赖的集成安装包。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.解压</span></span><br><span class="line">~/redmine-1.2.1-1/apps/redmine/vender/plugins</span><br><span class="line">$ <span class="built_in">cd</span> redmine-1.2.1-1</span><br><span class="line"><span class="comment"># 2.安装</span></span><br><span class="line">$ ./use_redmine</span><br><span class="line"><span class="comment"># 3.配置</span></span><br><span class="line">$ <span class="built_in">cd</span> apps/redmine/vender/pluginsrake</span><br><span class="line">$ db:migrate_plugins RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><img src="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg" alt></p>
+<h2 id="Kanban"><a href="#Kanban" class="headerlink" title="Kanban"></a>Kanban</h2><ul>
 <li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">Kanban看板管理实践精要</a></li>
 </ul>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png" alt><br><img src="http://cdn.infoqstatic.com/statics_s2_20170613-0338/resource/articles/kanban-development-method/zh/resources/6.png" alt></p>
-<h4 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h4><ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png" alt></p>
+<p><img src="https://static001.infoq.cn/resource/image/93/8b/93cc49843b45dd772627527c8423228b.png" alt></p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
 <li><a href="https://riboseyim.com/2019/02/06/Project/">项目管理 | Overview of Project Management</a></li>
 <li><a href="https://riboseyim.com/2019/04/30/Project-PMP/">PM指南:PMI项目管理知识体系</a></li>
 <li><a href="https://riboseyim.com/2019/03/27/Project-Construction/">PM指南:建筑工程项目管理|行业案例教学</a></li>
@@ -175,7 +184,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="cjv81yjc400997eh2nwtirmes" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="cjvtm15cg00985wh2j2s9z1b6" class="article-share-link">分享</a>
       
       
       
@@ -286,7 +295,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redmine"><span class="toc-number">2.</span> <span class="toc-text">Redmine</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kanban"><span class="toc-number">2.0.1.</span> <span class="toc-text">Kanban</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展阅读"><span class="toc-number">2.0.2.</span> <span class="toc-text">拓展阅读</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redmine"><span class="toc-number">2.</span> <span class="toc-text">Redmine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BASIC"><span class="toc-number">3.</span> <span class="toc-text">BASIC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Redmine"><span class="toc-number">3.0.1.</span> <span class="toc-text">Install Redmine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据结构"><span class="toc-number">3.0.2.</span> <span class="toc-text">数据结构</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Kanban"><span class="toc-number">4.</span> <span class="toc-text">Kanban</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展阅读"><span class="toc-number">5.</span> <span class="toc-text">拓展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>

@@ -3,22 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>引入开源软件的六大运营挑战 | Ribose Yim&#39;s Home</title>
+  <title>开源软件的运营挑战 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="摘要">
 <meta name="keywords" content="DevOps,Engineering,Linux,OpenSource">
 <meta property="og:type" content="article">
-<meta property="og:title" content="引入开源软件的六大运营挑战">
+<meta property="og:title" content="开源软件的运营挑战">
 <meta property="og:url" content="https://riboseyim.com/2017/11/05/OpenSource-Operational/index.html">
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-b4a4a542667a2fba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-09-17T02:33:32.000Z">
+<meta property="og:updated_time" content="2019-05-12T07:09:55.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="引入开源软件的六大运营挑战">
+<meta name="twitter:title" content="开源软件的运营挑战">
 <meta name="twitter:description" content="摘要">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1037849-b4a4a542667a2fba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
   
@@ -114,14 +112,14 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      引入开源软件的六大运营挑战
+      开源软件的运营挑战
     </h1>
   
 
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="cjv81yjb400687eh22vrrtfsz" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="cjvtm15b400695wh2npyt5kwg" class="article-share-link">分享</a>
         
         
         
@@ -135,13 +133,12 @@ ga('send', 'pageview');
         <!-- Table of Contents -->
         
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
-<h2 id="The-Linux-Foundation：引入开源软件的六大运营挑战"><a href="#The-Linux-Foundation：引入开源软件的六大运营挑战" class="headerlink" title="The Linux Foundation：引入开源软件的六大运营挑战"></a>The Linux Foundation：引入开源软件的六大运营挑战</h2><ul>
+<h2 id="The-Big-Picture"><a href="#The-Big-Picture" class="headerlink" title="The Big Picture"></a>The Big Picture</h2><ul>
 <li>原文：<a href="https://www.linux.com/blog/learn/chapter/open-source-management/2017/3/6-operational-challenges-using-open-source-software" target="_blank" rel="noopener">6 Operational Challenges to Using Open Source Software | By Linux FoundationMarch 15, 2017Blog</a></li>
 </ul>
 <blockquote>
 <p>在当今迅速发展的市场中，那些速度最快、成本最低的持续创新公司才会赢 。同时，正如你所知，我们正在进行的一系列观察，使用开源软件能够实现快速、低成本的创新。 但它也能引入运营挑战和法律风险。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1037849-b4a4a542667a2fba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="open-source-development-revolution-graphic.png"></p>
 <p>我们现在已经到了这样一个临界点，开源软件已经成为主流，不使用开源几乎肯定会使你的组织处于劣势。所以你必须学会如何驾驭挑战和风险，才能保持竞争力。</p>
 <blockquote>
 <p>“开源是无处不在的，它是不可避免的……对抗开源的政策是不切实际的，会使你处于竞争劣势。”——加特纳。</p>
@@ -166,14 +163,22 @@ ga('send', 'pageview');
 <li><p>商业合作关系可以通过增加财政奖励的方式，向供应商强化你的诉求主张，但是否能影响开源项目的方向取决于您参与的多方面因素。</p>
 </li>
 </ol>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="Microservice"><a href="#Microservice" class="headerlink" title="Microservice"></a>Microservice</h3><ul>
+<li><a href="https://github.com/nytimes/gizmo" target="_blank" rel="noopener">project gizmo</a></li>
+</ul>
+<p>Gizmo 是一个集合，集中了可整合的工具、功能以及交互页面来帮助开发者构建 Go 服务，具体来说就是将 API 和 pubsub daemons 集合在一起。这个工具包刚开始的时候是由一小群开发者发起的，目的是为 NYT 构建一个专属邮件平台。</p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/" target="_blank" rel="noopener">基于Ganglia实现服务集群性能态势感知</a></li>
 </ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://www.linux.com/blog/learn/chapter/open-source-management/2017/3/6-operational-challenges-using-open-source-software" target="_blank" rel="noopener">6 Operational Challenges to Using Open Source Software | By Linux FoundationMarch 15, 2017Blog</a></li>
+<li><a href="https://www.infoq.cn/article/2016/02/gizmo-microservices-toolkit" target="_blank" rel="noopener">纽约时报开发出基于 Go 语言的微服务工具包 Gizmo</a></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="cjv81yjb400687eh22vrrtfsz" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="cjvtm15b400695wh2npyt5kwg" class="article-share-link">分享</a>
       
       
       
@@ -284,7 +289,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Linux-Foundation：引入开源软件的六大运营挑战"><span class="toc-number">2.</span> <span class="toc-text">The Linux Foundation：引入开源软件的六大运营挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、开源软件革命"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、开源软件革命</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、开源软件六大运营挑战"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、开源软件六大运营挑战</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Big-Picture"><span class="toc-number">2.</span> <span class="toc-text">The Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、开源软件革命"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、开源软件革命</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、开源软件六大运营挑战"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、开源软件六大运营挑战</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-number">3.</span> <span class="toc-text">Application</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Microservice"><span class="toc-number">3.1.</span> <span class="toc-text">Microservice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
