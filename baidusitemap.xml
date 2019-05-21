@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://riboseyim.com/2019/05/19/PHT-Skipping/</loc>
+    <lastmod>2019-05-19</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/04/26/PHT-Running/</loc>
+    <lastmod>2019-05-19</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2017/11/15/DevOps-Container-Kubernetes/</loc>
     <lastmod>2019-05-18</lastmod>
   </url>  <url>
@@ -667,9 +673,6 @@
     <loc>https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/04/26/PHT-Running/</loc>
-    <lastmod>2018-11-22</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/11/16/QuickStart/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
@@ -685,10 +688,10 @@
     <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/</loc>
+    <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
+    <loc>https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
