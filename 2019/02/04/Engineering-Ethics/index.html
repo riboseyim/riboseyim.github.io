@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/rogersv2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Rogers-Member-Air.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Rogers-Member-Air-F.png">
-<meta property="og:updated_time" content="2019-05-03T08:49:23.110Z">
+<meta property="og:updated_time" content="2019-05-26T08:41:34.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="国之重器，在人不在宝|挑战者号航天飞机事故调查">
 <meta name="twitter:description" content="摘要 挑战者号航天飞机事故调查 理查德·费曼与罗杰斯委员会 工程伦理">
@@ -143,9 +143,9 @@ ga('send', 'pageview');
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
 <li>挑战者号航天飞机事故调查</li>
 <li>理查德·费曼与罗杰斯委员会</li>
-<li>工程伦理<a id="more"></a>
-</li>
+<li>工程伦理</li>
 </ul>
+<a id="more"></a>
 <blockquote>
 <p>很多工程故障不是单单由技术方面的计算错误引起，而是涉及到设计过程失败、维修出错或管理文化失败。— 故障分析专家亨利·裴特斯基（Henry Petroski）</p>
 </blockquote>
@@ -499,6 +499,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
