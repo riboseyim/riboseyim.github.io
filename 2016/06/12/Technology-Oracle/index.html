@@ -13,18 +13,16 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 一、项目背景 二、主要困难 三、迁移前准备 四、失败的体验：没有一帆风顺 五、总结">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-go.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png">
-<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-cflow-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test3.png">
-<meta property="og:updated_time" content="2018-11-28T04:25:16.000Z">
+<meta property="og:updated_time" content="2019-05-31T06:41:57.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 数据库迁移与割接实践">
 <meta name="twitter:description" content="摘要 一、项目背景 二、主要困难 三、迁移前准备 四、失败的体验：没有一帆风顺 五、总结">
-<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-go.png">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png">
   
     <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
   
@@ -127,7 +125,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="cjvxt2o8y00oq7vh2xwaalhgi" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="cjwbpzwuq00otggh2nnb6mduq" class="article-share-link">分享</a>
         
         
         
@@ -151,7 +149,7 @@ ga('send', 'pageview');
 <h2 id="一、项目背景"><a href="#一、项目背景" class="headerlink" title="一、项目背景"></a>一、项目背景</h2><p>某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。</p>
 <p>历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。</p>
 <p>随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大的客户压力，提升系统稳定性的巨大挑战摆在了大家面前。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-go.png" alt="迁移拓扑"></p>
+<!--![迁移拓扑](http://riboseyim-qiniu.riboseyim.com/oracle-trans-go.png)-->
 <h2 id="二、主要困难"><a href="#二、主要困难" class="headerlink" title="二、主要困难"></a>二、主要困难</h2><blockquote>
 <p>在“天塌地陷”的不利局面中加入进来。</p>
 </blockquote>
@@ -163,7 +161,7 @@ ga('send', 'pageview');
 <h4 id="2-2-困难2-拓扑大调整"><a href="#2-2-困难2-拓扑大调整" class="headerlink" title="2.2 困难2: 拓扑大调整"></a>2.2 困难2: 拓扑大调整</h4><p>系统的拓扑结构最初是星型：以数据库和应用服务器为核心，外挂近100台服务器。数据库服务器配置双网卡，连通内网、外网。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png" alt="迁移前"></p>
 <p>虽然星型结构简单易用，却也存在较大的安全隐患。在早期建设的时候，规范尚未健全，还可以用业务优先的理由搪塞过去。在本期工程中，非常明确必须要完成内外网分离的改造。</p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t2.png" alt="迁移后"></p>
+<!--![迁移后](http://riboseyim-qiniu.riboseyim.com/oracle-trans-t2.png)-->
 <h4 id="2-3-困难3-安全一票否决"><a href="#2-3-困难3-安全一票否决" class="headerlink" title="2.3 困难3: 安全一票否决"></a>2.3 困难3: 安全一票否决</h4><p>Oracle 版本由10g 升级到 11g，集中管理访问权限。<br>最大限度地提高安全性，口令60天更换一次，不能因为更换口令中断业务；如果出现连续的错误口令访问，甚至不惜锁定数据库。</p>
 <p>从正向的角度看，这些严格规定可以倒逼改造。在软件架构规范化不足、自动化严重不足的条件下，整个迁移期间，这个问题确实给我们造成了极大困扰。</p>
 <h2 id="三、迁移前准备"><a href="#三、迁移前准备" class="headerlink" title="三、迁移前准备"></a>三、迁移前准备</h2><p>基于上述三大问题，在正式迁移之前主要做了下列几项工作：</p>
@@ -237,7 +235,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="cjvxt2o8y00oq7vh2xwaalhgi" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="cjwbpzwuq00otggh2nnb6mduq" class="article-share-link">分享</a>
       
       
       
@@ -479,6 +477,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
