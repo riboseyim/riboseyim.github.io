@@ -15,11 +15,10 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png">
-<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/93/8b/93cc49843b45dd772627527c8423228b.png">
-<meta property="og:updated_time" content="2019-05-12T09:56:58.559Z">
+<meta property="og:updated_time" content="2019-05-31T09:59:08.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PM指南:开源项目管理平台Redmine">
 <meta name="twitter:description" content="概要 不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）">
@@ -149,7 +148,7 @@ ga('send', 'pageview');
 <p>“过程有记录，责任可追踪”,开发、运营过程中需要持续关注的基础信息，都可以通过统一平台沉淀、分析和改进优化。</p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png" alt></p>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png" alt></p>
-<p><img src="http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png" alt="基于Redmine数据定制开发"></p>
+<!--![基于Redmine数据定制开发](http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png)-->
 <h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="Install-Redmine"><a href="#Install-Redmine" class="headerlink" title="Install Redmine"></a>Install Redmine</h4><p><a href="http://bitnami.com" target="_blank" rel="noopener">BitName</a> 提供了一个包含 Ruby、RAILS、MySQL、Apache 等依赖的集成安装包。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.解压</span></span><br><span class="line">~/redmine-1.2.1-1/apps/redmine/vender/plugins</span><br><span class="line">$ <span class="built_in">cd</span> redmine-1.2.1-1</span><br><span class="line"><span class="comment"># 2.安装</span></span><br><span class="line">$ ./use_redmine</span><br><span class="line"><span class="comment"># 3.配置</span></span><br><span class="line">$ <span class="built_in">cd</span> apps/redmine/vender/pluginsrake</span><br><span class="line">$ db:migrate_plugins RAILS_ENV=production</span><br></pre></td></tr></table></figure>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><img src="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg" alt></p>
@@ -426,25 +425,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

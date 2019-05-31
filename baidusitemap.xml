@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://riboseyim.com/2016/04/26/TeamWork-Redmine/</loc>
+    <lastmod>2019-05-31</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2016/06/12/Technology-Oracle/</loc>
     <lastmod>2019-05-31</lastmod>
   </url>  <url>
@@ -54,9 +57,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2017/11/15/DevOps-Container-Kubernetes/</loc>
     <lastmod>2019-05-18</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/04/26/TeamWork-Redmine/</loc>
-    <lastmod>2019-05-12</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/08/06/TeamWork-Kanban/</loc>
     <lastmod>2019-05-12</lastmod>
