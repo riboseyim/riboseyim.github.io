@@ -2,21 +2,75 @@
 <html>
 <head>
     <meta charset="utf-8">
+          <link rel="stylesheet" href="https://riboseyim.com/css/style.css">
     <!-- 引入 ECharts 文件 -->
     <script type="text/javascript" src="../echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="../echarts/world.js"></script>
     <script type="text/javascript" src="../echarts/china.js"></script>
+    <script type="text/javascript" src="./casad.js"></script>
 </head>
 <body>
-    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div id="main" style="width:1280px;height:800px;"></div>
-    <script type="text/javascript" src="./casad.js"></script>
-    <script type="text/javascript">
-       // 基于准备好的dom，初始化echarts实例
-       var myChart = echarts.init(document.getElementById('main'));
-       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      </script>
-</body>
-</html>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<div>
+    <div id="home-header" style="width:1280px;height:80px;"  class="outer">
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+          <a class="main-nav-link" href="https://riboseyim.com" target="_blank">首页</a>
+          <a class="main-nav-link" href="https://riboseyim.com/archives"  target="_blank">归档</a>
+          <a class="main-nav-link" href="https://riboseyim.com/tags/DevOps"  target="_blank">DevOps</a>
+          <a class="main-nav-link" href="https://riboseyim.com/tags/Machine-Learning"  target="_blank">机器学习</a>
+          <a class="main-nav-link" href="https://riboseyim.github.io/tags/Economist"   target="_blank">经济学人</a>
+          <a class="main-nav-link" href="https://riboseyim.github.io/tags/Policy-Law"   target="_blank">Policy&amp;Law</a>
+          <a class="main-nav-link" href="https://riboseyim.com/2017/07/06/Visualization"  target="_blank">图表</a>
+          <a class="main-nav-link" href="https://riboseyim.com/2017/02/09/eBook"  target="_blank">电子书</a>
+          <a class="main-nav-link" href="https://riboseyim.com/2016/05/31/AboutMe"  target="_blank">关于</a>
+          <a class="main-nav-link" href="https://riboseyim.com"  target="_blank">TechBlog</a>
+          <a class="main-nav-link" href="https://riboseyim.github.io"  target="_blank">RiboseYim's HOME</a>
+    </div>
+    <div id="echarts-header" style="width:1280px;height:80px;"  class="outer">
+      <a class="main-nav-link" href="https://riboseyim.com/charts/index.html" ><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E5%9B%BE%E8%A1%A8-%E6%9F%B1%E7%8A%B6%E5%9B%BE.svg" width="64px" height="64px" /><p>图表</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/2017/07/06/Visualization" ><img src="      http://riboseyim-qiniu.riboseyim.com/icon-%E6%B5%8B%E8%AF%95%E7%94%B3%E8%AF%B7.svg" width="64px" height="64px" /><p>数据可视化</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/charts/caipiao/index.html"><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E4%BF%A1%E5%8F%B7.svg" width="64px" height="64px" /><p>投机指标</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/charts/casad/index.html"  target="_blank"><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E5%AE%98%E6%96%B9%E7%89%88%E6%9C%AC.svg" width="64px" height="64px" /><p>科学指标</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/charts/casad/index.html"  target="_blank"><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E8%87%AA%E8%A1%8C%E8%BD%A6.svg" width="64px" height="64px" /><p>运动指标</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/charts/usa-traffic/index.html"  target="_blank"><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E6%B5%81%E8%AE%A1%E7%AE%97.svg" width="64px" height="64px" /><p>旅行指标</p></a>
+      <a class="main-nav-link" href="https://riboseyim.com/charts/ip/index.html"  target="_blank"><img src="http://riboseyim-qiniu.riboseyim.com/icon-%E4%BA%BA%E4%BD%93%E6%A3%80%E6%B5%8B.svg" width="64px" height="64px" /><p>创造指标</p></a>
+    </div>
+
+      <div id="main" style="left:10%;width:80%;height:800px;">
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+      </div>
+
+
+
+  </div>
+
+  <script type="text/javascript">
+     // 基于准备好的dom，初始化echarts实例
+     var myChart = echarts.init(document.getElementById('main'));
+     // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    </script>
+
+
+  <div class="outer">
+    <div   style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+          <img src="https://riboseyim.com//RiboseYim_WeChat.png" alt="扫码关注" width="250">
+          <p>扫码关注微信公众号</p>
+    </div>
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - @RiboseYim &nbsp;
+      |&nbsp; Email:&nbsp; <a href="mailto:riboseyim@gmail.com">riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+       <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275256320'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275256320%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+     </div>
+  </div>
+      </body>
+      </html>
