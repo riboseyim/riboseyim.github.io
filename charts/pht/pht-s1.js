@@ -1,4 +1,4 @@
-option = {
+option_s1 = {
   title: {
     text: '中学体能标准[1分钟跳绳]',
     subtext: '非标计分的折算为百分制 @RiboseYim 2019'
