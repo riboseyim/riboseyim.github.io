@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://riboseyim.com/2019/06/07/SDN-MOOC/</loc>
+    <lastmod>2019-06-07</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2019/01/07/Engineering/</loc>
+    <lastmod>2019-06-07</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2017/08/15/Commander-Sergeant/</loc>
     <lastmod>2019-06-02</lastmod>
   </url>  <url>
@@ -128,9 +134,6 @@
     <lastmod>2019-05-11</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2019/01/05/Mac/</loc>
-    <lastmod>2019-05-11</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2019/01/07/Engineering/</loc>
     <lastmod>2019-05-11</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</loc>
@@ -688,13 +691,16 @@
     <loc>https://riboseyim.com/2018/03/02/eBook-CSM/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
+    <lastmod>2018-11-22</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2016/06/12/CyberSecurity-Trojan/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
+    <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
+    <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/04/17/DTrace_FTrace/</loc>
@@ -718,10 +724,10 @@
     <loc>https://riboseyim.com/2017/07/19/Medicine-Hepar/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/08/15/OpenSource-Kafka/</loc>
+    <loc>https://riboseyim.com/2016/11/04/OpenSource-Ganglia/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/11/04/OpenSource-Ganglia/</loc>
+    <loc>https://riboseyim.com/2016/08/15/OpenSource-Kafka/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/08/09/Protocol-IPv6/</loc>
@@ -736,19 +742,16 @@
     <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
-    <lastmod>2018-11-22</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/04/09/CyberSecurity-CSTCB/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/07/14/Network-sFlow/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/</loc>
+    <loc>https://riboseyim.com/2018/08/01/OpenSource-Hadoop/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/08/01/OpenSource-Hadoop/</loc>
+    <loc>https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/07/03/Reading/</loc>

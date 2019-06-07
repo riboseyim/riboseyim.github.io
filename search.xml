@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SDN-MOOC]]></title>
+    <url>%2F2019%2F06%2F07%2FSDN-MOOC%2F</url>
+    <content type="text"><![CDATA[摘要 《软件定义网络技术 Software Defined Networking,SDN》 主讲人：温州大学 | 施晓秋 中国大学MOOC链接 第一讲 概述网络系统的生命周期 需求调研 规划设计 部署实施 运行维护 需求调研 互连范围 互连规模 拟承载的应用：对象、类型、用户规模、服务质量 规划设计 网络架构与拓扑 IP 和 路由 安全和QoS策略 体现一定的冗余 部署实施设备部署实施 上架 配置 连通 系统部署实施 集成 上线 测试 运行维护 网络状态的监控与管理：设备、用户、流量、应用；发现并排除网络故障与隐患 新一代网络架构传统网络主要问题 多元、多变的网络上层应用与业务 相对稳定的网络架构设计及系统运维 SDN vs 计算机 计算机 SDN 裸机 基础设施层 操作系统 控制层 用户与应用程序接口 API 架构变化 网络设备：解耦，简单化 网络管理：集中控制器，全局化 网络运维：SDN南向接口，自动化 网络应用：SDN北向接口，人性化 Hisotry of SDN开创性人物 Nick Martin Scott 开创性论文 《Ethance:Taking Control of the Enterprise》 《OpenFlow:Enablling Innovation in Campus Networks》 开创性项目起源：2005年 2005年，美国国家自然科学基金会：网络创新实验环境（Global Environment Networking Innovations,GENI），斯坦福大学 Clean-Slate项目：McKeown Group团队。 初创期：2006-2011年 [学术界] Martin 领导 Ethane 项目 Martin 联合 Nick教授、Scott教授创建 Nicira公司,在 SIGCOMM 会议发表论文 《Ethance:Taking Control of the Enterprise》 The McKeown Group 发布第一个开源SDN控制器 NOX-Classic,在 SIGCOMM 会议发表论文《OpenFlow:Enablling Innovation in Campus Networks》 2009年，The McKeown Group 发布第一个基于Python语言的SDN控制器 POX，同时发布了 OpenFlow v1.0 2010年，The McKeown Group 发布开源SDN网络模拟器Mininet 2011年，开放网络基金会(Open Networking Foundation,ONF)成立 2012年，Google 发布应用SDN技术解决数据中心之间流量问题的方案 2012年，BigSwitch发布开源控制器 Floodlight 2012年，日本NTT公司发布开源控制器 Ryu 成熟期：2012至今（学术界+产业界） 2013年，美国AT&amp;T、英国电信、德国电信等提出了 网络功能虚拟化（NFV） 的概念 2014年，斯坦福大学、加州伯克利分校共同成立开放网络实验室（ONLab），发布开放网络操作系统（ONOS） 2015年 2016年，开放网络基金会（ONF）与开放网络实验室（ONLab）合并，主推 CORD 和 ONOS 2016年，思科发布全数字化网络架构-DNA 2017年，VMware 宣布 NSX 带来 10 亿美元销售额 2018年，Cisco、Apstra 等推出基于意图的网络（Intent-based Network ） 发展趋势SD-WAN 广域网中国移动（S-Controller） 主控制器：中国移动（S-Controller） 厂商控制器：华为(D-Controller)、中兴(D-Controller) SD-Security 安全SD-Access 接入技术融合基于意图的网络：机器学习+SDN控制器 SDN Standards系统兼容性 标准化组织 ONF开放网络基金会(Open Networking Foundation,ONF)是软件定义网络技术标准化和产业化的主要力量。 ONF 组织架构： 拓展组 配置管理组 测试和互操作组 北向接口组 架构组 混合组 市场组 ONF 主要工作： SDN 白皮书 OpenFlow 协议 OF-Config 协议 标准化组织 IETF因特网工程任务组（IETF）：全球互联网最具权威的技术标准化组织。SDN 技术标准主要由网络设备厂商主导。 IETF 相关研究工作组： 转发与控制分离组：主要关注需求、架构、协议、转发单元模型和MIB 应用层流量优化工作组：主要关注为应用层提供更多的网络信息，完成应用层的流量优化 路由领域公开的研究组：针对 I2RS 的问题描述、需求和应用场景 标准化组织 ITU-T背景：国际电信联盟主要关注：运营商网络的场景对象和相关架构 ITU-T 关于SDN的标志性项目： Y.FNsdn-fmV Y.FNsdn 标准化组织 ETSI欧洲电信标准化协会（ETSI） 运营商发起成立网络功能虚拟化标准工作组（NFV ISG）,关注 SDN+NFV。 资料卡施晓秋（温州大学） 1985年，浙江大学物理系，理学学士 1985至1997年，温州大学物理教研室教师 1998年，浙江大学计算机系，工学硕士 2000年至2004年，在温州大学信息科学与工程学院，院长助理、副院长 2005年后，温州大学城市学院，温州大学思科网络技术学院。 2006年，香港科技大学访问学者 2007年，温州大学计算机科学与工程学院副院长。 2009年至2010年，温州大学物理与电子信息工程学院副院长（原物理学院与计算机学院） 温州大学教务处处长、教师教学发展中心主任 中国计算机学会教育专委会常务委员、ACM SIGCSE（中国）分会副主席 拓展阅读参考文献]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[PM指南:网络计划技术|工具与技术]]></title>
     <url>%2F2019%2F05%2F29%2FProject-Tech-NetworkPlanning%2F</url>
     <content type="text"><![CDATA[摘要 BackgroundQuestionTheoryHistory网络计划技术是一种用于工程项目计划与控制的管理技术。起源于五十年代末发展起来的关键路径法（CPM）与计划评审法（PERT）。鉴于技术起源和设计目的，业内一般将 CPM 应用于已取得一定经验的承包工程，而研究与开发项目则更多地应用 PERT 。 工具 起源 时间 成本 质量 费用 甘特图 关键路径法/CPM 1957，美国杜邦公司/兰德公司 weak strong weak strong 技术评审技术/PERT 1958，美国海军/洛克希德，潜射核导弹 strong weak strong weak 甘特图（Gantt Chart）发明人：亨利 ·甘特(Henry Gatt) 关键路径法(Critical Path Method,CPM)关键路径法（CPM）是由美国杜邦公司和兰德公司与1957年联合研究提出的，它假设每项活动的作业时间是确定值，重点在于费用和成本的控制。 计划评审技术(Project Evaluation and Review Technique,PERT)项目评估与审查技术（Project Evaluation and Review Technique,PERT）由美国海军首次提出，并于1958年由 Booz、Allen 和 Hamilton 的咨询公司开发。最早的用途是协调涉及北极星导弹研发计划的 10 000 多个分包商的活动。PERT 类似关键路径方法(CPM)，是一种用于优化和调度复杂的、相关关联的活动的方法。 Introduction | 网络计划技术简介网络计划技术（Network Planning Technology） Core Concept | 核心概念Concept 网络图网络图是指网络计划技术的图解模型，反映整个工程任务的分解和合成。 Concept 时间参数各项工作中反映人、事、物运动状态的时间参数包括： 作业时间 开工与完工的时间 工作之间的衔接时间 完成任务的机动时间 工程范围 总工期 Concept 关键路线在关键路线上的作业称为关键作业，这些作业完成的快慢直接影响着整个计划的工期。在计划执行过程中关键作业是管理的重点，在时间和费用方面则要严格控制。 Concept 网络优化网络优化是指根据关键路线法，通过利用时差，不断改善网络计划的初始方案，在满足一定的约束条件下，寻求管理目标达到最优化的计划方案。 实施步骤网络计划技术的应用主要遵循以下几个步骤： 1、确定目标； 2、分解工程项目，列出作业明细表； 3、绘制网络图，进行结点编号；主要方法：1）顺推法（起始时间开始）；2）逆推法（从终点时间开始） 4、计算网络时间，确定关键路线；根据网络图和各项活动的作业时间计算出全部网络时间和时差，并确定关键线路。在实际工作中，作业种类多、影响计划的因素也很多，因此通常需要依靠计算机对计划进行调整。 5、网络计划方案优化；根据关键路径，综合平衡总工期、人力资源、物资供应、成本费用等情况，制定最优方案。正式绘制网络图，编制进度表以及工程预算等计划文件。 6、网络计划执行 作业名称 作业代号 作业时间 紧前时间 紧后时间 Best Practice | 最佳实践Microsoft Office ProjectOmniGroup OmniPlanFuture：Beyond the Network阅读作业拓展阅读项目管理 项目管理 | Overview of Project Management PM指南:PMI项目管理知识体系 PM指南:建筑工程项目管理|行业案例教学 PM指南:范围管理 PM指南:进度管理 PM指南:成本管理 PM指南:质量管理 PM指南:资源管理 PM指南:沟通管理 PM指南:风险管理 PM指南:采购管理 PM指南:相关方管理 PM指南:网络计划技术|工具与技术 PM指南:项目管理信息系统|工具与技术 PM指南:项目管理开局模板|工具与技术 PM指南:开源项目管理平台Redmine|工具与技术 PM指南:软件业看板Kanban管理实践|工具与技术 PM指南:源代码版本管理|工具与技术 参考文献 北极星导弹项目主页]]></content>
@@ -259,14 +264,14 @@
     <url>%2F2019%2F01%2F09%2FData-Science%2F</url>
     <content type="text"><![CDATA[摘要 数据科学工具箱 | Data Science Toolbox 数据科学工具箱Data Science Toolbox Data Science at the Command Line | Jeroen Janssens 命令行中的数据科学| Jeroen Janssens (作者) 王晓伟 , 刘峰 (译者) Obtainging Data | 数据获取 数据可视化（五）基于网络爬虫制作可视化图表 数据可视化（十）公共数据源列表 Scrubbing Data | 数据清洗 Drake 1git clone https://github.com/Factual/drake.git Exploring Data | 数据探索 数据可视化（八）Program,Data and Classical Music Data Visualization | 数据可视化 数据可视化（三）基于 Graphviz 实现程序化绘图 数据可视化（四）开源地理信息技术简史（Geographic Information System 数据可视化（六）常见的数据可视化仪表盘(DashBoard) 数据可视化（七）Graphite 体系结构详解 Modeling Data | 数据建模参考文献]]></content>
       <tags>
-        <tag>DataScience</tag>
         <tag>Engineering</tag>
+        <tag>DataScience</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[工程学 | Overview of Engineering]]></title>
     <url>%2F2019%2F01%2F07%2FEngineering%2F</url>
-    <content type="text"><![CDATA[摘要 Introduction to Engineering工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。 The activity of applying scientific knowledge to the design, building, and control of machines,roads, bridges, electrical equipment,etc. ——《牛津英语词典》 Engineering is the application of knowledge, typically in the form of science, mathematics, and empirical evidence, to the innovation, design, construction, operation and maintenance of structures, machines, materials, devices, systems, processes, and organizations. —— Wiki 创新工程设计 工程设计：容灾 工程组织 组织理论与设计 工程伦理 国之重器，在人不在宝 | 挑战者号航天飞机事故调查 应用个人生产力 场景化过程改进之个人效率提升 软件工程领域 [ ] Software Engineering of Google 开源软件的六大运营挑战 软件工程实践中的十大法则 建筑工程领域 [ ] 《建筑的复杂性与矛盾性》 [ ] 《图像中国建筑史》| 梁思成 交通工程领域 《明代的漕运》| 黄仁宇 挑战者号航天飞机事故调查 珠海航展交通管控实践 艺术领域 数据可视化（八）Program,Data and Classical Music Engineering Resources Engineering Blog Engineering Index 阅读作业《工程思维 Design Concepts for Engineers》 作者：马克 N.霍伦斯坦(Mark N.Horenstein)， 翻译：宫晓利/南开大学 张金/南开大学 赵子平/天津师范大学 《 To Engineer is Human: The Role of Failure in Successful Design (1985)》|Henry Petroski拓展阅读 项目管理 | Overview of Project Management PM指南:PMI项目管理知识体系 PM指南:建筑工程项目管理|行业案例教学 PM指南:范围管理 PM指南:进度管理 PM指南:成本管理 PM指南:质量管理 PM指南:资源管理 PM指南:沟通管理 PM指南:风险管理 PM指南:采购管理 PM指南:相关方管理 PM指南:项目管理信息系统|工具与技术 PM指南:项目管理开局模板|工具与技术 PM指南:开源项目管理平台Redmine|工具与技术 PM指南:软件业看板Kanban管理实践|工具与技术 PM指南:源代码版本管理|工具与技术 参考文献 世界最长十大隧道|中科院地质地球所 力学与工程：一名优秀的工程师首先是力学家 | 声振之家 2018-06-11]]></content>
+    <content type="text"><![CDATA[摘要 Introduction to Engineering工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。 The activity of applying scientific knowledge to the design, building, and control of machines,roads, bridges, electrical equipment,etc. ——《牛津英语词典》 Engineering is the application of knowledge, typically in the form of science, mathematics, and empirical evidence, to the innovation, design, construction, operation and maintenance of structures, machines, materials, devices, systems, processes, and organizations. —— Wiki 创新工程设计 工程设计：容灾 工程组织 组织理论与设计 工程伦理 国之重器，在人不在宝 | 挑战者号航天飞机事故调查 应用个人生产力 场景化过程改进之个人效率提升 软件工程领域 [ ] Software Engineering of Google 开源软件的六大运营挑战 软件工程实践中的十大法则 网络工程领域建筑工程领域 [ ] 《建筑的复杂性与矛盾性》 [ ] 《图像中国建筑史》| 梁思成 交通工程领域 《明代的漕运》| 黄仁宇 挑战者号航天飞机事故调查 珠海航展交通管控实践 艺术领域 数据可视化（八）Program,Data and Classical Music Engineering Resources Engineering Blog Engineering Index 阅读作业《工程思维 Design Concepts for Engineers》 作者：马克 N.霍伦斯坦(Mark N.Horenstein)， 翻译：宫晓利/南开大学 张金/南开大学 赵子平/天津师范大学 《 To Engineer is Human: The Role of Failure in Successful Design (1985)》|Henry Petroski拓展阅读 项目管理 | Overview of Project Management PM指南:PMI项目管理知识体系 PM指南:建筑工程项目管理|行业案例教学 PM指南:范围管理 PM指南:进度管理 PM指南:成本管理 PM指南:质量管理 PM指南:资源管理 PM指南:沟通管理 PM指南:风险管理 PM指南:采购管理 PM指南:相关方管理 PM指南:项目管理信息系统|工具与技术 PM指南:项目管理开局模板|工具与技术 PM指南:开源项目管理平台Redmine|工具与技术 PM指南:软件业看板Kanban管理实践|工具与技术 PM指南:源代码版本管理|工具与技术 参考文献 世界最长十大隧道|中科院地质地球所 力学与工程：一名优秀的工程师首先是力学家 | 声振之家 2018-06-11]]></content>
       <tags>
         <tag>Engineering</tag>
       </tags>
@@ -1262,9 +1267,9 @@
       <tags>
         <tag>Manager</tag>
         <tag>讲武堂</tag>
-        <tag>Commander</tag>
         <tag>运动</tag>
         <tag>体能训练</tag>
+        <tag>Commander</tag>
       </tags>
   </entry>
   <entry>
@@ -1274,9 +1279,9 @@
       <tags>
         <tag>Manager</tag>
         <tag>讲武堂</tag>
-        <tag>Commander</tag>
         <tag>运动</tag>
         <tag>体能训练</tag>
+        <tag>Commander</tag>
       </tags>
   </entry>
   <entry>
@@ -2034,9 +2039,9 @@
     <url>%2F2017%2F05%2F12%2FArtistic-Museum%2F</url>
     <content type="text"><![CDATA[摘要 上海·上海博物馆 南京·瞻园 广州·湿地公园 大英博物馆 上海博物馆 特色：官印、佛教造像、钱币 探宝：上海博物馆 大英博物馆 大英博物馆（谷歌地图在线） 南京博物院 旅行指南|江南园林|南京·瞻园 参观指南|南京博物院 生态资源 旅行指南|湿地公园 旅行指南|地质公园：河南·嵩山 参考文献]]></content>
       <tags>
-        <tag>Artistic</tag>
         <tag>摄影</tag>
         <tag>Travel</tag>
+        <tag>Artistic</tag>
       </tags>
   </entry>
   <entry>
@@ -2298,9 +2303,9 @@
     <url>%2F2017%2F01%2F30%2FArtistic-Garden%2F</url>
     <content type="text"><![CDATA[摘要 南京瞻园 南京瞻园瞻园园虽不大，却颇具特色： 山水园林：假山、人工湖造型设计艺术 政务园林：江宁布政使司衙门驻地，兼具行政和生活功能 历史园林：太平天国专史博物馆，史料较丰富。 瞻园位于南京市秦淮区夫子庙景区，坐北朝南，纵深127米，东西宽123米。是南京现存历史最久的明代古典园林，是江南四大名园。 “瞻园”始建于明朝初年，清朝时为江南布政使办公的地点，太平天国时期为东王杨秀清王府。瞻园历经岁月变迁，多次焚毁、修葺。 “瞻园”的历史可追溯至明太祖朱元璋称帝前的吴王府。明朝初年，朱元璋因念功臣徐达“未有宁居”，特赐予中山王徐达作为府邸花园。经徐氏七世、八世、九世三代人修缮与扩建，至万历年间已初具规模。 乾隆帝巡视江南，曾驻跸此园，并御题“瞻园”匾额。 1853年太平天国定都南京后，“瞻园”先后为东王杨秀清府、夏官副丞相赖汉英衙署和幼西王萧有和府。清同治三年(1864年)，清军夺取天京，该园毁于兵燹。同治四年(1865年)、光绪二十九年(1903年)，“瞻园”两度重修，但已非原园景况。“瞻园”中还辟有太平天国历史博物馆，是唯一的太平天国专史博物馆。 民国时，江苏省长公署、国民政府内政部、水利委员会、中统局特务总部、宪兵司令部看守所等政府机关曾设园内。 1960年，我国著名古建专家刘敦桢教授主持“瞻园”的恢复整建工作。 87年版《红楼梦》，赵雅芝版《新白娘子传奇》的白府取景地（待考证）。 参考文献 江南名园——瞻园 | 2016-05-05 王彝伟]]></content>
       <tags>
-        <tag>Artistic</tag>
         <tag>摄影</tag>
         <tag>Travel</tag>
+        <tag>Artistic</tag>
       </tags>
   </entry>
   <entry>
@@ -2356,8 +2361,8 @@
     <content type="text"><![CDATA[摘要 珠海市为何是中国航展举办地？ 2016珠海航展 中国八一飞行表演队 2016珠海航展 俄罗斯勇士&amp;雨燕飞行表演队 2016珠海航展 英国皇家空军红箭飞行表演队 知乎上有一个问题：珠海市为何是中国航展举办地？ 珠海市的地理位置，经济发展水平，政治地位等方面并不具备举办国家级航展的优势条件，20年来很多大城市都跃跃欲试，欲取而代之。它对标的是法国巴黎航展，兼具大规模飞行表演，是目前中国规模最大（北京航展主要以静态站台为主，石家庄航展以通用航空为主）。 先下手为强1992年，珠海政府代表团访问加拿大的苏里市，当时珠海正与之结为姐妹城市。在苏里市的市政厅，梁广大介绍珠海的发展情况，说珠海经济特区要开展铁路、港口、飞机场和大桥等大型设施建设。在市政厅里的会客厅咖啡室，一位议员，马文•亨特，提出建议：“你们建飞机场的时候，能不能把航展的功能考虑进去，我是国际航展成员，国际航空航天博览会是一个很大的商业项目活动，对一个地区，对一个国家都很有好处。” 听着这么像资本市场融资故事呢？机场还没修呢。 4000米跑道民航总局批复的规划跑道是2000多米，经过地方政府多次公关，最终民航总局同意批准加建到3200米。如果作为普通的民航机场，一般的机场跑道3200米已经很不错了，但考虑到要建一个国际性机场，跑道短了些，后来又决定加码到了3400米，可以起降波音747等大型客机。最后建设的时候，跑道延伸到了4000米。 当时，全国还没有一个机场拥有4000米的跑道，但这几百米的改动，因为未及时向国家主管部门和国务院报告和审批，导致机场建好后，谁也不敢来验收。各方面的反对意见很多。建那么长干嘛？民航又不需要那么长。最后捅到了国务院办公会议。 “我向朱镕基总理汇报，超出最初规划建设机场，目的主要是为了办国际航空航天博览会。除了跑道，机场的导航系统、地勤系统，我们采用的都是世界最先进的。”——时任珠海市委书记梁广大 机智？ 格局 ？ 真相永远不可考。 等级 机场名称 IATA代码 跑道长度宽度指标（米）4E 珠海三灶(金湾)机场 ZUH 4000×60 4F 北京首都国际机场 PEK 3800×60、3200×50、3800×604F 上海浦东国际机场 PVG 4000×60、3800×60、3400×604F 广州白云国际机场 CAN 3800×60、3600×45 4E 长沙黄花国际机场 CSX 3200×604E 厦门高崎国际机场 XMN 3400×454E 台湾桃园国际机场 TPE 3660×60、3800×60 特色审批机场有了，报批航展的手续也在紧锣密鼓地推进中。梁广大本以为只要珠海市里下定决心举办，再报批一下民航总局，珠海航展的成功就是指日可待。实际上，从1994年1月22日开始，珠海市政府就向国务院请示，在珠海举办中国国际航空航天博览会，直到1995年5月19日，国务院才给予了正式批复。 “后来慢慢才知道，牵扯的部门那么多，有经贸部、贸促会、海关总署、航空工业部、外交部、军委外事部门、总参、空军总部、国防科工委、军委、国务院办公厅、中央办公厅”。梁广大带着一帮人在北京珠海奔波了几乎有一年，拜访了十几个单位，挨家挨户地陈述申办理由。 最难的一关是国防科工委。航展关系到外国飞机和武器的进出，事关领空开放和安全问题，答复批不了，要军委主席才可以批。“总书记的批示让我们举办国际航空航天博览会的工作变得畅通无阻。” 找对人很重要。 后记综上所述，珠海办航展这事，基本上是梁书记提着脑袋忽悠来的。可是很可惜，第一届航展两年之后，一代能吏梁大胆调职退休，珠海经济特区迎来了漫长的平庸期，直到今天。 历任珠海市委书记任期 姓名2012.02 - 2016.04 李 嘉 （4年，涉嫌严重违纪，免职）2008.03 - 2012.02 甘 霖（4年）2005.08 - 2008.03 邓维龙（2.5年）2002.08 - 2005.08 方 旋（3年）1998.10 - 2002.08 黄龙云（4年）1987.01 - 1998.09 梁广大（11年，84年任市长）1984.02 - 1987.01 方 苞1979.01 - 1984.02 吴健民 2016年珠海航展图集 2016珠海航展 中国八一飞行表演队 2016珠海航展 俄罗斯勇士&amp;雨燕飞行表演队 2016珠海航展 英国皇家空军红箭飞行表演队 资源 NASA 图文资源库]]></content>
       <tags>
         <tag>Policy&amp;Law</tag>
-        <tag>Artistic</tag>
         <tag>摄影</tag>
+        <tag>Artistic</tag>
         <tag>Sport</tag>
         <tag>讲武堂</tag>
       </tags>
@@ -2639,10 +2644,10 @@
     <content type="text"><![CDATA[摘要 案例：跑步应用Nike+ Running 和 Garmin Mobile 评测 评估场景：跑步 评估时间：2016.02.22 评估说明：所有评测数据为作者真实体验测量，不针对特定厂家。 首发版（简书）：跑步应用Nike+ Running 和 Garmin Mobile 评测 |20160222 评估框架本次评估将以此为框架，逐一对比，双方都有的特性直接抵消忽略，不再讨论。核心子系统可概括为：硬件平台、跑步系统、数据分析系统、教练系统、荣誉系统、社交系统、其它支持。作为一款个人应用产品，社交系统是各厂追逐的王冠。 评估框架 竞争项目明细 主页系统 分析系统 Nike: 数据高度融合，无时无刻不突出变化、突出趋势 Garmin:数据离散、基本无融合，平铺直叙 (更正：20160513 v3.6 已实现心率、高度、步频叠加层) 社交应用基于庞大的消费群体、软件的低门槛，Nike+ Running的用户基数应该大很多（暂无统计数字支撑）。 日历系统：各有千秋 荣誉系统在这一单项中，Garmin的劣势非常明显，完全暴露的产品设计、运营能力的巨大短板。Nike+ Running则形成了非常完善的勋章系统，有利于提高用户粘性，为很多厂家所借鉴。包括但不限于： 里程：段位等级制（个人综合） 奖杯制 （每月，分为金、银、铜等） 积分：5K、10K、50K、100K等 连续性：1周3次、1周5次、连续3个月、连续6个月等 纪念性：周年、特殊节日、夜猫子、运动鞋、微博分享纪念等 荣誉系统－Nike+徽章体系 荣誉系统－Garmin徽章体系:能走点心吗？ 教练系统按照不同目标，可以推荐制定个人训练计划，并提供分析数据，不仅提高了趣味性，更体现了对入门级玩家的关怀。 硬件平台Garmin自有硬件平台,已经形成高低搭配的产品线，但是也限制了其APP兼容其他硬件厂家的可能性。Nike前几年尝试过内嵌跑鞋的传感器、TomTom贴牌代工的Sport Watch, 市场反馈看起来不好。几款产品目前都已停产，其战略完全转为纯软件路线：包括第一批支持Apple Watch,成为预置APP，全面支持Apple Health,支持TomTom、Garmin终端采集数据共享。 改进空间数据分析系统中，如果可以选择多次训练数据进行对比，应用的实用性和娱乐性会更强。甚至可以推荐相同“赛段”的历史数据对比。在户外运动场景，温度、湿度、风力、天气、气压的情况对成绩有较大影响。目前这两款应用都只做到记录当天的天气概况（晴、雨等），对于深度、活跃用户来说略显不足。第三点不足，基于众所周知的原因，或者大陆运营力量的不足，数据上传、售后服务皆有不稳定的情况。 结论 Nike+ Running： 系出豪门，设计感强，交互体验完胜； Garmin Connect Mobile : 自有硬件平台优势突出，设计体验凌乱，运营优待提升。 扩展阅读：数据可视化 数据可视化（一）思维利器 OmniGraffle 绘图指南 数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测 数据可视化（三）基于 Graphviz 实现程序化绘图 数据可视化（四）开源地理信息技术简史（Geographic Information System 数据可视化（五）基于网络爬虫制作可视化图表 数据可视化（六）常见的数据可视化仪表盘(DashBoard) 数据可视化（七）Graphite 体系结构详解 数据可视化（八）Program,Data and Classical Music 数据可视化（十）公共数据源列表 参考案例 共享单车APP评测 | 优恪]]></content>
       <tags>
         <tag>数据可视化</tag>
-        <tag>Engineering</tag>
-        <tag>移动互联网</tag>
         <tag>运动</tag>
         <tag>体能训练</tag>
+        <tag>Engineering</tag>
+        <tag>移动互联网</tag>
       </tags>
   </entry>
   <entry>
