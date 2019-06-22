@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SaltStack-Logo.jpg">
 <meta property="og:image" content="https://docs.saltstack.com/en/getstarted/images/salt-subsystems.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SlatStack-Subsystem-Job.png">
-<meta property="og:updated_time" content="2019-04-21T07:31:32.307Z">
+<meta property="og:updated_time" content="2019-06-21T03:12:18.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈：基础设施部署和配置管理">
 <meta name="twitter:description" content="摘要 Ansible vs. Chef vs. Fabric vs. Puppet vs. SaltStack">
@@ -347,6 +347,7 @@ ga('send', 'pageview');
 </li>
 <li><p><a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="noopener">YAML 语言教程</a></p>
 </li>
+<li><a href="https://www.redhat.com/sysadmin/yaml-tips" target="_blank" rel="noopener">10 YAML tips for people who hate YAML</a></li>
 </ul>
 <h4 id="DSL-Domain-Specific-Language-领域专用语言"><a href="#DSL-Domain-Specific-Language-领域专用语言" class="headerlink" title="DSL|Domain Specific Language,领域专用语言"></a><a href="https://en.wikipedia.org/wiki/Domain-specific_language" target="_blank" rel="noopener">DSL|Domain Specific Language,领域专用语言</a></h4><p>DSL的目标受众是非程序员，业务员或者最终用户。<br>DSL 最大的设计原则就是简单，通过简化语言中的元素，降低使用者的负担；无论是 Regex、SQL 还是 HTML 以及 CSS，其说明文档往往只有几页，非常易于学习和掌握。但是，由此带来的问题就是，DSL 中缺乏抽象的概念，比如：模块化、变量以及方法等。</p>
 <ul>
@@ -620,6 +621,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

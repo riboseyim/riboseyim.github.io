@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-05-03T12:03:42.314Z">
+<meta property="og:updated_time" content="2019-06-18T07:11:59.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="专题：动态追踪技术">
 <meta name="twitter:description" content="摘要 动态追踪技术：DTrace for Linux Linux 追踪器选型   应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp;amp; Painters）">
@@ -243,6 +243,7 @@ ga('send', 'pageview');
 <li><a href="https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7" target="_blank" rel="noopener">Go’s march to low-latency GC</a></li>
 <li><a href="http://blogs.microsoft.co.il/sasha/2017/03/30/tracing-runtime-events-in-net-core-on-linux/" target="_blank" rel="noopener">Tracing Runtime Events in .NET Core on Linux | March 30, 2017</a></li>
 <li><a href="https://mp.weixin.qq.com/s/3UXBEUmI3dMy9DJHs5gsRg" target="_blank" rel="noopener">案例分享：巧用各种工具提升无源码系统的性能和稳定性 | 原创： 杨振 董建  高可用架构  1月17日</a></li>
+<li><a href="https://www.sigops.org/s/conferences/sosp/2015/current/2015-Monterey/printable/090-curtsinger.pdf" target="_blank" rel="noopener">COZ: Finding Code that Counts with Causal Profiling</a></li>
 </ul>
 
       
@@ -490,6 +491,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

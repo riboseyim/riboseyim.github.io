@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 LLVM 构建 LLVM 和 Clang 开发工具库">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://blog.gopheracademy.com/postimages/advent-2018/llvm-ir-and-go/llvm_compiler_pipeline.png">
-<meta property="og:updated_time" content="2019-04-30T02:04:15.746Z">
+<meta property="og:updated_time" content="2019-06-18T06:50:17.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转编程语言:编译原理">
 <meta name="twitter:description" content="摘要 LLVM 构建 LLVM 和 Clang 开发工具库">
@@ -139,6 +139,17 @@ ga('send', 'pageview');
 <li>构建 LLVM 和 Clang 开发工具库</li>
 </ul>
 <a id="more"></a>
+<h4 id="A-Go-compiler-and-runtime"><a href="#A-Go-compiler-and-runtime" class="headerlink" title="A Go compiler and runtime"></a>A Go compiler and runtime</h4><p>The language spec is a text document, which is not useful in and of itself. For that you need software that actually implements these semantics. This is done by a compiler (which analyzes and checks the source code and transforms it into an executable format) and a runtime (which provides the necessary environment to actually run the code). There are many such combinations and they all differ a bit more or a bit less. Examples are</p>
+<ul>
+<li><p>gc, a compiler and runtime written in pure Go (with some assembly) by the Go team themselves and versioned and released together with the language. Unlike other such tools, gc doesn’t strictly separate the compiler, assembler and linker - they end up sharing a lot of code and some of the classical responsibilities move or are shared between them. As such, it’s in general not possible to e.g. link packages compiled by different versions of gc.</p>
+</li>
+<li><p>gccgo and libgo, a frontend for gcc and a runtime. It’s written in C and maintained by the Go team. It lives in the gcc organization though and is released according to the gcc release schedule and thus often lags a bit behind the “latest” version of the Go spec.</p>
+</li>
+<li><p>llgo, a frontend for LLVM. I don’t know much else about it.<br>gopherjs, compiling Go code into javascript and using a javascript VM plus some custom code as a runtime. Long-term, it’ll probably be made obsolete by gc gaining native support for WebAssembly.</p>
+</li>
+<li><p>tinygo, an incomplete implementation targeting small code size. Runs on either bare-metal micro-controllers or WebAssembly VMs, with a custom runtime. Due to its limitations it doesn’t technically implement Go - notably, it doesn’t include a garbage collector, concurrency or reflection.</p>
+</li>
+</ul>
 <h2 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h2><p>LLVM（Low Level Virtual Machine）是一种编译器基础设施，以 C++ 写成。起源于 2000 年伊利诺伊大学厄巴纳-香槟分校维克拉姆·艾夫（Vikram Adve）与克里斯·拉特纳（Chris Lattner）的研究，他们想要为所有静态及动态语言创造出动态的编译技术。2005 年，Apple 直接雇用了克里斯·拉特纳及他的团队，为了苹果电脑开发应用程序，期间克里斯·拉特纳设计发明了 Swift 语言，LLVM 成为 Mac OS X 及 iOS 开发工具的一部分。LLVM 的范围早已经不局限于创建一个虚拟机，成为了众多编译工具及低级工具技术的统称，适用于 LLVM 下的所有项目，包含 LLVM 中介码（LLVM IR）、LLVM 除错工具、LLVM C++ 标准库等。</p>
 <p>目前 LLVM 已支持包括 ActionScript、Ada、D 语言、Fortran、GLSL、Haskell、Java字节码、Objective-C、Swift、Python、Ruby、Rust、Scala1 以及 C# 等语言。</p>
 <h4 id="LLVM-与-Clang"><a href="#LLVM-与-Clang" class="headerlink" title="LLVM 与 Clang"></a>LLVM 与 Clang</h4><p>Clang 是LLVM编译器工具集的前端（front-end），目的是输出代码对应的抽象语法树（Abstract Syntax Tree, AST），并将代码编译成LLVM Bitcode。接着在后端（back-end）使用 LLVM 编译成平台相关的机器语言 。Clang支持C、C++、Objective C。它的目标是提供一个 GCC 的替代品。作者是克里斯·拉特纳（Chris Lattner），在苹果公司的赞助支持下进行开发。Clang项目包括Clang前端和Clang静态分析器等。</p>
@@ -149,6 +160,7 @@ ga('send', 'pageview');
 <li><a href="https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/" target="_blank" rel="noopener">LLVM IR and Go</a><br><img src="https://blog.gopheracademy.com/postimages/advent-2018/llvm-ir-and-go/llvm_compiler_pipeline.png" alt></li>
 </ul>
 <h4 id="玩转编程语言系列"><a href="#玩转编程语言系列" class="headerlink" title="玩转编程语言系列"></a><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="noopener">玩转编程语言系列</a></h4><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://blog.merovius.de/2019/06/12/birdseye-go.html" target="_blank" rel="noopener">A bird’s eye view of Go</a></li>
 <li><a href="http://www.cs.cornell.edu/~asampson/blog/llvm.html" target="_blank" rel="noopener">LLVM for Grad Students</a></li>
 <li><a href="https://medium.com/dailyjs/gentle-introduction-into-compilers-part-1-lexical-analysis-and-scanner-733246be6738" target="_blank" rel="noopener">Gentle introduction into compilers. Part 1: Lexical analysis and Scanner | A guide to understanding ECMAScript (JavaScript) spec lexical grammar and TypeScript scanner</a></li>
 </ul>
@@ -267,7 +279,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLVM"><span class="toc-number">2.</span> <span class="toc-text">LLVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LLVM-与-Clang"><span class="toc-number">2.0.1.</span> <span class="toc-text">LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构建-LLVM-和-Clang-开发工具库"><span class="toc-number">2.0.2.</span> <span class="toc-text">构建 LLVM 和 Clang 开发工具库</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">3.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#glibc"><span class="toc-number">3.0.1.</span> <span class="toc-text">glibc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#glibc-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">glibc++</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#玩转编程语言系列"><span class="toc-number">4.0.1.</span> <span class="toc-text">玩转编程语言系列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Go-compiler-and-runtime"><span class="toc-number">1.0.1.</span> <span class="toc-text">A Go compiler and runtime</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#LLVM"><span class="toc-number">2.</span> <span class="toc-text">LLVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LLVM-与-Clang"><span class="toc-number">2.0.1.</span> <span class="toc-text">LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构建-LLVM-和-Clang-开发工具库"><span class="toc-number">2.0.2.</span> <span class="toc-text">构建 LLVM 和 Clang 开发工具库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">3.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#glibc"><span class="toc-number">3.0.1.</span> <span class="toc-text">glibc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#glibc-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">glibc++</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#玩转编程语言系列"><span class="toc-number">4.0.1.</span> <span class="toc-text">玩转编程语言系列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -398,6 +410,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

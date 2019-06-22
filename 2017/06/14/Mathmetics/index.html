@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 不懂数学就是一个很大的障碍。—— 理查德·费曼">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-02T16:52:23.258Z">
+<meta property="og:updated_time" content="2019-06-21T02:17:17.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Catalog:数学">
 <meta name="twitter:description" content="摘要 不懂数学就是一个很大的障碍。—— 理查德·费曼">
@@ -157,6 +157,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.com/2017/08/30/Mathmetics-Beauty/">读书笔记|数学之美（Beauty Of Mathmetics）</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://pimbook.org/pdf/pim_first_pages.pdf" target="_blank" rel="noopener">A Programmer’s Introduction to Mathematics | Jeremy Kun</a></li>
 <li><a href="https://mathwithbaddrawings.com/2016/07/13/why-not-to-trust-statistics/" target="_blank" rel="noopener">Why Not to Trust Statistics</a></li>
 <li><a href="http://www.infoq.com/cn/news/2016/07/OliverSchabenberger-AnalyticSer" target="_blank" rel="noopener">统计建模与机器学习的区别 |作者 Oliver Schabenberger | 译者 NER 发布于 2016年7月20日</a></li>
 <li><a href="https://mp.weixin.qq.com/s/fUIbFZNjGC3uKqV4LJBQ7w?scene=25#wechat_redirect" target="_blank" rel="noopener">程序员学数学读哪些书？| 图灵教育</a></li>
@@ -407,6 +408,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

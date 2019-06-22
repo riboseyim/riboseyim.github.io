@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Single.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-AAA-LVS-Cluster.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LB-Normal-Model.png">
-<meta property="og:updated_time" content="2019-04-21T09:02:32.593Z">
+<meta property="og:updated_time" content="2019-06-17T03:57:34.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于LVS的AAA负载均衡架构实践">
 <meta name="twitter:description" content="概要本次分享将从一次实际的负载均衡改造案例出发，通过介绍项目背景、选型思路、测试方法和问题分析等方面展开，总结负载均衡架构的一般套路和经验教训。">
@@ -248,6 +248,7 @@ ga('send', 'pageview');
 <li><a href="https://code.facebook.com/posts/1906146702752923/open-sourcing-katran-a-scalable-network-load-balancer/" target="_blank" rel="noopener">VIPServer | Facebook Open-sourcing Katran, a scalable network load balancer</a></li>
 </ul>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://www.haproxy.com/blog/haproxy-2-0-and-beyond/" target="_blank" rel="noopener">HAProxy 2.0 and Beyond</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650992803&amp;idx=1&amp;sn=e2a46917301941faacc324af29013877&amp;scene=1&amp;srcid=0802RpC2Vu41WGWU7UBbBjXH#rd" target="_blank" rel="noopener">章文嵩博士和他背后的负载均衡帝国</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650992696&amp;idx=1&amp;sn=c8a768b9acfa9ff1d0c9700a53c067a5&amp;scene=1&amp;srcid=0802JvqGeuM8Y3xbeTNSrIeO#rd" target="_blank" rel="noopener">章文嵩：怎样做开源才有意义？</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTAzMDEwMA==&amp;mid=2652500704&amp;idx=1&amp;sn=dd29070b0748edf4ac68676d4e149005&amp;chksm=80201bdbb75792cd675f614719b28aedd7f4a317cb561e7a7dd08d875f32572c0c0624978e2c&amp;scene=1&amp;srcid=0920Jb7OAAb7C1C02eAA7i5T#rd" target="_blank" rel="noopener">胥峰(盛大):KVM部署LVS集群故障案例一则</a></li>
@@ -502,6 +503,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

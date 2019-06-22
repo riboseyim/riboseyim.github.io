@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 Docker ABC:常用命令、自定义制作、发布">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*easlVE_DOqRDUDkVINRI9g.png">
-<meta property="og:updated_time" content="2019-05-12T06:27:27.681Z">
+<meta property="og:updated_time" content="2019-06-17T04:09:51.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈：Docker">
 <meta name="twitter:description" content="摘要 Docker ABC:常用命令、自定义制作、发布">
@@ -170,6 +170,9 @@ ga('send', 'pageview');
 <li>注册账户：<a href="https://hub.docker.com" target="_blank" rel="noopener">hub.docker.com</a> 或 <a href="https://cloud.docker.com" target="_blank" rel="noopener">cloud.docker.com</a></li>
 <li>登录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub.</span><br><span class="line">If you don\<span class="string">'t have a Docker ID, head over to https://hub.docker.com to create one.</span></span><br><span class="line"><span class="string">Username: riboseyim</span></span><br><span class="line"><span class="string">Password:</span></span><br><span class="line"><span class="string">Login Succeeded</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 为本地的 image 标注用户名和版本。</span></span><br><span class="line"><span class="string">$ docker image tag [imageName] [username]/[repository]:[tag]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 发布</span></span><br><span class="line"><span class="string">$ docker image push riboseyim/gospider</span></span><br><span class="line"><span class="string">The push refers to repository [docker.io/riboseyim/gospider]</span></span><br><span class="line"><span class="string">db602e58edca: Pushed</span></span><br><span class="line"><span class="string">c5b2ac536264: Mounted from library/node</span></span><br><span class="line"><span class="string">6c08a5b7d8f4: Mounted from library/node</span></span><br><span class="line"><span class="string">50867bb8f5d7: Mounted from library/node</span></span><br><span class="line"><span class="string">72d6c6f0ea06: Mounted from library/node</span></span><br><span class="line"><span class="string">8686c6b8d999: Mounted from library/node</span></span><br><span class="line"><span class="string">44b57351135e: Mounted from library/node</span></span><br><span class="line"><span class="string">00b029f9aa09: Mounted from library/node</span></span><br><span class="line"><span class="string">18f9b4e2e1bc: Mounted from library/node</span></span><br><span class="line"><span class="string">latest: digest: sha256:4388ba2cc83adc0d1e9b3ca4c0b273f5812ad6365a36aeef33ff87d62b236d5d size: 2217</span></span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<h4 id="Docker-构建"><a href="#Docker-构建" class="headerlink" title="Docker 构建"></a>Docker 构建</h4><ul>
+<li><a href="https://github.com/openshift/source-to-image" target="_blank" rel="noopener">A tool for building/building artifacts from source and injecting into docker images</a></li>
 </ul>
 <h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><ul>
 <li><a href="https://blog.hasura.io/the-ultimate-guide-to-writing-dockerfiles-for-go-web-apps-336efad7012c" target="_blank" rel="noopener">The Ultimate Guide to Writing Dockerfiles for Go Web-apps</a></li>
@@ -331,7 +334,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABC"><span class="toc-number">2.</span> <span class="toc-text">ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-常用命令"><span class="toc-number">2.0.1.</span> <span class="toc-text">Docker 常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-自定义制作"><span class="toc-number">2.0.2.</span> <span class="toc-text">Docker 自定义制作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-发布"><span class="toc-number">2.0.3.</span> <span class="toc-text">Docker 发布</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples"><span class="toc-number">3.</span> <span class="toc-text">Examples</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-安全"><span class="toc-number">4.</span> <span class="toc-text">Docker 安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-网络"><span class="toc-number">5.</span> <span class="toc-text">Docker 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-监控"><span class="toc-number">6.</span> <span class="toc-text">Docker 监控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-参考书"><span class="toc-number">7.</span> <span class="toc-text">Docker 参考书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">8.0.1.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">8.0.2.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABC"><span class="toc-number">2.</span> <span class="toc-text">ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-常用命令"><span class="toc-number">2.0.1.</span> <span class="toc-text">Docker 常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-自定义制作"><span class="toc-number">2.0.2.</span> <span class="toc-text">Docker 自定义制作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-发布"><span class="toc-number">2.0.3.</span> <span class="toc-text">Docker 发布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-构建"><span class="toc-number">2.0.4.</span> <span class="toc-text">Docker 构建</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples"><span class="toc-number">3.</span> <span class="toc-text">Examples</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-安全"><span class="toc-number">4.</span> <span class="toc-text">Docker 安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-网络"><span class="toc-number">5.</span> <span class="toc-text">Docker 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-监控"><span class="toc-number">6.</span> <span class="toc-text">Docker 监控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-参考书"><span class="toc-number">7.</span> <span class="toc-text">Docker 参考书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-漫谈系列"><span class="toc-number">8.0.1.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-实践的本质是文化"><span class="toc-number">8.0.2.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -462,6 +465,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
