@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
-<meta property="og:updated_time" content="2019-05-12T06:45:20.145Z">
+<meta property="og:updated_time" content="2019-06-26T06:39:10.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别">
 <meta name="twitter:description" content="摘要 Machine Learning Workflow Problem: 宠物分类、勋章识别、美女打分 Demo: Hello TensorFlow ! TensorFlow C library / Go binding">
@@ -204,6 +204,7 @@ ga('send', 'pageview');
 <p>通过上面的案例我们可以发现，这个服务目前可以对于黑天鹅图像的推算概率值为 98.75%，非常准确；但是对于另外两张宠物狗的图像，最高的推算概率值也仅有 30% 左右，虽然也没有被识别成猫咪或者狼，但是和理想效果要求可用性还有一段距离（此处暂时忽略物种本身的复杂性）。主要是因为现在我们使用的还只是一个非常“原始”的模型，如果需要为小众领域服务（宠物，也可以是其它事物），需要通过训练（Training Models）增强优化，或者引入更丰富的标签，更合适的模型。当然，训练过程中也会存在样本质量不佳的情况，错误样本和各种噪音也会影响准确度。</p>
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="How-to-Install-TensorFlow-on-CentOS-7"><a href="#How-to-Install-TensorFlow-on-CentOS-7" class="headerlink" title="How to Install TensorFlow on CentOS 7"></a>How to Install TensorFlow on CentOS 7</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. To enable the repository, install the SCL release file:</span></span><br><span class="line"></span><br><span class="line">$ sudo yum install centos-release-scl</span><br><span class="line">$ sudo yum install rh-python36</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Creating a Virtual Environment</span></span><br><span class="line"><span class="comment"># To access Python 3.6 you need to launch a new shell instance using the scl tool:</span></span><br><span class="line">$ scl <span class="built_in">enable</span> rh-python36 bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new directory for the TensorFlow project and cd into it:</span></span><br><span class="line">$ mkdir tensorflow_project</span><br><span class="line">$ <span class="built_in">cd</span> tensorflow_project</span><br><span class="line">$ python3 -m venv venv</span><br><span class="line">$ <span class="built_in">source</span> venv/bin/activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># Upgrade pip to the latest version to avoid issues when installing packages:</span></span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Installing TensorFlow</span></span><br><span class="line">$ pip install --upgrade tensorflow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. To verify the installation</span></span><br><span class="line">$ python -c <span class="string">'import tensorflow as tf; print(tf.__version__)'</span></span><br><span class="line"></span><br><span class="line">At the time of writing this article, the latest stable version of TensorFlow is 1.13.1</span><br><span class="line"><span class="comment"># 5. Once you are done with your work, deactivate the environment, by typing deactivate and you will return to your normal shell.</span></span><br><span class="line">$ deactivate</span><br></pre></td></tr></table></figure>
 <h2 id="Lessons"><a href="#Lessons" class="headerlink" title="Lessons"></a>Lessons</h2><ul>
+<li><a href="https://morioh.com/p/d669c3deea75/deep-learning-with-tensorflow-2-0" target="_blank" rel="noopener">Deep Learning With TensorFlow 2.0</a></li>
 <li><a href="https://developers.google.com/machine-learning/crash-course/" target="_blank" rel="noopener">Google 制作的节奏紧凑、内容实用的机器学习简介课程 | 使用 TensorFlow API</a></li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
@@ -493,25 +494,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

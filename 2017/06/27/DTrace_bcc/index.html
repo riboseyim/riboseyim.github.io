@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 原文：Brendan Gregg’s Blog :《Golang bcc/BPF Function Tracing》，31 Jan 2017 引子：gdb、go execution tracer、GODEBUG、gctrace、schedtrace 一、gccgo Function Counting 二、Go gc Function Counting 三、Per-event invocati">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T10:36:53.000Z">
+<meta property="og:updated_time" content="2019-06-26T07:35:04.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态追踪技术（四）：基于 Linux bcc&#x2F;BPF 实现 Go 程序动态追踪">
 <meta name="twitter:description" content="摘要 原文：Brendan Gregg’s Blog :《Golang bcc/BPF Function Tracing》，31 Jan 2017 引子：gdb、go execution tracer、GODEBUG、gctrace、schedtrace 一、gccgo Function Counting 二、Go gc Function Counting 三、Per-event invocati">
@@ -224,7 +224,7 @@ ga('send', 'pageview');
 <li><p>ABI vs API<br>应用程序接口 (API)定义了源代码和库之间的接口，因此同样的代码可以在支持这个API的任何系统中编译，然而ABI允许编译好的目标代码在使用兼容 ABI 的系统中无需改动就能运行。</p>
 </li>
 </ul>
-<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（一）：How the Linux Kernel Boots</a></li>
 <li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（二）：User Space &amp; RAM</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（三）：Memory</a></li>
@@ -239,6 +239,7 @@ ga('send', 'pageview');
 <li><a href="https://jvns.ca/blog/2017/06/28/notes-on-bpf---ebpf/" target="_blank" rel="noopener">Notes on BPF &amp; eBPF | Julia Evans</a></li>
 <li><a href="http://blogs.microsoft.co.il/sasha/2016/03/31/probing-the-jvm-with-bpfbcc/" target="_blank" rel="noopener">Probing the JVM with BPF/BCC | Sasha</a></li>
 <li><a href="https://www.slideshare.net/brendangregg/bpf-tracing-and-more" target="_blank" rel="noopener">BPF: Tracing and more | Brendan Gregg SlideShare </a></li>
+<li><a href="http://morsmachine.dk/http2-causalprof" target="_blank" rel="noopener">Using Causal Profiling to Optimize the Go HTTP/2 Server</a></li>
 </ul>
 
       
@@ -355,7 +356,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、gccgo-Function-Counting"><span class="toc-number">2.</span> <span class="toc-text">一、gccgo Function Counting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Go-gc-Function-Counting"><span class="toc-number">3.</span> <span class="toc-text">二、Go gc Function Counting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Per-event-invocations-of-a-function"><span class="toc-number">4.</span> <span class="toc-text">三、Per-event invocations of a function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-gccgo-Function-Tracing"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.1 gccgo Function Tracing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Go-gc-Function-Tracing"><span class="toc-number">4.0.2.</span> <span class="toc-text">3.2 Go gc Function Tracing</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Interface-Arguments"><span class="toc-number">5.</span> <span class="toc-text">四、Interface Arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Function-Latency"><span class="toc-number">6.</span> <span class="toc-text">五、Function Latency</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、总结"><span class="toc-number">7.</span> <span class="toc-text">六、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、Tips"><span class="toc-number">8.</span> <span class="toc-text">七、Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-安装和编译-BCC"><span class="toc-number">8.0.1.</span> <span class="toc-text">6.1 安装和编译 BCC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-构建-LLVM-和-Clang-开发工具库"><span class="toc-number">8.0.2.</span> <span class="toc-text">6.2 构建 LLVM 和 Clang 开发工具库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-LLVM-与-Clang"><span class="toc-number">8.0.3.</span> <span class="toc-text">6.3 LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-ABI"><span class="toc-number">8.0.4.</span> <span class="toc-text">6.4 ABI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">9.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、gccgo-Function-Counting"><span class="toc-number">2.</span> <span class="toc-text">一、gccgo Function Counting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Go-gc-Function-Counting"><span class="toc-number">3.</span> <span class="toc-text">二、Go gc Function Counting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Per-event-invocations-of-a-function"><span class="toc-number">4.</span> <span class="toc-text">三、Per-event invocations of a function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-gccgo-Function-Tracing"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.1 gccgo Function Tracing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Go-gc-Function-Tracing"><span class="toc-number">4.0.2.</span> <span class="toc-text">3.2 Go gc Function Tracing</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Interface-Arguments"><span class="toc-number">5.</span> <span class="toc-text">四、Interface Arguments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Function-Latency"><span class="toc-number">6.</span> <span class="toc-text">五、Function Latency</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、总结"><span class="toc-number">7.</span> <span class="toc-text">六、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、Tips"><span class="toc-number">8.</span> <span class="toc-text">七、Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-安装和编译-BCC"><span class="toc-number">8.0.1.</span> <span class="toc-text">6.1 安装和编译 BCC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-构建-LLVM-和-Clang-开发工具库"><span class="toc-number">8.0.2.</span> <span class="toc-text">6.2 构建 LLVM 和 Clang 开发工具库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-LLVM-与-Clang"><span class="toc-number">8.0.3.</span> <span class="toc-text">6.3 LLVM 与 Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-ABI"><span class="toc-number">8.0.4.</span> <span class="toc-text">6.4 ABI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">9.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">9.0.1.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -486,25 +487,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

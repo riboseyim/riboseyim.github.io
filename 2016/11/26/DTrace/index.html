@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-06-18T07:11:59.069Z">
+<meta property="og:updated_time" content="2019-06-26T07:35:06.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="专题：动态追踪技术">
 <meta name="twitter:description" content="摘要 动态追踪技术：DTrace for Linux Linux 追踪器选型   应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp;amp; Painters）">
@@ -207,19 +207,19 @@ ga('send', 'pageview');
 <h2 id="勘误"><a href="#勘误" class="headerlink" title="勘误"></a>勘误</h2><ul>
 <li>No.001 初稿已删除【大家比较熟知的netfilter，就是基于BPF实现的动态编译器】<br>本来是想表达 iptables 对 bpf 的支持。</li>
 </ul>
-<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.github.io/2016/11/26/DTrace/" target="_blank" rel="noopener">动态追踪技术(一)：DTrace 导论</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/" target="_blank" rel="noopener">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
 <li><a href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/" target="_blank" rel="noopener">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
 <li><a href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/" target="_blank" rel="noopener">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
 </ul>
-<h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
+<h4 id="《Linux-Perf-Master》"><a href="#《Linux-Perf-Master》" class="headerlink" title="《Linux Perf Master》"></a>《Linux Perf Master》</h4><ul>
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/" target="_blank" rel="noopener">Linux 性能诊断:负载评估</a></li>
 <li><a href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/" target="_blank" rel="noopener">Linux 性能诊断:快速检查单</a></li>
 <li><a href="https://riboseyim.github.io/2017/05/29/Linux-Works/" target="_blank" rel="noopener">操作系统原理 | How Linux Works（一）：How the Linux Kernel Boots</a></li>
@@ -360,7 +360,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-DTrace"><span class="toc-number">2.</span> <span class="toc-text">Introduction to DTrace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-DTrace"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-of-DTrace"><span class="toc-number">2.0.2.</span> <span class="toc-text">History of DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-追踪器选型"><span class="toc-number">2.0.3.</span> <span class="toc-text">Linux 追踪器选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通模式"><span class="toc-number">2.0.4.</span> <span class="toc-text">普通模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HARD模式"><span class="toc-number">2.0.5.</span> <span class="toc-text">HARD模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#火焰图应用案例"><span class="toc-number">2.0.6.</span> <span class="toc-text">火焰图应用案例</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#勘误"><span class="toc-number">3.</span> <span class="toc-text">勘误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：电子书《Linux-Perf-Master》"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-DTrace"><span class="toc-number">2.</span> <span class="toc-text">Introduction to DTrace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-DTrace"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-of-DTrace"><span class="toc-number">2.0.2.</span> <span class="toc-text">History of DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-追踪器选型"><span class="toc-number">2.0.3.</span> <span class="toc-text">Linux 追踪器选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通模式"><span class="toc-number">2.0.4.</span> <span class="toc-text">普通模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HARD模式"><span class="toc-number">2.0.5.</span> <span class="toc-text">HARD模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#火焰图应用案例"><span class="toc-number">2.0.6.</span> <span class="toc-text">火焰图应用案例</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#勘误"><span class="toc-number">3.</span> <span class="toc-text">勘误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">4.0.1.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#《Linux-Perf-Master》"><span class="toc-number">4.0.2.</span> <span class="toc-text">《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">How Linux Works</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -491,25 +491,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

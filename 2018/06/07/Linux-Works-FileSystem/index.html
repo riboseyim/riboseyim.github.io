@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 BASIC Command LVM iSCSI">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-06-18T06:26:20.813Z">
+<meta property="og:updated_time" content="2019-06-26T07:35:03.403Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:Device and FileSystem">
 <meta name="twitter:description" content="摘要 BASIC Command LVM iSCSI">
@@ -173,7 +173,8 @@ ga('send', 'pageview');
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="SCSI"><a href="#SCSI" class="headerlink" title="SCSI"></a>SCSI</h4><p>小型计算机系统接口（SCSI，Small Computer System Interface）是一种用于计算机及其周边设备之间（硬盘、软驱、光驱、打印机、扫描仪等）系统级接口的独立处理器标准。最大部分的应用是在存储设备上（例如硬盘、磁带机）。</p>
 <p>iSCSI（Internet Small Computer System Interface，发音为/ˈаɪskʌzi/），Internet小型计算机系统接口，又称为IP-SAN，是一种基于因特网及SCSI-3协议下的存储技术，由IETF提出，并于2003年2月11日成为正式的标准。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iqn</span></span><br><span class="line">vi /etc/iscsi/initiatorname.iscsi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找iSCSI目标</span></span><br><span class="line">$ iscsiadm -m discovery -t st -p &lt;组IP地址&gt;:3260</span><br><span class="line"><span class="comment"># 登录</span></span><br><span class="line">$ iscsiadm -m node -T &lt;完整的目标名称,iqn.xxxxxx&gt; <span class="_">-l</span> -p &lt;组IP&gt;:3260</span><br><span class="line"><span class="comment"># 注销</span></span><br><span class="line">$ iscsiadm -m node -u -T &lt;完整的目标名称&gt;-p &lt;组IP地址&gt;:3260</span><br></pre></td></tr></table></figure>
-<h2 id="前沿"><a href="#前沿" class="headerlink" title="前沿"></a>前沿</h2><ul>
+<h2 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h2><ul>
+<li><a href="https://github.com/sjqzhang/go-fastdfs" target="_blank" rel="noopener">go-fastdfs | 一个简单的分布式文件存储，具有高性能，高可靠，免维护等优点，支持断点续传，分块上传，小文件合并，自动同步，自动修复</a></li>
 <li><a href="https://github.com/karrick/godirwalk" target="_blank" rel="noopener">Fast directory traversal for Golang</a></li>
 <li><a href="https://achainofblocks.com/2018/10/05/ipfs-interplanetary-file-system-simply-explained/" target="_blank" rel="noopener">IPFS The Interplanetary File System | Simply Explained</a></li>
 </ul>
@@ -332,7 +333,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command"><span class="toc-number">2.</span> <span class="toc-text">Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LVM"><span class="toc-number">3.</span> <span class="toc-text">LVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看"><span class="toc-number">3.0.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-number">3.0.2.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">3.0.3.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容"><span class="toc-number">3.0.4.</span> <span class="toc-text">扩容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移除"><span class="toc-number">3.0.5.</span> <span class="toc-text">移除</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SCSI"><span class="toc-number">4.0.1.</span> <span class="toc-text">SCSI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前沿"><span class="toc-number">5.</span> <span class="toc-text">前沿</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">5.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">5.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">5.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">5.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command"><span class="toc-number">2.</span> <span class="toc-text">Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LVM"><span class="toc-number">3.</span> <span class="toc-text">LVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看"><span class="toc-number">3.0.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载"><span class="toc-number">3.0.2.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">3.0.3.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容"><span class="toc-number">3.0.4.</span> <span class="toc-text">扩容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移除"><span class="toc-number">3.0.5.</span> <span class="toc-text">移除</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SCSI"><span class="toc-number">4.0.1.</span> <span class="toc-text">SCSI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Projects"><span class="toc-number">5.</span> <span class="toc-text">Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">5.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">5.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">5.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">5.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -463,25 +464,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

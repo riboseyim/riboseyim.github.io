@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-3.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-4.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2019-06-26T04:55:56.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控">
 <meta name="twitter:description" content="摘要 NTOPNG是NTOP的新一代版本,提供以下特性： 多协议网络流量；IPv4/IPv6活跃主机 网络流量监控； 基于nDPI实现应用协议发现 作为 NetFlow/sFlow  采集器 (Cisco/ Juniper 路由器) ；交换机配合 nProbe.">
@@ -195,13 +195,16 @@ ga('send', 'pageview');
 <h3 id="P2P-演示案例"><a href="#P2P-演示案例" class="headerlink" title="P2P 演示案例"></a>P2P 演示案例</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-1.jpg" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-2.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-3.png" alt><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-4.png" alt></p>
 <hr>
 
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<h2 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h2><ul>
+<li><a href="http://get.influxdata.com/rs/972-GDU-533/images/Customer%20Case%20Study_%20ntop.pdf" target="_blank" rel="noopener">How ntop built (an Open Source) Web-based Traffic Analysis and Flow collection with #InfluxDB</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/07/14/sFlow/" target="_blank" rel="noopener">浅谈基于数据分析的网络态势感知</a></li>
 <li><a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
 <li><a href="https://riboseyim.github.io/2017/05/12/SDN/" target="_blank" rel="noopener">SDN 技术指南（一）: 架构概览</a></li>
 <li><a href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/" target="_blank" rel="noopener">SDN 技术指南（二）: OpenFlow </a></li>
 </ul>
-<h2 id="扩展阅读：数据可视化"><a href="#扩展阅读：数据可视化" class="headerlink" title="扩展阅读：数据可视化"></a>扩展阅读：数据可视化</h2><ul>
+<h4 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/09/15/Visualization-OmniGraffle/" target="_blank" rel="noopener">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
 <li><a href="https://riboseyim.github.io/2016/04/26/BestAppMap/" target="_blank" rel="noopener">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
 <li><a href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/" target="_blank" rel="noopener">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
@@ -325,7 +328,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ntopng-架构"><span class="toc-number">2.</span> <span class="toc-text">Ntopng 架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主要开发语言"><span class="toc-number">2.0.1.</span> <span class="toc-text">主要开发语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据采集层"><span class="toc-number">2.0.2.</span> <span class="toc-text">数据采集层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务处理层"><span class="toc-number">2.0.3.</span> <span class="toc-text">业务处理层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储"><span class="toc-number">2.0.4.</span> <span class="toc-text">存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前端展现层"><span class="toc-number">2.0.5.</span> <span class="toc-text">前端展现层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它库"><span class="toc-number">2.0.6.</span> <span class="toc-text">其它库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P-演示案例"><span class="toc-number">2.1.</span> <span class="toc-text">P2P 演示案例</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读：数据可视化"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ntopng-架构"><span class="toc-number">2.</span> <span class="toc-text">Ntopng 架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主要开发语言"><span class="toc-number">2.0.1.</span> <span class="toc-text">主要开发语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据采集层"><span class="toc-number">2.0.2.</span> <span class="toc-text">数据采集层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务处理层"><span class="toc-number">2.0.3.</span> <span class="toc-text">业务处理层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储"><span class="toc-number">2.0.4.</span> <span class="toc-text">存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前端展现层"><span class="toc-number">2.0.5.</span> <span class="toc-text">前端展现层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它库"><span class="toc-number">2.0.6.</span> <span class="toc-text">其它库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P-演示案例"><span class="toc-number">2.1.</span> <span class="toc-text">P2P 演示案例</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper"><span class="toc-number">3.</span> <span class="toc-text">Paper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络管理"><span class="toc-number">4.0.1.</span> <span class="toc-text">网络管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据可视化"><span class="toc-number">4.0.2.</span> <span class="toc-text">数据可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -456,25 +459,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

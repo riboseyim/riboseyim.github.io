@@ -1,6 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://riboseyim.com/2017/05/12/Language-Compiler/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/11/26/DTrace/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/06/27/DTrace_bcc/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/05/12/Visualization-GIS/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2019/04/22/CyberSecurity-Secrets/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/04/26/Architect/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/05/12/CyberSecurity-GFW/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/09/04/Addiction-Decision/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/01/07/Policy-Law-Family/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/04/26/Network-Ntopng/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/02/13/Master/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/11/05/OpenSource-Operational/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/05/24/Log/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2019/01/07/Engineering/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/09/08/Policy-Poverty/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/05/15/Policy-Education/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/05/05/OpenSource-Coder/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/05/31/AboutMe/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/10/15/Artistic-Zhuhai-AirShow/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/06/19/Project-Template/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/02/02/Mathmetics-Tools/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-CSM/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-DVM/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/12/21/eBook-LPM/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2017/02/09/eBook/</loc>
+    <lastmod>2019-06-26</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2017/05/16/Language-Node-lang/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>  <url>
@@ -12,15 +108,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2017/06/14/Mathmetics/</loc>
     <lastmod>2019-06-21</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/11/26/DTrace/</loc>
-    <lastmod>2019-06-18</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/05/12/Language-Compiler/</loc>
-    <lastmod>2019-06-18</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/</loc>
-    <lastmod>2019-06-18</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/05/16/Language-R-lang/</loc>
     <lastmod>2019-06-17</lastmod>
@@ -46,9 +133,6 @@
     <loc>https://riboseyim.com/2017/07/09/Law-Of-Intellectual-Property/</loc>
     <lastmod>2019-06-07</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/05/12/CyberSecurity-GFW/</loc>
-    <lastmod>2019-06-07</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2019/06/07/SDN-CASE/</loc>
     <lastmod>2019-06-07</lastmod>
   </url>  <url>
@@ -71,9 +155,6 @@
     <lastmod>2019-06-07</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/05/12/SDN/</loc>
-    <lastmod>2019-06-07</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
     <lastmod>2019-06-07</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/04/26/Commander/</loc>
@@ -106,9 +187,6 @@
     <loc>https://riboseyim.com/2019/05/19/PHT-Skipping/</loc>
     <lastmod>2019-06-07</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2019/01/07/Engineering/</loc>
-    <lastmod>2019-06-07</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2016/04/26/PHT-Running/</loc>
     <lastmod>2019-06-02</lastmod>
   </url>  <url>
@@ -125,9 +203,6 @@
     <lastmod>2019-06-02</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2019/05/29/Project-Tech-NetworkPlanning/</loc>
-    <lastmod>2019-06-02</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/05/15/Policy-Education/</loc>
     <lastmod>2019-06-02</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/06/03/Writing-WriterToolChain/</loc>
@@ -163,9 +238,6 @@
     <loc>https://riboseyim.com/2018/06/05/Project-Risk/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/06/19/Project-Template/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2018/12/31/Engineering-Architecture/</loc>
     <lastmod>2019-05-26</lastmod>
   </url>  <url>
@@ -181,19 +253,10 @@
     <loc>https://riboseyim.com/2019/05/12/Linux-Shell/</loc>
     <lastmod>2019-05-12</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
-    <lastmod>2019-05-12</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/04/26/Linux-Commands/</loc>
     <lastmod>2019-05-12</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/08/31/CyberSecurity-Headers/</loc>
-    <lastmod>2019-05-12</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/11/05/OpenSource-Operational/</loc>
-    <lastmod>2019-05-12</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/</loc>
     <lastmod>2019-05-12</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2018/07/07/Writing-Email/</loc>
@@ -253,9 +316,6 @@
     <loc>https://riboseyim.com/2018/01/01/Check2018/</loc>
     <lastmod>2019-05-03</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/09/04/Addiction-Decision/</loc>
-    <lastmod>2019-05-03</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/11/05/Policy-Civil-Rights/</loc>
     <lastmod>2019-05-03</lastmod>
   </url>  <url>
@@ -268,19 +328,10 @@
     <loc>https://riboseyim.com/2018/02/01/International-Relations/</loc>
     <lastmod>2019-05-03</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/09/08/Policy-Poverty/</loc>
-    <lastmod>2019-05-03</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2016/05/01/History/</loc>
     <lastmod>2019-05-03</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/02/13/Master/</loc>
-    <lastmod>2019-05-03</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2019/05/03/Engineering-Organization/</loc>
-    <lastmod>2019-05-03</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2018/01/07/Policy-Law-Family/</loc>
     <lastmod>2019-05-03</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/05/12/Artistic-Museum/</loc>
@@ -322,13 +373,7 @@
     <loc>https://riboseyim.com/2019/04/30/TeamWork-JIRA/</loc>
     <lastmod>2019-05-01</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/</loc>
-    <lastmod>2019-05-01</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2019/04/30/Protocol-Route-OSPF/</loc>
-    <lastmod>2019-04-30</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/02/09/eBook/</loc>
     <lastmod>2019-04-30</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/05/31/TeamWork-Git/</loc>
@@ -338,12 +383,6 @@
     <lastmod>2019-04-30</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2018/06/11/Linux-Perf-App/</loc>
-    <lastmod>2019-04-21</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2019/04/22/CyberSecurity-Secrets/</loc>
-    <lastmod>2019-04-21</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/05/24/Log/</loc>
     <lastmod>2019-04-21</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/11/22/Visualization-Grafana/</loc>
@@ -395,9 +434,6 @@
     <lastmod>2019-04-07</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/06/03/Autobiography/</loc>
-    <lastmod>2019-04-07</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/04/26/Architect/</loc>
     <lastmod>2019-04-07</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/05/02/Artistic/</loc>
@@ -472,9 +508,6 @@
     <loc>https://riboseyim.com/2018/03/09/Machine-Learning-Economist/</loc>
     <lastmod>2019-04-07</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/02/02/Mathmetics-Tools/</loc>
-    <lastmod>2019-04-05</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/06/25/MrLizicheng/</loc>
     <lastmod>2019-03-17</lastmod>
   </url>  <url>
@@ -497,9 +530,6 @@
     <lastmod>2019-03-17</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/07/02/BirdWatching-GZ-Wetland/</loc>
-    <lastmod>2019-03-17</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/10/15/Artistic-Zhuhai-AirShow/</loc>
     <lastmod>2019-03-17</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/04/20/Artistic-The-Mad-Phoenix/</loc>
@@ -583,9 +613,6 @@
     <loc>https://riboseyim.com/2017/04/10/Writing-MediaData/</loc>
     <lastmod>2019-02-01</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/08/07/OpenSource-DB-Redis/</loc>
-    <lastmod>2019-01-22</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/05/16/Language-Perl-lang/</loc>
     <lastmod>2019-01-22</lastmod>
   </url>  <url>
@@ -606,9 +633,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2016/11/20/Network-Traffic/</loc>
     <lastmod>2019-01-09</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/12/21/eBook-LPM/</loc>
-    <lastmod>2019-01-06</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/07/05/Law-Of-Engineering/</loc>
     <lastmod>2019-01-06</lastmod>
@@ -670,9 +694,6 @@
     <loc>https://riboseyim.com/2017/11/23/Visualization-DashBoard/</loc>
     <lastmod>2018-12-18</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/05/12/Visualization-GIS/</loc>
-    <lastmod>2018-12-18</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/12/21/Language-Go-lang-Spider/</loc>
     <lastmod>2018-12-16</lastmod>
   </url>  <url>
@@ -694,9 +715,6 @@
     <loc>https://riboseyim.com/2017/04/09/Medal/</loc>
     <lastmod>2018-12-01</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/05/31/AboutMe/</loc>
-    <lastmod>2018-12-01</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2018/11/30/DTrace-Ops/</loc>
     <lastmod>2018-12-01</lastmod>
   </url>  <url>
@@ -709,9 +727,6 @@
     <loc>https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2016/04/26/Network-Ntopng/</loc>
-    <lastmod>2018-11-22</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
@@ -719,12 +734,6 @@
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/06/27/TeamWork-Knowledge-Sharing/</loc>
-    <lastmod>2018-11-22</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2018/03/02/eBook-CSM/</loc>
-    <lastmod>2018-11-22</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2018/03/02/eBook-MLM/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
@@ -793,9 +802,6 @@
     <loc>https://riboseyim.com/2018/09/17/DevOps-Deployment-Puppet/</loc>
     <lastmod>2018-09-18</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2018/03/02/eBook-DVM/</loc>
-    <lastmod>2018-09-17</lastmod>
-  </url>  <url>
     <loc>https://riboseyim.com/2017/10/22/Writing-Technology/</loc>
     <lastmod>2018-09-17</lastmod>
   </url>  <url>
@@ -813,9 +819,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2017/06/30/OpenSource-Spark/</loc>
     <lastmod>2018-08-07</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2017/06/27/DTrace_bcc/</loc>
-    <lastmod>2018-08-02</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/05/12/Protocol-RFC/</loc>
     <lastmod>2018-07-22</lastmod>
@@ -876,9 +879,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2017/12/23/Linux-Perf-WordBook/</loc>
     <lastmod>2017-12-28</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/05/05/OpenSource-Coder/</loc>
-    <lastmod>2017-12-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/08/21/Artistic-Flower/</loc>
     <lastmod>2017-12-11</lastmod>
