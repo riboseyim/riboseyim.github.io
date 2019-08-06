@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_UnitTree.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_upstart_sysV.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-05-11T08:08:00.620Z">
+<meta property="og:updated_time" content="2019-08-01T11:32:48.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:User Space">
 <meta name="twitter:description" content="摘要Linux 用户空间启动顺序">
@@ -162,17 +162,17 @@ ga('send', 'pageview');
 <h2 id="The-Initial-RAM-filesystem"><a href="#The-Initial-RAM-filesystem" class="headerlink" title="The Initial RAM filesystem"></a>The Initial RAM filesystem</h2><p>Linux内核不能通过访问PC BIOS 或者 EFI接口从磁盘获取数据，所以为了mount它的root filesystem, 对于底层存储需要驱动程序支持。解决方案是在内核运行之前，由boot loader加载驱动模块及工具到内存。在启动时，内核读取相关模块到一个临时的RAM filesystem(initramfs),挂载在／根目录,initramsfs允许内核为真正的root filesystem加载必要的驱动模块。<br>最后，再挂载真正的root filesystem、启动init。</p>
 <p>Linux在很多场景下都需要创建一个基于内存的文件系统，提供一个可以接近零延迟的快速存储区域。目前有两类主要的RAM磁盘可用，她们个有优劣：ramfs和tmpfs。(注意：创建之前可以使用 <strong>free</strong> 命令查看未使用的RAM)</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># mkdir /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># vi /etc/fstab</span></span><br><span class="line"><span class="meta">#tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></span><br></pre></td></tr></table></figure>
-<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
-<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
 <li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
 </ul>
-<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
 <li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
 <li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
@@ -183,7 +183,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
 <li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
 </ul>
-<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
@@ -305,7 +305,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-User-Space-Starts"><span class="toc-number">2.</span> <span class="toc-text">How User Space Starts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一号进程"><span class="toc-number">2.0.1.</span> <span class="toc-text">一号进程</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Initial-RAM-filesystem"><span class="toc-number">3.</span> <span class="toc-text">The Initial RAM filesystem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">3.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">3.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">3.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">3.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-User-Space-Starts"><span class="toc-number">2.</span> <span class="toc-text">How User Space Starts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一号进程"><span class="toc-number">2.0.1.</span> <span class="toc-text">一号进程</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Initial-RAM-filesystem"><span class="toc-number">3.</span> <span class="toc-text">The Initial RAM filesystem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能诊断指南"><span class="toc-number">4.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">4.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li>
           </div>
       </div>
     </div>
@@ -436,6 +436,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

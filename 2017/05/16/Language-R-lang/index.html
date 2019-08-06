@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/ad0a8/images/cover.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Top-20-Lib-2018.jpg">
-<meta property="og:updated_time" content="2019-06-17T05:27:04.723Z">
+<meta property="og:updated_time" content="2019-08-01T11:52:44.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转编程语言:R">
 <meta name="twitter:description" content="摘要">
@@ -155,6 +155,16 @@ ga('send', 'pageview');
 </li>
 <li>Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。</li>
 </ul>
+<h2 id="R-ABC"><a href="#R-ABC" class="headerlink" title="R ABC"></a>R ABC</h2><h4 id="Install-R"><a href="#Install-R" class="headerlink" title="Install R"></a>Install R</h4><p>R 的主版本每年发布一次。</p>
+<ul>
+<li>网址：<a href="https://cloud.r-project.org" target="_blank" rel="noopener">https://cloud.r-project.org</a></li>
+</ul>
+<h4 id="Install-RStudio"><a href="#Install-RStudio" class="headerlink" title="Install RStudio"></a>Install RStudio</h4><p>RStudio 是用于 R 编程的一种集成开发环境。</p>
+<ul>
+<li>网址：<a href="https://www.rstudio.com/download" target="_blank" rel="noopener">https://www.rstudio.com/download</a></li>
+</ul>
+<h4 id="Install-tidyverse"><a href="#Install-tidyverse" class="headerlink" title="Install tidyverse"></a>Install tidyverse</h4><p>R 编程有很多常用的依赖包，提供对 R 基础功能扩展，比较常用的是 tidyverse。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;install.packages(<span class="string">"tidyverse"</span>)</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">library</span>(<span class="string">"tidyverse"</span>)</span><br><span class="line">─ Attaching packages ───────────────────── tidyverse <span class="number">1.2</span><span class="number">.1</span> ─</span><br><span class="line">✔ ggplot2 <span class="number">3.2</span><span class="number">.0</span>     ✔ purrr   <span class="number">0.3</span><span class="number">.2</span></span><br><span class="line">✔ tibble  <span class="number">2.1</span><span class="number">.3</span>     ✔ dplyr   <span class="number">0.8</span><span class="number">.3</span></span><br><span class="line">✔ tidyr   <span class="number">0.8</span><span class="number">.3</span>     ✔ stringr <span class="number">1.4</span><span class="number">.0</span></span><br><span class="line">✔ readr   <span class="number">1.3</span><span class="number">.1</span>     ✔ forcats <span class="number">0.4</span><span class="number">.0</span></span><br><span class="line">─ Conflicts ────────────────────── tidyverse_conflicts() ─</span><br><span class="line">✖ dplyr::filter() masks stats::filter()</span><br><span class="line">✖ dplyr::lag()    masks stats::lag()</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
 <li><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="noopener">玩转编程语言系列</a></li>
 </ul>
@@ -277,7 +287,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-简介"><span class="toc-number">2.</span> <span class="toc-text">Introduction | 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-核心概念"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-架构"><span class="toc-number">4.</span> <span class="toc-text">Architecture | 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-最佳实践"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | 最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Markdown"><span class="toc-number">5.0.1.</span> <span class="toc-text">R Markdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-for-data-science"><span class="toc-number">5.0.2.</span> <span class="toc-text">R for data science</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visualization-based-on-R-and-Go"><span class="toc-number">5.0.3.</span> <span class="toc-text">Visualization based on R and Go</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-简介"><span class="toc-number">2.</span> <span class="toc-text">Introduction | 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-核心概念"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-架构"><span class="toc-number">4.</span> <span class="toc-text">Architecture | 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-最佳实践"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | 最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Markdown"><span class="toc-number">5.0.1.</span> <span class="toc-text">R Markdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-for-data-science"><span class="toc-number">5.0.2.</span> <span class="toc-text">R for data science</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visualization-based-on-R-and-Go"><span class="toc-number">5.0.3.</span> <span class="toc-text">Visualization based on R and Go</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R-ABC"><span class="toc-number">6.</span> <span class="toc-text">R ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-R"><span class="toc-number">6.0.1.</span> <span class="toc-text">Install R</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-RStudio"><span class="toc-number">6.0.2.</span> <span class="toc-text">Install RStudio</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-tidyverse"><span class="toc-number">6.0.3.</span> <span class="toc-text">Install tidyverse</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -408,6 +418,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

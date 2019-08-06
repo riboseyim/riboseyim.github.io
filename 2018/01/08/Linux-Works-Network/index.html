@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-NSSwitch.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Works-DNS-Call.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T08:55:41.959Z">
+<meta property="og:updated_time" content="2019-08-01T11:36:15.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:Network">
 <meta name="twitter:description" content="摘要 一、How DNS Works 二、How Route Works 三、How ARP Works">
@@ -214,17 +214,17 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h4 id="bond"><a href="#bond" class="headerlink" title="bond"></a>bond</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modinfo bonding</span></span><br><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-bond0  </span><br><span class="line">DEVICE=bond0</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.1.10</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">NETMASK=255.255.255.249</span><br><span class="line">USERCTL=NO</span><br><span class="line"></span><br><span class="line">$ more ifcfg-eth0</span><br><span class="line"><span class="comment">#HWADDR=74:86:7A:DD:C3:68</span></span><br><span class="line">DEVICE=eth0</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">ONBOOT=yes</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br><span class="line">USERCTL=NO</span><br><span class="line"></span><br><span class="line">$ more ifcfg-eth1</span><br><span class="line"><span class="comment">##HWADDR=74:86:7A:DD:C3:69</span></span><br><span class="line">DEVICE=eth1</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">ONBOOT=yes</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br><span class="line">USERCTL=NO</span><br><span class="line"></span><br><span class="line">more /etc/modprobe.conf</span><br><span class="line">options bonding mode=1 miimon=100</span><br></pre></td></tr></table></figure>
-<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
 <li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li>
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
-<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
 <li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
 </ul>
-<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
 <li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
 <li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
@@ -235,7 +235,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
 <li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
 </ul>
-<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
@@ -248,8 +248,9 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.github.io/2016/09/01/AAA/" target="_blank" rel="noopener">最佳工程实践：基于LVS的AAA负载均衡架构实践</a>  </li>
 <li><a href="https://code.facebook.com/posts/1906146702752923/open-sourcing-katran-a-scalable-network-load-balancer/" target="_blank" rel="noopener">VIPServer | Facebook Open-sourcing Katran, a scalable network load balancer</a></li>
 </ul>
-<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<h4 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h4><ul>
 <li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="noopener">远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a href="https://blog.csdn.net/ch853199769/article/details/78753963" target="_blank" rel="noopener">Wireshark 使用技巧</a></li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://tools.ietf.org/html/rfc1035" target="_blank" rel="noopener">RFC-1035 DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION</a></li>
@@ -379,7 +380,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-DNS-Works"><span class="toc-number">2.</span> <span class="toc-text">How DNS Works</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unknown-host"><span class="toc-number">2.0.1.</span> <span class="toc-text">unknown host</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hosts-static-table-lookup-for-hostnames"><span class="toc-number">2.0.2.</span> <span class="toc-text">hosts - static table lookup for hostnames</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-resolv-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">/etc/resolv.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSwitch"><span class="toc-number">2.0.4.</span> <span class="toc-text">NSSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig-Domain-Information-Groper"><span class="toc-number">2.0.5.</span> <span class="toc-text">dig | Domain Information Groper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Coding-API"><span class="toc-number">2.0.6.</span> <span class="toc-text">DNS Coding API</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">3.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Tools"><span class="toc-number">4.0.1.</span> <span class="toc-text">DNS Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bond"><span class="toc-number">4.0.2.</span> <span class="toc-text">bond</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">4.0.3.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">4.0.5.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">4.0.6.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例与实务"><span class="toc-number">4.0.7.</span> <span class="toc-text">案例与实务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-DNS-Works"><span class="toc-number">2.</span> <span class="toc-text">How DNS Works</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unknown-host"><span class="toc-number">2.0.1.</span> <span class="toc-text">unknown host</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hosts-static-table-lookup-for-hostnames"><span class="toc-number">2.0.2.</span> <span class="toc-text">hosts - static table lookup for hostnames</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etc-resolv-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">/etc/resolv.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSwitch"><span class="toc-number">2.0.4.</span> <span class="toc-text">NSSwitch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig-Domain-Information-Groper"><span class="toc-number">2.0.5.</span> <span class="toc-text">dig | Domain Information Groper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Coding-API"><span class="toc-number">2.0.6.</span> <span class="toc-text">DNS Coding API</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">3.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Tools"><span class="toc-number">4.0.1.</span> <span class="toc-text">DNS Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bond"><span class="toc-number">4.0.2.</span> <span class="toc-text">bond</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展阅读"><span class="toc-number">5.</span> <span class="toc-text">拓展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">5.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能诊断指南"><span class="toc-number">5.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">5.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">5.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例与实务"><span class="toc-number">5.0.5.</span> <span class="toc-text">案例与实务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读"><span class="toc-number">5.0.6.</span> <span class="toc-text">扩展阅读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -510,6 +511,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

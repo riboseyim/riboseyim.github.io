@@ -2,6 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://riboseyim.com/2016/05/15/Policy-Education/</loc>
+    
+    <lastmod>2019-08-06T17:04:50.829Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/05/16/Language-R-lang/</loc>
+    
+    <lastmod>2019-08-01T11:52:44.456Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2018/01/08/Linux-Works-Network/</loc>
+    
+    <lastmod>2019-08-01T11:36:15.759Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/07/14/Network-sFlow/</loc>
+    
+    <lastmod>2019-08-01T11:35:47.818Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
+    
+    <lastmod>2019-08-01T11:33:07.717Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</loc>
+    
+    <lastmod>2019-08-01T11:32:48.141Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2019/03/05/Linux-Works-Router/</loc>
+    
+    <lastmod>2019-08-01T11:32:15.301Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/12/11/Linux-Works-Memory/</loc>
+    
+    <lastmod>2019-08-01T11:31:31.637Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
+    
+    <lastmod>2019-07-18T02:38:16.506Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2016/09/01/AAA/</loc>
+    
+    <lastmod>2019-07-17T07:57:56.310Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/05/12/CyberSecurity-GFW/</loc>
+    
+    <lastmod>2019-07-08T08:53:01.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2019/01/05/Mac/</loc>
+    
+    <lastmod>2019-07-08T08:50:56.357Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://riboseyim.com/2017/05/12/Language-Compiler/</loc>
     
     <lastmod>2019-06-26T07:41:26.829Z</lastmod>
@@ -44,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2019/04/21/Linux-Works/</loc>
-    
-    <lastmod>2019-06-26T07:18:35.675Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/</loc>
     
     <lastmod>2019-06-26T06:39:10.811Z</lastmod>
@@ -68,13 +145,6 @@
     <loc>https://riboseyim.com/2016/04/26/Architect/</loc>
     
     <lastmod>2019-06-26T05:51:49.641Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/05/12/CyberSecurity-GFW/</loc>
-    
-    <lastmod>2019-06-26T05:24:18.036Z</lastmod>
     
   </url>
   
@@ -107,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/</loc>
-    
-    <lastmod>2019-06-26T03:33:46.216Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2017/11/05/OpenSource-Operational/</loc>
     
     <lastmod>2019-06-26T03:27:06.456Z</lastmod>
@@ -138,13 +201,6 @@
     <loc>https://riboseyim.com/2017/09/08/Policy-Poverty/</loc>
     
     <lastmod>2019-06-26T03:19:57.097Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2016/05/15/Policy-Education/</loc>
-    
-    <lastmod>2019-06-26T03:19:37.992Z</lastmod>
     
   </url>
   
@@ -233,13 +289,6 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2019/01/05/Mac/</loc>
-    
-    <lastmod>2019-06-21T03:51:52.168Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2018/03/26/DevOps-Deployment/</loc>
     
     <lastmod>2019-06-21T03:12:18.402Z</lastmod>
@@ -250,13 +299,6 @@
     <loc>https://riboseyim.com/2017/06/14/Mathmetics/</loc>
     
     <lastmod>2019-06-21T02:17:17.580Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/05/16/Language-R-lang/</loc>
-    
-    <lastmod>2019-06-17T05:27:04.723Z</lastmod>
     
   </url>
   
@@ -285,13 +327,6 @@
     <loc>https://riboseyim.com/2019/05/03/Protocol-IPAddr/</loc>
     
     <lastmod>2019-06-17T03:59:21.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2016/09/01/AAA/</loc>
-    
-    <lastmod>2019-06-17T03:57:34.516Z</lastmod>
     
   </url>
   
@@ -625,13 +660,6 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</loc>
-    
-    <lastmod>2019-05-11T08:08:00.620Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2017/05/26/Catalog/</loc>
     
     <lastmod>2019-05-04T16:50:53.724Z</lastmod>
@@ -919,23 +947,9 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2018/01/08/Linux-Works-Network/</loc>
-    
-    <lastmod>2019-04-21T08:55:41.959Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riboseyim.com/2016/04/26/Linux-Perf-Master/</loc>
     
     <lastmod>2019-04-21T08:55:32.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2019/03/05/Linux-Works-Router/</loc>
-    
-    <lastmod>2019-04-21T08:51:48.243Z</lastmod>
     
   </url>
   
@@ -950,13 +964,6 @@
     <loc>https://riboseyim.com/2017/11/06/Addiction-Decision-Fentanyl/</loc>
     
     <lastmod>2019-04-21T08:26:19.099Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/12/11/Linux-Works-Memory/</loc>
-    
-    <lastmod>2019-04-21T04:34:01.555Z</lastmod>
     
   </url>
   
@@ -1816,13 +1823,6 @@
   
   <url>
     <loc>https://riboseyim.com/2017/04/09/CyberSecurity-CSTCB/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/07/14/Network-sFlow/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     

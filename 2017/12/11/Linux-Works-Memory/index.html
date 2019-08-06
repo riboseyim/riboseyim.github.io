@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:34:01.555Z">
+<meta property="og:updated_time" content="2019-08-01T11:31:31.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:Memory">
 <meta name="twitter:description" content="摘要 经典内存异常：Out of Memory (OOM) Killer 我的内存利用率为什么特别高？ Linux 内存的分类 Linux 内存的计算 Linux 进程的内存 Linux 应用内存分配">
@@ -192,7 +192,7 @@ ga('send', 'pageview');
 <p>类似 Java 之类的虚拟机应用程序可以设置内存参数，例如:<br>Xms128m JVM初始分配的堆内存<br>Xmx512m JVM最大允许分配的堆内存<br>XX:PermSize=64M JVM初始分配的非堆内存<br>XX:MaxPermSize=128M JVM最大允许分配的非堆内存</p>
 <p>如果该应用需要较大的内存空间，可以调整为 -Xmx1024m、-Xmx2048m 以保障应用程序的运行性能，XX:MaxPermSize 设置过小会导致内存溢出，java.lang.OutOfMemoryError: PermGen space。但是 <strong>需要特别注意</strong> 的是：Xmx 绝对不能超过最大物理内存，或者说需要保留一定的剩余内存空间，否则将有可能导致其它进程因为没有可用内存而阻塞，甚至无法登陆机器 。</p>
 <p>正如摔跤游戏一样，内存管理的法则就是让进程在 <strong>留有余地</strong> 的前提下搏杀。</p>
-<h2 id="进阶阅读"><a href="#进阶阅读" class="headerlink" title="进阶阅读"></a>进阶阅读</h2><ul>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
 <li><a href="https://manybutfinite.com/post/how-the-kernel-manages-your-memory/" target="_blank" rel="noopener">How The Kernel Manages Your Memory</a></li>
 <li><a href="https://manybutfinite.com/post/anatomy-of-a-program-in-memory/" target="_blank" rel="noopener">Anatomy of a Program in Memory</a></li>
 <li><a href="https://manybutfinite.com/post/getting-physical-with-memory/" target="_blank" rel="noopener">Getting Physical With Memory</a></li>
@@ -203,12 +203,12 @@ ga('send', 'pageview');
 <li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
 </ul>
 <p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p>
-<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
 <li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
 <li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
 </ul>
-<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
 <li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
 <li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
 <li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
@@ -219,7 +219,7 @@ ga('send', 'pageview');
 <li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
 <li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
 </ul>
-<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
 <li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
 <li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
@@ -349,7 +349,7 @@ ga('send', 'pageview');
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存异常：-Out-of-Memory-OOM-Killer"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存异常： Out of Memory (OOM) Killer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我的内存利用率为什么特别高？"><span class="toc-number">1.0.2.</span> <span class="toc-text">我的内存利用率为什么特别高？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的分类"><span class="toc-number">1.0.3.</span> <span class="toc-text">Linux 内存的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的计算"><span class="toc-number">1.0.4.</span> <span class="toc-text">Linux 内存的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-进程的内存"><span class="toc-number">1.0.5.</span> <span class="toc-text">Linux 进程的内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-应用内存分配"><span class="toc-number">1.0.6.</span> <span class="toc-text">Linux 应用内存分配</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶阅读"><span class="toc-number">2.</span> <span class="toc-text">进阶阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：性能诊断指南"><span class="toc-number">2.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展阅读：动态追踪技术"><span class="toc-number">2.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存异常：-Out-of-Memory-OOM-Killer"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存异常： Out of Memory (OOM) Killer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我的内存利用率为什么特别高？"><span class="toc-number">1.0.2.</span> <span class="toc-text">我的内存利用率为什么特别高？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的分类"><span class="toc-number">1.0.3.</span> <span class="toc-text">Linux 内存的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-内存的计算"><span class="toc-number">1.0.4.</span> <span class="toc-text">Linux 内存的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-进程的内存"><span class="toc-number">1.0.5.</span> <span class="toc-text">Linux 进程的内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-应用内存分配"><span class="toc-number">1.0.6.</span> <span class="toc-text">Linux 应用内存分配</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展阅读"><span class="toc-number">2.</span> <span class="toc-text">拓展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#电子书《Linux-Perf-Master》"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能诊断指南"><span class="toc-number">2.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态追踪技术"><span class="toc-number">2.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li>
           </div>
       </div>
     </div>
@@ -480,6 +480,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
