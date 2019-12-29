@@ -16,9 +16,9 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[数据与隐私保护法 (Data Protection Law)]]></title>
+    <title><![CDATA[数据与隐私保护法 (Data Protection rules Law)]]></title>
     <url>%2F2019%2F12%2F08%2FLaw-of-PDO%2F</url>
-    <content type="text"><![CDATA[摘要 Personal data breach 数据泄露 Personal data breach 数据泄露意外或非法地销毁、遗失、更改、未经授权披露或查阅传送、存储或以其他方式处理的个人数据。 物质的：数据载体丢失，文件夹丢失，手机丢失 口头的：失言、故意泄露 网络的:后门、黑客、代码错误 五大数据泄露漏洞 雇员 移动设备 云存储 第三方服务提供商 恶意攻击 数据暴露（Data exposure）定义：因存储和保护不当而暴露在互联网 个人数据泄露通知流程：判断，补救，通知 相关服务：Identity Guard 信用监控和身份盗窃服务 控制者与处理者的责任与义务控制者：技术和组织措施以遵守ＧＤＰＲ处理者：遵守控制者的指令 基于设计和默认的数据保护设计：默认：业务开展、系统数据－＞企业文化 监管手段行政罚款 一般违规：１０００万欧元或全球营业额２％中的高者 严重罚款：２０００万欧元或全球营业额４％中的高者 严重罚则：违反基本原则，例如“同意”；转移第三国 GDPR第58条赋予监管机构以下权力： 调查权 纠正权 授权和提供咨询的权力 监管机构的权力和责任 推动 咨询 违规 标准 针对监管机构的原则：技术中立 跨境传输：EEAEEA内的数据传输EEA以外的数据传输（第三国=EEA以外的国家） 欧共体EC充分性认定：安道尔、阿根廷、加拿大、日本以色列、新西兰、瑞士、乌拉圭 欧盟-美国隐私盾协议 扩展阅读参考书参考文献]]></content>
+    <content type="text"><![CDATA[摘要 Personal data breach 数据泄露 主要概念GDPREEARoles Data subject 数据主体 1、可识别自然人 2、特殊条款： 儿童：不满16岁周岁、最低不低于13岁 Controller 数据控制者 Processor 数据处理者 DPO（Data Protection Officer）数据保护官。 具有数据保护法律和实践的专家；直接向最高管理层报告，应具有独立性；任命后公布其信息，通知监督机构。 Representative 代理方。例如聘请的专业领域的律师 Recipient 接收者 Supervisory authority 监管机构 Third party 第三方 。 个人数据Types of personal data Direct 直接：照片、DNA Indirect 间接：IP地址、车牌 Pseudonymized（假名化）化名（假名）： 匿名化：不能确定与数据有关的主体是谁。不再被认为是个人数据 个人数据的特殊类别（敏感数据） Sensitive data特定类别的个人数据禁止处理 种族出身 政治观点 宗教、哲学信仰、工会会员身份 基因数据 用于唯一识别自然人的目的生物特征数据 有关健康的数据 有关自然人的性生活或性取向的数据 GDPR特例： 个人肖像画不是个人数据 信用卡账单信息 GDPR 的基本原则是：敏感数据不允许处理，除了立法中的例外规定，如医疗等（第9条） 数据主体The data subject’s right right to access right to rectification 数据主体应有对于信息的以下权利： 可获取。 可反对。例如数据主体有权反对自动化个人决策——包括用户画像 可撤销。撤回同意 可限制。要求限制个人数据的处理行为 可纠正。修改不准确的个人数据，将不完整的数据补充完整 可携带。数据主体可以将数据转移给其它控制者。例如病历数据 可擦除。被遗忘的权力 可申诉和申请法律救济 数据处理的合法理由同意与撤销同意同意：应当以一种容易理解的形式，使用清晰和平白的语言。 撤销同意： Personal data breach 数据泄露意外或非法地销毁、遗失、更改、未经授权披露或查阅传送、存储或以其他方式处理的个人数据。 物质的：数据载体丢失，文件夹丢失，手机丢失 口头的：失言、故意泄露 网络的:后门、黑客、代码错误 五大数据泄露漏洞 雇员 移动设备 云存储 第三方服务提供商 恶意攻击 数据暴露（Data exposure）定义：因存储和保护不当而暴露在互联网 个人数据泄露通知流程：判断，补救，通知 相关服务：Identity Guard 信用监控和身份盗窃服务 控制者与处理者的责任与义务控制者：技术和组织措施以遵守ＧＤＰＲ处理者：遵守控制者的指令 基于设计和默认的数据保护设计：默认：业务开展、系统数据－＞企业文化 监管手段行政罚款 一般违规：１０００万欧元或全球营业额２％中的高者 严重罚款：２０００万欧元或全球营业额４％中的高者 严重罚则：违反基本原则，例如“同意”；转移第三国 GDPR第58条赋予监管机构以下权力： 调查权 纠正权 授权和提供咨询的权力 监管机构的权力和责任 推动 咨询 违规 标准 针对监管机构的原则：技术中立 跨境传输：EEAEEA内的数据传输EEA以外的数据传输（第三国=EEA以外的国家） 欧共体EC充分性认定：安道尔、阿根廷、加拿大、日本以色列、新西兰、瑞士、乌拉圭 欧盟-美国隐私盾协议 扩展阅读 数据与隐私保护法 (Data Protection Law) 参考书参考文献]]></content>
       <tags>
         <tag>Policy&amp;Law</tag>
         <tag>Economist</tag>
@@ -2750,7 +2750,7 @@
   <entry>
     <title><![CDATA[法律 | Overview of Law]]></title>
     <url>%2F2016%2F04%2F26%2FLaw%2F</url>
-    <content type="text"><![CDATA[摘要 promote the general welfare 专题：网络安全法（Cyber-Security） 专题：知识产权法（Intellectual Property） 专题：网络安全法（Cyber-Security） 美国网络安全立法策略 香港拟增设网络安全与科技罪案总警司 2018 reform of EU data protection rules 专题：知识产权法（Intellectual Property） 美国知识产权法 中国计算机软件领域发明专利保护实务 Resources 中国：裁判文书网 社区-简书专题《Policy&amp;Law》参考资料 揭开《哈佛法律评论》的面纱|2017-05-19 方流芳 雅理读书 有什么样的法学院，就有什么样的法院 | 清华大学法学院（国际化经验） 学术| 赵晓耕 时晨: 明代厂卫与法司的平衡与牵制 | 甘肃社会科学 法学学术前沿 1月10日]]></content>
+    <content type="text"><![CDATA[摘要 promote the general welfare 专题：网络安全法（Cyber-Security） 专题：知识产权法（Intellectual Property） 专题：网络安全法（Cyber-Security） 美国网络安全立法策略 香港警务处网络安全与科技罪案调查科 数据与隐私保护法 (Data Protection Law) 专题：知识产权法（Intellectual Property） 美国知识产权法 中国计算机软件领域发明专利保护实务 Resources 中国：裁判文书网 社区简书专题《Policy&amp;Law》参考资料 揭开《哈佛法律评论》的面纱|2017-05-19 方流芳 雅理读书 有什么样的法学院，就有什么样的法院 | 清华大学法学院（国际化经验） 学术| 赵晓耕 时晨: 明代厂卫与法司的平衡与牵制 | 甘肃社会科学 法学学术前沿 1月10日]]></content>
       <tags>
         <tag>Policy&amp;Law</tag>
       </tags>
