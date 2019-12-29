@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2019-06-07T10:13:06.367Z</updated>
+  <updated>2019-12-07T18:04:21.686Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>竞争情报</title>
+    <link href="https://riboseyim.com/2019/12/08/Intelligence-Competitive/"/>
+    <id>https://riboseyim.com/2019/12/08/Intelligence-Competitive/</id>
+    <published>2019-12-07T18:02:08.000Z</published>
+    <updated>2019-12-07T18:04:21.686Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h2 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h2><h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Psychology" scheme="https://riboseyim.com/tags/Psychology/"/>
+    
+      <category term="Manager" scheme="https://riboseyim.com/tags/Manager/"/>
+    
+      <category term="Intelligence" scheme="https://riboseyim.com/tags/Intelligence/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Law-of-CISA</title>
+    <link href="https://riboseyim.com/2019/12/08/Law-of-CISA/"/>
+    <id>https://riboseyim.com/2019/12/08/Law-of-CISA/</id>
+    <published>2019-12-07T18:00:12.000Z</published>
+    <updated>2019-12-07T18:00:12.163Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据与隐私保护法 (Data Protection Law)</title>
+    <link href="https://riboseyim.com/2019/12/08/Law-of-PDO/"/>
+    <id>https://riboseyim.com/2019/12/08/Law-of-PDO/</id>
+    <published>2019-12-07T17:56:08.000Z</published>
+    <updated>2019-12-29T16:46:29.436Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul><li>Personal data breach  数据泄露</li></ul><a id="more"></a><h2 id="Personal-data-breach-数据泄露"><a href="#Personal-data-breach-数据泄露" class="headerlink" title="Personal data breach  数据泄露"></a>Personal data breach  数据泄露</h2><p>意外或非法地销毁、遗失、更改、未经授权披露或查阅传送、存储或以其他方式处理的个人数据。</p><ul><li>物质的：数据载体丢失，文件夹丢失，手机丢失</li><li>口头的：失言、故意泄露 网络的:后门、黑客、代码错误</li></ul><h4 id="五大数据泄露漏洞"><a href="#五大数据泄露漏洞" class="headerlink" title="五大数据泄露漏洞"></a>五大数据泄露漏洞</h4><ul><li>雇员</li><li>移动设备</li><li>云存储</li><li>第三方服务提供商</li><li>恶意攻击</li></ul><h2 id="数据暴露（Data-exposure）"><a href="#数据暴露（Data-exposure）" class="headerlink" title="数据暴露（Data exposure）"></a>数据暴露（Data exposure）</h2><p>定义：因存储和保护不当而暴露在互联网</p><p>个人数据泄露<br>通知流程：判断，补救，通知</p><p>相关服务：Identity Guard 信用监控和身份盗窃服务</p><p>控制者与处理者的责任与义务<br>控制者：技术和组织措施以遵守ＧＤＰＲ<br>处理者：遵守控制者的指令</p><h2 id="基于设计和默认的数据保护"><a href="#基于设计和默认的数据保护" class="headerlink" title="基于设计和默认的数据保护"></a>基于设计和默认的数据保护</h2><p>设计：<br>默认：业务开展、系统数据－＞企业文化</p><h2 id="监管手段"><a href="#监管手段" class="headerlink" title="监管手段"></a>监管手段</h2><h4 id="行政罚款"><a href="#行政罚款" class="headerlink" title="行政罚款"></a>行政罚款</h4><ul><li>一般违规：１０００万欧元或全球营业额２％中的高者</li><li>严重罚款：２０００万欧元或全球营业额４％中的高者</li></ul><p>严重罚则：违反基本原则，例如“同意”；转移第三国</p><p>GDPR第58条赋予监管机构以下权力：</p><ul><li>调查权</li><li>纠正权</li><li>授权和提供咨询的权力</li></ul><p>监管机构的权力和责任</p><ul><li>推动</li><li>咨询</li><li>违规</li><li>标准</li></ul><p>针对监管机构的原则：技术中立</p><h2 id="跨境传输：EEA"><a href="#跨境传输：EEA" class="headerlink" title="跨境传输：EEA"></a>跨境传输：EEA</h2><p>EEA内的数据传输<br>EEA以外的数据传输（第三国=EEA以外的国家）</p><p>欧共体EC充分性认定：<br>安道尔、阿根廷、加拿大、日本<br>以色列、新西兰、瑞士、乌拉圭</p><p>欧盟-美国隐私盾协议</p><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Personal data breach  数据泄露&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Policy&amp;Law" scheme="https://riboseyim.com/tags/Policy-Law/"/>
+    
+      <category term="Economist" scheme="https://riboseyim.com/tags/Economist/"/>
+    
+      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Machine-Learning-Knownledge-Graph</title>
+    <link href="https://riboseyim.com/2019/10/13/Machine-Learning-Knownledge-Graph/"/>
+    <id>https://riboseyim.com/2019/10/13/Machine-Learning-Knownledge-Graph/</id>
+    <published>2019-10-13T02:41:11.000Z</published>
+    <updated>2019-10-14T05:39:17.296Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a href="https://www.gitbook.com/book/riboseyim/machine-learning" target="_blank" rel="noopener">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt></p><ul><li><a href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/" target="_blank" rel="noopener">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li><li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="noopener">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li><li><a href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/" target="_blank" rel="noopener">Machine Learning:机器学习项目</a></li><li><a href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/" target="_blank" rel="noopener">Machine Learning:机器学习算法</a></li><li><a href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/" target="_blank" rel="noopener">Machine Learning:如何选择机器学习算法</a></li><li><a href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network" target="_blank" rel="noopener">Machine Learning:神经网络基础</a></li><li><a href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/" target="_blank" rel="noopener">Machine Learning:机器学习书单</a></li><li><a href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News" target="_blank" rel="noopener">Machine Learning:人工智能媒体报道集</a></li><li><a href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/" target="_blank" rel="noopener">Machine Learning:机器学习技术与知识产权法</a></li><li><a href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/" target="_blank" rel="noopener">Machine Learning:经济学家谈人工智能</a></li><li><a href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/" target="_blank" rel="noopener">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li><li><a href="https://riboseyim.github.io/2018/10/03/Machine-Learning-Uber/" target="_blank" rel="noopener">Uber 业务预测系统实践</a></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul><li><a href="https://dl.ccf.org.cn/institude/institudeDetail?id=4583103168595968" target="_blank" rel="noopener">文物知识图谱的构建与应用</a></li><li><a href="https://dl.ccf.org.cn/journal/queryArticleById?id=4558207919032320" target="_blank" rel="noopener">知识图谱在电网全业务统一数据中心的应用</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;扩展阅读&quot;&gt;&lt;a href=&quot;#扩展阅读&quot; class=&quot;headerlink&quot; title=&quot;扩展阅读&quot;&gt;&lt;/a&gt;扩展阅读&lt;/h2&gt;&lt;h4 id=&quot;《The-Machine-Learning-Master》&quot;&gt;&lt;a href=&quot;#《The-Machine-Lea
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>SDN-CASE</title>
@@ -384,119 +469,6 @@
       <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
       <category term="工具癖" scheme="https://riboseyim.com/tags/%E5%B7%A5%E5%85%B7%E7%99%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cyber-Security-Secrets</title>
-    <link href="https://riboseyim.com/2019/04/22/CyberSecurity-Secrets/"/>
-    <id>https://riboseyim.com/2019/04/22/CyberSecurity-Secrets/</id>
-    <published>2019-04-21T17:09:48.000Z</published>
-    <updated>2019-06-26T06:38:00.525Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a><h2 id="The-Big-Picture"><a href="#The-Big-Picture" class="headerlink" title="The Big Picture"></a>The Big Picture</h2><h4 id="加密-vs-安全"><a href="#加密-vs-安全" class="headerlink" title="加密 vs 安全"></a>加密 vs 安全</h4><h2 id="Open-Source"><a href="#Open-Source" class="headerlink" title="Open Source"></a>Open Source</h2><ul><li><a href="https://gopenpgp.org/" target="_blank" rel="noopener">GopenPGP</a><br>An OpenPGP Wrapper for Go - <a href="https://gopenpgp.org/" target="_blank" rel="noopener">https://gopenpgp.org/</a>  (Developed by ProtonMail and built on a fork of the Go crypto package.)</li></ul><ul><li><a href="https://github.com/FiloSottile/mkcert" target="_blank" rel="noopener">FiloSottile/mkcert</a><br>A simple zero-config tool to make locally trusted development certificates with any names you’d like. <a href="https://mkcert.dev" target="_blank" rel="noopener">https://mkcert.dev</a></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul><li><a href="https://zvelo.com/securely-logging-tracing-http-requests-go/" target="_blank" rel="noopener">https://zvelo.com/securely-logging-tracing-http-requests-go/</a></li><li><a href="https://nacl.cr.yp.to/box.html" target="_blank" rel="noopener">NaCl: Networking and Cryptography library</a></li><li><a href="https://godoc.org/golang.org/x/crypto/openpgp" target="_blank" rel="noopener">package golang.org/x/crypto/openpgp</a></li><li><a href="https://zh.wikipedia.org/wiki/PGP" target="_blank" rel="noopener">维基百科：PGP</a></li><li><a href="https://saltpack.org" target="_blank" rel="noopener">saltpack | a modern crypto messaging format</a>:saltpack is a binary message format, encoded using the <a href="https://msgpack.org" target="_blank" rel="noopener">MessagePack</a> format.</li><li><a href="https://opensource.com/article/19/2/secrets-management-tools-git" target="_blank" rel="noopener">4 secrets management tools for Git encryption | See how Git-crypt, BlackBox, SOPS, and Transcrypt stack up for storing secrets in Git.</a></li><li><a href="https://linuxconfig.org/how-to-encrypt-your-dns-with-dnscrypt-on-ubuntu-and-debian" target="_blank" rel="noopener">How to Encrypt Your DNS With DNSCrypt on Ubuntu and Debian</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>How Linux Works:User Space</title>
-    <link href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/"/>
-    <id>https://riboseyim.com/2019/04/21/Linux-Works-User-Space/</id>
-    <published>2019-04-21T04:04:15.000Z</published>
-    <updated>2019-08-01T11:32:48.141Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Linux 用户空间启动顺序</p><a id="more"></a><h2 id="How-User-Space-Starts"><a href="#How-User-Space-Starts" class="headerlink" title="How User Space Starts"></a>How User Space Starts</h2><ol><li>init</li><li>必要的低层服务例如：udevd 和 syslog</li><li>网络配置</li><li>中高层服务例如 ：cron , printing</li><li>登录提示、图形界面及其它高层次应用</li></ol><h4 id="一号进程"><a href="#一号进程" class="headerlink" title="一号进程"></a>一号进程</h4><p>init（initialization的简写）是 Unix 和 类Unix 系统中用来产生其它所有进程的程序。它以守护进程的方式存在，其进程号为1。Linux系统在开机时加载Linux内核后，便由Linux内核加载init程序，由init程序完成余下的开机过程，比如加载运行级别，加载服务，引导Shell/图形化界面等等。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@li1437-101 ~]<span class="comment"># ps -ef | grep init</span></span><br><span class="line">root         1     0  0 Feb27 ?        00:03:05 /sbin/init</span><br><span class="line">root     28683 28663  0 02:44 pts/0    00:00:00 grep --color=auto init</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Mac OS</span><br><span class="line">bash-3.2$ ps -ef | grep init</span><br><span class="line">0   243     1   0 15 517  ??         0:00.74 /System/Library/CoreServices/CrashReporterSupportHelper server-init</span><br><span class="line">0   533     1   0 15 517  ??         0:02.07 /System/Library/CoreServices/SubmitDiagInfo server-init</span><br><span class="line">  501 52150     1   0 日01下午 ??         0:15.49 /usr/libexec/secinitd</span><br><span class="line">0 69864     1   0 11:35上午 ??         0:00.20 /usr/libexec/secinitd</span><br><span class="line">0 72830     1   0  1:51下午 ??         0:00.19 /usr/libexec/secinitd</span><br><span class="line">Darwin ACA80166.ipt.aol.com 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64</span><br><span class="line">bash-3.2$</span><br></pre></td></tr></table></figure><p>在Linux发行版中，init有三种主要的实现形式：</p><ol><li><strong>System V init</strong>: 传统的</li><li><strong>systemd</strong>: 所有主流Linux发行版中的标准init</li><li><strong>Upstart</strong>: Ubuntu</li></ol><p>Android 和 BSD （运行存放于’/etc/rc’的初始化 shell 脚本）也有它们自己的init版本，一些发行版也将System V init 修改为类似BSD风格的实现。目前大部分Linux发行版都已采用新的systemd替代System V和Upstart，但systemd向下兼容System V。</p><p><strong>System V init</strong>: 存在一个启动序列，同一时间只能启动一个任务，这种架构下，很容易解决依赖问题，但是性能方面要受一些影响。<br><strong>systemd is goal oriented.</strong> : 针对System V init的不足，systemd所有的服务都并发启动。systemd时基于目标的，需要定义要实现的目标，以及它的依赖项。systemd 将所有过程都抽象为一个配置单元，即 unit。可以认为一个服务是一个配置单元；一个挂载点是一个配置单元。</p><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_UnitTree.png" alt="systemd Unit target Tree"></p><p><strong>Upstart is reactionary.</strong>:Upstart是基于事件的，Upstart的事件驱动模型允许它以异步方式对生成的事件作出回应。</p><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_kernel_systemd_upstart_sysV.png" alt="System V init Vs UpStart Vs Systemd"></p><h2 id="The-Initial-RAM-filesystem"><a href="#The-Initial-RAM-filesystem" class="headerlink" title="The Initial RAM filesystem"></a>The Initial RAM filesystem</h2><p>Linux内核不能通过访问PC BIOS 或者 EFI接口从磁盘获取数据，所以为了mount它的root filesystem, 对于底层存储需要驱动程序支持。解决方案是在内核运行之前，由boot loader加载驱动模块及工具到内存。在启动时，内核读取相关模块到一个临时的RAM filesystem(initramfs),挂载在／根目录,initramsfs允许内核为真正的root filesystem加载必要的驱动模块。<br>最后，再挂载真正的root filesystem、启动init。</p><p>Linux在很多场景下都需要创建一个基于内存的文件系统，提供一个可以接近零延迟的快速存储区域。目前有两类主要的RAM磁盘可用，她们个有优劣：ramfs和tmpfs。(注意：创建之前可以使用 <strong>free</strong> 命令查看未使用的RAM)</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># mkdir /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># vi /etc/fstab</span></span><br><span class="line"><span class="meta">#tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></span><br></pre></td></tr></table></figure><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul><li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li><li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li></ul><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p><h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li><li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li></ul><h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul><li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li><li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li><li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li><li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li><li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li><li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li><li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li><li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li><li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li></ul><h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul><li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li><li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li><li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li><li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li><li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;Linux 用户空间启动顺序&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How Linux Works</title>
-    <link href="https://riboseyim.com/2019/04/21/Linux-Works/"/>
-    <id>https://riboseyim.com/2019/04/21/Linux-Works/</id>
-    <published>2019-04-21T03:49:13.000Z</published>
-    <updated>2019-08-01T11:33:07.717Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul><li>第一部分 The Big Picture</li><li>Levels and Layers</li><li>Hardware</li><li>The Kernel</li><li>User and User Space</li><li>第二部分 Overview of the Linux Kernel</li><li>进程管理 Process Management</li><li>内存管理 Memory Management</li><li>设备管理 Device Drivers and Management</li><li>系统调用 System Calls</li><li>用户空间 User Space</li><li>用户管理 User Management</li><li>第三部分 Application and Development</li><li>The Desktop</li><li>The Shell Script</li><li>The Development Tools</li><li>Compiling and Building</li><li>第四部分 Future</li></ul><a id="more"></a><h1 id="第一部分-The-Big-Picture"><a href="#第一部分-The-Big-Picture" class="headerlink" title="第一部分 The Big Picture"></a>第一部分 The Big Picture</h1><h3 id="Levels-and-Layers"><a href="#Levels-and-Layers" class="headerlink" title="Levels and Layers"></a>Levels and Layers</h3><h3 id="Hardware"><a href="#Hardware" class="headerlink" title="Hardware"></a>Hardware</h3><h3 id="Overview-of-the-Linux-Kernel"><a href="#Overview-of-the-Linux-Kernel" class="headerlink" title="Overview of the Linux Kernel"></a>Overview of the Linux Kernel</h3><h4 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h4><h4 id="设备管理-Device-Drivers-and-Management"><a href="#设备管理-Device-Drivers-and-Management" class="headerlink" title="设备管理 Device Drivers and Management"></a>设备管理 Device Drivers and Management</h4><h4 id="磁盘管理-DISKS-and-Filesystems"><a href="#磁盘管理-DISKS-and-Filesystems" class="headerlink" title="磁盘管理 DISKS and Filesystems"></a>磁盘管理 DISKS and Filesystems</h4><h4 id="进程管理-Process-Management"><a href="#进程管理-Process-Management" class="headerlink" title="进程管理 Process Management"></a>进程管理 Process Management</h4><h4 id="内存管理-Memory-Management"><a href="#内存管理-Memory-Management" class="headerlink" title="内存管理 Memory Management"></a>内存管理 Memory Management</h4><h4 id="系统调用-System-Calls"><a href="#系统调用-System-Calls" class="headerlink" title="系统调用 System Calls"></a>系统调用 System Calls</h4><h4 id="用户空间-User-Space"><a href="#用户空间-User-Space" class="headerlink" title="用户空间 User Space"></a>用户空间 User Space</h4><h4 id="用户管理-User-Management"><a href="#用户管理-User-Management" class="headerlink" title="用户管理 User Management"></a>用户管理 User Management</h4><h3 id="未来-Looking-Forward"><a href="#未来-Looking-Forward" class="headerlink" title="未来 Looking Forward"></a>未来 Looking Forward</h3><h1 id="第二部分-Overview-of-the-Linux-Kernel"><a href="#第二部分-Overview-of-the-Linux-Kernel" class="headerlink" title="第二部分 Overview of the Linux Kernel"></a>第二部分 Overview of the Linux Kernel</h1><h2 id="一、Basic-Commands"><a href="#一、Basic-Commands" class="headerlink" title="一、Basic Commands"></a>一、Basic Commands</h2><ul><li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li><li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li></ul><h2 id="二、Files-and-Directory"><a href="#二、Files-and-Directory" class="headerlink" title="二、Files and Directory"></a>二、Files and Directory</h2><h4 id="Files-Modes-and-Permissions"><a href="#Files-Modes-and-Permissions" class="headerlink" title="Files Modes and Permissions"></a>Files Modes and Permissions</h4><ul><li><a href="https://linuxhandbook.com/chmod-command/?utm_campaign=chmod-command-examples&amp;utm_medium=social_link&amp;utm_source=missinglettr" target="_blank" rel="noopener">Chmod Command Examples</a></li></ul><h4 id="Listing-and-Manipulating-Processes"><a href="#Listing-and-Manipulating-Processes" class="headerlink" title="Listing and Manipulating Processes"></a>Listing and Manipulating Processes</h4><h4 id="Directory-Hierarchy"><a href="#Directory-Hierarchy" class="headerlink" title="Directory Hierarchy"></a>Directory Hierarchy</h4><h4 id="Running-Commands"><a href="#Running-Commands" class="headerlink" title="Running Commands"></a>Running Commands</h4><h2 id="三、DEVICES-设备管理"><a href="#三、DEVICES-设备管理" class="headerlink" title="三、DEVICES 设备管理"></a>三、DEVICES 设备管理</h2><h3 id="Devices-Files"><a href="#Devices-Files" class="headerlink" title="Devices Files"></a>Devices Files</h3><h3 id="Devices-Path"><a href="#Devices-Path" class="headerlink" title="Devices Path"></a>Devices Path</h3><h3 id="Devices-Extend"><a href="#Devices-Extend" class="headerlink" title="Devices Extend"></a>Devices Extend</h3><h2 id="四、DISKS-and-FileSystems-磁盘管理"><a href="#四、DISKS-and-FileSystems-磁盘管理" class="headerlink" title="四、DISKS and FileSystems 磁盘管理"></a>四、DISKS and FileSystems 磁盘管理</h2><ul><li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li></ul><h3 id="Partitioning-Disk-Devices"><a href="#Partitioning-Disk-Devices" class="headerlink" title="Partitioning Disk Devices"></a>Partitioning Disk Devices</h3><h3 id="FileSystems"><a href="#FileSystems" class="headerlink" title="FileSystems"></a>FileSystems</h3><h3 id="Swap-Space"><a href="#Swap-Space" class="headerlink" title="Swap Space"></a>Swap Space</h3><h3 id="Traditional-FileSystems"><a href="#Traditional-FileSystems" class="headerlink" title="Traditional FileSystems"></a>Traditional FileSystems</h3><h3 id="Looking-Forwarding"><a href="#Looking-Forwarding" class="headerlink" title="Looking Forwarding"></a>Looking Forwarding</h3><h2 id="五、How-the-Linux-Kernel-Boots"><a href="#五、How-the-Linux-Kernel-Boots" class="headerlink" title="五、How the Linux Kernel Boots"></a>五、How the Linux Kernel Boots</h2><ul><li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li></ul><h2 id="六、How-User-Space-Starts"><a href="#六、How-User-Space-Starts" class="headerlink" title="六、How User Space Starts"></a>六、How User Space Starts</h2><ul><li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li></ul><h2 id="七、System-Configuration"><a href="#七、System-Configuration" class="headerlink" title="七、System Configuration"></a>七、System Configuration</h2><h3 id="System-Logging"><a href="#System-Logging" class="headerlink" title="System Logging"></a>System Logging</h3><h3 id="User-Management-Files"><a href="#User-Management-Files" class="headerlink" title="User Management Files"></a>User Management Files</h3><ul><li>/etc/passwd File</li><li>/etc/shadow File</li></ul><h3 id="System-Time"><a href="#System-Time" class="headerlink" title="System Time"></a>System Time</h3><h3 id="Batch-Jobs"><a href="#Batch-Jobs" class="headerlink" title="Batch Jobs"></a>Batch Jobs</h3><h4 id="Scheduling-Tasks"><a href="#Scheduling-Tasks" class="headerlink" title="Scheduling Tasks"></a>Scheduling Tasks</h4><h3 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h3><h4 id="User-ID-and-Users-Switching"><a href="#User-ID-and-Users-Switching" class="headerlink" title="User ID and Users Switching"></a>User ID and Users Switching</h4><h4 id="User-Identification-and-Authentication"><a href="#User-Identification-and-Authentication" class="headerlink" title="User Identification and Authentication"></a>User Identification and Authentication</h4><h2 id="八、System-Resource-Utilization"><a href="#八、System-Resource-Utilization" class="headerlink" title="八、System Resource Utilization"></a>八、System Resource Utilization</h2><h3 id="Introduction-to-Resource-Monitoring"><a href="#Introduction-to-Resource-Monitoring" class="headerlink" title="Introduction to Resource Monitoring"></a>Introduction to Resource Monitoring</h3><h3 id="Load-Averages"><a href="#Load-Averages" class="headerlink" title="Load Averages"></a>Load Averages</h3><ul><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li></ul><h3 id="Measuring-Memory"><a href="#Measuring-Memory" class="headerlink" title="Measuring Memory"></a>Measuring Memory</h3><h3 id="Measuring-CPU"><a href="#Measuring-CPU" class="headerlink" title="Measuring CPU"></a>Measuring CPU</h3><h3 id="Measuring-I-O"><a href="#Measuring-I-O" class="headerlink" title="Measuring I/O"></a>Measuring I/O</h3><h3 id="Per-Processes-Monitoring"><a href="#Per-Processes-Monitoring" class="headerlink" title="Per-Processes Monitoring"></a>Per-Processes Monitoring</h3><h2 id="九、Network"><a href="#九、Network" class="headerlink" title="九、Network"></a>九、Network</h2><h3 id="Network-Basic"><a href="#Network-Basic" class="headerlink" title="Network Basic"></a>Network Basic</h3><h3 id="Moving-Files-across-the-Network"><a href="#Moving-Files-across-the-Network" class="headerlink" title="Moving Files across the Network"></a>Moving Files across the Network</h3><h4 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h4><h4 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h4><h4 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h4><h3 id="Configuring-Linux-as-a-Router"><a href="#Configuring-Linux-as-a-Router" class="headerlink" title="Configuring Linux as a Router"></a>Configuring Linux as a Router</h3><h3 id="Firewalls"><a href="#Firewalls" class="headerlink" title="Firewalls"></a>Firewalls</h3><h3 id="Ethernet-IP-and-ARP"><a href="#Ethernet-IP-and-ARP" class="headerlink" title="Ethernet,IP and ARP"></a>Ethernet,IP and ARP</h3><h3 id="Wireless-Ethernet"><a href="#Wireless-Ethernet" class="headerlink" title="Wireless Ethernet"></a>Wireless Ethernet</h3><h2 id="十、Network-Application-and-Services"><a href="#十、Network-Application-and-Services" class="headerlink" title="十、Network Application and Services"></a>十、Network Application and Services</h2><h3 id="Network-Servers"><a href="#Network-Servers" class="headerlink" title="Network Servers"></a>Network Servers</h3><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><h3 id="Diagnostic-Tools"><a href="#Diagnostic-Tools" class="headerlink" title="Diagnostic Tools"></a>Diagnostic Tools</h3><ul><li>lsof</li><li>tcpdump</li><li>netstat</li><li>port scanning</li></ul><h3 id="Remote-Procedure-Call-RPC"><a href="#Remote-Procedure-Call-RPC" class="headerlink" title="Remote Procedure Call(RPC)"></a>Remote Procedure Call(RPC)</h3><h3 id="Network-Security"><a href="#Network-Security" class="headerlink" title="Network Security"></a>Network Security</h3><h1 id="第三部分-Application-and-Development"><a href="#第三部分-Application-and-Development" class="headerlink" title="第三部分 Application and Development"></a>第三部分 Application and Development</h1><h2 id="一、The-Desktop"><a href="#一、The-Desktop" class="headerlink" title="一、The Desktop"></a>一、The Desktop</h2><h2 id="二、Shell-Scripts"><a href="#二、Shell-Scripts" class="headerlink" title="二、Shell Scripts"></a>二、Shell Scripts</h2><ul><li><a href="https://riboseyim.github.io/2019/05/12/Linux-Shell/" target="_blank" rel="noopener">How Linux Works：Shell</a></li></ul><h2 id="三、Development-Tools"><a href="#三、Development-Tools" class="headerlink" title="三、Development Tools"></a>三、Development Tools</h2><h2 id="四、Compiling-and-Building"><a href="#四、Compiling-and-Building" class="headerlink" title="四、Compiling and Building"></a>四、Compiling and Building</h2><h3 id="Compiling-Software-From-C-Source-Code"><a href="#Compiling-Software-From-C-Source-Code" class="headerlink" title="Compiling Software From C Source Code"></a>Compiling Software From C Source Code</h3><h3 id="Building-on-the-BASIC"><a href="#Building-on-the-BASIC" class="headerlink" title="Building on the BASIC"></a>Building on the BASIC</h3><ul><li>Web Servers and Application</li><li>Databasees</li><li>Virtualization</li><li>Distributed Computing</li><li>Embedded Systems</li></ul><h1 id="第四部分-Future"><a href="#第四部分-Future" class="headerlink" title="第四部分 Future"></a>第四部分 Future</h1><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="源码阅读的一般方法"><a href="#源码阅读的一般方法" class="headerlink" title="源码阅读的一般方法"></a>源码阅读的一般方法</h4><ul><li>核心子系统（例如进程管理子系统）</li><li>结构体、数据结构</li><li>关键程序、加载顺序</li><li>主题式探索（例如：Linux 支持闰秒吗？）</li></ul><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul><li><a href="https://riboseyim.gitbook.io/perf" target="_blank" rel="noopener">https://riboseyim.gitbook.io/perf</a></li><li><a href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details" target="_blank" rel="noopener">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li></ul><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt></p><h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li><li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li><li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li></ul><h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul><li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li><li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li><li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li><li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li><li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li><li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li><li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li><li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li><li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li></ul><h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul><li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li><li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd" target="_blank" rel="noopener">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li><li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li><li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li><li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul><li><a href="https://www.cyberpratibha.com/list-users-linux/" target="_blank" rel="noopener">How to check List users in Linux | Complete Guide for Beginners</a></li><li><a href="https://access.redhat.com/solutions/393663" target="_blank" rel="noopener">How To Configure Authenticated NTP Using Symmetric Keys (compatibility with FIPS 140-2)</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;第一部分 The Big Picture&lt;/li&gt;
-&lt;li&gt;Levels and Layers&lt;/li&gt;
-&lt;li&gt;Hardware&lt;/li&gt;
-&lt;li&gt;The Kernel&lt;/li&gt;
-&lt;li&gt;User and User Space&lt;/li&gt;
-&lt;li&gt;第二部分 Overview of the Linux Kernel&lt;/li&gt;
-&lt;li&gt;进程管理 Process Management&lt;/li&gt;
-&lt;li&gt;内存管理 Memory Management&lt;/li&gt;
-&lt;li&gt;设备管理 Device Drivers and Management&lt;/li&gt;
-&lt;li&gt;系统调用 System Calls&lt;/li&gt;
-&lt;li&gt;用户空间 User Space&lt;/li&gt;
-&lt;li&gt;用户管理 User Management&lt;/li&gt;
-&lt;li&gt;第三部分 Application and Development&lt;/li&gt;
-&lt;li&gt;The Desktop&lt;/li&gt;
-&lt;li&gt;The Shell Script&lt;/li&gt;
-&lt;li&gt;The Development Tools&lt;/li&gt;
-&lt;li&gt;Compiling and Building&lt;/li&gt;
-&lt;li&gt;第四部分 Future&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="DevOps" scheme="https://riboseyim.com/tags/DevOps/"/>
-    
-      <category term="架构师" scheme="https://riboseyim.com/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
-    
-      <category term="Linux" scheme="https://riboseyim.com/tags/Linux/"/>
-    
-      <category term="SRE" scheme="https://riboseyim.com/tags/SRE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人物:温斯顿·丘吉尔</title>
-    <link href="https://riboseyim.com/2019/04/07/History-Winston-Churchill/"/>
-    <id>https://riboseyim.com/2019/04/07/History-Winston-Churchill/</id>
-    <published>2019-04-07T09:24:34.000Z</published>
-    <updated>2019-05-01T12:24:19.096Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote><p>历史会善待我的，因为我打算书写历史。—— 温斯顿·S·丘吉尔</p></blockquote><a id="more"></a><h2 id="自传"><a href="#自传" class="headerlink" title="自传"></a>自传</h2><p>不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）</p><p>写作可以成为你的一个伴侣，能在你的周围筑起一个看不见摸不着的水晶空间，你就像鱼缸里的一条金鱼，不过这个鱼缸是金鱼自己造出来的。写作一直陪伴着我，旅途中也没有片刻停下来，所以我从未感到无所事事。不是玻璃需要磨光，就是结构需要调整，要不就是缸体需要加固。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）</p><p>喝威士忌酒在当时时尚的英国也是一个新生事物。比如我的父亲，除了在荒野打猎时或某个非常阴冷的地方，他从来不喝威士忌。他生活在“白兰地加苏打水”的年代，事实上，白兰地加苏打水在当时是很体面高雅的瘾品。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p138）</p><p>我们这些年轻军官多么羡慕资深的少校在阿布科里战役中冒险的经历啊！我们又是多么羡慕上校获得的一长排荣誉勋章啊！他们不止一次给我们讲述他们以前激动人心的经历，我们百听不厌。我们多么希望也能有类似的记忆匣子，如果需要的话，可以向一群意气相投的观众一遍一遍地打开陈列。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p81）</p><p>在印度边境打仗本身就是一种难得的经理。……当地的帕坦人总是战事不断，不是各种私人间的争斗，就是公共的战争。除了收获的季节，因为生存的需要，他们才会暂时休战。在这里，每个人既是勇士，又是政治家和神学家。每一幢大的房子都是一个堡垒……每个村子都有自己的防御工事，每个家庭都有自己的家族世仇，每个宗族也都有自己的世仇，数不清的部落和各种各样的部落联合体相互之间都有许多仇恨的账需要清算；没有什么是可以遗忘的，每一笔账都要算清楚。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p147）</p><h2 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h2><p>以赛亚·伯林认为丘吉尔核心的思想原则是历史想象力——可以把全部当下和全部未来都装进丰富多彩的过去的框架中，丘吉尔最强大的感受能力是对过去的感受。特别是对古代史的感受使他熟知人性的黑暗。</p><blockquote><p>丘吉尔早就看透了希特勒，因为丘吉尔对魔鬼的熟知程度非张伯伦所能及。张伯伦的现实主义是浅薄的。他知道人民需要和平，人民要把钱花在国内需求上而不是在武备上，所以他把那些东西给了人民。但是丘吉尔知道的更多。他是一个很少幻想的人，部分原因是他把时间——在他的学生时代之后——用于阅读历史和写作历史，而且他作为士兵和记者亲历了英国的殖民战争。因此，他知道人类是多么强悍和多么无理性。像所有明智的人一样，他朝着悲剧的方向思考：我们创造道德标准是为了衡量我们自己的缺陷。—— 罗伯特·D·卡普兰 | 《武士政治》p020</p></blockquote><h2 id="阅读作业"><a href="#阅读作业" class="headerlink" title="阅读作业"></a>阅读作业</h2><ul><li>以赛亚·伯林 | 《温斯顿·丘吉尔在1940年》（“Winston Churchill in 1940”）,1998</li><li>罗伯特·D·卡普兰 | 《武士政治》</li></ul><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul><li><a href="http://riboseyim.github.io/2019/02/10/Psychology-Biases/" target="_blank" rel="noopener">情绪的动物：认知、偏见与决策</a></li><li><a href="https://riboseyim.github.io/2019/03/17/International-Relations-Kaplan/" target="_blank" rel="noopener">行走的思想家：罗伯特·D.卡普兰</a></li><li><a href="https://riboseyim.com/2019/02/04/Engineering-Ethics/">国之重器，在人不在宝 | 挑战者号航天飞机事故调查</a></li><li><a href="https://riboseyim.github.io/2018/02/04/Redology-Intelligence/" target="_blank" rel="noopener">红楼故事：康熙的秘密情报系统</a></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;历史会善待我的，因为我打算书写历史。—— 温斯顿·S·丘吉尔&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="History" scheme="https://riboseyim.com/tags/History/"/>
-    
-      <category term="Intelligence" scheme="https://riboseyim.com/tags/Intelligence/"/>
     
   </entry>
   
