@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Engineering-RAMS]]></title>
+    <url>%2F2020%2F01%2F02%2FEngineering-RAMS%2F</url>
+    <content type="text"><![CDATA[摘要RAMS 即可靠性(Reliability)、可用性(Availability)、可维护性(Maintainability) 和安全性(Safety)的简称。 BackgroundRAMS 即可靠性(Reliability)、可用性(Availability)、可维护性(Maintainability) 和安全性(Safety)的简称。 QuestionOrganization TheoryOrganization Design个体层面 Individual level群体层面 Group level项目层面 Project level组织场域层面 Organizational field levelBest Practice | XX 最佳实践推荐阅读NTNU PPT 《System Reliability Theory》PPT 《Reliability of Safety-Critical Systems》PPT 《Risk Assessmen: Theory, Methods, and Applications》PPT 《Risikoanalyse. Teori og metoder》PPT 《风险评估：理论、方法与应用》《风险评估：理论、方法与应用》简介 西方发达国家，尤其是西北欧国家，在经历了20世纪70年代和80年代一系列惨痛的工业事故之后，就一直把工业安全和事故预防的问题放在重中之重的地位，并大范围推广风险评估技术和方法，也对此进行了大量的探索和研究。所有的这些成果都会对解决中国日益严重的技术安全问题有巨大的帮助。 资源研究机构挪威科技大学(Norwegian University of Science and Technology，简称 NTNU)挪威科技大学是挪威工程学与工业技术的研究中心。为挪威及世界各地区培养了大批量的高素质工程师，造船，石油，渔业，医学，计算机技术及纳米技术学科属于世界顶尖，曾有五位校友获得诺贝尔奖；挪威科技大学最早历史可以追溯到1760年成立的特隆赫姆学会，该学会于1767年受到挪威皇室的认可，进而改名为挪威皇家科学与文学学会，1996年，挪威理工学院与特隆赫姆艺术科学学院、自然历史和考古博物馆合并组成挪威科技大学。 中国北方车辆研究所(中国兵器201所)中国坦克装甲车辆总体研制单位和兵器地面无人平台研发中心。 部分研究者 挪威科技大学 Marvin Rausand 教授/马文·拉桑德 Competence/interests: System reliability theory Reliability, Availability, Maintainability, and Safety (RAMS) analysis Risk analysis Reliability Centered Maintenance (RCM) Reliability assessment of oil/gas subsea and well equipment Probabilistic modeling Books: Rausand, M.: “Reliability of Safety-Critical Systems: Theory and Applications,” Wiley, Hoboken, NJ ,2014. Rausand, M.: “Risk Assessment: Theory, Methods, and Applications,” Wiley, Hoboken, 2011.[This book has been translated to Chinese and is published by Tsinghua University Press, 2013] Rausand, M. and Utne, I. B.: “Risikoanalyse - Teori og metoder”, Tapir akademisk forlag, Trondheim, 2009 (In Norwegian). Murthy, D. N. P., Rausand, M. and Østerås, T.: “Product Reliability: Specification and Performance”, Springer, London, 2008.[This book is currently (i.e., 2013) being translated to Chinese.] Rausand, M. and Høyland, A.: “System Reliability Theory: Models, Statistical methods, and Applications” (2nd ed.), Wiley, Hoboken, 2004. [This book has been translated to Chinese and is published by the National Defense Industry Press, 2010] 挪威科技大学 刘一骝 副教授 挪威科技大学 Arvid Naess 教授研究兴趣主要包括数理统计、极值概率、可靠性理论、海洋波统计、民用工程等。 浙江大学建筑工程学院/金伟良教授研究方向：工程结构可靠度、混凝土结构基本性能（含耐久性、长期性能） 电子科技大学机电学院/黄洪钟教授研究方向：1. 可靠性设计；2. 状态监测、故障诊断与寿命预测；3. 人工智能与优化设计；4. 数字化设计与智能制造 东北大学张义民教授提出了机械装备的动态和渐变可靠性设计、可靠性优化设计、可靠性灵敏度设计和可靠性稳健设计等成组理论与技术等，应用于压缩机、车辆、重矿机械、机床、发动机等行业。 资质认证 ASQ CRE：美国ASQ的注册可靠性工程师认证。 TÜV Functional Safety：德国TÜV的功能安全认证。包括： 南德 Functional Safety Certified Professional 北德 Functional Safety Certified Engineer/Coordinator/Manager 莱茵 Functional Safety Engineer INCOSE ASEP/CSEP/ESEP：美国INCOSE的系统工程师认证。 专业组织 IEEE Reliability Society：IEEE 可靠性分会。 ASQ Reliability Division：英文详见 http://www.asqrd.org中文详见 https://accendoreliability.com/webinars INCOSE：涵盖了系统工程的多方面内容，有时会跟RAMS有交集。 学术会议ESREL（European Safety and Reliability Conference，欧洲安全性和可靠性会议）2018年6月在挪威特隆赫姆（Trondheim）举行，由挪威科技大学（NTNU）承办。ESREL 2018 会议的主题是“不断变化的世界中的安全社会”。会议目标是推动理解，建模、分析并管理在风险，安全和可靠性领域的复杂性问题，这些领域体现在我们世界的现在和未来。并寻求建立一个多学科平台，以解决这些领域的技术，社会等问题。 RAMSRAMS领域的年度盛会。2018年1月在美国内华达州（Nevada）举行。 ICRSE（International Conference on Reliability Systems Engineering，国际可靠性系统工程会议）2017年7月中旬在北京举行，由北京航空航天大学承办。 参考文献 中国兵器工业集团 记全国技术能手、中国兵器北重集团数控设备维修领域人才李松 RAMS工程师职业发展的个人建议 挪威科技大学刘一骝教授到计算机与通信工程系访问]]></content>
+      <tags>
+        <tag>Engineering</tag>
+        <tag>Policy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[竞争情报]]></title>
     <url>%2F2019%2F12%2F08%2FIntelligence-Competitive%2F</url>
     <content type="text"><![CDATA[摘要 IntroductionTheoryPractice拓展阅读参考文献]]></content>
@@ -28,7 +37,7 @@
   <entry>
     <title><![CDATA[Machine-Learning-Knownledge-Graph]]></title>
     <url>%2F2019%2F10%2F13%2FMachine-Learning-Knownledge-Graph%2F</url>
-    <content type="text"><![CDATA[扩展阅读《The Machine Learning Master》 Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别 Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js Machine Learning:机器学习项目 Machine Learning:机器学习算法 Machine Learning:如何选择机器学习算法 Machine Learning:神经网络基础 Machine Learning:机器学习书单 Machine Learning:人工智能媒体报道集 Machine Learning:机器学习技术与知识产权法 Machine Learning:经济学家谈人工智能 数据可视化（三）基于 Graphviz 实现程序化绘图 Uber 业务预测系统实践 参考文献 文物知识图谱的构建与应用 知识图谱在电网全业务统一数据中心的应用]]></content>
+    <content type="text"><![CDATA[摘要知识图谱的早期理念源于万维网之父 Tim Berners Lee 关于语义网(The Semantic Web) 的设想，旨在采用图的结构(Graph Structure)来建模和记录世界万物之间的关联关系和知识， 以便有效实现更加精准的对象级搜索。经过近二十年的发展，知识图谱的相关技术已经在搜索引擎、智能问答、语言及视觉理解、大数据决策分析、智能设备物联等众多领域得到广泛应用，被公认为是实现认知智能的重要基石。近年来，随着自然语言处理、深度学习、图数据处理等众多领域的飞速发展，知识图谱在自动化知识获取、 基于知识的自然语言处理、基于表示学习的机器推理、基于图神经网络的图挖掘与分析等领域又取得了很多新进展。 教程浙江大学研究生专业选修课课程系统性介绍知识图谱的基本概念、核心技术内涵和应用实践方法，具体内容涉及知识表示与推理、图数据库、关系抽取与知识图谱构建、知识图谱表示学习与嵌入、语义搜索与知识问答、图神经网络与图挖掘分析等。课程内容的设计以“基础、前沿与实践”相结合为基本原则，既包括基本概念介绍和实践应用内容，也包括学术界的最新前沿进展的介绍。 前置课程与知识 建议预先修读数据库、机器学习、自然语言处理等课程，熟悉Tensorflow、Pytorch等常用深度学习框架。 浙江大学/陈华钧教授 教材《知识图谱：方法、实践与应用》，电子工业出版社，2019 扩展阅读《The Machine Learning Master》 Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别 Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js Machine Learning:机器学习项目 Machine Learning:机器学习算法 Machine Learning:如何选择机器学习算法 Machine Learning:神经网络基础 Machine Learning:机器学习书单 Machine Learning:人工智能媒体报道集 Machine Learning:机器学习技术与知识产权法 Machine Learning:经济学家谈人工智能 数据可视化（三）基于 Graphviz 实现程序化绘图 Uber 业务预测系统实践 参考文献 文物知识图谱的构建与应用 知识图谱在电网全业务统一数据中心的应用]]></content>
   </entry>
   <entry>
     <title><![CDATA[SDN-CASE]]></title>
@@ -372,9 +381,9 @@
     <content type="text"><![CDATA[摘要 The History Overview of the Mac Application and Development Future This article is part of an Mac Operating System tutorial series. Make sure to check out my other articles as well: 谁是王者：macOS vs Linux Kernels ？ 数据可视化（一）思维利器 OmniGraffle for Mac 使用指南 我的写作工具链 The Big PictureThe History 谁是王者：macOS vs Linux Kernels ？ Overview of the Mac快键键1234567891011⌘——Command ()⌃ ——Control⌥——Option (alt)⇧——Shift⇪——Caps Lockfn——功能键 Basic Commands 操作 Linux Mac Windows 字符匹配 grep grep findstr 查看网卡 ifconfig ifconfig ipconfig 查看网络路由 route -n netstat -ar netstat -ar route PRINT 查看网络连接 netstat -an netstat -an netstat -an 更新动态库 ldconfig update_dyld_shared_cache —— hosts /etc/hosts//private/etc/hosts ——- debug strace dtruss ——- 查看库依赖 ldd otool -L —— 进程管理 ps ps tasklist 进程管理 kill kill taskkill /pid /T /F 环境变量 env [print]printenv [init] ~/.bash_profile 压缩加密 zip -e ./jiami.zip aa.txt 磁盘管理 diskutil 12345$ diskutil list$ diskutil mountDisk /dev/disk2Volume(s) mounted successfully$ diskutil unmountDisk /dev/disk2Unmount of all volumes on disk2 was successful 网络管理 NAT 1234/Library/Preferences/VMware Fusion/vmnet8/nat.conf# NAT gateway addressip = 192.168.213.2netmask = 255.255.255.0 Application and DevelopmentPersonal Level 我的写作工具链 Enterprise Level 数据可视化（一）思维利器 OmniGraffle for Mac 使用指南 Hardware How to Fix Early 2015 MacBook Pro Touchpad Keyboard Keyboard and trackpad don’t work, loose cable? touchpad TrackPad 丝带排线替换821 – 00184-a 适用于 Apple MacBook Pro Retina 33 cm A1502早2015 扩展阅读参考文献 What’s New in Apple Filesystems 推荐一些 Mac 上比较好用的软件 scomper:OmniFocus 2 for Mac 的使用指南 OmniPlan 使用教程 | OmniPlan 3 for Mac 用户手册]]></content>
       <tags>
         <tag>DevOps</tag>
-        <tag>OperatingSystem</tag>
         <tag>工具癖</tag>
         <tag>Mac</tag>
+        <tag>OperatingSystem</tag>
       </tags>
   </entry>
   <entry>
@@ -1062,9 +1071,9 @@
     <url>%2F2018%2F01%2F15%2FVisualization-DataSource%2F</url>
     <content type="text"><![CDATA[摘要 优质公开数据源列表 技术支持：爬虫、数据分析与可视化 一、数据源教学数据 (教学数据) Stanford Large Network Dataset Collection 公共数据 经济学人·智库EIU 世界银行·公开数据 世界银行数据清洗器 FSI（Freeman Spogli Institute for International Studies at Stanford) 上海市统计局 中国疾病控制中心：每月疫情通报 中国工业和信息化部：电话用户分省情况 中国财政部：彩票销售 中国科学院：院士名单 教育部2017年全国入园儿童1922.09万人，比上年减少86.76万人。在园儿童（包括附设班）4413.86万人，比上年增加149.03万人。幼儿园园长和教师共249.88万人，比上年增加19.56万。 重大工程案例研究和数据中心 | 同济大学 Nature WTO:Global Health Observatory (GHO) data 美国国家生物技术信息中心 美国农业部·食品成分数据库 | USDA Food Composition Databases 美国交通部·公开数据库 二、技术支持数据可视化（五）基于网络爬虫制作可视化图表 图表数据可视化技术方案 基于网络爬虫的可视化图表 数据可视化（八）Program,Data and Classical Music 基于 Go + R 可视化古典音乐作曲家社交网络 Coperformance 是一个业余项目，编程分析纽约爱乐乐团演出历史数据库。 三、案例 案例：最近十年全国彩票销售变化情况 在线演示 案例：中国科学院院士分布（出生地与籍贯）在线演示 案例：美国航空入境旅客（出发地）变化情况 在线演示 案例：世界主要国家专利申请变化情况（欧洲专利局） 在线演示 参考文献]]></content>
       <tags>
+        <tag>数据可视化</tag>
         <tag>Policy&amp;Law</tag>
         <tag>Economist</tag>
-        <tag>数据可视化</tag>
         <tag>Engineering</tag>
         <tag>Developer</tag>
       </tags>
@@ -1191,11 +1200,11 @@
         <tag>Psychology</tag>
         <tag>Medical</tag>
         <tag>Science</tag>
+        <tag>数据可视化</tag>
         <tag>History</tag>
         <tag>Policy&amp;Law</tag>
         <tag>Economist</tag>
         <tag>Manager</tag>
-        <tag>数据可视化</tag>
       </tags>
   </entry>
   <entry>
@@ -1205,8 +1214,8 @@
       <tags>
         <tag>DevOps</tag>
         <tag>Linux</tag>
-        <tag>OpenSource</tag>
         <tag>Mac</tag>
+        <tag>OpenSource</tag>
       </tags>
   </entry>
   <entry>
@@ -2628,8 +2637,8 @@
         <tag>Linux</tag>
         <tag>SRE</tag>
         <tag>Developer</tag>
-        <tag>OpenSource</tag>
         <tag>OperatingSystem</tag>
+        <tag>OpenSource</tag>
       </tags>
   </entry>
   <entry>

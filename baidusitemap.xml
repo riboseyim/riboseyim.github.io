@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://riboseyim.com/2020/01/02/Engineering-RAMS/</loc>
+    <lastmod>2020-01-02</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2016/10/15/Artistic-Zhuhai-AirShow/</loc>
+    <lastmod>2020-01-02</lastmod>
+  </url>  <url>
+    <loc>https://riboseyim.com/2019/10/13/Machine-Learning-Knownledge-Graph/</loc>
+    <lastmod>2020-01-02</lastmod>
+  </url>  <url>
     <loc>https://riboseyim.com/2019/12/08/Law-of-PDO/</loc>
     <lastmod>2019-12-29</lastmod>
   </url>  <url>
@@ -27,9 +36,6 @@
   </url>  <url>
     <loc>https://riboseyim.com/2016/06/11/Writing/</loc>
     <lastmod>2019-10-20</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2019/10/13/Machine-Learning-Knownledge-Graph/</loc>
-    <lastmod>2019-10-14</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2018/04/02/Machine-Learning-Algorithms-Sheet/</loc>
     <lastmod>2019-10-13</lastmod>
@@ -167,9 +173,6 @@
     <lastmod>2019-06-26</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2016/05/05/OpenSource-Coder/</loc>
-    <lastmod>2019-06-26</lastmod>
-  </url>  <url>
-    <loc>https://riboseyim.com/2016/10/15/Artistic-Zhuhai-AirShow/</loc>
     <lastmod>2019-06-26</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/</loc>
@@ -769,10 +772,10 @@
     <loc>https://riboseyim.com/2018/01/22/Health-Emotional/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Wan/</loc>
+    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Picture/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
-    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Picture/</loc>
+    <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Wan/</loc>
     <lastmod>2018-11-22</lastmod>
   </url>  <url>
     <loc>https://riboseyim.com/2018/03/21/Machine-Learning-WordBook/</loc>
