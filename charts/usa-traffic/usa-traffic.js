@@ -1395,7 +1395,7 @@ var data = [{
 
 ]
 
-var option = {
+var option_usatraffic = {
   baseOption: {
     animationDurationUpdate: 1000,
     animationEasingUpdate: 'quinticInOut',
@@ -1555,7 +1555,7 @@ for (var i = 0; i < data.length; i++) {
   restValue = data[i].data[0].value[0] * (restPercent / data[i].data[0].value[1]);
   console.log(restPercent);
   console.log(restValue);
-  option.options.push({
+  option_usatraffic.options.push({
     visualMap: [{
       dimension: 0,
       left: 10,
