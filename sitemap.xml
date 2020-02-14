@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://riboseyim.com/2018/12/31/Check2019/</loc>
+    
+    <lastmod>2020-02-14T09:15:04.471Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2020/02/09/Check2020/</loc>
+    
+    <lastmod>2020-02-08T18:35:05.716Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://riboseyim.com/2020/02/08/Commander-Art-Of-War-SuYu/</loc>
     
     <lastmod>2020-02-08T17:35:53.963Z</lastmod>
@@ -124,13 +138,6 @@
     <loc>https://riboseyim.com/2016/04/26/Law/</loc>
     
     <lastmod>2019-12-29T16:55:14.940Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2018/12/31/Check2019/</loc>
-    
-    <lastmod>2019-12-07T18:19:55.400Z</lastmod>
     
   </url>
   
@@ -1759,28 +1766,7 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/11/16/QuickStart/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2017/06/27/TeamWork-Knowledge-Sharing/</loc>
+    <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     
@@ -1788,13 +1774,6 @@
   
   <url>
     <loc>https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2018/02/16/DTrace-Linux/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     
@@ -1830,6 +1809,41 @@
   
   <url>
     <loc>https://riboseyim.com/2017/10/24/Linux-Perf-Wan/</loc>
+    
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/</loc>
+    
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/</loc>
+    
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/11/16/QuickStart/</loc>
+    
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/06/27/TeamWork-Knowledge-Sharing/</loc>
+    
+    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riboseyim.com/2017/04/09/CyberSecurity-CSTCB/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     
@@ -1878,7 +1892,7 @@
   </url>
   
   <url>
-    <loc>https://riboseyim.com/2017/04/09/CyberSecurity-CSTCB/</loc>
+    <loc>https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     
@@ -1886,13 +1900,6 @@
   
   <url>
     <loc>https://riboseyim.com/2018/08/01/OpenSource-Hadoop/</loc>
-    
-    <lastmod>2018-11-22T08:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/</loc>
     
     <lastmod>2018-11-22T08:58:39.000Z</lastmod>
     

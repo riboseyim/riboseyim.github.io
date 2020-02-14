@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riboseyim.com/"/>
-  <updated>2020-02-08T17:35:53.963Z</updated>
+  <updated>2020-02-08T18:35:05.716Z</updated>
   <id>https://riboseyim.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Check2020</title>
+    <link href="https://riboseyim.com/2020/02/09/Check2020/"/>
+    <id>https://riboseyim.com/2020/02/09/Check2020/</id>
+    <published>2020-02-08T18:28:52.000Z</published>
+    <updated>2020-02-08T18:35:05.716Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a><p>This article is part of an <strong>Autobiography</strong> series. Make sure to check out my other articles as well:</p><ul><li><a href="https://riboseyim.github.io/2018/12/31/Check2019/" target="_blank" rel="noopener">我的 2019 年度盘点</a></li><li><a href="https://riboseyim.github.io/2018/01/01/Check2018/" target="_blank" rel="noopener">我的 2018 年度盘点</a></li><li><a href="https://riboseyim.github.io/2017/04/10/Check2017/" target="_blank" rel="noopener">我的 2017 年度盘点</a></li><li><a href="https://riboseyim.github.io/2017/01/01/Check2016/" target="_blank" rel="noopener">我的 2016 年度盘点</a></li><li><a href="https://riboseyim.github.io/2017/04/28/Check2012/" target="_blank" rel="noopener">我的 2012 阅读书单</a></li></ul><h1 id="2020年度计划（v1-202002）"><a href="#2020年度计划（v1-202002）" class="headerlink" title="2020年度计划（v1-202002）"></a>2020年度计划（v1-202002）</h1><h2 id="工程学"><a href="#工程学" class="headerlink" title="工程学"></a>工程学</h2><h3 id="（年度重点）可靠性理论与实践"><a href="#（年度重点）可靠性理论与实践" class="headerlink" title="（年度重点）可靠性理论与实践"></a>（年度重点）可靠性理论与实践</h3><h3 id="（重点）国防采购与军品质量控制"><a href="#（重点）国防采购与军品质量控制" class="headerlink" title="（重点）国防采购与军品质量控制"></a>（重点）国防采购与军品质量控制</h3><h4 id="G-Program-Management"><a href="#G-Program-Management" class="headerlink" title="G Program Management"></a>G Program Management</h4><h4 id="Exam-CISA"><a href="#Exam-CISA" class="headerlink" title="Exam CISA"></a>Exam CISA</h4><h4 id="Exam-PRINCE-2"><a href="#Exam-PRINCE-2" class="headerlink" title="Exam PRINCE 2"></a>Exam PRINCE 2</h4><h2 id="医学"><a href="#医学" class="headerlink" title="医学"></a>医学</h2><h3 id="（年度重点）呼吸内科：肺部康复"><a href="#（年度重点）呼吸内科：肺部康复" class="headerlink" title="（年度重点）呼吸内科：肺部康复"></a>（年度重点）呼吸内科：肺部康复</h3><h3 id="（年度重点）体能训练：游泳"><a href="#（年度重点）体能训练：游泳" class="headerlink" title="（年度重点）体能训练：游泳"></a>（年度重点）体能训练：游泳</h3><h2 id="战略学"><a href="#战略学" class="headerlink" title="战略学"></a>战略学</h2><h3 id="（年度重点）战役指挥理论与实践"><a href="#（年度重点）战役指挥理论与实践" class="headerlink" title="（年度重点）战役指挥理论与实践"></a>（年度重点）战役指挥理论与实践</h3><h4 id="（重点）粟裕的军事谋略与指挥艺术"><a href="#（重点）粟裕的军事谋略与指挥艺术" class="headerlink" title="（重点）粟裕的军事谋略与指挥艺术"></a>（重点）粟裕的军事谋略与指挥艺术</h4><h3 id="美国军事史-南北战争专题-（optional）"><a href="#美国军事史-南北战争专题-（optional）" class="headerlink" title="美国军事史 | 南北战争专题 （optional）"></a>美国军事史 | 南北战争专题 （optional）</h3><h2 id="参考文集"><a href="#参考文集" class="headerlink" title="参考文集"></a>参考文集</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>讲武堂：粟裕的军事谋略与指挥艺术</title>
@@ -481,32 +499,6 @@
       <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
     
       <category term="Policy" scheme="https://riboseyim.com/tags/Policy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PM指南:项目管理平台OmniPlan</title>
-    <link href="https://riboseyim.com/2019/05/01/TeamWork-OmniPlan/"/>
-    <id>https://riboseyim.com/2019/05/01/TeamWork-OmniPlan/</id>
-    <published>2019-05-01T12:05:15.000Z</published>
-    <updated>2019-05-01T16:02:59.945Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h4 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h4><h4 id="网络规划技术"><a href="#网络规划技术" class="headerlink" title="网络规划技术"></a>网络规划技术</h4><h2 id="Introduction-XX简介"><a href="#Introduction-XX简介" class="headerlink" title="Introduction | XX简介"></a>Introduction | XX简介</h2><h2 id="Core-Concept-核心概念"><a href="#Core-Concept-核心概念" class="headerlink" title="Core Concept | 核心概念"></a>Core Concept | 核心概念</h2><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-Overview"><a href="#Architecture-Overview" class="headerlink" title="Architecture Overview"></a>Architecture Overview</h2><h4 id="Files-Tree"><a href="#Files-Tree" class="headerlink" title="Files Tree"></a>Files Tree</h4><h2 id="Best-Practice-教程合辑"><a href="#Best-Practice-教程合辑" class="headerlink" title="Best Practice | 教程合辑"></a>Best Practice | 教程合辑</h2><ul><li><a href="https://support.omnigroup.com/doc-assets//OmniPlan-Mac/OmniPlan-Mac-v3.0.0.1/zh/EPUB/xhtml/03_tutorial.xhtml" target="_blank" rel="noopener">OmniPlan 3 官方教程 | 中文版</a></li><li><a href="http://www.zhichangxueshe.com/omniplanjiaocheng" target="_blank" rel="noopener">OmniPlan 教程 | 知常学社</a></li></ul><h4 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h4><ul><li><a href="https://riboseyim.com/2019/02/06/Project/">项目管理 | Overview of Project Management</a></li><li><a href="https://riboseyim.com/2019/04/30/Project-PMP/">PM指南:PMI项目管理知识体系</a></li><li><a href="https://riboseyim.com/2019/03/27/Project-Construction/">PM指南:建筑工程项目管理|行业案例教学</a></li><li><a href="#">PM指南:范围管理</a></li><li><a href="#">PM指南:进度管理</a></li><li><a href="#">PM指南:成本管理</a></li><li><a href="#">PM指南:质量管理</a></li><li><a href="https://riboseyim.github.io/2019/03/12/Project-Resources/" target="_blank" rel="noopener">PM指南:资源管理</a></li><li><a href="https://riboseyim.com/2019/02/06/Project-Communications/">PM指南:沟通管理</a></li><li><a href="https://riboseyim.github.io/2018/06/05/Project-Risk/" target="_blank" rel="noopener">PM指南:风险管理</a></li><li><a href="https://riboseyim.github.io/2019/03/12/Project-Procurement/" target="_blank" rel="noopener">PM指南:采购管理</a></li><li><a href="#">PM指南:相关方管理</a></li><li><a href="https://riboseyim.github.io/2019/04/06/Project-PMIS/" target="_blank" rel="noopener">PM指南:项目管理信息系统|工具与技术</a></li><li><a href="https://riboseyim.com/2018/06/19/Project-Template/">PM指南:项目管理开局模板|工具与技术</a></li><li><a href="https://riboseyim.com/2016/04/26/TeamWork-Redmine/">PM指南:开源项目管理平台Redmine|工具与技术</a></li><li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">PM指南:软件业看板Kanban管理实践|工具与技术</a></li><li><a href="https://riboseyim.com/2016/05/31/TeamWork-Git/">PM指南:源代码版本管理|工具与技术</a></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="Manager" scheme="https://riboseyim.com/tags/Manager/"/>
-    
-      <category term="Engineering" scheme="https://riboseyim.com/tags/Engineering/"/>
-    
-      <category term="工具癖" scheme="https://riboseyim.com/tags/%E5%B7%A5%E5%85%B7%E7%99%96/"/>
-    
-      <category term="Mac" scheme="https://riboseyim.com/tags/Mac/"/>
     
   </entry>
   
