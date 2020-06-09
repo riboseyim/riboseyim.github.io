@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-acc425a500206316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-dd82c356bdda926d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:27:45.171Z">
+<meta property="og:updated_time" content="2020-03-07T17:52:22.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 性能诊断:负载评估">
 <meta name="twitter:description" content="摘要 基于 Linux 单机的负载评估 负载诊断流程 概念：什么是负载 负载：CPU 还是 I/O Linux 内核进程调度器">
@@ -165,7 +165,8 @@ ga('send', 'pageview');
 <tr>
 <th><strong>进程状态</strong></th>
 <th>PS Stat</th>
-<th><strong><em>说明</em></strong></th>
+<th><strong>说明</strong></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -173,21 +174,25 @@ ga('send', 'pageview');
 <td>TASK_RUNNING</td>
 <td>R(Run)</td>
 <td>运行状态。只要CPU空闲，随时都可以开始。</td>
+<td></td>
 </tr>
 <tr>
 <td>TASK_INTERRUPTIBLE</td>
 <td>S(Sleep)</td>
 <td>可中断的等待状态。例如系统睡眠或来自于用户输入的等待等。</td>
+<td></td>
 </tr>
 <tr>
 <td>TASK_UNINTERRUPTIBLE</td>
 <td>D(Disk Sleep)</td>
 <td>不可中断的等待状态。主要为短时间恢复时的等待状态。例如磁盘输入输出的等待</td>
+<td></td>
 </tr>
 <tr>
 <td>TASK_STOPPED</td>
 <td></td>
 <td>响应暂停信号而运行中断的状态。直到恢复（Resume）前都不会被调度</td>
+<td></td>
 </tr>
 <tr>
 <td>TASK_ZOMBIE</td>
@@ -198,7 +203,7 @@ ga('send', 'pageview');
 </table>
 </div>
 <ul>
-<li>TASK_RUNNING正在运行</li>
+<li>TASK_RUNNING 正在运行</li>
 <li>TASK_RUNNING （等待状态，加权换算）</li>
 <li>TASK_INTERRUPTIBLE（等待状态，加权换算）</li>
 <li>TASK_UNINTERRUPTIBLE（等待状态，不加权换算）</li>
@@ -212,7 +217,7 @@ ga('send', 'pageview');
 <h4 id="CPU-还是-I-O"><a href="#CPU-还是-I-O" class="headerlink" title="CPU 还是 I/O  ?"></a>CPU 还是 I/O  ?</h4><p>load average的数字只是表示等待的任务数，仅根据load average并不能判断具体是CPU负载高还是I/O负载高。</p>
 <p><strong>CPU密集型程序</strong></p>
 <p><strong>I/O密集型程序</strong></p>
-<h4 id="Sar-System-Activity-Reporter"><a href="#Sar-System-Activity-Reporter" class="headerlink" title="Sar (System Activity Reporter)"></a>Sar (System Activity Reporter)</h4><p>CPU使用率和I/O等待时间都是在不断变化的，可以通过sar 命令来确认这些指标。该工具包含在sysstat软件包内。</p>
+<h4 id="Sar-System-Activity-Reporter"><a href="#Sar-System-Activity-Reporter" class="headerlink" title="Sar (System Activity Reporter)"></a>Sar (System Activity Reporter)</h4><p>CPU使用率和I/O等待时间都是在不断变化的，可以通过sar 命令来确认这些指标。<br>sar 工具包含在 sysstat 软件包内。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sar</span><br><span class="line">Linux    <span class="number">04</span>/<span class="number">17</span>/<span class="number">16</span>        _x86\_64_        (<span class="number">24</span> CPU)</span><br><span class="line"><span class="number">00</span>:<span class="number">00</span>:<span class="number">01</span>        CPU     %user     %nice   %system   %iowait    %steal     %idle</span><br><span class="line"><span class="number">00</span>:<span class="number">10</span>:<span class="number">02</span>        all      <span class="number">1.26</span>      <span class="number">0.00</span>      <span class="number">0.55</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.19</span></span><br><span class="line"><span class="number">00</span>:<span class="number">20</span>:<span class="number">01</span>        all      <span class="number">1.58</span>      <span class="number">0.00</span>      <span class="number">1.04</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.38</span></span><br><span class="line"><span class="number">00</span>:<span class="number">30</span>:<span class="number">01</span>        all      <span class="number">1.23</span>      <span class="number">0.00</span>      <span class="number">0.56</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.21</span></span><br><span class="line"><span class="number">00</span>:<span class="number">40</span>:<span class="number">01</span>        all      <span class="number">1.59</span>      <span class="number">0.00</span>      <span class="number">1.01</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.40</span></span><br><span class="line"><span class="number">00</span>:<span class="number">50</span>:<span class="number">01</span>        all      <span class="number">1.35</span>      <span class="number">0.00</span>      <span class="number">0.59</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.06</span></span><br><span class="line"><span class="number">01</span>:<span class="number">00</span>:<span class="number">01</span>        all      <span class="number">1.63</span>      <span class="number">0.00</span>      <span class="number">1.10</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.27</span></span><br><span class="line"><span class="number">01</span>:<span class="number">10</span>:<span class="number">01</span>        all      <span class="number">1.22</span>      <span class="number">0.00</span>      <span class="number">0.54</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.24</span></span><br><span class="line"><span class="number">01</span>:<span class="number">20</span>:<span class="number">01</span>        all      <span class="number">1.68</span>      <span class="number">0.00</span>      <span class="number">1.06</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.25</span></span><br><span class="line"><span class="number">01</span>:<span class="number">30</span>:<span class="number">01</span>        all      <span class="number">1.23</span>      <span class="number">0.00</span>      <span class="number">0.54</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.23</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sar <span class="number">1</span> <span class="number">10</span></span><br><span class="line"><span class="number">18</span>:<span class="number">54</span>:<span class="number">58</span>    %usr    %sys    %wio   %idle</span><br><span class="line"><span class="number">18</span>:<span class="number">54</span>:<span class="number">59</span>      <span class="number">18</span>       <span class="number">3</span>       <span class="number">0</span>      <span class="number">79</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">00</span>      <span class="number">46</span>      <span class="number">14</span>       <span class="number">0</span>      <span class="number">40</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">01</span>      <span class="number">38</span>      <span class="number">13</span>       <span class="number">0</span>      <span class="number">49</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">02</span>      <span class="number">17</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">79</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">03</span>      <span class="number">11</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">85</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">04</span>      <span class="number">12</span>       <span class="number">5</span>       <span class="number">0</span>      <span class="number">83</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">05</span>      <span class="number">20</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">76</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">06</span>      <span class="number">22</span>       <span class="number">3</span>       <span class="number">0</span>      <span class="number">75</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">07</span>      <span class="number">21</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">75</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">08</span>      <span class="number">17</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">79</span></span><br></pre></td></tr></table></figure>
 <p>输出参数:</p>
@@ -517,25 +522,6 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
