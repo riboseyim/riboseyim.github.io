@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*edyzJ1zutH1IA2jpITp5Pg.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-1.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-Dapper-Overhead-2.jpg">
-<meta property="og:updated_time" content="2018-12-24T08:49:35.401Z">
+<meta property="og:updated_time" content="2020-08-04T07:15:37.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈：分布式追踪系统体系概要">
 <meta name="twitter:description" content="摘要 Key Words: metrics、logging、tracing Google Dapper Family : Uber Jaeger、淘宝 EagleEye、微博 Watchman、京东 CallGraph、美团 MTrace 数据可视化 | Exporters">
@@ -114,6 +114,10 @@ ga('send', 'pageview');
   <time datetime="2018-05-18T03:36:46.000Z" itemprop="datePublished">2018-05-18</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -625,6 +629,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

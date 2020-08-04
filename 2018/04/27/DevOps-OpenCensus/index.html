@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTM-Context.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MS-ApplicationMap.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MS-PartscrossComponent.png">
-<meta property="og:updated_time" content="2018-12-24T08:48:54.059Z">
+<meta property="og:updated_time" content="2020-08-04T07:15:33.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈：开源分布式跟踪系统 OpenCensus">
 <meta name="twitter:description" content="摘要 Distributed Tracing and Monitoring System OpenCensus: A framework for distributed tracing OpenCensus Principle: data structure 、Context">
@@ -121,6 +121,10 @@ ga('send', 'pageview');
   <time datetime="2018-04-27T02:33:09.000Z" itemprop="datePublished">2018-04-27</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -604,6 +608,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

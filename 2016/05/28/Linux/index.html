@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OS-map.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-05-11T10:05:23.237Z">
+<meta property="og:updated_time" content="2020-08-04T07:25:35.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 操作系统专题">
 <meta name="twitter:description" content="摘要 Linux世界的运转，在很多方面像一个自由市场，或者像一个由很多利己个体组成的生态系统。— 《大教堂与集市》   历史 技术 运营">
@@ -107,6 +107,10 @@ ga('send', 'pageview');
   <time datetime="2016-05-28T09:27:39.000Z" itemprop="datePublished">2016-05-28</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -430,6 +434,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

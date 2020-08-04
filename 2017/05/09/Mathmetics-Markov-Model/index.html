@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png">
-<meta property="og:updated_time" content="2019-02-02T16:49:25.073Z">
+<meta property="og:updated_time" content="2020-08-04T07:27:37.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络">
 <meta name="twitter:description" content="摘要 马尔可夫模型（Markov Model ） 隐含马尔可夫模型（ Hidden Markov Model ） 隐含隐马尔可夫模型的应用 马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）">
@@ -107,6 +107,10 @@ ga('send', 'pageview');
   <time datetime="2017-05-09T08:16:55.000Z" itemprop="datePublished">2017-05-09</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -432,6 +436,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

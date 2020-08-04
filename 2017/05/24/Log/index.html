@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://goaccess.io/images/goaccess-dashboard.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_1.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_2.png">
-<meta property="og:updated_time" content="2019-06-26T03:25:03.277Z">
+<meta property="og:updated_time" content="2020-08-04T07:25:38.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源技术架构漫谈：应用程序的日志管理及可视化">
 <meta name="twitter:description" content="摘要程序中记录日志的首要目的：Troubleshooting。通过记录程序中对外部系统与模块的依赖调用、重要状态信息的变化、关键变量、关键逻辑等，显示基于时间轴的程序运行轨迹，显示业务是否正常、是否存在非预期执行，在出问题时方便还原现场，推断程序运行过程、理清问题的方向。 本文将讨论在实现日志功能过程中常见的一些问题，包括基础API、格式化、日志转发及可视化等方面，代码采用Go语言描述。">
@@ -108,6 +108,10 @@ ga('send', 'pageview');
   <time datetime="2017-05-24T06:22:56.000Z" itemprop="datePublished">2017-05-24</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -445,6 +449,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

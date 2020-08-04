@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/GIS-History-5.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/GIS_History_Demo_Mesosphere_DCOS_Architecture.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/GIS_History_Demo_Mesosphere.png">
-<meta property="og:updated_time" content="2019-06-26T07:24:30.828Z">
+<meta property="og:updated_time" content="2020-08-04T07:38:04.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据可视化（四）开源地理信息系统简史">
 <meta name="twitter:description" content="摘要 开源 GIS 技术简史 1.1、GIS 的起源: MOSS and GRASS 1.2、GIS 的发展：GeoTools, GDAL, PostGIS 和 GeoServer 1.3、创新和教育：开源项目驱动 1.4、开源 GIS 的商业支持 Demo:A Full Stack Geo-enabled Internet of Things (IoT) Solution">
@@ -112,6 +112,10 @@ ga('send', 'pageview');
   <time datetime="2017-05-12T10:38:02.000Z" itemprop="datePublished">2017-05-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -466,6 +470,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

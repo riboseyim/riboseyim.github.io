@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 ZeroMQ (also known as ØMQ, 0MQ, or zmq) is an networking library, acts like a concurrency framework。https://github.com/zeromq-cn 缘起  first time I knew:Ntopng">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/theme_opensource_zeromq.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2020-08-04T07:30:14.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源技术架构漫谈：消息中间件(ZeroMQ)">
 <meta name="twitter:description" content="摘要 ZeroMQ (also known as ØMQ, 0MQ, or zmq) is an networking library, acts like a concurrency framework。https://github.com/zeromq-cn 缘起  first time I knew:Ntopng">
@@ -106,6 +106,10 @@ ga('send', 'pageview');
   <time datetime="2016-04-26T03:56:32.000Z" itemprop="datePublished">2016-04-26</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -418,6 +422,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

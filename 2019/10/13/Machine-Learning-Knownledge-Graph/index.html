@@ -13,7 +13,7 @@
 <meta property="og:description" content="摘要知识图谱的早期理念源于万维网之父 Tim Berners Lee 关于语义网(The Semantic Web) 的设想，旨在采用图的结构(Graph Structure)来建模和记录世界万物之间的关联关系和知识， 以便有效实现更加精准的对象级搜索。经过近二十年的发展，知识图谱的相关技术已经在搜索引擎、智能问答、语言及视觉理解、大数据决策分析、智能设备物联等众多领域得到广泛应用，被公认为是实现">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
-<meta property="og:updated_time" content="2020-01-02T03:08:01.274Z">
+<meta property="og:updated_time" content="2020-08-04T07:26:17.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine-Learning-Knownledge-Graph">
 <meta name="twitter:description" content="摘要知识图谱的早期理念源于万维网之父 Tim Berners Lee 关于语义网(The Semantic Web) 的设想，旨在采用图的结构(Graph Structure)来建模和记录世界万物之间的关联关系和知识， 以便有效实现更加精准的对象级搜索。经过近二十年的发展，知识图谱的相关技术已经在搜索引擎、智能问答、语言及视觉理解、大数据决策分析、智能设备物联等众多领域得到广泛应用，被公认为是实现">
@@ -105,6 +105,10 @@ ga('send', 'pageview');
   <time datetime="2019-10-13T02:41:11.000Z" itemprop="datePublished">2019-10-13</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -403,6 +407,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

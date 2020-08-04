@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_BPF.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Flow_2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_Protocol_Packet.png">
-<meta property="og:updated_time" content="2019-02-19T08:03:14.206Z">
+<meta property="og:updated_time" content="2020-08-04T07:29:14.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络数据包的捕获、过滤和分析（Packet Capturing）">
 <meta name="twitter:description" content="摘要 Packet Capturing Overview What is Packet Capturing How can it be used What is libpcap Debug Tools: tcpdump &amp;amp; WinPcap &amp;amp; snoop What is BPF What is gopacket">
@@ -110,6 +110,10 @@ ga('send', 'pageview');
   <time datetime="2017-06-16T08:08:56.000Z" itemprop="datePublished">2017-06-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -478,6 +482,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

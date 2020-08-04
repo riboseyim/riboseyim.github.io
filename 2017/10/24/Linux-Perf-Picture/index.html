@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ChartPerf_512_Network_Change_2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2020-08-04T07:24:49.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 性能诊断:荐书《图解性能优化》">
 <meta name="twitter:description" content="摘要 性能分析的基础:吞吐和响应的区别 实际系统中的性能分析 性能调优 性能测试 虚拟化环境下的性能 云环境下的性能">
@@ -131,6 +131,10 @@ ga('send', 'pageview');
   <time datetime="2017-10-24T03:35:44.000Z" itemprop="datePublished">2017-10-24</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -521,6 +525,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

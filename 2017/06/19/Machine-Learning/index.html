@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/quanzi-machinelearning.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
-<meta property="og:updated_time" content="2019-04-07T09:42:13.437Z">
+<meta property="og:updated_time" content="2020-08-04T07:27:03.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习专题 | Overview of Machine Learning">
 <meta name="twitter:description" content="摘要机器学习是人工智能的一个分支。机器学习算法提供了一类从数据中自动分析获得规律，并利用规律对未知数据进行预测的方法。机器学习已广泛应用于数据挖掘、计算机视觉、自然语言处理、搜索引擎、医学诊断、证券市场分析、DNA 测序、战略游戏和机器人等诸多领域。">
@@ -107,6 +107,10 @@ ga('send', 'pageview');
   <time datetime="2017-06-19T08:31:00.000Z" itemprop="datePublished">2017-06-19</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -440,6 +444,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

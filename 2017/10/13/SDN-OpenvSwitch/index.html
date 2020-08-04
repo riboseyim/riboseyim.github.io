@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Packet-Processing.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-OVS-Command.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDV-OVS-sFlow-NetFlow.png">
-<meta property="og:updated_time" content="2019-07-18T02:38:16.506Z">
+<meta property="og:updated_time" content="2020-08-04T07:35:49.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDN 技术指南（四）：Open vSwitch">
 <meta name="twitter:description" content="摘要 Open vSwitch 安装 Open vSwitch 命令行 Open vSwitch 运行原理 Open vSwitch 性能监控">
@@ -111,6 +111,10 @@ ga('send', 'pageview');
   <time datetime="2017-10-13T08:37:41.000Z" itemprop="datePublished">2017-10-13</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -507,6 +511,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

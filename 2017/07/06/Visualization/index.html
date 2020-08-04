@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/icon-%E4%BA%BA%E4%BD%93%E6%A3%80%E6%B5%8B.svg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/usa-traffic-2015.png">
 <meta property="og:image" content="https://1fykyq3mdn5r21tpna3wkdyi-wpengine.netdna-ssl.com/wp-content/uploads/2019/02/Introducing_AVS_Banner-1-696x522.png">
-<meta property="og:updated_time" content="2019-06-17T04:05:19.379Z">
+<meta property="og:updated_time" content="2020-08-04T07:38:29.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据可视化 | Overview of Data Visualization">
 <meta name="twitter:description" content="摘要 工程绘图：OmniGraffle 绘图指南 自动分析：基于 Graphviz 实现程序化绘图 数字地图：开源 GIS 技术简史 开源情报：基于网络爬虫制作可视化图表 时序数据：常见的数据可视化仪表盘 概率统计：基于 Go + R 可视化古典音乐作曲家社交网络 在线演示案例">
@@ -114,6 +114,10 @@ ga('send', 'pageview');
   <time datetime="2017-07-06T06:37:06.000Z" itemprop="datePublished">2017-07-06</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -456,6 +460,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_Grafana.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_Keenio.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_DataDog.jpg">
-<meta property="og:updated_time" content="2018-12-18T04:06:44.721Z">
+<meta property="og:updated_time" content="2020-08-04T07:37:39.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据可视化（六）常见的可视化仪表盘(DashBoard)">
 <meta name="twitter:description" content="摘要 仪表盘（DashBoard） 决策路径 (Decision Path) ELK Stack（Elasticsearch、Logtash、Kibana） Graphite &amp;amp; Grafana Keen IO 、Librato、DataDog">
@@ -109,6 +109,10 @@ ga('send', 'pageview');
   <time datetime="2017-11-23T01:34:51.000Z" itemprop="datePublished">2017-11-23</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -498,6 +502,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

@@ -14,7 +14,7 @@
 <meta property="og:description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DB_PostgreSQL_Overview.png">
-<meta property="og:updated_time" content="2019-04-21T09:34:06.612Z">
+<meta property="og:updated_time" content="2020-08-04T07:29:39.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源技术架构漫谈：PostgreSQL 数据库">
 <meta name="twitter:description" content="摘要 PostgreSQL 的时代到来了吗 PostgreSQL 简史 PostgreSQL ABC">
@@ -106,6 +106,10 @@ ga('send', 'pageview');
   <time datetime="2018-01-03T06:26:23.000Z" itemprop="datePublished">2018-01-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -421,6 +425,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

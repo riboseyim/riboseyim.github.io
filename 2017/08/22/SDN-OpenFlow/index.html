@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_OpenFlow_Packet_Capture_Mod.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN_OpenvSwitch.jpg">
-<meta property="og:updated_time" content="2019-06-07T10:12:02.181Z">
+<meta property="og:updated_time" content="2020-08-04T07:35:46.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDN 技术指南（二）：OpenFlow">
 <meta name="twitter:description" content="摘要 OpenFlow 简史（SDN != OpenFlow ; 版本问题） OpenFlow 工作原理 OpenFlow is a communications protocol 支持 OpenFlow 的开源交换机：Open vSwitch">
@@ -111,6 +111,10 @@ ga('send', 'pageview');
   <time datetime="2017-08-22T01:27:32.000Z" itemprop="datePublished">2017-08-22</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -513,6 +517,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

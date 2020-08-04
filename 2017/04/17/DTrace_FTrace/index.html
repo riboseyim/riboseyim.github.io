@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_ftrace_arch.png">
 <meta property="og:image" content="https://static.lwn.net/images/2011/ks-success-zoom-task.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_ftrace_KernelShark_Filters.png">
-<meta property="og:updated_time" content="2018-11-22T08:58:39.000Z">
+<meta property="og:updated_time" content="2020-08-04T07:15:53.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态追踪技术(三) ：Tracing your kernel Functions!">
 <meta name="twitter:description" content="摘要Ftrace 是一个设计用来帮助开发者和设计者监视内核的追踪器，可用于调试或分析延迟以及性能问题。ftrace 令人印象最深刻的是作为一个 function tracer，内核函数调用、耗时等情况一览无余。另外，ftrace 最常见的用途是事件追踪，通过内核是成百上千的静态事件点，看到系统内核的哪些部分在运行。实际上，ftrace 更是一个追踪框架，它具备丰富工具集：延迟跟踪检查、何时发生中断">
@@ -109,6 +109,10 @@ ga('send', 'pageview');
   <time datetime="2017-04-17T10:02:57.000Z" itemprop="datePublished">2017-04-17</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -441,6 +445,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

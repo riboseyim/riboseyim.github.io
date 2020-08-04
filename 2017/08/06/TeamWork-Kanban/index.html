@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_Org.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_YR_201707.png">
-<meta property="og:updated_time" content="2019-05-12T09:52:49.050Z">
+<meta property="og:updated_time" content="2020-08-04T07:36:06.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 漫谈:看板Kanban管理实践">
 <meta name="twitter:description" content="摘要Kanban看板是一种可视化生产管理系统，利用看板卡来增强信号量、标记生产过程，促进系统渐进式变化，提高团队协作的效率。  核心理论：流动性、可视化 实践方法：看板设计模式、可视化技巧、平衡群体智慧和个体差异   目标是 提高整个系统的生产能力，不只是提高任务的完成数量。——《凤凰项目 一个IT运维的传奇故事》第 193 页">
@@ -109,6 +109,10 @@ ga('send', 'pageview');
   <time datetime="2017-08-06T10:33:34.000Z" itemprop="datePublished">2017-08-06</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -481,6 +485,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

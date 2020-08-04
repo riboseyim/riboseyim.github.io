@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 原文：Brendan Gregg’s Blog :《Golang bcc/BPF Function Tracing》，31 Jan 2017 引子：gdb、go execution tracer、GODEBUG、gctrace、schedtrace 一、gccgo Function Counting 二、Go gc Function Counting 三、Per-event invocati">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-26T07:35:04.797Z">
+<meta property="og:updated_time" content="2020-08-04T07:15:49.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态追踪技术（四）：基于 Linux bcc&#x2F;BPF 实现 Go 程序动态追踪">
 <meta name="twitter:description" content="摘要 原文：Brendan Gregg’s Blog :《Golang bcc/BPF Function Tracing》，31 Jan 2017 引子：gdb、go execution tracer、GODEBUG、gctrace、schedtrace 一、gccgo Function Counting 二、Go gc Function Counting 三、Per-event invocati">
@@ -104,6 +104,10 @@ ga('send', 'pageview');
   <time datetime="2017-06-27T06:47:15.000Z" itemprop="datePublished">2017-06-27</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -487,6 +491,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-9981ca123c9bc27a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-04-21T04:27:19.952Z">
+<meta property="og:updated_time" content="2020-08-04T07:24:47.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 性能诊断:快速检查单(Netflix版)">
 <meta name="twitter:description" content="摘要 快速检查单QRH   请大家记住这样一个思路：先把大石头移开。大石头移开后，中等大小的石头可能就显现出来了。性能调优的原则就是先解决大问题，然后解决剩余问题中的大问题。在解决了大问题后，通常隐藏在它背后的问题也会暴露出来。也就是说，解决了前面的瓶颈后，下一个瓶颈就显现出来了。—— 《图解性能优化》">
@@ -107,6 +107,10 @@ ga('send', 'pageview');
   <time datetime="2017-12-11T02:01:10.000Z" itemprop="datePublished">2017-12-11</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -477,6 +481,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

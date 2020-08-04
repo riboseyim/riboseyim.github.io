@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-2.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-3.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-4.png">
-<meta property="og:updated_time" content="2019-06-26T04:55:56.730Z">
+<meta property="og:updated_time" content="2020-08-04T07:29:08.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控">
 <meta name="twitter:description" content="摘要 NTOPNG是NTOP的新一代版本,提供以下特性： 多协议网络流量；IPv4/IPv6活跃主机 网络流量监控； 基于nDPI实现应用协议发现 作为 NetFlow/sFlow  采集器 (Cisco/ Juniper 路由器) ；交换机配合 nProbe.">
@@ -118,6 +118,10 @@ ga('send', 'pageview');
   <time datetime="2016-04-26T03:31:59.000Z" itemprop="datePublished">2016-04-26</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -459,6 +463,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

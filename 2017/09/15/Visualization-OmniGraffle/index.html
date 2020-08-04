@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OmniGraffle_Action_201601_13.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OmniGraffle_Action_201601_3.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OmniGraffle_Action_201601_10.png">
-<meta property="og:updated_time" content="2019-06-26T02:55:47.586Z">
+<meta property="og:updated_time" content="2020-08-04T07:38:18.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据可视化（一）思维利器 OmniGraffle for Mac 使用指南">
 <meta name="twitter:description" content="摘要OmniGraffle 是由 The Omni Group 制作的一款绘图软件，它曾获得苹果设计奖。OmniGraffle 可以支持流程图、逻辑图或者网页产品模型设计等，功能非常强大。与 Graffle 对应的是在Windows平台广泛应用的 MS Visio（ Graffle 这个词据说就是为了和Visio区分而硬造出来的），关于这两个产品的用户体验对比，本文会稍有涉及。 关于它的使用细节—">
@@ -119,6 +119,10 @@ ga('send', 'pageview');
   <time datetime="2017-09-15T08:31:40.000Z" itemprop="datePublished">2017-09-15</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -466,6 +470,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

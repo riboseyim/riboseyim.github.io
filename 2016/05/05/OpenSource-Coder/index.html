@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Ribose Yim&#39;s Home">
 <meta property="og:description" content="摘要 1.1 如何阅读源码？ 1.2 程序命名规范   If you’re doing an experiment, you should report everything that you think might make it invalid - not only what you think is right about it. —— Richard Feynman">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-26T03:11:13.621Z">
+<meta property="og:updated_time" content="2020-08-04T07:29:33.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转编程语言:编程技巧">
 <meta name="twitter:description" content="摘要 1.1 如何阅读源码？ 1.2 程序命名规范   If you’re doing an experiment, you should report everything that you think might make it invalid - not only what you think is right about it. —— Richard Feynman">
@@ -104,6 +104,10 @@ ga('send', 'pageview');
   <time datetime="2016-05-05T07:09:21.000Z" itemprop="datePublished">2016-05-05</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -440,6 +444,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

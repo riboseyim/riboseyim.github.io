@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F4.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F5.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
-<meta property="og:updated_time" content="2019-10-13T02:47:22.337Z">
+<meta property="og:updated_time" content="2020-08-04T07:26:57.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Uber 业务预测系统实践">
 <meta name="twitter:description" content="Forecasting is ubiquitous 如何利用预测来构建更好的产品和服务 定量预测方法可分为：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）">
@@ -111,6 +111,10 @@ ga('send', 'pageview');
   <time datetime="2018-10-03T09:24:09.000Z" itemprop="datePublished">2018-10-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -466,6 +470,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

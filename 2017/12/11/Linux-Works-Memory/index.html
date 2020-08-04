@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
-<meta property="og:updated_time" content="2019-08-01T11:31:31.637Z">
+<meta property="og:updated_time" content="2020-08-04T07:25:19.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How Linux Works:Memory">
 <meta name="twitter:description" content="摘要 经典内存异常：Out of Memory (OOM) Killer 我的内存利用率为什么特别高？ Linux 内存的分类 Linux 内存的计算 Linux 进程的内存 Linux 应用内存分配">
@@ -108,6 +108,10 @@ ga('send', 'pageview');
   <time datetime="2017-12-10T16:36:27.000Z" itemprop="datePublished">2017-12-11</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -480,6 +484,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>

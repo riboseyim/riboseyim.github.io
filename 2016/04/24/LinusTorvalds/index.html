@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linus_Torvalds_Family_201705.png">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_Torvalds_VIC20.jpg">
 <meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png">
-<meta property="og:updated_time" content="2019-02-02T17:03:55.952Z">
+<meta property="og:updated_time" content="2020-08-04T07:24:07.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科技史漫谈：Linus Torvalds 与 Linux 操作系统">
 <meta name="twitter:description" content="摘要 The mind behind Linux Just for Fun ！   Linus 无疑是一个顶级黑客，想想有多少人能从零开始建造一个完整的具有产品级质量的操作系统内核？ — 《大教堂与集市》">
@@ -110,6 +110,10 @@ ga('send', 'pageview');
   <time datetime="2016-04-24T08:59:32.000Z" itemprop="datePublished">2016-04-24</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -489,6 +493,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
