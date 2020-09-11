@@ -6,7 +6,7 @@
   <title>Uber 业务预测系统实践 | Ribose Yim&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Forecasting is ubiquitous 如何利用预测来构建更好的产品和服务 定量预测方法可分为：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）">
-<meta name="keywords" content="DevOps,架构师,Developer,数学与算法,Machine-Learning">
+<meta name="keywords" content="DevOps,架构师,Developer,Machine-Learning,数学与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Uber 业务预测系统实践">
 <meta property="og:url" content="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/index.html">
@@ -130,7 +130,7 @@ ga('send', 'pageview');
       </header>
       
       <footer class="article-footer">
-        <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ck6fxalrl00qqqkh2knp7ufx5" class="article-share-link">分享</a>
+        <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ckey311e100v3e29kc6zac6ls" class="article-share-link">分享</a>
         
         
         
@@ -228,7 +228,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ck6fxalrl00qqqkh2knp7ufx5" class="article-share-link">分享</a>
+      <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ckey311e100v3e29kc6zac6ls" class="article-share-link">分享</a>
       
       
       
@@ -470,6 +470,25 @@ window.onload = function() {
 
 <script src="/js/script.js"></script>
 <script src="/js/elevator.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
