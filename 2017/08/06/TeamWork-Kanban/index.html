@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>DevOps 漫谈:看板Kanban管理实践 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要Kanban看板是一种可视化生产管理系统，利用看板卡来增强信号量、标记生产过程，促进系统渐进式变化，提高团队协作的效率。  核心理论：流动性、可视化 实践方法：看板设计模式、可视化技巧、平衡群体智慧和个体差异   目标是 提高整个系统的生产能力，不只是提高任务的完成数量。——《凤凰项目 一个IT运维的传奇故事》第 193 页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 漫谈:看板Kanban管理实践">
+<meta property="og:url" content="https://riboseyim.com/2017/08/06/TeamWork-Kanban/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要Kanban看板是一种可视化生产管理系统，利用看板卡来增强信号量、标记生产过程，促进系统渐进式变化，提高团队协作的效率。  核心理论：流动性、可视化 实践方法：看板设计模式、可视化技巧、平衡群体智慧和个体差异   目标是 提高整个系统的生产能力，不只是提高任务的完成数量。——《凤凰项目 一个IT运维的传奇故事》第 193 页">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Toyota.gif">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_Org.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_YR_201707.png">
+<meta property="article:published_time" content="2017-08-06T10:33:34.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:09.739Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Manager">
+<meta property="article:tag" content="工具癖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Toyota.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TeamWork-Kanban" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/TeamWork-Kanban/" class="article-date">
+  <time datetime="2017-08-06T10:33:34.000Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DevOps 漫谈:看板Kanban管理实践
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/08/06/TeamWork-Kanban/" data-id="ckwgm33pc01407b1ymfvhd7ep" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E7%99%96/" rel="tag">工具癖</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Kanban看板是一种可视化生产管理系统，利用看板卡来增强信号量、标记生产过程，促进系统渐进式变化，提高团队协作的效率。</p>
+<ul>
+<li>核心理论：流动性、可视化</li>
+<li>实践方法：看板设计模式、可视化技巧、平衡群体智慧和个体差异</li>
+</ul>
+<blockquote>
+<p>目标是 <strong>提高整个系统的生产能力，不只是提高任务的完成数量</strong>。——《凤凰项目 一个IT运维的传奇故事》第 193 页</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、Kanban看板核心理论"><a href="#一、Kanban看板核心理论" class="headerlink" title="一、Kanban看板核心理论"></a>一、Kanban看板核心理论</h2><h4 id="1、起源"><a href="#1、起源" class="headerlink" title="1、起源"></a>1、起源</h4><p>Kanban(看板)是一种生产管理系统，起源于1940年代的丰田汽车公司的 TPS (Toyota Production System)。简单来说看板是一系列简单的视觉符号，它的出现是为了达到即时化生产（Just in time，JIT），JIT认为库存会带来成本以及浪费，而不是增加或储存价值，这与传统会计学不同，它鼓励企业逐步消除库存，以便削减生产流程中的成本，在管理中逐渐适应“零库存”的状态。<br><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Toyota.gif" alt=""></p>
+<h4 id="2、BASIC-of-Kanban：流动性"><a href="#2、BASIC-of-Kanban：流动性" class="headerlink" title="2、BASIC of Kanban：流动性"></a>2、BASIC of Kanban：流动性</h4><p><strong>Cycle Time = Work in Progress / Throughput</strong><br>Kanan 看板系统的基础理论是利特尔法则（ Little’s Law），由MIT （Sloan School of Management）的教授John Little于1961年提出：在一个稳定的系统 L中，长期的平均顾客人数，等于长期的有效抵达率，系统中的平均存货等于存货单位离开系统的比率（亦即平均需求率）与存货单位在系统中平均时间的乘积。</p>
+<blockquote>
+<p>the relationship between the average number of customers in a store, their arrival rate, and the average time in the store.</p>
+</blockquote>
+<p>根据利特尔法则，跟踪工作及其进展的最重要的目标是：限制在制品（Work in process，WIP），例如尚未完成制造过程的商品，或是停留在库存仓库或是产线上，等待着进一步处理的商品。</p>
+<blockquote>
+<p>高质量地完成工作只有在工作以可持续的节奏流动时才有可能。发现并维持这一节奏只有在在制品小于团队产能的情况下才有可能。— Jim Benson  《Personal Kanban》作者</p>
+</blockquote>
+<p>看板的主要部分是故事卡片（Story Cards），上面显示了你和你的团队所需的所有必要信息。在基本设置中，故事卡片分为三个主要阶段（列）——To Do(计划做的事情）、In Progress (正在进行)、Done(完成)。根据实际的需要，还可以分为多个阶段。你也可以使用泳道任务（swimlanes）拆分为不同类别，最后根据进程随时移动状态和泳道之间的问题。</p>
+<h4 id="3、可视化工作区"><a href="#3、可视化工作区" class="headerlink" title="3、可视化工作区"></a>3、可视化工作区</h4><blockquote>
+<p>The power of Little’s Law to Kanban teams is not its ability to predict WIP, Thoughput or Leadtime. The true power lies in its ability to influence team behavior with its underlying assumptions.</p>
+</blockquote>
+<p>像看板这样的可视化系统因我们对视觉信息的偏好而成为了强有力的工具。真实地看到工作和流程有助于理解。看板墙可以作为一个简单的信息节点，使任何人都能走过来并了解项目的当前状态。— Jim Benson  《Personal Kanban》作者</p>
+<p>看板方法要求团队将组织处理信号的规则显式化，利用精益度量体系对系统及时进行分析回顾，不断优化信号处理模式。这就形成了一个<strong>完整高效的反馈闭环</strong>，最终建立一个具备自我完善能力，并能随着组织发展和环境变化不断演进的自适应系统。— 李兴双 中国工商银行软件开发中心</p>
+<p>Kanban看板可视化的一些技巧：</p>
+<ul>
+<li>Kanban看板墙需放置于工作区醒目位置</li>
+<li>不同事件类别使用不同颜色，紧急事件（URGENT）使用醒目颜色（红色）</li>
+<li>故事卡片常规要素：编号，标题，负责人，截止日期</li>
+<li>故事卡片叠加要素：重要度，约束条件，延期原因等特殊描述</li>
+<li>照相机定期快照（周），及时复盘总结（月）</li>
+<li>限制进行中（In-Process）事件数量，限制已经完成（Done）事件数量（折叠或者更换新的Kanban看板墙）</li>
+</ul>
+<p>总之，Kanban看板系统的本质意义在于促进团队成员对作业流程、过程和风险达成共同理解, 可视化的作用在于增强不确定风险的信息量（故障、阻碍因子、延期原因、特殊要求等），促进系统各方及时作出响应，或者通过快照机制随时复盘、研究改进措施。</p>
+<h2 id="二、Kanban看板实践注意事项"><a href="#二、Kanban看板实践注意事项" class="headerlink" title="二、Kanban看板实践注意事项"></a>二、Kanban看板实践注意事项</h2><h4 id="1、看板墙设计模式"><a href="#1、看板墙设计模式" class="headerlink" title="1、看板墙设计模式"></a>1、看板墙设计模式</h4><blockquote>
+<p><strong> Conway’s law：Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization’s communication structure.</strong></p>
+</blockquote>
+<p>康威定律指出：任何组织在设计一套系统（广义概念上的系统）时，所交付的设计方案在结构上都与该组织的通信结构保持一致。设计一套可以落地的看板墙规则，第一个步骤不是按照教科书照搬其他企业的看板墙风格，而应首先画出自己所在组织的架构图。其内容包括管理架构、关联方和关注重点，在此基础之上再设计横坐标（Workflow）与纵坐标（Items）, 应当尽可能地使看板墙符合组织结构，而不是相反。</p>
+<p>规模的增长很容易让工作陷入停滞，沟通成本加上工作划分会导致效率变化。具体表现为团队之间在工作时间里召开的沟通会议呈指数增长，不同团队的工作量差别很大，不同团队的工作节奏紊乱脱节。Kanban看板实践中，应考虑上述情况，在技术上作出特殊处理：例如当团队规模较大时，对看板墙进行拆分，不同的业务单元使用不同的看板，综合管控部门聚焦于较大标的，而技术实现部门侧重于细节。切记只有当工作可以划分时，你才可能通过增加团队成员来提高效率。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png" alt=""></p>
+<h4 id="2、平衡群体智慧与个体差异"><a href="#2、平衡群体智慧与个体差异" class="headerlink" title="2、平衡群体智慧与个体差异"></a>2、平衡群体智慧与个体差异</h4><blockquote>
+<p>保持群体智慧的唯一方式是保护每个人的独立性。—乔纳-莱勒（Jonah Lehrer）</p>
+</blockquote>
+<p>群体会对特定类型的问题给出较好的答案。当大量的人做出回应时，他们产生了很多答案，但其平均值、中位数或最常见的回答往往会是一个很好的答案。这比人们被彼此隔离来发表独立意见更为可行。……但是，当人们看到别人提供的答案后，就出现了一些不好的事情。人们会修改自己的答案，从而造成最后的答案集合变得不够多样化，这样最好的答案就可能无法脱颖而出。人们通过强化会变得更加自信，但是精确度却没有改进。<strong>群体智慧依赖于多样性和独立性</strong>。在社交网络上（以及在企业、组织和政府机构工作的人员团队中），<strong>同事压力和主导人物可能会降低该团体的智慧</strong>。（《火的礼物-人类与计算技术的终极博弈（第4版）》，Sara Baase）</p>
+<p>具体落地实践中，需要承认不同团队、不同团队成员的个体差异。这里所说的个体差异主要表表现为性格差异，它通过人对事物的倾向性态度、意志、语言、逻辑、行为方式等方面表现出来。一般情况下，随机组成的团队成员之间，心理风格的差异会非常显著。例如在感知方面，可以划分为亢奋敏感型、被动感知型等；在信息反馈习惯上，存在主动型和滞后型；在计划性方面也有不同的偏好倾向，有人喜欢按部就班的任务模式，有人善于临机应变，处置紧急情况更能触发神经亢奋，然前者则容易陷入焦虑和挫败感。组织模式可以简化为两种，矩阵式：适用于团队成员之间技能、心理强度较为均匀的理想情况；另外一种是集中式：由一名心理风格较为平和的成员负责日常沟通、统一维护看板墙，即适当缓冲敏感型成员的过度信息输出，另外主动轮询其它被动型成员。<br><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_Org.png" alt=""></p>
+<h4 id="3、慎用“高级”看板"><a href="#3、慎用“高级”看板" class="headerlink" title="3、慎用“高级”看板"></a>3、慎用“高级”看板</h4><p>不管什么时代什么组织，优秀管理的本质就是鼓励准确信息迅速向上、横向和向下传递，而最重要的是向上传递。在Kanban看板实践中，我目前的判断是不建议套用倾向量化方案的“高级”看板。</p>
+<p>麦克纳马拉曾在福特汽车公司和五角大楼都创下管理奇迹的“神童”，在越南战争中使用量化准则来指挥越战，却导致越战的美军在结构上鼓励虚假信息向上传递：军队从上到下都渴望好消息，于是心照不宣地制造、传递假消息，甚至发明出所谓“尸体数”、“小便数”等荒唐可笑的考核指标，造成严重后果。麦克纳马拉也因为自己的过于“聪明”、刚愎自用，在战争决策上神话破产、风光不再。</p>
+<blockquote>
+<p>“每个定量指标都表明我们正在打胜仗。— 麦克纳马拉”</p>
+</blockquote>
+<p>量化的破坏性经常被人忽略：第一，机会成本。量化是很耗时的，大量宝贵的管理时间浪费在量化上，做其他重要事情的时间就减少了。第二，量化容易误导决策。定量信息造成了各种各样错得离谱的决策。</p>
+<p>当你的组织还远远没有达到精益生产、杜绝延期的境界之前，将敏捷的Kanban看板应用急用进入量化范畴，是不明智的。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_YR_201707.png" alt=""></p>
+<h4 id="扩展阅读：DevOps-漫谈系列"><a href="#扩展阅读：DevOps-漫谈系列" class="headerlink" title="扩展阅读：DevOps 漫谈系列"></a>扩展阅读：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/28/DevOps/">DevOps 漫谈系列</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/">Kanban 看板管理实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/Technology-English/">工程师的自我修养：全英文技术学习实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/">DevOps 实践的本质是文化</a></li>
+</ul>
+<h4 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h4><h4 id="《个人看板：了解工作-驾驭生活》（PersonalKanban-MappingWork-NavigatingLife）"><a href="#《个人看板：了解工作-驾驭生活》（PersonalKanban-MappingWork-NavigatingLife）" class="headerlink" title="《个人看板：了解工作/驾驭生活》（PersonalKanban:MappingWork|NavigatingLife）"></a>《个人看板：了解工作/驾驭生活》（PersonalKanban:MappingWork|NavigatingLife）</h4><ul>
+<li>作者：吉姆·本森、托尼安妮·德马里亚·巴里</li>
+<li>简介：与其说这是一本关于复杂价值流的书，还不如说是一本关于个人工作效率的书。</li>
+</ul>
+<h4 id="《看板方法：科技企业渐进变革成功之道》"><a href="#《看板方法：科技企业渐进变革成功之道》" class="headerlink" title="《看板方法：科技企业渐进变革成功之道》"></a>《看板方法：科技企业渐进变革成功之道》</h4><ul>
+<li>Kanban : Successful Evolutionary Change for Your Technology Business</li>
+<li>作者：戴维·J.安德森</li>
+<li>简介：对于在企业中如何使用看板图描述得更加具体。</li>
+</ul>
+<h4 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h4><ul>
+<li><a href="https://riboseyim.com/2019/02/06/Project/">项目管理 | Overview of Project Management</a></li>
+<li><a href="https://riboseyim.com/2019/04/30/Project-PMP/">PM指南:PMI项目管理知识体系</a></li>
+<li><a href="https://riboseyim.com/2019/03/27/Project-Construction/">PM指南:建筑工程项目管理|行业案例教学</a></li>
+<li><a href="#">PM指南:范围管理</a></li>
+<li><a href="#">PM指南:进度管理</a></li>
+<li><a href="#">PM指南:成本管理</a></li>
+<li><a href="#">PM指南:质量管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Resources/">PM指南:资源管理</a></li>
+<li><a href="https://riboseyim.com/2019/02/06/Project-Communications/">PM指南:沟通管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/06/05/Project-Risk/">PM指南:风险管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Procurement/">PM指南:采购管理</a></li>
+<li><a href="#">PM指南:相关方管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/04/06/Project-PMIS/">PM指南:项目管理信息系统|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2018/06/19/Project-Template/">PM指南:项目管理开局模板|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/04/26/TeamWork-Redmine/">PM指南:开源项目管理平台Redmine|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">PM指南:软件业看板Kanban管理实践|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/05/31/TeamWork-Git/">PM指南:源代码版本管理|工具与技术</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ufCa1VlItLA">Marcus Hammarberg:Kanban in Action  (Youtube Video)</a></li>
+<li><a target="_blank" rel="noopener" href="http://itsadeliverything.com/littles-law-the-basis-of-lean-and-kanban">Steven Tomas:Little’s Law – the basis of Lean and Kanban</a></li>
+<li><a target="_blank" rel="noopener" href="http://3.droppdf.com/files/p99PT/kanban-in-action.pdf">PDF《kanban in Action》</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.toyota-global.com/company/vision_philosophy/toyota_production_system/just-in-time.html">Just-in-Time — Philosophy of complete elimination of waste</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.thepaper.cn/newsDetail_forward_1365119_1">澎湃新闻：麦克纳马拉：以铁腕重塑五角大楼，却因越战一败涂地</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/kanban-development-method">何勉：解析精益产品开发（一）—— 看板开发方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.com/articles/hiranabe-lean-agile-kanban">Kanban Applied to Software Development: from Agile to Lean</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/08/06/TeamWork-Kanban/" data-id="ckwgm33pc01407b1ymfvhd7ep" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E7%99%96/" rel="tag">工具癖</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/09/Protocol-IPv6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          计算机网络协议：IPv6 与网络安全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/23/CloudComputing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">云计算 | Overview of Cloud Computing</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Kanban%E7%9C%8B%E6%9D%BF%E6%A0%B8%E5%BF%83%E7%90%86%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">一、Kanban看板核心理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E8%B5%B7%E6%BA%90"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、起源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81BASIC-of-Kanban%EF%BC%9A%E6%B5%81%E5%8A%A8%E6%80%A7"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、BASIC of Kanban：流动性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、可视化工作区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Kanban%E7%9C%8B%E6%9D%BF%E5%AE%9E%E8%B7%B5%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">二、Kanban看板实践注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%9C%8B%E6%9D%BF%E5%A2%99%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、看板墙设计模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%B9%B3%E8%A1%A1%E7%BE%A4%E4%BD%93%E6%99%BA%E6%85%A7%E4%B8%8E%E4%B8%AA%E4%BD%93%E5%B7%AE%E5%BC%82"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、平衡群体智慧与个体差异</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E6%85%8E%E7%94%A8%E2%80%9C%E9%AB%98%E7%BA%A7%E2%80%9D%E7%9C%8B%E6%9D%BF"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、慎用“高级”看板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9ADevOps-%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97"><span class="toc-number">3.0.4.</span> <span class="toc-text">扩展阅读：DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">3.0.5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8A%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%9D%BF%EF%BC%9A%E4%BA%86%E8%A7%A3%E5%B7%A5%E4%BD%9C-%E9%A9%BE%E9%A9%AD%E7%94%9F%E6%B4%BB%E3%80%8B%EF%BC%88PersonalKanban-MappingWork-NavigatingLife%EF%BC%89"><span class="toc-number">3.0.6.</span> <span class="toc-text">《个人看板：了解工作&#x2F;驾驭生活》（PersonalKanban:MappingWork|NavigatingLife）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8A%E7%9C%8B%E6%9D%BF%E6%96%B9%E6%B3%95%EF%BC%9A%E7%A7%91%E6%8A%80%E4%BC%81%E4%B8%9A%E6%B8%90%E8%BF%9B%E5%8F%98%E9%9D%A9%E6%88%90%E5%8A%9F%E4%B9%8B%E9%81%93%E3%80%8B"><span class="toc-number">3.0.7.</span> <span class="toc-text">《看板方法：科技企业渐进变革成功之道》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">3.0.8.</span> <span class="toc-text">拓展阅读</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

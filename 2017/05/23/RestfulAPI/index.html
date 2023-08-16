@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：基于Go语言快速构建RESTful API服务 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 What is a JSON API? 启动一个RESTful服务 抽象数据模型 增加路径分发功能 重构：Handlers &amp; Router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：基于Go语言快速构建RESTful API服务">
+<meta property="og:url" content="https://riboseyim.com/2017/05/23/RestfulAPI/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 What is a JSON API? 启动一个RESTful服务 抽象数据模型 增加路径分发功能 重构：Handlers &amp; Router">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-05-23T06:14:12.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:09.267Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RestfulAPI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/23/RestfulAPI/" class="article-date">
+  <time datetime="2017-05-23T06:14:12.000Z" itemprop="datePublished">2017-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：基于Go语言快速构建RESTful API服务
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/23/RestfulAPI/" data-id="ckwgm33ou01287b1y8umaf3zo" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>What is a JSON API?</li>
+<li>启动一个RESTful服务</li>
+<li>抽象数据模型</li>
+<li>增加路径分发功能</li>
+<li>重构：Handlers &amp; Router</li>
+</ul>
+<span id="more"></span>
+<p>In this post, we will not only cover how to use Go to create a RESTful JSON API, but we will also talk about good RESTful design.</p>
+<p>部分内容删减调整，原文请查看： <a target="_blank" rel="noopener" href="https://thenewstack.io/make-a-restful-json-api-go/">Making a RESTful JSON API in Go,2014Nov</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.linkedin.com/in/corylanou/">Author:CORY LANOU</a>:a full stack technologist who has specialized in start-ups for the last 17 years. I’m currently working at InfluxDB on their core data team. I also help lead and organizer several community technology meetups and do Go training.</p>
+<h2 id="一、What-is-a-JSON-API"><a href="#一、What-is-a-JSON-API" class="headerlink" title="一、What is a JSON API?"></a>一、What is a JSON API?</h2><p>JSON API 是数据交互规范，用以定义客户端如何获取与修改资源，以及服务器如何响应对应请求。JSON API设计用来最小化请求的数量，以及客户端与服务器间传输的数据量。通过遵循共同的约定，可以提高开发效率，利用更普遍的工具,基于 JSON API 的客户端还能够充分利用缓存，以提升性能。(更多：<a target="_blank" rel="noopener" href="http://jsonapi.org.cn/format/)。">http://jsonapi.org.cn/format/)。</a></p>
+<p>示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;links&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;posts.author&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;href&quot;</span>: <span class="string">&quot;http://example.com/people/&#123;posts.author&#125;&quot;</span>,</span><br><span class="line">      <span class="string">&quot;type&quot;</span>: <span class="string">&quot;people&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;posts.comments&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;href&quot;</span>: <span class="string">&quot;http://example.com/comments/&#123;posts.comments&#125;&quot;</span>,</span><br><span class="line">      <span class="string">&quot;type&quot;</span>: <span class="string">&quot;comments&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;posts&quot;</span>: [&#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;Rails is Omakase&quot;</span>,</span><br><span class="line">    <span class="string">&quot;links&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;author&quot;</span>: <span class="string">&quot;9&quot;</span>,</span><br><span class="line">      <span class="string">&quot;comments&quot;</span>: [ <span class="string">&quot;5&quot;</span>, <span class="string">&quot;12&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;20&quot;</span> ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="启动一个RESTful服务"><a href="#启动一个RESTful服务" class="headerlink" title="启动一个RESTful服务"></a>启动一个RESTful服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line"></span><br><span class="line">$ curl http://localhost:8080</span><br><span class="line">Hello,<span class="string">&quot;/&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;html&quot;</span></span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    http.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">        fmt.Fprintf(w, <span class="string">&quot;Hello, %q&quot;</span>, html.EscapeString(r.URL.Path))</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    log.Fatal(http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, <span class="literal">nil</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="增加路径分发功能"><a href="#增加路径分发功能" class="headerlink" title="增加路径分发功能"></a>增加路径分发功能</h4><p>路径又称”终点”（endpoint），表示API的具体网址。在RESTful架构中，每个网址代表一种资源（resource）。<br>第三方组件（Gorilla Mux package）： “github.com/gorilla/mux”</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/gorilla/mux&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    router := mux.NewRouter().StrictSlash(<span class="literal">true</span>)</span><br><span class="line">    router.HandleFunc(<span class="string">&quot;/&quot;</span>, Index)</span><br><span class="line">    router.HandleFunc(<span class="string">&quot;/todos&quot;</span>, TodoIndex)</span><br><span class="line">    router.HandleFunc(<span class="string">&quot;/todos/&#123;todoId&#125;&quot;</span>, TodoShow)</span><br><span class="line"></span><br><span class="line">    log.Fatal(http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, router))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Index</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    fmt.Fprintln(w, <span class="string">&quot;Welcome!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TodoIndex</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    fmt.Fprintln(w, <span class="string">&quot;Todo Index!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TodoShow</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    vars := mux.Vars(r)</span><br><span class="line">    todoId := vars[<span class="string">&quot;todoId&quot;</span>]</span><br><span class="line">    fmt.Fprintln(w, <span class="string">&quot;Todo show:&quot;</span>, todoId)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://localhost:8080/todo</span><br><span class="line">404 page not found</span><br><span class="line">$ curl http://localhost:8080/todos</span><br><span class="line">Todo Index! ,<span class="string">&quot;/todos&quot;</span></span><br><span class="line">$ curl http://localhost:8080/todos/&#123;123&#125;</span><br><span class="line">TodoShow: ,<span class="string">&quot;123&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="抽象数据模型"><a href="#抽象数据模型" class="headerlink" title="抽象数据模型"></a>抽象数据模型</h4><p>创建一个数据模型“Todo”、“Routes”。在其它语言中，使用类（class）实现。<br>在Go语言中，没有class，必须使用结构(struct)。</p>
+<p><strong>Todo.go</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;time&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Todo <span class="keyword">struct</span> &#123;</span><br><span class="line">      Id        <span class="keyword">int</span>       <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">      Name      <span class="keyword">string</span>    <span class="string">`json:&quot;name&quot;`</span></span><br><span class="line">      Completed <span class="keyword">bool</span>      <span class="string">`json:&quot;completed&quot;`</span></span><br><span class="line">      Due       time.Time <span class="string">`json:&quot;due&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Todos []Todo</span><br></pre></td></tr></table></figure></p>
+<p><strong>Routes.go</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/gorilla/mux&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Route <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name        <span class="keyword">string</span></span><br><span class="line">    Method      <span class="keyword">string</span></span><br><span class="line">    Pattern     <span class="keyword">string</span></span><br><span class="line">    HandlerFunc http.HandlerFunc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Routes []Route</span><br></pre></td></tr></table></figure></p>
+<h4 id="重构：Handlers-amp-Router"><a href="#重构：Handlers-amp-Router" class="headerlink" title="重构：Handlers &amp; Router"></a>重构：Handlers &amp; Router</h4><p><strong>Handlers.go</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/gorilla/mux&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Index</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    fmt.Fprintln(w, <span class="string">&quot;Welcome!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TodoIndex</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    todos := Todos&#123;</span><br><span class="line">        Todo&#123;Name: <span class="string">&quot;Write presentation&quot;</span>&#125;,</span><br><span class="line">        Todo&#123;Name: <span class="string">&quot;Host meetup&quot;</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> err := json.NewEncoder(w).Encode(todos); err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TodoShow</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    vars := mux.Vars(r)</span><br><span class="line">    todoId := vars[<span class="string">&quot;todoId&quot;</span>]</span><br><span class="line">    fmt.Fprintln(w, <span class="string">&quot;Todo show:&quot;</span>, todoId)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Router.go</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/gorilla/mux&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewRouter</span><span class="params">()</span> *<span class="title">mux</span>.<span class="title">Router</span></span> &#123;</span><br><span class="line">    router := mux.NewRouter().StrictSlash(<span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">for</span> _, route := <span class="keyword">range</span> routes &#123;</span><br><span class="line">        <span class="keyword">var</span> handler http.Handler</span><br><span class="line">        handler = route.HandlerFunc</span><br><span class="line">        handler = Logger(handler, route.Name)</span><br><span class="line"></span><br><span class="line">        router.</span><br><span class="line">            Methods(route.Method).</span><br><span class="line">            Path(route.Pattern).</span><br><span class="line">            Name(route.Name).</span><br><span class="line">            Handler(handler)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> router</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="启动入口是不是清爽很多！"><a href="#启动入口是不是清爽很多！" class="headerlink" title="启动入口是不是清爽很多！"></a>启动入口是不是清爽很多！</h4><p><strong>Main.go</strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Main.<span class="keyword">go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    router := NewRouter()</span><br><span class="line">    log.Fatal(http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, router))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>web access:<a target="_blank" rel="noopener" href="http://localhost:8080/todos">http://localhost:8080/todos</a></p>
+<blockquote>
+<p>Todo Index! ,”/todos”<br>[<br>  {<br>      “id”:0,<br>      “name”:”Write sth ….”,<br>      “completed”:false,<br>      “due”:”0001-01-01T00:00:00<br>  },<br>  {<br>      “id”:1,<br>      “name”:”Host meetup ….”,<br>      “completed”:false,<br>      “due”:”0001-01-01T00:00:00Z”<br>  }<br>]</p>
+</blockquote>
+<h4 id="增强功能：持久化"><a href="#增强功能：持久化" class="headerlink" title="增强功能：持久化"></a>增强功能：持久化</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TodoCreate</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> todo Todo</span><br><span class="line">    <span class="comment">//add Todo instance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="增强功能：日志"><a href="#增强功能：日志" class="headerlink" title="增强功能：日志"></a>增强功能：日志</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2017</span>/<span class="number">05</span>/<span class="number">23</span> <span class="number">15</span>:<span class="number">57</span>:<span class="number">23</span> http: multiple response.WriteHeader calls</span><br><span class="line"><span class="number">2017</span>/<span class="number">05</span>/<span class="number">23</span> <span class="number">15</span>:<span class="number">57</span>:<span class="number">23</span> GET	/todos	TodoIndex	<span class="number">6.</span>945807ms</span><br><span class="line"><span class="number">2017</span>/<span class="number">05</span>/<span class="number">23</span> <span class="number">16</span>:<span class="number">18</span>:<span class="number">40</span> http: multiple response.WriteHeader calls</span><br><span class="line"><span class="number">2017</span>/<span class="number">05</span>/<span class="number">23</span> <span class="number">16</span>:<span class="number">18</span>:<span class="number">40</span> GET	/todos	TodoIndex	<span class="number">2.</span>127435ms</span><br></pre></td></tr></table></figure>
+<h2 id="Things-We-Didn’t-Do"><a href="#Things-We-Didn’t-Do" class="headerlink" title="Things We Didn’t Do"></a>Things We Didn’t Do</h2><ol>
+<li><p>版本控制<br>API版本迭代 &amp; 跨版本资源访问。常用做法是将版本号放在URL，较为简洁，例如：<a target="_blank" rel="noopener" href="https://localhost:8080/v1/">https://localhost:8080/v1/</a><br>另一种做法是将版本号放在HTTP头信息中。</p>
+</li>
+<li><p>授权验证：涉及到OAuth和JWT。<br>（1）<a target="_blank" rel="noopener" href="http://www.rfcreader.com/#rfc6749">OAuth 2.0，OAuth2 is an authentication framework</a>,<a target="_blank" rel="noopener" href="http://www.rfcreader.com/#rfc6749">RFC 6749</a><br>OAuth2是一种授权框架，提供了一套详细的、可供实践的指导性解决方案。OAuth 2.0定义了四种授权方式。授权码模式（authorization code）、简化模式（implicit）、密码模式（resource owner password credentials）、客户端模式（client credentials）。</p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://t.co/HXbBiVorVO">Getting Started with OAuth2 in Go | Youtube</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ory/fosite">Extensible security first OAuth 2.0 and OpenID Connect SDK for Go </a></li>
+</ul>
+<p>(2)<a target="_blank" rel="noopener" href="https://jwt.io">JSON web tokens,JWT is an authentication protocol</a>,<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7519">RFC 7519</a><br>JWT是一种安全协议。基本思路就是用户提供用户名和密码给认证服务器，服务器验证用户提交信息信息的合法性；如果验证成功，会产生并返回一个Token（令牌），用户可以使用这个token访问服务器上受保护的资源。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span><br></pre></td></tr></table></figure>
+<p>header:定义算法(alg:ALGORITHM)和TOKEN TYPE（typ）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">  <span class="string">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Data:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;sub&quot;</span>: <span class="string">&quot;1234567890&quot;</span>,</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;John Doe&quot;</span>,</span><br><span class="line">  <span class="string">&quot;admin&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://keratin.tech/">AuthN | Modern, open source, web app authentication </a></li>
+<li><a target="_blank" rel="noopener" href="https://code.tutsplus.com/tutorials/api-authentication-with-nodejs--cms-29536?utm_source=twitter&amp;utm_medium=social&amp;utm_campaign=social_twtr_tuts_code">API Authentication With Node.js</a></li>
+</ul>
+<ol>
+<li>eTags：关于缓存、性能和用户标识和追踪。</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">阮一峰:RESTful API 设计指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://thenewstack.io/make-a-restful-json-api-go/">CORY LANOU:Making a RESTful JSON API in Go,2014Nov</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/etags">InfoQ:使用ETags减少Web应用带宽和负载</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39909419/jwt-vs-oauth-authentication">Stackoverflow:jwt vs oauth authentication</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.seedbox.com/en/blog/2015/06/05/oauth-2-vs-json-web-tokens-comment-securiser-un-api/">OAuth 2 VS JSON Web Tokens:How to secure an API,20160605</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html">阮一峰:理解OAuth 2.0,201405</a></li>
+<li><a target="_blank" rel="noopener" href="http://openmymind.net/RESTful-routing-in-Go/">RESTful routing in Go | Karl Seguin</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/23/RestfulAPI/" data-id="ckwgm33ou01287b1y8umaf3zo" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/24/Log/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          开源技术架构漫谈：应用程序的日志管理及可视化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/16/Language-Ruby-lang/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">玩转编程语言:Ruby</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81What-is-a-JSON-API"><span class="toc-number">2.</span> <span class="toc-text">一、What is a JSON API?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AARESTful%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.0.1.</span> <span class="toc-text">启动一个RESTful服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E8%B7%AF%E5%BE%84%E5%88%86%E5%8F%91%E5%8A%9F%E8%83%BD"><span class="toc-number">2.0.2.</span> <span class="toc-text">增加路径分发功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.0.3.</span> <span class="toc-text">抽象数据模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%EF%BC%9AHandlers-amp-Router"><span class="toc-number">2.0.4.</span> <span class="toc-text">重构：Handlers &amp; Router</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%85%A5%E5%8F%A3%E6%98%AF%E4%B8%8D%E6%98%AF%E6%B8%85%E7%88%BD%E5%BE%88%E5%A4%9A%EF%BC%81"><span class="toc-number">2.0.5.</span> <span class="toc-text">启动入口是不是清爽很多！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD%EF%BC%9A%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">2.0.6.</span> <span class="toc-text">增强功能：持久化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD%EF%BC%9A%E6%97%A5%E5%BF%97"><span class="toc-number">2.0.7.</span> <span class="toc-text">增强功能：日志</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things-We-Didn%E2%80%99t-Do"><span class="toc-number">3.</span> <span class="toc-text">Things We Didn’t Do</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

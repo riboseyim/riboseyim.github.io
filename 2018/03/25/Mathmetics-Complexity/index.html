@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>如何度量复杂性 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 复杂系统、复杂度(Complexity) 如何度量复杂度：熵、算法信息量、逻辑深度、热力学深度、计算能力、层次性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何度量复杂性">
+<meta property="og:url" content="https://riboseyim.com/2018/03/25/Mathmetics-Complexity/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 复杂系统、复杂度(Complexity) 如何度量复杂度：熵、算法信息量、逻辑深度、热力学深度、计算能力、层次性">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-03-25T12:05:04.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.751Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="数学与算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Mathmetics-Complexity" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/25/Mathmetics-Complexity/" class="article-date">
+  <time datetime="2018-03-25T12:05:04.000Z" itemprop="datePublished">2018-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何度量复杂性
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/03/25/Mathmetics-Complexity/" data-id="ckwgm33md00fx7b1yb1m3yyi1" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>复杂系统、复杂度(Complexity)</li>
+<li>如何度量复杂度：熵、算法信息量、逻辑深度、热力学深度、计算能力、层次性</li>
+</ul>
+<span id="more"></span>
+<h2 id="如何度量复杂度"><a href="#如何度量复杂度" class="headerlink" title="如何度量复杂度"></a>如何度量复杂度</h2><p>2001 年，物理学家劳埃德（Seth Lloyd）发表了一篇文章（《Measures of complexity：A non-exhaustive list.  IEEE Control Systems Magazine, August 2001 》），分别从动力学、热力学、信息论等方面列出了 40 种度量复杂性的方法。提出了度量一个事物或过程的复杂性的三个维度：</p>
+<ul>
+<li>描述它有多困难 ？</li>
+<li>产生它有多困难 ？</li>
+<li>其组织程度如何 ？</li>
+</ul>
+<h4 id="用熵度量复杂性"><a href="#用熵度量复杂性" class="headerlink" title="用熵度量复杂性"></a>用熵度量复杂性</h4><p><strong>香农熵</strong>，相对于信息接收者的平均信息量或“惊奇度”。例如，假设消息由符号 A、C、G 和 T 组成。如果序列高度有序，如“A  A  A  A  A  A …… A ” 则熵为零。完全随机的序列则有最大可能熵。最复杂的对象不是最有序的或最随机的，而是介于两者之间。</p>
+<p>在英语里，信息和情报是同一个词（Information），而我们知道情报的作用就是排除不确定性。</p>
+<blockquote>
+<p>如果没有信息，任何公式或者数字的游戏都无法排除不确定性。这个朴素的结论非常重要，但是在研究工作中经常被一些半瓶子醋的专家忽视，希望做这方面工作的读者谨记。(吴军 |《数学之美》)</p>
+</blockquote>
+<p>用香农熵度量复杂性的问题。首先，所针对的对象或过程需要转换成某种“消息”的形式，这并不总是那么容易做到。另外，随机消息的熵最高，但是那些最复杂的对象都不是完全随机的。例如变形虫的基因长度远远超过其他动植物，具备复杂功能的人类基因也不是随机的，甚至能看到长期历史演化出来的规律。</p>
+<h4 id="用算法信息量度量复杂性"><a href="#用算法信息量度量复杂性" class="headerlink" title="用算法信息量度量复杂性"></a>用算法信息量度量复杂性</h4><p>为了改进熵度量复杂性的方法，1997 年柯尔莫哥洛夫（Andrey Kolmogorov）等人提出了算法信息量的概念。他们将事物的复杂度定义为能够产生对事物完整描述的最短计算机程序的长度。</p>
+<p>为了计算有效复杂性，首先要给出事物规则性的最佳描述；有效复杂性定义为包含在描述中的信息量或规则集合的算法信息量。事物的结构可预测性越大，有效复杂性就越低。</p>
+<p>对于一个事物的各种规则集，如何决定哪个是最好的呢？<strong>奥卡姆剃刀（Occam’s Razor, Ockham’s Razor）</strong>，意思是简约之法则。最好的规则集是能够描述事物的最小规则集，同时还能将事物的随机成分最小化。奥卡姆剃刀在现代医学中的应用最具代表性，医生和医学哲学家提出了 <strong>症状化约原则（diagnostic parsimony）</strong>。即在诊断某个病症时，医生应该尽量寻找会导致所有症状的最简单可能性。“当你听到背后有蹄声时，应该想到马而不是斑马。”  </p>
+<p>虽然症状化约原则常常可能是正确的，然而也有争锋相对的意见：<strong>西卡姆格言（Hickam’s dictum）</strong>，“病人乐意得多少种病就能得多少种病。”  从统计数据看，一个病人的多种症状往往会归于多种常见疾病，而不是仅仅一种。另外，排除统计的因素，有许多病人无法使用单一疾病来解释众多的症状，被证实患有多种疾病。实际上，医生很难根据一个症状来判断是或者不是某个疾病，而是不断地根据病人的生活环境、日常习惯、用药史等等来建立、测试和修改对于症状的假设才是更好的方法。</p>
+<h4 id="用逻辑深度度量复杂性"><a href="#用逻辑深度度量复杂性" class="headerlink" title="用逻辑深度度量复杂性"></a>用逻辑深度度量复杂性</h4><p>为了更加接近我们对复杂性的直觉，数学家班尼特在 20 世纪 80 年代初提出了 <strong>逻辑深度（logical depth）</strong> 的概念。</p>
+<p>用班尼特的话说，“有逻辑深度的事物从根本上必须是长时间计算或漫长动力过程的产物，否则就不可能产生。” 或是像劳埃德说的，“用最合理的方法生成某个事物时需要处理的信息量等同于这个事物的复杂性，这是一个很吸引人的想法。”</p>
+<h4 id="用热力学深度度量复杂性"><a href="#用热力学深度度量复杂性" class="headerlink" title="用热力学深度度量复杂性"></a>用热力学深度度量复杂性</h4><p>20 世纪 80 年代末，劳埃德和裴杰斯（Heinz Pagels）提出了一种复杂性度量方法：热力学深度（thermodynamic depth）。</p>
+<p>与图灵机生成对事物的描述所需的时间步不同，热力学深度首先是确定“产生出这个事物最科学合理的确定事件序列”，然后测量“物理构造过程所需的热力源和信息源的总量”。例如，要确定人类基因组的热力学深度，得从最早出现的第一个生物的基因组开始，列出直到现代人类出现的所有遗传演化事件（随机变异、重组、基因复制等）。</p>
+<p>问题：如何定义系统的状态粒度，在列出事件时，如何确定相关的宏观状态。</p>
+<h4 id="用计算能力度量复杂性"><a href="#用计算能力度量复杂性" class="headerlink" title="用计算能力度量复杂性"></a>用计算能力度量复杂性</h4><p>一种观点认为，系统的计算能力如果等价于通用图灵机的计算能力，就是复杂系统。不过，班尼特等人则认为，具有执行通用计算的能力并不意味着系统本身就是复杂的；应当测量的是<strong>系统处理输入时的行为的复杂性</strong>。</p>
+<h4 id="用层次性度量复杂性"><a href="#用层次性度量复杂性" class="headerlink" title="用层次性度量复杂性"></a>用层次性度量复杂性</h4><p>如何用层次（degree of hierarchy）来刻画一个系统的复杂性：复杂系统由子系统组成，子系统下面又有子系统，不断往下。（《复杂性的结构》：The architecture of complexity. Simon 1962）</p>
+<p>西蒙认为，复杂系统最重要的共性就是 <strong>层次性</strong> 和 <strong>不可分解性</strong>。在层次性复杂系统中，子系统内部的紧密相互作用比子系统之间要多得多。例如，细胞内部的新陈代谢网络就比细胞之间的作用要复杂得多。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>各种度量复杂性的方法都抓住了一些方面，但都存在理论上和实践上的局限性，还远不能有效刻画实际系统的复杂性，度量方法的多样性也表明复杂系统具有许多维度，无法用单一的尺度来刻画。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图 | 开源中国首页推荐·每日一博</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li>2001 劳埃德（Seth Lloyd）《Measures of complexity：A non-exhaustive list.  IEEE Control Systems Magazine, August 2001 》</li>
+<li>1962 Simon《复杂性的结构》：The architecture of complexity.</li>
+<li><a target="_blank" rel="noopener" href="https://www.guokr.com/article/172437/">如何测出一句话中的信息量</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/03/25/Mathmetics-Complexity/" data-id="ckwgm33md00fx7b1yb1m3yyi1" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/26/DevOps-Deployment/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          DevOps 漫谈：基础设施部署和配置管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/21/Machine-Learning-WordBook/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Machine Learning:WordBook</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">如何度量复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E7%86%B5%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.1.</span> <span class="toc-text">用熵度量复杂性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E7%AE%97%E6%B3%95%E4%BF%A1%E6%81%AF%E9%87%8F%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.2.</span> <span class="toc-text">用算法信息量度量复杂性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%BB%E8%BE%91%E6%B7%B1%E5%BA%A6%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.3.</span> <span class="toc-text">用逻辑深度度量复杂性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E7%83%AD%E5%8A%9B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.4.</span> <span class="toc-text">用热力学深度度量复杂性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.5.</span> <span class="toc-text">用计算能力度量复杂性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E5%B1%82%E6%AC%A1%E6%80%A7%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">2.0.6.</span> <span class="toc-text">用层次性度量复杂性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

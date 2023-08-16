@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>How Linux Works:Device and FileSystem | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 BASIC Command LVM iSCSI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Linux Works:Device and FileSystem">
+<meta property="og:url" content="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 BASIC Command LVM iSCSI">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2018-06-07T09:45:08.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:06.023Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="架构师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Works-FileSystem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/07/Linux-Works-FileSystem/" class="article-date">
+  <time datetime="2018-06-07T09:45:08.000Z" itemprop="datePublished">2018-06-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How Linux Works:Device and FileSystem
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/" data-id="ckwgm33m200dp7b1yv7h3btno" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>BASIC Command</li>
+<li>LVM</li>
+<li>iSCSI</li>
+</ul>
+<span id="more"></span>
+<blockquote>
+<p>传统的计算机，其工作的原理都是冯·诺依曼体系：机器里面有一个很大的存储器，用来储存所有的信息，还有一个中央区域，执行简单的计算。我们从存储器的这个地方提取一个数据，又从存储器的另一个地方提取一个数据，把这两个数据送到中央算术单元进行相加，然后把计算结果传送到存储器的另一个地方。这样来看，计算机有一个高效运转的中央处理器，工作十分卖力，速度也很快。</p>
+<p>相比之下，整个存储器从头到尾待在一旁，很清闲，就像是一个卡片档案柜，除了偶尔翻找几张卡片，档案柜大多数时间都闲置着。显然，如果有更多的处理器同时工作的话，我们的计算速度就能更快一些。问题是当你使用这个处理器时，可能要用到存储器的某个信息，而同时另一个处理器也需要这个信息，机器就会陷入一片混乱中。出于这些原因，大家普遍认为让很多处理器同时工作是个难题。 — 理查德·费曼. 发现的乐趣 (未读·探索家) (Kindle 位置 470-472).</p>
+</blockquote>
+<h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><ul>
+<li>lsblk</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NAME                                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda                                    8:0    0 1000G  0 disk</span><br><span class="line">|-sda1                                 8:1    0  500M  0 part /boot</span><br><span class="line">|-sda2                                 8:2    0 19.5G  0 part</span><br><span class="line">| |-vg_nwtest68-lv_root (dm-0)       253:0    0 47.5G  0 lvm  /</span><br><span class="line">| `-vg_nwtest68-lv_swap (dm-1)       253:1    0    2G  0 lvm  [SWAP]</span><br><span class="line">`-sda3                                 8:3    0  980G  0 part</span><br><span class="line">  |-vg_nwtest68-lv_root (dm-0)       253:0    0 47.5G  0 lvm  /</span><br><span class="line">  |-vg_nwtest68-lv_data (dm-2)     253:2    0  100G  0 lvm  /data</span><br><span class="line">sr0                                   11:0    1  3.6G  0 rom  /media/RHEL-6.8 Server.x86_64</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>fdisk</li>
+</ul>
+<p>The fdisk command below will print the partition table of all mounted block devices.<a target="_blank" rel="noopener" href="https://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/">&gt;&gt;&gt;&gt;&gt; More details &lt;&lt;&lt;&lt;&lt;</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$ sudo fdisk -l</span><br><span class="line">[root@NW-DD-APP ~]<span class="comment"># fdisk -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/sda: 1073.7 GB, 1073741824000 bytes</span><br><span class="line">255 heads, 63 sectors/track, 130541 cylinders</span><br><span class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disk identifier: 0x0008ca86</span><br><span class="line"></span><br><span class="line">   Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *           1          64      512000   83  Linux</span><br><span class="line">Partition 1 does not end on cylinder boundary.</span><br><span class="line">/dev/sda2              64        2611    20458496   8e  Linux LVM</span><br><span class="line">/dev/sda3            2611      130541  1027599062+  83  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_root: 51.0 GB, 51011125248 bytes</span><br><span class="line">255 heads, 63 sectors/track, 6201 cylinders</span><br><span class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disk identifier: 0x00000000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_swap: 2147 MB, 2147483648 bytes</span><br><span class="line">255 heads, 63 sectors/track, 261 cylinders</span><br><span class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disk identifier: 0x00000000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_data: 107.4 GB, 107374182400 bytes</span><br><span class="line">255 heads, 63 sectors/track, 13054 cylinders</span><br><span class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disk identifier: 0x00000000</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>sfdisk</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sfdisk -l</span><br><span class="line"></span><br><span class="line">Disk /dev/sda: 130541 cylinders, 255 heads, 63 sectors/track</span><br><span class="line">Units = cylinders of 8225280 bytes, blocks of 1024 bytes, counting from 0</span><br><span class="line"></span><br><span class="line">   Device Boot Start     End   <span class="comment">#cyls    #blocks   Id  System</span></span><br><span class="line">/dev/sda1   *      0+     63-     64-    512000   83  Linux</span><br><span class="line">/dev/sda2         63+   2610-   2547-  20458496   8e  Linux LVM</span><br><span class="line">/dev/sda3       2610+ 130540  127931- 1027599062+  83  Linux</span><br><span class="line">/dev/sda4          0       -       0          0    0  Empty</span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_root: 6201 cylinders, 255 heads, 63 sectors/track</span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_swap: 261 cylinders, 255 heads, 63 sectors/track</span><br><span class="line">Disk /dev/mapper/vg_nwtest68-lv_data: 13054 cylinders, 255 heads, 63 sectors/track</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cfdisk</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cfdisk (util-linux-ng 2.17.2)</span><br><span class="line"></span><br><span class="line">    Disk Drive: /dev/sda</span><br><span class="line">Size: 1073741824000 bytes, 1073.7 GB</span><br><span class="line">Heads: 255   Sectors per Track: 63   Cylinders: 130541</span><br><span class="line"></span><br><span class="line">Name                    Flags                 Part Type            FS Type                         [Label]                      Size (MB)</span><br><span class="line">-----------------------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">Pri/Log             Free Space                                                        1.05            *</span><br><span class="line">sda1                    Boot                   Primary             Linux ext3                                                      524.29            *</span><br><span class="line">sda2                                           Primary             Linux LVM                                                     20949.50            *</span><br><span class="line">sda3                                           Primary             Linux                                                       1052261.44            *</span><br><span class="line">Pri/Log             Free Space                                                        5.55            *</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="LVM"><a href="#LVM" class="headerlink" title="LVM"></a>LVM</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  -- create partitions on disk drives (type <span class="number">8</span>e in fdsik)</span><br><span class="line">  -- create physical volumes from the partitions                 </span><br><span class="line">     --&gt; $ sudo pvcreate /dev/sda1</span><br><span class="line">  -- create the volumes group                                     </span><br><span class="line">     --&gt; $ sudo vgcreate -s <span class="number">16</span>m vg /dev/sda1</span><br><span class="line">  -- allocate logical volumes from the volume group               </span><br><span class="line">     --&gt; $ sudo lvcreate -l <span class="number">50</span>g -n mylvm vg</span><br><span class="line">  -- <span class="keyword">format</span> the logical volumes                                   </span><br><span class="line">     --&gt; $ sudo mkfs -t ext4 /dev/vg/mylvm</span><br><span class="line">  -- mount the logical volumes (also update /etc/fstab as needed)</span><br><span class="line">     --&gt; $ <span class="keyword">mkdir</span> /mylvm,</span><br><span class="line"></span><br><span class="line">then --&gt; $ sudo mount /dev/vg/mylvm /mylvm,</span><br><span class="line">then add --&gt; <span class="regexp">/dev/</span>vg/mylvm /mylvm ext4 defaults <span class="number">0</span> <span class="number">0</span>  to the /etc/fstab</span><br></pre></td></tr></table></figure>
+<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cat /etc/fstab</span><br><span class="line">df -T -h  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看卷组信息</span></span><br><span class="line">vgdisplay</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看逻辑卷信息</span></span><br><span class="line">lvdispaly</span><br><span class="line"></span><br><span class="line"><span class="comment"># lsblk</span></span><br><span class="line">NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda                              <span class="number">8</span>:<span class="number">0</span>    <span class="number">0</span>  <span class="number">500</span>G  <span class="number">0</span> disk</span><br><span class="line">├─sda1                           <span class="number">8</span>:<span class="number">1</span>    <span class="number">0</span>  <span class="number">500</span>M  <span class="number">0</span> part /boot</span><br><span class="line">├─sda2                           <span class="number">8</span>:<span class="number">2</span>    <span class="number">0</span> <span class="number">19.5</span>G  <span class="number">0</span> part</span><br><span class="line">│ ├─vg_nwtest68-lv_root (dm-<span class="number">0</span>) <span class="number">253</span>:<span class="number">0</span>    <span class="number">0</span>   <span class="number">35</span>G  <span class="number">0</span> lvm  /</span><br><span class="line">│ └─vg_nwtest68-lv_swap (dm-<span class="number">1</span>) <span class="number">253</span>:<span class="number">1</span>    <span class="number">0</span>    <span class="number">2</span>G  <span class="number">0</span> lvm  [SWAP]</span><br><span class="line">├─sda3                           <span class="number">8</span>:<span class="number">3</span>    <span class="number">0</span>   <span class="number">20</span>G  <span class="number">0</span> part</span><br><span class="line">│ └─vg_nwtest68-lv_root (dm-<span class="number">0</span>) <span class="number">253</span>:<span class="number">0</span>    <span class="number">0</span>   <span class="number">35</span>G  <span class="number">0</span> lvm  /</span><br><span class="line">└─sda4                           <span class="number">8</span>:<span class="number">4</span>    <span class="number">0</span>   <span class="number">10</span>G  <span class="number">0</span> part</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">umount  /home</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除逻辑卷，注意：检查目录是否为空</span></span><br><span class="line"></span><br><span class="line">lvremove  /dev/mapper/VolGroup-lv_home     </span><br></pre></td></tr></table></figure>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在卷组 (name:VolGroup) 上创建逻辑卷</span></span><br><span class="line"></span><br><span class="line">lvcreate -L <span class="number">375</span>GB -n lv_slview VolGroup     </span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化新建的逻辑卷</span></span><br><span class="line">mkfs.ext4 /dev/mapper/VolGroup-lv_slview</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建挂载点</span></span><br><span class="line"><span class="keyword">mkdir</span> /slview</span><br><span class="line"></span><br><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">mount /dev/mapper/VolGroup/lv_slview /slview</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 fstab 重启后自动挂载（风险点）</span></span><br><span class="line">vi /etc/fstab</span><br><span class="line"></span><br><span class="line"><span class="comment"># reboot</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># fstab 异常处理</span></span><br><span class="line">mount -o remount rw /.</span><br></pre></td></tr></table></figure>
+<h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fdisk -l</span><br><span class="line"></span><br><span class="line"># df -kh</span><br><span class="line">Filesystem            Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/mapper/VolGroup-lv_root</span><br><span class="line">                       <span class="number">35</span>G   <span class="number">23</span>G  <span class="number">9.9</span>G  <span class="number">70</span>% /</span><br><span class="line">tmpfs                 <span class="number">932</span>M  <span class="number">208</span>K  <span class="number">932</span>M   <span class="number">1</span>% /dev/shm</span><br><span class="line">/dev/sda1             <span class="number">477</span>M   <span class="number">41</span>M  <span class="number">411</span>M  <span class="number">10</span>% /boot</span><br><span class="line">/dev/mapper/VolGroup-lv_oradata1</span><br><span class="line">                      <span class="number">2.5</span>G  <span class="number">3.8</span>M  <span class="number">2.4</span>G   <span class="number">1</span>% /oradata1</span><br><span class="line"></span><br><span class="line"># pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize  PFree</span><br><span class="line">  /dev/sda2  VolGroup lvm2 a--u <span class="number">19.51</span>g    <span class="number">0</span></span><br><span class="line">  /dev/sda3  VolGroup lvm2 a--u <span class="number">19.99</span>g    <span class="number">0</span></span><br><span class="line"></span><br><span class="line"># pvcreate /dev/sda4</span><br><span class="line">  Physical volume <span class="string">&quot;/dev/sda4&quot;</span> successfully created</span><br><span class="line"></span><br><span class="line"># pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize  PFree</span><br><span class="line">/dev/sda2  VolGroup lvm2 a--u <span class="number">19.51</span>g     <span class="number">0</span></span><br><span class="line">/dev/sda3  VolGroup lvm2 a--u <span class="number">19.99</span>g     <span class="number">0</span></span><br><span class="line">/dev/sda4              lvm2 ---- <span class="number">10.00</span>g <span class="number">10.00</span>g</span><br><span class="line"></span><br><span class="line"># vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               VolGroup</span><br><span class="line">  ......</span><br><span class="line">  Act PV                <span class="number">2</span></span><br><span class="line">  VG Size               <span class="number">39.50</span> GiB</span><br><span class="line">  PE Size               <span class="number">4.00</span> MiB</span><br><span class="line">  Total PE              <span class="number">10112</span></span><br><span class="line">  Alloc PE / Size       <span class="number">10112</span> / <span class="number">39.50</span> GiB</span><br><span class="line">  Free  PE / Size       <span class="number">0</span> / <span class="number">0</span>   </span><br><span class="line"></span><br><span class="line"># vgextend VolGroup /dev/sda4</span><br><span class="line">  Volume group <span class="string">&quot;VolGroup&quot;</span> successfully extended</span><br><span class="line"></span><br><span class="line"># vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               VolGroup</span><br><span class="line">  ......</span><br><span class="line">  Act PV                <span class="number">3</span></span><br><span class="line">  VG Size               <span class="number">49.50</span> GiB</span><br><span class="line">  PE Size               <span class="number">4.00</span> MiB</span><br><span class="line">  Total PE              <span class="number">12672</span></span><br><span class="line">  Alloc PE / Size       <span class="number">10112</span> / <span class="number">39.50</span> GiB</span><br><span class="line">  Free  PE / Size       <span class="number">2560</span> / <span class="number">10.00</span> GiB</span><br><span class="line"></span><br><span class="line"># lvextend -L +<span class="number">10</span>GB /dev/mapper/VolGroup-lv_oradata1</span><br><span class="line">Size of logical volume VolGroup/lv_oradata1 changed from <span class="number">2.50</span> GiB (<span class="number">640</span> extents) to <span class="number">12.50</span> GiB (<span class="number">3200</span> extents).</span><br><span class="line">  Logical volume lv_oradata1 successfully resized.</span><br><span class="line"></span><br><span class="line"># vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               VolGroup</span><br><span class="line">  ......</span><br><span class="line">  Act PV                <span class="number">3</span></span><br><span class="line">  VG Size               <span class="number">49.50</span> GiB</span><br><span class="line">  PE Size               <span class="number">4.00</span> MiB</span><br><span class="line">  Total PE              <span class="number">12672</span></span><br><span class="line">  Alloc PE / Size       <span class="number">12672</span> / <span class="number">49.50</span> GiB</span><br><span class="line">  Free  PE / Size       <span class="number">0</span> / <span class="number">0</span>   </span><br><span class="line"></span><br><span class="line"># resize2fs /dev/mapper/VolGroup-lv_oradata1</span><br><span class="line">resize2fs <span class="number">1.41</span><span class="number">.12</span> (<span class="number">17</span>-May<span class="number">-2010</span>)</span><br><span class="line">Filesystem at /dev/mapper/VolGroup-lv_oradata1 is mounted on /oradata1;</span><br><span class="line">on-line resizing required</span><br><span class="line">old desc_blocks = <span class="number">1</span>, new_desc_blocks = <span class="number">1</span></span><br><span class="line">Performing an on-line resize of /dev/mapper/vg_nwtest68-lv_oradata1 to <span class="number">3276800</span> (<span class="number">4</span>k) blocks.</span><br><span class="line">The filesystem on /dev/mapper/vg_nwtest68-lv_oradata1 is now <span class="number">3276800</span> blocks long.</span><br><span class="line"></span><br><span class="line"># df -kh</span><br><span class="line">Filesystem            Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/mapper/VolGroup-lv_root</span><br><span class="line">                       <span class="number">35</span>G   <span class="number">23</span>G  <span class="number">9.9</span>G  <span class="number">70</span>% /</span><br><span class="line">tmpfs                 <span class="number">932</span>M  <span class="number">288</span>K  <span class="number">932</span>M   <span class="number">1</span>% /dev/shm</span><br><span class="line">/dev/sda1             <span class="number">477</span>M   <span class="number">41</span>M  <span class="number">411</span>M  <span class="number">10</span>% /boot</span><br><span class="line">/dev/mapper/VolGroup-lv_oradata1</span><br><span class="line">                       <span class="number">13</span>G  <span class="number">6.3</span>M   <span class="number">12</span>G   <span class="number">1</span>% /oradata1</span><br></pre></td></tr></table></figure>
+<h4 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h4><ul>
+<li>How to remove missing PV from VG</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vgreduce  --removemissing datavg</span></span><br><span class="line">  WARNING: Device <span class="keyword">for</span> PV fPFkBx-lbnG-R6Zo-3kq5-KOLA-U1ou-LdNIMD not found or rejected by a filter.</span><br><span class="line">  Couldn\<span class="string">&#x27;t find device with uuid fPFkBx-lbnG-R6Zo-3kq5-KOLA-U1ou-LdNIMD.</span></span><br><span class="line"><span class="string">  Wrote out consistent volume group datavg.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="SCSI"><a href="#SCSI" class="headerlink" title="SCSI"></a>SCSI</h4><p>小型计算机系统接口（SCSI，Small Computer System Interface）是一种用于计算机及其周边设备之间（硬盘、软驱、光驱、打印机、扫描仪等）系统级接口的独立处理器标准。最大部分的应用是在存储设备上（例如硬盘、磁带机）。</p>
+<p>iSCSI（Internet Small Computer System Interface，发音为/ˈаɪskʌzi/），Internet小型计算机系统接口，又称为IP-SAN，是一种基于因特网及SCSI-3协议下的存储技术，由IETF提出，并于2003年2月11日成为正式的标准。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iqn</span></span><br><span class="line">vi /etc/iscsi/initiatorname.iscsi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找iSCSI目标</span></span><br><span class="line">$ iscsiadm -m discovery -t st -p &lt;组IP地址&gt;:3260</span><br><span class="line"><span class="comment"># 登录</span></span><br><span class="line">$ iscsiadm -m node -T &lt;完整的目标名称,iqn.xxxxxx&gt; -l -p &lt;组IP&gt;:3260</span><br><span class="line"><span class="comment"># 注销</span></span><br><span class="line">$ iscsiadm -m node -u -T &lt;完整的目标名称&gt;-p &lt;组IP地址&gt;:3260</span><br></pre></td></tr></table></figure>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df -F ufs -o i</span></span><br><span class="line">Filesystem             iused   ifree  %iused  Mounted on</span><br><span class="line">/dev/dsk/c0t0d0s0     190397 6443139     3%   /</span><br><span class="line">/dev/dsk/c0t0d0s4     457204  165964    73%   /var</span><br><span class="line">/dev/dsk/c0t1d0s3      43539 6461869     1%   /slview</span><br><span class="line">/dev/dsk/c0t0d0s3      19745 1226591     2%   /oracle</span><br><span class="line"><span class="comment"># find /var/spool/clientmqueue/ -exec ls &#123;&#125; + |awk &#x27;&#123;print $1&#125;&#x27; | wc -l</span></span><br><span class="line">  866350</span><br><span class="line"><span class="comment"># find /var/spool/clientmqueue/ -exec ls &#123;&#125; + |awk &#x27;&#123;print $1&#125;&#x27; | wc -l^C</span></span><br><span class="line"><span class="comment"># getconf ARG_MAX</span></span><br><span class="line">1048320</span><br></pre></td></tr></table></figure>
+<h2 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sjqzhang/go-fastdfs">go-fastdfs | 一个简单的分布式文件存储，具有高性能，高可靠，免维护等优点，支持断点续传，分块上传，小文件合并，自动同步，自动修复</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/karrick/godirwalk">Fast directory traversal for Golang</a></li>
+<li><a target="_blank" rel="noopener" href="https://achainofblocks.com/2018/10/05/ipfs-interplanetary-file-system-simply-explained/">IPFS The Interplanetary File System | Simply Explained</a></li>
+</ul>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tecmint.com/commands-to-collect-system-and-hardware-information-in-linux/">10 Useful Commands to Collect System and Hardware Information in Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://opensource.com/article/17/5/introduction-ext4-filesystem">An introduction to Linux’s EXT4 filesystem</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.rootusers.com/how-to-increase-the-size-of-a-linux-lvm-by-adding-a-new-disk/">How to Increase the size of a Linux LVM by adding a new disk</a></li>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/934947/unable-to-add-physical-volume-dev-hda-to-volume-group">Unable to add physical volume ‘/dev/hda’ to volume group</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/gaojun/archive/2012/08/22/2650229.html">Linux LVM硬盘管理及LVM扩容</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E26926_01/html/E25884/fscreate-6.html">创建和挂载 Oracle Solaris 文件系统</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sansky.net/article/2007-12-03-iscsi-storage.html">iSCSI存储技术全攻略|2007</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/10/exfat.html">exFAT 文件系统指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://opensource.com/article/19/3/virtual-filesystems-linux">Virtual filesystems in Linux: Why we need them and how they work</a></li>
+<li><a target="_blank" rel="noopener" href="https://achainofblocks.com/2018/10/05/ipfs-interplanetary-file-system-simply-explained/">IPFS The Interplanetary File System | Simply Explained</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/" data-id="ckwgm33m200dp7b1yv7h3btno" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/11/Linux-Perf-App/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断：Web Server
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/05/Project-Risk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PM指南:项目风险管理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command"><span class="toc-number">2.</span> <span class="toc-text">Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LVM"><span class="toc-number">3.</span> <span class="toc-text">LVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-number">3.0.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-number">3.0.2.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">3.0.3.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9"><span class="toc-number">3.0.4.</span> <span class="toc-text">扩容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4"><span class="toc-number">3.0.5.</span> <span class="toc-text">移除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">4.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SCSI"><span class="toc-number">4.0.1.</span> <span class="toc-text">SCSI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.0.2.</span> <span class="toc-text">异常处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Projects"><span class="toc-number">5.</span> <span class="toc-text">Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">5.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">5.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9AHow-Linux-Works"><span class="toc-number">5.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">5.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

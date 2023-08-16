@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>网络数据包的捕获、过滤和分析（Packet Capturing） | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Packet Capturing Overview What is Packet Capturing How can it be used What is libpcap Debug Tools: tcpdump &amp; WinPcap &amp; snoop What is BPF What is gopacket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络数据包的捕获、过滤和分析（Packet Capturing）">
+<meta property="og:url" content="https://riboseyim.com/2017/06/16/Network-Pcap/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Packet Capturing Overview What is Packet Capturing How can it be used What is libpcap Debug Tools: tcpdump &amp; WinPcap &amp; snoop What is BPF What is gopacket">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Overview.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Flow_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_BPF.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Flow_2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_Protocol_Packet.png">
+<meta property="article:published_time" content="2017-06-16T08:08:56.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.070Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="网络协议">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Overview.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Network-Pcap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/16/Network-Pcap/" class="article-date">
+  <time datetime="2017-06-16T08:08:56.000Z" itemprop="datePublished">2017-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络数据包的捕获、过滤和分析（Packet Capturing）
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/06/16/Network-Pcap/" data-id="ckwgm33mi00h07b1yi840xulm" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Packet Capturing Overview</li>
+<li>What is Packet Capturing</li>
+<li>How can it be used</li>
+<li>What is libpcap</li>
+<li>Debug Tools: tcpdump &amp; WinPcap &amp; snoop</li>
+<li>What is BPF</li>
+<li>What is gopacket</li>
+</ul>
+<span id="more"></span>
+<h2 id="What-is-Packet-Capturing"><a href="#What-is-Packet-Capturing" class="headerlink" title="What is Packet Capturing"></a>What is Packet Capturing</h2><p>Packet capture is a computer networking term for intercepting a data packet that is crossing or moving over a specific computer network.Once a packet is captured, it is stored temporarily so that it can be analyzed. The packet is inspected to help diagnose and solve network problems and determine whether network security policies are being followed.</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Overview.png" alt="Packet Capture Overview"></p>
+<h2 id="How-can-it-be-used"><a href="#How-can-it-be-used" class="headerlink" title="How can it be used"></a>How can it be used</h2><ul>
+<li><p>Development<br>Testing &amp; validating &amp; Reverse engineer APP on API</p>
+</li>
+<li><p>Network Administration<br>Seeing what traffic goes on in background,Looking for malicious traffic on networkData capturing is used to identify security flaws and breaches by determining the point of intrusion.</p>
+</li>
+<li><p>Troubleshooting<br>Managed through data capturing, troubleshooting detects the occurrence of undesired events over a network and helps solve them. If the network administrator has full access to a network resource, he can access it remotely and troubleshoot any issues.</p>
+</li>
+<li><p>Security<br>defcon Wall of Sheep.Hackers can also use packet capturing techniques to steal data that is being transmitted over a network, like Stealing credentials.When data is stolen, the network administrator can retrieve the stolen or lost information easily using data capturing techniques.</p>
+</li>
+<li><p>Forensics<br>forensics for crime investigations.Whenever viruses, worms or other intrusions are detected in computers, the network administrator determines the extent of the problem. After initial analysis, she may block some segments and network traffic in order to save historical information and network data.</p>
+</li>
+</ul>
+<h2 id="What-is-libpcap"><a href="#What-is-libpcap" class="headerlink" title="What is libpcap"></a>What is libpcap</h2><blockquote>
+<p>libpcap flow involving data copy from kernel to user space.</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Flow_1.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Compile with: gcc find_device.c -lpcap</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcap.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> \*\*argv)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> \*device;</span><br><span class="line">    <span class="keyword">char</span> error_buffer[PCAP_ERRBUF_SIZE];</span><br><span class="line">    <span class="comment">//Find a device</span></span><br><span class="line">    device = pcap_lookupdev(error_buffer);</span><br><span class="line">    <span class="keyword">if</span> (device == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Error finding device: %s\n&quot;</span>, error_buffer);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Network device found: %s\n&quot;</span>, device);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcap.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/if_ether.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_packet_info</span><span class="params">(<span class="keyword">const</span> u_char \*packet, struct pcap_pkthdr packet_header)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> \*argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> \*device;</span><br><span class="line">    <span class="keyword">char</span> error_buffer[PCAP_ERRBUF_SIZE];</span><br><span class="line">    <span class="keyword">pcap_t</span> *handle;</span><br><span class="line">    <span class="keyword">const</span> u_char *packet;</span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">pcap_pkthdr</span> <span class="title">packet_header</span>;</span></span><br><span class="line">    <span class="keyword">int</span> packet_count_limit = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> timeout_limit = <span class="number">10000</span>; <span class="comment">/*In milliseconds*/</span></span><br><span class="line"></span><br><span class="line">    device = pcap_lookupdev(error_buffer);</span><br><span class="line">    <span class="keyword">if</span> (device == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Error finding device: %s\n&quot;</span>, error_buffer);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*Open device for live capture*/</span></span><br><span class="line">    handle = pcap_open_live(</span><br><span class="line">            device,</span><br><span class="line">            BUFSIZ,</span><br><span class="line">            packet_count_limit,</span><br><span class="line">            timeout_limit,</span><br><span class="line">            error_buffer</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">     <span class="comment">/*Attempt to capture one packet. If there is no network traffic</span></span><br><span class="line"><span class="comment">      and the timeout is reached, it will return NULL*/</span></span><br><span class="line">     packet = pcap_next(handle, &amp;packet_header);</span><br><span class="line">     <span class="keyword">if</span> (packet == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No packet found.\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*Our function to output some info*/</span></span><br><span class="line">    print_packet_info(packet, packet_header);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_packet_info</span><span class="params">(<span class="keyword">const</span> u_char \*packet, struct pcap_pkthdr packet_header)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Packet capture length: %d\n&quot;</span>, packet_header.caplen);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Packet total length %d\n&quot;</span>, packet_header.len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Debug-Tools"><a href="#Debug-Tools" class="headerlink" title="Debug Tools"></a>Debug Tools</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Older versions of tcpdump truncate packets to 68 or 96 bytes.</span></span><br><span class="line"><span class="comment">#If this is the case, use -s to capture full-sized packets:</span></span><br><span class="line">$ tcpdump -i &lt;interface&gt; -s 65535 -w &lt;some-file&gt;</span><br><span class="line"><span class="comment"># A packet capturing tool similar to TcpDump for Solaris</span></span><br><span class="line">$ snoop -r -o arp11.snoop -q -d nxge0 -c 150000</span><br></pre></td></tr></table></figure>
+<h4 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h4><p>tcpdump 是一个运行在命令行下的嗅探工具。它允许用户拦截和显示发送或收到过网络连接到该计算机的TCP/IP和其他数据包。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息，从而使用户能够进一步找出问题的根源。可以使用 BPF 来限制tcpdump产生的数据包数量。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://linuxwiki.github.io/NetTools/tcpdump.html">tcpdump使用技巧 | 潜水大叔</a></li>
+</ul>
+<h4 id="snoop"><a href="#snoop" class="headerlink" title="snoop"></a>snoop</h4><p>snoop uses both the network packet filter and streams buffer modules to provide efficient capture of packets from the network. Captured packets can be displayed as they are received, or saved to a file for later inspection.</p>
+<h4 id="promiscuous-mode"><a href="#promiscuous-mode" class="headerlink" title="promiscuous mode"></a>promiscuous mode</h4><p>抓包工具需要工作在promiscuous mode(混杂模式)（superuser）， 指一台机器的网卡能够接收所有经过它的数据流，而不论其目的地址是否是它。当网卡工作在混杂模式下时，网卡将来自接口的所有数据都捕获并交给相应的驱动程序。一般在分析网络数据作为网络故障诊断手段时用到，同时这个模式也被网络黑客利用来作为网络数据窃听的入口。</p>
+<h4 id="BPF"><a href="#BPF" class="headerlink" title="BPF"></a>BPF</h4><p>Berkeley Packet Filter，缩写BPF，是类Unix系统上数据链路层的一种接口，提供原始链路层封包的收发。BPF支持“过滤”封包，这样BPF会只把“感兴趣”的封包到上层软件，可以避免从操作系统内核向用户态复制其他封包，降低抓包的CPU的负担以及所需的缓冲区空间，从而减少丢包率。BPF的过滤功能是以BPF虚拟机机器语言的解释器的形式实现的，这种语言的程序可以抓取封包数据，对封包中的数据采取算术操作，并将结果与常量或封包中的数据或结果中的测试位比较，根据比较的结果决定接受还是拒绝封包。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_BPF.png" alt="BPF Overview"></p>
+<h2 id="Go-Packet"><a href="#Go-Packet" class="headerlink" title="Go Packet"></a>Go Packet</h2><h3 id="Find-Devices"><a href="#Find-Devices" class="headerlink" title="Find  Devices"></a>Find  Devices</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket/layers&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket/pcap&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;----------Find all devices---------\n &quot;</span>)</span><br><span class="line"></span><br><span class="line">	devices, err := pcap.FindAllDevs()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Print device information</span></span><br><span class="line">	<span class="keyword">for</span> _, device := <span class="keyword">range</span> devices &#123;</span><br><span class="line">		<span class="keyword">for</span> _, address := <span class="keyword">range</span> device.Addresses &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;- IP address: &quot;</span>, address.IP)</span><br><span class="line">			fmt.Println(<span class="string">&quot;- Subnet mask: &quot;</span>, address.Netmask)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*- IP address:  45.33.110.101</span></span><br><span class="line"><span class="comment">	  - Subnet mask:  ffffff00</span></span><br><span class="line"><span class="comment">	  - IP address:  2600:3c01::f03c:91ff:fee5:45b6</span></span><br><span class="line"><span class="comment">	  - Subnet mask:  ffffffffffffffff0000000000000000</span></span><br><span class="line"><span class="comment">	  - IP address:  fe80::f03c:91ff:fee5:45b6</span></span><br><span class="line"><span class="comment">	  - Subnet mask:  ffffffffffffffff0000000000000000</span></span><br><span class="line"><span class="comment">	  - IP address:  127.0.0.1</span></span><br><span class="line"><span class="comment">	  - Subnet mask:  ff000000</span></span><br><span class="line"><span class="comment">	  - IP address:  ::1</span></span><br><span class="line"><span class="comment">	  - Subnet mask:  ffffffffffffffffffffffffffffffff</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Decoding-Packet-Layers"><a href="#Decoding-Packet-Layers" class="headerlink" title="Decoding Packet Layers"></a>Decoding Packet Layers</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Packet_Capture_Flow_2.png" alt=""></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket/layers&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/google/gopacket/pcap&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	handle, err := pcap.OpenLive(<span class="string">&quot;eth0&quot;</span>, <span class="number">65536</span>, <span class="literal">true</span>, pcap.BlockForever)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;Error: %s\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> handle.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Create a new PacketDataSource</span></span><br><span class="line">	src := gopacket.NewPacketSource(handle, layers.LayerTypeEthernet)</span><br><span class="line">	<span class="comment">//Packets returns a channel of packets</span></span><br><span class="line">	in := src.Packets()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> packet gopacket.Packet</span><br><span class="line">		<span class="keyword">select</span> &#123;</span><br><span class="line">		<span class="comment">//case &lt;-stop:</span></span><br><span class="line">		<span class="comment">//return</span></span><br><span class="line">		<span class="keyword">case</span> packet = &lt;-in:</span><br><span class="line">			arpLayer := packet.Layer(layers.LayerTypeARP)</span><br><span class="line">			<span class="keyword">if</span> arpLayer == <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			&#125;</span><br><span class="line">			arp := arpLayer.(*layers.ARP)</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> net.HardwareAddr(arp.SourceHwAddress).String() == <span class="string">&quot;abc&quot;</span> &#123;</span><br><span class="line">				<span class="comment">//Do something or don&#x27;t</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			tcpLayer := packet.Layer(layers.LayerTypeTCP)</span><br><span class="line">			<span class="keyword">if</span> tcpLayer == <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			&#125;</span><br><span class="line">			tcp := tcpLayer.(*layers.TCP)</span><br><span class="line"></span><br><span class="line">			......</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Creating-and-Sending-Packets"><a href="#Creating-and-Sending-Packets" class="headerlink" title="Creating and Sending Packets"></a>Creating and Sending Packets</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;github.com/google/gopacket&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/google/gopacket/layers&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/google/gopacket/pcap&quot;</span></span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    device       <span class="keyword">string</span> = <span class="string">&quot;eth0&quot;</span></span><br><span class="line">    snapshot_len <span class="keyword">int32</span>  = <span class="number">1024</span></span><br><span class="line">    promiscuous  <span class="keyword">bool</span>   = <span class="literal">false</span></span><br><span class="line">    err          error</span><br><span class="line">    timeout      time.Duration = <span class="number">30</span> * time.Second</span><br><span class="line">    handle       *pcap.Handle</span><br><span class="line">    buffer       gopacket.SerializeBuffer</span><br><span class="line">    options      gopacket.SerializeOptions</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// Open device</span></span><br><span class="line">    handle, err = pcap.OpenLive(device, snapshot_len, promiscuous, timeout)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;log.Fatal(err) &#125;</span><br><span class="line">    <span class="keyword">defer</span> handle.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Send raw bytes over wire</span></span><br><span class="line">    rawBytes := []<span class="keyword">byte</span>&#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;</span><br><span class="line">    err = handle.WritePacketData(rawBytes)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a properly formed packet, just with</span></span><br><span class="line">    <span class="comment">// empty details. Should fill out MAC addresses,</span></span><br><span class="line">    <span class="comment">// IP addresses, etc.</span></span><br><span class="line">    buffer = gopacket.NewSerializeBuffer()</span><br><span class="line">    gopacket.SerializeLayers(buffer, options,</span><br><span class="line">        &amp;layers.Ethernet&#123;&#125;,</span><br><span class="line">        &amp;layers.IPv4&#123;&#125;,</span><br><span class="line">        &amp;layers.TCP&#123;&#125;,</span><br><span class="line">        gopacket.Payload(rawBytes),</span><br><span class="line">    )</span><br><span class="line">    outgoingPacket := buffer.Bytes()</span><br><span class="line">    <span class="comment">// Send our packet</span></span><br><span class="line">    err = handle.WritePacketData(outgoingPacket)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This time lets fill out some information</span></span><br><span class="line">    ipLayer := &amp;layers.IPv4&#123;</span><br><span class="line">        SrcIP: net.IP&#123;<span class="number">127</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">        DstIP: net.IP&#123;<span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    ethernetLayer := &amp;layers.Ethernet&#123;</span><br><span class="line">        SrcMAC: net.HardwareAddr&#123;<span class="number">0xFF</span>, <span class="number">0xAA</span>, <span class="number">0xFA</span>, <span class="number">0xAA</span>, <span class="number">0xFF</span>, <span class="number">0xAA</span>&#125;,</span><br><span class="line">        DstMAC: net.HardwareAddr&#123;<span class="number">0xBD</span>, <span class="number">0xBD</span>, <span class="number">0xBD</span>, <span class="number">0xBD</span>, <span class="number">0xBD</span>, <span class="number">0xBD</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    tcpLayer := &amp;layers.TCP&#123;</span><br><span class="line">        SrcPort: layers.TCPPort(<span class="number">4321</span>),</span><br><span class="line">        DstPort: layers.TCPPort(<span class="number">80</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// And create the packet with the layers</span></span><br><span class="line">    buffer = gopacket.NewSerializeBuffer()</span><br><span class="line">    gopacket.SerializeLayers(buffer, options,</span><br><span class="line">        ethernetLayer,</span><br><span class="line">        ipLayer,</span><br><span class="line">        tcpLayer,</span><br><span class="line">        gopacket.Payload(rawBytes),</span><br><span class="line">    )</span><br><span class="line">    outgoingPacket = buffer.Bytes()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Capture-Packet-Workflow"><a href="#Capture-Packet-Workflow" class="headerlink" title="Capture Packet Workflow"></a>Capture Packet Workflow</h4><ul>
+<li>Getting a list of network devices</li>
+<li>Capturing packets from a network device</li>
+<li>Analyzing packet layers</li>
+<li>Using Berkeley Packet Filters</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_Protocol_Packet.png" alt=""></p>
+<h2 id="Demo-amp-Repository"><a href="#Demo-amp-Repository" class="headerlink" title="Demo &amp; Repository"></a>Demo &amp; Repository</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.devdungeon.com/content/using-libpcap-c">using libpcap c</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.binarytides.com/packet-sniffer-code-c-libpcap-linux-sockets">packet sniffer code c</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.scalawilliam.com/scala-native-libpcap">scala native libpcap</a></li>
+<li><a target="_blank" rel="noopener" href="https://godoc.org/github.com/google/gopacket">gopacket</a></li>
+<li><a target="_blank" rel="noopener" href="https://libraries.io/github/open-ch/goProbe">goProbe</a></li>
+</ul>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/zond/qisniff">qisniff</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ntop.org/products/packet-capture/pf_ring/">ntop:pf_ring</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ntop.org/products/packet-capture/pf_ring/pf_ring-zc-zero-copy/">ntop:pf_ring zero copy</a></li>
+<li><a target="_blank" rel="noopener" href="http://jaseywang.me/2015/01/22/pf_ring-%E5%AF%B9%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E6%80%A7%E8%83%BD%E7%9A%84%E6%8F%90%E5%8D%87%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF-30-40/">jaseywang:pf_ring对网络抓包性能的提升</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA4Nzg5Nzc5OA==&amp;mid=2651659827&amp;idx=1&amp;sn=3324025e2f4fb2c494676bf01d67427f&amp;scene=1&amp;srcid=0525Wyio4YnzoUz9oJ60Zmdu#rd">胥峰(盛大游戏)：网络分析技术之葵花宝典</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000007967510">基于网络抓包实现kubernetes中微服务的应用级监控</a></li>
+</ul>
+<h2 id="拓展话题：SDN-网络中的可视化与数据封包"><a href="#拓展话题：SDN-网络中的可视化与数据封包" class="headerlink" title="拓展话题：SDN 网络中的可视化与数据封包"></a>拓展话题：SDN 网络中的可视化与数据封包</h2><ul>
+<li>DPDK(Data Plane Development Kit)<br>运行于Intel X86平台，是 Intel 开源的一组快速处理数据包的开发平台及接口（BSD）。重载了网卡驱动，该驱动在收到数据包后不中断通知CPU，而是将数据包通过零拷贝技术存入内存，这时应用层程序就可以通过DPDK提供的接口，直接从内存读取数据包。这种处理方式节省了CPU中断时间、内存拷贝时间，并向应用层提供了简单易行且高效的数据包处理方式，使得网络应用的开发更加方便。</li>
+</ul>
+<h2 id="专题合辑：Network-Engineering"><a href="#专题合辑：Network-Engineering" class="headerlink" title="专题合辑：Network Engineering"></a>专题合辑：Network Engineering</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/SDN/">SDN 技术指南（一）: 架构概览</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/">SDN 技术指南（二）：OpenFlow</a></li>
+<li>Preview <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/16/SDN-Controller/">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/">SDN 技术指南（四）：Open vSwitch</a></li>
+<li>Preview <a href="#">SDN 技术指南（五）：NFV</a></li>
+<li>Preview <a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security|香港警务处网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.devdungeon.com/content/packet-capture-injection-and-analysis-gopacket">(推荐)Packet Capture, Injection, and Analysis with Gopacket</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.tcpdump.org/papers/bpf-usenix93.pdf">(推荐)The BSD Packet Filter:A New Architecture for User-level Packet Capture</a></li>
+<li><a target="_blank" rel="noopener" href="http://recursos.aldabaknocking.com/libpcapHakin9LuisMartinGarcia.pdf">Programming with Libpcap - Sniffing the Network From Our Own Application </a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E23824_01/html/821-1453/gexkw.html">docs.oracle:Monitoring Packet Transfers With the snoop Command</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.freebuf.com/articles/web/85129.html">MOTS(Man-on-the-Side)：一种隐秘的攻击</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.fox-it.com/2015/04/20/deep-dive-into-quantum-insert/">(推荐)Deep dive into QUANTUM INSERT</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JZDiQ6f_TRs">YouTube:Capturing with Wireshark’s tshark</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.linuxjournal.com/content/using-tshark-watch-and-inspect-network-traffic">Using tshark to Watch and Inspect Network Traffic</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7pxG4EEliIXbOgO27unBTQ">tcpdump：理论、自动抓包及业务架构树的生成</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/06/16/Network-Pcap/" data-id="ckwgm33mi00h07b1yi840xulm" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/19/Language-Python-lang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          玩转编程语言:Python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/14/Mathmetics/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Catalog:数学</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Packet-Capturing"><span class="toc-number">2.</span> <span class="toc-text">What is Packet Capturing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-can-it-be-used"><span class="toc-number">3.</span> <span class="toc-text">How can it be used</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-libpcap"><span class="toc-number">4.</span> <span class="toc-text">What is libpcap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Debug-Tools"><span class="toc-number">4.1.</span> <span class="toc-text">Debug Tools</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tcpdump"><span class="toc-number">4.1.1.</span> <span class="toc-text">tcpdump</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#snoop"><span class="toc-number">4.1.2.</span> <span class="toc-text">snoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#promiscuous-mode"><span class="toc-number">4.1.3.</span> <span class="toc-text">promiscuous mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BPF"><span class="toc-number">4.1.4.</span> <span class="toc-text">BPF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go-Packet"><span class="toc-number">5.</span> <span class="toc-text">Go Packet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Find-Devices"><span class="toc-number">5.1.</span> <span class="toc-text">Find  Devices</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decoding-Packet-Layers"><span class="toc-number">5.2.</span> <span class="toc-text">Decoding Packet Layers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Sending-Packets"><span class="toc-number">5.3.</span> <span class="toc-text">Creating and Sending Packets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Capture-Packet-Workflow"><span class="toc-number">5.3.1.</span> <span class="toc-text">Capture Packet Workflow</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo-amp-Repository"><span class="toc-number">6.</span> <span class="toc-text">Demo &amp; Repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-number">7.</span> <span class="toc-text">Application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E8%AF%9D%E9%A2%98%EF%BC%9ASDN-%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B0%81%E5%8C%85"><span class="toc-number">8.</span> <span class="toc-text">拓展话题：SDN 网络中的可视化与数据封包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%93%E9%A2%98%E5%90%88%E8%BE%91%EF%BC%9ANetwork-Engineering"><span class="toc-number">9.</span> <span class="toc-text">专题合辑：Network Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

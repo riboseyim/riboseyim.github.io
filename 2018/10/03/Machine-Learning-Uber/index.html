@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Uber 业务预测系统实践 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Forecasting is ubiquitous 如何利用预测来构建更好的产品和服务 定量预测方法可分为：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Uber 业务预测系统实践">
+<meta property="og:url" content="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="Forecasting is ubiquitous 如何利用预测来构建更好的产品和服务 定量预测方法可分为：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-Marketplace.gif">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-10-03T09:24:09.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.398Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="数学与算法">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-Marketplace.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-Uber" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/03/Machine-Learning-Uber/" class="article-date">
+  <time datetime="2018-10-03T09:24:09.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Uber 业务预测系统实践
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ckwgm33md00fq7b1y91m4duj2" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <ul>
+<li>Forecasting is ubiquitous</li>
+<li>如何利用预测来构建更好的产品和服务</li>
+<li>定量预测方法可分为：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://eng.uber.com/forecasting-introduction">Forecasting at Uber: An Introduction | September 6, 2018 | By Franziska Bell, Slawek Smyl</a></li>
+</ul>
+<p>近年来，机器学习，深度学习和概率编程在精准预测方面显示出巨大潜力。除普通的统计算法外，Uber 还使用这三种技术构建预测解决方案。下面将讨论 Uber 预测系统使用的关键组件，流行方法，回溯测试和预测区间。</p>
+<p>预测无处不在。除了战略预测之外（例如预测收入，生产和支出），产业界还需要能够针对短期战术行为作出准确预测（例如订货数量和招聘需求），以跟上企业的成长步伐。Uber 常见的预测场景包括：</p>
+<ul>
+<li><p>市场预测（Marketplace forecasting）：作为 Uber 平台的一个关键要素，市场预测能够基于精准时间和空间的方式预测用户供需，以便引导驾驶员在高峰出现之前到达高需求区域，从而增加运输次数和收入。时空预测（Spatio-temporal forecasts）仍然是一个开放的研究领域。</p>
+</li>
+<li><p>硬件容量规划（Hardware capacity planning）：硬件供应不足可能导致服务中断、损害用户信任度，但是过度配置又会增加运营成本。预测可以帮助找到最佳点：不太多也不太少。</p>
+</li>
+<li><p>市场营销（Marketing）：了解不同媒体渠道的边际效果至关重要，需要兼顾趋势、季节性和其他动态因素（例如竞争或定价），同时，利用先进的预测方法构建更可靠的估价，并使大规模地制定基于数据驱动的营销决策成为可能。</p>
+</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-Marketplace.gif" alt="Figure 1. Marketplace forecasting in California’s Bay Area allows us to direct drivers to high-demand areas."></p>
+<h2 id="Challenge"><a href="#Challenge" class="headerlink" title="Challenge"></a>Challenge</h2><p>Uber 平台在真实的物理世界运行，现实中的参与者的行为和兴趣各不相同，运行模式本身存在物理约束和不可预测性。物理约束，如地理距离和道路吞吐量，预测行为需要从时间域（temporal domain）转移到时空域(spatio-temporal domain)。尽管 Uber 是一家相对年轻的公司（已有8年历史），确保预测模型与高速成长的运营速度和规模保持同步至关重要。</p>
+<p>下面的图2 提供了一个超过14个月的城市旅行数据示例。你可以注意到很多变化，同时可以看到一个增长的趋势和季节性周期（例如，12 月通常有更多的高峰日期，因为整个月份散布着很多主要假期）。如果我们将图形放大（图3）并切换到2017年7月的每小时数据，您会注意到每日和每周（7* 24）的季节性。你可能会注意到周末往往比平时更加繁忙。</p>
+<p>预测方法需要能够针对上述复杂模式进行建模。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F2.png" alt="Figure 2. Leveraging the daily sum of Uber trips in a city, we can better predict the amount and frequency of future trips."></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F3.png" alt="Figure 3. The hourly sum of Uber trips in a given month (in July 2017) help us model user patterns."></p>
+<h2 id="Prominent-forecasting-approaches"><a href="#Prominent-forecasting-approaches" class="headerlink" title="Prominent forecasting approaches"></a>Prominent forecasting approaches</h2><p>除定性方法外，定量预测方法可分为以下几类：基于模型（model-based）或因果关系，统计方法（statistical methods）和机器学习方法（machine learning approaches）。</p>
+<p>当问题的基础机制或物理原理是已知时，基于模型的预测方法效果最好，因此基于模型的方法应用于许多科学和工程环境中。基于模型也是计量经济学中的常用方法，模型遵循的理论基础不尽相同。</p>
+<p>当基础机制未知或过于复杂时，例如股票市场，或者不完全已知，例如零售，通常应用简单的统计模型。属于这一类的流行经典方法包括 ARIMA（Autoregressive Integrated Moving Average,自回归求和移动平均模式），指数平滑方法，如 Holt-Winters ，以及Theta方法，它使用较少，但表现非常好。Theta 方法赢得了 M3 预测竞赛（M3 Forecasting Competition），我们也发现它在 Uber的时间序列上运行良好（此外，它的计算成本也很廉价）。</p>
+<p>近年来，机器学习方法，包括分位数回归森林算法（quantile regression forests ，QRF），著名的随机森林算法的表兄弟，已成为预测工具包的一部分。如果有足够的数据，特别是外源性回归量，递归神经网络算法（Recurrent neural networks ，RNN）也被证明是非常有用的。通常，这些机器学习算法是黑盒模型，并且在不需要可解释性时使用。流行经典和机器学习预测方法概要：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Classical &amp; Statistical</th>
+<th>Machine Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autoregressive integrated moving average (ARIMA) <br> Exponential smoothing methods (e.g. Holt-Winters) <br> Theta</td>
+<td>Recurrent neural networks (RNN) <br> Quantile regression forest (QRF) <br> Gradient boosting trees (GBM) <br> Support vector regression (SVR) <br> Gaussian Process regression (GP)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>有趣的是，M4 预测竞赛（M4 Forecasting Competition）的获奖作品是一个混合模型 <a target="_blank" rel="noopener" href="https://eng.uber.com/m4-forecasting-competition/">ES-RNN,Exponential Smoothing-Recurrent Neural Networks</a>，其中包括手工编码平滑公式（灵感来自众所周知的 Holt-Winters 方法）和一堆扩展的长短期记忆单元（ long short-term memory units ，LSTM，一种时间递归神经网络）。</p>
+<p>实际上，经典预测方法和机器学习方法彼此之间并没有区别，不过是通过模型是否更简单、可解释或更复杂和灵活来区分。在实践中，经典统计算法往往更快更容易使用。</p>
+<p>在 Uber 为特定场景用例选择的预测方法实际一个包含许多参数的函数，包括可用的历史数据量、外生变量（例如，天气，音乐会等）是否发挥重要作用，以及业务需求（例如，模型是否需要可解释？）。然而，最重要的是，我们无法确定哪种方法会产生最佳性能，因此有必要比较多种方法的模型性能。</p>
+<h2 id="Comparing-forecasting-methods"><a href="#Comparing-forecasting-methods" class="headerlink" title="Comparing forecasting methods"></a>Comparing forecasting methods</h2><p>对于时间序列而言排序很重要，因此必须按时间顺序进行测试。实验者不能在中间切出一块，并在此部分之前和之后训练数据。相反，需要训练一组比测试数据更早的数据。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F4.png" alt="Figure 4: Two major approaches to test forecasting models are the sliding window approach (left) and the expanding window approach (right)."></p>
+<p>考虑到这一点，上面图4 中概述了两种主要方法：滑动窗口方法（the sliding window approach）和扩展窗口方法（the expanding window approach）。在滑动窗口方法中，使用固定大小的窗口（此处以黑色显示）进行训练。随后，针对橙色显示的数据测试该方法。</p>
+<p>另一方面，扩展窗口方法使用越来越多的训练数据，同时保持测试窗口大小固定。如果要处理的数据量有限，后一种方法特别有效。将这两种方法结合起来也是可能的，而且通常最理想：从扩展窗口方法开始，当窗口变得足够大时，切换到滑动窗口方法。</p>
+<p>在这个领域已经提出了许多评估指标，包括绝对误差（ absolute errors ）和百分比误差（percentage errors），这些指标有一些缺点。一种特别有用的方法是将模型性能与天真预测法（naive forecast）进行比较。在非季节性的情况下，天真预测法假设最后一个值等于下一个值。对于周期性时间序列，预测估计值等于先前的季节值（例如，对于具有每周周期性的每小时时间序列，天真预测法假设下一个值是一周前的当前小时的值）。</p>
+<p>为了更容易地选择正确的预测方法，Uber 预测平台团队构建了一个名为 <strong><a target="_blank" rel="noopener" href="https://eng.uber.com/omphalos/">Omphalos</a></strong> 的回溯测试框架，该框架支持并行并且语言可扩展，以支持快速迭代和预测方法比较。</p>
+<h2 id="The-importance-of-uncertainty-estimation"><a href="#The-importance-of-uncertainty-estimation" class="headerlink" title="The importance of uncertainty estimation"></a>The importance of uncertainty estimation</h2><p>确定给定用例的最佳预测方法只是等式的一半。我们还需要估计预测区间。预测区间是预测值的上限和下限，预期实际值在某些（通常是高的）概率之间，例如， 0.9。图5 显示预测区间的工作原理：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Uber-forecasting-F5.png" alt="Figure 5: Prediction intervals are critical to informed decision making. Although point forecasts may be the same, their prediction intervals may be significantly different."></p>
+<p>在图5中，紫色的点表示预测完全相同。但是，左图中的预测区间比右图中的预测区间窄得多。预测区间的差异导致两种截然不同的预测结果，特别是考虑容量规划的背景下：第二次预测需要更高的容量储备以允许需求大幅增加的可能性。</p>
+<p>预测区间与预测点本身一样重要，应始终包含在预测中。预测区间通常取决于我们拥有多少数据，此数据中有多少变化，我们预测的偏差以及使用的预测方法。</p>
+<h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2><p>在后续的文章中将深入研究技术细节。本系列的下一篇文章将专门用于讨论数据预处理。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/10/03/Machine-Learning-Uber/">Uber 业务预测系统实践</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a></li>
+<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/order_holtwinter.html">美团技术团队|外卖订单量预测异常报警模型实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://eng.uber.com/m4-forecasting-competition/">ES-RNN,Exponential Smoothing-Recurrent Neural Networks</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jmlr.org/papers/volume7/meinshausen06a/meinshausen06a.pdf">Quantile Regression Forests | Journal of Machine Learning Research 7 (2006) </a></li>
+<li><a target="_blank" rel="noopener" href="https://eng.uber.com/omphalos/">Omphalos, Uber’s Parallel and Language-Extensible Time Series Backtesting Tool</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/10/03/Machine-Learning-Uber/" data-id="ckwgm33md00fq7b1y91m4duj2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/21/Technology-Oracle-Ops/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Oracle 数据库日常维护
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/18/DevOps-Deployment-SaltStack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">DevOps-Deployment-SaltStack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge"><span class="toc-number">1.</span> <span class="toc-text">Challenge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prominent-forecasting-approaches"><span class="toc-number">2.</span> <span class="toc-text">Prominent forecasting approaches</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comparing-forecasting-methods"><span class="toc-number">3.</span> <span class="toc-text">Comparing forecasting methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-importance-of-uncertainty-estimation"><span class="toc-number">4.</span> <span class="toc-text">The importance of uncertainty estimation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">5.</span> <span class="toc-text">Next</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">6.0.1.</span> <span class="toc-text">《The Machine Learning Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 NTOPNG是NTOP的新一代版本,提供以下特性： 多协议网络流量；IPv4&#x2F;IPv6活跃主机 网络流量监控； 基于nDPI实现应用协议发现 作为 NetFlow&#x2F;sFlow  采集器 (Cisco&#x2F; Juniper 路由器) ；交换机配合 nProbe.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控">
+<meta property="og:url" content="https://riboseyim.com/2016/04/26/Network-Ntopng/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 NTOPNG是NTOP的新一代版本,提供以下特性： 多协议网络流量；IPv4&#x2F;IPv6活跃主机 网络流量监控； 基于nDPI实现应用协议发现 作为 NetFlow&#x2F;sFlow  采集器 (Cisco&#x2F; Juniper 路由器) ；交换机配合 nProbe.">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-1.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-2.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-3.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-4.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-5.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-6.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntopng-arch-view.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntopng-redis-data.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntopng-geomap.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-1.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-4.png">
+<meta property="article:published_time" content="2016-04-26T03:31:59.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.008Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/ntop-demo-1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Network-Ntopng" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/Network-Ntopng/" class="article-date">
+  <time datetime="2016-04-26T03:31:59.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/04/26/Network-Ntopng/" data-id="ckwgm33mi00gw7b1yyilnfltq" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>NTOPNG是NTOP的新一代版本,提供以下特性：</li>
+<li>多协议网络流量；IPv4/IPv6活跃主机</li>
+<li>网络流量监控；</li>
+<li>基于nDPI实现应用协议发现</li>
+<li>作为 NetFlow/sFlow  采集器 (Cisco/ Juniper 路由器) ；交换机配合 nProbe.</li>
+</ul>
+<span id="more"></span>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-1.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-2.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-3.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-4.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-5.jpg" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-demo-6.jpg" alt=""></p>
+<p><strong>What ntopng can do for me?</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.ntop.org/products/ntop">http://www.ntop.org/products/ntop</a></li>
+<li>Sort network traffic according to many protocols</li>
+<li>Show network traffic and IPv4/v6 active hosts</li>
+<li>Store on disk persistent traffic statistics in RRD format</li>
+<li>Geolocate hosts</li>
+<li>Discover application protocols by leveraging on nDPI, ntop’s DPI framework.</li>
+<li>Characterise HTTP traffic by leveraging on characterisation services provided by block.si. ntopng comes with a demo characterisation key, but if you need a permanent one, please mail info@block.si.</li>
+<li>Show IP traffic distribution among the various protocols</li>
+<li>Analyse IP traffic and sort it according to the source/destination</li>
+<li>Display IP Traffic Subnet matrix (who’s talking to who?)</li>
+<li>Report IP protocol usage sorted by protocol type</li>
+<li>Act as a NetFlow/sFlow collector for flows generated by routers (e.g. Cisco and Juniper) or switches (e.g. Foundry Networks) when used together with nProbe.</li>
+<li>Produce HTML5/AJAX network traffic statistics </li>
+</ul>
+<h2 id="Ntopng-架构"><a href="#Ntopng-架构" class="headerlink" title="Ntopng 架构"></a>Ntopng 架构</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/ntopng-arch-view.jpg" alt=""></p>
+<h4 id="主要开发语言"><a href="#主要开发语言" class="headerlink" title="主要开发语言"></a>主要开发语言</h4><p>C、C++、<strong>Python</strong>、Lua</p>
+<h4 id="数据采集层"><a href="#数据采集层" class="headerlink" title="数据采集层"></a>数据采集层</h4><p><strong>Libpcap</strong> ：网络数据包捕获函数包</p>
+<p><strong>ZeroMQ</strong><br>一个C内核及C＋＋编写的核心库libzmq，50余种语言支持的绑定程序(例如Python支持PyZMQ)，号称最快的消息库，协议级，目标是成为Linux的一部分。</p>
+<h4 id="业务处理层"><a href="#业务处理层" class="headerlink" title="业务处理层"></a>业务处理层</h4><p>Monitoring Engine，负责采集数据的规整、压缩、转储。</p>
+<h4 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h4><p><strong>Sqlite</strong>：轻型数据库，多语言支持（此处为python）<br>Gdbm：DBM的GNU版本，使用hash存储非结构化数据</p>
+<p><strong>Redis</strong><br>Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。Ntopng的Redis数据结构如下：<br><img src="http://riboseyim-qiniu.riboseyim.com/ntopng-redis-data.png" alt=""></p>
+<h4 id="前端展现层"><a href="#前端展现层" class="headerlink" title="前端展现层"></a>前端展现层</h4><p><strong>RRDtool</strong></p>
+<p>源自MRTG（多路由器流量绘图器）。MRTG是有一个大学连接到互联网链路的使用率的小脚本开始的。MRTG后来被当作绘制其他数据源的工具使用，包括温度、速度、电压、输出量等等。</p>
+<p><strong>Geoip：IP GIS图形</strong></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntopng-geomap.png" alt=""></p>
+<h4 id="其它库"><a href="#其它库" class="headerlink" title="其它库"></a>其它库</h4><p>autoconf、automake、pkg-config、libtool（提供通用的库编译支持）<br>Gettext、icu4c：国际化(I18N)和本地化(L10N)，多语言支持</p>
+<p><strong>libffi</strong><br>“FFI” 的全名是 Foreign Function Interface，通常指的是允许以一种语言编写的代码调用另一种语言的代码。而 “Libffi” 库只提供了最底层的、与架构相关的、完整的”FFI”，因此在它之上必须有一层来负责管理两种语言之间参数的格式转换。</p>
+<p>Gobject-introspection：（简称 GI）用于产生与解析 C 程序库 API 元信息，以便于动态语言（或托管语言）绑定基于 C + GObject 的程序库</p>
+<p>json-glib、json-c、openssl、glib</p>
+<p>libtasn1：开发 ASN.1 (Abstract Syntax Notation One) 结构管理的 C 库<br>gmp<br>Nettle：a low-level cryptographic library （加密）<br>Gnutls：（加密）<br>libpng：the official PNG reference library （图形）<br>pixman：像素管理（图形）<br>Cairo：a2Dgraphicslibrarywithsupportformultipleoutputdevices.<br>Freetype：FreeType库是一个完全免费（开源）的、高质量的且可移植的字体引擎，它提供统一的接口来访问多种字体格式文件，包括TrueType,OpenType, Type1, CID,CFF, Windows FON/FNT, X11 PCF等<br>fontconfig：字体库管理</p>
+<h3 id="P2P-演示案例"><a href="#P2P-演示案例" class="headerlink" title="P2P 演示案例"></a>P2P 演示案例</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-1.jpg" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-2.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-3.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/ntop-p2p-4.png" alt=""></p>
+<hr>
+
+<h2 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://get.influxdata.com/rs/972-GDU-533/images/Customer%20Case%20Study_%20ntop.pdf">How ntop built (an Open Source) Web-based Traffic Analysis and Flow collection with #InfluxDB</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/SDN/">SDN 技术指南（一）: 架构概览</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/">SDN 技术指南（二）: OpenFlow </a></li>
+</ul>
+<h4 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/BestAppMap/">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li>Preview:<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/Visualization-Charts/">数据可视化（五）可视化数据图表制作方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/04/26/Network-Ntopng/" data-id="ckwgm33mi00gw7b1yyilnfltq" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/TeamWork-Redmine/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PM指南:开源项目管理平台Redmine
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/24/LinusTorvalds/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">科技史漫谈：Linus Torvalds 与 Linux 操作系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ntopng-%E6%9E%B6%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">Ntopng 架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80"><span class="toc-number">2.0.1.</span> <span class="toc-text">主要开发语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%B1%82"><span class="toc-number">2.0.2.</span> <span class="toc-text">数据采集层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E5%A4%84%E7%90%86%E5%B1%82"><span class="toc-number">2.0.3.</span> <span class="toc-text">业务处理层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8"><span class="toc-number">2.0.4.</span> <span class="toc-text">存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%B1%95%E7%8E%B0%E5%B1%82"><span class="toc-number">2.0.5.</span> <span class="toc-text">前端展现层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E5%BA%93"><span class="toc-number">2.0.6.</span> <span class="toc-text">其它库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P-%E6%BC%94%E7%A4%BA%E6%A1%88%E4%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">P2P 演示案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper"><span class="toc-number">3.</span> <span class="toc-text">Paper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-number">4.0.1.</span> <span class="toc-text">网络管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">数据可视化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

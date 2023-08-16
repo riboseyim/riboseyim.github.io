@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AI技术原理|机器学习开源项目 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 来源：30 Amazing Machine Learning Projects for the Past Year (v.2018) 评选：Mybridge AI 数据：从 8800 个机器学习领域开源项目中选取 Top 30 (0.3%)，Github 平均关注数 3558。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI技术原理|机器学习开源项目">
+<meta property="og:url" content="https://riboseyim.com/2018/02/09/Machine-Learning-Projects/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 来源：30 Amazing Machine Learning Projects for the Past Year (v.2018) 评选：Mybridge AI 数据：从 8800 个机器学习领域开源项目中选取 Top 30 (0.3%)，Github 平均关注数 3558。">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/FastText.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Deep-photo-styletransfer.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/face_recognition.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Magenta.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Sonnet.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/deeplearn.js.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/fast-style-transfer.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Pysc2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/AirSim.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Facets.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Style2Paints.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensor2Tensor.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/pytorch-CycleGAN-and-pix2pix.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Faiss.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Fashion-mnist.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ParlAI.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Fairseq.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Pyro.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/iGAN.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Deep-image-prior.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Face_classification.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Speech-to-Text-WaveNet.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/StarGAN.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ml-agents.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DeepVideoAnalytics.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OpenNMT.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Pix2pixHD.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Horovod.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/AI-Blocks.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/deep-voice-conversion.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-02-09T13:51:57.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.153Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/FastText.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-Projects" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/09/Machine-Learning-Projects/" class="article-date">
+  <time datetime="2018-02-09T13:51:57.000Z" itemprop="datePublished">2018-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AI技术原理|机器学习开源项目
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/02/09/Machine-Learning-Projects/" data-id="ckwgm33m600ek7b1y33o41cji" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>来源：<a target="_blank" rel="noopener" href="https://medium.mybridge.co/30-amazing-machine-learning-projects-for-the-past-year-v-2018-b853b8621ac7">30 Amazing Machine Learning Projects for the Past Year (v.2018)</a></li>
+<li>评选：<a target="_blank" rel="noopener" href="https://www.mybridge.co">Mybridge AI</a></li>
+<li>数据：从 8800 个机器学习领域开源项目中选取 Top 30 (0.3%)，Github 平均关注数 3558。</li>
+</ul>
+<span id="more"></span>
+<h2 id="Machine-Learning-Project-CheckList"><a href="#Machine-Learning-Project-CheckList" class="headerlink" title="Machine Learning Project CheckList"></a>Machine Learning Project CheckList</h2><ul>
+<li>Frame the Problem and Look at the Big Picture</li>
+<li>Get the Data</li>
+<li>Explore the Data</li>
+<li>Prepare the Data</li>
+<li>Short-List Promising Models</li>
+<li>Fine-Tune the System</li>
+<li>Present Your Solution</li>
+</ul>
+<h2 id="NO-1-FastText-11786-stars"><a href="#NO-1-FastText-11786-stars" class="headerlink" title="NO.1 FastText [11786 stars]"></a>NO.1 FastText [11786 stars]</h2><p><a target="_blank" rel="noopener" href="https://goo.gl/VWGfCs">FastText</a>: 文本表示和分类库（representation &amp; classification）<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@FBResearch">Facebook Research</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/FastText.png" alt=""></p>
+<h2 id="No-2-Deep-photo-styletransfer-9747-stars"><a href="#No-2-Deep-photo-styletransfer-9747-stars" class="headerlink" title="No.2 Deep-photo-styletransfer [9747 stars]"></a>No.2 Deep-photo-styletransfer [9747 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/luanfujun/deep-photo-styletransfer">Deep-photo-styletransfer</a>: 论文 “Deep Photo Style Transfer” 的源代码和数据<br>贡献者：Fujun Luan, 康奈尔大学（Cornell University）Ph.D</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Deep-photo-styletransfer.png" alt=""></p>
+<h2 id="No-3-face-recognition-8672-stars"><a href="#No-3-face-recognition-8672-stars" class="headerlink" title="No.3 face_recognition [8672 stars]"></a>No.3 face_recognition [8672 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/ageitgey/face_recognition">face_recognition</a>: 脸部识别 API （facial recognition），支持 Python 编程接口<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@ageitgey">Adam Geitgey</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/face_recognition.png" alt=""></p>
+<h2 id="No-4-Magenta-8113-stars"><a href="#No-4-Magenta-8113-stars" class="headerlink" title="No.4 Magenta [8113 stars]"></a>No.4 Magenta [8113 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/tensorflow/magenta">Magenta</a>: 基于机器智能生成音乐和艺术作品</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Magenta.png" alt=""></p>
+<h2 id="No-5-Sonnet-5731-stars"><a href="#No-5-Sonnet-5731-stars" class="headerlink" title="No.5 Sonnet [5731 stars]"></a>No.5 Sonnet [5731 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/deepmind/sonnet">Sonnet</a>: 基于 TensorFlow 的神经网络库<br>贡献者：Malcolm Reynolds at Deepmind</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Sonnet.png" alt=""></p>
+<h2 id="No-6-deeplearn-js-5462-stars"><a href="#No-6-deeplearn-js-5462-stars" class="headerlink" title="No.6 deeplearn.js [5462 stars]"></a>No.6 deeplearn.js [5462 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/PAIR-code/deeplearnjs">deeplearn.js</a>: 一个面向 Web 的 JavaScript 库，提供硬件加速能力，支持在浏览器中训练神经网络，或者使用已经训练好的模型。<br>贡献者：Nikhil Thorat at Google Brain</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/deeplearn.js.png" alt=""></p>
+<h2 id="No-7-fast-style-transfer-4843-stars"><a href="#No-7-fast-style-transfer-4843-stars" class="headerlink" title="No.7 fast-style-transfer [4843 stars]"></a>No.7 fast-style-transfer [4843 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/lengstrom/fast-style-transfer">fast-style-transfer</a>：基于 TensorFlow，Fast Style Transfer<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@loganengstrom">Logan Engstrom</a> at MIT</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/fast-style-transfer.png" alt=""></p>
+<h2 id="No-8-Pysc2-3683-stars"><a href="#No-8-Pysc2-3683-stars" class="headerlink" title="No.8 Pysc2 [3683 stars]"></a>No.8 Pysc2 [3683 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/deepmind/pysc2">Pysc2</a>: StarCraft II Learning Environment .<br>贡献者：Timo Ewalds at DeepMind</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Pysc2.png" alt=""></p>
+<h2 id="No-9-AirSim-3861-stars"><a href="#No-9-AirSim-3861-stars" class="headerlink" title="No.9 AirSim [3861 stars]"></a>No.9 AirSim [3861 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/AirSim">AirSim</a>: 基于 微软（AI &amp; Research）自主驾驶汽车虚拟引擎的开源模拟器<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@sytelus">Shital Shah</a> at Microsoft</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/AirSim.png" alt=""></p>
+<h2 id="No-10-Facets-3371-stars"><a href="#No-10-Facets-3371-stars" class="headerlink" title="No.10 Facets [3371 stars]"></a>No.10 Facets [3371 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/PAIR-code/facets">Facets</a>: 机器学习数据集可视化<br>贡献者：Google Brain</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Facets.jpg" alt=""></p>
+<h2 id="No-11-Style2Paints-3310-stars"><a href="#No-11-Style2Paints-3310-stars" class="headerlink" title="No.11 Style2Paints [3310 stars]"></a>No.11 Style2Paints [3310 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/lllyasviel/style2paints">Style2Paints</a>: 图像智能化</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Style2Paints.png" alt=""></p>
+<h2 id="No-12-Tensor2Tensor-3087-stars"><a href="#No-12-Tensor2Tensor-3087-stars" class="headerlink" title="No.12 Tensor2Tensor [3087 stars]"></a>No.12 Tensor2Tensor [3087 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensor2tensor">Tensor2Tensor</a>: 广义顺序序列模型库（sequence to sequence models）<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@rsepassi">Ryan Sepassi</a> at Google Brain</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensor2Tensor.png" alt=""></p>
+<h2 id="No-13-pytorch-CycleGAN-and-pix2pix-2847-stars"><a href="#No-13-pytorch-CycleGAN-and-pix2pix-2847-stars" class="headerlink" title="No.13 pytorch-CycleGAN-and-pix2pix [2847 stars]"></a>No.13 pytorch-CycleGAN-and-pix2pix [2847 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pytorch-CycleGAN-and-pix2pix</a>：图像翻译 （Image-to-image）， in PyTorch (horse2zebra, edges2cats)<br>贡献者：Jun-Yan Zhu, Ph.D at Berkeley</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/pytorch-CycleGAN-and-pix2pix.jpg" alt=""></p>
+<h2 id="No-14-Faiss-2629-stars"><a href="#No-14-Faiss-2629-stars" class="headerlink" title="No.14 Faiss [2629 stars]"></a>No.14 Faiss [2629 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss">Faiss</a>: 相似性搜索和稠密矢量聚类库 （efficient similarity search &amp; clustering of dense vectors）<br>贡献者：Facebook Research</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Faiss.png" alt=""></p>
+<h2 id="No-15-Fashion-mnist-2780-stars"><a href="#No-15-Fashion-mnist-2780-stars" class="headerlink" title="No.15 Fashion-mnist  [2780 stars]"></a>No.15 Fashion-mnist  [2780 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/zalandoresearch/fashion-mnist">Fashion-mnist</a>: 类似 MNIST 风格的时尚产品数据库（MNIST：Mixed National Institute of Standards and Technology database)<br>贡献者：Han Xiao, Research Scientist <a target="_blank" rel="noopener" href="https://medium.com/@ZalandoTech">Zalando Tech</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Fashion-mnist.png" alt=""></p>
+<h2 id="No-16-ParlAI-2578-stars"><a href="#No-16-ParlAI-2578-stars" class="headerlink" title="No.16 ParlAI [2578 stars]"></a>No.16 ParlAI [2578 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/ParlAI">ParlAI</a>: 一个基于各种公开可用的对话数据集训练和评估 AI 模型的框架<br>贡献者：Alexander Miller at <a target="_blank" rel="noopener" href="https://medium.com/@FBResearch">Facebook Research</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ParlAI.png" alt=""></p>
+<h2 id="No-17-Fairseq-2571-stars"><a href="#No-17-Fairseq-2571-stars" class="headerlink" title="No.17 Fairseq  [2571 stars]"></a>No.17 Fairseq  [2571 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/fairseq">Fairseq</a>: 来自 Facebook AI Research 的 Sequence-to-Sequence 工具库</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Fairseq.png" alt=""></p>
+<h2 id="No-18-Pyro-2387-stars"><a href="#No-18-Pyro-2387-stars" class="headerlink" title="No.18 Pyro  [2387 stars]"></a>No.18 Pyro  [2387 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/uber/pyro">Pyro</a>: 基于 Python 和 Pytorch 的通用深度学习编程接口<br>贡献者：Uber AI Labs</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Pyro.png" alt=""></p>
+<h2 id="No-19-2369-stars"><a href="#No-19-2369-stars" class="headerlink" title="No.19 [2369 stars]"></a>No.19 [2369 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/junyanz/iGAN">iGAN</a>: 基于 GAN (生成对抗网络)实现交互式图像生成</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/iGAN.png" alt=""></p>
+<h2 id="No-20-Deep-image-prior-2188-stars"><a href="#No-20-Deep-image-prior-2188-stars" class="headerlink" title="No.20 Deep-image-prior [2188 stars]"></a>No.20 Deep-image-prior [2188 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/DmitryUlyanov/deep-image-prior">Deep-image-prior</a>: 基于神经网络实现图像修复，非监督学习方式<br>贡献者：Dmitry Ulyanov, Ph.D at Skoltech （斯科尔科沃，俄罗斯“硅谷”）</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Deep-image-prior.png" alt=""></p>
+<h2 id="No-21-Face-classification-1967-stars"><a href="#No-21-Face-classification-1967-stars" class="headerlink" title="No.21 Face_classification [1967 stars]"></a>No.21 Face_classification [1967 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/oarriaga/face_classification">Face_classification</a>:实时人脸检测与情感/性别识别，使用fer2013/imdb 数据集，基于 <a target="_blank" rel="noopener" href="https://keras-cn.readthedocs.io/en/latest/">Keras</a> CNN 模型和 OpenCV。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Face_classification.jpg" alt=""></p>
+<h2 id="No-22-Speech-to-Text-WaveNet-1961-stars"><a href="#No-22-Speech-to-Text-WaveNet-1961-stars" class="headerlink" title="No.22 Speech-to-Text-WaveNet [1961 stars]"></a>No.22 Speech-to-Text-WaveNet [1961 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/buriburisuri/speech-to-text-wavenet">Speech-to-Text-WaveNet</a> : 英语语言识别，基于 DeepMind 的 WaveNet 和 Tensorflow。<br>DeepMind：一家英国人工智能公司。创建于2010年，2014年被谷歌收购。WaveNet is a deep neural network for generating raw audio.<br>贡献者：Namju Kim at Kakao Brain</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Speech-to-Text-WaveNet.png" alt=""></p>
+<h2 id="No-23-StarGAN-1954-stars"><a href="#No-23-StarGAN-1954-stars" class="headerlink" title="No.23 StarGAN [1954 stars]"></a>No.23 StarGAN [1954 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/yunjey/StarGAN">StarGAN</a>: 用于多域图像到图像转换的统一生成对抗网络<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@yunjey.choi">Yunjey Choi</a> ，高丽大学（ Korea University ）</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/StarGAN.png" alt=""></p>
+<h2 id="No-24-Ml-agents-1658-stars"><a href="#No-24-Ml-agents-1658-stars" class="headerlink" title="No.24 Ml-agents [1658 stars]"></a>No.24 Ml-agents [1658 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents">Ml-agents</a>: 统一机器学习代理<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@awjuliani">Arthur Juliani</a>, Deep Learning at Unity3D</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ml-agents.png" alt=""></p>
+<h2 id="No-25-DeepVideoAnalytics-1494-stars"><a href="#No-25-DeepVideoAnalytics-1494-stars" class="headerlink" title="No.25 DeepVideoAnalytics [1494 stars]"></a>No.25 DeepVideoAnalytics [1494 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/AKSHAYUBHAT/DeepVideoAnalytics/">DeepVideoAnalytics</a>: 分布式可视化搜索与数据分析平台<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@akshayubhat">Akshay Bhat</a>, 康奈尔大学（ Cornell University ）Ph.D</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DeepVideoAnalytics.png" alt=""></p>
+<h2 id="No-26-OpenNMT-1490-stars"><a href="#No-26-OpenNMT-1490-stars" class="headerlink" title="No.26 OpenNMT [1490 stars]"></a>No.26 OpenNMT [1490 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/OpenNMT/OpenNMT">OpenNMT</a>: 利用 Torch 数学工具包的开源神经机器翻译系统</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/OpenNMT.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://opennmt.net/">OpenNMT site</a></li>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/building-a-translation-system-in-minutes-d82a154f603e">Building a Translation System In Minutes | Using OpenNMT-py to create baseline NMT models</a></li>
+</ul>
+<h2 id="No-27-Pix2pixHD-1283-stars"><a href="#No-27-Pix2pixHD-1283-stars" class="headerlink" title="No.27 Pix2pixHD [1283 stars]"></a>No.27 Pix2pixHD [1283 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/pix2pixHD">Pix2pixHD</a>: 合成和操纵 2048x1024 图像，基于条件式对抗生成网络（Conditional GAN）<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@liu_mingyu">Ming-Yu Liu</a> at AI Research Scientist at Nvidia</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Pix2pixHD.png" alt=""></p>
+<h2 id="No-28-Horovod-1188-stars"><a href="#No-28-Horovod-1188-stars" class="headerlink" title="No.28 Horovod [1188 stars]"></a>No.28 Horovod [1188 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/uber/horovod">Horovod</a>: 面向 TensorFlow 的分布式训练框架<br>贡献者：Uber Engineering</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Horovod.png" alt=""></p>
+<h2 id="No-29-AI-Blocks-899-stars"><a href="#No-29-AI-Blocks-899-stars" class="headerlink" title="No.29 AI-Blocks [899 stars]"></a>No.29 AI-Blocks [899 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/MrNothing/AI-Blocks">AI-Blocks</a>: 一个强大的图形化机器学习模型编辑器，基于Tensorflow 和 Python。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/AI-Blocks.png" alt=""></p>
+<h2 id="No-30-deep-voice-conversion-845-stars"><a href="#No-30-deep-voice-conversion-845-stars" class="headerlink" title="No.30 deep-voice-conversion [845 stars]"></a>No.30 deep-voice-conversion [845 stars]</h2><p><a target="_blank" rel="noopener" href="https://github.com/andabi/deep-voice-conversion">deep-voice-conversion</a>: 支持语音转换的深度神经网络（声音风格转换），基于 Tensorflow<br>贡献者：<a target="_blank" rel="noopener" href="https://medium.com/@dabiahn">Dabi Ahn</a>, AI Research at Kakao Brain</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/deep-voice-conversion.png" alt=""></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/deeplearning-for-IoT-bigdata-and-streaming-analytics?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global">深度学习在IoT大数据和流分析中的应用|InfoQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E4BVUI6xiWtgMwNR5ABfcA">腾讯冯牮：基于卷积神经网络在手机端实现文档检测 | 2017-10-03 QCon InfoQ</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/02/09/Machine-Learning-Projects/" data-id="ckwgm33m600ek7b1y33o41cji" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/09/Machine-Learning-Articles/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          AI技术原理|推荐文献
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/04/Redology-Intelligence/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">红楼故事：康熙的秘密情报系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Machine-Learning-Project-CheckList"><span class="toc-number">2.</span> <span class="toc-text">Machine Learning Project CheckList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NO-1-FastText-11786-stars"><span class="toc-number">3.</span> <span class="toc-text">NO.1 FastText [11786 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-2-Deep-photo-styletransfer-9747-stars"><span class="toc-number">4.</span> <span class="toc-text">No.2 Deep-photo-styletransfer [9747 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-3-face-recognition-8672-stars"><span class="toc-number">5.</span> <span class="toc-text">No.3 face_recognition [8672 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-4-Magenta-8113-stars"><span class="toc-number">6.</span> <span class="toc-text">No.4 Magenta [8113 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-5-Sonnet-5731-stars"><span class="toc-number">7.</span> <span class="toc-text">No.5 Sonnet [5731 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-6-deeplearn-js-5462-stars"><span class="toc-number">8.</span> <span class="toc-text">No.6 deeplearn.js [5462 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-7-fast-style-transfer-4843-stars"><span class="toc-number">9.</span> <span class="toc-text">No.7 fast-style-transfer [4843 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-8-Pysc2-3683-stars"><span class="toc-number">10.</span> <span class="toc-text">No.8 Pysc2 [3683 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-9-AirSim-3861-stars"><span class="toc-number">11.</span> <span class="toc-text">No.9 AirSim [3861 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-10-Facets-3371-stars"><span class="toc-number">12.</span> <span class="toc-text">No.10 Facets [3371 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-11-Style2Paints-3310-stars"><span class="toc-number">13.</span> <span class="toc-text">No.11 Style2Paints [3310 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-12-Tensor2Tensor-3087-stars"><span class="toc-number">14.</span> <span class="toc-text">No.12 Tensor2Tensor [3087 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-13-pytorch-CycleGAN-and-pix2pix-2847-stars"><span class="toc-number">15.</span> <span class="toc-text">No.13 pytorch-CycleGAN-and-pix2pix [2847 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-14-Faiss-2629-stars"><span class="toc-number">16.</span> <span class="toc-text">No.14 Faiss [2629 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-15-Fashion-mnist-2780-stars"><span class="toc-number">17.</span> <span class="toc-text">No.15 Fashion-mnist  [2780 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-16-ParlAI-2578-stars"><span class="toc-number">18.</span> <span class="toc-text">No.16 ParlAI [2578 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-17-Fairseq-2571-stars"><span class="toc-number">19.</span> <span class="toc-text">No.17 Fairseq  [2571 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-18-Pyro-2387-stars"><span class="toc-number">20.</span> <span class="toc-text">No.18 Pyro  [2387 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-19-2369-stars"><span class="toc-number">21.</span> <span class="toc-text">No.19 [2369 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-20-Deep-image-prior-2188-stars"><span class="toc-number">22.</span> <span class="toc-text">No.20 Deep-image-prior [2188 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-21-Face-classification-1967-stars"><span class="toc-number">23.</span> <span class="toc-text">No.21 Face_classification [1967 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-22-Speech-to-Text-WaveNet-1961-stars"><span class="toc-number">24.</span> <span class="toc-text">No.22 Speech-to-Text-WaveNet [1961 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-23-StarGAN-1954-stars"><span class="toc-number">25.</span> <span class="toc-text">No.23 StarGAN [1954 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-24-Ml-agents-1658-stars"><span class="toc-number">26.</span> <span class="toc-text">No.24 Ml-agents [1658 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-25-DeepVideoAnalytics-1494-stars"><span class="toc-number">27.</span> <span class="toc-text">No.25 DeepVideoAnalytics [1494 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-26-OpenNMT-1490-stars"><span class="toc-number">28.</span> <span class="toc-text">No.26 OpenNMT [1490 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-27-Pix2pixHD-1283-stars"><span class="toc-number">29.</span> <span class="toc-text">No.27 Pix2pixHD [1283 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-28-Horovod-1188-stars"><span class="toc-number">30.</span> <span class="toc-text">No.28 Horovod [1188 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-29-AI-Blocks-899-stars"><span class="toc-number">31.</span> <span class="toc-text">No.29 AI-Blocks [899 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-30-deep-voice-conversion-845-stars"><span class="toc-number">32.</span> <span class="toc-text">No.30 deep-voice-conversion [845 stars]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">33.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">33.0.1.</span> <span class="toc-text">《The Machine Learning Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">34.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

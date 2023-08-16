@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux 性能诊断:JVM | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Uber 开源 Java 分布式应用追踪工具：JVM Profiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 性能诊断:JVM">
+<meta property="og:url" content="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Uber 开源 Java 分布式应用追踪工具：JVM Profiler">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2018-08-07T01:32:30.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.510Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Perf-JVM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/07/Linux-Perf-JVM/" class="article-date">
+  <time datetime="2018-08-07T01:32:30.000Z" itemprop="datePublished">2018-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 性能诊断:JVM
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="ckwgm33lu00bv7b1yku5u6clt" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Uber 开源 Java 分布式应用追踪工具：JVM Profiler</li>
+</ul>
+<span id="more"></span>
+<h1 id="Uber-开源-Java-分布式应用追踪工具：JVM-Profiler"><a href="#Uber-开源-Java-分布式应用追踪工具：JVM-Profiler" class="headerlink" title="Uber 开源 Java 分布式应用追踪工具：JVM Profiler"></a>Uber 开源 Java 分布式应用追踪工具：JVM Profiler</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://eng.uber.com/jvm-profiler">《JVM Profiler: An Open Source Tool for Tracing Distributed JVM Applications at Scale 》</a></li>
+</ul>
+<p>Apache Spark 计算框架已经被广泛用来构建大规模数据应用。对 Uber 而言, 数据是战略决策和产品开发的核心。为了更好地利用这些数据, Uber 需要管理遍布全球的 Spark 实例。 Spark 使得数据技术更易于访问, 如果要做到对 Spark 应用程序的进行合理的资源分配, 优化数据基础架构的操作效率, 就需要对这些系统有更细粒度的洞察力, 即识别其资源使用模式。为了在不改变用户代码的情况下也能达成上述目标, Uber Engineering 团队构建并开源了  JVM Profiler —— 一个分布式探查器，用于收集性能和资源使用率指标为进一步分析提供服务。尽管它是为 Spark 应用而构建的, 但它的通用实现使其适用于任何基于 Java 虚拟机 ( Java virtual machine ，JVM) 的服务或应用程序。</p>
+<h2 id="Profiling-challenges"><a href="#Profiling-challenges" class="headerlink" title="Profiling challenges"></a>Profiling challenges</h2><p>Uber Engineering 每天的常规工作是支持数以万计的应用程序、运行在成千上万的机器上。随着技术栈的增长, 我们很快意识到现有的性能分析和优化方案无法满足需要。特别是:</p>
+<h4 id="目标1：应用级指标监控"><a href="#目标1：应用级指标监控" class="headerlink" title="目标1：应用级指标监控"></a>目标1：应用级指标监控</h4><ul>
+<li>Correlate metrics across a large number of processes at the application level</li>
+</ul>
+<p>分布式环境中存在大量进程需要度量，包括在同一服务器上运行着多个 Spark 应用、多服务器上运行的 Spark 应用有大量的进程 (例如数以千计的执行者 executors ) , 如 图1 所示:</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-1.png" alt=""></p>
+<p>Uber 现有的工具只能做到服务器级别的度量（server-level metrics）并且不能针对单个应用做到精确测量。我们需要一个解决方案, 可以收集每个过程的度量值, 并将它们与每个应用程序的进程关联起来。此外, 我们不知道这些过程将在何时启动, 以及它们将运行多长时间。为了能够在这种环境中收集度量, 需要在每个进程中自动启动探查器。</p>
+<h4 id="目标2：不侵入用户代码"><a href="#目标2：不侵入用户代码" class="headerlink" title="目标2：不侵入用户代码"></a>目标2：不侵入用户代码</h4><ul>
+<li>Make metrics metrics collection non-intrusive for arbitrary user code</li>
+</ul>
+<p>目前，Apache Spark 和 Apache Hadoop 库不支持导出性能指标; 但是在通常情况下, 我们需要在不更改用户或框架代码的情况下收集这些指标。例如, 如果在 Hadoop 文件系统 (Hadoop Distributed File System ，HDFS) NameNode 上遇到高时延的情况, 我们希望检查每个 Spark 应用中的延迟情况, 以确保这类问题不再重复出现。由于 NameNode 客户端代码嵌入到了 Spark 库中, 因此修改其源代码以添加特定度量是很麻烦的。为了跟上持续增长数据基础架构, 我们需要能够在任何时候对任何应用程序进行测量, 而不进行代码更改。此外, 实现一个非侵入性的度量值收集过程将使我们能够在加载中动态地向 Java 方法中注入代码。</p>
+<h2 id="JVM-Profiler-简介"><a href="#JVM-Profiler-简介" class="headerlink" title="JVM Profiler 简介"></a>JVM Profiler 简介</h2><p>为了解决上述两个难题, Uber Engineering 团队构建并开源了 JVM Profiler 。现有的同类开源工具, 比如 Etsy 的 <strong>statsd-jvm-profiler</strong> , 可以在单个应用程序级别收集度量, 但是不提供动态代码注入收集度量的能力。在这些工具的启发下, 我们的探查器提供了新功能, 如任意 Java 方法/参数分析。</p>
+<p>JVM Profiler 由三项主要功能组成, 它使收集性能和资源使用率指标变得更容易, 然后可以将这些指标 (如 Apache Kafka) 提供给其他系统进行进一步分析:</p>
+<ul>
+<li>代理功能 ( java agent ) : 支持用户以分布式的方式收集各种指标 (例如如 CPU/内存利用率) ，用于 JVM 进程的堆栈跟踪。</li>
+<li>高级分析功能（Advanced profiling capabilities）: 支持跟踪任意 Java 方法和用户代码中的参数, 而不进行任何实际的代码更改。此功能可用于跟踪 Spark 应用的 HDFS NameNode RPC 调用延迟, 并标识慢速方法调用。它还可以跟踪每个 Spark 应用读取或写入的 HDFS 文件路径, 用以识别热文件后进一步优化。</li>
+<li>数据分析报告( Data analytics reporting ): 使用 JVM Profile 可以将指标数据推送给 Kafka topics 和 Apache Hive tables , 提高数据分析的速度和灵活性。</li>
+</ul>
+<h4 id="JVM-Profiler-典型用例"><a href="#JVM-Profiler-典型用例" class="headerlink" title="JVM Profiler 典型用例"></a>JVM Profiler 典型用例</h4><p>JVM Profiler 支持各种用例, 最典型的是能够检测任意 Java 代码。基于简单的配置, JVM Profiler 就可以附加到 Spark 应用中的每个执行者（executor）收集 Java 方法运行时度量。下面, 我们对其中的一些用例进行了讨论:</p>
+<ul>
+<li>Right-size executor : JVM Profiler 中的内存度量支持跟踪每个执行者的实际内存使用情况。借此 可以在 Spark 应用中 ”executor-memory” 设置最优参数。</li>
+<li>监视 HDFS NameNode RPC 延迟: 例如在 Spark 应用中对类 org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB 的方法进行了分析并确定 NameNode 调用的延迟。Uber 每天都要监控5万多个 Spark 应用, 其中有数以亿计的这种 RPC 调用。</li>
+<li>监视驱动程序丢弃的事件: 例如监视 org.apache.spark.scheduler.LiveListenerBus.onDropEvent, 跟踪 Spark 驱动程序事件队列太长、队列删除事件。</li>
+<li>跟踪数据沿袭: 例如分析 Java 方法上的文件路径参数 ( org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.getBlockLocations , org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.addBlock ) ,  可以跟踪哪些文件是由 Spark 应用读取和写入的。</li>
+</ul>
+<h4 id="JVM-Profiler-实现"><a href="#JVM-Profiler-实现" class="headerlink" title="JVM Profiler 实现"></a>JVM Profiler 实现</h4><p>JVM Profiler 具有非常简单且可扩展的设计。可以很容易地添加其他 Profiler 收集更多的指标, 也能部署自定义 reporter 向不同的系统发送数据指标。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-2.png" alt=""></p>
+<p>一旦启动 JVM Profiler 代码即通过代理参数加载到一个 Java 进程中。它由三个主要部分组成:</p>
+<p><strong>Class File Transformer</strong><br>类文件转换器介由进程内的 Java 方法字节码监视任意用户代码并在内部度量缓冲区中保存度量。</p>
+<p><strong>Metric Profilers</strong></p>
+<ul>
+<li>CPU/Memory Profiler: 通过 JMX 收集 CPU/内存利用率并发送给 reporter</li>
+<li>Method Duration Profiler: 从度量缓冲区读取方法时延 (method duration) 并发送给 reporter</li>
+<li>Method Argument Profiler: 从度量缓冲区读取方法参数值（method argument ）并发送给 reporter</li>
+</ul>
+<p><strong>Reporters</strong></p>
+<ul>
+<li>Console Reporter: 控制台输出</li>
+<li>Kafka Reporter: 发送到 Kafka topics</li>
+</ul>
+<h4 id="JVM-Profiler-扩展"><a href="#JVM-Profiler-扩展" class="headerlink" title="JVM Profiler 扩展"></a>JVM Profiler 扩展</h4><p>通过 <strong>-javaagent</strong> 选项可以构建自己的 reporter , 例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -javaagent:jvm-profiler-<span class="number">0.0</span><span class="number">.5</span>.jar=reporter=com.uber.profiling.reporters.CustomReporter</span><br></pre></td></tr></table></figure>
+<h4 id="数据基础设施整合"><a href="#数据基础设施整合" class="headerlink" title="数据基础设施整合"></a>数据基础设施整合</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-3.png" alt=""></p>
+<p>Uber 将 JVM Profiler 与自己的数据基础设施进行整合：</p>
+<ul>
+<li><strong>Cluster-wide data analysis</strong>: 集群数据分析中指标数据首先推送到 Kafka 并存储于 HDFS, 用户最终通过 Hive/Presto/Spark 查询。</li>
+<li><strong>Real-time Spark application debugging</strong>:  Uber 使用 Flink 实现单个应用的实时数据聚合并写入到 MySQL 数据库，这样用户就可以通过基于 Web 的接口查询指标。</li>
+</ul>
+<h2 id="JVM-Profiler-应用"><a href="#JVM-Profiler-应用" class="headerlink" title="JVM Profiler 应用"></a>JVM Profiler 应用</h2><p>示例：使用 JVM Profiler 跟踪一个简单的 Java 应用</p>
+<p>首先，git clone 项目代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//github.com/uber-common/jvm-profiler.git</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，mvn package 构建 jvm-profiler jar<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure></p>
+<p>最后，调用 JAR 运行 JVM Profiler (e.g.target/jvm-profiler-0.0.5.jar)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -javaagent:target/jvm-profiler-<span class="number">0.0</span><span class="number">.5</span>.jar=reporter=com.uber.profiling.reporters.ConsoleOutputReporter -cp target/jvm-profiler-<span class="number">0.0</span><span class="number">.5</span>.jar com.uber.profiling.examples.HelloWorldApplication</span><br></pre></td></tr></table></figure></p>
+<p>上述命令行将运行一个简单的 Java 应用并通过控制台输出性能和资源使用情况。例如：</p>
+<p><strong>Nill</strong></p>
+<p>JVM Profiler 也能通过命令行将指标数据发送到 Kafka topic :</p>
+<p><strong>Nill</strong></p>
+<h4 id="Use-the-profiler-to-profile-the-Spark-application"><a href="#Use-the-profiler-to-profile-the-Spark-application" class="headerlink" title="Use the profiler to profile the Spark application"></a>Use the profiler to profile the Spark application</h4><p>示例：基于 JVM Profiler 跟踪 Spark 应用</p>
+<p>假定我们已经有一个 HDFS 集群，将 JVM Profiler JAR 上传到 HDFS</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put target/jvm-profiler-<span class="number">0.0</span><span class="number">.5</span>.jar hdfs:<span class="comment">//hdfs_url/lib/jvm-profiler-0.0.5.jar</span></span><br></pre></td></tr></table></figure>
+<p>使用 <strong>spark-submit</strong> 命令行启动 Spark 应用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --deploy-mode cluster --master yarn --conf spark.jars=hdfs:<span class="comment">//hdfs_url/lib/jvm-profiler-0.0.5.jar --conf spark.driver.extraJavaOptions=-javaagent:jvm-profiler-0.0.5.jar --conf spark.executor.extraJavaOptions=-javaagent:jvm-profiler-0.0.5.jar --class com.company.SparkJob spark_job.jar</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="指标查询"><a href="#指标查询" class="headerlink" title="指标查询"></a>指标查询</h4><p>Uber 将指标数据发送到 Kafka topic 和后台数据管线并自动存储于 Hive tables 。用户可以设置类似的管线并使用 SQL 查询指标数据。用户也可以编写自己的 reporter , 将指标发送到 SQL 数据库（如 MySQL）。Hive table 查询示例，包含每个进程的内存和 CPU 指标：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-4.png" alt=""></p>
+<h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2><p>Uber 将 JVM Profiler 应用到自己最大 Spark 应用 (1000 多个 executor ), 在该过程中将每个 executor 分配的内存减少了 2GB （从 7GB 降低到 5GB ）。对于整个 Spark 应用来说合计节省 2TB 内存。</p>
+<p>Uber 还将 JVM Profiler 应用到了所有 Hive on Spark 应用, 并发现了一些提高内存使用效率的机会。下面的图3显示了 Uber 发现的一个结果: 大约70% 的应用程序的实际内存利用率不到已分配内存的 80% 。研究结果表明, 大多数应用程序可以分配较少的内存并将内存利用率提高 20% 。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/JVM-Profile-5.png" alt=""></p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ mvn package</span><br><span class="line">[INFO] Scanning <span class="keyword">for</span> projects...</span><br><span class="line">[INFO]</span><br><span class="line">[INFO] -----------------------&lt; com.uber:jvm-profiler &gt;------------------------</span><br><span class="line">[INFO] Building uber-jvm-profiler <span class="number">0.0</span><span class="number">.7</span></span><br><span class="line">[INFO] --------------------------------[ jar ]---------------------------------</span><br><span class="line">[INFO] Including org.apache.kafka:kafka-clients:jar:<span class="number">0.11</span><span class="number">.0</span><span class="number">.2</span> in the shaded jar.</span><br><span class="line">[INFO] Including net.jpountz.lz4:lz4:jar:<span class="number">1.3</span><span class="number">.0</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.xerial.snappy:snappy-java:jar:<span class="number">1.1</span><span class="number">.2</span><span class="number">.6</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.slf4j:slf4j-api:jar:<span class="number">1.7</span><span class="number">.25</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.apache.commons:commons-lang3:jar:<span class="number">3.5</span> in the shaded jar.</span><br><span class="line">[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:<span class="number">2.8</span><span class="number">.9</span> in the shaded jar.</span><br><span class="line">[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:<span class="number">2.8</span><span class="number">.9</span> in the shaded jar.</span><br><span class="line">[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:<span class="number">2.8</span><span class="number">.0</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.javassist:javassist:jar:<span class="number">3.21</span><span class="number">.0</span>-GA in the shaded jar.</span><br><span class="line">[INFO] Including org.yaml:snakeyaml:jar:<span class="number">1.18</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.apache.httpcomponents:httpclient:jar:<span class="number">4.3</span><span class="number">.6</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.apache.httpcomponents:httpcore:jar:<span class="number">4.3</span><span class="number">.3</span> in the shaded jar.</span><br><span class="line">[INFO] Including commons-logging:commons-logging:jar:<span class="number">1.1</span><span class="number">.3</span> in the shaded jar.</span><br><span class="line">[INFO] Including commons-codec:commons-codec:jar:<span class="number">1.6</span> in the shaded jar.</span><br><span class="line">[INFO] Including redis.clients:jedis:jar:<span class="number">2.9</span><span class="number">.0</span> in the shaded jar.</span><br><span class="line">[INFO] Including org.apache.commons:commons-pool2:jar:<span class="number">2.4</span><span class="number">.2</span> in the shaded jar.</span><br><span class="line">[INFO] Replacing original artifact with shaded artifact.</span><br><span class="line">[INFO] Replacing /Users/yanrui/project-third/jvm-profiler/target/jvm-profiler<span class="number">-0.0</span><span class="number">.7</span>.jar with /Users/yanrui/project-third/jvm-profiler/target/jvm-profiler<span class="number">-0.0</span><span class="number">.7</span>-shaded.jar</span><br><span class="line">[INFO] Dependency-reduced POM written at: /Users/yanrui/project-third/jvm-profiler/dependency-reduced-pom.xml</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time: <span class="number">03</span>:<span class="number">38</span> min</span><br><span class="line">[INFO] Finished at: <span class="number">2018</span><span class="number">-08</span><span class="number">-07</span>T09:<span class="number">50</span>:<span class="number">26</span>+<span class="number">08</span>:<span class="number">00</span></span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">bash<span class="number">-3.2</span>$</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">## MVN</span></span><br><span class="line">$ wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz</span><br><span class="line">$ tar -xvf apache-maven-3.5.4-bin.tar.gz</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export M2_HOME=&quot;/usr/local/apache-maven-3.5.4&quot; &#x27;</span> &gt;&gt;  ~/.bash_profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;export PATH=$M2_HOME/bin:$PATH&#x27;</span> &gt;&gt; ~/.bash_profile</span><br><span class="line">$ . ~/.bash_profile</span><br><span class="line">$ mvn -v</span><br><span class="line">Apache Maven 3.5.4</span><br></pre></td></tr></table></figure>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2></li>
+<li><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-lo-performance-tuning-practice/index.html">Java 应用性能调优实践 | IBM developerworks | 张 俊城, 郭 理勇, 和 刘 建 | 2016 年 6 月 28 日发布</a></li>
+<li><a target="_blank" rel="noopener" href="http://techblog.youdao.com/?p=961">用“逐步排除”的方法定位Java服务线上“系统性”故障</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUzMjkwMjg3Mg==&amp;mid=2247484935&amp;idx=2&amp;sn=ca8b27d0c0451851d8091d9490266793&amp;source=41#wechat_redirect">动态追踪技术-应用性能瓶颈排障利器之火焰图 | 郑晓川 江凌生  京东商城技术架构 | 2016-12-01</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/" data-id="ckwgm33lu00bv7b1yku5u6clt" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/07/OpenSource-DB-Redis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          开源技术架构漫谈：Redis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/01/OpenSource-Hadoop/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源技术架构漫谈：Hadoop</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uber-%E5%BC%80%E6%BA%90-Java-%E5%88%86%E5%B8%83%E5%BC%8F%E5%BA%94%E7%94%A8%E8%BF%BD%E8%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%9AJVM-Profiler"><span class="toc-number"></span> <span class="toc-text">Uber 开源 Java 分布式应用追踪工具：JVM Profiler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Profiling-challenges"><span class="toc-number">1.</span> <span class="toc-text">Profiling challenges</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E6%A0%871%EF%BC%9A%E5%BA%94%E7%94%A8%E7%BA%A7%E6%8C%87%E6%A0%87%E7%9B%91%E6%8E%A7"><span class="toc-number">1.0.1.</span> <span class="toc-text">目标1：应用级指标监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E6%A0%872%EF%BC%9A%E4%B8%8D%E4%BE%B5%E5%85%A5%E7%94%A8%E6%88%B7%E4%BB%A3%E7%A0%81"><span class="toc-number">1.0.2.</span> <span class="toc-text">目标2：不侵入用户代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">JVM Profiler 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-%E5%85%B8%E5%9E%8B%E7%94%A8%E4%BE%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">JVM Profiler 典型用例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">JVM Profiler 实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM-Profiler-%E6%89%A9%E5%B1%95"><span class="toc-number">2.0.3.</span> <span class="toc-text">JVM Profiler 扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E6%95%B4%E5%90%88"><span class="toc-number">2.0.4.</span> <span class="toc-text">数据基础设施整合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-Profiler-%E5%BA%94%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">JVM Profiler 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use-the-profiler-to-profile-the-Spark-application"><span class="toc-number">3.0.1.</span> <span class="toc-text">Use the profiler to profile the Spark application</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%A0%87%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.0.2.</span> <span class="toc-text">指标查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">4.</span> <span class="toc-text">Next</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">5.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">5.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">5.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9AHow-Linux-Works"><span class="toc-number">5.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">5.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

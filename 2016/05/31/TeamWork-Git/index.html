@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>PM指南:源代码版本管理|工具与技术 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 思路：《红楼梦》的版本问题  技术出版选题（Git）（电子工业出版社 | 2016）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PM指南:源代码版本管理|工具与技术">
+<meta property="og:url" content="https://riboseyim.com/2016/05/31/TeamWork-Git/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 思路：《红楼梦》的版本问题  技术出版选题（Git）（电子工业出版社 | 2016）">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-05-31T09:37:04.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:09.682Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Developer">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TeamWork-Git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/31/TeamWork-Git/" class="article-date">
+  <time datetime="2016-05-31T09:37:04.000Z" itemprop="datePublished">2016-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PM指南:源代码版本管理|工具与技术
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/05/31/TeamWork-Git/" data-id="ckwgm33p1012x7b1yaegmb3lu" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>思路：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/28/Redology/">《红楼梦》的版本问题 </a></li>
+<li>技术出版选题（Git）（电子工业出版社 | 2016）</li>
+</ul>
+<span id="more"></span>
+<h2 id="《红楼梦》的版本问题"><a href="#《红楼梦》的版本问题" class="headerlink" title="《红楼梦》的版本问题 "></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/28/Redology/">《红楼梦》的版本问题 </a></h2><ul>
+<li>甲戌本（名“至脂砚斋甲戌抄阅再评仍用石头记”）</li>
+<li>己卯本（名“脂砚斋四阅评过，己卯冬定本”）</li>
+<li>庚辰本（名“脂砚斋四阅评过，庚辰秋定本”）</li>
+<li>俄藏本</li>
+<li>程高本</li>
+</ul>
+<h2 id="代码分包"><a href="#代码分包" class="headerlink" title="代码分包"></a>代码分包</h2><ul>
+<li>Perl:pm</li>
+<li>Java:jar</li>
+<li>Node.js:npm</li>
+<li>Go:gvm</li>
+</ul>
+<blockquote>
+<p>you can only really use Git if you understand how Git works.</p>
+</blockquote>
+<h2 id="Git-ABC"><a href="#Git-ABC" class="headerlink" title="Git ABC"></a>Git ABC</h2><h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/git/git/archive/&#123;tag&#125;.tar.gz</span><br><span class="line">gunzip &#123;tag&#125;.tar.gz</span><br><span class="line"><span class="built_in">cd</span> git-&#123;tag&#125;</span><br><span class="line">make configure</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git clone git:<span class="regexp">//url</span></span><br><span class="line">git init-db</span><br><span class="line"></span><br><span class="line"><span class="comment">## config</span></span><br><span class="line">git config user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line">git config user.email yourname@email_server</span><br><span class="line">git config core.editor vim</span><br><span class="line">git config core.paper <span class="string">&quot;less -N&quot;</span></span><br><span class="line">git config color.diff true</span><br><span class="line">git var -l 查看已经设置的配置</span><br></pre></td></tr></table></figure>
+<p>Git 中的状态：</p>
+<ul>
+<li>HEAD 代表当前最新状态</li>
+<li>tag  某个状态的标签</li>
+<li>SHA1 每个提交的唯一标识</li>
+</ul>
+<p>Git 中有四种对象,都由 SHA1 值表示, .git 目录中保存了全部信息。</p>
+<ul>
+<li>blob 文件</li>
+<li>tree 目录</li>
+<li>commit 提交历史</li>
+<li>tag 标签</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示 file 在 HEAD 中的 SHA1 值</span></span><br><span class="line">git ls-tree HEAD file</span><br><span class="line"><span class="comment"># 显示一个 SHA1 的类型</span></span><br><span class="line">git cat-file -t SHA1</span><br><span class="line"><span class="comment"># 显示一个 SHA1 的内容</span></span><br><span class="line">git cat-file type SHA1</span><br><span class="line"></span><br><span class="line"><span class="comment">## diff</span></span><br><span class="line">git diff tag 比较tag和HEAD之间的不同</span><br><span class="line">git diff tag file 比较一个文件在两者之间的不同</span><br><span class="line">git diff tag1..tag2 比较两个tag之间的不同</span><br><span class="line">git diff SHA11..SHA12 比较两个提交之间的不同</span><br><span class="line">git diff tag1 tag2 file <span class="keyword">or</span></span><br><span class="line">git diff tag1:file tag2:file 比较一个文件在两个tag之间的不同</span><br><span class="line"></span><br><span class="line"><span class="comment">## log</span></span><br><span class="line">git <span class="keyword">log</span> file 查看一个文件的改动</span><br><span class="line">git <span class="keyword">log</span> -p 查看日志和改动</span><br><span class="line">git <span class="keyword">log</span> tag1..tag2 查看两个tag之间的日志</span><br><span class="line">git <span class="keyword">log</span> -p tag1..tag2 file 查看一个文件在两个tag之间的不同</span><br><span class="line">git <span class="keyword">log</span> tag.. 查看tag和HEAD之间的不同</span><br><span class="line"></span><br><span class="line"><span class="comment">## add/delete/ls:</span></span><br><span class="line">git add -a 添加所有文件(除了.gitignore)</span><br><span class="line">git rm file 从git仓库中删除文件</span><br><span class="line">git commit 添加或是删除后要提交</span><br><span class="line">git ls-files -m 显示修改过的文件</span><br><span class="line">git ls-files 显示所有仓库中的文件</span><br><span class="line"></span><br><span class="line"><span class="comment">## commit</span></span><br><span class="line">git commit -a -e 提交全部修改文件，并调用vim编辑提交日志</span><br><span class="line">git <span class="keyword">reset</span> HEAD^ <span class="keyword">or</span></span><br><span class="line">git <span class="keyword">reset</span> HEAD~<span class="number">1</span> 撤销最后一次提交。</span><br><span class="line">git <span class="keyword">reset</span> --hard HEAD^ 撤销最后一次提交并清除本地修改</span><br><span class="line">git <span class="keyword">reset</span> SHA1 回到SHA1对应的提交状态。</span><br><span class="line"></span><br><span class="line"><span class="comment">## patch:</span></span><br><span class="line">git <span class="keyword">format</span>-patch -<span class="number">1</span> 生成最后一个提交对应的patch文件。</span><br><span class="line">git am &lt; patch 把一个patch文件加入git仓库中。</span><br><span class="line">git am --resolved 如果有冲突，在解决冲突后执行。</span><br><span class="line">git am --skip 放弃当前git am所引入的patch。</span><br><span class="line"></span><br><span class="line"><span class="comment">## conflict:</span></span><br><span class="line">git merge 用于合并两个分支。</span><br><span class="line">git diff 如果有冲突，直接使用diff查看，</span><br><span class="line">冲突代码用&lt;&lt;&lt;和&gt;&gt;&gt;表示。手动修改冲突代码。</span><br><span class="line">git update-<span class="keyword">index</span> 更新修改后的文件状态。</span><br><span class="line">git commit -a -e 提交为解决冲突而修改的代码。</span><br><span class="line"></span><br><span class="line"><span class="comment">## branch:</span></span><br><span class="line">git branch -a 查看所有分支。</span><br><span class="line">git branch new_branch 创建新的分支。</span><br><span class="line">git branch -d branch 删除分支。</span><br><span class="line">git checkout branch 切换当前分支。-f参数可以覆盖未提交内容。</span><br></pre></td></tr></table></figure>
+<h2 id="技术出版选题一：Git"><a href="#技术出版选题一：Git" class="headerlink" title="技术出版选题一：Git"></a>技术出版选题一：Git</h2><p>主要思路：技术、工程实践、文化心理三者关系<br>1.工具需要和工程实践结合，本身存在不同的应用范式<br>2.每一种技术实现背后，除了操作手册，还有必要了解背后发明者的故事，<br>   发明者的动机、哲学观会深入影响到技术实现。<br>3.一项技术能够落地，还需要与自己所在组织的文化、心理契合</p>
+<p><strong>结果：电子工业出版社：2016 选题阶段枪毙</strong></p>
+<h2 id="第一部分-玩转Git"><a href="#第一部分-玩转Git" class="headerlink" title="第一部分 玩转Git"></a>第一部分 玩转Git</h2><ul>
+<li><p>引子1：如何搭建一个免费的博客？<br>（类似：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/fd878edb95e7">http://www.jianshu.com/p/fd878edb95e7</a> ）<br>普遍性需求－&gt;抛出问题(内容版本、不仅仅是用于代码管理，建构个人知识库)</p>
+</li>
+<li><p>引子2：引入开源框架遇到问题怎么办？<br>内容： <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/8addb7d0024f">http://www.jianshu.com/p/8addb7d0024f</a><br>（开源社区的正确打开方式）</p>
+</li>
+<li><p>第2章 开启Git之旅</p>
+</li>
+<li><p>2.1 Git生态简介<br>谁发明？ 谁在用？</p>
+</li>
+<li><p>2.2 10分钟安装指南<br>Install、First Commit、First Push<br>部分回答引子的问题</p>
+</li>
+<li><p>2.4 Git客户端工具集</p>
+</li>
+<li><p>2.5 Git服务端工具集</p>
+</li>
+</ul>
+<h4 id="第二部分-源码解读"><a href="#第二部分-源码解读" class="headerlink" title="第二部分 源码解读"></a>第二部分 源码解读</h4><ul>
+<li>第3章 数据结构</li>
+<li>3.1 文件</li>
+<li>3.2 库</li>
+<li>3.3 分支</li>
+<li><p>3.2 标签</p>
+</li>
+<li><p>第4章 核心动作</p>
+</li>
+<li>4.1 add</li>
+<li>4.2 commit</li>
+<li>4.3 push</li>
+<li><p>4.4 merge （调用关系）</p>
+</li>
+<li><p>第5章 从0到1: Git源码演进</p>
+</li>
+<li>5.1 第一版Git什么样</li>
+</ul>
+<h4 id="第三部分-工程应用"><a href="#第三部分-工程应用" class="headerlink" title="第三部分 工程应用"></a>第三部分 工程应用</h4><ul>
+<li>第6章 到底要不要使用分支？</li>
+<li>6.1 个人开发者范式（最简单的入门应用范式）</li>
+<li>6.2 单一产品团队范式</li>
+<li>6.3 开源社区范式：以Linux开发模式为例</li>
+<li><p>6.4 多项目团队范式</p>
+</li>
+<li><p>第7章 到底要不要分库？</p>
+</li>
+<li>7.1 分库的一般原则</li>
+<li><p>7.2 极客模式（参考资料：Google所有代码都在一个库）</p>
+</li>
+<li><p>第8章 权限控制问题<br>企业应用的突出问题： Git为什么不支持代码分权分域？<br>发明者：自由软件原教旨主义 &amp; 开源社区<br>了解冲突、选型过程、企业适配</p>
+</li>
+</ul>
+<h4 id="第四部分-附录"><a href="#第四部分-附录" class="headerlink" title="第四部分 附录"></a>第四部分 附录</h4><p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/841862adb059">《Linus Torvalds TED访谈实录：Linux和Git的故事》</a></p>
+<p>（为什么会有Git,Git与Linux的渊源）</p>
+<h4 id="Git源码解读"><a href="#Git源码解读" class="headerlink" title="Git源码解读"></a>Git源码解读</h4><ul>
+<li><p>Git data model</p>
+</li>
+<li><p>Repository</p>
+</li>
+<li>Branch</li>
+<li>Merge</li>
+<li>Collaborate</li>
+</ul>
+<p>可选论题：Git为什么不支持代码分权分域：作者是自由软件原教旨主义者；源于Linux开发模式</p>
+<h2 id="竞品分析"><a href="#竞品分析" class="headerlink" title="竞品分析"></a>竞品分析</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ituring.com.cn/book/1779?mc_cid=1b81b758f0&amp;mc_eid=b24726accf">《Git团队协作》</a></li>
+</ul>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master</span><br><span class="line">From github.com:riboseyim/go-hello</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br><span class="line">$ git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+<h2 id="扩展阅读：DevOps-漫谈系列"><a href="#扩展阅读：DevOps-漫谈系列" class="headerlink" title="扩展阅读：DevOps 漫谈系列"></a>扩展阅读：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/28/DevOps/">DevOps 漫谈系列</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/">Kanban 看板管理实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/Technology-English/">工程师的自我修养：全英文技术学习实践</a></li>
+</ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/">DevOps 实践的本质是文化</a></h4><ul>
+<li>学习力－团队生命之根</li>
+<li>带领团队翻译书籍</li>
+<li>Don’t make me think</li>
+<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zwischenzugs.com/2018/03/26/git-log-the-good-parts/">git log – the Good Parts</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.codingnow.com/2017/04/git.html">为什么美术和策划在使用 git 时会遇到更多麻烦 | 云风的BlOG</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sbf5.com/~cduan/technical/git/">《Understanding Git Conceptually》</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.open-open.com/lib/view/open1328070620202.html#articleHeader5">Git内部原理</a></li>
+<li><a target="_blank" rel="noopener" href="http://schacon.github.io/">Git作者之一Scott Chacon的站点</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4MTY5NTk4Ng==&amp;mid=2247489377&amp;idx=1&amp;sn=c6f2101b46bb8534746cb9ae05a4b35f&amp;source=41#wechat_redirect">(企业实践，包含代码治理有关内容)Python向来以慢著称，为啥Instagram却唯独钟爱它？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/05/31/TeamWork-Git/" data-id="ckwgm33p1012x7b1yaegmb3lu" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/31/AboutMe/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          About
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/28/Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux 操作系统专题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%8A%E7%BA%A2%E6%A5%BC%E6%A2%A6%E3%80%8B%E7%9A%84%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">《红楼梦》的版本问题 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">代码分包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-ABC"><span class="toc-number">4.</span> <span class="toc-text">Git ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install"><span class="toc-number">4.0.1.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">初始化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%87%BA%E7%89%88%E9%80%89%E9%A2%98%E4%B8%80%EF%BC%9AGit"><span class="toc-number">5.</span> <span class="toc-text">技术出版选题一：Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E7%8E%A9%E8%BD%ACGit"><span class="toc-number">6.</span> <span class="toc-text">第一部分 玩转Git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">6.0.1.</span> <span class="toc-text">第二部分 源码解读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8"><span class="toc-number">6.0.2.</span> <span class="toc-text">第三部分 工程应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E9%99%84%E5%BD%95"><span class="toc-number">6.0.3.</span> <span class="toc-text">第四部分 附录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">6.0.4.</span> <span class="toc-text">Git源码解读</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%9E%E5%93%81%E5%88%86%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text">竞品分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">8.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9ADevOps-%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97"><span class="toc-number">9.</span> <span class="toc-text">扩展阅读：DevOps 漫谈系列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E5%AE%9E%E8%B7%B5%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E6%96%87%E5%8C%96"><span class="toc-number">9.0.1.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

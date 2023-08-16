@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>浅谈基于数据分析的网络态势感知 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要态势感知（Situational Awareness，SA）的概念最早在军事领域被提出。20世纪80年代，美国空军就提出了态势感知的概念，覆盖感知（感觉）、理解和预测三个层次。90年代,态势感知的概念开始被逐渐被接受，并随着网络的兴起而升级为“网络态势感知（Cyberspace Situation Awareness，CSA）”，指在大规模网络环境中对能够引起网络态势发生变化的安全要素进行获取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈基于数据分析的网络态势感知">
+<meta property="og:url" content="https://riboseyim.com/2017/07/14/Network-sFlow/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要态势感知（Situational Awareness，SA）的概念最早在军事领域被提出。20世纪80年代，美国空军就提出了态势感知的概念，覆盖感知（感觉）、理解和预测三个层次。90年代,态势感知的概念开始被逐渐被接受，并随着网络的兴起而升级为“网络态势感知（Cyberspace Situation Awareness，CSA）”，指在大规模网络环境中对能够引起网络态势发生变化的安全要素进行获取">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_Layer_201707.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Flow_RRDTool_Demo_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Flow_Vendor_Supported_201707.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_NetFlow_Arch.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Flow_DynamicTopo_LiveAction_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/PacketCapturing_WinZero_2015.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Network_sFlow_Arch.png">
+<meta property="og:image" content="http://1.bp.blogspot.com/--W4Io9SdkCA/Vme0AecgIKI/AAAAAAAACOM/WRkZQRZNUVo/s1600/gmond-proxy.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ntopng-geomap.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Cyber-Security-Weibu-Demo.png">
+<meta property="article:published_time" content="2017-07-14T09:03:12.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.186Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="Cyber-Security">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Network_Layer_201707.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Network-sFlow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/14/Network-sFlow/" class="article-date">
+  <time datetime="2017-07-14T09:03:12.000Z" itemprop="datePublished">2017-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈基于数据分析的网络态势感知
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="ckwgm33ml00hl7b1y3n97uu8m" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>态势感知（Situational Awareness，SA）的概念最早在军事领域被提出。20世纪80年代，美国空军就提出了态势感知的概念，覆盖感知（感觉）、理解和预测三个层次。90年代,态势感知的概念开始被逐渐被接受，并随着网络的兴起而升级为“网络态势感知（Cyberspace Situation Awareness，CSA）”，指在大规模网络环境中对能够引起网络态势发生变化的安全要素进行获取、理解、显示以及最近发展趋势的顺延性预测，而最终的目的是要进行决策与行动。本文将围绕以下话题讨论网络态势感知中的几个常见问题：</p>
+<ul>
+<li>网络感知的基础:网络分层、传感器</li>
+<li>网络分析技术：SNMP、NetFlow、sFlow、NetStream、Packet Capturing</li>
+<li>网络数据可视化: WireShark、NTopng、Ganglia、GeoIP</li>
+</ul>
+<span id="more"></span>
+<h2 id="一、网络感知的基础"><a href="#一、网络感知的基础" class="headerlink" title="一、网络感知的基础"></a>一、网络感知的基础</h2><h4 id="1、没有任何一个传感器是全能的"><a href="#1、没有任何一个传感器是全能的" class="headerlink" title="1、没有任何一个传感器是全能的"></a>1、没有任何一个传感器是全能的</h4><p>测量一个网络的一般步骤如下：首先获得网络拓扑图，网络的连接方法、潜在的观察点列表等；然后确定潜在观察点，确定该位置所能看到的流量；最后，确定最优的覆盖方案。在复杂网络中，没有任何一个传感器能够全面覆盖，需要多种传感器配合使用。按照采集的领域，传感器可以分为三类：</p>
+<ul>
+<li>网络：入侵检测系统（IDS）、NetFlow采集器、TCP采集器（如tcpdump）</li>
+<li>主机：驻留在主机上，监控主机上的活动（文件访问、登录注销）、网卡流量</li>
+<li>服务：邮件消息、特定服务的HTTP请求</li>
+</ul>
+<h4 id="2、网络分层对传感器的影响"><a href="#2、网络分层对传感器的影响" class="headerlink" title="2、网络分层对传感器的影响"></a>2、网络分层对传感器的影响</h4><p>总的来说，网络传感器的焦点是OSI模型中的第2层～第4层，而服务传感器的焦点是第5层及以上。分层对网络流量的影响中，还需要考虑最大传输单元（MTU）：数据帧尺寸的上限，影响到介质中可以传送的封包的最大尺寸，以太网的MTU为1500字节，即IP封包不会超过这个尺寸。OSI模型第5层会话层需要考虑的情况是会话加密，加密后的信息无法直接理解；在第6层和第7层中，必须知道协议细节，才能提取有意义的信息。   </p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_Layer_201707.png" alt="">                                       </p>
+<h2 id="二、网络分析技术"><a href="#二、网络分析技术" class="headerlink" title="二、网络分析技术"></a>二、网络分析技术</h2><p>网络流量反映了网络的运行状态，是判别网络运行是否正常的关键。如果网络所接收的流量超过其实际运载能力，就会引起网络性能下降。网络中流量的各种参数主要包括：接收和发送数据报、丢包率、数据报延迟。</p>
+<h4 id="1、SNMP"><a href="#1、SNMP" class="headerlink" title="1、SNMP"></a>1、SNMP</h4><p>SNMP（ Simple Network Management Protocol )包含一个应用层协议（application layer protocol）、数据库模型（database schema），和一组数据对象。SNMP的第一个RFC系列出现在1988年(RFC1065-1067)，第二版（RFC1441–1452）作了修订，由于第二版的新安全系统被认为过于复杂而不被广泛接受，因此出现了两个方案：SNMP v2c（基于社区，RFC1901–1908）、SNMP v2u(基于用户，RFC1909–1910)。SNMP第三版（RFC3411-3418）主要增加了安全性方面的强化：信息完整性，保证数据包在发送中没有被窜改；认证，检验信息来自正确的来源；数据包加密，避免被未授权的来源窥探。</p>
+<p>基于SNMP协议定义的计数器：ifInOctets、ifOutOctets，两次采样的差值除以间隔时间即可获得平均流量。需要注意的是计数器的数据类型有两种：counter32和counter64。counter32计数的最大值是2的32次方减1，当超过4G的时候，计数器就会清零。如果是大流量、高精度采样（间隔时间低于1分钟），需要考虑使用counter64（ifHCInOctets、ifHCOutOctets）,否则可能出现数据偏差，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">snmpwalk -v 2c -c public -u username 192.168.1.10 ifHCInOctets</span><br><span class="line">IF-MIB::ifHCInOctets.1 = Counter64: 5020760</span><br><span class="line">IF-MIB::ifHCInOctets.2 = Counter64: 12343743</span><br><span class="line">IF-MIB::ifHCInOctets.3 = Counter64: 7123</span><br><span class="line">IF-MIB::ifHCInOctets.21 = Counter64: 3854</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Flow_RRDTool_Demo_1.png" alt=""></p>
+<h4 id="2、RMON"><a href="#2、RMON" class="headerlink" title="2、RMON"></a>2、RMON</h4><p>SNMP是基于TCP/IP、应用最广泛的网管协议，但是也有一些明显的不足，如：SNMP使用轮询方式采集数据信息，在大型网络中轮询会产生巨大的网络管理通讯报文；不支持管理进程的分布式管理，它将收集数据的负担加在网管站上，网络管理站会成为瓶颈；只能从这些管理信息库中获得单个设备的局部信息，标准管理信息库MIB-II(RFC1213)和各厂家的专有MIB库主要提供设备端口状态、流量、错误包数等数据，要想获得一个网段的性能信息是比较困难。</p>
+<p>因此IETF提出了RMON（Remote Network Monitoring，RFC2021）以解决SNMP所面临的局限性。RMON 由 SNMP MIB 扩展而来，网络监视数据包含了一组统计数据和性能指标，它们在不同的监视器（或称探测器）和控制台系统之间相互交换。它可以主动地监测远程设备，对设备端口所连接的网段上的各种流量信息进行跟踪统计，如某段时间内某网段上报文总数等。只要给予探测器足够的资源，它还可以对数据设备进行防防性监视，设备主动地对网络性能进行诊断并记录网络性能状况，在发生故障时可以把信息及时通知管理者，相关信息分为统计量、历史、告警、事件等四个组，可以预置规则。</p>
+<h4 id="3、NetFlow-vs-sFlow-vs-NetStream"><a href="#3、NetFlow-vs-sFlow-vs-NetStream" class="headerlink" title="3、NetFlow vs sFlow vs NetStream"></a>3、NetFlow vs sFlow vs NetStream</h4><p>NetFlow最早由 Cisco 研发的流量汇总标准，最初用于网络服务计费，本意不是为了流量分析和信息安全。它通过路由器提供收集IP网络流量的能力，分析的NetFlow数据（UDP packets）感知网络流量和拥塞情况。NetFlow的核心概念流（Flow），NetFlow直接从 IP Packet 中复制信息，包含来源及目的地、服务的种类等字段：</p>
+<ol>
+<li>Source and destination IP address</li>
+<li>Input and output interface number</li>
+<li>Source and destination port number</li>
+<li>Layer 4 Protocol</li>
+<li>Number of packets in the flow</li>
+<li>Total Bytes in the flow</li>
+<li>Time stamp in the flow</li>
+<li>Source and destination AS</li>
+<li>TCP_Flag &amp; TOS</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Flow_Vendor_Supported_201707.png" alt=""></p>
+<p><strong>NetFlow vs IPFIX</strong> NetFlow 的主力实现版本是 v5，但是 v5 主要针对 IPv4 存在很多限制，因此 Cisco 推出了基于模版的 NetFlow v9 。在NetFlow v9 的基础上，IETF在2008年发布了标准化的 IPFIX( Internet Protocol Flow Information eXport)（RFC5101/5102），IPFIX 提供了几百种流字段。另外，Juniper也有一套自己的标准 <strong>J-Flow</strong> 。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_NetFlow_Arch.png" alt=""></p>
+<p><strong>sFlow</strong> (Sampled Flow, 采样流，RFC3176 )是另一种一种基于报文采样的网络流量监控技术，主要用于对网络流量进行统计分析。sFlow 2001年由lnMon公司提出来，目前是IEFE的一个开放标准，可提供完整的第二层到第四层、全网络范围内的流量信息。sFlow 关注的是接口的流量情况、转发情况以及设备整体运行状况，因此适合于网络异 常监控以及网络异常定位，通过 Collector 可以以报表的方式将情况反应出来，特别适合于企业网用户 。sFlow Agent内嵌于网络设备中，在 sFlow 系统中收集流量统计数据发送到 Collector 端供分析。</p>
+<p><strong>NetStream</strong> 是H3C定义的一套网络流量的数据统计方法。它需要由特定的设备支持，首先由设备自身对网络流进行初步的统计分析，并把统计信息储存在缓存区。值得注意的是，NetStream（IPv6）功能需要跟华为购买License，并且NetStream功能和sFlow功能不能同时在同一接口板上配置。如果接口板已经配置sFlow功能，则不能配置NetStream功能。</p>
+<p>综上所述，各种 NetFlow 方案都是基于网络硬件设施生成或者软件封包为流，不同的厂商标准不同，尤其需要考虑兼容性。同时，各种机制都可能对硬件造成性能问题，特别是旧的型号存在更大的风险，一般不轻易开启。无论是硬件（中高端设备）还是软件（nProbe、nDPI）、NetStream（IPv6），都意味着昂贵的费用，需要充分考虑成本预算。</p>
+<h4 id="4、NetFlow的其它替代方案"><a href="#4、NetFlow的其它替代方案" class="headerlink" title="4、NetFlow的其它替代方案"></a>4、NetFlow的其它替代方案</h4><p>基于软件替代路由采集，基本都是采用封包的思路，将pcap文件当作数据源或者直接从网络接口上封包，通过解析Header聚合成流格式或者更丰富的输出。常见的产品如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://tools.netsa.cert.org">CERT YAT(Yet Another Flowmeter)</a></li>
+<li><a target="_blank" rel="noopener" href="http://bit.ly/softflowd">softflowd</a></li>
+<li><a target="_blank" rel="noopener" href="http://bit.ly/qo-argus">QoSient Argus</a></li>
+</ul>
+<h4 id="5、协议和用户识别"><a href="#5、协议和用户识别" class="headerlink" title="5、协议和用户识别"></a>5、协议和用户识别</h4><p>   我们可以把数据包想像成一封信。根据解析数据报报头的内容，可以分析IP地址、端口号、协议、报文格式等特征，分类后可以实现对各种应用层协议的准确识别，如P2P（迅雷）、即时通信（QQ、微信）、VPN、邮件等。当然，这只能算是“浅度”的数据包检测，就好像是看看信封上的发件人和收件人 。</p>
+<p>   “深度”的数据包检测，可以理解成对信件内容的探查──相比起暴力打开信封，这种基于机器学习的技术更具有艺术性。它并不实际解读数据包的内容，而是搜集周边信息，对数据流进行“肖像刻划”（Profiling）。国内某研究团队曾发表论文“网络流量分类，研究进展与展望”，文章提到了多种使用机器学习进行“深度数据包检测”（Deep Packet Inspection，DPI）的技术。对“墙”有兴趣的同学可以深入了解,<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/GFW/">https://riboseyim.github.io/2017/05/12/GFW/</a> 。</p>
+<h2 id="三、网络数据可视化"><a href="#三、网络数据可视化" class="headerlink" title="三、网络数据可视化"></a>三、网络数据可视化</h2><h4 id="1、面向流向分析的可视化"><a href="#1、面向流向分析的可视化" class="headerlink" title="1、面向流向分析的可视化"></a>1、面向流向分析的可视化</h4><p>文中开头我们就提到测量网络的第一步就是获得网络拓扑图，如果要获得全局角度实时感知能力，需要在拓扑的基础之上叠加通过各种网络分析技术获得的流量/Flow/事件等信息，进而处理分析网络异常流量。能够实用的数据分析具有相当的复杂性，需要专门的工具软件，区分正常流量数据和异常流量数据、对于“异常模式”的算法训练都有一定门槛，因此存在大量的开源和商业解决方案。<br><img src="http://riboseyim-qiniu.riboseyim.com/Flow_DynamicTopo_LiveAction_1.png" alt=""></p>
+<h4 id="2、面向故障诊断的可视化"><a href="#2、面向故障诊断的可视化" class="headerlink" title="2、面向故障诊断的可视化"></a>2、面向故障诊断的可视化</h4><ul>
+<li>抓包工具：tcpdump、TShark、 WinDump</li>
+<li>图形化工具：wireshark(客户端)、ntopng(webUI)</li>
+<li>自定义编程：R、Python(<a target="_blank" rel="noopener" href="http://bit.ly/scapy">Python-Scapy</a>)、<a target="_blank" rel="noopener" href="http://www.graphviz.org">Graphviz工具包</a></li>
+</ul>
+<p>一个典型的故障场景：两个服务之间发生故障、无法收发信息，可以通过tcpdump的抓包，并将抓包结果在WireShark上分析，基于染色的方式通信失败的报文被高亮提示。TCP通信中客户端向服务端发送tcp zero window（表示没有window可以接收新数据），如果出现该特征一般可以确定故障是由接收端服务器TCP缓冲区占满的引起，应将排查方向锁定在接收端。关于网络数据包的捕获、过滤、分析的具体实现细节，可以参考：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/PacketCapturing_WinZero_2015.png" alt="wireshark应用案例：TCP Window Zero"></p>
+<p>在企业应用中，网络监测数据通常需要与基础监控平台融合才能发挥最大价值（开源的方案 Zabbix/Ganglia/Nagios／<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">Graphite</a> 等）。Collectd 与Ganglia 是竞争关系，都是C语言开发,数据输出都是RRDTool，性能应该差不多，Collectd不包含图形化组件。zabbix是覆盖面比较广的综合套件，除了采集还有告警等其它管理功能，专业性和大规模应用方面可能就不太强。Nagios在思路方面比较接近zabbix,走的是综合性路子，侧重于告警方案：“Ganglia is more concerned with gathering metrics and tracking them over time while Nagios has focused on being an alerting mechanism.” 在Ganglia项目中提供了一个 gmond_proxy 可以搭配 sFlow-RT 支持 NetFlow／sFlow 的数据收集，如果是自己实现 sFlow-RT 类似的组件也需要考虑对 Logstash/splunk的支持。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>开源项目</th>
+<th>开发语言</th>
+<th>定位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collectd</td>
+<td>C</td>
+<td>数据采集器</td>
+<td>不包含图形化组件</td>
+</tr>
+<tr>
+<td>Ganglia</td>
+<td>C，PHP（front-end）</td>
+<td>数据采集器</td>
+<td>包含一个Web图形化组件</td>
+</tr>
+<tr>
+<td>Zabbix</td>
+<td>C，PHP（front-end）</td>
+<td>Server-Client</td>
+<td>不包含图形化扩展插件</td>
+</tr>
+<tr>
+<td>Nagios</td>
+<td>C ，PHP（front-end）</td>
+<td>Core+Plugins</td>
+<td>包含多种图形化扩展插件</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard">Grafana</a></td>
+<td>Go</td>
+<td>指标数据的可视化展现板</td>
+<td>需要提前对数据进行时序化处理，例如 InfluxDB 等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Network_sFlow_Arch.png" alt=""><br><img src="http://1.bp.blogspot.com/--W4Io9SdkCA/Vme0AecgIKI/AAAAAAAACOM/WRkZQRZNUVo/s1600/gmond-proxy.png" alt=""></p>
+<p><strong>扩展阅读</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+</ul>
+<h4 id="3、面向安全分析的可视化"><a href="#3、面向安全分析的可视化" class="headerlink" title="3、面向安全分析的可视化"></a>3、面向安全分析的可视化</h4><ul>
+<li>流向&amp;协议：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng">Ntopng</a></li>
+<li>地理位置服务，根据IP地址确定改地址的物理位置信息（坐标）：<a target="_blank" rel="noopener" href="https://www.maxmind.com/zh/geoip-demo">MaxMind GeoIP</a></li>
+<li>安全威胁情报服务，通过信息共享渠道了解识别攻击者的来源、类型和安全厂商确认情况，做到知己知彼。</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ntopng-geomap.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/Cyber-Security-Weibu-Demo.png" alt=""></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="SDN-网络中的可视化与数据封包"><a href="#SDN-网络中的可视化与数据封包" class="headerlink" title="SDN 网络中的可视化与数据封包"></a>SDN 网络中的可视化与数据封包</h4><ul>
+<li>DPDK(Data Plane Development Kit)<br>运行于Intel X86平台，是 Intel 开源的一组快速处理数据包的开发平台及接口（BSD）。重载了网卡驱动，该驱动在收到数据包后不中断通知CPU，而是将数据包通过零拷贝技术存入内存，这时应用层程序就可以通过DPDK提供的接口，直接从内存读取数据包。这种处理方式节省了CPU中断时间、内存拷贝时间，并向应用层提供了简单易行且高效的数据包处理方式，使得网络应用的开发更加方便。</li>
+</ul>
+<h4 id="Network-Engineering"><a href="#Network-Engineering" class="headerlink" title="Network Engineering"></a>Network Engineering</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/SDN/">SDN 技术指南（一）: 架构概览</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/">SDN 技术指南（二）：OpenFlow</a></li>
+<li>Preview <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/16/SDN-Controller/">SDN 技术指南（三）：OpenDaylight or Floodlight ?</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/13/SDN-OpenvSwitch/">SDN 技术指南（四）：Open vSwitch</a></li>
+<li>Preview <a href="#">SDN 技术指南（五）：NFV</a></li>
+<li>Preview <a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
+<li>Preview <a href="#">SDN 技术指南（七）：产业联盟与标准化组织</a></li>
+<li>Preview <a href="#">SDN 技术指南（八）：案例</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Visualization-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ntop.org/wp-content/uploads/2018/07/SF18US_Mainardi.pdf">sFlow: Theory and Practice of a Sampling Technology and Its Analysis with Wireshark</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/NetFlow">维基百科：NetFlow</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sflow.com/2014/12/influxdb-and-grafana.html">sflow.com:InfluxDB and Grafana</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sflow.com/2013/11/metric-export-to-graphite.html">sflow.com:Metric export to Graphite</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sflow.com/2013/11/exporting-events-using-syslog.html">sflow.com:Exporting events using syslog</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sflow.com/2013/02/cluster-performance-metrics.html">sflow.com:Cluster performance metrics</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sflow.com/2015/12/using-proxy-to-feed-metrics-into-ganglia.html?m=1">sflow.com:Using a proxy to feed metrics into Ganglia</a></li>
+<li><a target="_blank" rel="noopener" href="http://chenguang.blog.51cto.com/350944/1761284">李晨光：详解网络流量分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://xiaosu.blog.51cto.com/2914416/1590219">飞翔的单车：解决zabbix用snmp监控网络流量不准的问题</a></li>
+<li><a target="_blank" rel="noopener" href="http://lifeofzjs.com/blog/2014/07/11/nagios/">lifeofzjs.com:Nagios监控工具介绍</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/nagios-enterprise-level-system-monitor">王基立:Nagios企业级系统监控方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pcwdld.com/best-free-netflow-analyzers-and-collectors-for-windows">Top 10 Best Free Netflow Analyzers and Collectors for Windows</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.juniper.net/us/en/local/pdf/app-notes/3500204-en.pdf">JUNIPER Networks:Juniper Flow Mornitoring</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ntop.org/products/netflow/nprobe/">nProbe:An Extensible NetFlow v5/v9/IPFIX Probe for IPv4/v6</a></li>
+<li><a target="_blank" rel="noopener" href="https://encrypted.google.com/patents/CN1393801A?cl=zh">华为：一种计算机网络远程网络监控方法，CN 1393801 A</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc3954.txt">Cisco Systems NetFlow Services Export Version 9</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.manageengine.com/products/netflow/supported-devices.html">manageengine.com：NetFlow Analyzer - Supported Devices</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.h3c.com/cn/Products___Technology/Technology/ComwareV5/System_Management/Other_technology/Technology_recommend/200905/634610_30003_0.htm">H3C.com:NetStream技术介绍</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/07/14/Network-sFlow/" data-id="ckwgm33ml00hl7b1y3n97uu8m" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/14/Medal-HK/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          太公分猪肉--香港特区授勋及嘉奖制度观察
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/09/Law-Of-Intellectual-Property/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">知识产权法 (Intellectual Property Law)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E6%84%9F%E7%9F%A5%E7%9A%84%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">一、网络感知的基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E4%BC%A0%E6%84%9F%E5%99%A8%E6%98%AF%E5%85%A8%E8%83%BD%E7%9A%84"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、没有任何一个传感器是全能的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E5%AF%B9%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、网络分层对传感器的影响</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">二、网络分析技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81SNMP"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、SNMP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81RMON"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、RMON</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81NetFlow-vs-sFlow-vs-NetStream"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、NetFlow vs sFlow vs NetStream</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81NetFlow%E7%9A%84%E5%85%B6%E5%AE%83%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88"><span class="toc-number">3.0.4.</span> <span class="toc-text">4、NetFlow的其它替代方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%8D%8F%E8%AE%AE%E5%92%8C%E7%94%A8%E6%88%B7%E8%AF%86%E5%88%AB"><span class="toc-number">3.0.5.</span> <span class="toc-text">5、协议和用户识别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">三、网络数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%9D%A2%E5%90%91%E6%B5%81%E5%90%91%E5%88%86%E6%9E%90%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、面向流向分析的可视化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%9D%A2%E5%90%91%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、面向故障诊断的可视化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E9%9D%A2%E5%90%91%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、面向安全分析的可视化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN-%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B0%81%E5%8C%85"><span class="toc-number">5.0.1.</span> <span class="toc-text">SDN 网络中的可视化与数据封包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Network-Engineering"><span class="toc-number">5.0.2.</span> <span class="toc-text">Network Engineering</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

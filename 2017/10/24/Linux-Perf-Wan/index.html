@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux 性能诊断:Web 应用性能优化 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 一、常见性能优化要求 二、优化分析过程 三、性能分析工具箱 四、系统基础问题检查 万老师多年前的一篇内部分享，发布出来供有需要的同学参考。虽然今天的应用系统的复杂度跟过去会有所不同，性能观测工具、数据规模也不可以同日而语，但是正所谓一切历史都是当代史（“Ogni storia e la storia contemporanea”），厘清过去的问题是为了更好地理解现在和未来。为了保持原貌，编辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 性能诊断:Web 应用性能优化">
+<meta property="og:url" content="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 一、常见性能优化要求 二、优化分析过程 三、性能分析工具箱 四、系统基础问题检查 万老师多年前的一篇内部分享，发布出来供有需要的同学参考。虽然今天的应用系统的复杂度跟过去会有所不同，性能观测工具、数据规模也不可以同日而语，但是正所谓一切历史都是当代史（“Ogni storia e la storia contemporanea”），厘清过去的问题是为了更好地理解现在和未来。为了保持原貌，编辑">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_6.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2017-10-24T02:24:50.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.786Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Perf-Wan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/24/Linux-Perf-Wan/" class="article-date">
+  <time datetime="2017-10-24T02:24:50.000Z" itemprop="datePublished">2017-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 性能诊断:Web 应用性能优化
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="ckwgm33ly00cu7b1yorkw5ms8" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>一、常见性能优化要求</li>
+<li>二、优化分析过程</li>
+<li>三、性能分析工具箱</li>
+<li>四、系统基础问题检查<blockquote>
+<p>万老师多年前的一篇内部分享，发布出来供有需要的同学参考。虽然今天的应用系统的复杂度跟过去会有所不同，性能观测工具、数据规模也不可以同日而语，但是正所谓一切历史都是当代史（“Ogni storia e la storia contemporanea”），厘清过去的问题是为了更好地理解现在和未来。为了保持原貌，编辑过程中基本遵循原文，之后也不再更新。</p>
+</blockquote>
+</li>
+</ul>
+<span id="more"></span>
+<h2 id="一、常见性能优化要求"><a href="#一、常见性能优化要求" class="headerlink" title="一、常见性能优化要求"></a>一、常见性能优化要求</h2><p>在我经历的性能优化案例中，常见的问题都是这样开始的：</p>
+<ul>
+<li>a) 前台访问很慢，请帮忙分析优化</li>
+<li>b) 用户对性能很不满意，再不解决就要投诉</li>
+<li>c) 数据库负载很重，请帮忙分析一下</li>
+<li>d) XXX功能打开需要1分钟，请帮忙分析一下。<br>而等我访问这个功能的时候，可能几秒钟就返回；等你满怀困惑的找到问题提出人员，如果足够幸运的话，可能他告诉你要选择什么查询条件，问题能够重现；当然另一个可能是他也是转述用户的话。</li>
+</ul>
+<p>在接到这些性能优化要求的时候，我都希望能够了解下面的信息以判断问题的类型，而通常情况下，我的工作都是在这些信息并不存在的情况下开始的</p>
+<ul>
+<li>a)系统性的问题? 比如CPU利用率，SWAP利用率或者IO过高导致的整体性能下降？</li>
+<li>b)功能性问题？ 整体性能良好，个别功能时延很长</li>
+<li>c)新出现问题？什么时候开始的，之前系统有哪些变动？（升级或者管理的资源大量增加）</li>
+<li>d)不规律问题？有时候快，有时候慢，没有特定规律</li>
+<li>还有性能快慢的衡量标准是什么？原来多少秒，现在多少秒，目标是多少秒？</li>
+</ul>
+<p>只有上述问题得到了准确的回答，优化工作才能开始。</p>
+<p>而获取上述答案的方法就是测量，有可靠的监控工具对用户的访问时延，系统的CPU,IO,SWAP进行准确的测量，当系统发生性能瓶颈时，系统当时的状态，数据库当时的状态进行及时的记录，依赖这些数据才能开始优化。</p>
+<blockquote>
+<p>案例1，天津客户曾经有过投诉，系统经常性的出现整体性能下降，几乎无法访问的情况，而且发生的时间没有任何规律。</p>
+</blockquote>
+<p>我部署了监控工具，3周后分析数据，发现访问性能下降之前用户都执行了某一个历史告警查询，而在此之后的数据库性能曲线也急剧下降。研发人员对此功能优化后，问题再也没有出现。</p>
+<blockquote>
+<p>案例2，南京客户某主机经常崩溃，根据监控工具在崩溃前记录的进程列表看，是某个程序挂起导致的进程越积越多，资源耗尽而崩溃，对该程序改进后，故障再未发生。</p>
+</blockquote>
+<p>之所以费这么多笔墨，就是希望能够让各位明白，没有定量的测量，性能优化工作完全是空中楼阁，无法进行。而通过工具的部署和监测，今后我们提出的性能问题可能就是这样：</p>
+<ul>
+<li>a) 系统整体负载正常，但/nms/res/devicelist_down.jsp目前经常出现35046毫秒的访问时延，请协助排查一下</li>
+<li>b) 系统SWAP利用率经常会超过50%，这时候系统响应很慢，杀掉GetCGFlux.pl后恢复正常，请分析一下</li>
+<li>c) 或者数据库服务器目前CPU利用率居高不下，已经持续了一段时间，请分析一下</li>
+</ul>
+<p>如果性能优化工作以这样的方式开始的话，这项工作就会变得轻松有趣得多了。</p>
+<h2 id="二、优化分析过程"><a href="#二、优化分析过程" class="headerlink" title="二、优化分析过程"></a>二、优化分析过程</h2><ol>
+<li>性能数据收集<br>  这一步是性能优化的基础，如果问题系统之前没有部署监控工具的话，那么就要部署监控工具，收集一段时间的数据后才能开始分析；当然也有例外，幸运的话，性能问题正在发生并且如此显著，比如某个程序长时间无法挂起，或者某个进程把整台主机的CPU都吃掉，或者某个功能查询很慢,次次如此。当然这种问题也就很少需要到我这，你就可以直接找开发人员解决了。<br>  很多情况，问题可能不是那么明显，也不是那么规律，可能也涉及到系统的多项功能，这个时候，我们就必须要借助于工具来进行数据的收集。</li>
+<li>性能数据分析<br>  如果没有数据收集，分析工作可能很神秘，完全依赖于专家的个人经验。以前听过一个故事，一个工厂的打印机总是莫名其妙的在某个时间出现故障，后来请了一个专家，搬了把椅子坐在打印机附近，几个星期后，叫工人把地板的某个角修好，之后这个问题再也没有出现。<br>  但是有了之前收集的数据，观察CPU，IO，应用时延，网络性能等不同指标的曲线，观察问题出现的时间点，存在问题的功能，任何一个IT业者，都应该具备从这些数据中发现问题的能力。<br>例如某台采集机SYSLOG处理经常出现会滞后的情况。而这台机器的网络丢包是这个样子的，那么问题是不是显而易见？</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_1.png" alt=""></p>
+<p>再比如有一个巡检功能，数据某个时段总是大量入库失败，那你看到数据库CPU和连接数在这个时段是这样的，数据库连接数增加，CPU空闲率为0，那么是不是问题也很明显了。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_2.png" alt=""></p>
+<ol>
+<li>实施优化工作<br>  这一步主要是针对之前发现的问题，采取措施。可能是系统维护人员调整采集负载，让负荷更均匀；或者调整主机或数据库参数；当然更多的可能是程序需要优化</li>
+<li>评估优化效果<br>  譬如上述第二个例子，采取优化措施后，无论是网络连接数还是数据库主机负载，都已经很平稳，而问题也不再出现。</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_3.png" alt=""></p>
+<p>如果没有达到，则不断重复上述四步，继续优化。</p>
+<h2 id="三、性能分析工具箱"><a href="#三、性能分析工具箱" class="headerlink" title="三、性能分析工具箱"></a>三、性能分析工具箱</h2><p>这个工具箱是我常用的性能分析工具，曾协助我解决了很多的性能优化难题</p>
+<ul>
+<li>a) web访问时延监控工具AssayFilter<br>   部署在主应用上<br>   部署后可以在resin/logs/AssayFilter.log里面看到访问时间，访问的用户，访问的URL，时延毫秒，来源IP，据此我们就可以将用户的感知定量化，数据化<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">20150227094607 zengguojin /nms/res/devicelist_down.jsp 309356 219.159.77.116 ms</span><br><span class="line">20150209113913 zengguojin /nms/res/devicelist_down.jsp 383042 219.159.77.116 ms</span><br></pre></td></tr></table></figure>
+   从这两条数据里我们可以知道这个用户在访问这个功能时候遭遇过多次等待300多秒的情况,他又会有怎样的满意度呢？<br>   针对这个工具可能有人怀疑是否准确，是否统计时延过高是网络延迟导致。这里解释一下他的工作机制，<br>如下图：     </li>
+</ul>
+<p>AssayFilter作为一个拦截器，统计的是访问请求进入resin之后和应答离开resin之前的时长，访问时延=resin处理时长+主应用到数据库网络时延+oracle的SQL执行时长</p>
+<p>主应用到数据库都在一个交换机上，所以主应用到数据库网络时延可以忽略不计。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_4.png" alt=""></p>
+<p>所以，这个工具完全避免了网络延迟对访问时延统计的影响，让我们的精力完全聚焦在WEB应用自身的性能上.</p>
+<ul>
+<li><p>b) 主机监控探针wd_probe<br>   部署在主机上<br>   这个监控探针除了能起到主机告警通知的作用，也是一个我依赖的性能分析工具，他能够记录各个时间点的CPU,SWAP,磁盘IO,网络性能，进程数量，网络连接数量的性能数据，当CPU超过预设阀值时会输出系统当时的进程快照用于事后的分析。<br>   在探针主目录的data/perf下有性能数据，在data/tmp下有系统进程快照</p>
+</li>
+<li><p>c) 数据库超长SQL收集工具<br>   部署在主应用上，可以在cron里每分钟执行一次<br>   这个程序会不断捕捉执行时间超过6秒的sql,记录进 /tmp/sql.csv文件中，运行结果如下：<br>   从发起端看可分为两类，通常从APP发起的JDBC程序就是用户前台访问执行的SQL,而这种SQL执行时间超过6秒就是我们需要优化的SQL.</p>
+</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_5.png" alt=""></p>
+<h2 id="四、系统基础问题检查"><a href="#四、系统基础问题检查" class="headerlink" title="四、系统基础问题检查"></a>四、系统基础问题检查</h2><ol>
+<li>主机基础故障问题</li>
+</ol>
+<ul>
+<li>磁盘空间是否空闲为0？</li>
+<li>SWAP利用率是否超过40%?</li>
+<li>CPU利用率是否长时间超过85%？</li>
+<li>网络是否持续丢包？</li>
+<li>工作磁盘IO的利用率是否持续100%?<br>上述状况通常意味着系统有较严重问题，需要进一步从程序或者数据库上查找原因。</li>
+</ul>
+<ol>
+<li>resin的JVM检查<br>Web应用的前台程序jsp和class都是运行在resin的JVM里，JVM(Java虚拟机)类似于oracle数据库，jsp和class类似于SQL,都可以看作一个系统软件，那么仅仅是看java进程在不在，前台能不能访问是不够的。就像没有sqlplus,PLSQL我们就无法维护数据库，同样的JVM也有相应的维护工具,，都在JAVA_HOME/bin下</li>
+</ol>
+<ul>
+<li>a. 查看JVM的内存占用情况</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcutil &lt;pid&gt; 3s <span class="number">5</span>       </span><br></pre></td></tr></table></figure>
+<pre><code> 这条命令间隔3秒钟查看JVM的内存利用率，取样5次，
+ S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT  
+ 0.00  98.51  44.95  39.41  63.43      9    0.070     2    0.195    0.266
+ 永久内存区利用率63.43%, Elden和old区分别是44.95%和39.41%
+</code></pre><ul>
+<li>b. 查看JVM的堆栈调用情况<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack &lt;pid&gt;</span><br></pre></td></tr></table></figure>
+这条命令把当前JVM里所有的线程调用堆栈输出。在前台访问无响应的时候，排查故障根源时特别有用。</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/LPM_Wan_6.png" alt=""></p>
+<p>上述Thread-831被38f06e88的线程所阻塞，而根据调用堆栈，可以准确的定位到执行程序，进行排查。</p>
+<ul>
+<li>c. 查看错误日志是否有内存溢出错误<br>日志在resin/logs/error.log或者resin/log/jvm-default.log<br>如果有java.lang.OutOfMemoryError: PermGen space 说明JVM的永久内存区不足<pre><code>          -XX:MaxPermSize=256m     可根据永久内存区利用率调整到256M
+         java.lang.OutOfMemoryError说明JVM的堆内存不足
+         -Xmx2048m -Xms2048m     把堆内存调大到2048G
+</code></pre>如果把Xmx加到2G，仍然会出现上述错误，那可能是有内存泄漏，需要开发人员排查</li>
+</ul>
+<ol>
+<li>数据库检查<br>oracle排查比较复杂，我只能从两方面简单举几个例子。</li>
+</ol>
+<ul>
+<li>a) 系统参数层面优化<br>  1) sga是否充分利用了系统内存，sga可以配系统内存的一半. 而我遇到过主机64G内存，sga_target设置为5G<br>  2) db_cache_size最好在sga_target-3G，因为我们的程序很多没有使用绑定变量,如果不设置db_cache_size,则渐渐的SGA都有被share_pool占用的趋势，数据被缓存的越来越少，获取数据需要从磁盘读取，这样整体性能肯定会下降。<br>  3) shared_servers设置为0，让数据库运行在专有模式而不是共享服务器模式<br>  虽然系统参数调整会在整体上带来一定的性能改善，但相比于糟糕的SQL或者程序设计以及失效的索引和过期的统计数据对性能起到的作用，还是很有限的。</li>
+<li>b) 应用优化层面<br>   1) 定位问题SQL<pre><code>   这个SQL能够列出数据库当前正在执行的所有SQL,
+</code></pre><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> s.sid,s.serial#,s.blocking_session,p.spid PID,to_char(s.logon_time,<span class="string">&#x27;YYYY-MM-DD HH24:MI:SS&#x27;</span>) logontime ,</span><br><span class="line">substr(s.machine,<span class="number">1</span>,<span class="number">15</span>) smachine,substr(s.program,<span class="number">1</span>,<span class="number">20</span>) sprogram,q.sql_id,substr(q.sql_text,<span class="number">1</span>,<span class="number">200</span>) <span class="keyword">sql</span> <span class="keyword">from</span> v$<span class="keyword">sql</span> q,v$session s,v$process p</span><br><span class="line"><span class="keyword">where</span> q.hash_value<span class="operator">=</span>s.sql_hash_value <span class="keyword">and</span> q.address<span class="operator">=</span>s.sql_address  <span class="keyword">and</span> p.addr<span class="operator">=</span>s.paddr</span><br></pre></td></tr></table></figure>
+  基于两个判断标准我们能很快的找到问题SQL<ul>
+<li>第一种是某个进程执行的SQL占用的CPU非常高，CPU利用率从Top命令获得，进程ID即PID</li>
+<li>第二种是某类进程执行的SQL非常多，单个CPU不高，但合并起来就非常高了。<br>  针对SQL就可以找支撑人员进一步判断是否需要找开发人员优化。<ul>
+<li>2) 是否存在session被其他session阻塞的情况<br>  查看上一SQL结果的blocking_session字段，如果被阻塞的进程都被某一会话锁定，需要把该session杀掉<br>  alter system kill session ‘sid,serail#’;<br>  遇到过几次系统非常慢的情况，经查看都是开发或者维护用plsql把某表锁住，导致相关会话都被阻塞</li>
+<li>3) 对该SQL所涉及的表进行表分析，更新其统计信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>性能优化非常精深，很多东西我也在学习，先把经常出现的一些问题解决经验总结出来，供大家分享。</p>
+<h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/">Linux 性能诊断:负载评估</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断:快速检查单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/">操作系统原理 | How Linux Works（四）：网络管理</a></li>
+</ul>
+<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/10/24/Linux-Perf-Wan/" data-id="ckwgm33ly00cu7b1yorkw5ms8" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/24/Linux-Perf-Picture/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断:荐书《图解性能优化》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/23/Accounting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">会计学 | Overview of Accounting</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B8%B8%E8%A7%81%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">一、常见性能优化要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BC%98%E5%8C%96%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">二、优化分析过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="toc-number">4.</span> <span class="toc-text">三、性能分析工具箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E6%A3%80%E6%9F%A5"><span class="toc-number">5.</span> <span class="toc-text">四、系统基础问题检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

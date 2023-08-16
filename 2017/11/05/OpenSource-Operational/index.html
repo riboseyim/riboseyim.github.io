@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源软件的运营挑战 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源软件的运营挑战">
+<meta property="og:url" content="https://riboseyim.com/2017/11/05/OpenSource-Operational/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-11-05T14:12:41.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.551Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Engineering">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-Operational" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/05/OpenSource-Operational/" class="article-date">
+  <time datetime="2017-11-05T14:12:41.000Z" itemprop="datePublished">2017-11-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源软件的运营挑战
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="ckwgm33mp00id7b1yaxsni4xe" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><span id="more"></span>
+<h2 id="The-Big-Picture"><a href="#The-Big-Picture" class="headerlink" title="The Big Picture"></a>The Big Picture</h2><ul>
+<li>原文：<a target="_blank" rel="noopener" href="https://www.linux.com/blog/learn/chapter/open-source-management/2017/3/6-operational-challenges-using-open-source-software">6 Operational Challenges to Using Open Source Software | By Linux FoundationMarch 15, 2017Blog</a></li>
+</ul>
+<blockquote>
+<p>在当今迅速发展的市场中，那些速度最快、成本最低的持续创新公司才会赢 。同时，正如你所知，我们正在进行的一系列观察，使用开源软件能够实现快速、低成本的创新。 但它也能引入运营挑战和法律风险。</p>
+</blockquote>
+<p>我们现在已经到了这样一个临界点，开源软件已经成为主流，不使用开源几乎肯定会使你的组织处于劣势。所以你必须学会如何驾驭挑战和风险，才能保持竞争力。</p>
+<blockquote>
+<p>“开源是无处不在的，它是不可避免的……对抗开源的政策是不切实际的，会使你处于竞争劣势。”——加特纳。</p>
+</blockquote>
+<p>在这篇文章中，我们将探讨开源如何成为构建软件现实途径。然后，我们将介绍这种新的软件开发方法为组织引入的挑战。</p>
+<h4 id="一、开源软件革命"><a href="#一、开源软件革命" class="headerlink" title="一、开源软件革命"></a>一、开源软件革命</h4><p>从大约四十年前开始，发端于创新学术研究和GNU工具项目，开源软件已经成为主流并重塑了许多行业。今天，已经有超过150万个独特的开源项目，贡献给软件开发者的工作代码超过百万兆字节。这些资源的可用性、软件模块化的趋势以及软件重用，从根本上改变了大多数公司开发软件的方式。</p>
+<p>不久以前，我们大部分软件产品都是自己内部开发的。我们也许会使用了一些第三方组件，用以连接到其他系统或执行一些特殊的业务，但这些都是通过一个精心控制的采购流程控制的。</p>
+<p>今天，我们可以利用互联网上免费的开源组件，以更快的速度开发更复杂的软件。我们的大部分活动已经从设计开发定制软件，转变为整合现成的组件或半成品。我们只对应用程序中确实非常独特的部分进行编程。</p>
+<p>但是现在，我们不再重复一些精心控制的代码收购，而是从互联网上反复下载代码来进行评估、原型制作和集成。虽然这种方法加快了开发速度，但它制造了一系列新的重大挑战。</p>
+<h4 id="二、开源软件六大运营挑战"><a href="#二、开源软件六大运营挑战" class="headerlink" title="二、开源软件六大运营挑战"></a>二、开源软件六大运营挑战</h4><p>使用开源软件带来了许多好处，但它会在软件开发生命周期中引入风险和额外的操作复杂性。</p>
+<ol>
+<li><p>组织必须处理许多新的软件源代码，包括商业和非商业的供应商 – 一些人使用的开源软件来自数百个不同的来源。</p>
+</li>
+<li><p>众多可用的开源组件导致需要大量的第三方软件采购决策。这些决策如何做出？许多开发者没有相应的资质考虑所有这些必要的方面，包括软件许可证分析，但是一个沉重复杂的流程，例如陈旧的采购方法，代价昂贵和而且费时很长，以至于无法应用到大量新的采购决策中。</p>
+</li>
+<li><p>集成了大量的第三方组件会制造复杂性。其中一方面就是在多个相互依赖的代码栈中维护软件版本的一致性。</p>
+</li>
+<li><p>开源软件项目的范围，覆盖业余玩家到专业的开发和版本测试等不同阶段。您的组织必须确保每个应用程序都能选择相应质量保障级别的组件。</p>
+</li>
+<li><p>您的组织将如何获得所有这些开源组件的技术支持和更新？健康的开源社区提供优秀的支持和维护，但开源的自助服务模式，需要您的开发者与社区的共同参与这部分工作。</p>
+</li>
+<li><p>商业合作关系可以通过增加财政奖励的方式，向供应商强化你的诉求主张，但是否能影响开源项目的方向取决于您参与的多方面因素。</p>
+</li>
+</ol>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="Microservice"><a href="#Microservice" class="headerlink" title="Microservice"></a>Microservice</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/nytimes/gizmo">project gizmo</a></li>
+</ul>
+<p>Gizmo 是一个集合，集中了可整合的工具、功能以及交互页面来帮助开发者构建 Go 服务，具体来说就是将 API 和 pubsub daemons 集合在一起。这个工具包刚开始的时候是由一小群开发者发起的，目的是为 NYT 构建一个专属邮件平台。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/">基于Ganglia实现服务集群性能态势感知</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.linux.com/blog/learn/chapter/open-source-management/2017/3/6-operational-challenges-using-open-source-software">6 Operational Challenges to Using Open Source Software | By Linux FoundationMarch 15, 2017Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/2016/02/gizmo-microservices-toolkit">纽约时报开发出基于 Go 语言的微服务工具包 Gizmo</a></li>
+<li><a target="_blank" rel="noopener" href="https://brandur.org/minimalism?utm_source=wanqu.co&amp;utm_campaign=Wanqu+Daily&amp;utm_medium=website">In Pursuit of Production Minimalism | 公司里面使用的技术要尽量少。不要引入太多种的编程语言、编程框架、不同类型的数据库等。定期淘汰过时的项目、顺便淘汰掉让人头疼的那些编程语言、框架、软件等。多引入一个新技术，就多了出事故的风险。</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/11/05/OpenSource-Operational/" data-id="ckwgm33mp00id7b1yaxsni4xe" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/05/Commander-Art-Of-War-Chinese/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          中国传统兵法精要
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/05/Policy-Civil-Rights/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">政府行为模型及预测：民权法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Big-Picture"><span class="toc-number">2.</span> <span class="toc-text">The Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E9%9D%A9%E5%91%BD"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、开源软件革命</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E5%85%AD%E5%A4%A7%E8%BF%90%E8%90%A5%E6%8C%91%E6%88%98"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、开源软件六大运营挑战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-number">3.</span> <span class="toc-text">Application</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Microservice"><span class="toc-number">3.1.</span> <span class="toc-text">Microservice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

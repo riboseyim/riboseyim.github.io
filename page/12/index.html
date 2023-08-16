@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Ribose Yim&#39;s Home">
+<meta property="og:url" content="https://riboseyim.com/page/12/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:locale">
+<meta property="article:author" content="RiboseYim">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Log" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/24/Log/" class="article-date">
+  <time datetime="2017-05-24T06:22:56.000Z" itemprop="datePublished">2017-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/24/Log/">开源技术架构漫谈：应用程序的日志管理及可视化</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>程序中记录日志的首要目的：Troubleshooting。通过记录程序中对外部系统与模块的依赖调用、重要状态信息的变化、关键变量、关键逻辑等，显示基于时间轴的程序运行轨迹，显示业务是否正常、是否存在非预期执行，在出问题时方便还原现场，推断程序运行过程、理清问题的方向。</p>
+<p>本文将讨论在实现日志功能过程中常见的一些问题，包括基础API、格式化、日志转发及可视化等方面，代码采用Go语言描述。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/24/Log/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/24/Log/" data-id="ckwgm33m000d87b1ygp3evvsz" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-RestfulAPI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/23/RestfulAPI/" class="article-date">
+  <time datetime="2017-05-23T06:14:12.000Z" itemprop="datePublished">2017-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/23/RestfulAPI/">开源技术架构漫谈：基于Go语言快速构建RESTful API服务</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>What is a JSON API?</li>
+<li>启动一个RESTful服务</li>
+<li>抽象数据模型</li>
+<li>增加路径分发功能</li>
+<li>重构：Handlers &amp; Router</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/23/RestfulAPI/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/23/RestfulAPI/" data-id="ckwgm33ou01287b1y8umaf3zo" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-Ruby-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-Ruby-lang/" class="article-date">
+  <time datetime="2017-05-16T07:18:14.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/Language-Ruby-lang/">玩转编程语言:Ruby</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/16/Language-Ruby-lang/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-Ruby-lang/" data-id="ckwgm33lp00am7b1y65w1fgvp" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-Node-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-Node-lang/" class="article-date">
+  <time datetime="2017-05-16T03:38:23.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/Language-Node-lang/">玩转编程语言:Node.js</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="noopener">玩转编程语言:构建自定义代码生成器</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="noopener">Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js</a></li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/16/Language-Node-lang/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-Node-lang/" data-id="ckwgm33ln009x7b1yixknmxo6" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-R-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-R-lang/" class="article-date">
+  <time datetime="2017-05-16T02:13:04.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/Language-R-lang/">玩转编程语言:R</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/16/Language-R-lang/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-R-lang/" data-id="ckwgm33lo00af7b1yzs9mlv0q" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-Perl-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-Perl-lang/" class="article-date">
+  <time datetime="2017-05-16T01:20:26.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/Language-Perl-lang/">玩转编程语言:Perl</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/16/Language-Perl-lang/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-Perl-lang/" data-id="ckwgm33ln00a17b1yelgqowp0" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Lincoln-Spielberg" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/13/Lincoln-Spielberg/" class="article-date">
+  <time datetime="2017-05-13T10:41:37.000Z" itemprop="datePublished">2017-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/history/">政治历史</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/13/Lincoln-Spielberg/">Lincoln Research:斯皮尔伯格的林肯情怀</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>讲故事的人：斯皮尔伯格的林肯情怀</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/13/Lincoln-Spielberg/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/13/Lincoln-Spielberg/" data-id="ckwgm33ls00bd7b1y4t381fz0" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Artistic/" rel="tag">Artistic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lincoln/" rel="tag">Lincoln</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-Compiler" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Language-Compiler/" class="article-date">
+  <time datetime="2017-05-12T11:03:30.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Language-Compiler/">玩转编程语言:编译原理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>LLVM（Low Level Virtual Machine）</li>
+<li>构建 LLVM 和 Clang 开发工具库</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Language-Compiler/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Language-Compiler/" data-id="ckwgm33lk009c7b1y793z0eg2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Visualization-Charts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Visualization-Charts/" class="article-date">
+  <time datetime="2017-05-12T10:45:50.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>基于网络爬虫的可视化图表:golang,goquery</li>
+<li>案例：最近十年全国彩票销售变化情况</li>
+<li>案例：中国科学院院士分布</li>
+<li>数据可视化技术方案:基于 SVG (D3、Raphael)、基于 Canvas（Echarts）</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Visualization-Charts/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="ckwgm33pe014c7b1ygc2h0e22" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Visualization-GIS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Visualization-GIS/" class="article-date">
+  <time datetime="2017-05-12T10:38:02.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息系统简史</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>开源 GIS 技术简史</li>
+<li>1.1、GIS 的起源: MOSS and GRASS</li>
+<li>1.2、GIS 的发展：GeoTools, GDAL, PostGIS 和 GeoServer</li>
+<li>1.3、创新和教育：开源项目驱动</li>
+<li>1.4、开源 GIS 的商业支持</li>
+<li>Demo:A Full Stack Geo-enabled Internet of Things (IoT) Solution</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Visualization-GIS/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Visualization-GIS/" data-id="ckwgm33ph014l7b1y0fr7pf2y" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Protocol-RFC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Protocol-RFC/" class="article-date">
+  <time datetime="2017-05-12T10:24:48.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Protocol-RFC/">计算机 RFC 文档</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>互联网研究任务组（Internet Research Task Force,IRTF）</li>
+<li>互联网工程任务组（Internet Engineering Task Force，IETF）</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Protocol-RFC/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Protocol-RFC/" data-id="ckwgm33n600lk7b1y19tp9174" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Protocol-TCP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Protocol-TCP/" class="article-date">
+  <time datetime="2017-05-12T10:22:24.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Protocol-TCP/">计算机网络协议：TCP</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Transmission Control Protocol (TCP)  RFC 793</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Protocol-TCP/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Protocol-TCP/" data-id="ckwgm33n800lt7b1y9qchc8x6" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Protocol-UDP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Protocol-UDP/" class="article-date">
+  <time datetime="2017-05-12T10:22:19.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Protocol-UDP/">计算机网络协议：UDP</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>User Datagram Protocol (UDP)  RFC 768
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Protocol-UDP/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Protocol-UDP/" data-id="ckwgm33n800lx7b1yesgd0s15" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-CyberSecurity-GFW" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/CyberSecurity-GFW/" class="article-date">
+  <time datetime="2017-05-12T08:11:32.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/CyberSecurity-GFW/">Cyber-Security:国家队</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <span id="more"></span>
+<h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://javapipe.com/blog/iptables-ddos-protection/">DDoS Protection With IPtables: The Ultimate Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://theinitium.com/article/20150904-mainland-greatfirewall/">道高一尺，墙高一丈：互联网封锁是如何升级的(2008-2015)</a></li>
+</ul>
+<h2 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://cn.nytimes.com/china/20130219/c19hack/">揭秘中国网络战部队 | DAVID E. SANGER, DAVID BARBOZA, NICOLE PERLROTH |2013年2月19日</a></li>
+</ul>
+<h2 id="Open-Source"><a href="#Open-Source" class="headerlink" title="Open Source"></a>Open Source</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ipfire.org/">IPFire | A hardened open source Linux distribution that primarily performs as a router and a firewall</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Cyber-Security-Master》"><a href="#《The-Cyber-Security-Master》" class="headerlink" title="《The Cyber-Security Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/cyber-security-manual">《The Cyber-Security Master》</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/670c4d2bb419">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/07/CyberSecurity/">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://patents.google.com/patent/CN109286576A/zh">数据包频度分析的网络代理加密流量特征提取方法</a></li>
+<li>一种数据包频度分析的网络代理加密流量特征提取方法：本发明涉及一种基于数据包频度与数据包长度和时间戳之差聚类的机器学习Shadowsocks代理的加密流量特征提取方法，旨在为识别Shadowsocks加密过后的网页流量提供区分度大的流量特征。</li>
+<li><a target="_blank" rel="noopener" href="https://www.computerweekly.com/news/252466203/Top-VPNs-secretly-owned-by-Chinese-firms">Top VPNs secretly owned by Chinese firms</a><br>Almost a third (30%) of the world’s top virtual private network (VPN) providers are secretly owned by six Chinese companies, according to a study by privacy and security research firm VPNpro.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/CyberSecurity-GFW/" data-id="ckwgm33k700397b1yky8y3j3e" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Artistic-Museum" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Artistic-Museum/" class="article-date">
+  <time datetime="2017-05-12T08:09:13.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/life/">生活艺术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Artistic-Museum/">旅行指南|博物馆</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>上海·上海博物馆</li>
+<li>南京·瞻园</li>
+<li>广州·湿地公园</li>
+<li>大英博物馆</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Artistic-Museum/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Artistic-Museum/" data-id="ckwgm33ju000w7b1ynz7gcw3v" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Artistic/" rel="tag">Artistic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Travel/" rel="tag">Travel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Virtualization" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Virtualization/" class="article-date">
+  <time datetime="2017-05-12T08:03:22.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/Virtualization/">虚拟化 | Overview of Virtualization</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><strong>待编辑</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/Virtualization/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Virtualization/" data-id="ckwgm33pe01497b1ymmgm8yrm" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDN/" rel="tag">SDN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-SDN" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/SDN/" class="article-date">
+  <time datetime="2017-05-12T07:54:48.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/SDN/">SDN 技术指南（一）：架构概览</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Background：为什么需要 SDN</li>
+<li>SDN的主要解决方案</li>
+<li>SDN的整体应用架构</li>
+<li>SDN与网络安全</li>
+<li>OpenFlow工作原理</li>
+<li>OpenFlow在SDN架构中的角色</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/12/SDN/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/SDN/" data-id="ckwgm33oz012r7b1ygn4cvxf5" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDN/" rel="tag">SDN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-CyberSecurity-Hacker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/CyberSecurity-Hacker/" class="article-date">
+  <time datetime="2017-05-09T08:17:56.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/09/CyberSecurity-Hacker/">Cyber-Security:黑客与技术、产业及其精神世界</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>理解计算机的关键，则是要理解计算机背后的人。表面上这是一个机器的时代，但是实际上机器的社记者决定了我们的时代。</p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>读书笔记|《黑客与画家》</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/09/CyberSecurity-Hacker/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/09/CyberSecurity-Hacker/" data-id="ckwgm33k9003g7b1y487detvr" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Economist/" rel="tag">Economist</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Mathmetics-Markov-Model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/Mathmetics-Markov-Model/" class="article-date">
+  <time datetime="2017-05-09T08:16:55.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/09/Mathmetics-Markov-Model/">概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>马尔可夫模型（Markov Model ）</li>
+<li>隐含马尔可夫模型（ Hidden Markov Model ）</li>
+<li>隐含隐马尔可夫模型的应用</li>
+<li>马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/09/Mathmetics-Markov-Model/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="ckwgm33me00g17b1yivg3ur8e" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+    <article id="post-Language-Go-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/05/Language-Go-lang/" class="article-date">
+  <time datetime="2017-05-05T06:56:56.000Z" itemprop="datePublished">2017-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/05/Language-Go-lang/">Catalog：玩转编程语言 - Golang 专题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>ABC</li>
+<li>基于 Golang 的应用</li>
+<li>Golang 最佳实践</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/05/Language-Go-lang/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/05/Language-Go-lang/" data-id="ckwgm33lp00ai7b1y7kv2bkzr" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+</article>
+ 
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/11/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/">下一页&amp;raquo;</a>
+  </nav>
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/06/Project-Defense-Procurement/">Project-Defense-Procurement</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/Commander-WarGame/">War Game</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/Health-Weight/">Health-Weight</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/09/Check2020/">Check2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/08/Commander-Art-Of-War-SuYu/">讲武堂：粟裕的军事谋略与指挥艺术</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

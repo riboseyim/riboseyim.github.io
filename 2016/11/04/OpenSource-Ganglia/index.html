@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知">
+<meta property="og:url" content="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Install.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Impl.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-6.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Nginx.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-CPU.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Perf_Test.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia-sFlow.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_DIE.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_WACM.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_ADAM.png">
+<meta property="article:published_time" content="2016-11-03T17:45:16.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.345Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="OpenSource">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-Ganglia" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/04/OpenSource-Ganglia/" class="article-date">
+  <time datetime="2016-11-03T17:45:16.000Z" itemprop="datePublished">2016-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="ckwgm33mo00i67b1ynd7kna4a" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文以开源项目Ganglia为例，介绍多集群环境下，利用监控系统进行故障诊断、性能瓶颈分析的一般方法。</p>
+<span id="more"></span>
+<h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p>通过前面的发布过的两篇文章，我们已经大致掌握了描述单个服务器的性能情况的方法。可以从load avgerage等总括性的数据着手，获得系统资源利用率（CPU、内存、I/O、网络）和进程运行情况的整体概念。参考CPU使用率和I/O等待时间等具体的数字，从而自顶向下快速排查各进程状态。也可以在60秒内，通过运行以下10个基本命令，判断是否存在异常、评估饱和度，度量请求队列长度等等。</p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/db8e8a2884ef">1.基于Linux单机的负载评估</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/fd6e35f529c1">2.Netflix性能分析模型：In 60 Seconds</a></p>
+<p>在真实的工程实践中，并不能总是通过几行简单的命令，直接获得性能问题的答案。一般不会存在一台单独运行的服务器，它们一定属于某个服务集群之中，就算是同一集群的服务器，也可能属于不同建设周期、硬件配置不同、分工角色不同。或者由不同机房、不通集群的服务器共同协作完成任务。</p>
+<p>另外，很多性能问题也需要长时间的追踪、对比才能作出判断。正如任何一个高明的医生，都需要尽可能多地了解、记录病人的病史，不掌握这些情况，盲目下药，无异于庸医杀人。诚如医者曰：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">夫经方之难精，由来尚矣。今病有内同而外异，亦有内异而外，</span><br><span class="line">故五脏六腑之盈虚，血脉荣卫之通塞，固非耳目之所察，</span><br><span class="line">必先诊候以审之。世有愚者，读方三年，便谓天下无病可治；</span><br><span class="line">及治病三年，乃知天下无方可用。</span><br></pre></td></tr></table></figure>
+<p>基于 Ganglia 项目我们可以快速搭建一套高性能的监控系统，展开故障诊断分析、资源扩容预算甚至故障预测。</p>
+<h4 id="Ganglia框架简析"><a href="#Ganglia框架简析" class="headerlink" title="Ganglia框架简析"></a>Ganglia框架简析</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Top.png" alt=""></p>
+<!--more-->
+<p>一般应用中，需要用到两个核心组件：</p>
+<p><strong>Gmond （Ganglia Monitoring Daemon）</strong><br>Gmond承担双重角色：1、作为Agent，部署在所有需要监控的服务器上。<br>2、作为收发机，接收或转发数据包。</p>
+<p><strong>Gmetad (Ganglia Meta Daemon)</strong><br>负责收集所在集群的数据，并持久化到RRD数据库。根据集群的组网情况，可以部署1-N个。</p>
+<p><strong>Web frontend</strong><br>Ganglia项目提供一个PHP编写的通用型的Web包，主要实现数据可视化，能提供一些简单的数据筛选UI。页面不多，大量使用了模版技术。HTTP Server方面，用Apache和Nginx都可以。</p>
+<p><strong>RRDTool (Round Robin Database)</strong><br>Gmetad收集的时间序列数据都通过RRD存储，RRDTool作为绘图引擎使用。</p>
+<p><strong>插件生态</strong><br>Ganglia最重要的特性之一就是提供了一个灵活的数据标准和插件API。<br>它使得我们可以根据系统的情况，很容易地在默认的监控指标集之上，引用或定制其他扩展指标。<br>这一特性在大数据领域也获得了认可，Hadoop,Spark等都开放了面向Ganglia的指标集。<br>在Github上也有很多现成的扩展插件。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Install.png" alt=""></p>
+<h4 id="Ganglia工作模式"><a href="#Ganglia工作模式" class="headerlink" title="Ganglia工作模式"></a>Ganglia工作模式</h4><p>项目的名称其实已经反映了作者的设计思路。<br>Ganglia（又作：ganglion）,直译为“神经节”、“中枢神经”。在解剖学上是一个生物组织丛集，通常是神经细胞体的集合。在神经学中，神经节主要是由核周体和附随连结的树突组合而成。神经节经常与其他神经节相互连接以形成一个复杂的神经节系统。神经节提供了身体内不同神经体系之间的依靠点和中介连结，例如周围神经系统和中枢神经系统。</p>
+<p>Ganglia的作者意图将服务器集群理解为生物神经系统，每台服务器都是独立工作神经节，通过多层次树突结构连接起来，<br>既可以横向联合，也可以从低向高，逐层传递信息。具体例证就是Ganglia的收集数据工作可以工作在单播（unicast)或多播(multicast)模式下，<br>默认为多播模式。</p>
+<p>单播：Gmond收集到的监控数据发送到特定的一台或几台机器上，可以跨网段</p>
+<p>多播：Gmond收集到的监控数据发送到同一网段内所有的机器上，同时收集同一网段内的所有机器发送过来的监控数据。<br>因为是以广播包的形式发送，因此需要同一网段内。但同一网段内，又可以定义不同的发送通道。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Arch_Impl.png" alt=""></p>
+<p>vi /usr/local/ganglia/etc/gmond.conf</p>
+<p><strong>默认配置：</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">cluster &#123;</span><br><span class="line">  name = &quot;cluster01&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">udp_send_channel &#123;</span><br><span class="line">  mcast_join = 239.2.11.71</span><br><span class="line">  port = 8649</span><br><span class="line">  ttl = 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">udp_recv_channel &#123;</span><br><span class="line">  mcast_join = 239.2.11.71</span><br><span class="line">  port = 8649</span><br><span class="line">  bind = 239.2.11.71</span><br><span class="line">  retry_bind = true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tcp_accept_channel &#123;</span><br><span class="line">  port = 8649</span><br><span class="line">  gzip_output = no</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>单播模式Gmetad增加配置：</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">udp_recv_channel &#123;</span><br><span class="line">  port = 8666</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>单播模式Gmond增加配置：</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">udp_send_channel &#123;</span><br><span class="line">  host = 192.168.0.39</span><br><span class="line">  port = 8666</span><br><span class="line">  ttl = 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>默认装载指标集：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">modules &#123;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;core_metrics&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;cpu_module&quot;</span><br><span class="line">    path = &quot;modcpu.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;disk_module&quot;</span><br><span class="line">    path = &quot;moddisk.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;load_module&quot;</span><br><span class="line">    path = &quot;modload.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;mem_module&quot;</span><br><span class="line">    path = &quot;modmem.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;net_module&quot;</span><br><span class="line">    path = &quot;modnet.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;proc_module&quot;</span><br><span class="line">    path = &quot;modproc.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  module &#123;</span><br><span class="line">    name = &quot;sys_module&quot;</span><br><span class="line">    path = &quot;modsys.so&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>vi /usr/local/ganglia/etc/gmetad.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">### 配置数据源，可以多个</span><br><span class="line">data_source &quot;cluster01&quot; localhost:8649   </span><br><span class="line">data_source &quot;cluster02&quot;  192.168.0.39:8666 192.168.0.48:8666</span><br><span class="line"></span><br><span class="line">gridname &quot;mygrid&quot;</span><br><span class="line"></span><br><span class="line">### 指定RRD数据路径</span><br><span class="line">rrd_rootdir &quot;/home/data/ganglia/rrds&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="查看数据流向"><a href="#查看数据流向" class="headerlink" title="查看数据流向"></a>查看数据流向</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># netstat -an | grep 86     </span><br><span class="line">tcp        0      0 0.0.0.0:8649         0.0.0.0:*           LISTEN      ##tcp_accept_channel</span><br><span class="line">udp        0      0 192.168.0.45:52745   239.2.11.71:8649    ESTABLISHED  ##组播</span><br><span class="line">udp        0      0 239.2.11.71:8649     0.0.0.0:*                               </span><br><span class="line">udp        0      0 0.0.0.0:8666         0.0.0.0:*    ##udp_recv_channel</span><br></pre></td></tr></table></figure>
+<p>Gmetad所在位置，已经可以收到监控数据的服务器列表：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># telnet localhost 8649 | grep HOST</span><br><span class="line">&lt;HOST NAME=&quot;192.168.0.56&quot; IP=&quot;192.168.0.56&quot; TAGS=&quot;&quot; REPORTED=&quot;1478226772&quot; TN=&quot;6&quot; TMAX=&quot;20&quot; DMAX=&quot;86400&quot; LOCATION=&quot;GZ&quot; GMOND_STARTED=&quot;1477817579&quot;&gt;</span><br><span class="line">&lt;/HOST&gt;</span><br><span class="line">&lt;HOST NAME=&quot;192.168.0.39&quot; IP=&quot;192.168.0.39&quot; TAGS=&quot;&quot; REPORTED=&quot;1478226771&quot; TN=&quot;7&quot; TMAX=&quot;20&quot; DMAX=&quot;86400&quot; LOCATION=&quot;GZ&quot; GMOND_STARTED=&quot;1477473541&quot;&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<p>Gmond所在位置，收到的监控指标数据明细：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># telnet localhost 8649 | grep cpu_idle</span><br><span class="line">telnet: connect to address ::1: Connection refused</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;96.7&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;33&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;100.0&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;20&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;91.2&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;4&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;96.3&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;28&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;99.9&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;5&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;83.9&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;14&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;84.2&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;0&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">&lt;METRIC NAME=&quot;cpu_idle&quot; VAL=&quot;44.1&quot; TYPE=&quot;float&quot; UNITS=&quot;%&quot; TN=&quot;9&quot; TMAX=&quot;90&quot; DMAX=&quot;0&quot; SLOPE=&quot;both&quot;&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-1.png" alt="集群视图"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-2.png" alt="一级视图"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-3.png" alt="二级视图"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-4.png" alt="主机视图"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-5.png" alt="多机横向对比"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-6.png" alt="多机横向对比"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Nginx.jpg" alt="Nginx监控扩展插件"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-Demo-CPU.png" alt="CPU密集型特征"></p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">没有任何一个开源项目是完美的。</span><br></pre></td></tr></table></figure>
+<p>1、告警流程框架：Ganglia本身并不具备，可以选用 Nagios 补充。<br><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/library/l-ganglia-nagios-1/">https://www.ibm.com/developerworks/library/l-ganglia-nagios-1/</a><br><a target="_blank" rel="noopener" href="https://www.quora.com/Ganglia-vs-collectd-vs-cacti-advantage-and-disadvantage">https://www.quora.com/Ganglia-vs-collectd-vs-cacti-advantage-and-disadvantage</a></p>
+<p>2、日志管理框架：Ganglia本身并不具备，可以选用 Splunk 补充。</p>
+<p>3、性能开销预算</p>
+<p>对于单纯的Gmond节点来说，性能开销很低。主要的瓶颈在中央节点。<br><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_Perf_Test.png" alt=""></p>
+<p>各节点的gmond进程向中央节点发送的udp数据带来的网络开销。如果一个节点每秒发10个包，<br>1000个节点将会发出10000个，每个包有200字节，就有2m字节，10000个包的处理所需要的cpu使用也会上升。</p>
+<p>Gmetad默认15秒向gmond取一次xml数据,解析xml文件带来的CPU负荷也会随着管理节点数线性增长。</p>
+<p>格外需要注意的是RRD的写入瓶颈。实际应用中需要根据资源情况，调整采样频率、权衡指标数量、引入RRDCached等方式优化。</p>
+<p>4、网络流向监控：Ganglia原生支持sFlow<br>GitHub:gmond-proxy project。what are some of the benefits of using the proxy?</p>
+<p>   Firstly, the proxy allows metrics to be filtered, reducing the amount of data logged and increasing the scaleability of the Ganglia collector.</p>
+<p>   Secondly, sFlow-RT generates traffic flow metrics, making them available to Ganglia.</p>
+<p>   Finally, Ganglia is typically used in conjunction with additional monitoring tools that can all be driven using the analytics stream generated by sFlow-RT.</p>
+<p>   <img src="http://riboseyim-qiniu.riboseyim.com/Ganglia-sFlow.jpg" alt=""></p>
+<p>5、可视化</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+</ul>
+<h4 id="Ganglia-Develop-Team"><a href="#Ganglia-Develop-Team" class="headerlink" title="Ganglia Develop Team"></a>Ganglia Develop Team</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/mattmassie">Matt Massie</a>:UCB</li>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/brentchun">Brent Chun</a>:Developer,UCB</li>
+<li><a target="_blank" rel="noopener" href="https://www2.eecs.berkeley.edu/Faculty/Homepages/culler.html">David E. Culler</a>:Professor</li>
+</ul>
+<h2 id="读者讨论区"><a href="#读者讨论区" class="headerlink" title="读者讨论区"></a>读者讨论区</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/u/ab7cecfb3e24">隔壁_老吴</a> ：多播如何跨网段？因为单播需要在服务器端添加所有agent IP，上百台不现实</li>
+</ol>
+<h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/27/DevOps-OpenCensus">DevOps 漫谈：基于OpenCensus构建分布式跟踪系统</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/23/RestfulAPI/">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/">基于Kafka构建事件溯源型微服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/">远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/24/Log/">应用程序开发中的日志管理(Go语言描述)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/08/15/OpenSource-Kafka/">DevOps 资讯 | LinkedIn 开源 Kafka Monitor</a></li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3ID2Ay-iplD5Fzk4I_cxVw">统一监控报警平台架构设计思路|Ganglia+Centreon</a></li>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_DIE.png" alt="《 The ganglia distributed monitoring system: design, implementation, and experience》（必读）"></li>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_WACM.png" alt="《Wide Area Cluster Monitoring with Ganglia》（必读）"></li>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Ganglia_ADAM.png" alt="这篇本来没有什么直接关系，是Ganglia作者的最新研究成果，仅供娱乐。"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/11/04/OpenSource-Ganglia/" data-id="ckwgm33mo00i67b1ynd7kna4a" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/20/Network-Traffic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          珠海航展交通管控实践
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/15/Artistic-Zhuhai-AirShow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">摄影专辑:珠海航空航天展览</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.0.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia%E6%A1%86%E6%9E%B6%E7%AE%80%E6%9E%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">Ganglia框架简析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">Ganglia工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E6%B5%81%E5%90%91"><span class="toc-number">1.0.4.</span> <span class="toc-text">查看数据流向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">数据可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ganglia-Develop-Team"><span class="toc-number">2.0.1.</span> <span class="toc-text">Ganglia Develop Team</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E8%AE%A8%E8%AE%BA%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">读者讨论区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%BC%80%E6%BA%90%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%BC%AB%E8%B0%88"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.1.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

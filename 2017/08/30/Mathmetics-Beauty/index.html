@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>读书笔记|数学之美（Beauty Of Mathmetics） | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 作者：吴军 起源：Google中国的官方博客—谷歌黑板报连载的系列博客 主题：自然语言处理、科技史">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记|数学之美（Beauty Of Mathmetics）">
+<meta property="og:url" content="https://riboseyim.com/2017/08/30/Mathmetics-Beauty/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 作者：吴军 起源：Google中国的官方博客—谷歌黑板报连载的系列博客 主题：自然语言处理、科技史">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Bayesian-network.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/disease_CVD.png">
+<meta property="article:published_time" content="2017-08-30T10:11:06.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.695Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="数学与算法">
+<meta property="article:tag" content="科技史">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Mathmetics-Beauty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/30/Mathmetics-Beauty/" class="article-date">
+  <time datetime="2017-08-30T10:11:06.000Z" itemprop="datePublished">2017-08-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读书笔记|数学之美（Beauty Of Mathmetics）
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/08/30/Mathmetics-Beauty/" data-id="ckwgm33me00g47b1y766a4zcc" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E6%8A%80%E5%8F%B2/" rel="tag">科技史</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>作者：吴军</li>
+<li>起源：Google中国的官方博客—谷歌黑板报连载的系列博客</li>
+<li>主题：自然语言处理、科技史</li>
+</ul>
+<span id="more"></span>
+<blockquote>
+<p>数学的魅力就在于将复杂的问题复杂化</p>
+<p>人类信息交流的发展贯穿了人类的进化和文明的全过程。而自然语言是人类交流信息的工具，语言和通信的联系是天然的。通信的本质就是一个解编码和传输的过程。（p49）</p>
+</blockquote>
+<h2 id="《数学之美》-Topic"><a href="#《数学之美》-Topic" class="headerlink" title="《数学之美》 Topic"></a>《数学之美》 Topic</h2><ul>
+<li>自然语言识别与概率论：第 3、5、24 章</li>
+<li>信息论：第 6 章</li>
+</ul>
+<h2 id="第一章-文字和语言-vs-数字和信息"><a href="#第一章-文字和语言-vs-数字和信息" class="headerlink" title="第一章 文字和语言 vs 数字和信息"></a>第一章 文字和语言 vs 数字和信息</h2><p>故事：罗赛塔石牌、犹太人抄圣经（校验）、口语和文言文（信道压缩）</p>
+<ul>
+<li>通信的原理和信息传播的模型</li>
+<li>（信源）编码和最短编码</li>
+<li>解码的规则，语法</li>
+<li>聚类</li>
+<li>校验位</li>
+<li>双语对照文本，语料库和机器翻译</li>
+<li>多义性和利用上下文消除歧义性</li>
+</ul>
+<h2 id="第二章-自然语言处理——从规则到统计"><a href="#第二章-自然语言处理——从规则到统计" class="headerlink" title="第二章 自然语言处理——从规则到统计"></a>第二章 自然语言处理——从规则到统计</h2><h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h4><ul>
+<li><a href="#">宾夕法尼亚大学语言数据库（LDC）</a></li>
+<li>图灵测试（<a href="#">阿兰-图灵(Alan Turing）</a> ): 让人和机器交流，如果人无法判断自己交流的对象是否为机器时，就说明机器有智能了。</li>
+</ul>
+<h4 id="自然语言发展阶段"><a href="#自然语言发展阶段" class="headerlink" title="自然语言发展阶段"></a>自然语言发展阶段</h4><ul>
+<li>20世纪50-70年代：基于规则的方法，电脑模拟人脑理解语法、文法，收效甚微</li>
+<li>20世纪70年代以后：基于数学模型和统计的方法。例如翻译，计算机不需要像人类一样理解两种语言。</li>
+</ul>
+<h4 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h4><ul>
+<li><a href="#">明斯基（达特茅斯会议的发起者之一）</a>:著名人工智能专家,对美国科技决策部分产生了重大影响，自然科学基金会等对传统的自然语言处理研究资助大大减少。</li>
+<li><a href="#">弗里德里克-贾里尼克（Frederick Jelinek) | IBM</a>:领导 IBM 华生实验室（T.J.Watson) 在统计语言学取得关键突破,语言识别70%-&gt;90%</li>
+</ul>
+<h4 id="长达15年的对峙时期"><a href="#长达15年的对峙时期" class="headerlink" title="长达15年的对峙时期"></a>长达15年的对峙时期</h4><p>两派人马各自召开自己的会议，持续争议。</p>
+<h4 id="基于统计方法的发展"><a href="#基于统计方法的发展" class="headerlink" title="基于统计方法的发展"></a>基于统计方法的发展</h4><ul>
+<li>上世纪70年代：基于统计的方法的核心模型是通信系统加隐含马尔可夫模型。<br>输入和输出都是一维的符号序列，保持原有的次序。最早的语音识别、词性分析取得成果；句法分析中输入的是一维的句子，输出的是二维的分析树；机器翻译中，输出的句子次序会有很大变化，效果不佳。</li>
+<li><p>1998年，<a href="#">彼得·布朗(Peter Brown) | IBM</a> 等提出了基于统计的机器翻译方法效果很差，模型、数据不足。<br>（文艺复兴技术公司）</p>
+</li>
+<li><p>基于有向图的统计模型解决复杂的句法分析。</p>
+</li>
+<li>20世纪90年代末期：通过统计得到的句法规则甚至比语言学家总结的更有说服力。</li>
+<li>2005年，Google 基于统计方法的翻译系统全面超过基于规则方法的 <a href="#">SysTran 翻译系统</a></li>
+</ul>
+<h4 id="科学史的教训：等待老科学家退休"><a href="#科学史的教训：等待老科学家退休" class="headerlink" title="科学史的教训：等待老科学家退休"></a>科学史的教训：等待老科学家退休</h4><blockquote>
+<p>基于统计的方法代替传统的方法，需要等原有的一批语言学家退休。“老的科学家” 或者 “老科学的家” （钱钟书《围城》），后一种年纪不算老，但是已经落伍，大家必须耐心等待他们退休让出位子。毕竟，<strong>不是所有人都乐意改变自己的观点，无论对错。</strong> …… 因此，我常想，我自己一定要在还不太糊涂和固执时就退休（p25）</p>
+</blockquote>
+<h2 id="第三章-统计语言模型"><a href="#第三章-统计语言模型" class="headerlink" title="第三章 统计语言模型"></a>第三章 统计语言模型</h2><p>计算机处理自然语言的基本问题：为自然语言这种上下文相关的特性建立数学模型，即 <strong>统计语言模型（Statistical Language Model）</strong></p>
+<p>贾里尼克：一个句子是否合理，就看看它的可能性大小如何。可能性用概率来衡量。</p>
+<p>P(S) = P(W1 ,W2, … , Wn)<br>    =P(W1)·P(W2|W1) ·P(W3|W1,W2) ··· P(Wn | W1,W2, … , Wn-1)</p>
+<p>S 表示某一个有意义的句子，由一连串特定顺序排列的词W1,W2, ··· , Wn 组成，n 是句子的长度。句子越长，条件概率  P(Wn | W1,W2, … , Wn-1) 的可能性越多，无法估算。</p>
+<p>19 世纪到 20 世纪初，<strong>马尔可夫（Andrey Markov）提出假设</strong>，任意一个词 Wi 出现的概率只同它前面的词 Wi-1有关，偷懒但颇为有效的方法。【符合这个假设的随机过程则称为马尔科夫过程，也称为马尔可夫链。】二元模型（ Bigram Model ）对应的公式如下：</p>
+<p> P(S) = P(W1 ,W2, … , Wn)<br>    =P(W1)·P(W2|W1) ·P(W3|W2) ··· P(Wi | Wi-1) ··· P(Wn | Wn-1)</p>
+<p><strong>语料库（ Corpus ）</strong>: 大量机读样本<br>相对频度<br>根据 <strong>大数定理（ Law of Large Numbers ）</strong>，只要统计量足够，相对频度就等于概率<br>推导过程省略（P30）</p>
+<h4 id="延伸阅读：统计语言模型的工程诀窍"><a href="#延伸阅读：统计语言模型的工程诀窍" class="headerlink" title="延伸阅读：统计语言模型的工程诀窍"></a>延伸阅读：统计语言模型的工程诀窍</h4><ul>
+<li>2.1 高阶语言模型<br>很少有人能使用四元以上的模型，Google 的罗塞塔翻译系统和语言搜索引擎使用四元模型，该模型存储于 500 台 以上的 Google 服务器中。</li>
+</ul>
+<p>马尔可夫假设的局限性：自然语言中上下文相关性跨度可能非常大，需采用其他一些 <strong>长程的依赖性（ Long Distance Dependency ）</strong> 来解决。</p>
+<ul>
+<li><p>2.2 模型的训练、零概率问题和平滑方法</p>
+</li>
+<li><p>古德·图灵估计（ Good-Turing Estimate）</p>
+</li>
+</ul>
+<p>一种概率估计方法：1953年，古德（ I. J. Good）、图灵（ Alan Turing ）提出，在统计中相信可靠的统计数据，而对不可信的统计数据打折扣，同时将折扣出来的那一小部分概率给予未看见的事件（ Unseen Events ）。</p>
+<p>如果训练语料与模型应用的领域相脱节，那么模型的效果通常要大打折扣。例如腾讯搜索部门的语言模型，最早使用《人民日报》的语料训练（干净、无噪音），实际效果不佳，之后使用网页的数据，尽管有很多噪音但是训练数据与应用一致，搜索质量反而好。</p>
+<h2 id="第四章-谈谈中文分词"><a href="#第四章-谈谈中文分词" class="headerlink" title="第四章 谈谈中文分词"></a>第四章 谈谈中文分词</h2><ul>
+<li>早期的分词：《说文解字》和《论语》注解，目的都是为了以一家的理解消除歧义性</li>
+<li>分词准确率：不是越高越好，而要看所谓正确的人工分词的数据是如何得来的。我们甚至只能讲某个分词器和另一个分词器相比，与人工分词结果的吻合度稍微高一点而已。目前采用统计语言模型，（选择哪种分词器）效果都差不到哪里去。</li>
+</ul>
+<h4 id="第五章-隐含马尔可夫模型"><a href="#第五章-隐含马尔可夫模型" class="headerlink" title="第五章 隐含马尔可夫模型"></a>第五章 隐含马尔可夫模型</h4><p>计划：201706<br>通读：201709</p>
+<blockquote>
+<p>人类信息交流的发展贯穿了人类的进化和文明的全过程。而自然语言是人类交流信息的工具，语言和通信的联系是天然的。通信的本质就是一个解编码和传输的过程。但是自然语言处理早期的努力都集中在语法、语义和知识表述上，离通信的原理越来越远，而这样答案也就越来越远。当自然语言处理的问题回归到通信系统中的解码问题时，很多难题都迎刃而解了。（p49）</p>
+</blockquote>
+<ul>
+<li>雅格布森（ Roman Jakobson）提出的通信六个要素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">digraph communicate&#123;</span><br><span class="line">  label=<span class="string">&quot;雅格布森提出的通信六个要素&quot;</span>;</span><br><span class="line"></span><br><span class="line">  信息和上下文[label = <span class="string">&quot;信息和上下文(发送者)&quot;</span>];</span><br><span class="line">  传递的信息[label = <span class="string">&quot;传递的信息(信道)&quot;</span>];</span><br><span class="line">  接收的信息[label = <span class="string">&quot;接收的信息(接收者)&quot;</span>];</span><br><span class="line"></span><br><span class="line">  信息和上下文 -&gt; 传递的信息[label = <span class="string">&quot;编码(S1,S2,S3,···)&quot;</span>];</span><br><span class="line">  传递的信息 -&gt; 接收的信息[label = <span class="string">&quot;解码(O1,O2,O3,···)&quot;</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>马尔可夫链：符合这个马尔可夫假设的随机过程则称为马尔科夫过程。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">digraph markov&#123;</span><br><span class="line">  label = <span class="string">&quot; 马尔可夫模型（ Markov Model ）&quot;</span>;</span><br><span class="line">  rankdir = LR;</span><br><span class="line">  m1-&gt;m2[label = <span class="string">&quot;1.0&quot;</span>];</span><br><span class="line">  m2-&gt;m3[label = <span class="string">&quot;0.6&quot;</span>];</span><br><span class="line">  m3-&gt;m4[label = <span class="string">&quot;0.3&quot;</span>];</span><br><span class="line">  m2-&gt;m4[label = <span class="string">&quot;0.4&quot;</span>];</span><br><span class="line">  m3-&gt;m3[label = <span class="string">&quot;0.7&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov.png" alt=""></p>
+<ul>
+<li>隐含马尔可夫模型（ Hidden Markov Model ）<br>最早由20世纪六七十年代，<a href="#">美国数学家鲍姆（ Leonard E. Baum ）</a> 发表的一系列论文中提出。隐含马尔可夫模型是马尔可夫链的一个扩展，即任一时刻 t 的状态 St 是不可见的。但是，在每个时刻 t 会输出一个富豪 Ot ，而且 Ot 和 St 相关且仅和 St 相关。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">digraph hiddenmarkov&#123;</span><br><span class="line">  label = <span class="string">&quot; 隐含马尔可夫模型（ Hidden Markov Model ）&quot;</span>;</span><br><span class="line">  rankdir = LR;</span><br><span class="line"></span><br><span class="line">  S1-&gt;S2[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line">  S1-&gt;O1[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line"></span><br><span class="line">  S2-&gt;S3[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line">  S2-&gt;O2[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line"></span><br><span class="line">  S3-&gt;S4[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line">  S3-&gt;O3[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line"></span><br><span class="line">  S4-&gt;O4[label = <span class="string">&quot;&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png" alt=""></p>
+<ul>
+<li>隐马尔可夫模型的应用<br>隐含马尔可夫模型成功的应用最早是语音识别（Sphinx——大词汇量连续语音识别系统）。根据应用的不同而有不同的名称,例如语音识别中的声学模型（ Acoustic Model ），机器翻译中的翻译模型（ Translation Model ）等。</li>
+</ul>
+<h4 id="延伸阅读隐含马尔可夫模型的训练"><a href="#延伸阅读隐含马尔可夫模型的训练" class="headerlink" title="延伸阅读隐含马尔可夫模型的训练"></a>延伸阅读隐含马尔可夫模型的训练</h4><ul>
+<li>知识背景：概率论</li>
+<li>围绕隐含马尔可夫模型的基本问题<ol>
+<li>给定一个模型，如何计算某个特定输出序列的概率；<br>Forward-Backward 算法<br>参考书 Frederick Jelinek《Statistical Methods for Speech Recognition(Language, Speech, and Communication)》</li>
+<li>给定一个模型和某个特定的输出序列，如何找到最可能产生这个输出的状态序列<br>解码算法：维特比算法</li>
+<li>给定足够量的观测数据，如何估计隐含马尔可夫模型的参数。<br>绚练算法：鲍姆-韦尔奇算法（Baum-Welch Algorithm）</li>
+</ol>
+</li>
+</ul>
+<h4 id="第六章-信息的度量和作用"><a href="#第六章-信息的度量和作用" class="headerlink" title="第六章 信息的度量和作用"></a>第六章 信息的度量和作用</h4><ul>
+<li><p>信息熵<br>要搞清楚意见非常非常不确定的事，或是我们一无所知的事情，就需要了解大量的信息。<br>相反，如果我们对某件事已经有了较多的了解，那么不需要太多的信息就能把它搞清楚。<br>所以，从这个角度来看，可以认为，信息量就等于不确定性的多少。</p>
+</li>
+<li><p>信息的作用<br>在英语里，信息和情报是同一个词（ Information ），而我们知道情报的作用就是排除不确定性。</p>
+</li>
+<li><p>案例：斯大林、日军南下战略情报</p>
+</li>
+</ul>
+<p><strong>如果没有信息，任何公式或者数字的游戏都无法排除不确定性。这个朴素的结论非常重要，但是在研究工作中经常被一些半瓶子醋的专家忽视，希望做这方面工作的读者谨记</strong>。</p>
+<p>几乎所有的自然语言处理、信息与信号处理的应用都是一个消除不确定性的过程。</p>
+<h4 id="延伸阅读：信息论在信息处理中的应用"><a href="#延伸阅读：信息论在信息处理中的应用" class="headerlink" title="延伸阅读：信息论在信息处理中的应用"></a>延伸阅读：信息论在信息处理中的应用</h4><ul>
+<li>信息熵</li>
+<li>冗余度 ( Redundancy )</li>
+<li>互信息 ( Mutual Information )，量化地度量相关性</li>
+<li>相对熵 ( Relative Entropy 或 Kullback-Leibler Divergence )</li>
+</ul>
+<h4 id="信息论参考文献"><a href="#信息论参考文献" class="headerlink" title="信息论参考文献"></a>信息论参考文献</h4><ul>
+<li>《A Mathematic Theory of Communication》(“通信的数学原理”)，香农（ Claude Shannon ）,1948</li>
+<li>《Elements of Information Theory》(“信息论基础”)，托马斯·科弗（ Thomas Cover ）</li>
+</ul>
+<h4 id="第七章-贾里尼克和现代语言处理"><a href="#第七章-贾里尼克和现代语言处理" class="headerlink" title="第七章 贾里尼克和现代语言处理"></a>第七章 贾里尼克和现代语言处理</h4><h4 id="第八章-简单之美——布尔代数和搜索引擎的索引"><a href="#第八章-简单之美——布尔代数和搜索引擎的索引" class="headerlink" title="第八章 简单之美——布尔代数和搜索引擎的索引"></a>第八章 简单之美——布尔代数和搜索引擎的索引</h4><h4 id="第九章-图论和网络爬虫"><a href="#第九章-图论和网络爬虫" class="headerlink" title="第九章 图论和网络爬虫"></a>第九章 图论和网络爬虫</h4><p>计划：201706<br>通读：20170927</p>
+<ul>
+<li>交通路径规划</li>
+<li>深度优先搜索（ Depth-First Search , DFS）</li>
+<li>广度优先搜索（ Breadth-First Search , BFS）</li>
+<li>网络爬虫 ( Web Crawlers ) ：超链接 ( Hyperlinks )</li>
+</ul>
+<h4 id="延伸阅读：图论的亮点补充说明"><a href="#延伸阅读：图论的亮点补充说明" class="headerlink" title="延伸阅读：图论的亮点补充说明"></a>延伸阅读：图论的亮点补充说明</h4><ol>
+<li>欧拉七桥问题的证明</li>
+<li>构建网络爬虫的工程要点：<pre><code> 1）搜索引擎的调度（BFS）
+ 2）页面分析和 URL 的提取
+ 3）记录哪些网页已经下载（ URL 表）
+</code></pre></li>
+</ol>
+<blockquote>
+<p>很多数学方法就是这样，看上去没有什么实际用途，但是随着时间的推移会一下子派上大用场。这恐怕是世界上还有很多人毕生研究数学的原因。</p>
+</blockquote>
+<h4 id="第十章-PageRank——Google的民主表决式网页排名技术"><a href="#第十章-PageRank——Google的民主表决式网页排名技术" class="headerlink" title="第十章 PageRank——Google的民主表决式网页排名技术"></a>第十章 PageRank——Google的民主表决式网页排名技术</h4><h4 id="第十一章-如何确定网页和查询的相关性"><a href="#第十一章-如何确定网页和查询的相关性" class="headerlink" title="第十一章 如何确定网页和查询的相关性"></a>第十一章 如何确定网页和查询的相关性</h4><h4 id="第十二章-地图和本地搜索的最基本技术——有限状态机和动态规划"><a href="#第十二章-地图和本地搜索的最基本技术——有限状态机和动态规划" class="headerlink" title="第十二章 地图和本地搜索的最基本技术——有限状态机和动态规划"></a>第十二章 地图和本地搜索的最基本技术——有限状态机和动态规划</h4><h4 id="第十三章-Google-AK-47的设计者——阿米特-辛格博士"><a href="#第十三章-Google-AK-47的设计者——阿米特-辛格博士" class="headerlink" title="第十三章 Google AK-47的设计者——阿米特-辛格博士"></a>第十三章 Google AK-47的设计者——阿米特-辛格博士</h4><h4 id="第十四章-余弦定理和新闻的分类"><a href="#第十四章-余弦定理和新闻的分类" class="headerlink" title="第十四章 余弦定理和新闻的分类"></a>第十四章 余弦定理和新闻的分类</h4><h4 id="第十五章-矩阵运算和文本处理中的两个分类问题"><a href="#第十五章-矩阵运算和文本处理中的两个分类问题" class="headerlink" title="第十五章 矩阵运算和文本处理中的两个分类问题"></a>第十五章 矩阵运算和文本处理中的两个分类问题</h4><h4 id="第十六章-信息指纹及其应用"><a href="#第十六章-信息指纹及其应用" class="headerlink" title="第十六章 信息指纹及其应用"></a>第十六章 信息指纹及其应用</h4><h4 id="第十七章-由电视剧《暗算》所想到的——谈谈密码学的数据原理"><a href="#第十七章-由电视剧《暗算》所想到的——谈谈密码学的数据原理" class="headerlink" title="第十七章 由电视剧《暗算》所想到的——谈谈密码学的数据原理"></a>第十七章 由电视剧《暗算》所想到的——谈谈密码学的数据原理</h4><p>计划：201706</p>
+<h4 id="第十八章-闪光的不一定是金子——谈谈搜索引擎反作弊问题"><a href="#第十八章-闪光的不一定是金子——谈谈搜索引擎反作弊问题" class="headerlink" title="第十八章 闪光的不一定是金子——谈谈搜索引擎反作弊问题"></a>第十八章 闪光的不一定是金子——谈谈搜索引擎反作弊问题</h4><h4 id="第十九章-谈谈数学模型的重要性"><a href="#第十九章-谈谈数学模型的重要性" class="headerlink" title="第十九章 谈谈数学模型的重要性"></a>第十九章 谈谈数学模型的重要性</h4><h4 id="第二十章-不要把鸡蛋放在一个篮子里——谈谈最大熵模型"><a href="#第二十章-不要把鸡蛋放在一个篮子里——谈谈最大熵模型" class="headerlink" title="第二十章 不要把鸡蛋放在一个篮子里——谈谈最大熵模型"></a>第二十章 不要把鸡蛋放在一个篮子里——谈谈最大熵模型</h4><h4 id="第二十一章-拼音输入法的数学模型"><a href="#第二十一章-拼音输入法的数学模型" class="headerlink" title="第二十一章 拼音输入法的数学模型"></a>第二十一章 拼音输入法的数学模型</h4><h4 id="第二十二章-自然语言处理的教父马库斯和他的优秀弟子们"><a href="#第二十二章-自然语言处理的教父马库斯和他的优秀弟子们" class="headerlink" title="第二十二章 自然语言处理的教父马库斯和他的优秀弟子们"></a>第二十二章 自然语言处理的教父马库斯和他的优秀弟子们</h4><h4 id="第二十三章-布隆过滤器"><a href="#第二十三章-布隆过滤器" class="headerlink" title="第二十三章 布隆过滤器"></a>第二十三章 布隆过滤器</h4><h2 id="第二十四章-马尔可夫链的扩展——贝叶斯网络"><a href="#第二十四章-马尔可夫链的扩展——贝叶斯网络" class="headerlink" title="第二十四章 马尔可夫链的扩展——贝叶斯网络"></a>第二十四章 马尔可夫链的扩展——贝叶斯网络</h2><p>计划：201706<br>通读：20170925</p>
+<p><strong>贝叶斯网络（Bayesian network）</strong> 是一种概率图型模型。</p>
+<p>一般而言，贝叶斯网络中的节点表示随机变量，连接两个节点的箭头代表此两个随机变量是具有因果关系的；而两个节点间若没有箭头相互连接一起，表明他们之间没有直接的因果关系（注：并不表明A不会通过其他状态间接地影响状态B）。所有这些（因果）关系，都可以有一个量化的可信度（Belief）,用一个概率描述。也就是说，贝叶斯网络的弧上可以有附加的权重。因此，贝叶斯网络也被称作 <strong>信念网络（Belief Networks）</strong> 或者 <strong>有向无环图模型（directed acyclic graphical model）</strong> 。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Bayesian-network.png" alt=""></p>
+<h4 id="案例：描述心血管疾病和成因"><a href="#案例：描述心血管疾病和成因" class="headerlink" title="案例：描述心血管疾病和成因"></a>案例：描述心血管疾病和成因</h4><p>一个简单的贝叶斯网络案例，描述心血管疾病和成因。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">digraph diseaseCVD&#123;</span><br><span class="line">  label=&quot;\n 案例：一个描述心血管疾病和成因的贝叶斯网络 \n&quot;;</span><br><span class="line">  心血管疾病-&gt;胆固醇量;</span><br><span class="line">  心血管疾病-&gt;血脂;</span><br><span class="line">  心血管疾病-&gt;吸烟;</span><br><span class="line">  心血管疾病-&gt;运动量;</span><br><span class="line">  心血管疾病-&gt;家族病史;</span><br><span class="line">  胆固醇量-&gt;运动量;</span><br><span class="line">  胆固醇量-&gt;饱和脂肪摄取量;</span><br><span class="line">  胆固醇量-&gt;家族病史;</span><br><span class="line">  血脂-&gt;饱和脂肪摄取量;</span><br><span class="line">  血脂-&gt;家族病史;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/disease_CVD.png" alt=""></p>
+<p>上面的例子进一步简化之后，假定只有三个状态 “心血管疾病”，“高血脂”和“家族病史”。假定每个状态只有“有”、“无”两种，并且给出组合状态的条件概率。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">digraph SimpleDiseaseCVD&#123;</span><br><span class="line">  label=&quot;\n 案例：心血管疾病和成因的贝叶斯网络（简化） \n&quot;;</span><br><span class="line">  心血管疾病-&gt;高血脂;</span><br><span class="line">  心血管疾病-&gt;家族病史;</span><br><span class="line">  高血脂-&gt;家族病史;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>心血管疾病</th>
+<th>家族病史、高血脂</th>
+<th>有</th>
+<th>无</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有</td>
+<td>有</td>
+<td>0.9</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>有</td>
+<td>无</td>
+<td>0.4</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>有</td>
+<td>有</td>
+<td>0.4</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>有</td>
+<td>无</td>
+<td>0.1</td>
+<td>0.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>高血脂</th>
+<th>家族病史</th>
+<th>有</th>
+<th>无</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有</td>
+<td>有</td>
+<td>0.4</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>有</td>
+<td>无</td>
+<td>0.1</td>
+<td>0.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>联合概率分布（贝叶斯公式）：</p>
+<blockquote>
+<p>P(家族病史，高血脂，心血管疾病) = P（家族病史|高血脂，心血管疾病）x P（高血脂|家族病史）x P（家族病史）</p>
+</blockquote>
+<p>例如，计算心血管疾病有多大概率是由家族病史引起的。</p>
+<blockquote>
+<p>P(家族病史|有心脏病) = P（有家族病史，有心脏病）/ P（有心脏病）</p>
+</blockquote>
+<p>其中：</p>
+<blockquote>
+<p>P(有家族病史，有心脏病) = P（有家族病史，有心脏病，无高血脂）+ P（有家族病史，有心脏病，有高血脂）</p>
+<p>P(有心脏病) = P（有家族病史，有心脏病，无高血脂）+ P（有家族病史，有心脏病，有高血脂）+ P（无家族病史，有心脏病，无高血脂）+ P（无家族病史，有心脏病，有高血脂）</p>
+</blockquote>
+<p>P(有家族病史，有心脏病) = 0.18 x 0.4 + 0.12 x 0.4<br>                    = 0.12</p>
+<p>P(有心脏病) = 0.12 + 0.08x0.4 + 0.72x0.1<br>          = 0.12 + 0.144<br>          = 0.264</p>
+<h4 id="第二十五章-条件随即场和句法分析"><a href="#第二十五章-条件随即场和句法分析" class="headerlink" title="第二十五章 条件随即场和句法分析"></a>第二十五章 条件随即场和句法分析</h4><h4 id="第二十六章-维特比和他的维特比算法"><a href="#第二十六章-维特比和他的维特比算法" class="headerlink" title="第二十六章 维特比和他的维特比算法"></a>第二十六章 维特比和他的维特比算法</h4><h4 id="第二十七章-再谈文本自动分类问题——期望最大化算法"><a href="#第二十七章-再谈文本自动分类问题——期望最大化算法" class="headerlink" title="第二十七章 再谈文本自动分类问题——期望最大化算法"></a>第二十七章 再谈文本自动分类问题——期望最大化算法</h4><h4 id="第二十八章-逻辑回归和搜索广告"><a href="#第二十八章-逻辑回归和搜索广告" class="headerlink" title="第二十八章 逻辑回归和搜索广告"></a>第二十八章 逻辑回归和搜索广告</h4><h4 id="第二十九章-各个击破算法和Google云计算的基础"><a href="#第二十九章-各个击破算法和Google云计算的基础" class="headerlink" title="第二十九章 各个击破算法和Google云计算的基础"></a>第二十九章 各个击破算法和Google云计算的基础</h4><h4 id="第三十章-逻辑回归和搜索广告"><a href="#第三十章-逻辑回归和搜索广告" class="headerlink" title="第三十章 逻辑回归和搜索广告"></a>第三十章 逻辑回归和搜索广告</h4><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图 | 开源中国首页推荐·每日一博</a></li>
+<li>Why draw when you can code?</li>
+<li>Graphviz 简介</li>
+<li>最佳 Graphviz 实践：流程图、数据结构图、网络路径 Trace Route、复杂社会关系链分析、机器学习算法-决策树(Decision Tree)</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.insightdatascience.com/how-to-solve-90-of-nlp-problems-a-step-by-step-guide-fda605278e4e">How to solve 90% of NLP problems: a step-by-step guide | Using Machine Learning to understand and leverage text</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/08/30/Mathmetics-Beauty/" data-id="ckwgm33me00g47b1y766a4zcc" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E6%8A%80%E5%8F%B2/" rel="tag">科技史</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/31/CyberSecurity-Headers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Cyber-Security:Web应用安全：攻击、防护与检测
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/29/Machine-Learning-News/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">AI产业资讯|经济学人报道合辑</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%8A%E6%95%B0%E5%AD%A6%E4%B9%8B%E7%BE%8E%E3%80%8B-Topic"><span class="toc-number">2.</span> <span class="toc-text">《数学之美》 Topic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%96%87%E5%AD%97%E5%92%8C%E8%AF%AD%E8%A8%80-vs-%E6%95%B0%E5%AD%97%E5%92%8C%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">第一章 文字和语言 vs 数字和信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E2%80%94%E2%80%94%E4%BB%8E%E8%A7%84%E5%88%99%E5%88%B0%E7%BB%9F%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">第二章 自然语言处理——从规则到统计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips"><span class="toc-number">4.0.1.</span> <span class="toc-text">Tips:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">4.0.2.</span> <span class="toc-text">自然语言发展阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%BA%E7%89%A9"><span class="toc-number">4.0.3.</span> <span class="toc-text">人物</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%95%BF%E8%BE%BE15%E5%B9%B4%E7%9A%84%E5%AF%B9%E5%B3%99%E6%97%B6%E6%9C%9F"><span class="toc-number">4.0.4.</span> <span class="toc-text">长达15年的对峙时期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">4.0.5.</span> <span class="toc-text">基于统计方法的发展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E5%8F%B2%E7%9A%84%E6%95%99%E8%AE%AD%EF%BC%9A%E7%AD%89%E5%BE%85%E8%80%81%E7%A7%91%E5%AD%A6%E5%AE%B6%E9%80%80%E4%BC%91"><span class="toc-number">4.0.6.</span> <span class="toc-text">科学史的教训：等待老科学家退休</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%9F%E8%AE%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">第三章 统计语言模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB%EF%BC%9A%E7%BB%9F%E8%AE%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%B7%A5%E7%A8%8B%E8%AF%80%E7%AA%8D"><span class="toc-number">5.0.1.</span> <span class="toc-text">延伸阅读：统计语言模型的工程诀窍</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E8%B0%88%E8%B0%88%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D"><span class="toc-number">6.</span> <span class="toc-text">第四章 谈谈中文分词</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E9%9A%90%E5%90%AB%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.0.1.</span> <span class="toc-text">第五章 隐含马尔可夫模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB%E9%9A%90%E5%90%AB%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="toc-number">6.0.2.</span> <span class="toc-text">延伸阅读隐含马尔可夫模型的训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E5%BA%A6%E9%87%8F%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="toc-number">6.0.3.</span> <span class="toc-text">第六章 信息的度量和作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB%EF%BC%9A%E4%BF%A1%E6%81%AF%E8%AE%BA%E5%9C%A8%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.0.4.</span> <span class="toc-text">延伸阅读：信息论在信息处理中的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E8%AE%BA%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.0.5.</span> <span class="toc-text">信息论参考文献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E8%B4%BE%E9%87%8C%E5%B0%BC%E5%85%8B%E5%92%8C%E7%8E%B0%E4%BB%A3%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86"><span class="toc-number">6.0.6.</span> <span class="toc-text">第七章 贾里尼克和现代语言处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E7%AE%80%E5%8D%95%E4%B9%8B%E7%BE%8E%E2%80%94%E2%80%94%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0%E5%92%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="toc-number">6.0.7.</span> <span class="toc-text">第八章 简单之美——布尔代数和搜索引擎的索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%9B%BE%E8%AE%BA%E5%92%8C%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span class="toc-number">6.0.8.</span> <span class="toc-text">第九章 图论和网络爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB%EF%BC%9A%E5%9B%BE%E8%AE%BA%E7%9A%84%E4%BA%AE%E7%82%B9%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">6.0.9.</span> <span class="toc-text">延伸阅读：图论的亮点补充说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-PageRank%E2%80%94%E2%80%94Google%E7%9A%84%E6%B0%91%E4%B8%BB%E8%A1%A8%E5%86%B3%E5%BC%8F%E7%BD%91%E9%A1%B5%E6%8E%92%E5%90%8D%E6%8A%80%E6%9C%AF"><span class="toc-number">6.0.10.</span> <span class="toc-text">第十章 PageRank——Google的民主表决式网页排名技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E7%BD%91%E9%A1%B5%E5%92%8C%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-number">6.0.11.</span> <span class="toc-text">第十一章 如何确定网页和查询的相关性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E5%9C%B0%E5%9B%BE%E5%92%8C%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E7%9A%84%E6%9C%80%E5%9F%BA%E6%9C%AC%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.0.12.</span> <span class="toc-text">第十二章 地图和本地搜索的最基本技术——有限状态机和动态规划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-Google-AK-47%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%80%85%E2%80%94%E2%80%94%E9%98%BF%E7%B1%B3%E7%89%B9-%E8%BE%9B%E6%A0%BC%E5%8D%9A%E5%A3%AB"><span class="toc-number">6.0.13.</span> <span class="toc-text">第十三章 Google AK-47的设计者——阿米特-辛格博士</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E4%BD%99%E5%BC%A6%E5%AE%9A%E7%90%86%E5%92%8C%E6%96%B0%E9%97%BB%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">6.0.14.</span> <span class="toc-text">第十四章 余弦定理和新闻的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%E5%92%8C%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="toc-number">6.0.15.</span> <span class="toc-text">第十五章 矩阵运算和文本处理中的两个分类问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E4%BF%A1%E6%81%AF%E6%8C%87%E7%BA%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="toc-number">6.0.16.</span> <span class="toc-text">第十六章 信息指纹及其应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E7%94%B1%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E6%9A%97%E7%AE%97%E3%80%8B%E6%89%80%E6%83%B3%E5%88%B0%E7%9A%84%E2%80%94%E2%80%94%E8%B0%88%E8%B0%88%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8E%9F%E7%90%86"><span class="toc-number">6.0.17.</span> <span class="toc-text">第十七章 由电视剧《暗算》所想到的——谈谈密码学的数据原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E9%97%AA%E5%85%89%E7%9A%84%E4%B8%8D%E4%B8%80%E5%AE%9A%E6%98%AF%E9%87%91%E5%AD%90%E2%80%94%E2%80%94%E8%B0%88%E8%B0%88%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%8D%E4%BD%9C%E5%BC%8A%E9%97%AE%E9%A2%98"><span class="toc-number">6.0.18.</span> <span class="toc-text">第十八章 闪光的不一定是金子——谈谈搜索引擎反作弊问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E8%B0%88%E8%B0%88%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">6.0.19.</span> <span class="toc-text">第十九章 谈谈数学模型的重要性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0-%E4%B8%8D%E8%A6%81%E6%8A%8A%E9%B8%A1%E8%9B%8B%E6%94%BE%E5%9C%A8%E4%B8%80%E4%B8%AA%E7%AF%AE%E5%AD%90%E9%87%8C%E2%80%94%E2%80%94%E8%B0%88%E8%B0%88%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.0.20.</span> <span class="toc-text">第二十章 不要把鸡蛋放在一个篮子里——谈谈最大熵模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%8B%BC%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.0.21.</span> <span class="toc-text">第二十一章 拼音输入法的数学模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%AB%A0-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%9A%84%E6%95%99%E7%88%B6%E9%A9%AC%E5%BA%93%E6%96%AF%E5%92%8C%E4%BB%96%E7%9A%84%E4%BC%98%E7%A7%80%E5%BC%9F%E5%AD%90%E4%BB%AC"><span class="toc-number">6.0.22.</span> <span class="toc-text">第二十二章 自然语言处理的教父马库斯和他的优秀弟子们</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">6.0.23.</span> <span class="toc-text">第二十三章 布隆过滤器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AB%A0-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE%E7%9A%84%E6%89%A9%E5%B1%95%E2%80%94%E2%80%94%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9C"><span class="toc-number">7.</span> <span class="toc-text">第二十四章 马尔可夫链的扩展——贝叶斯网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%8F%8F%E8%BF%B0%E5%BF%83%E8%A1%80%E7%AE%A1%E7%96%BE%E7%97%85%E5%92%8C%E6%88%90%E5%9B%A0"><span class="toc-number">7.0.1.</span> <span class="toc-text">案例：描述心血管疾病和成因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%94%E7%AB%A0-%E6%9D%A1%E4%BB%B6%E9%9A%8F%E5%8D%B3%E5%9C%BA%E5%92%8C%E5%8F%A5%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">7.0.2.</span> <span class="toc-text">第二十五章 条件随即场和句法分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AD%E7%AB%A0-%E7%BB%B4%E7%89%B9%E6%AF%94%E5%92%8C%E4%BB%96%E7%9A%84%E7%BB%B4%E7%89%B9%E6%AF%94%E7%AE%97%E6%B3%95"><span class="toc-number">7.0.3.</span> <span class="toc-text">第二十六章 维特比和他的维特比算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%83%E7%AB%A0-%E5%86%8D%E8%B0%88%E6%96%87%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94%E6%9C%9F%E6%9C%9B%E6%9C%80%E5%A4%A7%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-number">7.0.4.</span> <span class="toc-text">第二十七章 再谈文本自动分类问题——期望最大化算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%92%8C%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A"><span class="toc-number">7.0.5.</span> <span class="toc-text">第二十八章 逻辑回归和搜索广告</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B9%9D%E7%AB%A0-%E5%90%84%E4%B8%AA%E5%87%BB%E7%A0%B4%E7%AE%97%E6%B3%95%E5%92%8CGoogle%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E5%9F%BA%E7%A1%80"><span class="toc-number">7.0.6.</span> <span class="toc-text">第二十九章 各个击破算法和Google云计算的基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E7%AB%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%92%8C%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A"><span class="toc-number">7.0.7.</span> <span class="toc-text">第三十章 逻辑回归和搜索广告</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

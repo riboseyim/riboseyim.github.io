@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>计算机网络协议 | Overview of Protocol | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络协议 | Overview of Protocol">
+<meta property="og:url" content="https://riboseyim.com/2017/05/26/Protocol/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-05-26T02:30:59.000Z">
+<meta property="article:modified_time" content="2020-08-04T07:33:25.000Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Protocol" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/26/Protocol/" class="article-date">
+  <time datetime="2017-05-26T02:30:59.000Z" itemprop="datePublished">2017-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络协议 | Overview of Protocol
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/26/Protocol/" data-id="ckwgm33na00m47b1yzkdb2tun" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="一、网络协议大全"><a href="#一、网络协议大全" class="headerlink" title="一、网络协议大全"></a>一、网络协议大全</h2><h4 id="1-1-TCP"><a href="#1-1-TCP" class="headerlink" title="1.1 TCP"></a>1.1 <a href="https://riboseyim.github.io/2017/05/12/Protocol-TCP/" target="_blank" rel="noopener">TCP</a></h4><ul>
+<li>Transmission Control Protocol (TCP)  RFC 793<h4 id="1-2-UDP"><a href="#1-2-UDP" class="headerlink" title="1.2 UDP"></a>1.2 <a href="https://riboseyim.github.io/2017/05/12/Protocol-UDP/" target="_blank" rel="noopener">UDP</a></h4></li>
+<li>User Datagram Protocol (UDP)  RFC 768<h4 id="1-3-IP"><a href="#1-3-IP" class="headerlink" title="1.3 IP"></a>1.3 IP</h4></li>
+<li><a href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/" target="_blank" rel="noopener">计算机网络协议：IPv6 与网络安全</a></li>
+<li>IPv6 Routing Header RFC 1883</li>
+<li>IPv6 Fragment Header RFC 1883</li>
+<li>ICMP for IPv6 RFC 1883</li>
+<li><p>VPC/RFB Protocol：绿盟安全审计系统 <a href="https://patents.google.com/patent/CN102821161B" target="_blank" rel="noopener">CN102821161B</a></p>
+</li>
+<li><p><strong>Star</strong> <a href="http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/#tuntap-devices" target="_blank" rel="noopener">Let’s code a TCP/IP stack</a></p>
+</li>
+</ul>
+<h4 id="1-4-Link-Layer"><a href="#1-4-Link-Layer" class="headerlink" title="1.4 Link Layer"></a>1.4 Link Layer</h4><p>链路层发现协议（Link Layer Discovery Protocol，LLDP）是一种数据链路层协议，网络设备可以通过在本地网络中发送LLDPDU（Link Layer Discovery Protocol Data Unit）来通告其他设备自身的状态。是一种能够使网络中的设备互相发现并通告状态、交互信息的协议。</p>
+<ul>
+<li><a href="http://www.ieee802.org/3/frame_study/0409/blatherwick_1_0409.pdf" target="_blank" rel="noopener">802.1AB Overview | Link Layer Discovery Protocol | IEEE 802.3 Frame Expansion Study Group<br>Ottawa | Sept 30, 2004</a></li>
+<li><a href="https://www.cisco.com/c/zh_cn/support/docs/smb/switches/cisco-250-series-smart-switches/smb2767-configure-link-layer-discovery-protocol-lldp-port-settings-o.html" target="_blank" rel="noopener">配置链路层发现协议(LLDP)在交换机的端口设置 | Cisco</a>  </li>
+</ul>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ul>
+<li>Internet Control Messages Protocol (ICMP)  RFC 792</li>
+<li><p>Internet Group Management Protocol (IGMP)  RFC 3376</p>
+</li>
+<li><p>Exterior Gateway Protocol  RFC 888</p>
+</li>
+</ul>
+<h4 id="2-1-Software"><a href="#2-1-Software" class="headerlink" title="2.1 Software"></a>2.1 Software</h4><ul>
+<li><a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="noopener">计算机远程通信协议：从 从 CORBA 到 gRPC</a></li>
+<li>DNSSEC : Domain Name System Security Extensions ，CDNS安全扩展，RFC 2535</li>
+</ul>
+<h2 id="二、调试工具"><a href="#二、调试工具" class="headerlink" title="二、调试工具"></a>二、调试工具</h2><h4 id="2-1-关于网络数据包的捕获、过滤和分析-Packet-Capturing"><a href="#2-1-关于网络数据包的捕获、过滤和分析-Packet-Capturing" class="headerlink" title="2.1 关于网络数据包的捕获、过滤和分析(Packet Capturing)"></a>2.1 <a href="https://riboseyim.github.io/2017/06/16/Network-Pcap/" target="_blank" rel="noopener">关于网络数据包的捕获、过滤和分析(Packet Capturing)</a></h4><ul>
+<li>What is Packet Capturing</li>
+<li>How can it be used</li>
+<li>What is libpcap</li>
+<li>What is tcpdump &amp; winpcap &amp; snoop</li>
+<li>What is BPF</li>
+<li><p>What is gopacket</p>
+</li>
+<li><p><a href="http://cizixs.com/2017/10/23/tc-netem-for-terrible-network" target="_blank" rel="noopener">使用tc netem 模拟网络异常 | cizixs </a></p>
+</li>
+</ul>
+<h4 id="2-2-Netfilter"><a href="#2-2-Netfilter" class="headerlink" title="2.2 Netfilter"></a>2.2 Netfilter</h4><ul>
+<li><a href="http://blog.csdn.net/dog250/article/details/6572779" target="_blank" rel="noopener">赵亚：Linux的Netfilter框架深度思考-对比Cisco的ACL</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/9103817" target="_blank" rel="noopener">赵亚：探索iptables BPF模块的悲惨历程</a></li>
+</ul>
+<h2 id="三、模拟仿真工具"><a href="#三、模拟仿真工具" class="headerlink" title="三、模拟仿真工具"></a>三、模拟仿真工具</h2><ul>
+<li><a href="https://www.quagga.net/" target="_blank" rel="noopener">Project Quagga</a></li>
+<li><a href="https://linux.cn/article-4232-1.html" target="_blank" rel="noopener">使用 Quagga 将你的 CentOS 变成 OSPF 路由器</a></li>
+</ul>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ul>
+<li><a href="https://blog.feedspot.com/networking_blogs/" target="_blank" rel="noopener">Top 100 Computer Networking Blogs and Websites To Follow in 2018</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://blog.csdn.net/dog250/article/details/71248888" target="_blank" rel="noopener">赵亚：用Netcat，SSH构建的IP层加密隧道搭建VPN</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/71076357" target="_blank" rel="noopener">赵亚： 从一个简单的聊天程序SimpleChat看VPN技术</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/70343660" target="_blank" rel="noopener">赵亚：BadVPN详解之—组网原理剖析</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/69668590" target="_blank" rel="noopener">赵亚：通信网络与IP网络底层传输技术梳理(SONET/SDH/OTN/ATM/Ethernet/MPLS/PTN…)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/26/Protocol/" data-id="ckwgm33na00m47b1yzkdb2tun" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/26/Language/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          专题：编程语言系列
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/24/Log/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源技术架构漫谈：应用程序的日志管理及可视化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%A4%A7%E5%85%A8"><span class="toc-number">2.</span> <span class="toc-text">一、网络协议大全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-TCP"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.1 TCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-UDP"><span class="toc-number">2.0.2.</span> <span class="toc-text">1.2 UDP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-IP"><span class="toc-number">2.0.3.</span> <span class="toc-text">1.3 IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-Link-Layer"><span class="toc-number">2.0.4.</span> <span class="toc-text">1.4 Link Layer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">2.0.5.</span> <span class="toc-text">其它</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-Software"><span class="toc-number">2.0.6.</span> <span class="toc-text">2.1 Software</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">二、调试工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%8D%95%E8%8E%B7%E3%80%81%E8%BF%87%E6%BB%A4%E5%92%8C%E5%88%86%E6%9E%90-Packet-Capturing"><span class="toc-number">3.0.1.</span> <span class="toc-text">2.1 关于网络数据包的捕获、过滤和分析(Packet Capturing)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Netfilter"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.2 Netfilter</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E6%8B%9F%E4%BB%BF%E7%9C%9F%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">三、模拟仿真工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90"><span class="toc-number">5.</span> <span class="toc-text">资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>AI技术原理|如何选择机器学习算法？ | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 识别和应用机器学习算法解决问题 机器学习算法备忘单 何时使用特定算法? 线性回归 vs 逻辑回归,Linear SVM vs kernel SVM,Trees 神经网络和深度学习：k-means&#x2F;k-modes,GMM,Hierarchical clustering,PCA,SVD,LDA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI技术原理|如何选择机器学习算法？">
+<meta property="og:url" content="https://riboseyim.com/2018/04/02/Machine-Learning-Algorithms-Sheet/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 识别和应用机器学习算法解决问题 机器学习算法备忘单 何时使用特定算法? 线性回归 vs 逻辑回归,Linear SVM vs kernel SVM,Trees 神经网络和深度学习：k-means&#x2F;k-modes,GMM,Hierarchical clustering,PCA,SVD,LDA">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-cheet-sheet.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-linear-regression.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-logistic-regresion.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-kernal-SVM.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-Group-By-Linear-Regression.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-Logistic-Regression-SAS.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-decision-tree.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-cnn-architecture.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-vdmml_neural.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-kmeans-clustering-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-gaussianmixturemodel-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-dbscan.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-Hierarchical_clustering.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-04-02T07:28:39.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:06.503Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="数学与算法">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/machine-learning-cheet-sheet.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-Algorithms-Sheet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/Machine-Learning-Algorithms-Sheet/" class="article-date">
+  <time datetime="2018-04-02T07:28:39.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AI技术原理|如何选择机器学习算法？
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/04/02/Machine-Learning-Algorithms-Sheet/" data-id="ckwgm33m200dt7b1y835a1ebm" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>识别和应用机器学习算法解决问题</li>
+<li>机器学习算法备忘单</li>
+<li>何时使用特定算法? 线性回归 vs 逻辑回归,Linear SVM vs kernel SVM,Trees</li>
+<li>神经网络和深度学习：k-means/k-modes,GMM,Hierarchical clustering,PCA,SVD,LDA</li>
+</ul>
+<span id="more"></span>
+<h2 id="Machine-Learning-Algorithms-Overview"><a href="#Machine-Learning-Algorithms-Overview" class="headerlink" title="Machine Learning Algorithms Overview"></a>Machine Learning Algorithms Overview</h2><p>关于目前最流行的一些机器学习算法，建议阅读：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+</ul>
+<p>如果您已经非常熟悉这些算法，可以跳过本节。</p>
+<h2 id="Which-machine-learning-algorithm-should-I-use"><a href="#Which-machine-learning-algorithm-should-I-use" class="headerlink" title="Which machine learning algorithm should I use?"></a>Which machine learning algorithm should I use?</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/?utm_source=twitter&amp;utm_medium=cpc&amp;utm_campaign=analytics-global&amp;utm_content=US_tap">Which machine learning algorithm should I use? | Hui Li | Principal Staff Scientist, Data Science</a></li>
+</ul>
+<p>面对各种机器学习算法时，经常遇到的一个典型问题是“我应该使用哪种算法？” 问题的答案取决于许多因素，其中包括：</p>
+<ul>
+<li>数据的大小，质量和性质</li>
+<li>可用的计算时间</li>
+<li>任务的紧迫性</li>
+<li>你想对数据做什么</li>
+</ul>
+<p>即使是一位经验丰富的数据科学家，也无法在尝试不同的算法之前知道哪种算法会表现最好。我们并不主张这是唯一的、完美的方案，而是希望能够根据一些明确的因素提供指导——首先应该尝试哪些算法。</p>
+<h3 id="机器学习算法备忘单"><a href="#机器学习算法备忘单" class="headerlink" title="机器学习算法备忘单"></a>机器学习算法备忘单</h3><p>机器学习算法备忘单（The machine learning algorithm cheat sheet）可以帮助您从各种机器学习算法中进行选择，以找到适合您的特定问题的适当算法。本文将说明使用备忘单的过程。</p>
+<p>由于备忘单是为初学者数据科学家和分析师设计的，因此在讨论算法时会做一些简化假设。这里推荐的算法来自几位数据科学家和机器学习专家和开发人员的反馈和提示。有几个问题我们的看法并不一致，对于这些问题，我们试图强调通用性、尽量调和差异。随着我们的知识库发展，将包含一套更完整的方法，其他算法将在稍后添加。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-cheet-sheet.png" alt="The machine learning algorithm cheat sheet"></p>
+<h4 id="如何使用备忘单"><a href="#如何使用备忘单" class="headerlink" title="如何使用备忘单"></a>如何使用备忘单</h4><p>备忘单使用方法，依次阅读的路径和算法标签，例如：</p>
+<ul>
+<li>如果要执行降维（dimension reduction），则使用主成分分析（principal component analysis）</li>
+<li>如果您需要快速进行数值预测（numeric prediction），请使用决策树（decision tree）或逻辑回归（ logistic regression）</li>
+<li>如果您需要分层结果，则使用分层聚类（hierarchical clustering）</li>
+</ul>
+<p>有些场景可能会适用不止一个分支，也有些场景不能完美匹配上，重要的是要记住，这些路径只是基于经验的方法，因此一些建议并不完全准确。许多数据科学家的关电视，找到最好算法的唯一方法就是尝试所有算法（the only sure way to find the very best algorithm is to try all of them）。</p>
+<h2 id="何时使用特定算法"><a href="#何时使用特定算法" class="headerlink" title="何时使用特定算法?"></a>何时使用特定算法?</h2><h4 id="线性回归-vs-逻辑回归"><a href="#线性回归-vs-逻辑回归" class="headerlink" title="线性回归 vs 逻辑回归"></a>线性回归 vs 逻辑回归</h4><p>线性回归是一种讨论连续因变量之间关系的建模方法。如果因变量不是连续的而是分类的，则可以使用 logit link function 将线性回归转化为逻辑回归。逻辑回归是一种简单，快速而强大的分类算法。这里我们讨论二进制情况下的因变量</p>
+<p>在逻辑回归中，我们使用不同的假设类来尝试预测给定示例属于“1”类的概率与其属于“-1”类的概率。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>线性回归</th>
+<th>逻辑回归</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-linear-regression.png" alt="Linear regression"></td>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-logistic-regresion.png" alt="Logistic regression"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Linear-SVM-vs-kernel-SVM"><a href="#Linear-SVM-vs-kernel-SVM" class="headerlink" title="Linear SVM vs kernel SVM"></a>Linear SVM vs kernel SVM</h4><p>当数据的各种类型不是线性可分的时候，核方法（Kernel method 或 Kernel tricks）可以用来将非线性可分的空间映射到更高维的线性可分的空间。</p>
+<p>支持向量机（SVM）算法相当于通过法线（Normal vector）和超平面偏差（bias  of the hyperplane）获得分类器。这个超平面（边界）尽可能宽地分隔不同的类，该问题可以转化为约束优化问题。</p>
+<p>当大多数因变量是数字时，逻辑回归和 SVM 是首先应该尝试的分类方法。这些模型易于实现，参数易调整，性能也相当不错。非常适合初学者。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-kernal-SVM.png" alt="Kernel tricks are used to map a non-linearly separable functions into a higher dimension linearly separable function."></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>线性回归</th>
+<th>逻辑回归</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-Group-By-Linear-Regression.jpg" alt="Group By Linear Regression"></td>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-Logistic-Regression-SAS.jpg" alt="machine-learning-Logistic-Regression-SAS"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="树-Tree"><a href="#树-Tree" class="headerlink" title="树 | Tree"></a>树 | Tree</h4><ul>
+<li>预测模型中的决策树</li>
+</ul>
+<p>决策树（Decision Tree），随机森林（Random Forest）和梯度提升（Gradient Boosting ）都是基于决策树的算法。决策树有许多变体，但它们都做同样的事情 - 将特征空间细分成大多数标签相同的区域。决策树很容易理解和实施。但是，当我们耗尽树枝（branch）并且深入时，它们倾向于过度拟合数据。随机森林和梯度提升是两种使用树算法的实现，具有良好的精确度，是克服过拟合问题（over-fitting problem）的流行方法。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-decision-tree.png" alt="A decision tree for prediction model"></p>
+<p>注：在统计学中，过拟合（overfitting，或称过度拟合）现象是指在拟合一个统计模型时，使用过多参数。对比于可获取的数据总量来说，一个荒谬的模型只要足够复杂，是可以完美地适应数据。过拟合一般可以视为违反奥卡姆剃刀原则。当可选择的参数的自由度超过数据所包含信息内容时，这会导致最后（拟合后）模型使用任意的参数，这会减少或破坏模型一般化的能力（目标效果应适用于一般化的情况而非只是训练时所使用的现有数据（根据它的归纳偏向））。另一种常见的现象是使用太少参数，以致于不适应数据，这则称为乏适（underfitting，或称：拟合不足）现象。</p>
+<h3 id="神经网络和深度学习"><a href="#神经网络和深度学习" class="headerlink" title="神经网络和深度学习"></a>神经网络和深度学习</h3><p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-cnn-architecture.jpg" alt="A convolution neural network architecture"></p>
+<p>神经网络在 20 世纪 80 年代中期由于其并行和分布式处理能力而兴旺发达。但是在这个领域的研究受反向传播算法无效性的阻碍，它广泛用于优化神经网络参数。支持向量机（SVM）和其他更简单的模型，可以通过求解凸优化问题来轻松训练，逐渐取代机器学习中的神经网络。</p>
+<p>近年来，诸如无监督预训练（ unsupervised pre-training）和分层贪婪训练（layer-wise greedy training）等新的和改进的训练技术促进了神经网络的复兴。日益强大的计算能力，例如图形处理单元（GPU）和大规模并行处理（MPP），也刺激了神经网络的发展，已经发明出具有数千层的神经网络模型。</p>
+<p>注：反向传播（Backpropagation，缩写 BP）是“误差反向传播”的简称，一种与最优化方法（如梯度下降法）结合使用的，用来训练人工神经网络的常见方法。该方法对网络中所有权重计算损失函数的梯度。这个梯度会反馈给最优化方法，用来更新权值以最小化损失函数。</p>
+<h3 id="SAS-Visual-Analytics-中的神经网络"><a href="#SAS-Visual-Analytics-中的神经网络" class="headerlink" title="SAS Visual Analytics 中的神经网络"></a>SAS Visual Analytics 中的神经网络</h3><p>换句话说，浅层神经网络已演变成深度学习神经网络。深度神经网络对于监督学习非常成功。当用于语音和图像识别时，深度学习的表现与人类一样好，甚至更好。应用于无监督学习任务（如特征提取），深度学习还可从原始图像或语音中提取特征，而人工干预则更少。</p>
+<p>神经网络由三部分组成：输入层（input layer），隐藏层（hidden layers）和输出层（output layer）。训练样本定义了输入层和输出层。当输出层是一个分类变量时，神经网络就是解决分类问题的一种方法。当输出层是连续变量时，网络可以用来做回归。当输出层与输入层相同时，网络可用于提取内在特征。隐藏层的数量决定了模型的复杂性和建模容量。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-vdmml_neural.png" alt="A neural network in SAS Visual Analytics"></p>
+<h4 id="k-means-k-modes，GMM（高斯混合模型）聚类"><a href="#k-means-k-modes，GMM（高斯混合模型）聚类" class="headerlink" title="k-means / k-modes，GMM（高斯混合模型）聚类"></a>k-means / k-modes，GMM（高斯混合模型）聚类</h4><p>k-means / k-modes，GMM 聚类旨在将 n 个观测分为 k 个聚类。 简单地说，k-means 的结果是每个数据点被 assign 到其中某一个 cluster 了，即 hard  assignment，而 GMM 则给出这些数据点被 assign 到每个cluster 的概率，又称作 soft assignment 。每个样本都有与每个群集关联的概率。当给定聚类数 k 时，两种算法都足够简单快速地进行聚类。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>k-means</th>
+<th>GMM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-kmeans-clustering-1.png" alt="K Means Clustering"></td>
+<td><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-gaussianmixturemodel-1.png" alt="Gaussian Mixture Model"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="DBSCAN-基于密度的空间聚类"><a href="#DBSCAN-基于密度的空间聚类" class="headerlink" title="DBSCAN | 基于密度的空间聚类"></a>DBSCAN | 基于密度的空间聚类</h4><p>DBSCAN ，Density-based spatial clustering of applications with noise ，是在 1996 年由 Martin Ester 等提出的聚类分析算法， 这个算法是以密度为本的：给定某空间里的一个点集合，该算法能把附近的点分成一组（有很多相邻点的点），并标记出位于低密度区域的局外点（最接近它的点也十分远），DBSCAN 是一个最常用的聚类分析算法。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-dbscan.jpg" alt="A DBSCAN illustration"></p>
+<h4 id="Hierarchical-clustering-分层聚类"><a href="#Hierarchical-clustering-分层聚类" class="headerlink" title="Hierarchical clustering | 分层聚类"></a>Hierarchical clustering | 分层聚类</h4><p>分层分区可以使用树结构（树状图）可视化。它不需要集群的数量作为输入，并且可以使用不同的 K 来在不同粒度级别处查看分区（即精炼/粗化集群  refine/coarsen clusters）。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/machine-learning-Hierarchical_clustering.png" alt="Hierarchical clustering"></p>
+<h4 id="PCA，SVD和LDA"><a href="#PCA，SVD和LDA" class="headerlink" title="PCA，SVD和LDA"></a>PCA，SVD和LDA</h4><p>我们通常不希望直接将大量特征提供给机器学习算法，因为某些特征可能无关紧要，或者“内在”维度可能小于特征的数量。主成分分析（PCA，Principal components analysis），奇异值分解（SVD，Singular value decomposition）和隐含狄利克雷分布（LDA，latent Dirichlet allocation）均可用于降维。</p>
+<p>PCA 是一种无监督聚类方法，它将原始数据空间映射到较低维空间，同时保留尽可能多的信息。 PCA 基本上找到最能保留数据方差的子空间，子空间由数据协方差矩阵的主要特征向量定义。</p>
+<p>SVD 和 PCA 有一定联系——中心数据矩阵的 SVD（特征 vs. 样本）能提供定义由 PCA 所找到的同样子空间的主左奇异向量（dominant left singular vectors）。然而，SVD 是一种更通用的技术，因为它也可以做 PCA 不能做的事情。例如，用户与电影矩阵的 SVD 能够提取可以在推荐系统中使用的用户资料和电影资料。另外，在自然语言处理（NLP）中，SVD 还被广泛用作主题建模工具，称为潜在语义分析（ latent semantic analysis ）。</p>
+<p>NLP 中的相关技术是隐含狄利克雷分布（ LDA ）。 LDA 是概率性主题模型，它以与高斯混合模型（GMM）相似的方式，即将连续数据按照高斯密度分解——将文档分解为主题。与 GMM 不同的是，LDA 对离散数据（文档中的词）进行建模，并且它约束了主题需是根据狄利克雷分布的先验分布。</p>
+<h2 id="总结：选择算法时的注意事项"><a href="#总结：选择算法时的注意事项" class="headerlink" title="总结：选择算法时的注意事项"></a>总结：选择算法时的注意事项</h2><p>选择算法时请始终考虑以下方面：准确性（accuracy），训练时间（training time）和易用性（ease of use）。许多用户将准确性放在首位，而 <strong>初学者倾向于关注他们最熟悉的算法（Beginners tend to focus on algorithms they know best）</strong>。</p>
+<p>首先要考虑的是如何获得结果，无论结果如何。<strong>初学者倾向于选择易于实现并能够快速获得结果的算法（Beginners tend to choose algorithms that are easy to implement and can obtain results quickly）</strong>。这个工作无可厚非，只需确保它只是整个过程的第一步。一旦您获得了一些结果并熟悉数据，您可能需要花更多时间、使用更复杂的算法来加强对数据的理解，从而进一步改进结果。</p>
+<p>最好的算法也许不是那些已经获得最高准确率的方法，因为算法通常需要仔细调整、广泛训练才可以实现可用性方面的最佳性能。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/?utm_source=twitter&amp;utm_medium=cpc&amp;utm_campaign=analytics-global&amp;utm_content=US_tap">Which machine learning algorithm should I use? | Hui Li | Principal Staff Scientist, Data Science</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1302.1552.pdf">An Information-Theoretic Analysis of Hard and Soft Assignment Methods for Clustering </a></li>
+<li><a target="_blank" rel="noopener" href="http://www.iro.umontreal.ca/~lisa/pointeurs/BengioNips2006All.pdf">Greedy Layer-Wise Training of Deep Networks</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sas.com/content/subconsciousmusings/2018/03/09/understanding-interpreting-data-set/">Understanding and interpreting your data set  1</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.kernel-machines.org/publications/pdfs/0701907.pdf">KERNEL METHODS IN MACHINE LEARNING1 |By Thomas Hofmann, Bernhard Scholkopf and Alexander J. Smola</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/04/02/Machine-Learning-Algorithms-Sheet/" data-id="ckwgm33m200dt7b1y835a1ebm" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/09/Commander-Navy-Digital/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Commander-Navy-Digital
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/30/Lincoln-Chicago-Orchestra/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Lincoln-Chicago-Orchestra</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Machine-Learning-Algorithms-Overview"><span class="toc-number">2.</span> <span class="toc-text">Machine Learning Algorithms Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Which-machine-learning-algorithm-should-I-use"><span class="toc-number">3.</span> <span class="toc-text">Which machine learning algorithm should I use?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%A4%87%E5%BF%98%E5%8D%95"><span class="toc-number">3.1.</span> <span class="toc-text">机器学习算法备忘单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%8D%95"><span class="toc-number">3.1.1.</span> <span class="toc-text">如何使用备忘单</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9A%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">何时使用特定算法?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-vs-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-number">4.0.1.</span> <span class="toc-text">线性回归 vs 逻辑回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linear-SVM-vs-kernel-SVM"><span class="toc-number">4.0.2.</span> <span class="toc-text">Linear SVM vs kernel SVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91-Tree"><span class="toc-number">4.0.3.</span> <span class="toc-text">树 | Tree</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">4.1.</span> <span class="toc-text">神经网络和深度学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SAS-Visual-Analytics-%E4%B8%AD%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">4.2.</span> <span class="toc-text">SAS Visual Analytics 中的神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#k-means-k-modes%EF%BC%8CGMM%EF%BC%88%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%EF%BC%89%E8%81%9A%E7%B1%BB"><span class="toc-number">4.2.1.</span> <span class="toc-text">k-means &#x2F; k-modes，GMM（高斯混合模型）聚类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DBSCAN-%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E7%A9%BA%E9%97%B4%E8%81%9A%E7%B1%BB"><span class="toc-number">4.2.2.</span> <span class="toc-text">DBSCAN | 基于密度的空间聚类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hierarchical-clustering-%E5%88%86%E5%B1%82%E8%81%9A%E7%B1%BB"><span class="toc-number">4.2.3.</span> <span class="toc-text">Hierarchical clustering | 分层聚类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PCA%EF%BC%8CSVD%E5%92%8CLDA"><span class="toc-number">4.2.4.</span> <span class="toc-text">PCA，SVD和LDA</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.</span> <span class="toc-text">总结：选择算法时的注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">6.0.1.</span> <span class="toc-text">《The Machine Learning Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

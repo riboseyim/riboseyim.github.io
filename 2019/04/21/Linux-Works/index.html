@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>How Linux Works | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 第一部分 The Big Picture Levels and Layers Hardware The Kernel User and User Space 第二部分 Overview of the Linux Kernel 进程管理 Process Management 内存管理 Memory Management 设备管理 Device Drivers and Management 系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Linux Works">
+<meta property="og:url" content="https://riboseyim.com/2019/04/21/Linux-Works/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 第一部分 The Big Picture Levels and Layers Hardware The Kernel User and User Space 第二部分 Overview of the Linux Kernel 进程管理 Process Management 内存管理 Memory Management 设备管理 Device Drivers and Management 系统">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2019-04-21T03:49:13.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:06.265Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="架构师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Works" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/21/Linux-Works/" class="article-date">
+  <time datetime="2019-04-21T03:49:13.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How Linux Works
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2019/04/21/Linux-Works/" data-id="ckwgm33m000db7b1yy05xsume" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>第一部分 The Big Picture</li>
+<li>Levels and Layers</li>
+<li>Hardware</li>
+<li>The Kernel</li>
+<li>User and User Space</li>
+<li>第二部分 Overview of the Linux Kernel</li>
+<li>进程管理 Process Management</li>
+<li>内存管理 Memory Management</li>
+<li>设备管理 Device Drivers and Management</li>
+<li>系统调用 System Calls</li>
+<li>用户空间 User Space</li>
+<li>用户管理 User Management</li>
+<li>第三部分 Application and Development</li>
+<li>The Desktop</li>
+<li>The Shell Script</li>
+<li>The Development Tools</li>
+<li>Compiling and Building</li>
+<li>第四部分 Future</li>
+</ul>
+<span id="more"></span>
+<h1 id="第一部分-The-Big-Picture"><a href="#第一部分-The-Big-Picture" class="headerlink" title="第一部分 The Big Picture"></a>第一部分 The Big Picture</h1><h3 id="Levels-and-Layers"><a href="#Levels-and-Layers" class="headerlink" title="Levels and Layers"></a>Levels and Layers</h3><h3 id="Hardware"><a href="#Hardware" class="headerlink" title="Hardware"></a>Hardware</h3><h3 id="Overview-of-the-Linux-Kernel"><a href="#Overview-of-the-Linux-Kernel" class="headerlink" title="Overview of the Linux Kernel"></a>Overview of the Linux Kernel</h3><h4 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h4><h4 id="设备管理-Device-Drivers-and-Management"><a href="#设备管理-Device-Drivers-and-Management" class="headerlink" title="设备管理 Device Drivers and Management"></a>设备管理 Device Drivers and Management</h4><h4 id="磁盘管理-DISKS-and-Filesystems"><a href="#磁盘管理-DISKS-and-Filesystems" class="headerlink" title="磁盘管理 DISKS and Filesystems"></a>磁盘管理 DISKS and Filesystems</h4><h4 id="进程管理-Process-Management"><a href="#进程管理-Process-Management" class="headerlink" title="进程管理 Process Management"></a>进程管理 Process Management</h4><h4 id="内存管理-Memory-Management"><a href="#内存管理-Memory-Management" class="headerlink" title="内存管理 Memory Management"></a>内存管理 Memory Management</h4><h4 id="系统调用-System-Calls"><a href="#系统调用-System-Calls" class="headerlink" title="系统调用 System Calls"></a>系统调用 System Calls</h4><h4 id="用户空间-User-Space"><a href="#用户空间-User-Space" class="headerlink" title="用户空间 User Space"></a>用户空间 User Space</h4><h4 id="用户管理-User-Management"><a href="#用户管理-User-Management" class="headerlink" title="用户管理 User Management"></a>用户管理 User Management</h4><h3 id="未来-Looking-Forward"><a href="#未来-Looking-Forward" class="headerlink" title="未来 Looking Forward"></a>未来 Looking Forward</h3><h1 id="第二部分-Overview-of-the-Linux-Kernel"><a href="#第二部分-Overview-of-the-Linux-Kernel" class="headerlink" title="第二部分 Overview of the Linux Kernel"></a>第二部分 Overview of the Linux Kernel</h1><h2 id="一、Basic-Commands"><a href="#一、Basic-Commands" class="headerlink" title="一、Basic Commands"></a>一、Basic Commands</h2><ul>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+</ul>
+<h2 id="二、Files-and-Directory"><a href="#二、Files-and-Directory" class="headerlink" title="二、Files and Directory"></a>二、Files and Directory</h2><h4 id="Files-Modes-and-Permissions"><a href="#Files-Modes-and-Permissions" class="headerlink" title="Files Modes and Permissions"></a>Files Modes and Permissions</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://linuxhandbook.com/chmod-command/?utm_campaign=chmod-command-examples&amp;utm_medium=social_link&amp;utm_source=missinglettr">Chmod Command Examples</a></li>
+</ul>
+<h4 id="Listing-and-Manipulating-Processes"><a href="#Listing-and-Manipulating-Processes" class="headerlink" title="Listing and Manipulating Processes"></a>Listing and Manipulating Processes</h4><h4 id="Directory-Hierarchy"><a href="#Directory-Hierarchy" class="headerlink" title="Directory Hierarchy"></a>Directory Hierarchy</h4><h4 id="Running-Commands"><a href="#Running-Commands" class="headerlink" title="Running Commands"></a>Running Commands</h4><h2 id="三、DEVICES-设备管理"><a href="#三、DEVICES-设备管理" class="headerlink" title="三、DEVICES 设备管理"></a>三、DEVICES 设备管理</h2><h3 id="Devices-Files"><a href="#Devices-Files" class="headerlink" title="Devices Files"></a>Devices Files</h3><h3 id="Devices-Path"><a href="#Devices-Path" class="headerlink" title="Devices Path"></a>Devices Path</h3><h3 id="Devices-Extend"><a href="#Devices-Extend" class="headerlink" title="Devices Extend"></a>Devices Extend</h3><h2 id="四、DISKS-and-FileSystems-磁盘管理"><a href="#四、DISKS-and-FileSystems-磁盘管理" class="headerlink" title="四、DISKS and FileSystems 磁盘管理"></a>四、DISKS and FileSystems 磁盘管理</h2><ul>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+</ul>
+<h3 id="Partitioning-Disk-Devices"><a href="#Partitioning-Disk-Devices" class="headerlink" title="Partitioning Disk Devices"></a>Partitioning Disk Devices</h3><h3 id="FileSystems"><a href="#FileSystems" class="headerlink" title="FileSystems"></a>FileSystems</h3><h3 id="Swap-Space"><a href="#Swap-Space" class="headerlink" title="Swap Space"></a>Swap Space</h3><h3 id="Traditional-FileSystems"><a href="#Traditional-FileSystems" class="headerlink" title="Traditional FileSystems"></a>Traditional FileSystems</h3><h3 id="Looking-Forwarding"><a href="#Looking-Forwarding" class="headerlink" title="Looking Forwarding"></a>Looking Forwarding</h3><h2 id="五、How-the-Linux-Kernel-Boots"><a href="#五、How-the-Linux-Kernel-Boots" class="headerlink" title="五、How the Linux Kernel Boots"></a>五、How the Linux Kernel Boots</h2><ul>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+</ul>
+<h2 id="六、How-User-Space-Starts"><a href="#六、How-User-Space-Starts" class="headerlink" title="六、How User Space Starts"></a>六、How User Space Starts</h2><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+</ul>
+<h2 id="七、System-Configuration"><a href="#七、System-Configuration" class="headerlink" title="七、System Configuration"></a>七、System Configuration</h2><h3 id="System-Logging"><a href="#System-Logging" class="headerlink" title="System Logging"></a>System Logging</h3><h3 id="User-Management-Files"><a href="#User-Management-Files" class="headerlink" title="User Management Files"></a>User Management Files</h3><ul>
+<li>/etc/passwd File</li>
+<li>/etc/shadow File</li>
+</ul>
+<h3 id="System-Time"><a href="#System-Time" class="headerlink" title="System Time"></a>System Time</h3><h3 id="Batch-Jobs"><a href="#Batch-Jobs" class="headerlink" title="Batch Jobs"></a>Batch Jobs</h3><h4 id="Scheduling-Tasks"><a href="#Scheduling-Tasks" class="headerlink" title="Scheduling Tasks"></a>Scheduling Tasks</h4><h3 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h3><h4 id="User-ID-and-Users-Switching"><a href="#User-ID-and-Users-Switching" class="headerlink" title="User ID and Users Switching"></a>User ID and Users Switching</h4><h4 id="User-Identification-and-Authentication"><a href="#User-Identification-and-Authentication" class="headerlink" title="User Identification and Authentication"></a>User Identification and Authentication</h4><h2 id="八、System-Resource-Utilization"><a href="#八、System-Resource-Utilization" class="headerlink" title="八、System Resource Utilization"></a>八、System Resource Utilization</h2><h3 id="Introduction-to-Resource-Monitoring"><a href="#Introduction-to-Resource-Monitoring" class="headerlink" title="Introduction to Resource Monitoring"></a>Introduction to Resource Monitoring</h3><h3 id="Load-Averages"><a href="#Load-Averages" class="headerlink" title="Load Averages"></a>Load Averages</h3><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+</ul>
+<h3 id="Measuring-Memory"><a href="#Measuring-Memory" class="headerlink" title="Measuring Memory"></a>Measuring Memory</h3><h3 id="Measuring-CPU"><a href="#Measuring-CPU" class="headerlink" title="Measuring CPU"></a>Measuring CPU</h3><h3 id="Measuring-I-O"><a href="#Measuring-I-O" class="headerlink" title="Measuring I/O"></a>Measuring I/O</h3><h3 id="Per-Processes-Monitoring"><a href="#Per-Processes-Monitoring" class="headerlink" title="Per-Processes Monitoring"></a>Per-Processes Monitoring</h3><h2 id="九、Network"><a href="#九、Network" class="headerlink" title="九、Network"></a>九、Network</h2><h3 id="Network-Basic"><a href="#Network-Basic" class="headerlink" title="Network Basic"></a>Network Basic</h3><h3 id="Moving-Files-across-the-Network"><a href="#Moving-Files-across-the-Network" class="headerlink" title="Moving Files across the Network"></a>Moving Files across the Network</h3><h4 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h4><h4 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h4><h4 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h4><h3 id="Configuring-Linux-as-a-Router"><a href="#Configuring-Linux-as-a-Router" class="headerlink" title="Configuring Linux as a Router"></a>Configuring Linux as a Router</h3><h3 id="Firewalls"><a href="#Firewalls" class="headerlink" title="Firewalls"></a>Firewalls</h3><h3 id="Ethernet-IP-and-ARP"><a href="#Ethernet-IP-and-ARP" class="headerlink" title="Ethernet,IP and ARP"></a>Ethernet,IP and ARP</h3><h3 id="Wireless-Ethernet"><a href="#Wireless-Ethernet" class="headerlink" title="Wireless Ethernet"></a>Wireless Ethernet</h3><h2 id="十、Network-Application-and-Services"><a href="#十、Network-Application-and-Services" class="headerlink" title="十、Network Application and Services"></a>十、Network Application and Services</h2><h3 id="Network-Servers"><a href="#Network-Servers" class="headerlink" title="Network Servers"></a>Network Servers</h3><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><h3 id="Diagnostic-Tools"><a href="#Diagnostic-Tools" class="headerlink" title="Diagnostic Tools"></a>Diagnostic Tools</h3><ul>
+<li>lsof</li>
+<li>tcpdump</li>
+<li>netstat</li>
+<li>port scanning</li>
+</ul>
+<h3 id="Remote-Procedure-Call-RPC"><a href="#Remote-Procedure-Call-RPC" class="headerlink" title="Remote Procedure Call(RPC)"></a>Remote Procedure Call(RPC)</h3><h3 id="Network-Security"><a href="#Network-Security" class="headerlink" title="Network Security"></a>Network Security</h3><h1 id="第三部分-Application-and-Development"><a href="#第三部分-Application-and-Development" class="headerlink" title="第三部分 Application and Development"></a>第三部分 Application and Development</h1><h2 id="一、The-Desktop"><a href="#一、The-Desktop" class="headerlink" title="一、The Desktop"></a>一、The Desktop</h2><h2 id="二、Shell-Scripts"><a href="#二、Shell-Scripts" class="headerlink" title="二、Shell Scripts"></a>二、Shell Scripts</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/05/12/Linux-Shell/">How Linux Works：Shell</a></li>
+</ul>
+<h2 id="三、Development-Tools"><a href="#三、Development-Tools" class="headerlink" title="三、Development Tools"></a>三、Development Tools</h2><h2 id="四、Compiling-and-Building"><a href="#四、Compiling-and-Building" class="headerlink" title="四、Compiling and Building"></a>四、Compiling and Building</h2><h3 id="Compiling-Software-From-C-Source-Code"><a href="#Compiling-Software-From-C-Source-Code" class="headerlink" title="Compiling Software From C Source Code"></a>Compiling Software From C Source Code</h3><h3 id="Building-on-the-BASIC"><a href="#Building-on-the-BASIC" class="headerlink" title="Building on the BASIC"></a>Building on the BASIC</h3><ul>
+<li>Web Servers and Application</li>
+<li>Databasees</li>
+<li>Virtualization</li>
+<li>Distributed Computing</li>
+<li>Embedded Systems</li>
+</ul>
+<h1 id="第四部分-Future"><a href="#第四部分-Future" class="headerlink" title="第四部分 Future"></a>第四部分 Future</h1><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="源码阅读的一般方法"><a href="#源码阅读的一般方法" class="headerlink" title="源码阅读的一般方法"></a>源码阅读的一般方法</h4><ul>
+<li>核心子系统（例如进程管理子系统）</li>
+<li>结构体、数据结构</li>
+<li>关键程序、加载顺序</li>
+<li>主题式探索（例如：Linux 支持闰秒吗？）</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cyberpratibha.com/list-users-linux/">How to check List users in Linux | Complete Guide for Beginners</a></li>
+<li><a target="_blank" rel="noopener" href="https://access.redhat.com/solutions/393663">How To Configure Authenticated NTP Using Symmetric Keys (compatibility with FIPS 140-2)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2019/04/21/Linux-Works/" data-id="ckwgm33m000db7b1yy05xsume" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/21/Linux-Works-User-Space/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          How Linux Works:User Space
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/07/History-Winston-Churchill/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">人物:温斯顿·丘吉尔</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-The-Big-Picture"><span class="toc-number"></span> <span class="toc-text">第一部分 The Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Levels-and-Layers"><span class="toc-number">0.1.</span> <span class="toc-text">Levels and Layers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hardware"><span class="toc-number">0.2.</span> <span class="toc-text">Hardware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview-of-the-Linux-Kernel"><span class="toc-number">0.3.</span> <span class="toc-text">Overview of the Linux Kernel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-Commands"><span class="toc-number">0.3.1.</span> <span class="toc-text">Basic Commands</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86-Device-Drivers-and-Management"><span class="toc-number">0.3.2.</span> <span class="toc-text">设备管理 Device Drivers and Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86-DISKS-and-Filesystems"><span class="toc-number">0.3.3.</span> <span class="toc-text">磁盘管理 DISKS and Filesystems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-Process-Management"><span class="toc-number">0.3.4.</span> <span class="toc-text">进程管理 Process Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-Memory-Management"><span class="toc-number">0.3.5.</span> <span class="toc-text">内存管理 Memory Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-System-Calls"><span class="toc-number">0.3.6.</span> <span class="toc-text">系统调用 System Calls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4-User-Space"><span class="toc-number">0.3.7.</span> <span class="toc-text">用户空间 User Space</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86-User-Management"><span class="toc-number">0.3.8.</span> <span class="toc-text">用户管理 User Management</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5-Looking-Forward"><span class="toc-number">0.4.</span> <span class="toc-text">未来 Looking Forward</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-Overview-of-the-Linux-Kernel"><span class="toc-number"></span> <span class="toc-text">第二部分 Overview of the Linux Kernel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Basic-Commands"><span class="toc-number">1.</span> <span class="toc-text">一、Basic Commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Files-and-Directory"><span class="toc-number">2.</span> <span class="toc-text">二、Files and Directory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Files-Modes-and-Permissions"><span class="toc-number">2.0.1.</span> <span class="toc-text">Files Modes and Permissions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Listing-and-Manipulating-Processes"><span class="toc-number">2.0.2.</span> <span class="toc-text">Listing and Manipulating Processes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Directory-Hierarchy"><span class="toc-number">2.0.3.</span> <span class="toc-text">Directory Hierarchy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Running-Commands"><span class="toc-number">2.0.4.</span> <span class="toc-text">Running Commands</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81DEVICES-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">三、DEVICES 设备管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Devices-Files"><span class="toc-number">3.1.</span> <span class="toc-text">Devices Files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Devices-Path"><span class="toc-number">3.2.</span> <span class="toc-text">Devices Path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Devices-Extend"><span class="toc-number">3.3.</span> <span class="toc-text">Devices Extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81DISKS-and-FileSystems-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">四、DISKS and FileSystems 磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Partitioning-Disk-Devices"><span class="toc-number">4.1.</span> <span class="toc-text">Partitioning Disk Devices</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FileSystems"><span class="toc-number">4.2.</span> <span class="toc-text">FileSystems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swap-Space"><span class="toc-number">4.3.</span> <span class="toc-text">Swap Space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Traditional-FileSystems"><span class="toc-number">4.4.</span> <span class="toc-text">Traditional FileSystems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Looking-Forwarding"><span class="toc-number">4.5.</span> <span class="toc-text">Looking Forwarding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81How-the-Linux-Kernel-Boots"><span class="toc-number">5.</span> <span class="toc-text">五、How the Linux Kernel Boots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81How-User-Space-Starts"><span class="toc-number">6.</span> <span class="toc-text">六、How User Space Starts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81System-Configuration"><span class="toc-number">7.</span> <span class="toc-text">七、System Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#System-Logging"><span class="toc-number">7.1.</span> <span class="toc-text">System Logging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Management-Files"><span class="toc-number">7.2.</span> <span class="toc-text">User Management Files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System-Time"><span class="toc-number">7.3.</span> <span class="toc-text">System Time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Batch-Jobs"><span class="toc-number">7.4.</span> <span class="toc-text">Batch Jobs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Scheduling-Tasks"><span class="toc-number">7.4.1.</span> <span class="toc-text">Scheduling Tasks</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Users"><span class="toc-number">7.5.</span> <span class="toc-text">Users</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User-ID-and-Users-Switching"><span class="toc-number">7.5.1.</span> <span class="toc-text">User ID and Users Switching</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-Identification-and-Authentication"><span class="toc-number">7.5.2.</span> <span class="toc-text">User Identification and Authentication</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81System-Resource-Utilization"><span class="toc-number">8.</span> <span class="toc-text">八、System Resource Utilization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-to-Resource-Monitoring"><span class="toc-number">8.1.</span> <span class="toc-text">Introduction to Resource Monitoring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Load-Averages"><span class="toc-number">8.2.</span> <span class="toc-text">Load Averages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-Memory"><span class="toc-number">8.3.</span> <span class="toc-text">Measuring Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-CPU"><span class="toc-number">8.4.</span> <span class="toc-text">Measuring CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-I-O"><span class="toc-number">8.5.</span> <span class="toc-text">Measuring I&#x2F;O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Per-Processes-Monitoring"><span class="toc-number">8.6.</span> <span class="toc-text">Per-Processes Monitoring</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Network"><span class="toc-number">9.</span> <span class="toc-text">九、Network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Basic"><span class="toc-number">9.1.</span> <span class="toc-text">Network Basic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Moving-Files-across-the-Network"><span class="toc-number">9.2.</span> <span class="toc-text">Moving Files across the Network</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rsync"><span class="toc-number">9.2.1.</span> <span class="toc-text">rsync</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#samba"><span class="toc-number">9.2.2.</span> <span class="toc-text">samba</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NFS"><span class="toc-number">9.2.3.</span> <span class="toc-text">NFS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-Linux-as-a-Router"><span class="toc-number">9.3.</span> <span class="toc-text">Configuring Linux as a Router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Firewalls"><span class="toc-number">9.4.</span> <span class="toc-text">Firewalls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ethernet-IP-and-ARP"><span class="toc-number">9.5.</span> <span class="toc-text">Ethernet,IP and ARP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireless-Ethernet"><span class="toc-number">9.6.</span> <span class="toc-text">Wireless Ethernet</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81Network-Application-and-Services"><span class="toc-number">10.</span> <span class="toc-text">十、Network Application and Services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Servers"><span class="toc-number">10.1.</span> <span class="toc-text">Network Servers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">10.2.</span> <span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Diagnostic-Tools"><span class="toc-number">10.3.</span> <span class="toc-text">Diagnostic Tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Remote-Procedure-Call-RPC"><span class="toc-number">10.4.</span> <span class="toc-text">Remote Procedure Call(RPC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Security"><span class="toc-number">10.5.</span> <span class="toc-text">Network Security</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-Application-and-Development"><span class="toc-number"></span> <span class="toc-text">第三部分 Application and Development</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81The-Desktop"><span class="toc-number">1.</span> <span class="toc-text">一、The Desktop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Shell-Scripts"><span class="toc-number">2.</span> <span class="toc-text">二、Shell Scripts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Development-Tools"><span class="toc-number">3.</span> <span class="toc-text">三、Development Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Compiling-and-Building"><span class="toc-number">4.</span> <span class="toc-text">四、Compiling and Building</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Compiling-Software-From-C-Source-Code"><span class="toc-number">4.1.</span> <span class="toc-text">Compiling Software From C Source Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-on-the-BASIC"><span class="toc-number">4.2.</span> <span class="toc-text">Building on the BASIC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-Future"><span class="toc-number"></span> <span class="toc-text">第四部分 Future</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">1.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%9A%84%E4%B8%80%E8%88%AC%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text">源码阅读的一般方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">2.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">2.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

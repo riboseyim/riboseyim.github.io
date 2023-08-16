@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>DevOps 漫谈：从作坊到工厂的寓言故事 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 背景：《凤凰项目》的灵魂 管理约束：最大的瓶颈是人 任务追踪：可视化工作区和看板实践 改进日常工作：预防性维护 反常识：系统里要经常出些故障、人力资源使用率与效率成反比 安全与审计 IT 价值流：像电力一样无处不在   转变主要不是基于自动化，相反，这种不可思议的改进来自于调整关于工作系统的策略和控制半成品的策略，确保有一个高效的跨职能团队，让所有事情都为约束点服务，以及管理好工作交接。——">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 漫谈：从作坊到工厂的寓言故事">
+<meta property="og:url" content="https://riboseyim.com/2018/04/10/DevOps-Phoenix/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 背景：《凤凰项目》的灵魂 管理约束：最大的瓶颈是人 任务追踪：可视化工作区和看板实践 改进日常工作：预防性维护 反常识：系统里要经常出些故障、人力资源使用率与效率成反比 安全与审计 IT 价值流：像电力一样无处不在   转变主要不是基于自动化，相反，这种不可思议的改进来自于调整关于工作系统的策略和控制半成品的策略，确保有一个高效的跨职能团队，让所有事情都为约束点服务，以及管理好工作交接。——">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DevOps-%E8%B5%84%E6%BA%90%E5%BF%99%E7%A2%8C%E7%99%BE%E5%88%86%E6%AF%94.png">
+<meta property="article:published_time" content="2018-04-10T07:12:14.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:04.568Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Manager">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/DevOps-%E8%B5%84%E6%BA%90%E5%BF%99%E7%A2%8C%E7%99%BE%E5%88%86%E6%AF%94.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DevOps-Phoenix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/10/DevOps-Phoenix/" class="article-date">
+  <time datetime="2018-04-10T07:12:14.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DevOps 漫谈：从作坊到工厂的寓言故事
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/04/10/DevOps-Phoenix/" data-id="ckwgm33kq005p7b1yvwux9xj2" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>背景：《凤凰项目》的灵魂</li>
+<li>管理约束：最大的瓶颈是人</li>
+<li>任务追踪：可视化工作区和看板实践</li>
+<li>改进日常工作：预防性维护</li>
+<li>反常识：系统里要经常出些故障、人力资源使用率与效率成反比</li>
+<li>安全与审计</li>
+<li>IT 价值流：像电力一样无处不在</li>
+</ul>
+<blockquote>
+<p>转变主要不是基于自动化，相反，这种不可思议的改进来自于调整关于工作系统的策略和控制半成品的策略，确保有一个高效的跨职能团队，让所有事情都为约束点服务，以及管理好工作交接。——《凤凰项目 一个IT运维的传奇故事》</p>
+</blockquote>
+<span id="more"></span>
+<p>谈到 DevOps 概念，有几本书是绕不过去的，《凤凰项目：一个IT运维的传奇故事》（The Phoenix Project:a Novel About IT,DevOps,and Helping Your Business Win）就是其中之一。本书的主要特色之一是将 IT 运营和工厂生产对应起来，借鉴制造业的经验提升 IT 价值。</p>
+<h2 id="背景：《凤凰项目》的灵魂"><a href="#背景：《凤凰项目》的灵魂" class="headerlink" title="背景：《凤凰项目》的灵魂"></a>背景：《凤凰项目》的灵魂</h2><p>《凤凰项目》的作者金(Gene Kim);贝尔(Kevin Behr);斯帕福德(George Spafford)，显然是高德拉特的拥趸。在整个故事中都贯穿了高德拉特的思想——约束理论(限制理论，Theory of Constraints，TOC)。</p>
+<blockquote>
+<p>“不应该根据第一个工作站的效率来安排工作，而是根据瓶颈资源所能完成工作的速度来安排工作。”</p>
+</blockquote>
+<p>埃利亚胡·高德拉特博士（Eliyahu M. Goldratt，1947－2011），以色列物理学家，同时是一位企业管理领域的大师。1984年，高德拉特博士发表了他的重要著作《目标：一种持续改进的流程》（The Goal: A Process of On going Improvement），书中以小说的形式提出了约束理论。他主张一个复杂的系统隐含着简单化，即使在任何时间，一个复杂的系统可能是由成千上万人和一系列设备所组成，但是只有非常少的变数或许只有一个，称为限制，它会限制（或阻碍）此系统达到更高的目标。在此基础上，他进一步提出了在制造业经营生产活动中定义和消除制约因素的一些规范化方法以支持连续改进（Continuous Improvement），例如约束理论之外还提出了关键链（Critical Chain Project Management，CCPM）项目规划和管理方法（与关键路径分析方法不同，它主要侧重于项目执行中所需的资源，关注资源依赖，强调监测项目的进展和缓冲的使用率，而不是规划个别任务的进展速度）。精益生产或者丰田生产系统在某种程度上也是以约束理论为基础的。</p>
+<p>回到《凤凰项目》，它的体裁是按照时间线叙事的日记体：临危受命的主人公一直致力于改善各个约束点（瓶颈）对于整个组织能力的限制。起初是一个无可替代的工程师，接着是应用程序部署流程，安全审计，最后约束点移到了技术部门之外，甚至包括外部供应商。简单来说，小说的脉络遵循实践约束理论的基本步骤：</p>
+<ul>
+<li>识别约束点；</li>
+<li>利用约束点；</li>
+<li>让所有其他活动都从属于约束点；</li>
+<li>把约束点提升到新的水平；</li>
+<li>寻找下一个约束点。</li>
+</ul>
+<h2 id="管理约束"><a href="#管理约束" class="headerlink" title="管理约束"></a>管理约束</h2><blockquote>
+<p>“<strong>在瓶颈之外的任何地方作出的改进都是假象</strong>，在瓶颈之后作出任何改进都是徒劳的，而在瓶颈之前作出的任何改进则只会导致瓶颈处堆积更多的库存。” —— 艾利·高德拉特</p>
+</blockquote>
+<h4 id="最大的瓶颈是人"><a href="#最大的瓶颈是人" class="headerlink" title="最大的瓶颈是人"></a>最大的瓶颈是人</h4><p>如果希望通过这本书获得一些解决方案和技术细节的人估计要失望了，《凤凰项目》本质上是一本探讨如何提高组织效率的书，或者说主要是讨论人、顺带谈了一些协同方法论。</p>
+<p>我相信很多人看完《凤凰项目》之后都会把故事里面里面一堆人物名字搞混，但是有一个角色甚至比较主角还有意思 —— 布伦特。个人能力超强，工作超努力，对各类技术细节了如指掌，所有大小项目大家都喜欢找他合作，有了问题也会第一时间想到他，典型的超级员工、英雄人物。与此同时，布伦特实际上并不像人们认为的那样聪明绝顶。他每天需要处理大量计划外工作，即使布伦特天天加班都完不成堆积如山的任务，最终造成了大量的任务积压，战略工作不断延期，管理层疲于应付各种投诉。我相信大多数发展中组织里面都会有这么一个角色存在。</p>
+<p>新上任的主人公（比尔）将布伦特识别为 IT 生产环境中的约束点，并采取了更改工作流转的方式来避免布伦特被计划外工作打扰：</p>
+<ul>
+<li>与 CEO 达成共识，调整布伦特的工作职责：允许他拒绝除凤凰项目（战略级）以外的任何工作；</li>
+<li>设置资源防火墙，任何人需要“征用”他都必须经过其部门领导评估优先级，所有资源请求通过层层过滤才能达到布伦特；</li>
+<li>围绕布伦特组建了一个二线梯队，负责学习他的工作经验、编写文档、甚至实现部分自动化，逐步替代布伦特处理任务，将布伦特从各种繁琐的事情中解放出来</li>
+</ul>
+<blockquote>
+<p>可能他是故意让自己显得无可或缺，以免其他人抢了他的工作。… 是不是布伦特把他的知识看作一种权力。也许他身上的某些部分不愿意把那些知识交出来。这也确实让他成为了几乎难以取代的人。——《凤凰项目 一个IT运维的传奇故事》 第 107 页</p>
+</blockquote>
+<p>值得注意的是，新的决策在开始阶段需要承受了很大的压力。领导人需要对抗的是长期形成的工作惯性，俗话说“病来如山倒、病去如抽丝”，想要改变也不是一朝一夕就可以实现的，更不要说组织内部微妙的人事关系，稍有不慎就可能踩到雷，顺畅的内部沟通、群众看得到的改进效果可以帮助解决一部分问题，但是现实中也有不可避免的碰撞。所以说，流程变更实质是是组织文化重塑的一种形式，领导者的信任与合作必不可少。这方面也是本书比较有趣的地方。</p>
+<p>经过一段时间的坚持，布伦特的工作效率大大提升，顺利完成了凤凰项目，并在后来发起的独角兽和独角鲸项目取得了成功。</p>
+<h2 id="任务追踪"><a href="#任务追踪" class="headerlink" title="任务追踪"></a>任务追踪</h2><p>凤凰项目故事中，主人公面对的困境是：IT 团队因为大量工作积压而导致各种任务延期。</p>
+<blockquote>
+<p>这个世界一定是哪里不对劲了，一半邮件都是紧急邮件。所有事情都那么重要，这可能吗？</p>
+</blockquote>
+<p>经过一番梳理，IT 团队的各类工作内容大致可以分为以下四种类别：</p>
+<ul>
+<li>第一类：业务项目，由 PMO 跟踪的正式项目；</li>
+<li>第二类：IT 内部项目，由业务项目衍生的基础架构项目，或者改进项目；（* 生产能力投放度量）</li>
+<li>第三类：变更（* 跨团队交接和重复跟踪）</li>
+<li>第四类：计划外工作（救火工作）</li>
+</ul>
+<p>计划外工作可不是免费的，恰恰相反，它非常昂贵。在故事的第一部分，计划外工作是最主要的困扰，它们包括突发严重故障、业务安全漏洞引发的舆论风波、部分领导人基于个人意愿追加的临时项目等等。如果要推动战略项目的进度，<strong>必须根除计划外工作的最大源头！</strong></p>
+<blockquote>
+<p>计划外工作会让你丧失开展计划内工作的能力，因此必须不惜一切代价去消灭计划外工作，墨菲法则确实存在，因此总会有计划外工作，但你必须高效地处理它们。</p>
+<p>第一优先级是谁喊得最响，决定因素是谁能搬出最大的领导来。我见过很多员工总是优先为某个经理服务，因为他每月带他们出去吃一次午餐。</p>
+</blockquote>
+<p>为了改变这一局面，主人公采用了一种“可视化工作区+任务追踪系统”的方式管理变更。</p>
+<h2 id="任务可视化"><a href="#任务可视化" class="headerlink" title="任务可视化"></a>任务可视化</h2><p>可视化的目的是为了做到充分的交流，就像风吹过树林，不分彼此的摇动每一片树叶。</p>
+<h4 id="可视化工作区"><a href="#可视化工作区" class="headerlink" title="可视化工作区"></a>可视化工作区</h4><p>运营中心（NOC）：一个巨大的开放式办公区域，靠一面墙放着一排长桌，巨大的显示器上显示着所有IT服务的各种状态。1级和2级客服人员占据了工作站的三排位置。“这并不是阿波罗13号的太空飞行指挥中心，但我就是这样向亲戚们解释我的工作环境的。”</p>
+<p>在 NOC 运作的具体支撑手段上，高度重视看板墙（Kanban）的作用。</p>
+<p>看板(Kanban)是一种生产管理系统，起源于1940年代的丰田汽车公司。看板的核心理论是基于制造业中经常提到的概念：库存。与传统会计观念不同，丰田认为库存会带来成本以及浪费，而不是增加或储存价值，应鼓励逐步消除库存，以便削减生产流程中的成本，在管理中逐渐适应“零库存”的状态。1961 年 MIT（Sloan School of Management）教授 John Little 正式提出了利特尔法则（ Little’s Law ）：在一个稳定的系统 L中，长期的平均顾客人数，等于长期的有效抵达率，系统中的平均存货等于存货单位离开系统的比率（亦即平均需求率）与存货单位在系统中平均时间的乘积。</p>
+<p><strong>Cycle Time = Work in Progress / Throughput</strong></p>
+<p>根据利特尔法则，跟踪工作及进展的最重要的目标是：限制在制品（Work in process，WIP），例如尚未完成制造过程的商品，或是停留在库存仓库或是产线上，等待着进一步处理的商品。在 IT 语境中，半成品一般意味着积压的开发任务、等待启动的“重要不紧急”工作、“开发完成”但是未上线发布的新功能、等待执行的线上变更等等。</p>
+<blockquote>
+<p>看板上的索引卡片是做成这件事最好的机制之一，因为每个人都能看到半成品。—— 《凤凰项目 一个IT运维的传奇故事》第 151 页</p>
+</blockquote>
+<p>本书中关于看板（Kanban）实践的启示可以概括为以下几点：</p>
+<ul>
+<li>目标导向：相对于强化审批流程，更重要的是通过任务卡片的梳理识别半成品积压在哪个环节，通过建立一条反馈环路能够一直往回通向产品定义、设计及开发的最初环节。</li>
+<li>简洁性：例如一张变更索引卡片只要求填写必需的三条信息：变更计划的制定者、将要实施变更的系统以及一条一句话的概述，避免设置过多的必填字段和无效选项。繁琐而缺乏人性考量的工具难以发挥作用，最终将变成 “大家为了完成自己的工作，一直在胡乱对付这套系统”，再也没有比阻止人们去做他们理应做的事更能毁掉大家的热情和支持了。</li>
+<li>灵活性：针对需要特别关注的问题可以采取灵活方式，不拘泥于死板格式。例如在第一部分首席工程师（布伦特）是一个阶段性瓶颈，各部门在提交卡片的时候就将“是否需要布伦特支援”作为必填信息，或者使用单独一种颜色的卡片。</li>
+</ul>
+<p><strong>控制半成品的能力不足，是造成长期性延误和质量问题的根源之一。</strong> <strong>“完成”的真正定义</strong> 并非开发部完成了编码，而是只有在代码经过充分测试并按设计在生产中运行时，代码才算“完成”。</p>
+<p>关于变更管理，还有一些具体的实践方法值得借鉴：</p>
+<ul>
+<li>分级授权：可以把一部分变更审核委派给代理人</li>
+<li>脆弱变更：列出了十大最脆弱的服务、应用程序和基础架构列表，可能会影响到其中任何一个的变更申请都将立刻标上记号，由 CAB 详细审查</li>
+<li>标准变更（ITIL 名称）：对于之前已多次成功实施的变更，我们只需要提前批准就行。它们仍然需要提交，但可以不经过我们批准就安排操作日程。”</li>
+<li>外部影响变更：对于‘复杂的中等变更’ 变更提交者有责任向可能受到影响的人员进行咨询并得到其认可，做完这些之后才可以将变更卡片送入审核流程。</li>
+<li>禁止条款（透明化）：禁止未经授权的变更，禁止在服务中断期间出现未经公开的变更。</li>
+</ul>
+<h2 id="改进日常工作"><a href="#改进日常工作" class="headerlink" title="改进日常工作"></a>改进日常工作</h2><blockquote>
+<p>改进日常工作比开展日常工作更重要。</p>
+</blockquote>
+<h4 id="预防性维护"><a href="#预防性维护" class="headerlink" title="预防性维护"></a>预防性维护</h4><blockquote>
+<p>技术债务。它来自于走捷径，那在短时间内也许行得通。但是就像金融债务一样，久而久之，利息成本会越滚越高。如果一个部门没有付清它的技术债务，公司的每一份努力都将以计划外工作的形式来偿还那些技术债务的利息。p186</p>
+</blockquote>
+<p>如果你是一家跨国货运公司，你们用一百辆卡车组成的车队运送包裹，你们的一项公司目标就会是客户满意度和按时交货。一个影响按时交货的因素是车辆故障。车辆故障的一个关键起因是没有更换机油。那么，为了降低这个风险，你就要为车辆运营建立一个服务等级协议（SLA），每行驶五千英里就要更换一次机油。如果说按时交货是关键绩效指标（KPI），那么为了达到这个指标可以建立一个新的前瞻性KPI，比如说，已经按要求更换机油的车辆百分比。</p>
+<p>对于 IT 组织来说，这一原则同样适用。</p>
+<h2 id="两个反常识的概念"><a href="#两个反常识的概念" class="headerlink" title="两个反常识的概念"></a>两个反常识的概念</h2><h4 id="系统里要经常出些故障"><a href="#系统里要经常出些故障" class="headerlink" title="系统里要经常出些故障"></a>系统里要经常出些故障</h4><p>作者在书中提到一个观点：“系统里要经常出些故障，长此以往，再遇到困难就没有原来那么痛苦了。p216”  </p>
+<p>1960 年代，工业制造领域提出了弹性制造系统（Flexible Manufacturing System，FMS）的概念。FMS 的理想是制造系统能够富有弹性（能够因应预期或不可预期的变更），又兼有自动化设备规模生产的特性，以满足顾客对于产品要求多样化的趋势。制造系统的弹性通常被分为两类：</p>
+<ul>
+<li>“机器弹性”：涵盖了系统制造新产品的应变能力和零件工序改变的应变能力；</li>
+<li>“用途弹性”：同一组件可以使用不同机器设备而运行相同的工序之。</li>
+</ul>
+<p>于 IT 生产而言，就有了弹性系统，即面对各种不确定场景时（如基础存储设施故障，恶意攻击，依赖服务故障，网络超时、中断等等）都能够存活并且具备一定的自愈能力的系统。弹性系统的出发点是承认在规模化服务的场景下，故障是常态的、不可预测的，既然不可避免，就需要在系统的生命周期去主动管理它，可以主动地给系统不断施加一些压力，从而不断强化习惯并加以改进。</p>
+<p><strong>Do not try to avoid failures !  Embrace them !</strong></p>
+<p>具体策略方面，可以将改进周期设定为小段时间，例如每次为期两周，每期都实施一个小型的改进项目，例如周期性的服务中断演练。每次日常改进都需要覆盖“设计—检测—恢复—预防”的各个环节，只有不断重复才能建立信任感和透明度，对需要团队合作的事情来说尤其如此。</p>
+<blockquote>
+<p>建立起部落文化般的工作共识，这帮助我们比以往任何时候都能够更快地排除故障，而且，一旦真的需要把工作升级，也是可控而有序的。p263</p>
+</blockquote>
+<h4 id="人力资源使用率与效率成反比"><a href="#人力资源使用率与效率成反比" class="headerlink" title="人力资源使用率与效率成反比"></a>人力资源使用率与效率成反比</h4><p>每个人都需要空闲时间，或者说松弛时间。如果大家都没有松弛时间，半成品就会卡在系统里。或者更确切地说，卡在队列里，只是干等着。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DevOps-%E8%B5%84%E6%BA%90%E5%BF%99%E7%A2%8C%E7%99%BE%E5%88%86%E6%AF%94.png" alt="资源忙碌百分比"></p>
+<p>图表说明：横坐标轴上是给定资源的忙碌百分比，纵坐标轴上是大致的等待时间（更确切地说是队列长度）。曲线的形状表明，当资源使用率超过80%时，等待时间就会直线上升。</p>
+<p><strong>等待时间取决于资源使用率</strong>。如果一个资源的忙碌时间是50%，那么它的空闲时间也是 50%。等待时间就是50%除以50%，也就是一个时间单位（可以简化理解为 1 个小时）。另一方面，如果一个资源 90% 的时间是忙碌的，等待时间=90% /10%，也就是说至少 9 个小时。换言之，任务排队等待的时间，将是资源有 50% 空闲时的 9 倍。</p>
+<p>例如，小说中的技术大拿（布伦特），30分钟的简单变更需要耗费几个星期才能完成。原因很简单，作为所有工作的瓶颈，布伦特的使用率一直是100%甚至超过100%，因此，每次交给他的工作都只能在队列里枯等，如果不进行加速或升级处置，就永远不会完成。</p>
+<p>再进一步，如果简单任务实际需要 5 个以上交接步骤（分析、设计、程序、测试、发布、线上变更等），情况又会如何呢？假设所有工作中心都有 90% 的时间是忙碌的，由图上可知，在每一个工作中心的平均等待时间是 9 个小时。总共等待时间就是 5倍：45 个小时。高资源使用率带来的破坏性结果恐怕也就无需多言了。</p>
+<p>因此，削减非必要人工环节、管理交接工作是提高资源周转率的关键。</p>
+<h2 id="安全与审计"><a href="#安全与审计" class="headerlink" title="安全与审计"></a>安全与审计</h2><blockquote>
+<p>信息安全部总是到处亮出他们的“尚方宝剑”，提出各种紧急要求，全然不顾这样做对其他部门造成的后果，因此我们有很多会议都不邀请他们参加。只要有他们在，事情肯定办不成。p35</p>
+<p>一些最英明的审计师说，只有三种内部控制目标：确保财务报告的可靠性，符合法律法规，以及运营的效率和效果。就是这样。你和约翰所谈论的正是所谓‘COSO立方’（内部控制整合框架）的不同面。” p241</p>
+</blockquote>
+<p>本书故事中着重探讨了信息安全与审计工作，例如技术部门与内部审计部门的矛盾冲突、将安全审计置于开发构建过程之中等挺有意思的。这块比较复杂，以后再补充。</p>
+<h2 id="IT-价值流：像电力一样无处不在"><a href="#IT-价值流：像电力一样无处不在" class="headerlink" title="IT 价值流：像电力一样无处不在"></a>IT 价值流：像电力一样无处不在</h2><blockquote>
+<p>IT 不只是一个部门。相反，它就像电力一样无处不在。IT 是一种技能，就像能读会算一样。在无极限零部件公司，我们没有一个集中的阅读或计算部门——我们希望每一个雇员都多少掌握这些技能。理解技术能够做什么、不能做什么，已经成为这家公司里每个部门必须具备的一种核心竞争力。要是业务经理领导了一个不具备这种技能的团队或项目，他们就会失败。——《凤凰项目 一个IT运维的传奇故事》第 316 页</p>
+</blockquote>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/28/DevOps/">DevOps 漫谈系列</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/">Kanban 看板管理实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/Technology-English/">工程师的自我修养：全英文技术学习实践</a></li>
+</ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/">DevOps 实践的本质是文化</a></h4><ul>
+<li>学习力－团队生命之根</li>
+<li>带领团队翻译书籍</li>
+<li>Don’t make me think</li>
+<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
+</ul>
+<h4 id="凤凰项目作者推荐书单"><a href="#凤凰项目作者推荐书单" class="headerlink" title="凤凰项目作者推荐书单"></a>凤凰项目作者推荐书单</h4><ul>
+<li>《The DevOps Cookbook》(开发运维指导书)</li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6862062/">《持续交付：发布可靠软件的系统方法》</a></li>
+</ul>
+<h4 id="《目标：一种持续改进的流程》"><a href="#《目标：一种持续改进的流程》" class="headerlink" title="《目标：一种持续改进的流程》"></a>《目标：一种持续改进的流程》</h4><p>1984年，埃利亚胡·高德拉特博士撰写了他的重要著作《目标：一种持续改进的流程》（The Goal: A Process of On going Improvement）。这是一本苏格拉底式的小说，主人公是一位名叫亚历克斯·罗戈的工厂经理，他必须在90天内解决成本和按时交货的问题，否则他的工厂就要被关停。</p>
+<p>高德拉特博士在他的后一本书 <strong>《绝不是靠运气》（It’s Not Luck）</strong> 中，阐述了他称之为“思维过程”的内容。那是一套了不起的方法论（但是多少有些难以做到，且往往见效缓慢），主要是教公司如何识别长期的核心冲突、了解现状、描述理想的未来状况，以及多种提高成功可能性的策划技巧。</p>
+<ul>
+<li>华盛顿州立大学网站“EM526 约束管理”（课程），<a target="_blank" rel="noopener" href="http://public.wsu.edu/~engrmgmt/holt/em530/index.htm">http://public.wsu.edu/~engrmgmt/holt/em530/index.htm</a></li>
+<li>学习“思维过程”的教科书《逻辑化思维过程》，作者H.威廉·德特曼博士。</li>
+</ul>
+<h4 id="《丰田管理：为了获得改进、适应性和优异业绩而管理员工》"><a href="#《丰田管理：为了获得改进、适应性和优异业绩而管理员工》" class="headerlink" title="《丰田管理：为了获得改进、适应性和优异业绩而管理员工》"></a>《丰田管理：为了获得改进、适应性和优异业绩而管理员工》</h4><ul>
+<li>Toyota Kata : Managing People for Improvement , Adaptive nessand SuperiorResults</li>
+</ul>
+<h4 id="《团队领导的五大障碍：关于领导力的寓言》"><a href="#《团队领导的五大障碍：关于领导力的寓言》" class="headerlink" title="《团队领导的五大障碍：关于领导力的寓言》"></a>《团队领导的五大障碍：关于领导力的寓言》</h4><ul>
+<li>The Five Dysfunction sofa Team : A Leader ship Fable</li>
+<li>作者：帕特里克·兰西奥尼</li>
+</ul>
+<p>团队达成目标的一个核心诱因是信任缺失。在他的模型中，五大障碍被描述为：</p>
+<ul>
+<li>信任缺失——不愿在团队中显示弱点；</li>
+<li>惧怕冲突——在充满激情的建设性辩论中寻求和谐的假象；</li>
+<li>缺乏诚意——假意与团队的决策达成一致，形成模棱两可的公司氛围；</li>
+<li>回避问责——面对员工的失职行为，逃避追责，降低了工作标准；</li>
+<li>忽视结果——对个人成就、地位和自我价值的关注超过了对团队成功的关注。</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26644070/">豆瓣|《凤凰项目|The Phoenix Project》</a></li>
+<li><a target="_blank" rel="noopener" href="http://ijyun.github.io/2016/04/23/phoenix-project.html">《凤凰项目》内容梳理|龙井的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://researchcenter.paloaltonetworks.com/2016/10/phoenix-project-novel-devops-helping-business-win/">The Cybersecurity Canon: The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win</a></li>
+<li><a target="_blank" rel="noopener" href="http://news.sciencenet.cn/htmlnews/2011/6/248411.shtm">以色列物理学家、约束理论创始人埃利亚胡·戈德拉特逝世 | 2011 年</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.itdks.com/dakalive/detail/796">弹性工程-构建弹性系统|曾绿麟|美团</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/04/10/DevOps-Phoenix/" data-id="ckwgm33kq005p7b1yvwux9xj2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/27/DevOps-OpenCensus/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          DevOps 漫谈：开源分布式跟踪系统 OpenCensus
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/10/Artistic-Classical/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">古典音乐低俗史</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9A%E3%80%8A%E5%87%A4%E5%87%B0%E9%A1%B9%E7%9B%AE%E3%80%8B%E7%9A%84%E7%81%B5%E9%AD%82"><span class="toc-number">2.</span> <span class="toc-text">背景：《凤凰项目》的灵魂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E7%BA%A6%E6%9D%9F"><span class="toc-number">3.</span> <span class="toc-text">管理约束</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E7%9A%84%E7%93%B6%E9%A2%88%E6%98%AF%E4%BA%BA"><span class="toc-number">3.0.1.</span> <span class="toc-text">最大的瓶颈是人</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E8%BF%BD%E8%B8%AA"><span class="toc-number">4.</span> <span class="toc-text">任务追踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">任务可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="toc-number">5.0.1.</span> <span class="toc-text">可视化工作区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">改进日常工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%80%A7%E7%BB%B4%E6%8A%A4"><span class="toc-number">6.0.1.</span> <span class="toc-text">预防性维护</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%8F%8D%E5%B8%B8%E8%AF%86%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">7.</span> <span class="toc-text">两个反常识的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%87%8C%E8%A6%81%E7%BB%8F%E5%B8%B8%E5%87%BA%E4%BA%9B%E6%95%85%E9%9A%9C"><span class="toc-number">7.0.1.</span> <span class="toc-text">系统里要经常出些故障</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E4%BD%BF%E7%94%A8%E7%8E%87%E4%B8%8E%E6%95%88%E7%8E%87%E6%88%90%E5%8F%8D%E6%AF%94"><span class="toc-number">7.0.2.</span> <span class="toc-text">人力资源使用率与效率成反比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E5%AE%A1%E8%AE%A1"><span class="toc-number">8.</span> <span class="toc-text">安全与审计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IT-%E4%BB%B7%E5%80%BC%E6%B5%81%EF%BC%9A%E5%83%8F%E7%94%B5%E5%8A%9B%E4%B8%80%E6%A0%B7%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8"><span class="toc-number">9.</span> <span class="toc-text">IT 价值流：像电力一样无处不在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">10.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97"><span class="toc-number">10.0.1.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E5%AE%9E%E8%B7%B5%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E6%96%87%E5%8C%96"><span class="toc-number">10.0.2.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%A4%E5%87%B0%E9%A1%B9%E7%9B%AE%E4%BD%9C%E8%80%85%E6%8E%A8%E8%8D%90%E4%B9%A6%E5%8D%95"><span class="toc-number">10.0.3.</span> <span class="toc-text">凤凰项目作者推荐书单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8A%E7%9B%AE%E6%A0%87%EF%BC%9A%E4%B8%80%E7%A7%8D%E6%8C%81%E7%BB%AD%E6%94%B9%E8%BF%9B%E7%9A%84%E6%B5%81%E7%A8%8B%E3%80%8B"><span class="toc-number">10.0.4.</span> <span class="toc-text">《目标：一种持续改进的流程》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8A%E4%B8%B0%E7%94%B0%E7%AE%A1%E7%90%86%EF%BC%9A%E4%B8%BA%E4%BA%86%E8%8E%B7%E5%BE%97%E6%94%B9%E8%BF%9B%E3%80%81%E9%80%82%E5%BA%94%E6%80%A7%E5%92%8C%E4%BC%98%E5%BC%82%E4%B8%9A%E7%BB%A9%E8%80%8C%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E3%80%8B"><span class="toc-number">10.0.5.</span> <span class="toc-text">《丰田管理：为了获得改进、适应性和优异业绩而管理员工》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8A%E5%9B%A2%E9%98%9F%E9%A2%86%E5%AF%BC%E7%9A%84%E4%BA%94%E5%A4%A7%E9%9A%9C%E7%A2%8D%EF%BC%9A%E5%85%B3%E4%BA%8E%E9%A2%86%E5%AF%BC%E5%8A%9B%E7%9A%84%E5%AF%93%E8%A8%80%E3%80%8B"><span class="toc-number">10.0.6.</span> <span class="toc-text">《团队领导的五大障碍：关于领导力的寓言》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

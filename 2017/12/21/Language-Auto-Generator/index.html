@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>玩转编程语言:基于Node.js构建自定义代码生成器 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要在真实的软件开发过程中，无论使用何种编程开发语言，都不可避免的会遇到代码重复的问题。如何处理重复的问题，可以选择情怀（手动再敲一遍），也可以选择 Copy-to-Copy ，或者选择代码生成器。正如在之前的文章  我的写作工具链 中，我介绍过一种 Blog 生成器 hexo ，可以将 Markdown 格式的内容自动生成方便发布的 HTML 格式。本文将还原 hexo 的运行原理，为解决类似问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩转编程语言:基于Node.js构建自定义代码生成器">
+<meta property="og:url" content="https://riboseyim.com/2017/12/21/Language-Auto-Generator/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要在真实的软件开发过程中，无论使用何种编程开发语言，都不可避免的会遇到代码重复的问题。如何处理重复的问题，可以选择情怀（手动再敲一遍），也可以选择 Copy-to-Copy ，或者选择代码生成器。正如在之前的文章  我的写作工具链 中，我介绍过一种 Blog 生成器 hexo ，可以将 Markdown 格式的内容自动生成方便发布的 HTML 格式。本文将还原 hexo 的运行原理，为解决类似问">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator-HTML.png">
+<meta property="article:published_time" content="2017-12-21T09:11:32.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.105Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Language-Auto-Generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/21/Language-Auto-Generator/" class="article-date">
+  <time datetime="2017-12-21T09:11:32.000Z" itemprop="datePublished">2017-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      玩转编程语言:基于Node.js构建自定义代码生成器
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="ckwgm33lj00957b1yqtmze3hi" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在真实的软件开发过程中，无论使用何种编程开发语言，都不可避免的会遇到代码重复的问题。如何处理重复的问题，可以选择情怀（手动再敲一遍），也可以选择 Copy-to-Copy ，或者选择代码生成器。正如在之前的文章  <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/03/Writing-WriterToolChain/">我的写作工具链</a> 中，我介绍过一种 Blog 生成器 hexo ，可以将 Markdown 格式的内容自动生成方便发布的 HTML 格式。本文将还原 hexo 的运行原理，为解决类似问题提供一些参考思路。</p>
+<blockquote>
+<p>示例：通过 Markdown 文件声明模板（源代码），通过脚本生成 HTML 文件（目标代码），并预览代码生成效果。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、Hello-Node-js"><a href="#一、Hello-Node-js" class="headerlink" title="一、Hello Node.js"></a>一、Hello Node.js</h2><h4 id="Step-1-准备环境-dependencies"><a href="#Step-1-准备环境-dependencies" class="headerlink" title="Step 1: 准备环境 (dependencies)"></a>Step 1: 准备环境 (dependencies)</h4><p>开发语言 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/16/Language-Node-lang/">Node.js</a>, 一个能够运行 JavaScript 的开放源代码、跨平台运行环境。</p>
+<ul>
+<li>npm init — 初始化 root 目录</li>
+<li>npm i -s live-server — 该模块支持本示例生成静态 HTML 站点，提供热部署能力</li>
+<li>npm i -s nodemon — 该模块支持当文件变化自动执行重构任务</li>
+<li>npm i -s concurrently — 该模块支持支持并发执行任务、脚本(scripts/tasks)</li>
+<li>npm i -s markdown-it — 该模块提供 Markdown 文件解析器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mkdir project-generator</span><br><span class="line">mkdir project-generator/pages</span><br><span class="line">mkdir project-generator/pages_meta</span><br><span class="line">mkdir project-generator/js</span><br><span class="line">mkdir project-generator/css</span><br><span class="line">mkdir project-generator/images</span><br><span class="line">mkdir project-generator/build_scripts</span><br><span class="line">mkdir project-generator/build</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> project-generator</span><br><span class="line">npm init </span><br><span class="line">npm i -s concurrently</span><br><span class="line">npm i -s fs</span><br><span class="line">npm i -s fs-extra</span><br><span class="line">npm i -s markdown-it</span><br><span class="line">npm i -s live-server </span><br><span class="line">npm i -s nodemon</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator.png" alt=""></p>
+<h4 id="Step-2-准备元数据"><a href="#Step-2-准备元数据" class="headerlink" title="Step 2: 准备元数据"></a>Step 2: 准备元数据</h4><p>例如：<strong>pages/index.md</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Home page</span><br><span class="line"></span><br><span class="line">Hello world!</span><br><span class="line"></span><br><span class="line">[Link to another page](./other.html)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>例如：<strong>pages_meta/index.json</strong> 用于存储一些需要的元数据（参数、固定内容等），JSON 文件格式方便后面调用。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;lang&quot;</span>: <span class="string">&quot;en&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;Index&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;stylesheets&quot;</span>: [<span class="string">&quot;./css/style.css&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: [<span class="string">&quot;./js/main.js&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;charset&quot;</span>: <span class="string">&quot;utf-8&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;This is a page&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span>: <span class="string">&quot;page, sample&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;None&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;favicon&quot;</span>: <span class="string">&quot;./images/favicon.png&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;viewport&quot;</span>: <span class="string">&quot;width=device-width, initial-scale=1&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;extra&quot;</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Step-3-编写模板和构建脚本（template-amp-build-Script）"><a href="#Step-3-编写模板和构建脚本（template-amp-build-Script）" class="headerlink" title="Step 3: 编写模板和构建脚本（template &amp; build Script）"></a>Step 3: 编写模板和构建脚本（template &amp; build Script）</h4><p>代码生成器中需要定制开发的部分包括 <strong>builder.js</strong> 和 <strong>pages_template.js</strong>。build.js 相当于 main 函数，控制入口和流程，加载资源数据、调用 generator 任务，与 Makefile 和 Ant.xml 非常类似。pages_template.js 依赖的组件是 <a target="_blank" rel="noopener" href="https://markdown-it.github.io/markdown-it/#MarkdownIt.configure">markdown-it</a> ，负责将 Markdown 源文件转换输出成 HTML 文件。builder.js 将 pages_template.js 视为一个模块引用：<strong>pageTemplate.generatePage(pageContent, metaData))</strong> 因此可以根据需要定制多个不同的 XXX_template.js 或者在每个 template.js 中定义其它函数。</p>
+<p><strong>builder.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pageTemplate = <span class="built_in">require</span>(<span class="string">&#x27;./page_template&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// All paths are relative to package.json.</span></span><br><span class="line"><span class="keyword">var</span> pagesPath = <span class="string">&#x27;./pages&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> pagesMetaPath = <span class="string">&#x27;./pages_meta&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> copyFolders = [<span class="string">&#x27;./images&#x27;</span>, <span class="string">&#x27;./css&#x27;</span>, <span class="string">&#x27;./js&#x27;</span>];</span><br><span class="line"><span class="keyword">var</span> outputPath = <span class="string">&#x27;./build&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Clean</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Cleaning previous build...&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> file <span class="keyword">of</span> fs.readdirSync(outputPath))&#123;</span><br><span class="line">    fs.removeSync(path.join(outputPath, file));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Loading</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Loading pages metadata...&#x27;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> pageMeta <span class="keyword">of</span> fs.readdirSync(pagesMetaPath))&#123;</span><br><span class="line">    pagesMeta[pageMeta] = fs.readFileSync(path.join(pagesMetaPath,pageMeta),<span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Generating pages...&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> page <span class="keyword">of</span> <span class="built_in">Object</span>.entries(pages)) &#123;</span><br><span class="line">    <span class="keyword">var</span> pageName = page[<span class="number">0</span>].slice(<span class="number">0</span>, page[<span class="number">0</span>].lastIndexOf(<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">    <span class="keyword">var</span> metaData = pagesMeta.hasOwnProperty(pageName+<span class="string">&#x27;.json&#x27;</span>)</span><br><span class="line">      ? <span class="built_in">JSON</span>.parse(pagesMeta[pageName+<span class="string">&#x27;.json&#x27;</span>])</span><br><span class="line">      : &#123;&#125;;</span><br><span class="line">    metaData.title = metaData.title || pageName;</span><br><span class="line">    <span class="keyword">var</span> pageContent = page[<span class="number">1</span>];</span><br><span class="line">    fs.writeFileSync(</span><br><span class="line">      path.join(outputPath,pageName+<span class="string">&#x27;.html&#x27;</span>),</span><br><span class="line">      pageTemplate.generatePage(pageContent, metaData));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Copy</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Copying folders...&#x27;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> copyFolder <span class="keyword">of</span> copyFolders)&#123;</span><br><span class="line">    fs.copySync(copyFolder, path.join(outputPath,copyFolder));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>pages_template.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> md = <span class="built_in">require</span>(<span class="string">&#x27;markdown-it&#x27;</span>)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">generatePage</span>: <span class="function"><span class="keyword">function</span>(<span class="params">pageContent,pageMeta</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span><span class="string">`&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">&lt;html lang=&quot;<span class="subst">$&#123;pageMeta.lang || <span class="built_in">this</span>.defaultMeta.lang&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">  &lt;head&gt;</span></span><br><span class="line"><span class="string">    &lt;title&gt;<span class="subst">$&#123;pageMeta.title || <span class="built_in">this</span>.defaultMeta.title&#125;</span>&lt;/title&gt;</span></span><br><span class="line"><span class="string">    &lt;meta charset=&quot;<span class="subst">$&#123;pageMeta.charset || <span class="built_in">this</span>.defaultMeta.charset&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;meta name=&quot;description&quot; content=&quot;<span class="subst">$&#123;pageMeta.description || <span class="built_in">this</span>.defaultMeta.description&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;meta name=&quot;keywords&quot; content=&quot;<span class="subst">$&#123;pageMeta.keywords || <span class="built_in">this</span>.defaultMeta.keywords&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;meta name=&quot;author&quot; content=&quot;<span class="subst">$&#123;pageMeta.author || <span class="built_in">this</span>.defaultMeta.author&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">  <span class="subst">$&#123;md.render(pageContent)&#125;</span></span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Step-4-优化任务脚本"><a href="#Step-4-优化任务脚本" class="headerlink" title="Step 4: 优化任务脚本"></a>Step 4: 优化任务脚本</h4><p>在 Step 1 步骤中，npm init 创建了一个文件：<strong>package.json</strong>，我们可以定义其中的 “scripts” , 执行 <strong>npm run start</strong> 将默认在 1080 端口开启 Web 服务。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Language-Auto-Generator-HTML.png" alt=""></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;coffee&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;beyond my coffee&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;  </span><br><span class="line">    <span class="attr">&quot;build-pages&quot;</span>: <span class="string">&quot;node ./build_scripts/builder.js&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;start&quot;</span>: <span class="string">&quot;concurrently --kill-others \&quot;nodemon -e js,json,css,md -i build -x \\\&quot;npm run build-pages\\\&quot;\&quot; \&quot;live-server ./build\&quot;&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;@RiboseYim&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build-pages</span><br><span class="line"></span><br><span class="line">&gt; coffee@<span class="number">1.0</span><span class="number">.0</span> build-pages /generator-code</span><br><span class="line">&gt; node ./build_scripts/builder.js</span><br><span class="line"></span><br><span class="line">Cleaning previous build...</span><br><span class="line">Loading pages...</span><br><span class="line">Loading pages metadata...</span><br><span class="line">Generating pages...</span><br><span class="line">Copying folders...</span><br><span class="line">Done!</span><br><span class="line"></span><br><span class="line">$ npm run start</span><br><span class="line"></span><br><span class="line">&gt; coffee@<span class="number">1.0</span><span class="number">.0</span> start /Users/yanrui/project/generator-code</span><br><span class="line">&gt; concurrently --kill-others <span class="string">&quot;nodemon -e js,json,css,md -i build -x \&quot;npm run build-pages\&quot;&quot;</span> <span class="string">&quot;live-server ./build&quot;</span></span><br><span class="line"></span><br><span class="line">[<span class="number">0</span>] [nodemon] <span class="number">1.14</span><span class="number">.1</span></span><br><span class="line">[<span class="number">0</span>] [nodemon] to restart at any time, enter <span class="string">`rs`</span></span><br><span class="line">[<span class="number">0</span>] [nodemon] watching: *.*</span><br><span class="line">[<span class="number">0</span>] [nodemon] starting <span class="string">`npm run build-pages`</span></span><br><span class="line">[<span class="number">1</span>] Serving <span class="string">&quot;./build&quot;</span> at http:<span class="comment">//127.0.0.1:8080</span></span><br><span class="line">[<span class="number">1</span>] Ready <span class="keyword">for</span> changes</span><br><span class="line">[<span class="number">1</span>] GET /js/main.js <span class="number">404</span> <span class="number">42.133</span> ms - <span class="number">23</span></span><br><span class="line">[<span class="number">1</span>] GET /js/main.js <span class="number">404</span> <span class="number">12.204</span> ms - <span class="number">23</span></span><br><span class="line">[<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>] &gt; coffee@<span class="number">1.0</span><span class="number">.0</span> build-pages /Users/yanrui/project/generator-code</span><br><span class="line">[<span class="number">0</span>] &gt; node ./build_scripts/builder.js</span><br><span class="line">[<span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span>] Cleaning previous build...</span><br><span class="line">[<span class="number">0</span>] Loading pages...</span><br><span class="line">[<span class="number">0</span>] Loading pages metadata...</span><br><span class="line">[<span class="number">0</span>] Generating pages...</span><br><span class="line">[<span class="number">0</span>] Copying folders...</span><br><span class="line">[<span class="number">0</span>] Done!</span><br><span class="line">[<span class="number">0</span>] [nodemon] clean exit - waiting <span class="keyword">for</span> changes before restart</span><br><span class="line">[<span class="number">1</span>] Change detected build/index.html</span><br><span class="line">[<span class="number">1</span>] Change detected build/images</span><br></pre></td></tr></table></figure>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><h4 id="Hexo-Startup"><a href="#Hexo-Startup" class="headerlink" title="Hexo Startup"></a>Hexo Startup</h4><h4 id="Hexo-Theme"><a href="#Hexo-Theme" class="headerlink" title="Hexo Theme"></a>Hexo Theme</h4><ul>
+<li>Hexo Theme <a target="_blank" rel="noopener" href="https://github.com/giscafer/hexo-theme-cafe">Cafe</a></li>
+</ul>
+<h4 id="Hexo-Questions"><a href="#Hexo-Questions" class="headerlink" title="Hexo Questions"></a>Hexo Questions</h4><ul>
+<li>Hexo g 失败【Uncaught SyntaxError: Invalid or unexpected token】：临时办法-复制到Editplus查看乱码</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/26/Language/">玩转编程语言系列</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hackernoon.com/building-a-simple-static-page-generator-with-node-js-4f58f680c47d">Building a simple static page generator with Node.js</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/12/21/Language-Auto-Generator/" data-id="ckwgm33lj00957b1yqtmze3hi" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/23/Linux-Perf-WordBook/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux-Perf-WordBook
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/21/eBook-LPM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">电子书：《Linux Perf Master》</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Hello-Node-js"><span class="toc-number">2.</span> <span class="toc-text">一、Hello Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83-dependencies"><span class="toc-number">2.0.1.</span> <span class="toc-text">Step 1: 准备环境 (dependencies)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-%E5%87%86%E5%A4%87%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">2.0.2.</span> <span class="toc-text">Step 2: 准备元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%EF%BC%88template-amp-build-Script%EF%BC%89"><span class="toc-number">2.0.3.</span> <span class="toc-text">Step 3: 编写模板和构建脚本（template &amp; build Script）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-4-%E4%BC%98%E5%8C%96%E4%BB%BB%E5%8A%A1%E8%84%9A%E6%9C%AC"><span class="toc-number">2.0.4.</span> <span class="toc-text">Step 4: 优化任务脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-number">3.</span> <span class="toc-text">Application</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo"><span class="toc-number">3.1.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo-Startup"><span class="toc-number">3.1.1.</span> <span class="toc-text">Hexo Startup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo-Theme"><span class="toc-number">3.1.2.</span> <span class="toc-text">Hexo Theme</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo-Questions"><span class="toc-number">3.1.3.</span> <span class="toc-text">Hexo Questions</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

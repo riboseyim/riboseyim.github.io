@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux 性能诊断:负载评估 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 基于 Linux 单机的负载评估 负载诊断流程 概念：什么是负载 负载：CPU 还是 I&#x2F;O Linux 内核进程调度器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 性能诊断:负载评估">
+<meta property="og:url" content="https://riboseyim.com/2017/12/11/Linux-Perf-Load/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 基于 Linux 单机的负载评估 负载诊断流程 概念：什么是负载 负载：CPU 还是 I&#x2F;O Linux 内核进程调度器">
+<meta property="og:locale">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-acc425a500206316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1037849-dd82c356bdda926d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2017-12-11T01:51:51.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.568Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1037849-acc425a500206316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Perf-Load" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/11/Linux-Perf-Load/" class="article-date">
+  <time datetime="2017-12-11T01:51:51.000Z" itemprop="datePublished">2017-12-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 性能诊断:负载评估
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/12/11/Linux-Perf-Load/" data-id="ckwgm33lw00cc7b1y5oluz1xz" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>基于 Linux 单机的负载评估</li>
+<li>负载诊断流程</li>
+<li>概念：什么是负载</li>
+<li>负载：CPU 还是 I/O</li>
+<li>Linux 内核进程调度器</li>
+</ul>
+<span id="more"></span>
+<h4 id="概要：负载诊断流程"><a href="#概要：负载诊断流程" class="headerlink" title="概要：负载诊断流程"></a>概要：负载诊断流程</h4><ul>
+<li>观察load average (平均负载)</li>
+<li>观察CPU、I/O是否存在瓶颈</li>
+</ul>
+<p>从load avgerage等总括性的数据着手，参考CPU使用率和I/O等待时间等具体的数字，从而自顶向下快速排查各进程状态。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1037849-acc425a500206316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="perf-flow"></p>
+<h2 id="概念：什么是负载"><a href="#概念：什么是负载" class="headerlink" title="概念：什么是负载?"></a>概念：什么是负载?</h2><p>负载可以分为两大部分：CPU负载、I/O 负载 。</p>
+<h4 id="load-average"><a href="#load-average" class="headerlink" title="load average"></a>load average</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uptime</span><br><span class="line">top</span><br><span class="line">cat /proc/loadavg</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">load average:<span class="number">0.65</span>, <span class="number">1.49</span>, <span class="number">1.76</span>  （负载很低）</span><br><span class="line">load average:<span class="number">3.49</span>, <span class="number">3.67</span>, <span class="number">3.75</span>  （负载一般）</span><br><span class="line">load average:<span class="number">33.20</span>, <span class="number">18.39</span>, <span class="number">15.21</span> (负载高)</span><br><span class="line">load average:<span class="number">70.25</span>, <span class="number">80.50</span>, <span class="number">95.38</span> (负载非常高，需要干预)</span><br><span class="line"></span><br><span class="line">load average:<span class="number">7.89</span>, <span class="number">11.42</span>, <span class="number">13.42</span>  (当前负载趋于下降)</span><br><span class="line">load average:<span class="number">17.89</span>, <span class="number">13.28</span>, <span class="number">4.45</span> (当前负载趋于上升)</span><br></pre></td></tr></table></figure>
+<p>依次时过去1分钟，5分钟，15分钟内，单位时间的等待任务数，也就是表示平均有多少任务正处于等待状态。在load average较高的情况下，就说明等待运行的任务较多，因此轮到该任务运行的等待时间就会出现较大延迟，即反映了此时负载较高。</p>
+<h4 id="Linux-内核进程调度器（Process-Scheduler）"><a href="#Linux-内核进程调度器（Process-Scheduler）" class="headerlink" title="Linux 内核进程调度器（Process Scheduler）"></a>Linux 内核进程调度器（Process Scheduler）</h4><p>负责决定任务运行的优先级，以及让任务等待或使之重新开始等核心工作。调度器划分并管理进程（Process）的状态。例如：</p>
+<p><strong>等待分配CPU资源的状态</strong></p>
+<p><strong>等待磁盘输入输出完毕的状态</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1037849-dd82c356bdda926d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="process-flow.png"></p>
+<p><strong>进程描述符的状态</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>进程状态</strong></th>
+<th>PS Stat</th>
+<th><strong>说明</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TASK_RUNNING</td>
+<td>R(Run)</td>
+<td>运行状态。只要CPU空闲，随时都可以开始。</td>
+<td></td>
+</tr>
+<tr>
+<td>TASK_INTERRUPTIBLE</td>
+<td>S(Sleep)</td>
+<td>可中断的等待状态。例如系统睡眠或来自于用户输入的等待等。</td>
+<td></td>
+</tr>
+<tr>
+<td>TASK_UNINTERRUPTIBLE</td>
+<td>D(Disk Sleep)</td>
+<td>不可中断的等待状态。主要为短时间恢复时的等待状态。例如磁盘输入输出的等待</td>
+<td></td>
+</tr>
+<tr>
+<td>TASK_STOPPED</td>
+<td></td>
+<td>响应暂停信号而运行中断的状态。直到恢复（Resume）前都不会被调度</td>
+<td></td>
+</tr>
+<tr>
+<td>TASK_ZOMBIE</td>
+<td>Z(Zombie)</td>
+<td>僵死状态。虽然子进程已经终止（exit）,但父进程尚未执行wait(),因此该进程的资源没有被系统释放</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>TASK_RUNNING 正在运行</li>
+<li>TASK_RUNNING （等待状态，加权换算）</li>
+<li>TASK_INTERRUPTIBLE（等待状态，加权换算）</li>
+<li>TASK_UNINTERRUPTIBLE（等待状态，不加权换算）</li>
+</ul>
+<p>load average 表示“等待进程的平均数”，除了“TASK_RUNNING正在运行”，其它三个都是等待状态。TASK_INTERRUPTIBLE不被换算。即只换算“虽然需要即刻运行处理，但是无论如何都必须等待”。</p>
+<p>load average所描述的负载就是：需要运行处理，但又必需等待队列前的进程处理完成的进程个数。具体来说：要么等待授予CPU运行权限，要么等待磁盘I/O完成。</p>
+<ul>
+<li>内核函数：kernei/timer.c的calc-load();</li>
+<li>调用周期：每次计时器中断（centos为4ms）</li>
+</ul>
+<h4 id="CPU-还是-I-O"><a href="#CPU-还是-I-O" class="headerlink" title="CPU 还是 I/O  ?"></a>CPU 还是 I/O  ?</h4><p>load average的数字只是表示等待的任务数，仅根据load average并不能判断具体是CPU负载高还是I/O负载高。</p>
+<p><strong>CPU密集型程序</strong></p>
+<p><strong>I/O密集型程序</strong></p>
+<h4 id="Sar-System-Activity-Reporter"><a href="#Sar-System-Activity-Reporter" class="headerlink" title="Sar (System Activity Reporter)"></a>Sar (System Activity Reporter)</h4><p>CPU使用率和I/O等待时间都是在不断变化的，可以通过sar 命令来确认这些指标。<br>sar 工具包含在 sysstat 软件包内。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sar</span><br><span class="line">Linux    <span class="number">04</span>/<span class="number">17</span>/<span class="number">16</span>        _x86\_64_        (<span class="number">24</span> CPU)</span><br><span class="line"><span class="number">00</span>:<span class="number">00</span>:<span class="number">01</span>        CPU     %user     %nice   %system   %iowait    %steal     %idle</span><br><span class="line"><span class="number">00</span>:<span class="number">10</span>:<span class="number">02</span>        all      <span class="number">1.26</span>      <span class="number">0.00</span>      <span class="number">0.55</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.19</span></span><br><span class="line"><span class="number">00</span>:<span class="number">20</span>:<span class="number">01</span>        all      <span class="number">1.58</span>      <span class="number">0.00</span>      <span class="number">1.04</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.38</span></span><br><span class="line"><span class="number">00</span>:<span class="number">30</span>:<span class="number">01</span>        all      <span class="number">1.23</span>      <span class="number">0.00</span>      <span class="number">0.56</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.21</span></span><br><span class="line"><span class="number">00</span>:<span class="number">40</span>:<span class="number">01</span>        all      <span class="number">1.59</span>      <span class="number">0.00</span>      <span class="number">1.01</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.40</span></span><br><span class="line"><span class="number">00</span>:<span class="number">50</span>:<span class="number">01</span>        all      <span class="number">1.35</span>      <span class="number">0.00</span>      <span class="number">0.59</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.06</span></span><br><span class="line"><span class="number">01</span>:<span class="number">00</span>:<span class="number">01</span>        all      <span class="number">1.63</span>      <span class="number">0.00</span>      <span class="number">1.10</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.27</span></span><br><span class="line"><span class="number">01</span>:<span class="number">10</span>:<span class="number">01</span>        all      <span class="number">1.22</span>      <span class="number">0.00</span>      <span class="number">0.54</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.24</span></span><br><span class="line"><span class="number">01</span>:<span class="number">20</span>:<span class="number">01</span>        all      <span class="number">1.68</span>      <span class="number">0.00</span>      <span class="number">1.06</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">97.25</span></span><br><span class="line"><span class="number">01</span>:<span class="number">30</span>:<span class="number">01</span>        all      <span class="number">1.23</span>      <span class="number">0.00</span>      <span class="number">0.54</span>      <span class="number">0.00</span>      <span class="number">0.00</span>     <span class="number">98.23</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sar <span class="number">1</span> <span class="number">10</span></span><br><span class="line"><span class="number">18</span>:<span class="number">54</span>:<span class="number">58</span>    %usr    %sys    %wio   %idle</span><br><span class="line"><span class="number">18</span>:<span class="number">54</span>:<span class="number">59</span>      <span class="number">18</span>       <span class="number">3</span>       <span class="number">0</span>      <span class="number">79</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">00</span>      <span class="number">46</span>      <span class="number">14</span>       <span class="number">0</span>      <span class="number">40</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">01</span>      <span class="number">38</span>      <span class="number">13</span>       <span class="number">0</span>      <span class="number">49</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">02</span>      <span class="number">17</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">79</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">03</span>      <span class="number">11</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">85</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">04</span>      <span class="number">12</span>       <span class="number">5</span>       <span class="number">0</span>      <span class="number">83</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">05</span>      <span class="number">20</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">76</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">06</span>      <span class="number">22</span>       <span class="number">3</span>       <span class="number">0</span>      <span class="number">75</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">07</span>      <span class="number">21</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">75</span></span><br><span class="line"><span class="number">18</span>:<span class="number">55</span>:<span class="number">08</span>      <span class="number">17</span>       <span class="number">4</span>       <span class="number">0</span>      <span class="number">79</span></span><br></pre></td></tr></table></figure>
+<p>输出参数:</p>
+<ul>
+<li>%user:用户(一般的应用软件运作模式)CPU资源</li>
+<li>%system:系统（内核运作）占用CPU资源</li>
+<li>%iowait:I/O等待率。</li>
+</ul>
+<h2 id="进程详细"><a href="#进程详细" class="headerlink" title="进程详细"></a>进程详细</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ps auxw</span><br><span class="line">test <span class="number">1551</span> <span class="number">0.2</span> <span class="number">0.1</span> <span class="number">6452</span> <span class="number">4776</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  Test.pl CTP00004.PRS00034 <span class="number">1</span> <span class="number">300</span></span><br><span class="line">test <span class="number">1553</span> <span class="number">2.6</span> <span class="number">0.4</span> <span class="number">18196</span> <span class="number">16424</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  /Test.pl <span class="number">00001.</span>PRS00034</span><br><span class="line">test <span class="number">1555</span> <span class="number">2.6</span> <span class="number">0.4</span> <span class="number">18168</span> <span class="number">16396</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  /Test.pl <span class="number">00002.</span>PRS00034</span><br><span class="line">test <span class="number">1557</span> <span class="number">2.8</span> <span class="number">0.4</span> <span class="number">18132</span> <span class="number">16432</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  /Test.pl <span class="number">00004.</span>PRS00034</span><br><span class="line">test <span class="number">1606</span> <span class="number">0.0</span> <span class="number">0.0</span> <span class="number">50060</span> <span class="number">916</span> ? Sl <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span> /bin/PingTest -f CTP00004</span><br><span class="line">test <span class="number">1612</span> <span class="number">2.5</span> <span class="number">0.4</span> <span class="number">18156</span> <span class="number">16452</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  /Test.pl <span class="number">00014.</span>PRS00034</span><br><span class="line">test <span class="number">1629</span> <span class="number">2.1</span> <span class="number">0.4</span> <span class="number">18416</span> <span class="number">16696</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  /Test.pl <span class="number">00015.</span>PRS00034</span><br><span class="line">test <span class="number">2253</span> <span class="number">2.7</span> <span class="number">0.3</span> <span class="number">12868</span> <span class="number">11160</span> ? R <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  -w mrtg MRTG\_00027.cfg <span class="built_in">log</span></span><br><span class="line">test <span class="number">2254</span> <span class="number">3.6</span> <span class="number">0.3</span> <span class="number">12864</span> <span class="number">11184</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  -w mrtg MRTG\_00028.cfg <span class="built_in">log</span></span><br><span class="line">test <span class="number">2261</span> <span class="number">2.4</span> <span class="number">0.2</span> <span class="number">12640</span> <span class="number">11004</span> ? S <span class="number">19</span>:<span class="number">25</span> <span class="number">0</span>:<span class="number">00</span>  -w mrtg MRTG\_00030.cfg <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>输出参数：</p>
+<ul>
+<li>%CPU：该进程的CPU使用率</li>
+<li>%memb：物理内存百分比</li>
+<li>VSZ、RSS：虚拟／物理内存</li>
+<li>STAT：进程状态（非常重要）</li>
+<li>TIME：CPU占用时间</li>
+</ul>
+<h4 id="SWAP吞吐"><a href="#SWAP吞吐" class="headerlink" title="SWAP吞吐"></a>SWAP吞吐</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$sar -W</span><br><span class="line"><span class="number">17</span>:<span class="number">20</span>:<span class="number">01</span>     pswpin/s pswpout/s</span><br><span class="line"><span class="number">17</span>:<span class="number">30</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">17</span>:<span class="number">40</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">17</span>:<span class="number">50</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">00</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">10</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">20</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">30</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">40</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">18</span>:<span class="number">50</span>:<span class="number">02</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">19</span>:<span class="number">00</span>:<span class="number">01</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line"><span class="number">19</span>:<span class="number">10</span>:<span class="number">02</span>         <span class="number">0.00</span>      <span class="number">0.00</span></span><br><span class="line">Average:         <span class="number">0.00</span>      <span class="number">0.00</span></span><br></pre></td></tr></table></figure>
+<p>输出参数：</p>
+<ul>
+<li>pswpin/s:每秒系统换入的页面数</li>
+<li>pswpout/s:每秒系统换出的页面数</li>
+</ul>
+<p><strong>发生频繁的交换时，服务器的吞吐量性能会大幅下降。</strong></p>
+<h4 id="vmstat-Report-Virtual-Memory-Statistics"><a href="#vmstat-Report-Virtual-Memory-Statistics" class="headerlink" title="vmstat(Report Virtual Memory Statistics)"></a>vmstat(Report Virtual Memory Statistics)</h4><p>实时确认CPU使用率及实际的I/O等待时间<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vmstat</span><br><span class="line"> kthr      memory            page            disk          faults      cpu</span><br><span class="line"> r b w   swap  <span class="built_in">free</span>  re  mf pi po fr de sr s2 s2 s2 s2   in   sy   cs us sy id</span><br><span class="line"> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">45411448</span> <span class="number">17973032</span> <span class="number">140</span> <span class="number">1470</span> <span class="number">13</span> <span class="number">41</span> <span class="number">33</span> <span class="number">0</span> <span class="number">0</span> <span class="number">-0</span> <span class="number">-0</span> <span class="number">-0</span> <span class="number">-0</span> <span class="number">2753</span> <span class="number">313459</span> <span class="number">4984</span> <span class="number">16</span> <span class="number">3</span> <span class="number">81</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>优化的真正工作是“找出系统瓶颈并加以解决”，我们所能做的就是“充分发挥硬／软件本来的性能，解决可能存在的问题”。例如，同样是I/O问题，我们可以通过增加内存来缓解，也可以调整调度方案来优化（时间换空间），但是更多的情况是，优化应用程序的I/O算法效果更佳。</p>
+<p>最后，重温一句经典格言</p>
+<blockquote>
+<p>别臆断，请监控</p>
+</blockquote>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/12/11/Linux-Perf-Load/" data-id="ckwgm33lw00cc7b1y5oluz1xz" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/11/Linux-Perf-Netflix/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断:快速检查单(Netflix版)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/11/Linux-Works-Memory/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">How Linux Works:Memory</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%A6%81%EF%BC%9A%E8%B4%9F%E8%BD%BD%E8%AF%8A%E6%96%AD%E6%B5%81%E7%A8%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">概要：负载诊断流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B4%9F%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text">概念：什么是负载?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load-average"><span class="toc-number">2.0.1.</span> <span class="toc-text">load average</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E5%86%85%E6%A0%B8%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88Process-Scheduler%EF%BC%89"><span class="toc-number">2.0.2.</span> <span class="toc-text">Linux 内核进程调度器（Process Scheduler）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU-%E8%BF%98%E6%98%AF-I-O"><span class="toc-number">2.0.3.</span> <span class="toc-text">CPU 还是 I&#x2F;O  ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sar-System-Activity-Reporter"><span class="toc-number">2.0.4.</span> <span class="toc-text">Sar (System Activity Reporter)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%AF%A6%E7%BB%86"><span class="toc-number">3.</span> <span class="toc-text">进程详细</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SWAP%E5%90%9E%E5%90%90"><span class="toc-number">3.0.1.</span> <span class="toc-text">SWAP吞吐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vmstat-Report-Virtual-Memory-Statistics"><span class="toc-number">3.0.2.</span> <span class="toc-text">vmstat(Report Virtual Memory Statistics)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.0.3.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">3.0.4.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">3.0.5.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9AHow-Linux-Works"><span class="toc-number">3.0.6.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">3.0.7.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

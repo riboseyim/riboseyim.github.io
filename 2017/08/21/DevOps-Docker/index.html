@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>DevOps 漫谈：Docker | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Docker ABC:常用命令、自定义制作、发布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 漫谈：Docker">
+<meta property="og:url" content="https://riboseyim.com/2017/08/21/DevOps-Docker/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Docker ABC:常用命令、自定义制作、发布">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*easlVE_DOqRDUDkVINRI9g.png">
+<meta property="article:published_time" content="2017-08-21T05:46:54.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:04.359Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="架构师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*easlVE_DOqRDUDkVINRI9g.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DevOps-Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/21/DevOps-Docker/" class="article-date">
+  <time datetime="2017-08-21T05:46:54.000Z" itemprop="datePublished">2017-08-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DevOps 漫谈：Docker
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/08/21/DevOps-Docker/" data-id="ckwgm33kn00587b1ynoh6hv61" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Docker ABC:常用命令、自定义制作、发布</li>
+</ul>
+<span id="more"></span>
+<p>This article is part of an <strong>Virtualization Technology</strong> tutorial series. Make sure to check out my other articles as well:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/06/12/DevOps-Container-Usage/">2018 年度 Docker 用户报告 - Sysdig Edition </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/">DevOps漫谈：Docker ABC</a></li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*easlVE_DOqRDUDkVINRI9g.png" alt=""></p>
+<h2 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h2><ul>
+<li>Docker 常用命令</li>
+<li>Docker 自定义制作</li>
+</ul>
+<h4 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br><span class="line">$ docker info</span><br><span class="line"></span><br><span class="line"><span class="comment"># service 命令的用法</span></span><br><span class="line">$ sudo service docker start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出本机的所有 image 文件。</span></span><br><span class="line">$ docker image ls</span><br><span class="line"><span class="comment"># 删除 image 文件</span></span><br><span class="line">$ docker image rm [imageName]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hello World</span></span><br><span class="line">$ docker image pull hello-world</span><br><span class="line">$ docker container run hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已经生成、已经停止运行</span></span><br><span class="line">$ docker container start [containerID]</span><br><span class="line"><span class="comment"># 终止容器 [SIGTERM]</span></span><br><span class="line">$ docker container stop [containerID]</span><br><span class="line"><span class="comment"># 终止容器 [SIGKILL]</span></span><br><span class="line">$ docker container <span class="built_in">kill</span> [containID]</span><br><span class="line"><span class="comment"># 列出本机正在运行的容器</span></span><br><span class="line">$ docker container ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出本机所有容器，包括终止运行的容器</span></span><br><span class="line">$ docker container ls --all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入一个正在运行的容器</span></span><br><span class="line">$ docker container <span class="built_in">exec</span> -it [containerID] /bin/bash</span><br><span class="line"><span class="comment"># 将文件从容器拷贝到本机</span></span><br><span class="line">$ docker container cp [containID]:[/path/to/file] .</span><br><span class="line">$ docker container logs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Docker-自定义制作"><a href="#Docker-自定义制作" class="headerlink" title="Docker 自定义制作"></a>Docker 自定义制作</h4><ul>
+<li>项目根目录创建 .dockerignore 文件(需要忽略打包的文件)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br><span class="line">logs</span><br></pre></td></tr></table></figure></li>
+<li><p>创建 Dockerfile 文件</p>
+</li>
+<li><p>构建 image 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## You need to add a dot（&quot;docker build&quot; requires exactly 1 argument(s)）</span></span><br><span class="line">$ docker image build -t gospider .</span><br><span class="line">Sending build context to Docker daemon  12.47MB</span><br><span class="line">Step 1/4 : FROM node:8.4</span><br><span class="line">8.4: Pulling from library/node</span><br><span class="line">aa18ad1a0d33: Downloading [===============&gt;                                   ]  16.18MB/52.6MB</span><br><span class="line">90f6d19ae388: Download complete</span><br><span class="line">94273a890192: Downloading [================&gt;                                  ]  14.13MB/43.23MB</span><br><span class="line">c9110c904324: Downloading [===&gt;                                               ]  10.25MB/134.7MB</span><br><span class="line">788d73c0fb6b: Waiting</span><br><span class="line">f221bb562f24: Waiting</span><br><span class="line">14414a6a768d: Waiting</span><br><span class="line">af6d2b2ad991: Waiting</span><br><span class="line">......</span><br><span class="line">14414a6a768d: Pull complete</span><br><span class="line">af6d2b2ad991: Pull complete</span><br><span class="line">Digest: sha256:080488acfe59bae32331ce28373b752f3f848be8b76c2c2d8fdce28205336504</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> node:8.4</span><br><span class="line"> ---&gt; 386940f92d24</span><br><span class="line">Step 2/4 : COPY . /app</span><br><span class="line"> ---&gt; 5dea8aef5c00</span><br><span class="line">Step 3/4 : WORKDIR /app</span><br><span class="line">Removing intermediate container de21dc94fd49</span><br><span class="line"> ---&gt; c04960e1036b</span><br><span class="line">Step 4/4 : EXPOSE 3001</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 7e5efe5e0b43</span><br><span class="line">Removing intermediate container 7e5efe5e0b43</span><br><span class="line"> ---&gt; bcadd82be353</span><br><span class="line">Successfully built bcadd82be353</span><br><span class="line">Successfully tagged gospider:latest</span><br><span class="line"></span><br><span class="line">$ docker image ls</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">gospider            latest              bcadd82be353        7 minutes ago       685MB</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>制作容器<br>docker container run 从 image 文件生成容器。<br>可选参数：</p>
+</li>
+<li>-p  参数：p1:p2 [容器端口]映射到[本机端口]</li>
+<li>imagename</li>
+<li>/bin/bash：保证用户可以使用 Shell</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ docker container run -it gospider /bin/bash</span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment">#</span></span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment">#</span></span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment"># ls</span></span><br><span class="line">Dockerfile		     </span><br><span class="line">gmof_caipiao_month.go	    gmof_cdc_epide_month.go	    publish		    ttank_zyuc_handle.go</span><br><span class="line">charset.go		     gmof_caipiao_month_spider.go   gmof_cdc_epide_month_spider.go  <span class="built_in">test</span>		    ttank_zyuc_register.go</span><br><span class="line">dbutils_csv.go		     gmof_casad_info_spider.go	    gmof_person.go		    ttank-echarts	    zyuc_task_info.go</span><br><span class="line">dbutils_kafka.go	     gmof_casad_list.go		    gmof_person_region.go	    ttank.go		    zyuc_task_spider.go</span><br><span class="line">dbutils_pg.go		     gmof_casad_list_spider.go	    gmof_person_region_spider.go    ttank_gmof_handle.go    </span><br><span class="line">gmof_caipiao_list.go	     gmof_cdc_epide_list.go	    kafka			    ttank_gmof_register.go</span><br><span class="line">gmof_caipiao_list_spider.go  gmof_cdc_epide_list_spider.go  ops				    ttank_tasks.go</span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment">#</span></span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment"># id</span></span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br><span class="line">root@d2d7bfd9f4c1:/app<span class="comment"># whoami</span></span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+<h4 id="Docker-发布"><a href="#Docker-发布" class="headerlink" title="Docker 发布"></a>Docker 发布</h4><ul>
+<li>注册账户：<a target="_blank" rel="noopener" href="https://hub.docker.com">hub.docker.com</a> 或 <a target="_blank" rel="noopener" href="https://cloud.docker.com">cloud.docker.com</a></li>
+<li>登录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub.</span><br><span class="line">If you don\<span class="string">&#x27;t have a Docker ID, head over to https://hub.docker.com to create one.</span></span><br><span class="line"><span class="string">Username: riboseyim</span></span><br><span class="line"><span class="string">Password:</span></span><br><span class="line"><span class="string">Login Succeeded</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 为本地的 image 标注用户名和版本。</span></span><br><span class="line"><span class="string">$ docker image tag [imageName] [username]/[repository]:[tag]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 发布</span></span><br><span class="line"><span class="string">$ docker image push riboseyim/gospider</span></span><br><span class="line"><span class="string">The push refers to repository [docker.io/riboseyim/gospider]</span></span><br><span class="line"><span class="string">db602e58edca: Pushed</span></span><br><span class="line"><span class="string">c5b2ac536264: Mounted from library/node</span></span><br><span class="line"><span class="string">6c08a5b7d8f4: Mounted from library/node</span></span><br><span class="line"><span class="string">50867bb8f5d7: Mounted from library/node</span></span><br><span class="line"><span class="string">72d6c6f0ea06: Mounted from library/node</span></span><br><span class="line"><span class="string">8686c6b8d999: Mounted from library/node</span></span><br><span class="line"><span class="string">44b57351135e: Mounted from library/node</span></span><br><span class="line"><span class="string">00b029f9aa09: Mounted from library/node</span></span><br><span class="line"><span class="string">18f9b4e2e1bc: Mounted from library/node</span></span><br><span class="line"><span class="string">latest: digest: sha256:4388ba2cc83adc0d1e9b3ca4c0b273f5812ad6365a36aeef33ff87d62b236d5d size: 2217</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Docker-构建"><a href="#Docker-构建" class="headerlink" title="Docker 构建"></a>Docker 构建</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/openshift/source-to-image">A tool for building/building artifacts from source and injecting into docker images</a></li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.hasura.io/the-ultimate-guide-to-writing-dockerfiles-for-go-web-apps-336efad7012c">The Ultimate Guide to Writing Dockerfiles for Go Web-apps</a></li>
+</ul>
+<h2 id="Docker-安全"><a href="#Docker-安全" class="headerlink" title="Docker 安全"></a>Docker 安全</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security:Linux容器安全的十重境界</a><br>1.容器操作系统与多租户<br>2.容器内容（使用可信源）<br>3.容器注册 (容器镜像加密访问)<br>4.构建过程安全<br>5.控制集群中可部署的内容<br>6.容器编排：加强容器平台安全<br>7.网络隔离<br>8.存储<br>9.API 管理, 终端安全和单点登录 (SSO)<br>10.角色和访问控制管理</li>
+</ul>
+<h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://cizixs.com/2017/10/19/docker-calico-network">docker 容器网络方案：calico 网络模型 | Cizixs</a></li>
+</ul>
+<h2 id="Docker-监控"><a href="#Docker-监控" class="headerlink" title="Docker 监控"></a>Docker 监控</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993402&amp;idx=2&amp;sn=39583a788d89d62ecb4953d4a9f8635a&amp;scene=1&amp;srcid=0722P3T1gARgmDlPwn8ZDNr9%23rd">搭建Docker监控框架的理论与范例 | 2016-07-22 穆寰 InfoQ</a></li>
+</ul>
+<h2 id="Docker-参考书"><a href="#Docker-参考书" class="headerlink" title="Docker 参考书"></a>Docker 参考书</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">Docker 入门教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/grasilife/docker">Docker — 从入门到实践</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/28/DevOps/">DevOps 漫谈系列</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/">Kanban 看板管理实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/Technology-English/">工程师的自我修养：全英文技术学习实践</a></li>
+</ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/">DevOps 实践的本质是文化</a></h4><ul>
+<li>学习力－团队生命之根</li>
+<li>带领团队翻译书籍</li>
+<li>Don’t make me think</li>
+<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.linuxtechi.com/guide-docker-utilities-daemon-capabilities/">Quick Guide on Docker Utilities, Daemon and its other capabilities</a></li>
+<li><a target="_blank" rel="noopener" href="https://linux4one.com/how-to-remove-docker-images-networks-containers-and-volumes/">How to Remove Docker Images, Networks, Containers and Volumes</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.freecodecamp.org/docker-quick-start-video-tutorials-1dfc575522a0">A fast and easy Docker tutorial for beginners (video series)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html">Docker 微服务教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5ODQ2MDIyMA==&amp;mid=2650712620&amp;idx=1&amp;sn=39b33e0f1dfc335e165051b2983f9192&amp;scene=1&amp;srcid=0906ZUDNyflKkccX0TptpfJM%23rd">在 Mac 上跳舞的容器 — Docker |  2016-09-06 池建强 MacTalk</a></li>
+<li><a target="_blank" rel="noopener" href="https://agentneoteam.github.io/2018/05/07/agentneo-jia-gou-jian-jie.html">AgentNEO 架构简介 | 07 May 2018</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/">A Practical Introduction to Container Terminology</a></li>
+<li><a target="_blank" rel="noopener" href="http://sirupsen.com/production-docker/">Why Docker is Not Yet Succeeding Widely in Production,2015 | Simon Hørup Eskildsen </a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ZDeAEZHby_A">Dockercon Talk | Resilient Routing and Discovery | Simon Hørup Eskildsen </a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653548247&amp;idx=1&amp;sn=99d0e90fa99deec3a7dab49eac418e5c&amp;chksm=813a7f4fb64df65946223f717a5231aae62edc5b6335613e45f8153367736ed480e9439d8906&amp;mpshare=1&amp;scene=1&amp;srcid=0215WY6P1gGeSGjrVAD75iaB%23rd">数据库不适合Docker及容器化的7大原因 | 2017-02-14 Mikhail Chinkov 高可用架构</a></li>
+<li><a target="_blank" rel="noopener" href="https://chrisshort.net/docker-inc-is-dead/">Docker, Inc is Dead | Posted on December 30, 2017  (Last modified on February 9, 2018)</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MzM3NjM4MA==&amp;mid=2654676719&amp;idx=2&amp;sn=5d3e73befafe752d6e84788dcb6b33ec&amp;scene=1&amp;srcid=0622QOd24IK0rdOypNUq1BcA%23rd">关于Docker实际采用情况的八个惊人真相 | 2016-06-22 云头条</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloudplatform.googleblog.com/2018/05/Open-sourcing-gVisor-a-sandboxed-container-runtime.html">Open-sourcing gVisor, a sandboxed container runtime | Wednesday, May 2, 2018</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/">A Practical Introduction to Container Terminology</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/08/21/DevOps-Docker/" data-id="ckwgm33kn00587b1ynoh6hv61" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/22/SDN-OpenFlow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          SDN 技术指南（二）：OpenFlow
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/21/Artistic-Flower/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Flower</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABC"><span class="toc-number">2.</span> <span class="toc-text">ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.0.1.</span> <span class="toc-text">Docker 常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%B6%E4%BD%9C"><span class="toc-number">2.0.2.</span> <span class="toc-text">Docker 自定义制作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%E5%8F%91%E5%B8%83"><span class="toc-number">2.0.3.</span> <span class="toc-text">Docker 发布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%E6%9E%84%E5%BB%BA"><span class="toc-number">2.0.4.</span> <span class="toc-text">Docker 构建</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples"><span class="toc-number">3.</span> <span class="toc-text">Examples</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%89%E5%85%A8"><span class="toc-number">4.</span> <span class="toc-text">Docker 安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%BD%91%E7%BB%9C"><span class="toc-number">5.</span> <span class="toc-text">Docker 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9B%91%E6%8E%A7"><span class="toc-number">6.</span> <span class="toc-text">Docker 监控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%8F%82%E8%80%83%E4%B9%A6"><span class="toc-number">7.</span> <span class="toc-text">Docker 参考书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97"><span class="toc-number">8.0.1.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E5%AE%9E%E8%B7%B5%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E6%96%87%E5%8C%96"><span class="toc-number">8.0.2.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Oracle 数据库迁移与割接实践 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 一、项目背景 二、主要困难 三、迁移前准备 四、失败的体验：没有一帆风顺 五、总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 数据库迁移与割接实践">
+<meta property="og:url" content="https://riboseyim.com/2016/06/12/Technology-Oracle/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 一、项目背景 二、主要困难 三、迁移前准备 四、失败的体验：没有一帆风顺 五、总结">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-cflow-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test3.png">
+<meta property="article:published_time" content="2016-06-12T01:47:21.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:10.055Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Database">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Technology-Oracle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/12/Technology-Oracle/" class="article-date">
+  <time datetime="2016-06-12T01:47:21.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle 数据库迁移与割接实践
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="ckwgm33p9013o7b1ykyw9v62j" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul>
+<li>一、项目背景</li>
+<li>二、主要困难</li>
+<li>三、迁移前准备</li>
+<li>四、失败的体验：没有一帆风顺</li>
+<li>五、总结<span id="more"></span>
+</li>
+</ul>
+<h2 id="一、项目背景"><a href="#一、项目背景" class="headerlink" title="一、项目背景"></a>一、项目背景</h2><p>某企业支撑系统，已经连续服务七年有余。算起来比我的工作年限还要长。</p>
+<p>历年工程中，硬件、软件、运营团队都更新换了好几茬，单独系统核心数据库—— 一台小型机搭载Oracle 10g，附加一套磁盘阵列，从来没有动过。</p>
+<p>随着近年的业务暴涨、负载上升、硬件老化，服务器、磁盘都时有故障发生，负载水平线逼近极限，故障率还有加速抬头的趋势。整个运营团队面临了巨大的客户压力，提升系统稳定性的巨大挑战摆在了大家面前。</p>
+<!--![迁移拓扑](http://riboseyim-qiniu.riboseyim.com/oracle-trans-go.png)-->
+<h2 id="二、主要困难"><a href="#二、主要困难" class="headerlink" title="二、主要困难"></a>二、主要困难</h2><blockquote>
+<p>在“天塌地陷”的不利局面中加入进来。</p>
+</blockquote>
+<h4 id="2-1-困难1-团队大动荡"><a href="#2-1-困难1-团队大动荡" class="headerlink" title="2.1 困难1: 团队大动荡"></a>2.1 困难1: 团队大动荡</h4><p>原运营团队，包括但不限于资深项目经理、技术负责人、多名工程师等，先后因各种原因，在很短的时间内集中离职了。在接手之前，对于该项目我一无所知，接手以后短暂的交接过程中，也很难获取多少有价值的信息。</p>
+<p>连续发生突发重大故障，我们面临巨大的商务压力，团队内部疲惫不堪、心理压力极大、士气低落。每一次大故障，所有人都得没日没夜地处理，处理好以后还得写材料汇报，汇报之后也未必能得到客户的首肯。甚至在某种程度上说，急剧增长的故障率进一步刺激、增加了离职率。正如一位哲人说的：</p>
+<blockquote>
+<p>降低故障率是提升团队幸福指数的首要保障。— 弗拉基米.耶维奇.严</p>
+</blockquote>
+<h4 id="2-2-困难2-拓扑大调整"><a href="#2-2-困难2-拓扑大调整" class="headerlink" title="2.2 困难2: 拓扑大调整"></a>2.2 困难2: 拓扑大调整</h4><p>系统的拓扑结构最初是星型：以数据库和应用服务器为核心，外挂近100台服务器。数据库服务器配置双网卡，连通内网、外网。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-t1.png" alt="迁移前"></p>
+<p>虽然星型结构简单易用，却也存在较大的安全隐患。在早期建设的时候，规范尚未健全，还可以用业务优先的理由搪塞过去。在本期工程中，非常明确必须要完成内外网分离的改造。</p>
+<!--![迁移后](http://riboseyim-qiniu.riboseyim.com/oracle-trans-t2.png)-->
+<h4 id="2-3-困难3-安全一票否决"><a href="#2-3-困难3-安全一票否决" class="headerlink" title="2.3 困难3: 安全一票否决"></a>2.3 困难3: 安全一票否决</h4><p>Oracle 版本由10g 升级到 11g，集中管理访问权限。<br>最大限度地提高安全性，口令60天更换一次，不能因为更换口令中断业务；如果出现连续的错误口令访问，甚至不惜锁定数据库。</p>
+<p>从正向的角度看，这些严格规定可以倒逼改造。在软件架构规范化不足、自动化严重不足的条件下，整个迁移期间，这个问题确实给我们造成了极大困扰。</p>
+<h2 id="三、迁移前准备"><a href="#三、迁移前准备" class="headerlink" title="三、迁移前准备"></a>三、迁移前准备</h2><p>基于上述三大问题，在正式迁移之前主要做了下列几项工作：</p>
+<ul>
+<li><p>3.1 加强监控手段，降低日常故障率；<br>  梳理需要监控的基础指标和业务指标，侧重关键业务可用性。例如，某业务的正常调度周期是3小时，部署模拟脚本，将模拟脚本的调度频率提高到5分钟一次甚至更高，通过高密度的执行，主动触发风险点，一些隐藏的问题就比较容易暴露出来。</p>
+</li>
+<li><p>3.2 重点培训新人，稳定队伍；<br>  本质上说，这次迁移工作的首要任务不在技术、也不在数据，而在于人。<br>  上一个团队整体流失，新补充的人员又完全没有相关经验，可以说是从0开始。基于该阶段的特殊情况，我选择了实质性暂停迁移工作，而把主要的精力投入到人员培训和组织重建上来。</p>
+<p>  关于这块内容比较复杂，实际是另外一个主题，计划后续再发布，敬请关注。</p>
+</li>
+<li><p>3.3 梳理全局视图，调研周边系统关系链；<br>全局视图实际上也包括技术和人两个维度：</p>
+<p>  1）重绘系统架构图：可以参考现有文档资料，但是主要应该立足于自主调研。绘制的过程，即是收集、整理的过程，也是制定迁移方案的思考过程。唯有自己动手，才能加深认识，做到胸有成竹。</p>
+<p>  2）大量接触相关方面的领导、配合部门以及第三方厂家：<br>  个人工作经历方面，独立工作的场景居多，自己能直接控制的情况居多，不太需要理会复杂的部门关系、人际关系。这项工作对于某些人来说比较容易，但是对我而言，其实是有过一段比较困难的过程。</p>
+</li>
+<li><p>3.4 数据复制<br>主要实现：OGG + dblink+ 自主迁移程序。</p>
+</li>
+</ul>
+<p><strong>OGG</strong>：即Oracle Golden Gate方案。<br>在最早的方案中，我们打算完全依赖OGG来实现数据复制，但是在实验阶段发现，该方案有其限制条件。<br>第一、历史遗留系统有庞大的历史数据，如果都用OGG，无法确保新库的及时性、一致性。<br>第二、由于管理的不规范，存在很多该做分区而没有做分区的大表，而且这样的表，数量很多，一时还真的很难分离出来。</p>
+<p><strong>DB Link</strong>: 提供了旧－&gt;新库之间的快速连接通道。</p>
+<p><strong>自主迁移程序</strong>：针对特殊大分区表。<br>例如A表是大量的原始数据，每天一个分区，每个分区约为4000万条记录，一个月就有1.2亿条。由于业务上非常重要，该表的数据必须迁移到新库。针对这个问题，我们自己编写了迁移脚本。按照“少量、多批次、并行”的原则，实现数据推送。</p>
+<p>首先，控制每个批次提交的记录数，将每个分区4000万的数据，切分成10万一份的小切片，这样即使失败也能快速重试，还能杜绝UNDO表空间暴涨（例如exp/imp整个分区的方式）。</p>
+<p>基于小粒度的切片，进一步就可以实现多批次、多进程的并行推送，从而保证每个commit和时间单元的推送规模都完全可控、可视。</p>
+<ul>
+<li>3.5 双库并行部署<br>在所有采集服务器开启两个入库进程，即一份原始结果同时入两套数据库。最大限度在没有额外测试系统的条件下，利用现有资源，模拟仿真正式生产环境的并发压力，同时完成负载均衡、单点故障验证测试。</li>
+</ul>
+<p>并不是所有的程序都能轻易的实现双库并行，有的可能只要稍微调整配置文件，有些可能就必须修改代码，还有的可能就没法弄。从这个角度观察，第一种应该就是好的代码，灵活，适应各种可能的场景。后者则可能连配置－代码分离都没有做到，侵入式编程等。</p>
+<ul>
+<li><p>3.6 转发入库组件开发<br>开发这个东西的时候，我一度准备中途放弃。<br>前两版发布测试的时候，起初都还不错，但是运行一段时间之后，就暴露出严重的性能问题，几乎不可用。多次调试都找不到原因。后来发现，最大的Bug不过是一个空指针异常的捕获不合理。<br>  很不经意地修改几个字符之后，一切都顺畅起来，往后再也没有出一丁点问题。<br>  很多时候可能就是这样，需要一点灵性，需要一点运气。</p>
+</li>
+<li><p>3.7 割接工具开发<br>系统配置收集器（例如口令配置必须保证强一致性）；<br>转发路径监视（ 外网跳板到内网跳板、跳板到数据库等）；<br>预配置／检查工具；<br>连接 切换 &amp; 回退 工具；</p>
+</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-cflow-1.png" alt="割接流程"></p>
+<h2 id="四、失败的体验：没有一帆风顺"><a href="#四、失败的体验：没有一帆风顺" class="headerlink" title="四、失败的体验：没有一帆风顺"></a>四、失败的体验：没有一帆风顺</h2><blockquote>
+<p>第一次割接失败了！</p>
+</blockquote>
+<p><strong>失败的体验</strong></p>
+<p>第一次割接之后，系统各项功能正如我们预计的那样顺利运行。<br>就在我们准备庆祝成功的时候，几项关键业务的吞吐量却急剧下降。初步判断是性能问题，因为每次连接时延飙升了100多倍，高达秒级，基本是不可用的。</p>
+<p>人工排查几次以后，看到了大量的挂起进程，一堆的锁表。而且失败来源遍布一多半的服务器。虽然不想承认，但是我们不得不做出回退的决定。</p>
+<p><strong>万事留后路</strong><br>割接失败是需要承担很大压力的。<br>这次割接是大家都期待很久的，为了几分钟的操作，用户和我们整个团队都付出了很大的努力，调动了方方面面的资源参与进来。</p>
+<p>如果说有什么能稍感欣慰的话，那就是我们遍历了各种可能，几乎成功，在不可知的情况出现之后，还能赶在割接窗口结束之前，快速回退。这主要得益于前期准备方案时，特别考虑了最坏的情况，认真演练了回退流程。</p>
+<p>这种体验与技术关系不大，来自于勇气——无论是正确的，还是错误的决定。</p>
+<p><strong>幽灵进程</strong><br>事后筛查发现，导致割接失败的是一个监测程序——不在生产程序清单里面，没有读统一配置，自带定时调度，零散分布在一半的机器上，早已经被人遗忘。在旧库中，这个问题其实一直存在，但是不会有什么问题。</p>
+<p>新数据库的版本是Oracle 11g 。<br>为了提高安全性，防止暴力破解数据库中用户的密码，Oracle默认提供了一种机制：<strong>延长失败尝试响应</strong>。<br>这种策略是：在连续使用错误密码反复尝试登录时，从第四次错误尝试开始，每次增加1秒的延迟，最长延迟目前是10秒。使用这种手段可以相对比较有效的防治用户密码的暴力破解。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test1.png" alt="01"><br><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test2.png" alt="02"><br><img src="http://riboseyim-qiniu.riboseyim.com/oracle-trans-test3.png" alt="03"></p>
+<p>由于系统服务器较多，历史遗留程序瞬间就触发该机制，导致所有应用不可用。</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>虽然这次的迁移不甚完美，事情本身也谈不上宏大，简短的一篇更不可能穷举所有的问题和细节，但是有几点思考还是想和大家交流：</p>
+<ul>
+<li><p>5.1 变通</p>
+<p>  回想起来，开始设计方案时想到的几个大难题，都是通过替代方案实现的：奇葩的内外网分离方案，与IT部门关于权限问题的艰难谈判，数据复制过程中及时性的要求…… 另外，还有真实割接过程中，现场压力状态的进退困境。到处都需要权衡、选择。</p>
+<p>  决策是一件非常艰难的事情，受到多种因素的制约，最终的决策是一个各种利益妥协的结果。正如另一位资深哲人所说：</p>
+<blockquote>
+<p>项目经理首先要学会变通。</p>
+</blockquote>
+<p>  天下武功，无坚不摧，唯变不破。</p>
+</li>
+<li><p>5.2 韧性<br>  按照最初的方案，我其实并不负责这项工作，后来就算参与进来，也并不负责主导。应该说起初也有侥幸心理，希望有其他人来背这个锅。为了这次迁移，前面已经生生吓走了好几拨人。</p>
+<p>  从技术上分析，我以前没怎么搞过数据库，并不具备任何优势。<br>  如果说还有一点可以凭借的东西，我感觉是韧性。面对未知的恐惧，敢于直面；面对不确定的方案，不断在尝试；面对失败的后果，坦然接受。</p>
+</li>
+</ul>
+<h4 id="邱俊涛：如何持久化你的项目经历"><a href="#邱俊涛：如何持久化你的项目经历" class="headerlink" title="邱俊涛：如何持久化你的项目经历"></a><a target="_blank" rel="noopener" href="http://abruzzi.github.com/2016/01/how-to-summarize-privious-project/">邱俊涛：如何持久化你的项目经历</a></h4><pre><code>&gt;从项目上下来之后，需要深入思考并总结之前的经验，这种深入思考会帮助你建立比较完整的知识体系，也可以让你在下一项目中更加得心应手，举一反三。如果只是蜻蜓点水般的“经历”了若干个项目，而不进行深入的总结和思考，相当于把相同的项目用不同的技术栈做了很多遍一样，那和我们平时所痛恨的重复代码又有什么不同呢？
+</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://yangtingkun.net/?p=1429">密码延迟验证导致的系统HANG住 | yangtingkun</a></li>
+<li><a target="_blank" rel="noopener" href="http://cholerae.com/2015/01/01/%E3%80%90%E7%BF%BB%E8%AF%91%E3%80%91%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%98%E5%BE%97%E8%BF%99%E4%B9%88%E6%85%A2%EF%BC%9F/">【翻译】为什么我的数据库变得这么慢？ | Cholerae’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.eygle.com/archives/2017/03/oracle_sharding.html">关于Oracle Sharding | Oracle FAQ文档翻译| eygle.com</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.eygle.com/archives/2017/03/oracle_security_rule_16.html">防范攻击 加强管控 - Oracle数据库安全的16条军规 | eygle.com</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.dbform.com/html/2015/2317.html">How to Analyse Row Lock Contention in Oracle 10gR2 and later | kamus</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/dog250/article/details/77618319">iptables高性能前端优化-无压力配置1w+条规则,2017| Bomb250</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MDAxOTk2MQ==&amp;mid=2650272655&amp;idx=1&amp;sn=9173ca8cdeafa092f1125285909634b2&amp;chksm=be486b99893fe28ffb96e9ae713b91a73b94b71eee0b915c4a5e2c3b75cec39eca0eeb119e79&amp;mpshare=1&amp;scene=1&amp;srcid=1226Q2973ERHUtX4hUpE7tXK#rd">Oracle 数据库健康检查平台</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/06/12/Technology-Oracle/" data-id="ckwgm33p9013o7b1ykyw9v62j" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/15/TeamWork/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          组织论:群体行为模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/12/CyberSecurity-Trojan/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">木马来袭:Linux/XOR.DDoS样本分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">一、项目背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E8%A6%81%E5%9B%B0%E9%9A%BE"><span class="toc-number">1.2.</span> <span class="toc-text">二、主要困难</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%9B%B0%E9%9A%BE1-%E5%9B%A2%E9%98%9F%E5%A4%A7%E5%8A%A8%E8%8D%A1"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">2.1 困难1: 团队大动荡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%9B%B0%E9%9A%BE2-%E6%8B%93%E6%89%91%E5%A4%A7%E8%B0%83%E6%95%B4"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">2.2 困难2: 拓扑大调整</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%9B%B0%E9%9A%BE3-%E5%AE%89%E5%85%A8%E4%B8%80%E7%A5%A8%E5%90%A6%E5%86%B3"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">2.3 困难3: 安全一票否决</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%81%E7%A7%BB%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">三、迁移前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%A4%B1%E8%B4%A5%E7%9A%84%E4%BD%93%E9%AA%8C%EF%BC%9A%E6%B2%A1%E6%9C%89%E4%B8%80%E5%B8%86%E9%A3%8E%E9%A1%BA"><span class="toc-number">1.4.</span> <span class="toc-text">四、失败的体验：没有一帆风顺</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">五、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%B1%E4%BF%8A%E6%B6%9B%EF%BC%9A%E5%A6%82%E4%BD%95%E6%8C%81%E4%B9%85%E5%8C%96%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">邱俊涛：如何持久化你的项目经历</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.6.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

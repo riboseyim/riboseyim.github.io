@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>科技史漫谈：Linus Torvalds 与 Linux 操作系统 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 The mind behind Linux Just for Fun ！   Linus 无疑是一个顶级黑客，想想有多少人能从零开始建造一个完整的具有产品级质量的操作系统内核？ — 《大教堂与集市》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技史漫谈：Linus Torvalds 与 Linux 操作系统">
+<meta property="og:url" content="https://riboseyim.com/2016/04/24/LinusTorvalds/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 The mind behind Linux Just for Fun ！   Linus 无疑是一个顶级黑客，想想有多少人能从零开始建造一个完整的具有产品级质量的操作系统内核？ — 《大教堂与集市》">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/global-view.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linus_Torvalds_BookTheme.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linus_Torvalds_Family_201705.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux_Torvalds_VIC20.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png">
+<meta property="article:published_time" content="2016-04-24T08:59:32.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.283Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="History">
+<meta property="article:tag" content="Developer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/global-view.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-LinusTorvalds" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/24/LinusTorvalds/" class="article-date">
+  <time datetime="2016-04-24T08:59:32.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      科技史漫谈：Linus Torvalds 与 Linux 操作系统
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/04/24/LinusTorvalds/" data-id="ckwgm33lv00c57b1yrr5lo023" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/History/" rel="tag">History</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>The mind behind Linux</li>
+<li>Just for Fun ！</li>
+</ul>
+<blockquote>
+<p>Linus 无疑是一个顶级黑客，想想有多少人能从零开始建造一个完整的具有产品级质量的操作系统内核？ — 《大教堂与集市》<br><span id="more"></span></p>
+</blockquote>
+<h2 id="Linus-Torvalds"><a href="#Linus-Torvalds" class="headerlink" title="Linus Torvalds"></a>Linus Torvalds</h2><p>born December 28, 1969. is a Finnish-American software engineer who is the creator and, for a long time, principal developer, of the Linux kernel;<br>which became the kernel for operating systems such as the Linux operating system, Android, and Chrome OS.<br>He also created the distributed revision control system Git.</p>
+<h2 id="一、TED-Talks：The-mind-behind-Linux"><a href="#一、TED-Talks：The-mind-behind-Linux" class="headerlink" title="一、TED Talks：The mind behind Linux"></a>一、TED Talks：The mind behind Linux</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/841862adb059">（中文翻译）Linus Torvalds: The mind behind Linux</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux?language=en#t-1278100">TED现场版</a></p>
+</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/global-view.png" alt=""></p>
+<h1 id="二、Linux-之父：Just-for-Fun-！"><a href="#二、Linux-之父：Just-for-Fun-！" class="headerlink" title="二、Linux 之父：Just for Fun ！"></a>二、Linux 之父：Just for Fun ！</h1><h2 id="读书笔记（序）"><a href="#读书笔记（序）" class="headerlink" title="读书笔记（序）"></a>读书笔记（序）</h2><p>《Just for Fun: The Story of an Accidental Revolutionary》，是Linux内核的创建者林纳斯·托瓦兹（Linus Torvalds）的自传。这本书由他和大卫·戴蒙德（David Diamond）联合撰写，叙述林纳斯·托瓦兹从小的成长历程、创建Linux内核、Git的过程以及软件世界的江湖恩怨。全书主体部分采用一问一答的访谈形式，由戴蒙德在他们的的汽车旅行过程中记录完成；另外一部分收录了林纳斯的几篇专题论述文章，比如作者关于软件版权的一些批判性意见。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linus_Torvalds_BookTheme.png" alt=""></p>
+<h2 id="I-was-an-ugly-child-I-was-a-nerd-I-was-A-geek"><a href="#I-was-an-ugly-child-I-was-a-nerd-I-was-A-geek" class="headerlink" title="I was an ugly child.I was a nerd.I was A geek."></a>I was an ugly child.I was a nerd.I was A geek.</h2><p>关于自己的童年，林纳斯显然有着强烈的阴影。首先，他自认为是一个长得非常丑的孩子(ugly: unpleasant to look)。具体来说就包括极度没品味的衣着，Torvalds家族标志性的大鼻子，不擅长体育运动、腼腆害羞以及最重要的：很难引起妹子的关注(关于这一点，老林在全书多次反复提到)。</p>
+<p>Nerd一词本来原意“a person who is boring, stupid and not fashionable”。俚语中一个稍含贬义的用语，一般指偏爱钻研书本知识，将大量闲暇用于脑力工作，对流行文化不感兴趣，而不愿或不善于体育活动或其他社会活动的人。相对于那些擅长体育、四肢发达、自信且善于泡妞的人来说，nerd的青春说起来都是眼泪啊。</p>
+<p>geek和nerd这个词类似，江湖俗称发烧友或怪咖，通常被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。它们现在已经在IT圈里流行起来，逐渐从贬义词变成了具有自豪感和身份认同意义的词语，很多中关村或深圳的咖啡店里面都有很多自称Geek的人在和各路投资人畅聊IPO的美好图景。我想这显然归功于林纳斯这代牛人不遗余力地科普推广。</p>
+<h2 id="Tell-you-about-Family"><a href="#Tell-you-about-Family" class="headerlink" title="Tell you about Family."></a>Tell you about Family.</h2><p>关于Torvalds家族，主要有三个特点：</p>
+<ol>
+<li>教授之家<br>林纳斯·托瓦兹的外祖父家族原来只是贫穷的农民，直到外祖父那一代，六兄弟中有两人获得博士学位。（p13）Leo Törnqvist是芬兰第一批统计学教授，同时意外地开启了林纳斯的编程之路。教授购买了一台Commodore VIC 20电脑，期望用户解决工作中遇到的统计计算问题，显然老教授并不善此道。彼时小林纳斯11岁，仅仅是因为好玩，通过阅读手册自学了指令集，并开始使用BASIC语言编写一些统计学方面的小程序。</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linus_Torvalds_Family_201705.png" alt=""></p>
+<ol>
+<li>破碎之家（dysfunctional family）<br>林纳斯的父母在他很小的时候就离异了。“At times we lived with my dad and his girlfriend, at other times Sara lived with my dad and I lived with my mom.At times both of us lived with my mom.” 他的祖父晚年中风，祖母也年老体弱，一家老小挤在一所旧房子里。作为职业女性，林纳斯的母亲经常需要工作到很晚，林纳斯只得和妹妹自己去购物、安排晚餐。在艰难的日子里，电脑是唯一的寄托。“The computer found a home on a tiny desk against the window, maybe two feet from my bed.(p19)”</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux_Torvalds_VIC20.jpg" alt=""></p>
+<ol>
+<li>左派之家<br>Torvalds家族的一大鲜明特色就是左翼传统。祖父是一名诗人和记者，父亲、母亲都是记者，曾是芬兰学生运动、左翼社会运动的活跃分子。直到林纳斯，坚持开放源代码理念也就顺理成章了。他本人对于金钱本身一直也没什么概念，直到1999年，Red Hat公司依靠Linux赚到不好意思以后，主动要求赠送一大笔股票期权给林纳斯（估值2000万美元）。在黑客的江湖里，林纳斯也许是最知名的“喷子”之一：例如，抨击Nvidia是他所接触过的“最烂的公司”（the worst company）和 “最麻烦的公司”（the worst trouble spot），有一次与人争论Git为何不使用C++开发时与对方用“放屁”（原文为“bullshit”、“BS”）互骂，更曾以“一群自慰的猴子”（原文为“OpenBSD crowd is a bunch of masturbating monkeys”）来称呼OpenBSD团队。不用奇怪，这也许只是他们家的记者基因灵魂附体而已。</li>
+</ol>
+<h3 id="About-Finnish-Army"><a href="#About-Finnish-Army" class="headerlink" title="About Finnish Army"></a>About Finnish Army</h3><p>1989年，大学二年级，林纳斯加入芬兰国防军服11个月的国家义务兵役，军衔少尉，领导一个四、五个人小团队。他们的工作是负责火炮控制单元，大概是指示目标、弹道计算之类。<br>林纳斯无意于军官职业，也不喜好当领导，军旅生活中最重要的一件事就是看书：</p>
+<blockquote>
+<p>So there were two things I did that summer.Nothing.And read the 719 pages of <strong>《Operating System:Design and Implementation》</strong></p>
+</blockquote>
+<p>《操作系统：设计与实现》，作者Andrew S. Tanenbaum的这本书，激活了这位年轻人的视野，促成了林纳斯从事操作系统开发的职业生涯。</p>
+<p>不管怎么说，林纳斯对于这段生活是非常感念的：</p>
+<blockquote>
+<p>some people suggest that the major reason for the required army duty is to give Finnish men something to talk about over beer for as long as they live.They all have something miserable in common.They hated the Army, but they’re happy to talk about it afterward.(p30)</p>
+</blockquote>
+<h3 id="Tell-you-about-Finland"><a href="#Tell-you-about-Finland" class="headerlink" title="Tell you about Finland."></a>Tell you about Finland.</h3><p>在这么略带自黑的幽默自传中，作者对祖国芬兰的深情溢于言表。</p>
+<p>芬兰地处严寒，有四分之一的地方处在北极圈内，最北的地区夏天有73天太阳不落于地平线下，冬天则有51天不出太阳。大概有500多万居民，93%的人使用芬兰语，大部分可以说英语。70%以上的人属于芬兰信义宗教会（路德宗）的成员。最大的民俗特点就是：一：低调内敛、不爱说话，如果有什么事他们更爱发短信（诺基亚手机发短信还真是无敌）二：宅，死宅！中国的国粹是麻将，芬兰的国粹就是桑拿浴，或者说桑拿才是芬兰真正的国家宗教。“Nobody actually knows how this religion started, but the tradition, at least in some places, is to build the sauna first, then the house.” (芬兰谚语：先建桑拿，再搭房屋)</p>
+<p>芬兰的教育系统让人印象深刻，有一种英特纳雄耐尔已经实现的即时感。<br>教育国策一：教育免费。不仅免学费、而且提供全额伙食补助。不仅保障城里人就近入学，还为偏远地区学生提供免费交通运输系统。<br>教育国策二：学术教育与职业教育平衡发展。高中就有学术性的文理高中和职业高中，高等教育分成“研究性大学”(university) 以及科技大学(芬兰语ammattikorkeakoulu)系统。<br>500万人口的小国居然有17间大学以及27间科技大学。<br>教育国策二：教育平等。天朝惯有的排名制、淘汰法，是在国家法律和社会信仰层面所不能容忍的。教育系统不使用淘汰，分组或是放弃任何一位学生。</p>
+<blockquote>
+<p>Finnish schools don’t separate out the good students-or the losers.(p25)</p>
+</blockquote>
+<p>对于林纳斯这类一度具有阅读障碍的“Math Guy”，在某些方面（体育、社交等）非常自卑的人来说，并不妨碍他们过上好日子。芬兰教育系统有着非常丰富的奖学金体系，例如林纳斯的第一部电脑，就是通过高中时代的奖学金购买的（估值500欧元，5000元人民，算上那个年代的购买力，少说上万）。那可是1980年代，计算机才刚刚个人化，是非常昂贵的设备。就算30多年后今天，中国任何一所普通高中每学期的单科奖学金到万元标准的也不多吧。</p>
+<blockquote>
+<p>The biggest ones were on the order of $500. So that’s where most of the money for my second computer came from.</p>
+</blockquote>
+<p>据说今年在克强CEO的严重关切和亲自督战下，财政部和教育部把中国高校博士生的津贴从每生每年12000元大幅提高到15000元，即每生每月提高250元。还真不如一个芬兰的高中生。<br>所以，关键问题都要看数字。科教兴国是不是扯淡，领导是不是真的重视你，只要看账上那点饷银就清楚了。</p>
+<h2 id="meaning-for-life"><a href="#meaning-for-life" class="headerlink" title="meaning for life"></a>meaning for life</h2><blockquote>
+<p>There are three things that have meaning for life.They are the motivational factors for everything in your life——for anything that you do or any living thing does:The first is survival, the second is social order, and the third is entertainment. Everything in life progresses in that order.And there is nothing after entertainment. So, in a sense, the implication is that the meaning of life is to reach that third stage. And once you’ve reached the third stage, you’re done. But you have to go through the other stages first.</p>
+</blockquote>
+<p>“人类的追求分成三个阶段。第一是生存，第二是社会秩序，第三是娱乐。最明显的例子是性，它开始只是一种延续生命的手段，后来变成了一种社会行为，比如你要结婚才能得到性。再后来，它成了一种娱乐。” （是不是有点离经叛道? 我竟无力反驳)</p>
+<blockquote>
+<p>It started out as survival, but it became a social thing.That’s why you get married.And then it becomes entertainment.</p>
+</blockquote>
+<p>“技术最初也是为了生存，为了生存得更好。现在技术大体上还处于社会的层面，但正在朝娱乐的阶段发展。……（Linux的开发模式）为人们提供了依靠兴趣与热情而生活的机会。与世界上最好的程序员一起工作，是一种无与伦比的享受。”</p>
+<blockquote>
+<p>Technology came about as survival.And survival is not about just surviving, it’s about surviving better.</p>
+</blockquote>
+<p>人生在世，Just for fun.</p>
+<p>What can I do to make society better?<br>You known that you’re a part of society.You known that society is moving in this direction.<br>You can help society move in this direction.</p>
+<h3 id="Introduction-Post-its-from-a-Revolution"><a href="#Introduction-Post-its-from-a-Revolution" class="headerlink" title="Introduction:Post-its from a Revolution"></a>Introduction:Post-its from a Revolution</h3><h3 id="Acknowledgments"><a href="#Acknowledgments" class="headerlink" title="Acknowledgments"></a>Acknowledgments</h3><h3 id="Preface-The-Meaning-of-Life-I-Sex-War-Linux"><a href="#Preface-The-Meaning-of-Life-I-Sex-War-Linux" class="headerlink" title="Preface:The Meaning of Life I (Sex,War,Linux)"></a>Preface:The Meaning of Life I (Sex,War,Linux)</h3><h3 id="BIRTH-OF-A-NERD"><a href="#BIRTH-OF-A-NERD" class="headerlink" title="BIRTH OF A NERD"></a>BIRTH OF A NERD</h3><p>I.   I was an ugly child. I was a nerd. A geek.</p>
+<p>II.  My earliest and happiest memories involve playing with my grandfather’s old electronic calculator.</p>
+<p>III. Tell you about Finland &amp; Family</p>
+<p>IV.  Family History (more details)</p>
+<p><strong>Talk: Linus Torvalds &amp; David Diamond</strong></p>
+<p>an editor of the San Jose Mercury News Sunday magazine<br>Mercury来自罗马神话中的信使和商旅之神墨丘利，代表为神人之间传达信息，同时意指淘金热时期在圣荷西邻近富有的水银矿脉(Mercury)，一语双关，故合并后保留原名。<br>但在中文刊物中，偶有误译为《圣荷西水星报》。一般认为，《圣荷西信使报》是全世界第一家最早发展网路新闻产业的先驱。其时间可追溯至1992年，另一说是1987年。</p>
+<p><strong>Talk about Bill Gates</strong></p>
+<blockquote>
+<p>he wasn’t the least bit interested in even meeting the guy.”There wouldn’t be much of a connection point,” he reasoned. “I’m completely uninterested in the thing that he’s the best in the world at. And he’s not interested in the thing that maybe I’m the best in the world at.I couldn’t give him advice in business and he couldn’t give me advice in technology.”</p>
+</blockquote>
+<p><strong>Talk about Richard Stallman</strong><br>the God of Free Software.(p58)</p>
+<p>V.   High School</p>
+<p>VI.  University of Helsinki &amp; Finnish Army</p>
+<p>VII. Tell you some more about Finland (Sauna，Silence tradition and educational system)</p>
+<h3 id="BIRTH-OF-AN-OPERATING"><a href="#BIRTH-OF-AN-OPERATING" class="headerlink" title="BIRTH OF AN OPERATING"></a>BIRTH OF AN OPERATING</h3><h3 id="KING-OF-THE-BALL"><a href="#KING-OF-THE-BALL" class="headerlink" title="KING OF THE BALL"></a>KING OF THE BALL</h3><p>  Intellectual Property 204<br>  An End to Control     215<br>  The Amusement Ride Ahead 220<br>  Why Open Source Makes Sense 225<br>  Fame and Fortune<br>  The Meaning of Life II 242</p>
+<h3 id="Index-251"><a href="#Index-251" class="headerlink" title="Index 251"></a>Index 251</h3><h2 id="扩展阅读：Linux-操作系统"><a href="#扩展阅读：Linux-操作系统" class="headerlink" title="扩展阅读：Linux 操作系统"></a>扩展阅读：Linux 操作系统</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/24/LinusTorvalds/">《Linus Torvalds:Just for Fun》</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/26/Linux-Commands/">Linux 常用命令一百条</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/">Linux 性能诊断:负载评估</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断:快速检查单(Netflix版)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/24/Linux-Perf-Picture/">Linux 性能诊断：荐书|《图解性能优化》</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/24/Linux-Perf-Wan/">Linux 性能诊断：Web应用性能优化</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（一）：How the Linux Kernel Boots</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（二）：User Space &amp; RAM</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/">操作系统原理 | How Linux Works（三）：Memory</a></li>
+</ul>
+<h2 id="推荐：电子书《Linux-Perf-Master》"><a href="#推荐：电子书《Linux-Perf-Master》" class="headerlink" title="推荐：电子书《Linux Perf Master》"></a>推荐：电子书《Linux Perf Master》</h2><p>发表在GitBook平台，欢迎订阅、下载、批评指正:</p>
+<p><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ebook-linuxperfmaster-1.png" alt=""></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>《Just for Fun》<br>副题：The Story of an Accidental Revolutionary<br>作者：Linus Torvalds 、 David Diamond<br>售价：USA $14.99/CAN $18.50<br>Paperback: 288 pages<br>Publisher: HarperBusiness; Reprint edition (June 4, 2002)<br>Language: English<br>ISBN-10: 0066620732<br>ISBN-13: 978-0066620732<br>出版年份：2001年<br>阅读进度：201704～201705</li>
+</ol>
+<p>Linus Torvalds was born in Finland and graduated from the University of Helsinki.<br>He lives in San Jose, California.</p>
+<p>David Diamond has written for the New York Times,Wired,USA Weekend, and many other publications.<br>He lives in Kentfield, California.</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="http://www.softpanorama.org/People/Torvalds/summing_up.shtml#Vanity%20Fair%20Autobiography">关于Torvalds及《Just For Fun》的批评意见</a><br>I think that Linus Torvalds succeed first a foremost as an author of a “new BIOS”, a POSIX-compatible kernel implementation which became a de-facto standard<br>“Linux is moving away from its founding ideals and not even Linus Torvalds can change it”.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/09/linus_torvalds.html">阮一峰：《Linus Torvalds自传》摘录,20120903</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/芬蘭教育">维基百科：芬兰教育</a></p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/24/LinusTorvalds/">About Linus Torvalds </a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/04/24/LinusTorvalds/" data-id="ckwgm33lv00c57b1yrr5lo023" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/History/" rel="tag">History</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/Network-Ntopng/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linus-Torvalds"><span class="toc-number">2.</span> <span class="toc-text">Linus Torvalds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81TED-Talks%EF%BC%9AThe-mind-behind-Linux"><span class="toc-number">3.</span> <span class="toc-text">一、TED Talks：The mind behind Linux</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Linux-%E4%B9%8B%E7%88%B6%EF%BC%9AJust-for-Fun-%EF%BC%81"><span class="toc-number"></span> <span class="toc-text">二、Linux 之父：Just for Fun ！</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E5%BA%8F%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">读书笔记（序）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-was-an-ugly-child-I-was-a-nerd-I-was-A-geek"><span class="toc-number">2.</span> <span class="toc-text">I was an ugly child.I was a nerd.I was A geek.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tell-you-about-Family"><span class="toc-number">3.</span> <span class="toc-text">Tell you about Family.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#About-Finnish-Army"><span class="toc-number">3.1.</span> <span class="toc-text">About Finnish Army</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tell-you-about-Finland"><span class="toc-number">3.2.</span> <span class="toc-text">Tell you about Finland.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meaning-for-life"><span class="toc-number">4.</span> <span class="toc-text">meaning for life</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction-Post-its-from-a-Revolution"><span class="toc-number">4.1.</span> <span class="toc-text">Introduction:Post-its from a Revolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Acknowledgments"><span class="toc-number">4.2.</span> <span class="toc-text">Acknowledgments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preface-The-Meaning-of-Life-I-Sex-War-Linux"><span class="toc-number">4.3.</span> <span class="toc-text">Preface:The Meaning of Life I (Sex,War,Linux)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIRTH-OF-A-NERD"><span class="toc-number">4.4.</span> <span class="toc-text">BIRTH OF A NERD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIRTH-OF-AN-OPERATING"><span class="toc-number">4.5.</span> <span class="toc-text">BIRTH OF AN OPERATING</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KING-OF-THE-BALL"><span class="toc-number">4.6.</span> <span class="toc-text">KING OF THE BALL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Index-251"><span class="toc-number">4.7.</span> <span class="toc-text">Index 251</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9ALinux-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：Linux 操作系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%EF%BC%9A%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">6.</span> <span class="toc-text">推荐：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

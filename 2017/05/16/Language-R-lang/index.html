@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>玩转编程语言:R | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩转编程语言:R">
+<meta property="og:url" content="https://riboseyim.com/2017/05/16/Language-R-lang/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要">
+<meta property="og:locale">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/ad0a8/images/cover.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Top-20-Lib-2018.jpg">
+<meta property="article:published_time" content="2017-05-16T02:13:04.000Z">
+<meta property="article:modified_time" content="2020-08-04T07:22:16.000Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Developer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/ad0a8/images/cover.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Language-R-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-R-lang/" class="article-date">
+  <time datetime="2017-05-16T02:13:04.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      玩转编程语言:R
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/16/Language-R-lang/" data-id="ckwgm33lo00af7b1yzs9mlv0q" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+<h2 id="Introduction-简介"><a href="#Introduction-简介" class="headerlink" title="Introduction | 简介"></a>Introduction | 简介</h2><h2 id="Core-Concept-核心概念"><a href="#Core-Concept-核心概念" class="headerlink" title="Core Concept | 核心概念"></a>Core Concept | 核心概念</h2><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4><h2 id="Architecture-架构"><a href="#Architecture-架构" class="headerlink" title="Architecture | 架构"></a>Architecture | 架构</h2><h2 id="Best-Practice-最佳实践"><a href="#Best-Practice-最佳实践" class="headerlink" title="Best Practice | 最佳实践"></a>Best Practice | 最佳实践</h2><h4 id="R-Markdown"><a href="#R-Markdown" class="headerlink" title="R Markdown"></a>R Markdown</h4><ul>
+<li><a href="https://rmarkdown.rstudio.com/" target="_blank" rel="noopener">R Markdown from R Studio</a></li>
+<li><a href="https://github.com/rstudio/rmarkdown" target="_blank" rel="noopener">github.com/rstudio/rmarkdown</a></li>
+</ul>
+<h4 id="R-for-data-science"><a href="#R-for-data-science" class="headerlink" title="R for data science"></a>R for data science</h4><ul>
+<li><a href="https://www.tidyverse.org/" target="_blank" rel="noopener">R packages for data science</a></li>
+</ul>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/ad0a8/images/cover.png" alt></p>
+<ul>
+<li>20 Best Libraries For Data Science</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Top-20-Lib-2018.jpg" alt></p>
+<h4 id="Visualization-based-on-R-and-Go"><a href="#Visualization-based-on-R-and-Go" class="headerlink" title="Visualization based on R and Go"></a>Visualization based on R and Go</h4><ul>
+<li><p><a href="https://riboseyim.github.io/2018/12/16/Visualization-SocialNetwork" target="_blank" rel="noopener">数据可视化：Program , Data and Classical  Music</a></p>
+</li>
+<li><p>基于 Go + R 可视化古典音乐作曲家社交网络</p>
+</li>
+<li>Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。</li>
+</ul>
+<h2 id="R-ABC"><a href="#R-ABC" class="headerlink" title="R ABC"></a>R ABC</h2><h4 id="Install-R"><a href="#Install-R" class="headerlink" title="Install R"></a>Install R</h4><p>R 的主版本每年发布一次。</p>
+<ul>
+<li>网址：<a href="https://cloud.r-project.org" target="_blank" rel="noopener">https://cloud.r-project.org</a></li>
+</ul>
+<h4 id="Install-RStudio"><a href="#Install-RStudio" class="headerlink" title="Install RStudio"></a>Install RStudio</h4><p>RStudio 是用于 R 编程的一种集成开发环境。</p>
+<ul>
+<li>网址：<a href="https://www.rstudio.com/download" target="_blank" rel="noopener">https://www.rstudio.com/download</a></li>
+</ul>
+<h4 id="Install-tidyverse"><a href="#Install-tidyverse" class="headerlink" title="Install tidyverse"></a>Install tidyverse</h4><p>R 编程有很多常用的依赖包，提供对 R 基础功能扩展，比较常用的是 tidyverse。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;install.packages(<span class="string">"tidyverse"</span>)</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">library</span>(<span class="string">"tidyverse"</span>)</span><br><span class="line">─ Attaching packages ───────────────────── tidyverse <span class="number">1.2</span><span class="number">.1</span> ─</span><br><span class="line">✔ ggplot2 <span class="number">3.2</span><span class="number">.0</span>     ✔ purrr   <span class="number">0.3</span><span class="number">.2</span></span><br><span class="line">✔ tibble  <span class="number">2.1</span><span class="number">.3</span>     ✔ dplyr   <span class="number">0.8</span><span class="number">.3</span></span><br><span class="line">✔ tidyr   <span class="number">0.8</span><span class="number">.3</span>     ✔ stringr <span class="number">1.4</span><span class="number">.0</span></span><br><span class="line">✔ readr   <span class="number">1.3</span><span class="number">.1</span>     ✔ forcats <span class="number">0.4</span><span class="number">.0</span></span><br><span class="line">─ Conflicts ────────────────────── tidyverse_conflicts() ─</span><br><span class="line">✖ dplyr::filter() masks stats::filter()</span><br><span class="line">✖ dplyr::lag()    masks stats::lag()</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="noopener">玩转编程语言系列</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://towardsdatascience.com/r-lang-zero-to-hero-c59a9f66841c" target="_blank" rel="noopener">R Lang: Zero to Hero | A guide for statistical computing and graphics.</a></li>
+<li><a href="https://activewizards.com/blog/top-20-r-libraries-for-data-science-in-2018-infographic/" target="_blank" rel="noopener">Top 20 R Libraries for Data Science in 2018 </a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-R-lang/" data-id="ckwgm33lo00af7b1yzs9mlv0q" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/16/Language-Node-lang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          玩转编程语言:Node.js
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/16/Language-Perl-lang/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">玩转编程语言:Perl</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">Introduction | 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">Architecture | 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | 最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Markdown"><span class="toc-number">5.0.1.</span> <span class="toc-text">R Markdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-for-data-science"><span class="toc-number">5.0.2.</span> <span class="toc-text">R for data science</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visualization-based-on-R-and-Go"><span class="toc-number">5.0.3.</span> <span class="toc-text">Visualization based on R and Go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R-ABC"><span class="toc-number">6.</span> <span class="toc-text">R ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-R"><span class="toc-number">6.0.1.</span> <span class="toc-text">Install R</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-RStudio"><span class="toc-number">6.0.2.</span> <span class="toc-text">Install RStudio</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-tidyverse"><span class="toc-number">6.0.3.</span> <span class="toc-text">Install tidyverse</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

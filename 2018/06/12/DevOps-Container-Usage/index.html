@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>DevOps 漫谈：容器技术 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 2018 Docker 用户报告 - Sysdig Edition 应用排行榜 容器运行环境 容器编排器 容器监控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 漫谈：容器技术">
+<meta property="og:url" content="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 2018 Docker 用户报告 - Sysdig Edition 应用排行榜 容器运行环境 容器编排器 容器监控">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_02.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_03.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_04.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_05.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_06.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_07.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_08.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_09.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_10.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_11.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_12.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_13.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_14.png">
+<meta property="article:published_time" content="2018-06-12T05:22:14.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:04.202Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Cyber-Security">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DevOps-Container-Usage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/12/DevOps-Container-Usage/" class="article-date">
+  <time datetime="2018-06-12T05:22:14.000Z" itemprop="datePublished">2018-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DevOps 漫谈：容器技术
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="ckwgm33kl004x7b1ysamv3lvd" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>2018 Docker 用户报告 - Sysdig Edition</li>
+<li>应用排行榜</li>
+<li>容器运行环境</li>
+<li>容器编排器</li>
+<li>容器监控</li>
+</ul>
+<span id="more"></span>
+<p>This article is part of an <strong>Virtualization Technology</strong> tutorial series. Make sure to check out my other articles as well:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/06/12/DevOps-Container-Usage/">2018 年度 Docker 用户报告 - Sysdig Edition </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/">DevOps漫谈：Docker ABC</a></li>
+</ul>
+<p>根据 <a target="_blank" rel="noopener" href="https://sysdig.com/opensource/">Sysdig</a> 发表的年度 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/21/DevOps-Docker/">Docker</a> 用户报告，在容器市场 Docker 仍然是事实上的行业标准，但是其它品牌的容器运行环境正在发展；Kubernetes 仍然是容器编排领域的王者。报告的数据来源主要依据 Sysdig Monitor 和 Sysdig Secure cloud service 提供的容器使用状况的实时快照报告，它们从容器健康、性能和安全性等方面提供度量指标和可视化服务。样本集包括垂直行业和各类规模不等的大中型企业，地域覆盖北美洲、拉丁美洲、EMEA（欧洲、中东、非洲）和亚太地区。与去年一样，这份报告并不是用来代表整个容器市场。因为数据仅限于 Sysdig 客户，所以对于那些选择商业和开源解决方案的公司来说不具有代表性。但是来自 90000 个容器用户汇总数据，确实提供了了解真实生产环境容器使用状况的独特视角。</p>
+<h2 id="2018-Docker-用户报告-Sysdig-Edition"><a href="#2018-Docker-用户报告-Sysdig-Edition" class="headerlink" title="2018 Docker 用户报告 - Sysdig Edition"></a>2018 Docker 用户报告 - Sysdig Edition</h2><h4 id="容器应用排行榜"><a href="#容器应用排行榜" class="headerlink" title="容器应用排行榜"></a>容器应用排行榜</h4><p>容器部署应用榜首：Java Virtual Machines (JVM)。在容器时代之前，Java 就广泛应用于企业级服务，目前两者 —— Java 和容器更加紧密地融合到了一起。</p>
+<p>我们还看到数据库解决方案的使用在增加, 例如在容器环境中运行 <a href="(https://riboseyim.github.io/2018/01/03/OpenSource-DB-PostgreSQL/">PostgreSQL</a>) 和 MongoDB 。这是一个信号, 表明在容器中部署有状态服务已经成为现实。容器的短暂性，让许多人对于在容器中运行高价值数据服务抱有怀疑态度, 但是市场回答了问题的解决方案—即为微服务设计的持久、便携和共享存储。数据显示, 客户开始转向完全由容器驱动的环境。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_01.png" alt=""></p>
+<h4 id="容器密度"><a href="#容器密度" class="headerlink" title="容器密度"></a>容器密度</h4><p>在2017年每个主机的容器数的中位数是 10 。2018年，这个数字上升到 15，同比增长 50% 。另一方面，我们看到一个客户的单台主机上运行了 154 个容器，比我们去年观察到的最大 95 个增长了。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_02.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_03.png" alt=""></p>
+<h4 id="容器运行环境"><a href="#容器运行环境" class="headerlink" title="容器运行环境"></a>容器运行环境</h4><blockquote>
+<p>Docker still reigns, but we’re seeing what might be the first signs of cracks in the dam.</p>
+</blockquote>
+<p>事实上的容器运行环境依然是<a href="(https://riboseyim.github.io/2017/08/21/DevOps-Docker/">Docker</a>。我们在 2017 年的报告中没有提及其他容器运行环境的详细信息, 因为在当时 Docker 的占有率接近 99% 。但是, 鉴于最近的一些变化： Red Hat  收购 CoreOS 的 (RKT 的制造商)，以及 Open Container Initiative (OCI) 项目 — 旨在推进容器运行环境和镜像标准化。</p>
+<p>事实上，在过去的一年里, 客户对其他平台的使用增加了。CoreOS RKT 显著增长到 12% , Mesos containerizer 占有 4% 。LXC 也在增长, 尽管从业人员规模比例还较低。数据显示, 客户在生产环境中使用 “non-Docker” 解决方案更加便利了。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_04.png" alt="Container runtimes: Docker leads, followed by rkt and Mesos."></p>
+<h4 id="容器存活周期"><a href="#容器存活周期" class="headerlink" title="容器存活周期"></a>容器存活周期</h4><p>95% 的容器存活时间低于一周。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_05.png" alt=""></p>
+<p>容器和服务的生存时间是多少？ 我们观察了容器、容器镜像和服务的数量, 它们在短时间内开始并停止, 存活10秒或更短, 或者一周或更长。下图显示不同间隔内的容器百分比。 11% 的容器活了不到10秒。大部分容器（27%） 的生存期在五分钟之内。</p>
+<p>为什么这么多的容器寿命如此之短呢？我们知道许多定制的系统都是按照需求来扩展的。容器被创建, 做他们的工作, 然后离开。例如, 一个客户为他们在 Jenkins 创建的每个作业配置一个容器，执行变更测试, 然后关闭容器。对他们来说, 类似活动每天会发生上千次。（Jenkins：一个用 Java 编写的开源持续集成工具，MIT许可证。它支持软件配置管理工具，如CVS、Subversion 和 Git 等，可以执行基于 Apache Ant 和 Apache Maven 的项目，以及任意的Shell 脚本/批处理命令。）</p>
+<h4 id="镜像存活周期"><a href="#镜像存活周期" class="headerlink" title="镜像存活周期"></a>镜像存活周期</h4><p>我们还观察了容器镜像的使用时间。通过查看这些数据, 我们了解到客户在 DevOps CI/CD 流程的一部分中是如何频繁地进行新的容器更新部署的。 一小部分 — 一个百分点—在不到10秒内更新。69% 的容器镜像在一周的跨度内更新。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_06.png" alt=""></p>
+<h4 id="服务存活周期"><a href="#服务存活周期" class="headerlink" title="服务存活周期"></a>服务存活周期</h4><p>“服务的寿命是多少？” 在 Kubernetes 中, 服务抽象定义了一组提供特定函数以及如何访问它们的 Pods 。服务允许 Pods 在不影响应用程序的情况下注销和复制。例如, 一个群集可以运行一个 Node.js  JavaScript 运行时服务、MySQL 数据库服务和 NGINX 前端服务。</p>
+<p>我们看到大多数服务(67%)生存期超过一周。少量的服务在更频繁的基础上被停止, 但是对于大多数客户来说, 目标是让应用程序 24 小时持续工作。容器和 Pods 可能会来了又走, 但是服务持续处于启动并且可用状态。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_07.png" alt="Most container-based services stay up beyond a week."></p>
+<h4 id="容器编排器"><a href="#容器编排器" class="headerlink" title="容器编排器"></a>容器编排器</h4><blockquote>
+<p>First place goes to Kubernetes, followed by Kubernetes and then Kubernetes.</p>
+</blockquote>
+<p>例如, Mesosphere 能够在 DC/OS 环境中部署和管理 “Kubernetes-as-a-service”。可以将多个 Kubernetes 群集部署在一个 Mesosphere 群集上。</p>
+<p>今年 Docker Swarm 的排名上升到第二位, 超过了基于 Mesos 的工具。根据 Sysdig ServiceVision 我们能自动标识出是否使用编排器, 并将逻辑基础结构对象与容器度量关联起来。在 2018 年, Kubernetes 可以确保领先地位。</p>
+<ol>
+<li><p>Swarm 的进入门槛<br>例如, 微软使用 Kubernetes 为其 Azure Kubernetes 服务 (AKS), IBM 的云容器服务和私有云产品也是基于 Kubernetes 。即使是 Docker 和 Mesosphere 也增加支持了 Kubernetes 的功能。</p>
+</li>
+<li><p>Docker 企业版, 具有通用控制平面 (Universal Control Plane (UCP) ), 在许多操作层面上降低了启动 Swarm 的门槛。</p>
+</li>
+</ol>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_08.png" alt="编排器份额： Kubernetes 和 Swarm 增长, Mesos 萎缩。"></p>
+<h4 id="容器集群大小"><a href="#容器集群大小" class="headerlink" title="容器集群大小"></a>容器集群大小</h4><blockquote>
+<p>Mesos owns the big cluster game.</p>
+</blockquote>
+<p>”集群大小对与组织选择编排器的影响是什么？“<br>这项研究显示基于 Mesos 的编排器, 包括 Mesos Marathon 和 Mesosphere DC/OS 降至第三位。在使用 Mesos 的地方, 部署的容器数（中位数）比 Kubernetes 环境多 50% 。鉴于 Mesos 倾向于在大规模的容器和云部署, 所以这是有意义的。因此, 虽然 Mesos 集群的数量较少, 但是 Mesos 集群通常是意味着更大的企业规模。</p>
+<p>我们的客户, 往往是更大的企业（在私有数据中心运行 Sysdig 解决方案）采用 OpenShift 的数量比我们的 SaaS 客户数量还要多。 Rancher Labs 于 2015 年出现, 为 Docker Swarm 和 Kubernetes 提供支持。直到 2017 年, Rancher （“大农场主”）才完全兼容 Kubernetes 作为其编排器。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_09.png" alt="Mesos clusters 50% larger than Kubernetes. Swarm 30% smaller."></p>
+<h4 id="Kubernetes-分发版"><a href="#Kubernetes-分发版" class="headerlink" title="Kubernetes 分发版"></a>Kubernetes 分发版</h4><p>今年我们分析了使用 Kubernetes 的“品牌”分布, 看看在使用的 Kubernetes 是开源版本, 或由特定供应商提供的软件包。我们发现开源 Kubernetes 继续占有最大的份额, 但是 OpenShift 似乎正在取得突破进展, Rancher 也占有了一些份额。</p>
+<p>OpenShift 获得接受不应该是一个惊喜。Kubernetes 于 2014 年诞生于 Google , Red Hat 也发布了该平台的 OpenShift 分发版, 并提出了针对企业客户实现 Kubernetes 的目标。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_10.png" alt="Open source Kubernetes most used, followed by OpenShift and Rancher distributions."></p>
+<h4 id="容器健康与应用性能监控"><a href="#容器健康与应用性能监控" class="headerlink" title="容器健康与应用性能监控"></a>容器健康与应用性能监控</h4><p>了解用户体验的四个“黄金信号” ：延迟（latency），流量（traffic），错误（errors）和饱和度（saturation）。<br>响应时间（Response time）是配置最广泛的告警类型，紧随其后的是正常运行时间（uptime）和停机告警。基于主机的告警是最常用的，包括主要资源指标 -  CPU ，内存和磁盘使用率等仍然被广泛使用。用户想知道托管 Docker 的服务器（物理机，虚拟机或云实例）是否处于资源紧张或达到容量上限的状态。这些告警的触发条件通常设置在利用率达到 80%-95％ 之间。</p>
+<p>同时，出现了越来越多的以容器为中心的资源告警。最主要有两种风格：</p>
+<ul>
+<li>1）资源利用率</li>
+<li>2）容器数量</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_11.png" alt="最流行的告警条件：服务响应时间和正常运行时间"></p>
+<p><strong>默认情况下容器没有资源限制</strong> 。鉴于客户越来越注意容器限制方面的告警，这意味着他们正在使用 Docker运行时配置来控制容器使用内存，CPU或磁盘I / O 的上限，用户希望知道何时会超出阈值，应用程序的性能风险需要处于可控状态。</p>
+<p>对于容器数量来说，这个问题通常与用户至少需要 X 个给定类型的容器并运行以提供所需的服务级别有关，特别是在微服务部署中。例如，“我知道如果需要确保应用程序运行良好，至少有三个 NGINX 容器可用。如果任何一个有问题，我都想知道。”</p>
+<p><strong>基于编排的告警（Orchestration-focused alerts）</strong> 也越来越受欢迎。与我们 2017 年的报告类似，“Pod Restart Count” 位列榜首。在一个 Pod 中，一个或多个容器是定位相同、共同调度（通常作为微服务的一部分）。如果某个容器重新启动太频繁，则表示存在可能影响应用程序性能的问题。</p>
+<p>Kubernetes 管理员也经常使用 <strong>基于事件的告警（ Event-based alerts ）</strong> 。与基于度量的告警相比，它的区别在于，监控程序需要查找环境中生成的事件消息，例如 Kurthnetes “CrashLoopBackoff” 条件 — 代表 Pod 反复失败或重启，或者“Liveness probe failed”，表示容器是否为活跃和运行。这些告警有助于 DevOps 工程师快速定位问题。</p>
+<p>Http 错误可能表明软件或基础架构存在问题，最终会影响性能。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_12.png" alt="Kubernetes pod and namespace rises to top of alert scoping in 2018."></p>
+<blockquote>
+<p>Alerts are not a one-size-fits-all approach.</p>
+</blockquote>
+<p>告警不是一种万能的方法。有时需要设置基于指定范围的告警，无论是逻辑或物理实体，还是整个基础结构（注：Sysdig 通过标签实现）。</p>
+<p>在 2018 年的研究中，用于确定告警范围的最常用标签与 Kubernetes 有关（Scoping by pods），命名空间（namespace）紧随其后。特定的容器范围（Container specific scoping）也很受欢迎，包括容器名称，容器镜像和容器 ID 。2018年再次名列榜首的是云服务提供商标签，通常针对“名称”，“环境”，“ID”和“区域”标签以区分开发、测试和生产资源，以及标记云数据中心的位置。</p>
+<h4 id="容器和基础设施自定义监控指标"><a href="#容器和基础设施自定义监控指标" class="headerlink" title="容器和基础设施自定义监控指标"></a>容器和基础设施自定义监控指标</h4><blockquote>
+<p>There’s no one custom metrics format to rule them all.</p>
+</blockquote>
+<p>“在环境中运行容器的客户，使用自定义指标的比例是多少，都是哪些？”</p>
+<p>55％ 的 Sysdig SaaS 用户使用与 Java 应用程序相关的 JMX 指标。这与我们看到的 Java 应用程序部署非常广泛的事实一致。 StatsD 占有 29％ 的份额，Prometheus 占有 20％ 的份额（预计这个数字会随着时间的推移而增长）。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_13.png" alt="JMX is the most used custom metric format."></p>
+<h4 id="容器注册"><a href="#容器注册" class="headerlink" title="容器注册"></a>容器注册</h4><blockquote>
+<p>It’s a split decision - registries are critical but there’s no clear leader.</p>
+</blockquote>
+<p>注册管理机构至关重要，但是目前没有明确的领导者。<br>容器注册表（container registry）是任何容器部署的基本组件。市场上有许多解决方案：一些是公共的，一些是私有的，一些是作为服务提供，一些是作为本地软件（private registry）部署。</p>
+<p>2018 年前三名中，Google Container Registry（GCR）的比例最高，其次是 Quay ,之后是 Docker和 Amazon Elastic Container Registry（ECR）。 GCR 和 ACR 都是完全基于云托管的（private Docker container registries）。Quay 和 Docker 既可以用作本地解决方案也可以在云中运行（注：Sysdig 的用户群只有 50％ 能够清楚地识别出容器注册方案）</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Docker_2018_14.png" alt="Container registry use is divided across public and private solutions."></p>
+<blockquote>
+<p>New approaches are maturing and helping organizations develop applications more quickly to solve real business challenges and compete in the digital marketplace.</p>
+</blockquote>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="网络安全专题合辑《Cyber-Security-Manual》"><a href="#网络安全专题合辑《Cyber-Security-Manual》" class="headerlink" title="网络安全专题合辑《Cyber-Security Manual》"></a>网络安全专题合辑《Cyber-Security Manual》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/">Cyber-Security: 警惕 Wi-Fi 漏洞，争取安全上网</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/670c4d2bb419">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/07/CyberSecurity/">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h4 id="DevOps-漫谈系列"><a href="#DevOps-漫谈系列" class="headerlink" title="DevOps 漫谈系列"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/28/DevOps/">DevOps 漫谈系列</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/10/DevOps-Phoenix/">《凤凰项目》：从作坊到工厂的寓言故事</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/06/TeamWork-Kanban/">Kanban 看板管理实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/26/DevOps-Deployment/">DevOps 漫谈：基础设施部署和配置管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/Technology-English/">工程师的自我修养：全英文技术学习实践</a></li>
+</ul>
+<h4 id="DevOps-实践的本质是文化"><a href="#DevOps-实践的本质是文化" class="headerlink" title="DevOps 实践的本质是文化"></a><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/29/DevOps-Culture/">DevOps 实践的本质是文化</a></h4><ul>
+<li>学习力－团队生命之根</li>
+<li>带领团队翻译书籍</li>
+<li>Don’t make me think</li>
+<li>凡是被很多人不断重复的好习惯，要将其自动化整合到工具</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://agentneoteam.github.io/2018/05/07/agentneo-jia-gou-jian-jie.html">AgentNEO 架构简介 | 07 May 2018</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/1607_caoyq_sysdig/index.html">用 Sysdig 监控服务器和 Docker 容器 | 曹元其 | 2016 年 7 月 15 日发布</a></li>
+<li><a target="_blank" rel="noopener" href="http://cizixs.com/2017/04/27/sysdig-for-linux-system-monitor-and-analysis">使用 sysdig 进行监控和调试 linux 机器</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/06/12/DevOps-Container-Usage/" data-id="ckwgm33kl004x7b1ysamv3lvd" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/19/Project-Template/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PM指南:项目管理开局模板|工具与技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/11/Linux-Perf-App/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux 性能诊断：Web Server</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-Docker-%E7%94%A8%E6%88%B7%E6%8A%A5%E5%91%8A-Sysdig-Edition"><span class="toc-number">2.</span> <span class="toc-text">2018 Docker 用户报告 - Sysdig Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%BA%94%E7%94%A8%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">2.0.1.</span> <span class="toc-text">容器应用排行榜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%AF%86%E5%BA%A6"><span class="toc-number">2.0.2.</span> <span class="toc-text">容器密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">2.0.3.</span> <span class="toc-text">容器运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%AD%98%E6%B4%BB%E5%91%A8%E6%9C%9F"><span class="toc-number">2.0.4.</span> <span class="toc-text">容器存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%AD%98%E6%B4%BB%E5%91%A8%E6%9C%9F"><span class="toc-number">2.0.5.</span> <span class="toc-text">镜像存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%AD%98%E6%B4%BB%E5%91%A8%E6%9C%9F"><span class="toc-number">2.0.6.</span> <span class="toc-text">服务存活周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E5%99%A8"><span class="toc-number">2.0.7.</span> <span class="toc-text">容器编排器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E9%9B%86%E7%BE%A4%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.0.8.</span> <span class="toc-text">容器集群大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kubernetes-%E5%88%86%E5%8F%91%E7%89%88"><span class="toc-number">2.0.9.</span> <span class="toc-text">Kubernetes 分发版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7"><span class="toc-number">2.0.10.</span> <span class="toc-text">容器健康与应用性能监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%92%8C%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87"><span class="toc-number">2.0.11.</span> <span class="toc-text">容器和基础设施自定义监控指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%B3%A8%E5%86%8C"><span class="toc-number">2.0.12.</span> <span class="toc-text">容器注册</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%93%E9%A2%98%E5%90%88%E8%BE%91%E3%80%8ACyber-Security-Manual%E3%80%8B"><span class="toc-number">3.0.1.</span> <span class="toc-text">网络安全专题合辑《Cyber-Security Manual》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97"><span class="toc-number">3.0.2.</span> <span class="toc-text">DevOps 漫谈系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps-%E5%AE%9E%E8%B7%B5%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E6%96%87%E5%8C%96"><span class="toc-number">3.0.3.</span> <span class="toc-text">DevOps 实践的本质是文化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

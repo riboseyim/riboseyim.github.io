@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>玩转编程语言:Node.js | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 玩转编程语言:构建自定义代码生成器 Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩转编程语言:Node.js">
+<meta property="og:url" content="https://riboseyim.com/2017/05/16/Language-Node-lang/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 玩转编程语言:构建自定义代码生成器 Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-05-16T03:38:23.000Z">
+<meta property="article:modified_time" content="2020-08-04T07:22:03.000Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Nodejs">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Language-Node-lang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/Language-Node-lang/" class="article-date">
+  <time datetime="2017-05-16T03:38:23.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      玩转编程语言:Node.js
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/16/Language-Node-lang/" data-id="ckwgm33ln009x7b1yixknmxo6" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="noopener">玩转编程语言:构建自定义代码生成器</a></li>
+<li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="noopener">Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h4 id="1-Blog-amp-Code-Generator"><a href="#1-Blog-amp-Code-Generator" class="headerlink" title="1. Blog &amp; Code Generator"></a>1. Blog &amp; Code Generator</h4><ul>
+<li><a href="https://riboseyim.github.io/2017/06/03/Writing-WriterToolChain/" target="_blank" rel="noopener">我的写作工具链</a></li>
+<li><a href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/" target="_blank" rel="noopener">玩转编程语言:构建自定义代码生成器</a></li>
+</ul>
+<h4 id="2-远程通信协议：从-CORBA-到-gRPC"><a href="#2-远程通信协议：从-CORBA-到-gRPC" class="headerlink" title="2. 远程通信协议：从 CORBA 到 gRPC"></a>2. <a href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/" target="_blank" rel="noopener">远程通信协议：从 CORBA 到 gRPC</a></h4><ul>
+<li>一、远程调用技术简史:从 CORBA 到 gRPC</li>
+<li>二、gRPC 简介</li>
+<li>三、gRPC 示例代码</li>
+</ul>
+<h4 id="3-GraphQL"><a href="#3-GraphQL" class="headerlink" title="3. GraphQL"></a>3. GraphQL</h4><ul>
+<li><a href="http://taobaofed.org/blog/2015/11/26/graphql-basics-server-implementation/" target="_blank" rel="noopener">Node.js 服务端实践之 GraphQL 初探 | 淘宝前端团队FED</a></li>
+<li><a href="https://graphqlme.com/2017/11/11/build-better-graphql-apis-thinking-in-graphs/" target="_blank" rel="noopener">Build Better GraphQL APIs: Thinking In Graphs | November 11, 2017</a></li>
+</ul>
+<h4 id="4-Machine-Learning"><a href="#4-Machine-Learning" class="headerlink" title="4. Machine Learning"></a>4. Machine Learning</h4><ul>
+<li><a href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/" target="_blank" rel="noopener">Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js</a></li>
+</ul>
+<h3 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h3><ul>
+<li>module manage<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">YRMacBook-Pro:Node yanrui$ node</span><br><span class="line">&gt; console.log(module);</span><br><span class="line">Module &#123;</span><br><span class="line">  id: &apos;&lt;repl&gt;&apos;,</span><br><span class="line">  exports: &#123;&#125;,</span><br><span class="line">  parent: undefined,</span><br><span class="line">  filename: null,</span><br><span class="line">  loaded: false,</span><br><span class="line">  children: [],</span><br><span class="line">  paths:</span><br><span class="line">   [ &apos;/Users/yanrui/project/gRPC/Client/Node/repl/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/project/gRPC/Client/Node/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/project/gRPC/Client/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/project/gRPC/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/project/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/node_modules&apos;,</span><br><span class="line">     &apos;/Users/node_modules&apos;,</span><br><span class="line">     &apos;/node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/.node_modules&apos;,</span><br><span class="line">     &apos;/Users/yanrui/.node_libraries&apos;,</span><br><span class="line">     &apos;/usr/local/Cellar/node/7.10.0/lib/node&apos; ] &#125;</span><br><span class="line">&gt; process.exit();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h3><ul>
+<li><a href="https://www.tecmint.com/nvm-install-multiple-nodejs-versions-in-linux/#" target="_blank" rel="noopener">NVM – Install and Manage Multiple Node.js Versions in Linux</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="https://riboseyim.github.io/2017/05/26/Language/" target="_blank" rel="noopener">玩转编程语言系列</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/01/npm-install.html" target="_blank" rel="noopener">npm 模块安装机制简介</a></li>
+<li><a href="https://hackernoon.com/using-redis-with-node-js-8d87a48c5dd7" target="_blank" rel="noopener">Using Redis with Node JS</a></li>
+<li><a href="https://dexecure.com/blog/how-to-create-http2-static-file-server-nodejs-with-examples/" target="_blank" rel="noopener">How to create a zero dependency HTTP/2 static file server with Node.js (with examples)</a></li>
+<li><a href="https://blog.sessionstack.com/how-javascript-works-the-rendering-engine-and-tips-to-optimize-its-performance-7b95553baeda" target="_blank" rel="noopener">How JavaScript works: the rendering engine and tips to optimize its performance</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/16/Language-Node-lang/" data-id="ckwgm33ln009x7b1yixknmxo6" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/16/Language-Ruby-lang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          玩转编程语言:Ruby
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/16/Language-R-lang/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">玩转编程语言:R</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-number">2.</span> <span class="toc-text">Application</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Blog-amp-Code-Generator"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. Blog &amp; Code Generator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%BF%9C%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%EF%BC%9A%E4%BB%8E-CORBA-%E5%88%B0-gRPC"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 远程通信协议：从 CORBA 到 gRPC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-GraphQL"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. GraphQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Machine-Learning"><span class="toc-number">2.0.4.</span> <span class="toc-text">4. Machine Learning</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ABC"><span class="toc-number">2.1.</span> <span class="toc-text">ABC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Version"><span class="toc-number">2.2.</span> <span class="toc-text">Version</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

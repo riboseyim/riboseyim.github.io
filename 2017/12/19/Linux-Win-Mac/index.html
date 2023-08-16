@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>谁是王者：macOS vs Linux Kernels ？ | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="谁是王者：macOS vs Linux Kernels ？ Mac 快键键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谁是王者：macOS vs Linux Kernels ？">
+<meta property="og:url" content="https://riboseyim.com/2017/12/19/Linux-Win-Mac/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="谁是王者：macOS vs Linux Kernels ？ Mac 快键键">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/History_macOS_Linux.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/OS_Kernel_Model.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2017-12-19T10:15:49.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.901Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Mac">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/History_macOS_Linux.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Win-Mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/19/Linux-Win-Mac/" class="article-date">
+  <time datetime="2017-12-19T10:15:49.000Z" itemprop="datePublished">2017-12-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      谁是王者：macOS vs Linux Kernels ？
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/12/19/Linux-Win-Mac/" data-id="ckwgm33ly00cx7b1yx8azdp18" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <ul>
+<li>谁是王者：macOS vs Linux Kernels ？</li>
+<li>Mac 快键键</li>
+</ul>
+<span id="more"></span>
+<h2 id="谁是王者：macOS-vs-Linux-Kernels-？"><a href="#谁是王者：macOS-vs-Linux-Kernels-？" class="headerlink" title="谁是王者：macOS vs Linux Kernels ？"></a>谁是王者：macOS vs Linux Kernels ？</h2><p>有些人可能认为 macOS 和 Linux 内核是类似的系统, 因为它们看起来可以处理类似的命令和软件。有些人甚至认为苹果的 macOS 是基于 Linux 的。事实上, 这两个内核各有特色，也都有不同寻常的历史。          </p>
+<h2 id="macOS-Kernel-简史"><a href="#macOS-Kernel-简史" class="headerlink" title="macOS Kernel 简史"></a>macOS Kernel 简史</h2><p>我们首先从 macOS Kernel 的历史开始讲起。1985年, 史蒂夫·乔布斯（ Steve Jobs）离开苹果公司（Apple ）并创办了一家新的计算机公司：<strong>NeXT</strong> 。乔布斯快速向市场推出了一款新型电脑 (搭载新操作系统) 。为了节省时间, NeXT 团队使用了 Mach kernel（ 来自卡内基·梅隆大学，是最早实现微核心操作系统的例子之一，是许多其它相似的项目的标准，在分布式与并行运算领域应用广泛) 和 部分 BSD 代码库, 创建了 NeXTSTEP 操作系统。具有讽刺意味的是，早期 Mach 只是服务于操作系统研究，曾经的开发目标甚至是取代 BSD ，目前 Mach 的研究至今似乎是停止了，但是许多商业化操作系统，特别是 Mac OS X  及其它派生系统却活得很滋润。</p>
+<p>在商业上，NeXT 公司从来没有获得成功, 部分原因是乔布斯的花钱习惯仍然像他在苹果公司一样大手大脚。与此同时, 苹果公司多次尝试更新自己的操作系统, 但是包括与 IBM 合作在内、一直未取得成功。1997年, 苹果公司以 4 亿 2900 万美元收购了 NeXT 公司 。作为交易的一部分, 史蒂夫·乔布斯重新回到苹果, NeXTSTEP 操作系统也成为了 macOS 和 iOS 操作系统的基础。值得注意的是，NeXT  团队的另一项成果 WebObjects 后来集成到了 Mac OS X Server 和 Xcode 中。</p>
+<h2 id="Linux-Kernel-简史"><a href="#Linux-Kernel-简史" class="headerlink" title="Linux Kernel 简史"></a>Linux Kernel 简史</h2><p>与 macOS Kernel 不同, Linux 从一开始不是作为商业计划的一部分而创建的。相反, Linux 在 1991 年由芬兰计算机专业的学生林纳斯·托瓦兹（Linus Torvalds）创建。最初 Linux 内核代码是按照林纳斯个人的计算机规格编写, 因为他想利用自己电脑上搭载的新式 80386 处理器。林纳斯在 1991 年 8 月将他编写的操作系统内核代码发布到网络上。不久, 他收到了来自世界各地爱好者贡献的代码和建议。第二年, <a href="美国黑客, 生于康涅狄格州, 在北卡罗来纳州杜克大学获得电气工程和计算机科学学位，曾在柯达和微软任职">Orest Zborowski </a> 将 X Windows 系统移植到 Linux 中, 使其能够支持图形用户界面。</p>
+<p>在过去的 27 年里, Linux 已经慢慢成长壮大，它不再是一个学生的业余项目。目前，Linux 运行在世界上大多数的计算设备和超级计算机上。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/History_macOS_Linux.png" alt=""></p>
+<blockquote>
+<p>他在旧版的SketchPad代码基础上进行了修改，让它运行在Macintosh上，并改名MacSketch。SketchPad通过菜单的方式选取图案和样式，Bill把它们放到屏幕下方，变成固定的调色板，并在屏幕左边另外增加一组调色板，包含了各种各样的绘图工具。后续还会不断增加新的工具，不过MacPaint早期的基本架构已经就此成形。<br>—— 《硅谷革命：成就苹果公司的疯狂往事》</p>
+</blockquote>
+<h2 id="macOS-Kernel-特色"><a href="#macOS-Kernel-特色" class="headerlink" title="macOS Kernel 特色"></a>macOS Kernel 特色</h2><p>macOS kernel 的特色官方总结为: XNU。意思是 “XNU 不是 Unix”。根据苹果的 Github 页面, XNU 是 “一个混合内核, 奠基于卡耐基·梅隆大学开发的 Mach kernel , 它的组件来自 FreeBSD 和用于编写驱动程序的 C++ API “。BSD 子系统部分的代码 “通常作为微核心系统中实现用户空间服务”。Mach 部分的代码则负责较底层的工作, 例如多任务（multitasking）、内存保护（ protected memory）、虚拟内存管理（virtual memory management）、支持内核调试（kernel debugging）和控制台 I/O 。 Mach 的虚拟内存（VM）系统也被 BSD 的开发者用于 CSRG ，并出现在 BSD 派生的系统中，如 FreeBSD ，但是无论 macOS 还是 FreeBSD 都并未保留 Mach 首倡的微核心结构，除了 macOS 继续提供微核心于内部处理通信以及应用程序直接控制之外。</p>
+<blockquote>
+<p>他在旧版的SketchPad代码基础上进行了修改，让它运行在Macintosh上，并改名MacSketch。SketchPad通过菜单的方式选取图案和样式，Bill把它们放到屏幕下方，变成固定的调色板，并在屏幕左边另外增加一组调色板，包含了各种各样的绘图工具。后续还会不断增加新的工具，不过MacPaint早期的基本架构已经就此成形。<br>———《硅谷革命：成就苹果公司的疯狂往事》</p>
+</blockquote>
+<h2 id="Linux-Kernel-特色"><a href="#Linux-Kernel-特色" class="headerlink" title="Linux Kernel 特色"></a>Linux Kernel 特色</h2><p>如果说 macOS 内核的特点是结合了微核心 (microkernel ，Mach) 和宏内核 (monolithic kernel ，BSD)，那么 Linux 则仅仅是一个宏内核。宏内核负责管理 CPU、内存、进程间通信、设备驱动程序、文件系统和系统服务调用。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/OS_Kernel_Model.png" alt=""></p>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><p>macOS 内核代码 (XNU) 基于两个甚至包含古老代码基的组合。另一方面, Linux 的历史更短, 它从头开始编写并且应用广泛。</p>
+<blockquote>
+<p>预测未来的最佳方式就是创造未来。<br>——  个人电脑之父 艾伦·凯(Alan Kay)</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum info google-chrome-stable</span></span><br><span class="line">google-chrome                                                                                                 | 1.3 kB     00:00     </span><br><span class="line">google-chrome/primary                                                                                         | 1.7 kB     00:00     </span><br><span class="line">google-chrome                                                                                                                                            3/3</span><br><span class="line">可安装的软件包</span><br><span class="line">Name        : google-chrome-stable</span><br><span class="line">Arch        : x86_64</span><br><span class="line">Version     : 71.0.3578.98</span><br><span class="line">Release     : 1</span><br><span class="line">Size        : 54 M</span><br><span class="line">Repo        : google-chrome</span><br><span class="line">Summary     : Google Chrome</span><br><span class="line">URL         : https://chrome.google.com/</span><br><span class="line">License     : Multiple, see https://chrome.google.com/</span><br><span class="line">Description : The web browser from Google</span><br><span class="line">            :</span><br><span class="line">            : Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum install google-chrome-stable</span></span><br><span class="line">设置安装进程</span><br><span class="line">解决依赖关系</span><br><span class="line">--&gt; 执行事务检查</span><br><span class="line">---&gt; Package google-chrome-stable.x86_64 0:71.0.3578.98-1 will be 安装</span><br><span class="line">--&gt; 处理依赖关系 libnss3.so(NSS_3.22)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libc.so.6(GLIBC_2.16)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 liberation-fonts，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libssl3.so(NSS_3.28)(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libgtk-3.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libappindicator3.so.1()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libatspi.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libgdk-3.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 处理依赖关系 libatk-bridge-2.0.so.0()(64bit)，它被软件包 google-chrome-stable-71.0.3578.98-1.x86_64 需要</span><br><span class="line">--&gt; 完成依赖关系计算</span><br><span class="line"> You could try using --skip-broken to work around the problem</span><br><span class="line"> You could try running: rpm -Va --nofiles --nodigest</span><br></pre></td></tr></table></figure>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/">Linux 性能诊断:负载评估</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断:快速检查单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（一）：启动</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（二）：空间管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/">操作系统原理 | How Linux Works（四）：网络管理</a></li>
+</ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://itsfoss.com/mac-linux-difference/">Difference Between the macOS and Linux Kernels</a></li>
+<li><a target="_blank" rel="noopener" href="http://osxbook.com/book/bonus/ancient/whatismacosx/arch_xnu.html">What is Mac OS X?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/orestzborowski/">Linkedin:Orest Zborowski</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Linux_Networking/A_brief_history_of_Linux_Networking_Kernel_Development">Linux Networking/A brief history of Linux Networking Kernel Development</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/12/19/Linux-Win-Mac/" data-id="ckwgm33ly00cx7b1yx8azdp18" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/20/Addiction-Decision-2016-USA-Students/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          嗑药简史：美国青年人群药物滥用情况
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/19/Visualization-Canvas/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Visualization-Canvas</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%81%E6%98%AF%E7%8E%8B%E8%80%85%EF%BC%9AmacOS-vs-Linux-Kernels-%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">谁是王者：macOS vs Linux Kernels ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-Kernel-%E7%AE%80%E5%8F%B2"><span class="toc-number">2.</span> <span class="toc-text">macOS Kernel 简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Kernel-%E7%AE%80%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text">Linux Kernel 简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-Kernel-%E7%89%B9%E8%89%B2"><span class="toc-number">4.</span> <span class="toc-text">macOS Kernel 特色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Kernel-%E7%89%B9%E8%89%B2"><span class="toc-number">5.</span> <span class="toc-text">Linux Kernel 特色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">7.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">7.0.2.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">7.0.3.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

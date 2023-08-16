@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Machine Learning Workflow Problem: 宠物分类、勋章识别、美女打分 Demo: Hello TensorFlow ! TensorFlow C library &#x2F; Go binding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别">
+<meta property="og:url" content="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Machine Learning Workflow Problem: 宠物分类、勋章识别、美女打分 Demo: Hello TensorFlow ! TensorFlow C library &#x2F; Go binding">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Inception-Go-C.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-demo-Black.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-01-17T12:43:28.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.283Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="数学与算法">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-TensorFlow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/17/Machine-Learning-TensorFlow/" class="article-date">
+  <time datetime="2018-01-17T12:43:28.000Z" itemprop="datePublished">2018-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="ckwgm33mb00fg7b1yws5x80a9" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Machine Learning Workflow</li>
+<li>Problem: 宠物分类、勋章识别、美女打分</li>
+<li>Demo: Hello TensorFlow !</li>
+<li>TensorFlow C library / Go binding</li>
+</ul>
+<span id="more"></span>
+<h2 id="Machine-Learning-Workflow"><a href="#Machine-Learning-Workflow" class="headerlink" title="Machine Learning Workflow"></a>Machine Learning Workflow</h2><ul>
+<li>Define the problem. What problems do you want to solve?</li>
+<li>Start simple. Be familiar with the data and the baseline results.</li>
+<li>Then try something more complicated.</li>
+</ul>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>人类喜欢将所有事物都纳入鄙视链的范畴，宠物当然也不例外。一般来说，拥有一只纯种宠物可以让主人占据鄙视链的云端，进而鄙视那些混血或者流浪宠物。甚至还发展出了专业的鉴定机构，可以颁发《血统证明书》。但是考究各类纯种鉴定的常规方法，主要标准是眼睛的大小、颜色、鼻子的特点、身躯长度、尾巴特征、毛发等特征，当然也包括一些比较玄幻的属性，例如宠物家族的个性、气质等等。</p>
+<p><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/Medal/">外军研究：美军授勋及嘉奖制度观察</a>一文中提到，世界各国军队都有自己的制服、军衔、勋章体系，它们既是军人荣誉的体现，也包含了丰富的职业信息。但是体系过于庞大也会带来识别困难，例如下图中的两位美军士兵，是否可以有一种方案可以自动、准确地识别各类徽章的意义呢？<br><img src="http://riboseyim-qiniu.riboseyim.com/USArmy-Medal-Navy-Seg-Notes-1.png" alt=""></p>
+<p>中文网络上有一个特殊名词：颜值。通常用来表示人物颜容英俊或靓丽的数值。人们希望有一个衡量标准可以用来评价、测量和比较人物容貌，许多社交软件甚至可以利用计算机视觉识别技术分析颜值、年龄、性别，甚至与好友一起进行颜值 PK ，当然这些软件的 “颜值” 算法总是备受争议。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/56607562">哪种类型算是中国式标准美女？</a></li>
+</ul>
+<p>其实以上三种场景本质上都是图像识别，可以概括为一种基于外观的分类（或者说“打分”）需求，接下来我试图基于机器学习的方法来解决这些问题。</p>
+<h2 id="Demo-Hello-TensorFlow"><a href="#Demo-Hello-TensorFlow" class="headerlink" title="Demo: Hello TensorFlow !"></a>Demo: Hello TensorFlow !</h2><blockquote>
+<p>Tensorflow is not a Machine Learning specific library, instead, is a general purpose computation library that represents computations with graphs.</p>
+</blockquote>
+<p>TensorFlow 开源软件库（Apache 2.0 许可证），最初由 Google Brain 团队开发。TensorFlow 提供了一系列算法模型和编程接口，让我们可以快速构建一个基于机器学习的智能服务。对于开发者来说，目前有四种编程接口可供选择：</p>
+<ul>
+<li>C++ source code: Tensorflow 核心基于 C++ 编写，支持从高到低各个层级的操作;</li>
+<li>Python bindings &amp; Python library: 对标 C++ 实现，支持 Python 调用 C++ 函数;</li>
+<li>Java bindings;</li>
+<li>Go binding;</li>
+</ul>
+<p>下面是一个简单的实例：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Inception-Go-C.png" alt=""></p>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
+<li><p>安装 TensorFlow  C library,包含一个头文件 c_api.h 和 libtensorflow.so</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment">## options</span></span><br><span class="line"><span class="comment"># Change to &quot;gpu&quot; for GPU support</span></span><br><span class="line">TF_TYPE=<span class="string">&quot;cpu&quot;</span></span><br><span class="line">TF_VERSION=<span class="string">&#x27;1.5.0&#x27;</span></span><br><span class="line">curl -L \</span><br><span class="line">  <span class="string">&quot;https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-<span class="variable">$&#123;TF_TYPE&#125;</span>-<span class="subst">$(go env GOOS)</span>-x86_64-<span class="variable">$&#123;TF_VERSION&#125;</span>.tar.gz&quot;</span> |</span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看 tensorflow 版本</span></span><br><span class="line">$ python -c <span class="string">&#x27;import tensorflow as tf; print(tf.__version__)&#x27;</span>  <span class="comment"># for Python 2</span></span><br><span class="line">$ python3 -c <span class="string">&#x27;import tensorflow as tf; print(tf.__version__)&#x27;</span>  <span class="comment"># for Python 3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 Go 语言环境,参考：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/05/Language-Go-lang/">玩转编程语言：Golang</a></p>
+</li>
+<li><p>安装 Tensorflow Go binding library</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/tensorflow/tensorflow/tensorflow/go</span><br><span class="line">go get github.com/tensorflow/tensorflow/tensorflow/go/op</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载模型（demo model)，包含一个标签文件 label_strings.txt 和 graph.pb</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir model</span><br><span class="line">wget https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip -O model/inception.zip</span><br><span class="line">unzip model/inception.zip -d model</span><br><span class="line">chmod -R 777 model</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Tensorflow-Model-Function"><a href="#Tensorflow-Model-Function" class="headerlink" title="Tensorflow Model Function"></a>Tensorflow Model Function</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Loading TensorFlow model</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">loadModel</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">  <span class="comment">// Load inception model</span></span><br><span class="line">  model, err := ioutil.ReadFile(<span class="string">&quot;./model/tensorflow_inception_graph.pb&quot;</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">  graph = tf.NewGraph()</span><br><span class="line">  <span class="keyword">if</span> err := graph.Import(model, <span class="string">&quot;&quot;</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Load labels</span></span><br><span class="line">  labelsFile, err := os.Open(<span class="string">&quot;./model/imagenet_comp_graph_label_strings.txt&quot;</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">defer</span> labelsFile.Close()</span><br><span class="line">  scanner := bufio.NewScanner(labelsFile)</span><br><span class="line">  <span class="comment">// Labels are separated by newlines</span></span><br><span class="line">  <span class="keyword">for</span> scanner.Scan() &#123;</span><br><span class="line">    labels = <span class="built_in">append</span>(labels, scanner.Text())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> err := scanner.Err(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Classifying-Workflow"><a href="#Classifying-Workflow" class="headerlink" title="Classifying Workflow"></a>Classifying Workflow</h4><p>基于 Tensorflow 模型实现图像识别的主要流程如下：</p>
+<ul>
+<li>图像转换 (Convert to tensor )</li>
+<li>图像标准化( Normalize )</li>
+<li>图像分类 （ Classifying )</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">recognizeHandler</span><span class="params">(w http.ResponseWriter, r *http.Request, _ httprouter.Params)</span></span> &#123;</span><br><span class="line">  <span class="comment">// Read image</span></span><br><span class="line">  imageFile, header, err := r.FormFile(<span class="string">&quot;image&quot;</span>)</span><br><span class="line">  <span class="comment">// Will contain filename and extension</span></span><br><span class="line">  imageName := strings.Split(header.Filename, <span class="string">&quot;.&quot;</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    responseError(w, <span class="string">&quot;Could not read image&quot;</span>, http.StatusBadRequest)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">defer</span> imageFile.Close()</span><br><span class="line">  <span class="keyword">var</span> imageBuffer bytes.Buffer</span><br><span class="line">  <span class="comment">// Copy image data to a buffer</span></span><br><span class="line">  io.Copy(&amp;imageBuffer, imageFile)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">  tensor, err := makeTensorFromImage(&amp;imageBuffer, imageName[:<span class="number">1</span>][<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    responseError(w, <span class="string">&quot;Invalid image&quot;</span>, http.StatusBadRequest)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数 makeTensorFromImage() which runs an image tensor through the normalization graph.<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeTensorFromImage</span><span class="params">(imageBuffer *bytes.Buffer, imageFormat <span class="keyword">string</span>)</span> <span class="params">(*tf.Tensor, error)</span></span> &#123;</span><br><span class="line">  tensor, err := tf.NewTensor(imageBuffer.String())</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">  &#125;</span><br><span class="line">  graph, input, output, err := makeTransformImageGraph(imageFormat)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">  &#125;</span><br><span class="line">  session, err := tf.NewSession(graph, <span class="literal">nil</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">defer</span> session.Close()</span><br><span class="line">  normalized, err := session.Run(</span><br><span class="line">    <span class="keyword">map</span>[tf.Output]*tf.Tensor&#123;input: tensor&#125;,</span><br><span class="line">    []tf.Output&#123;output&#125;,</span><br><span class="line">    <span class="literal">nil</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> normalized[<span class="number">0</span>], <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数 maketransformimagegraph() 将图形的像素值调整到 224x224，以符合模型输入参数要求。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeTransformImageGraph</span><span class="params">(imageFormat <span class="keyword">string</span>)</span> <span class="params">(graph *tf.Graph, input, output tf.Output, err error)</span></span> &#123;</span><br><span class="line">  <span class="keyword">const</span> (</span><br><span class="line">    H, W  = <span class="number">224</span>, <span class="number">224</span></span><br><span class="line">    Mean  = <span class="keyword">float32</span>(<span class="number">117</span>)</span><br><span class="line">    Scale = <span class="keyword">float32</span>(<span class="number">1</span>)</span><br><span class="line">  )</span><br><span class="line">  s := op.NewScope()</span><br><span class="line">  input = op.Placeholder(s, tf.String)</span><br><span class="line">  <span class="comment">// Decode PNG or JPEG</span></span><br><span class="line">  <span class="keyword">var</span> decode tf.Output</span><br><span class="line">  <span class="keyword">if</span> imageFormat == <span class="string">&quot;png&quot;</span> &#123;</span><br><span class="line">    decode = op.DecodePng(s, input, op.DecodePngChannels(<span class="number">3</span>))</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    decode = op.DecodeJpeg(s, input, op.DecodeJpegChannels(<span class="number">3</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Div and Sub perform (value-Mean)/Scale for each pixel</span></span><br><span class="line">  output = op.Div(s,</span><br><span class="line">    op.Sub(s,</span><br><span class="line">      <span class="comment">// Resize to 224x224 with bilinear interpolation</span></span><br><span class="line">      op.ResizeBilinear(s,</span><br><span class="line">        <span class="comment">// Create a batch containing a single image</span></span><br><span class="line">        op.ExpandDims(s,</span><br><span class="line">          <span class="comment">// Use decoded pixel values</span></span><br><span class="line">          op.Cast(s, decode, tf.Float),</span><br><span class="line">          op.Const(s.SubScope(<span class="string">&quot;make_batch&quot;</span>), <span class="keyword">int32</span>(<span class="number">0</span>))),</span><br><span class="line">        op.Const(s.SubScope(<span class="string">&quot;size&quot;</span>), []<span class="keyword">int32</span>&#123;H, W&#125;)),</span><br><span class="line">      op.Const(s.SubScope(<span class="string">&quot;mean&quot;</span>), Mean)),</span><br><span class="line">    op.Const(s.SubScope(<span class="string">&quot;scale&quot;</span>), Scale))</span><br><span class="line">  graph, err = s.Finalize()</span><br><span class="line">  <span class="keyword">return</span> graph, input, output, err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，将格式化的 image tensor 输入到 Inception model graph 中运算。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">session, err := tf.NewSession(graph, <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">  log.Fatal(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">defer</span> session.Close()</span><br><span class="line">output, err := session.Run(</span><br><span class="line">  <span class="keyword">map</span>[tf.Output]*tf.Tensor&#123;</span><br><span class="line">    graph.Operation(<span class="string">&quot;input&quot;</span>).Output(<span class="number">0</span>): tensor,</span><br><span class="line">  &#125;,</span><br><span class="line">  []tf.Output&#123;</span><br><span class="line">    graph.Operation(<span class="string">&quot;output&quot;</span>).Output(<span class="number">0</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">  responseError(w, <span class="string">&quot;Could not run inference&quot;</span>, http.StatusInternalServerError)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> err := loadModel(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  r := httprouter.New()</span><br><span class="line">  r.POST(<span class="string">&quot;/recognize&quot;</span>, recognizeHandler)</span><br><span class="line">  err := http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, r)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Println(err)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-demo-Black.png" alt="识别案例：黑天鹅"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:<span class="number">8080</span>/recognize -F &#x27;image=@../data/IMG_3560.png&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;filename&quot;</span>:<span class="string">&quot;IMG_3000.png&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;labels&quot;</span>:[</span><br><span class="line">    &#123;<span class="attr">&quot;label&quot;</span>:<span class="string">&quot;black swan&quot;</span>,<span class="attr">&quot;probability&quot;</span>:<span class="number">0.98746836</span>,<span class="attr">&quot;Percent&quot;</span>:<span class="string">&quot;98.75%&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">&quot;label&quot;</span>:<span class="string">&quot;oystercatcher&quot;</span>,<span class="attr">&quot;probability&quot;</span>:<span class="number">0.0040768473</span>,<span class="attr">&quot;Percent&quot;</span>:<span class="string">&quot;0.41%&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">&quot;label&quot;</span>:<span class="string">&quot;American coot&quot;</span>,<span class="attr">&quot;probability&quot;</span>:<span class="number">0.002185003</span>,<span class="attr">&quot;Percent&quot;</span>:<span class="string">&quot;0.22%&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">&quot;label&quot;</span>:<span class="string">&quot;black stork&quot;</span>,<span class="attr">&quot;probability&quot;</span>:<span class="number">0.0011524856</span>,<span class="attr">&quot;Percent&quot;</span>:<span class="string">&quot;0.12%&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">&quot;label&quot;</span>:<span class="string">&quot;redshank&quot;</span>,<span class="attr">&quot;probability&quot;</span>:<span class="number">0.0010183558</span>,<span class="attr">&quot;Percent&quot;</span>:<span class="string">&quot;0.10%&quot;</span>&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-1.png" alt="IMG_3560.png"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-2.png" alt="IMG_3608.png"></p>
+<p>通过上面的案例我们可以发现，这个服务目前可以对于黑天鹅图像的推算概率值为 98.75%，非常准确；但是对于另外两张宠物狗的图像，最高的推算概率值也仅有 30% 左右，虽然也没有被识别成猫咪或者狼，但是和理想效果要求可用性还有一段距离（此处暂时忽略物种本身的复杂性）。主要是因为现在我们使用的还只是一个非常“原始”的模型，如果需要为小众领域服务（宠物，也可以是其它事物），需要通过训练（Training Models）增强优化，或者引入更丰富的标签，更合适的模型。当然，训练过程中也会存在样本质量不佳的情况，错误样本和各种噪音也会影响准确度。</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="How-to-Install-TensorFlow-on-CentOS-7"><a href="#How-to-Install-TensorFlow-on-CentOS-7" class="headerlink" title="How to Install TensorFlow on CentOS 7"></a>How to Install TensorFlow on CentOS 7</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. To enable the repository, install the SCL release file:</span></span><br><span class="line"></span><br><span class="line">$ sudo yum install centos-release-scl</span><br><span class="line">$ sudo yum install rh-python36</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Creating a Virtual Environment</span></span><br><span class="line"><span class="comment"># To access Python 3.6 you need to launch a new shell instance using the scl tool:</span></span><br><span class="line">$ scl <span class="built_in">enable</span> rh-python36 bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new directory for the TensorFlow project and cd into it:</span></span><br><span class="line">$ mkdir tensorflow_project</span><br><span class="line">$ <span class="built_in">cd</span> tensorflow_project</span><br><span class="line">$ python3 -m venv venv</span><br><span class="line">$ <span class="built_in">source</span> venv/bin/activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># Upgrade pip to the latest version to avoid issues when installing packages:</span></span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Installing TensorFlow</span></span><br><span class="line">$ pip install --upgrade tensorflow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. To verify the installation</span></span><br><span class="line">$ python -c <span class="string">&#x27;import tensorflow as tf; print(tf.__version__)&#x27;</span></span><br><span class="line"></span><br><span class="line">At the time of writing this article, the latest stable version of TensorFlow is 1.13.1</span><br><span class="line"><span class="comment"># 5. Once you are done with your work, deactivate the environment, by typing deactivate and you will return to your normal shell.</span></span><br><span class="line">$ deactivate</span><br></pre></td></tr></table></figure>
+<h2 id="Lessons"><a href="#Lessons" class="headerlink" title="Lessons"></a>Lessons</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://morioh.com/p/d669c3deea75/deep-learning-with-tensorflow-2-0">Deep Learning With TensorFlow 2.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/">Google 制作的节奏紧凑、内容实用的机器学习简介课程 | 使用 TensorFlow API</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.tensorflow.org/tutorials/image_retraining">How to Retrain Inception’s Final Layer for New Categories</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.kdnuggets.com/2017/12/getting-started-tensorflow.html">Getting Started with TensorFlow: A Machine Learning Tutorial</a></p>
+</li>
+<li><p><strong>Youtube</strong><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FQ660T4uu7k">Introduction To TensorFlow</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://medium.com/initialized-capital/we-need-to-go-deeper-a-practical-guide-to-tensorflow-and-inception-50e66281804f">We Need to Go Deeper: A Practical Guide to Tensorflow and Inception</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.tensorflow.org/tutorials/image_recognition">Tensorflow.org: Image Recognition</a></p>
+<blockquote>
+<p>We know that label 866 (military uniform) should be the top label for the Admiral Hopper image.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="扩展阅读-1"><a href="#扩展阅读-1" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-install-tensorflow-on-centos-7/">How to Install TensorFlow on CentOS 7</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sjwhitworth/golearn">GoLearn</a></li>
+<li><a target="_blank" rel="noopener" href="https://pgaleone.eu/tensorflow/go/2017/05/29/understanding-tensorflow-using-go/">Understanding Tensorflow using Go</a></li>
+<li><a target="_blank" rel="noopener" href="https://nilsmagnus.github.io/post/go-tensorflow/">Using your tensorflow model with go</a></li>
+<li><a target="_blank" rel="noopener" href="https://outcrawl.com/image-recognition-api-go-tensorflow/">Build an Image Recognition API with Go and TensorFlow</a></li>
+<li><a target="_blank" rel="noopener" href="http://vividfree.github.io/%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/2017/04/13/install-tensorflow-on-linux-from-sources">以源码方式在Linux安装TensorFlow记录</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/tensorflow-architecture-and-programming?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global">TensorFlow系统架构及高性能程序设计</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/news/2017/02/Spark-Yahoo-TensorFlowOnSpark?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global">Yahoo开源TensorFlowOnSpark</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.leiphone.com/news/201702/T5e31Y2ZpeG1ZtaN.html">TensorFlow和Caffe、MXNet、Keras等其他深度学习框架的对比</a></li>
+<li><a target="_blank" rel="noopener" href="http://chenrudan.github.io/blog/2017/02/25/comparetfmxpd.html">TensorFlow、MXNet、PaddlePaddle三个开源库对比</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/01/17/Machine-Learning-TensorFlow/" data-id="ckwgm33mb00fg7b1yws5x80a9" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/17/History-Tang-DiRenjie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          唐史人物：狄仁杰
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/15/Machine-Learning-OpenCV/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Machine-Learning-Workflow"><span class="toc-number">2.</span> <span class="toc-text">Machine Learning Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">3.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo-Hello-TensorFlow"><span class="toc-number">4.</span> <span class="toc-text">Demo: Hello TensorFlow !</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">4.0.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tensorflow-Model-Function"><span class="toc-number">4.0.2.</span> <span class="toc-text">Tensorflow Model Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Classifying-Workflow"><span class="toc-number">4.0.3.</span> <span class="toc-text">Classifying Workflow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Testing"><span class="toc-number">4.0.4.</span> <span class="toc-text">Testing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">5.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-Install-TensorFlow-on-CentOS-7"><span class="toc-number">5.0.1.</span> <span class="toc-text">How to Install TensorFlow on CentOS 7</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lessons"><span class="toc-number">6.</span> <span class="toc-text">Lessons</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB-1"><span class="toc-number">8.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">8.0.1.</span> <span class="toc-text">《The Machine Learning Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

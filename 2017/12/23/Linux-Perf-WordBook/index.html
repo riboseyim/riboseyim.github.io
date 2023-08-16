@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux-Perf-WordBook | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux-Perf-WordBook">
+<meta property="og:url" content="https://riboseyim.com/2017/12/23/Linux-Perf-WordBook/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-12-23T11:33:36.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.840Z">
+<meta property="article:author" content="RiboseYim">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Perf-WordBook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/23/Linux-Perf-WordBook/" class="article-date">
+  <time datetime="2017-12-23T11:33:36.000Z" itemprop="datePublished">2017-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux-Perf-WordBook
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/12/23/Linux-Perf-WordBook/" data-id="ckwgm33lw00cg7b1yd2d86omf" class="article-share-link">分享</a>
+        
+        
+        
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><span id="more"></span>
+<p><strong>dynamic tracing，动态追踪技术</strong></p>
+<blockquote>
+<p>kk</p>
+</blockquote>
+<h3 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h3><p><strong>IOPS</strong></p>
+<blockquote>
+<p>每秒的I/O操作数</p>
+</blockquote>
+<p><strong>吞吐量</strong></p>
+<blockquote>
+<p>评价执行速率。<br>数据传输：字节／秒或比特／秒<br>数据库：秒操作数，秒业务数</p>
+</blockquote>
+<p><strong>延迟</strong></p>
+<blockquote>
+<p>描述操作里等待服务的时间。某些情况下等同于响应时间。</p>
+</blockquote>
+<h4 id="使用率"><a href="#使用率" class="headerlink" title="使用率"></a><strong>使用率</strong></h4><blockquote>
+<p>给定时间区间内，资源的繁忙程度。如内存使用率。<br>非空闲时间（Brendan定义）</p>
+</blockquote>
+<p>1.基于时间：<br>  U=B/T<br>U是使用率，B是T时间内系统繁忙时间，T是观测周期。</p>
+<p>2.基于容量：</p>
+<p><strong>observer effect ,观测者效应</strong>：指标的获取不是免费的。</p>
+<hr>
+<p><strong>响应时间</strong></p>
+<blockquote>
+<p>一次操作完成的时间。包括用于等待和服务的时间。</p>
+</blockquote>
+<p><strong>饱和度</strong></p>
+<blockquote>
+<p>指的是某一资源无法满足服务的排队工作量。<br>随着工作量增加而对资源的请求超过资源所能处理的程度。</p>
+</blockquote>
+<p><strong>瓶颈</strong></p>
+<blockquote>
+<p>限制性资源。</p>
+</blockquote>
+<p><strong>工作负载</strong></p>
+<blockquote>
+<p>系统的输入、输出对系统所施加的负载叫工作负载。<br>如数据库的工作负载就是客户端发出的请求和指令。</p>
+</blockquote>
+<p><strong>缓存</strong></p>
+<blockquote>
+<p>用于复制或存储一定量数据的高速存储区域。<br>ps:相对概念。只要存在高低速差，即可视为广义缓存？</p>
+</blockquote>
+<p>1.冷：填充的数据为空，或填充无用的数据，命中率为0<br>2.热：填充的都是常用数据<br>3.温：命中率还没有达到理想的高度<br>4.热度：</p>
+<h2 id="P"><a href="#P" class="headerlink" title="P"></a>P</h2><p><strong>Profiling 剖析</strong></p>
+<p><strong>Perturbation 扰动</strong></p>
+<blockquote>
+<p>同义词：</p>
+</blockquote>
+<p><strong>ROI 投资回报率</strong></p>
+<blockquote>
+<p>性能技术取决于投资回报率！<br>横跨大西洋连接纽约交易所和伦敦交易所的光缆，预算3亿美金，用以减少6ms的传输时延</p>
+</blockquote>
+<p><strong>SUT,system under test 受测系统</strong></p>
+<h2 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h2><p>分类：信息收集、观测分析、容量规划、统计分析、调优、实验分析</p>
+<h3 id="USE方法-（utilization-saturation-errors）"><a href="#USE方法-（utilization-saturation-errors）" class="headerlink" title="USE方法 （utilization,saturation,errors）"></a>USE方法 （utilization,saturation,errors）</h3><p>for(资源;所有资源;i++){<br>  1.出现错误？<br>  2.使用率高？<br>  3.饱和？<br>}</p>
+<h1 id="Scheduling-Algorithm-调度算法"><a href="#Scheduling-Algorithm-调度算法" class="headerlink" title="Scheduling Algorithm 调度算法"></a>Scheduling Algorithm 调度算法</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>Code</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>名称</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RR</td>
+<td><strong>round－robin</strong></td>
+<td>轮询调度</td>
+<td>单纯依次请求真实服务器。均等分发</td>
+</tr>
+<tr>
+<td>WRR</td>
+<td><strong>weighted round-robin</strong></td>
+<td>加权轮询调度</td>
+<td>引入加权值来控制分发比率。</td>
+</tr>
+<tr>
+<td>LC</td>
+<td><strong>least-connection</strong></td>
+<td>最小连接调度</td>
+<td>将新的请求连接到当前连接数最少的服务器</td>
+</tr>
+<tr>
+<td>WLC</td>
+<td><strong>weighted least-connection</strong></td>
+<td>加权最小连接调度</td>
+<td>（连接数＋1）／加权值。</td>
+</tr>
+<tr>
+<td>SED</td>
+<td><strong>shortest expected delay</strong></td>
+<td>最短预期延时调度</td>
+<td>选择响应速度最快的那台服务器，选择状态ESTABLISHED的连接数最少的服务器。与WLC类似，但WLC会把TIME_WAIT或FIN_WAIT的连接数计算在最小因素中</td>
+</tr>
+<tr>
+<td>NQ</td>
+<td><strong>never queue</strong></td>
+<td>不排队调度</td>
+<td>最优先选择连接数为0的服务器</td>
+</tr>
+<tr>
+<td>SH</td>
+<td><strong>source hashing</strong></td>
+<td>源地址散列调度</td>
+<td>对发出请求的IP地址计算散列值</td>
+</tr>
+<tr>
+<td>DH</td>
+<td><strong>destination hashing</strong></td>
+<td>目标地址散列调度</td>
+<td>对需要接收请求的目标地址计算散列值</td>
+</tr>
+<tr>
+<td>LBLC</td>
+<td><strong>locality-based least-connection</strong></td>
+<td>基于局部性的最小连接</td>
+<td>在连接数没有超过加权值指定的值时，将选择同一台服务器</td>
+</tr>
+<tr>
+<td>LBLCR</td>
+<td><strong>locality-based least-connection with replication</strong></td>
+<td>带复制的基于局部性最小连接</td>
+<td>当所有服务器的连结数都超过加权值指定的值时，将选择连接数最少的那台服务器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="DevOps-WordBook"><a href="#DevOps-WordBook" class="headerlink" title="DevOps-WordBook"></a>DevOps-WordBook</h1><h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p><strong>Availability</strong> () [可用性]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统停止的可能性。</span><br></pre></td></tr></table></figure></p>
+<p><strong>Algorithm</strong>()[算法]</p>
+<p><a href="SchedulingAlgorithm.md">Scheduling Algorithm 调度算法</a></p>
+<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p><strong>Bottleneck</strong> () [瓶颈]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">阻碍系统整体性能提升的地方。</span><br></pre></td></tr></table></figure></p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p><strong>CDN</strong> (Content Delivery Network) [内容分发网络]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从散布在全世界的缓存服务器中，选择离客户端较近的服务器来发送信息，据此实现性能的提升</span><br></pre></td></tr></table></figure></p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p><strong>DC</strong> (Data Center) [数据中心]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">容纳服务器设备。配备空调，冗余电源。配备火灾、地震等应急措施。</span><br></pre></td></tr></table></figure></p>
+<p><strong>Daemon</strong> () [守护程序]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在后台持续运行并发挥作用。</span><br></pre></td></tr></table></figure></p>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><p><strong>Environment</strong> () [环境]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Production Environment 生产环境</span><br><span class="line">Staging Environment  准生产环境</span><br></pre></td></tr></table></figure></p>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><p><strong>Failover</strong> () [故障转移]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在冗余系统中，活动节点（Active Node）停止时，自动切换到备用节点（Backup Node）.</span><br><span class="line">如果不是自动切换，而是手动，通常叫作Switchover.</span><br></pre></td></tr></table></figure><br><strong>Failback</strong> ()[故障恢复]</p>
+<p><strong>File System</strong> () [文件系统]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分类：</span><br><span class="line">Memory File System:建立在内存中的文件系统</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="G"><a href="#G" class="headerlink" title="G"></a>G</h2><p><em>**</em> () []<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="H"><a href="#H" class="headerlink" title="H"></a>H</h2><p><strong>Health Check</strong> () [健康检查]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">确认检查对象的状态是否正常。</span><br><span class="line">例如：确认服务器是否能响应ping,是否能应答HTTP等。</span><br></pre></td></tr></table></figure></p>
+<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p><em>**</em> () []<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="J"><a href="#J" class="headerlink" title="J"></a>J</h2><p><em>**</em> () []<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="K"><a href="#K" class="headerlink" title="K"></a>K</h2><p><strong>Keepalived</strong> () [内容分发网络]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.keepalived.org</span><br></pre></td></tr></table></figure></p>
+<h2 id="L"><a href="#L" class="headerlink" title="L"></a>L</h2><p><strong>LVS</strong> (Linux Virtual Server) [Linux虚拟服务器]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原伟项目名，旨在搭建具有可扩展性的、实用性高的系统。</span><br><span class="line">http://www.linuxvirtualserver.org</span><br></pre></td></tr></table></figure></p>
+<p><strong>Load Balancer</strong> () [负载均衡器]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">位于客户端和服务器之间，将客户端的请求分散到后端的多台服务器。</span><br><span class="line">Load［负载］大致力可分为“CPU负载”和“IO负载”。详见：http://www.jianshu.com/p/db8e8a2884ef</span><br></pre></td></tr></table></figure></p>
+<p><strong>Latency</strong> () [延迟]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通常指数据投递完成所花费的时间。</span><br></pre></td></tr></table></figure></p>
+<h2 id="M"><a href="#M" class="headerlink" title="M"></a>M</h2><p><em>**</em> () []<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p><strong>NIC</strong> (Network Interface Card) [网络接口卡，网卡]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">网络接口的总称</span><br></pre></td></tr></table></figure></p>
+<p><strong>Netfilter</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Linux内核中操作网络数据包所需的协议框架。</span><br><span class="line">实现分组过滤的iptables和负载均衡的IPVS也应用了Netfilter协议。</span><br></pre></td></tr></table></figure></p>
+<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p><strong>OSI</strong> (Open Systems Interconnection) [参考模型]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">分为七层（Layer）框架，例如：</span><br><span class="line">第七层：应用层。HTTP及SMT等协议</span><br><span class="line">第四层：传输层。TCP及UDP</span><br><span class="line">第三层：网络层。IP、ARP及ICMP</span><br><span class="line">第二层：数据链路层。以太网等</span><br></pre></td></tr></table></figure></p>
+<p><strong>OSS</strong> (OpenSource Software) [开源软件]<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">## P</span><br><span class="line"></span><br><span class="line">**Proxy** () [代理]</span><br></pre></td></tr></table></figure><br>Transparent Proxy:透明代理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## Q</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## R</span><br><span class="line"></span><br><span class="line">**Redundancy** () [冗余]</span><br></pre></td></tr></table></figure>
+<p>将系统的构成要素配置多个，即使其中一个发生故障而停止运作，也可以切换到备用设备以使服务不停止。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**Resource** () [资源]</span><br></pre></td></tr></table></figure><br>指CPU,内存，磁盘空间等<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## S</span><br><span class="line"></span><br><span class="line">**Scalability** () [可扩展性]</span><br></pre></td></tr></table></figure><br>随着用户的增多以及规模的扩大，在某种程度上扩展系统以加强应对的能力。<br>Scale-out:横向扩展。例如：将服务分摊到多台服务器<br>Scale-up:纵向扩展。 例如：提升单个服务器性能<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**SPO** (Single Point of Failure) [单点故障]</span><br></pre></td></tr></table></figure><br>若此处出现问题，就会令整个系统停止，即系统要害。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## T</span><br><span class="line"></span><br><span class="line">**Throughput** () [吞吐量]</span><br></pre></td></tr></table></figure><br>代表单位时间的传送量。<br>例如：大巴车和小汽车。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## U</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## V</span><br><span class="line"></span><br><span class="line">**VIP** (Virtual IP Address) [虚拟IP地址]</span><br></pre></td></tr></table></figure>
+<p>浮动分配给某项服务或功能的IP地址。例如负载均衡器中接收客户端请求的IP地址。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## W</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## X</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Y</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Z</span><br><span class="line"></span><br><span class="line">**** () []</span><br></pre></td></tr></table></figure>
+<p>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/12/23/Linux-Perf-WordBook/" data-id="ckwgm33lw00cg7b1yd2d86omf" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/01/Check2018/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          我的2018年度盘点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/21/Language-Auto-Generator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">玩转编程语言:基于Node.js构建自定义代码生成器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%A0%87"><span class="toc-number">1.1.</span> <span class="toc-text">指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%8E%87"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用率</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P"><span class="toc-number">2.</span> <span class="toc-text">P</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#USE%E6%96%B9%E6%B3%95-%EF%BC%88utilization-saturation-errors%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">USE方法 （utilization,saturation,errors）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scheduling-Algorithm-%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">Scheduling Algorithm 调度算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DevOps-WordBook"><span class="toc-number"></span> <span class="toc-text">DevOps-WordBook</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A"><span class="toc-number">1.</span> <span class="toc-text">A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B"><span class="toc-number">2.</span> <span class="toc-text">B</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C"><span class="toc-number">3.</span> <span class="toc-text">C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D"><span class="toc-number">4.</span> <span class="toc-text">D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E"><span class="toc-number">5.</span> <span class="toc-text">E</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F"><span class="toc-number">6.</span> <span class="toc-text">F</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G"><span class="toc-number">7.</span> <span class="toc-text">G</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#H"><span class="toc-number">8.</span> <span class="toc-text">H</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I"><span class="toc-number">9.</span> <span class="toc-text">I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#J"><span class="toc-number">10.</span> <span class="toc-text">J</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K"><span class="toc-number">11.</span> <span class="toc-text">K</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#L"><span class="toc-number">12.</span> <span class="toc-text">L</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M"><span class="toc-number">13.</span> <span class="toc-text">M</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#N"><span class="toc-number">14.</span> <span class="toc-text">N</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O"><span class="toc-number">15.</span> <span class="toc-text">O</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

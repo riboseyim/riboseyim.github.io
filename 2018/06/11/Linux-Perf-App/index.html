@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Linux 性能诊断：Web Server | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要Web Server 性能分析  Apache vs Nginx JVM vs Go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 性能诊断：Web Server">
+<meta property="og:url" content="https://riboseyim.com/2018/06/11/Linux-Perf-App/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要Web Server 性能分析  Apache vs Nginx JVM vs Go">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2018-06-11T06:57:15.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:05.456Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Perf-App" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/11/Linux-Perf-App/" class="article-date">
+  <time datetime="2018-06-11T06:57:15.000Z" itemprop="datePublished">2018-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 性能诊断：Web Server
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/06/11/Linux-Perf-App/" data-id="ckwgm33ls00bh7b1ys2ntd0hu" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Web Server 性能分析</p>
+<ul>
+<li>Apache vs Nginx</li>
+<li>JVM vs Go</li>
+</ul>
+<span id="more"></span>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line">[Wed Jul 25 22:19:05 2018] [error] server reached MaxClients setting, consider raising the MaxClients setting</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 持续输出进程数</span></span><br><span class="line">$ watch <span class="string">&quot;pgrep httpd | wc -l&quot;</span></span><br><span class="line">Every <span class="number">2.0</span>s: pgrep httpd | wc -l     Thu Jul <span class="number">26</span> <span class="number">21</span>:<span class="number">12</span>:<span class="number">12</span> <span class="number">2018</span></span><br><span class="line"><span class="number">42</span></span><br><span class="line">$ ps  -ylC httpd --<span class="keyword">sort</span>:rss</span><br><span class="line">S   UID    PID   PPID  C PRI  NI   RSS    SZ WCHAN  TTY          TIME CMD</span><br><span class="line">S   <span class="number">501</span>  <span class="number">37620</span>      <span class="number">1</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span>  <span class="number">1268</span> <span class="number">11253</span> poll_s ?        <span class="number">00</span>:<span class="number">14</span>:<span class="number">17</span> httpd</span><br><span class="line">S   <span class="number">501</span>  <span class="number">37622</span>  <span class="number">37620</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span>  <span class="number">1708</span> <span class="number">11320</span> inet_c ?        <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> httpd</span><br><span class="line">S   <span class="number">501</span>  <span class="number">37623</span>  <span class="number">37620</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span>  <span class="number">1708</span> <span class="number">11320</span> inet_c ?        <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> httpd</span><br><span class="line">S   <span class="number">501</span>  <span class="number">37624</span>  <span class="number">37620</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span>  <span class="number">1708</span> <span class="number">11320</span> inet_c ?        <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> httpd</span><br><span class="line">S   <span class="number">501</span>  <span class="number">37625</span>  <span class="number">37620</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span>  <span class="number">1708</span> <span class="number">11320</span> inet_c ?        <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> httpd</span><br><span class="line">.....</span><br><span class="line"><span class="comment">## 当前连接数</span></span><br><span class="line">$ netstat -an | <span class="keyword">grep</span> :<span class="number">2003</span> | wc -l</span><br><span class="line"><span class="number">172</span></span><br><span class="line"><span class="comment"># 累计消耗内存（M）</span></span><br><span class="line">$ ps aux|<span class="keyword">grep</span> -v <span class="keyword">grep</span>|awk <span class="string">&#x27;/httpd/&#123;sum+=$6;n++&#125;;END&#123;print sum/1024&#125;&#x27;</span></span><br><span class="line"><span class="comment"># 平均每个进程消耗内存（M）</span></span><br><span class="line">$ ps aux|<span class="keyword">grep</span> -v <span class="keyword">grep</span>|awk <span class="string">&#x27;/httpd/&#123;sum+=$6;n++&#125;;END&#123;print sum/n/1024&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Apache-Server-MPM"><a href="#Apache-Server-MPM" class="headerlink" title="Apache Server MPM"></a>Apache Server MPM</h4><blockquote>
+<p>问题：为什么 Apache HTTP Server 启动有多个进程</p>
+</blockquote>
+<p>多处理模块(Multi -Processing Modules，MPM)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ./httpd -V</span><br><span class="line">Server version: Apache/<span class="number">2.2</span><span class="number">.31</span> (Unix)</span><br><span class="line">......</span><br><span class="line">Architecture:   <span class="number">64</span>-bit</span><br><span class="line">Server MPM:     Prefork</span><br><span class="line">  threaded:     no</span><br><span class="line">    forked:     yes (variable process count)</span><br><span class="line">Server compiled with....</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Prefork 工作模式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.conf 默认配置</span></span><br><span class="line">&lt;IfModule prefork.c&gt;       </span><br><span class="line">StartServers      <span class="number">8</span>          # 服务初始化的工作进程数（work process）</span><br><span class="line">MinSpareServers    <span class="number">5</span>         # 保持的最少空闲进程数</span><br><span class="line">MaxSpareServers     <span class="number">20</span>       # 保持的最大空闲进程数</span><br><span class="line">ServerLimit      <span class="number">256</span>         # 保持的最大活动进程数，设定MaxClients的上限值</span><br><span class="line">MaxClients       <span class="number">256</span>         # 最大并发连接数</span><br><span class="line">MaxRequestsPerChild  <span class="number">4000</span>    # 每个子进程在生命周期能服务的最大请求数,即控制每个进程在处理了多少次请求之后自动销毁</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Worker 工作模式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//httpd.conf 默认配置</span></span><br><span class="line">&lt;IfModule worker.c&gt;</span><br><span class="line">StartServers       <span class="number">4</span>         # 初始化的子进程数</span><br><span class="line">MaxClients        <span class="number">300</span>        # 并发请求最大数</span><br><span class="line">MinSpareThreads     <span class="number">25</span>         # 最小空闲线程数total=所有进程的线程数加起来</span><br><span class="line">MaxSpareThreads     <span class="number">75</span>         # 最大空闲线程数</span><br><span class="line">ThreadsPerChild     <span class="number">25</span>         # 每个子进程可生成的线程数</span><br><span class="line">MaxRequestsPerChild   <span class="number">100</span>      # 每个子进程可服务的最大请求数,<span class="number">0</span>表示不限制,建议设置为非<span class="number">0</span></span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></li>
+<li>Event 工作模式</li>
+</ul>
+<h2 id="Apache-vs-Nginx"><a href="#Apache-vs-Nginx" class="headerlink" title="Apache vs. Nginx"></a>Apache vs. Nginx</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tecmint.com/monitor-nginx-performance-using-netdata-on-centos-7/">How to Monitor Nginx Performance Using Netdata on CentOS 7</a></li>
+</ul>
+<h2 id="JVM-vs-Go-App"><a href="#JVM-vs-Go-App" class="headerlink" title="JVM vs. Go App"></a>JVM vs. Go App</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.twitch.tv/go-memory-ballast-how-i-learnt-to-stop-worrying-and-love-the-heap-26c2462549a2">Go memory ballast: How I learned to stop worrying and love the heap</a></li>
+</ul>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="扩展阅读：性能诊断指南"><a href="#扩展阅读：性能诊断指南" class="headerlink" title="扩展阅读：性能诊断指南"></a>扩展阅读：性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="扩展阅读：How-Linux-Works"><a href="#扩展阅读：How-Linux-Works" class="headerlink" title="扩展阅读：How Linux Works"></a>扩展阅读：How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h4 id="案例与实务"><a href="#案例与实务" class="headerlink" title="案例与实务"></a>案例与实务</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/">最佳工程实践：Stack Overflow 架构 - 2016 Edition</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/Technology-Oracle/">最佳工程实践：Oracle 数据库迁移割接实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/09/01/AAA/">最佳工程实践：基于LVS的AAA负载均衡架构实践</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://code.facebook.com/posts/1906146702752923/open-sourcing-katran-a-scalable-network-load-balancer/">VIPServer | Facebook Open-sourcing Katran, a scalable network load balancer</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-lo-performance-tuning-practice/index.html">Java 应用性能调优实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/4Y77jUqfgKeBS2hnitrUrg">动态追踪技术-应用性能瓶颈排障利器之火焰图</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.jobbole.com/91920/">Apache的三种MPM模式比较：prefork，worker，event</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.51cto.com/skypegnu1/1532333">Apache HTTP Server 中prefork和worker工作模式（二）</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.plesk.com/hc/en-us/articles/213389769-Sites-are-very-slow-Apache-shows-server-reached-MaxClients-setting-on-Plesk-for-Linux">Sites are very slow. Apache shows: server reached MaxClients setting on Plesk for Linux</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/06/11/Linux-Perf-App/" data-id="ckwgm33ls00bh7b1ys2ntd0hu" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/12/DevOps-Container-Usage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          DevOps 漫谈：容器技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/07/Linux-Works-FileSystem/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">How Linux Works:Device and FileSystem</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Apache-Server-MPM"><span class="toc-number">2.0.1.</span> <span class="toc-text">Apache Server MPM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-vs-Nginx"><span class="toc-number">3.</span> <span class="toc-text">Apache vs. Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM-vs-Go-App"><span class="toc-number">4.</span> <span class="toc-text">JVM vs. Go App</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">4.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">4.0.2.</span> <span class="toc-text">扩展阅读：性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9AHow-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">扩展阅读：How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">4.0.4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E4%B8%8E%E5%AE%9E%E5%8A%A1"><span class="toc-number">4.0.5.</span> <span class="toc-text">案例与实务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

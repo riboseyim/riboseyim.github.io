@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>How Linux Works:Memory | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 经典内存异常：Out of Memory (OOM) Killer 我的内存利用率为什么特别高？ Linux 内存的分类 Linux 内存的计算 Linux 进程的内存 Linux 应用内存分配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Linux Works:Memory">
+<meta property="og:url" content="https://riboseyim.com/2017/12/11/Linux-Works-Memory/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 经典内存异常：Out of Memory (OOM) Killer 我的内存利用率为什么特别高？ Linux 内存的分类 Linux 内存的计算 Linux 进程的内存 Linux 应用内存分配">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2017-12-10T16:36:27.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:06.083Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="架构师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux-Works-Memory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/11/Linux-Works-Memory/" class="article-date">
+  <time datetime="2017-12-10T16:36:27.000Z" itemprop="datePublished">2017-12-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How Linux Works:Memory
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="ckwgm33lz00d17b1yv3mblynd" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>经典内存异常：Out of Memory (OOM) Killer</li>
+<li>我的内存利用率为什么特别高？</li>
+<li>Linux 内存的分类</li>
+<li>Linux 内存的计算</li>
+<li>Linux 进程的内存</li>
+<li>Linux 应用内存分配</li>
+</ul>
+<span id="more"></span>
+<p>内存是计算机中与CPU进行沟通的桥梁，用于暂时存放CPU中的运算数据。Linux 内核的内存管理机制设计得非常精妙，对于 Linux 内核的性能有很大影响。在早期的 Unix 系统中，fork 启动新进程时，由于从父进程往子进程复制内存信息需要消耗一定的时间，因此启动多个进程时存在性能瓶颈。现在的 Linux 内核则通过“写时复制（copy-on-write）”等机制提高了创建进程的效率；也正是因为这个原因，关于 Linux 内存分配、计算、空闲判断有一些特别的地方需要注意。</p>
+<h4 id="内存异常：-Out-of-Memory-OOM-Killer"><a href="#内存异常：-Out-of-Memory-OOM-Killer" class="headerlink" title="内存异常： Out of Memory (OOM) Killer"></a>内存异常： Out of Memory (OOM) Killer</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dmesg | tail</span><br><span class="line">[<span class="number">1880957.563400</span>] Out of memory: Kill process <span class="number">18694</span> (perl) score <span class="number">246</span> <span class="keyword">or</span> sacrifice child</span><br></pre></td></tr></table></figure>
+<p>最常见的内存管理异常就是 Out of memory 问题。通常是因为某个应用程序大量请求内存导致系统内存不足造成的，触发 Linux 内核里的 <a target="_blank" rel="noopener" href="https://linux-mm.org/OOM_Killer">Out of Memory (OOM) killer</a>，OOM killer 会杀掉某个进程以释放内存留给系统内核用。它实际上算一种保护机制，不致于让系统立刻崩溃，有些壮士断腕的意思。</p>
+<p>内核检测到内存利用不足，就会选择并杀掉某个“bad”进程。如何判断和选择一个 “bad” 进程呢? 算法和思路其实非常朴素（简单）：最 bad 的那个进程就是那个占用内存最多的进程。内核源代码详见 linux/mm/oom_kill.c 。</p>
+<h4 id="我的内存利用率为什么特别高？"><a href="#我的内存利用率为什么特别高？" class="headerlink" title="我的内存利用率为什么特别高？"></a>我的内存利用率为什么特别高？</h4><ul>
+<li>内存利用率（概括）: free</li>
+<li>内存利用率（进程）: top</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Perf-Memory-Normal.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">内存空闲率 = (Total - Used) / Total = (<span class="number">7982</span>M - <span class="number">7503</span>M) / <span class="number">7983</span>M X <span class="number">100</span> % = <span class="number">6</span> %</span><br><span class="line"></span><br><span class="line">“真实的” 内存空闲率 =  (<span class="built_in">free</span> + shared + buffers + cached)/ Total = <span class="number">5860</span> M / <span class="number">7983</span>M X <span class="number">100</span> % = <span class="number">73.4</span> %</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实际情况是系统运行正常、不存在内存不足的情况，对于应用程序来说，“真实的” 内存空闲率是 73.4% 。如果要回答这个问题，必须了解内存管理的基础 —— 物理地址空间和逻辑地址空间。</p>
+<p>按照用途，内存可以划分为“内核内存”和“用户内存”（用户进程及磁盘高速缓存），包括内核本身在内，程序在访问物理内存时，并不直接指定物理地址，而是指定逻辑地址。CPU 上搭载的硬件 MMU （Memory Management Unit）会参照物理-逻辑地址对应关系表实现对映射后物理地址上的数据访问。x86 架构中逻辑地址空间限制在 4GB ，在 x86_64 架构中则没有此限制。</p>
+<h4 id="Linux-内存的分类"><a href="#Linux-内存的分类" class="headerlink" title="Linux 内存的分类"></a>Linux 内存的分类</h4><p>用户内存的分类有两组概念比较重要：匿名内存和File-backed内存；Active 和 Inactive 。它们的区别如下：</p>
+<ul>
+<li>匿名内存：用来存储用户进程<strong>计算过程中间的数据</strong>，与物理磁盘的文件没有关系；</li>
+<li>File-backed内存：用作磁盘高速缓存，其物理内存与物理磁盘上的文件是对应的；</li>
+<li>Active : 刚被使用过的数据的内存空间；</li>
+<li>Inactive : 包含有长时间未被使用过的数据的内存空间；</li>
+</ul>
+<p><strong>Shmem</strong>（shared memory）指的就是 tmpfs 所使用的内存 —— 一个基于内存的文件系统，提供可以接近零延迟的快速存储区域。Linux 可以将空闲内存用于缓存，并且在应用程序需要的时候收回。<strong>“­/+ buffers/cache”</strong>: 提供了关于内存利用率更加准确的数值。<strong>buffers</strong>: buffer cache,用于块设备I/O ; <strong>cached</strong>: page cache, 用于文件系统。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># free</span></span><br><span class="line">			  total        used        <span class="built_in">free</span>      shared  buff/cache   available</span><br><span class="line">Mem:        <span class="number">1012720</span>      <span class="number">168756</span>       <span class="number">23576</span>       <span class="number">52024</span>      <span class="number">820388</span>      <span class="number">754520</span></span><br><span class="line">Swap:        <span class="number">262140</span>          <span class="number">88</span>      <span class="number">262052</span></span><br><span class="line"><span class="meta"># mkdir /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</span></span><br><span class="line"><span class="meta"># vi /etc/fstab</span></span><br><span class="line"><span class="meta"># tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0 0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存利用率（详细）：cat /proc/meminfo</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/meminfo</span><br><span class="line">MemTotal:        <span class="number">8174352</span> kB</span><br><span class="line">MemFree:          <span class="number">376952</span> kB</span><br><span class="line">Buffers:          <span class="number">527412</span> kB</span><br><span class="line">Cached:          <span class="number">5178924</span> kB</span><br><span class="line">SwapCached:           <span class="number">60</span> kB</span><br><span class="line">Active:          <span class="number">3061760</span> kB</span><br><span class="line">Inactive:        <span class="number">4066588</span> <span class="function">kB</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(anon)</span>:    1112780 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(anon)</span>:   314156 kB</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(file)</span>:    1948980 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(file)</span>:  3752432 kB</span></span><br><span class="line"><span class="function">Unevictable:        6724 kB</span></span><br><span class="line"><span class="function">Mlocked:            6724 kB</span></span><br><span class="line"><span class="function">SwapTotal:      16779884 kB</span></span><br><span class="line"><span class="function">SwapFree:       16777400 kB</span></span><br><span class="line"><span class="function">Dirty:               376 kB</span></span><br><span class="line"><span class="function">Writeback:             0 kB</span></span><br><span class="line"><span class="function">AnonPages:       1428844 kB</span></span><br><span class="line"><span class="function">Mapped:            64632 kB</span></span><br><span class="line"><span class="function">Shmem:               644 kB</span></span><br><span class="line"><span class="function">Slab:             557384 kB</span></span><br><span class="line"><span class="function">SReclaimable:     338272 kB</span></span><br><span class="line"><span class="function">SUnreclaim:       219112 kB</span></span><br><span class="line"><span class="function">KernelStack:        4024 kB</span></span><br><span class="line"><span class="function">PageTables:        12440 kB</span></span><br><span class="line"><span class="function">NFS_Unstable:          0 kB</span></span><br><span class="line"><span class="function">Bounce:                0 kB</span></span><br><span class="line"><span class="function">WritebackTmp:          0 kB</span></span><br><span class="line"><span class="function">CommitLimit:    20867060 kB</span></span><br><span class="line"><span class="function">Committed_AS:    2406484 kB</span></span><br><span class="line"><span class="function">VmallocTotal:   34359738367 kB</span></span><br><span class="line"><span class="function">VmallocUsed:      111536 kB</span></span><br><span class="line"><span class="function">VmallocChunk:   34359455060 kB</span></span><br><span class="line"><span class="function">HugePages_Total:       0</span></span><br><span class="line"><span class="function">HugePages_Free:        0</span></span><br><span class="line"><span class="function">HugePages_Rsvd:        0</span></span><br><span class="line"><span class="function">HugePages_Surp:        0</span></span><br><span class="line"><span class="function">Hugepagesize:       2048 kB</span></span><br><span class="line"><span class="function">DirectMap4k:        6384 kB</span></span><br><span class="line"><span class="function">DirectMap2M:     2080768 kB</span></span><br><span class="line"><span class="function">DirectMap1G:     6291456 kB</span></span><br></pre></td></tr></table></figure>
+<h4 id="Linux-内存的计算"><a href="#Linux-内存的计算" class="headerlink" title="Linux 内存的计算"></a>Linux 内存的计算</h4><p>各类内存的计算公式如下：</p>
+<blockquote>
+<p>Shmem = 磁盘高速缓存（buffers/cached）- Filed-backed内存（file）<br>          = 匿名内存（anon）- AnonPages<br>用户内存 = Active(file) + Inactive(file) + Active(anon) + Inactive(anon) + Unevictable<br>          = buffers + cached + AnonPages</p>
+<p>内核内存 = Memtotal - (MemFree + Active + Inactive + Unevictable)</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/meminfo | grep Active</span><br><span class="line">Active:          <span class="number">3065880</span> <span class="function">kB</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(anon)</span>:    1116748 kB</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(file)</span>:    1949132 kB</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$ cat /proc/meminfo | grep InActive</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$ cat /proc/meminfo | grep Inactive</span></span><br><span class="line"><span class="function">Inactive:        4067224 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(anon)</span>:   314156 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(file)</span>:  3753068 kB</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$ cat /proc/meminfo | grep anon</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(anon)</span>:    1120720 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(anon)</span>:   314156 kB</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br><span class="line"><span class="function">-bash-4.3$ cat /proc/meminfo | grep file</span></span><br><span class="line"><span class="function"><span class="title">Active</span><span class="params">(file)</span>:    1949236 kB</span></span><br><span class="line"><span class="function"><span class="title">Inactive</span><span class="params">(file)</span>:  3753096 kB</span></span><br><span class="line"><span class="function">-bash-4.3$</span></span><br></pre></td></tr></table></figure>
+<h4 id="Linux-进程的内存"><a href="#Linux-进程的内存" class="headerlink" title="Linux 进程的内存"></a>Linux 进程的内存</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-bash<span class="number">-4.3</span>$ ps -e -o <span class="string">&#x27;pid,comm,args,pcpu,rsz,vsz,stime,user,uid&#x27;</span> | grep slview |  sort -nrk5</span><br><span class="line"><span class="number">30029</span> java            /slview/jdk150/jdk1<span class="number">.5</span><span class="number">.0</span>_06/  <span class="number">2.5</span> <span class="number">1337496</span> <span class="number">2678836</span> Dec07 slview <span class="number">54322</span></span><br><span class="line"><span class="number">31574</span> bash            -bash                        <span class="number">0.0</span>  <span class="number">2028</span>  <span class="number">70592</span> <span class="number">17</span>:<span class="number">08</span> slview   <span class="number">54322</span></span><br><span class="line"><span class="number">23398</span> crond           crond                        <span class="number">0.0</span>  <span class="number">1688</span> <span class="number">102180</span> <span class="number">16</span>:<span class="number">10</span> slview   <span class="number">54322</span></span><br><span class="line"> <span class="number">1123</span> crond           crond                        <span class="number">0.0</span>  <span class="number">1688</span> <span class="number">102180</span> Dec10 slview   <span class="number">54322</span></span><br><span class="line"><span class="number">28252</span> crond           crond                        <span class="number">0.0</span>  <span class="number">1596</span> <span class="number">102028</span> <span class="number">16</span>:<span class="number">45</span> slview   <span class="number">54322</span></span><br></pre></td></tr></table></figure>
+<p>执行“ps aux” 后输出的各进程的 <strong>RSS</strong> (resident set size), 表示进程占用内存的大小，单位是KB。 需要注意的是，RSS 值实际上是基于 pmap 命令，表示“该进程<strong>正在使用的</strong>物理内存的总和”。pmap 提供了进程的内存映射，也可以支持多个进程的内存状态显示（pmap  pid1 pid2 pid3）。与 ldd 命令类似，pmap 命令可以查看到程序调用的路径。如果查看一个已经运行，但是又不知道程序路径的程序，使用pmap更快捷。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ pmap -x <span class="number">30029</span></span><br><span class="line"><span class="number">30029</span>:   /slview/jdk150/jdk1<span class="number">.5</span><span class="number">.0</span>_06/bin/java -com.apache.Test</span><br><span class="line">Address           Kbytes     RSS   Dirty Mode   Mapping</span><br><span class="line"><span class="number">0000000008048000</span>      <span class="number">60</span>      <span class="number">48</span>       <span class="number">0</span> r-x--  java</span><br><span class="line"><span class="number">0000000008057000</span>       <span class="number">8</span>       <span class="number">8</span>       <span class="number">8</span> rwx--  java</span><br><span class="line"><span class="number">0000000009f</span>1d000   <span class="number">23184</span>   <span class="number">23140</span>   <span class="number">23140</span> rwx--    [ anon ]</span><br><span class="line"><span class="number">000000004</span>d1f1000     <span class="number">108</span>      <span class="number">96</span>       <span class="number">0</span> r-x--  ld<span class="number">-2.5</span>.so</span><br><span class="line"><span class="number">000000004</span>d20c000       <span class="number">4</span>       <span class="number">4</span>       <span class="number">4</span> r-x--  ld<span class="number">-2.5</span>.so</span><br><span class="line"><span class="number">000000004</span>d20d000       <span class="number">4</span>       <span class="number">4</span>       <span class="number">4</span> rwx--  ld<span class="number">-2.5</span>.so</span><br><span class="line"><span class="number">000000004</span>d214000    <span class="number">1356</span>     <span class="number">548</span>       <span class="number">0</span> r-x--  libc<span class="number">-2.5</span>.so</span><br><span class="line"><span class="number">000000004</span>d367000       <span class="number">8</span>       <span class="number">8</span>       <span class="number">8</span> r-x--  libc<span class="number">-2.5</span>.so</span><br><span class="line"><span class="number">00007f</span>581e51d000      <span class="number">16</span>      <span class="number">16</span>       <span class="number">0</span> r--s-  huanan-product<span class="number">-2.6</span><span class="number">.1</span>-snapshots.jar</span><br><span class="line"><span class="number">00007f</span>581e521000      <span class="number">24</span>      <span class="number">24</span>       <span class="number">0</span> r--s-  dt.jar</span><br><span class="line"><span class="number">00007f</span>581e527000      <span class="number">36</span>      <span class="number">36</span>       <span class="number">0</span> r--s-  gnome-java-bridge.jar</span><br><span class="line"><span class="number">00007f</span>581e530000      <span class="number">32</span>      <span class="number">32</span>       <span class="number">8</span> rw-s-  <span class="number">13228</span></span><br><span class="line"><span class="number">00007f</span>581e538000       <span class="number">4</span>       <span class="number">4</span>       <span class="number">4</span> rw---    [ anon ]</span><br><span class="line"><span class="number">00007f</span>581e539000       <span class="number">4</span>       <span class="number">4</span>       <span class="number">0</span> r----    [ anon ]</span><br><span class="line"><span class="number">00007f</span>581e53a000       <span class="number">8</span>       <span class="number">8</span>       <span class="number">8</span> rw---    [ anon ]</span><br><span class="line"><span class="number">00007f</span>ffe9eb7000      <span class="number">84</span>      <span class="number">32</span>      <span class="number">32</span> rw---    [ <span class="built_in">stack</span> ]</span><br><span class="line"><span class="number">00007f</span>ffe9fff000       <span class="number">4</span>       <span class="number">4</span>       <span class="number">0</span> r-x--    [ anon ]</span><br><span class="line">ffffffffff600000       <span class="number">4</span>       <span class="number">0</span>       <span class="number">0</span> r-x--    [ anon ]</span><br><span class="line">(部分省略)</span><br><span class="line">----------------  ------  ------  ------</span><br><span class="line">total kB         <span class="number">2484196</span>   <span class="number">36180</span>   <span class="number">26880</span></span><br></pre></td></tr></table></figure>
+<p><strong>/proc/PID/status</strong> 支持的选项有：</p>
+<ul>
+<li>VmData: data段大小</li>
+<li>VmExe: text段大小</li>
+<li>Vmlib: 共享库的使用量</li>
+<li>VmRSS: 物理内存使用量</li>
+<li>VmSwap: 交换空间的使用量</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/<span class="number">30029</span>/status</span><br><span class="line">Name:	java</span><br><span class="line">State:	S (sleeping)</span><br><span class="line">Tgid:	<span class="number">30029</span></span><br><span class="line">Pid:	<span class="number">30029</span></span><br><span class="line">PPid:	<span class="number">29983</span></span><br><span class="line">TracerPid:	<span class="number">0</span></span><br><span class="line">Uid:	<span class="number">54322</span>	<span class="number">54322</span>	<span class="number">54322</span>	<span class="number">54322</span></span><br><span class="line">Gid:	<span class="number">54323</span>	<span class="number">54323</span>	<span class="number">54323</span>	<span class="number">54323</span></span><br><span class="line">FDSize:	<span class="number">8192</span></span><br><span class="line">Groups:	<span class="number">10</span> <span class="number">54323</span></span><br><span class="line">VmPeak:	 <span class="number">2754032</span> kB</span><br><span class="line">VmSize:	 <span class="number">2678836</span> kB</span><br><span class="line">VmLck:	       <span class="number">0</span> kB</span><br><span class="line">VmHWM:	 <span class="number">1337912</span> kB</span><br><span class="line">VmRSS:	 <span class="number">1337512</span> kB</span><br><span class="line">VmData:	 <span class="number">2575692</span> kB</span><br><span class="line">VmStk:	    <span class="number">1012</span> kB</span><br><span class="line">VmExe:	      <span class="number">60</span> kB</span><br><span class="line">VmLib:	  <span class="number">101564</span> kB</span><br><span class="line">VmPTE:	    <span class="number">3048</span> kB</span><br><span class="line">Threads:	<span class="number">98</span></span><br><span class="line">SigQ:	<span class="number">0</span>/<span class="number">63825</span></span><br><span class="line">SigPnd:	<span class="number">0000000000000000</span></span><br><span class="line">ShdPnd:	<span class="number">0000000000000000</span></span><br><span class="line">SigBlk:	<span class="number">0000000000000004</span></span><br><span class="line">SigIgn:	<span class="number">0000000000000001</span></span><br><span class="line">SigCgt:	<span class="number">1000000180005</span>cce</span><br><span class="line">CapInh:	<span class="number">0000000000000000</span></span><br><span class="line">CapPrm:	<span class="number">0000000000000000</span></span><br><span class="line">CapEff:	<span class="number">0000000000000000</span></span><br><span class="line">CapBnd:	ffffffffffffffff</span><br><span class="line">Cpus_allowed:	ffffffff</span><br><span class="line">Cpus_allowed_list:	<span class="number">0</span><span class="number">-31</span></span><br><span class="line">Mems_allowed:	<span class="number">00000000</span>,</span><br><span class="line">Mems_allowed_list:	<span class="number">0</span></span><br><span class="line">voluntary_ctxt_switches:	<span class="number">12468</span></span><br><span class="line">nonvoluntary_ctxt_switches:	<span class="number">19</span></span><br></pre></td></tr></table></figure>
+<h4 id="Linux-应用内存分配"><a href="#Linux-应用内存分配" class="headerlink" title="Linux 应用内存分配"></a>Linux 应用内存分配</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Linux-Memory-Application.png" alt=""></p>
+<p>类似 Java 之类的虚拟机应用程序可以设置内存参数，例如:<br>Xms128m JVM初始分配的堆内存<br>Xmx512m JVM最大允许分配的堆内存<br>XX:PermSize=64M JVM初始分配的非堆内存<br>XX:MaxPermSize=128M JVM最大允许分配的非堆内存</p>
+<p>如果该应用需要较大的内存空间，可以调整为 -Xmx1024m、-Xmx2048m 以保障应用程序的运行性能，XX:MaxPermSize 设置过小会导致内存溢出，java.lang.OutOfMemoryError: PermGen space。但是 <strong>需要特别注意</strong> 的是：Xmx 绝对不能超过最大物理内存，或者说需要保留一定的剩余内存空间，否则将有可能导致其它进程因为没有可用内存而阻塞，甚至无法登陆机器 。</p>
+<p>正如摔跤游戏一样，内存管理的法则就是让进程在 <strong>留有余地</strong> 的前提下搏杀。</p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://manybutfinite.com/post/how-the-kernel-manages-your-memory/">How The Kernel Manages Your Memory</a></li>
+<li><a target="_blank" rel="noopener" href="https://manybutfinite.com/post/anatomy-of-a-program-in-memory/">Anatomy of a Program in Memory</a></li>
+<li><a target="_blank" rel="noopener" href="https://manybutfinite.com/post/getting-physical-with-memory/">Getting Physical With Memory</a></li>
+<li><a target="_blank" rel="noopener" href="https://povilasv.me/go-memory-management/">Go Memory Management</a></li>
+</ul>
+<h4 id="电子书《Linux-Perf-Master》"><a href="#电子书《Linux-Perf-Master》" class="headerlink" title="电子书《Linux Perf Master》"></a>电子书《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="性能诊断指南"><a href="#性能诊断指南" class="headerlink" title="性能诊断指南"></a>性能诊断指南</h4><ul>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Load/">Linux 性能诊断：负载评估</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断：快速检查单</a></li>
+<li><a href="https://riboseyim.com/2018/08/07/Linux-Perf-JVM/">Linux 性能诊断：JVM</a></li>
+</ul>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works/">How Linux Works：The Big Picture</a></li>
+<li><a href="https://riboseyim.com/2017/04/26/Linux-Commands/">How Linux Works：BASIC Commands</a></li>
+<li><a href="https://riboseyim.com/2018/09/03/Linux-Commands-New/">How Linux Works：BASIC Commands Extension</a></li>
+<li><a href="https://riboseyim.com/2018/06/07/Linux-Works-FileSystem/">How Linux Works：Device and FileSystem</a></li>
+<li><a href="https://riboseyim.com/2017/05/29/Linux-Works-Boots/">How Linux Works：Boots</a></li>
+<li><a href="https://riboseyim.com/2019/04/21/Linux-Works-User-Space/">How Linux Works：用户空间</a></li>
+<li><a href="https://riboseyim.com/2017/12/11/Linux-Works-Memory/">How Linux Works：内存管理</a></li>
+<li><a href="https://riboseyim.com/2018/01/08/Linux-Works-Network/">How Linux Works：网络管理</a></li>
+<li>Preview<a href="https://riboseyim.com/2019/03/05/Linux-Works-Router/">How Linux Works：路由管理</a></li>
+</ul>
+<h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
+<li><a href="https://riboseyim.com/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a href="https://riboseyim.com/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a href="https://riboseyim.com/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a href="https://riboseyim.com/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://luodw.cc/2016/08/13/linux-cache/">linux内存分配与回收</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linuxatemyram.com/">Linux Ate my RAM</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/">理解和配置 Linux 下的 OOM Killer |@vpsee</a></li>
+<li><a target="_blank" rel="noopener" href="http://github.com/zqhxuyuan/2017/10/25/Java-Threads/">图解JAVA多线程</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=401218462&amp;idx=1&amp;sn=e2503ca6d561ef2c2111710cf76445c2&amp;scene=1&amp;srcid=1204m7T3VtJfzxOfTiCePNq5%23rd">LINUX类主机JAVA应用程序占用CPU、内存过高分析手段 | 2015-12-04 丁启良 DBAplus社群</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/K8Y1wOloEwj1yQGEf7TnZQ">JVM源码分析之一个Java进程究竟能创建多少线程 | 原创 2016-12-06 寒泉子 你假笨</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/12/11/Linux-Works-Memory/" data-id="ckwgm33lz00d17b1yv3mblynd" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/11/Linux-Perf-Load/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断:负载评估
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/09/Policy-Female/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">政府行为模型及预测：女权主义与政治运动</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%BC%82%E5%B8%B8%EF%BC%9A-Out-of-Memory-OOM-Killer"><span class="toc-number">1.0.1.</span> <span class="toc-text">内存异常： Out of Memory (OOM) Killer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%86%85%E5%AD%98%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%BA%E4%BB%80%E4%B9%88%E7%89%B9%E5%88%AB%E9%AB%98%EF%BC%9F"><span class="toc-number">1.0.2.</span> <span class="toc-text">我的内存利用率为什么特别高？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E5%86%85%E5%AD%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">Linux 内存的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E5%86%85%E5%AD%98%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.0.4.</span> <span class="toc-text">Linux 内存的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%86%85%E5%AD%98"><span class="toc-number">1.0.5.</span> <span class="toc-text">Linux 进程的内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E5%BA%94%E7%94%A8%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-number">1.0.6.</span> <span class="toc-text">Linux 应用内存分配</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">拓展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E6%8C%87%E5%8D%97"><span class="toc-number">2.0.2.</span> <span class="toc-text">性能诊断指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">2.0.3.</span> <span class="toc-text">How Linux Works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">2.0.4.</span> <span class="toc-text">动态追踪技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

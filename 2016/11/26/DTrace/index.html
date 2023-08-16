@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>专题：动态追踪技术 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 动态追踪技术：DTrace for Linux Linux 追踪器选型   应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp; Painters）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="专题：动态追踪技术">
+<meta property="og:url" content="https://riboseyim.com/2016/11/26/DTrace/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 动态追踪技术：DTrace for Linux Linux 追踪器选型   应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp; Painters）">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Choose.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2016-11-25T17:21:31.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:03.989Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="DTrace">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DTrace" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/26/DTrace/" class="article-date">
+  <time datetime="2016-11-25T17:21:31.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      专题：动态追踪技术
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="ckwgm33kf004c7b1yll2mt5st" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTrace/" rel="tag">DTrace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>动态追踪技术：DTrace for Linux</li>
+<li>Linux 追踪器选型</li>
+</ul>
+<blockquote>
+<p>应用软件运行速度提升的关键在于有一个好的性能分析器(profiler)帮助指导程序开发。《黑客与画家》（Hackers &amp; Painters）</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Introduction-to-DTrace"><a href="#Introduction-to-DTrace" class="headerlink" title="Introduction to DTrace"></a>Introduction to DTrace</h2><h4 id="What-is-DTrace"><a href="#What-is-DTrace" class="headerlink" title="What is DTrace"></a>What is DTrace</h4><p>通过前面几篇文章的介绍，我们已经可以通过一系列命令，从不同维度获得操作系统当前的性能运行情况。另外，借助类似 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/">Ganglia</a> 这样的开源产品，持续不断地实施性能数据采集和存储，我们基于时间序列的历史性能图形，就可以大致判读出计算集群的资源消耗情况和变化趋势。但是，仅仅这些还是不够的，在很多情况下，我们希望能够知道：“慢，是为什么慢；快，又是为什么快”。如果要回答这个问题，就必须引入另外一件神兵利器：<strong>动态追踪技术（Dynamic Tracing）</strong>。</p>
+<p>鉴于这套兵器过于复杂（牛逼），属于专家级技能， advanced performance analysis and troubleshooting tool。据称掌握该技能需要耗费大约100小时以上，所以如果不是对于系统性能问题有极致追求，以及变态般地技术狂热，建议绕过本文。为了便于展开，今天先起个头，重点梳理下动态追踪技术的发展简史和目前的生态环境。更加具体详细的内容，会在后续的文章中陆续发表。</p>
+<p>严格来说，DTrace这个词本身，已经并不是狭义上基于 Solaris 的那套工具了，而是代表的是后现代操作系统的一整套工具家族和方法论。</p>
+<h4 id="History-of-DTrace"><a href="#History-of-DTrace" class="headerlink" title="History of DTrace"></a>History of DTrace</h4><blockquote>
+<p>当时 Solaris 操作系统的几个工程师花了几天几夜去排查一个看似非常诡异的线上问题。<br>开始他们以为是很高级的问题，就特别卖力，结果折腾了几天，最后发现其实是一个非常愚蠢的、某个不起眼的地方的配置问题。<br>自从那件事情之后，这些工程师就痛定思痛，创造了 DTrace 这样一个非常高级的调试工具，来帮助他们在未来的工作当中避免把过多精力花费在愚蠢问题上面。<br>毕竟大部分所谓的“诡异问题”其实都是低级问题，属于那种“调不出来很郁闷，调出来了更郁闷”的类型。—-《漫谈动态追踪技术》</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_History_01.png" alt=""></p>
+<p>通观DTrace的演变过程，几乎相当于一部现代操作系统系统的发展史，细查起来，极其复杂。但是有两个人非常值得关注，一个是国际级的布道师，一个是国内的代表人物，初学者完全可以通过阅读他们的文章、代码，甚至微博／Twitter动态，了解动态追踪技术的实际应用情况。</p>
+<p><strong>Brendan Gregg</strong><br>前SUN性能工程师，最早的DTrace用户，出版了包括《性能之巅》在内的一大批书籍，囊括了性能问题领域的技术、工具、方法论等方方面面。他是动态追踪技术当之无愧的首席布道师，维护的个人博客发布了大量的原创内容，并且持续保持着相当的活跃度。可以作为第一手的学习资料。</p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/brendangregg">Twitter：</a><br><a target="_blank" rel="noopener" href="http://www.brendangregg.com">个人网站：</a></p>
+<p><strong>章亦春</strong><br>网名 agentzh。开源项目OpenResty创始人，编写了很多 Nginx 的第三方模块， Perl 开源模块，以及最近一些年写的很多 Lua 方面的库。他发表过的<a target="_blank" rel="noopener" href="https://openresty.org/posts/dynamic-tracing">《漫谈动态追踪技术》</a>，是目前唯一由Brendan认证的中文资料，入门首选。另外，他本人也在目前的工作、开源项目运营中大量使用动态追踪技术。<br><a target="_blank" rel="noopener" href="http://weibo.com/agentzh">微博：</a></p>
+<h4 id="Linux-追踪器选型"><a href="#Linux-追踪器选型" class="headerlink" title="Linux 追踪器选型"></a>Linux 追踪器选型</h4><p>动态追踪技术最复杂的地方在于追踪器种类繁多，让人一时无从下手。根据前人的一些经验总结，建议按照以下路径进行选择：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Choose.png" alt=""></p>
+<h4 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h4><p>适用于：开发者, 系统管理员, DevOps, SRE</p>
+<p><strong>CPU分析</strong></p>
+<p>perf_events的应用很广泛，配合Brendan Gregg老师研究的火焰图工具，可以分析程序在所有代码基的资源消耗，精确定位到函数级。例如：<br><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Flame_Java_01.png" alt="火焰图实例"></p>
+<p><strong>进程追踪</strong><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ./execsnoop</span><br><span class="line">Tracing exec()s. Ctrl-C to end.</span><br><span class="line">   PID   PPID ARGS</span><br><span class="line"> 22898  22004 man ls</span><br><span class="line"> 22905  22898 preconv -e UTF-8</span><br><span class="line"> 22908  22898 pager -s</span><br><span class="line"> 22907  22898 nroff -mandoc -rLL=164n -rLT=164n -Tutf8</span><br></pre></td></tr></table></figure></p>
+<h4 id="HARD模式"><a href="#HARD模式" class="headerlink" title="HARD模式"></a>HARD模式</h4><p>适用于：性能或内核工程师</p>
+<blockquote>
+<p>Understanding all the Linux tracers to make a rational decision between them a huge undertaking.</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DTrace_Linux_Types.png" alt=""></p>
+<p>0、dtrace</p>
+<ul>
+<li>案例：<a target="_blank" rel="noopener" href="https://ipfans.github.io/2016/09/tracing-python-program-with-dtrace/">ipfans:使用dtrace跟踪Python应用</a></li>
+</ul>
+<p>1、ftrace<br>内核hacker的最爱。已经包含在内核，能够支持 tracepoints, kprobes, and uprobes,<br>并提供一些能力: 事件追踪, 可选择过滤器和参数; 事件计数和时间采样，内核概览；基于函数的路径追踪。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术（三）：Tracing your kernel Functions! | @RiboseYim</a></li>
+</ul>
+<p>2、perf_events<br>Linux用户的主要追踪器之一，它的源代码在内核中，通常在一个 linux-tools-common包。</p>
+<p>3、eBPF<br>基于内核的虚拟机</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术（四）：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+</ul>
+<p>4、 SystemTap<br>最强有力的追踪器。它可以做几乎所有的事情: 分析，打点, kprobes, uprobes (源子 SystemTap), USDT, 内核编程等。</p>
+<p>5、LTTng<br>事件收集器, 优于其它追踪器，支持多种事件类型，包括 USDT。<br><a target="_blank" rel="noopener" href="http://lttng.org/docs/v2.9/#doc-lttng-relayd">The LTTng Documentation v2.9</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blogs.microsoft.co.il/sasha/2017/03/30/tracing-runtime-events-in-net-core-on-linux/">Sasha Goldshtein:Tracing Runtime Events in .NET Core on Linux</a></li>
+</ul>
+<p>6、ktap<br>一个很有前景的追踪器，基于lua内核虚拟机</p>
+<p>7、dtrace4linux<br>个人开发者业余产出 (Paul Fox) ，将 Sun DTrace迁移到 Linux。</p>
+<p>8、OL DTrace<br>Oracle Linux DTrace，将 DTrace 迁移到Oracle Linux的实现。</p>
+<p>9、sysdig<br>一种新型追踪器， 能够基于类似tcpdump的命令操作 syscall events, 再用lua后处理。</p>
+<p>10、strace + gdb</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://man7.org/linux/man-pages/man1/strace.1.html">strace - trace system calls and signals</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术（二）：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术（四）：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/25471#issuecomment-391906366">time: Sleep requires ~7 syscalls</a></li>
+</ul>
+<h4 id="火焰图应用案例"><a href="#火焰图应用案例" class="headerlink" title="火焰图应用案例"></a>火焰图应用案例</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/09/flame-graph.html">阮一峰:如何读懂火焰图？</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653548763&amp;idx=1&amp;sn=b88c482a96ad691a2f5b2c01b934ab17&amp;chksm=813a6143b64de8559715fad5e0abece43b64fb1681bfd3f3160ca7ca17c89495cbf64209d026&amp;scene=0&amp;key=d6331003961a2cc469dae6df3bf594604336519731be677350b47d6d9f4909f28d60518b9d1dba75db7af70e0d22b5147382e33be51c54e4d92940bb73afa67b781daf1338e7471339cce5fabc8ba1d2&amp;ascene=0&amp;uin=Mjg2OTA0MDQ4Mg%3D%3D">Thayne McCombs:如何使用火焰图来降低服务器负载</a></li>
+<li><a target="_blank" rel="noopener" href="http://brendanjryan.com/golang/profiling/2018/02/28/profiling-go-applications.html">PROFILING GO APPLICATIONS WITH FLAMEGRAPHS| February 28, 2018</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mapbox/flamebearer">A blazing fast flame graph tool for Node and V8. Used to visualize and explore performance profiling results</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/dm03514-tech-blog/sre-performance-analysis-tuning-methodology-using-a-simple-http-webserver-in-go-d475460f27ca">SRE: Performance Analysis: Tuning Methodology Using a Simple HTTP Webserver In Go |  go tool pprof</a></li>
+</ul>
+<h2 id="勘误"><a href="#勘误" class="headerlink" title="勘误"></a>勘误</h2><ul>
+<li>No.001 初稿已删除【大家比较熟知的netfilter，就是基于BPF实现的动态编译器】<br>本来是想表达 iptables 对 bpf 的支持。</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="动态追踪技术"><a href="#动态追踪技术" class="headerlink" title="动态追踪技术"></a>动态追踪技术</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h4 id="《Linux-Perf-Master》"><a href="#《Linux-Perf-Master》" class="headerlink" title="《Linux Perf Master》"></a>《Linux Perf Master》</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h4 id="How-Linux-Works"><a href="#How-Linux-Works" class="headerlink" title="How Linux Works"></a>How Linux Works</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Load/">Linux 性能诊断:负载评估</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Perf-Netflix/">Linux 性能诊断:快速检查单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（一）：How the Linux Kernel Boots</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（二）：User Space &amp; RAM</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/">操作系统原理 | How Linux Works（三）：内存管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/08/Linux-Works-Network/">操作系统原理 | How Linux Works（三）：网络管理</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://openresty.org/posts/dynamic-tracing/">动态追踪技术漫谈 | 章亦春</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5ODQ2MDIyMA==&amp;mid=2650712266&amp;idx=1&amp;sn=54d909d240eb701ae48467dc798ddc7f&amp;scene=1&amp;srcid=0506Cd7v9OLvaEFRKBTD2ARy%23rd">动态追踪技术（中） - Dtrace、SystemTap、火焰图 | 原创 2016-05-06 章亦春 MacTalk</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/4Y77jUqfgKeBS2hnitrUrg">动态追踪技术-应用性能瓶颈排障利器之火焰图 | 2016-12-01 郑晓川 江凌生 TIGCHAT</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA4Nzg5Nzc5OA==&amp;mid=2651659767&amp;idx=1&amp;sn=3c515cb32bcbcafe16c749024d1545ef&amp;scene=1&amp;srcid=0524lBh8JTWhnUmtv72PiQSN%23rd">运维利器：万能的 strace | 2016-05-24 王子勇 高效运维</a></li>
+<li><a target="_blank" rel="noopener" href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">(推荐)Linux tracing systems &amp; how they fit together | Julia Evans </a></li>
+<li><a target="_blank" rel="noopener" href="http://www.brendangregg.com/blog/2016-12-27/linux-tracing-in-15-minutes.html">Give me 15 minutes and I’ll change your view of Linux tracing | Brendan Gregg’s Blog </a></li>
+<li><a target="_blank" rel="noopener" href="http://www.brendangregg.com/blog/2017-02-05/file-system-flame-graph.html">Where has my disk space gone? Flame graphs for file systems | Brendan Gregg’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.brendangregg.com/blog/2017-05-15/container-performance-analysis-dockercon-2017.html">Container Performance Analysis at DockerCon 2017 | Brendan Gregg’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">(推荐) Julia Evans: Linux tracing systems &amp; how they fit together</a></li>
+<li><a target="_blank" rel="noopener" href="https://ipfans.github.io/2016/09/tracing-python-program-with-dtrace/">使用 dtrace 跟踪 Python 应用 | ipfans’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="http://blogs.microsoft.co.il/sasha/2016/03/31/probing-the-jvm-with-bpfbcc/">Probing the JVM with BPF/BCC | Sasha Goldshtein</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/news/2017/07/eBay-shopping-i-o?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global">从eBay购物车丢失看处理网络I/O </a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.twitch.tv/gos-march-to-low-latency-gc-a6fa96f06eb7">Go’s march to low-latency GC</a></li>
+<li><a target="_blank" rel="noopener" href="http://blogs.microsoft.co.il/sasha/2017/03/30/tracing-runtime-events-in-net-core-on-linux/">Tracing Runtime Events in .NET Core on Linux | March 30, 2017</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3UXBEUmI3dMy9DJHs5gsRg">案例分享：巧用各种工具提升无源码系统的性能和稳定性 | 原创： 杨振 董建  高可用架构  1月17日</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sigops.org/s/conferences/sosp/2015/current/2015-Monterey/printable/090-curtsinger.pdf">COZ: Finding Code that Counts with Causal Profiling</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/11/26/DTrace/" data-id="ckwgm33kf004c7b1yll2mt5st" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTrace/" rel="tag">DTrace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/09/Economist-Books-Year-2016/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          The Economist 2016年度推荐书单
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/20/Network-Traffic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">珠海航展交通管控实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-DTrace"><span class="toc-number">2.</span> <span class="toc-text">Introduction to DTrace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-DTrace"><span class="toc-number">2.0.1.</span> <span class="toc-text">What is DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-of-DTrace"><span class="toc-number">2.0.2.</span> <span class="toc-text">History of DTrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E8%BF%BD%E8%B8%AA%E5%99%A8%E9%80%89%E5%9E%8B"><span class="toc-number">2.0.3.</span> <span class="toc-text">Linux 追踪器选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.0.4.</span> <span class="toc-text">普通模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HARD%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.0.5.</span> <span class="toc-text">HARD模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%81%AB%E7%84%B0%E5%9B%BE%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">2.0.6.</span> <span class="toc-text">火焰图应用案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF"><span class="toc-number">3.</span> <span class="toc-text">勘误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">4.0.1.</span> <span class="toc-text">动态追踪技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">4.0.2.</span> <span class="toc-text">《Linux Perf Master》</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-Linux-Works"><span class="toc-number">4.0.3.</span> <span class="toc-text">How Linux Works</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

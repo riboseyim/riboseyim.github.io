@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：消息中间件(ZeroMQ) | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 ZeroMQ (also known as ØMQ, 0MQ, or zmq) is an networking library, acts like a concurrency framework。https:&#x2F;&#x2F;github.com&#x2F;zeromq-cn 缘起  first time I knew:Ntopng">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：消息中间件(ZeroMQ)">
+<meta property="og:url" content="https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 ZeroMQ (also known as ØMQ, 0MQ, or zmq) is an networking library, acts like a concurrency framework。https:&#x2F;&#x2F;github.com&#x2F;zeromq-cn 缘起  first time I knew:Ntopng">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/theme_opensource_zeromq.png">
+<meta property="article:published_time" content="2016-04-26T03:56:32.000Z">
+<meta property="article:modified_time" content="2020-08-04T07:30:14.000Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="OpenSource">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/theme_opensource_zeromq.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-ZeroMQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/OpenSource-ZeroMQ/" class="article-date">
+  <time datetime="2016-04-26T03:56:32.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：消息中间件(ZeroMQ)
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/" data-id="ckwgm33mr00in7b1yfrrdpq4c" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>ZeroMQ (also known as ØMQ, 0MQ, or zmq) is an networking library, acts like a concurrency framework。<a href="https://github.com/zeromq-cn" target="_blank" rel="noopener">https://github.com/zeromq-cn</a></p>
+<p>缘起</p>
+</blockquote>
+<p>first time I knew:<a href="http://www.jianshu.com/p/f10a2d862863" target="_blank" rel="noopener">Ntopng</a></p>
+<a id="more"></a>
+<h4 id="发起人：Pieter-Hintjens"><a href="#发起人：Pieter-Hintjens" class="headerlink" title="发起人：Pieter Hintjens"></a>发起人：Pieter Hintjens</h4><p>iMatix公司首席执行官，制作游戏视频游戏起家。Wikidot公司前CEO。数字标准组织创始人。曾任FFII（自由信息基础设施基金会）会长，与软件专利斗争的大型NGO组织。会说英语、法语、荷兰语。生活在比利时布鲁塞尔，组织西非鼓乐队，喜欢旅行。一个C内核及C＋＋编写的核心库libzmq，50余种语言支持的绑定程序(例如Python支持PyZMQ)。由绑定程序的作者组成维护小组，iMatix公司持有商标，提供商业支持。</p>
+<h2 id="架构哲学"><a href="#架构哲学" class="headerlink" title="架构哲学"></a>架构哲学</h2><p>零代理，零延迟，零管理，零成本，也代表贯穿项目的简约文化。<br>软件的真正本质是人的本质，我们人类真的不善于理解复杂性，并且我们真的善于用合作来对大问题分而治之。我们是高度社会化的类人猿，有点聪明，但只在合适的人群中。</p>
+<p>请把架构视为一个市场，而不是一个工程设计。－－《来自ZeroMQ的软件架构哲学》</p>
+<h4 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h4><ul>
+<li><a href="http://zeromq.org/" target="_blank" rel="noopener">http://zeromq.org/</a>   </li>
+</ul>
+<h4 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/theme_opensource_zeromq.png" alt></p>
+<ul>
+<li>Ntopng:Packet Capturing and Network Traffic Monitor</li>
+<li><a href="https://riboseyim.github.io/2018/09/18/DevOps-Deployment-SaltStack" target="_blank" rel="noopener">SaltStack</a>:基础设施管理工具（Based Python）</li>
+<li>Apache SINGA:分布式深度学习平台</li>
+<li>微软DMTK:机器学习框架，ZMQ是进程通讯之一（2015-11-16 开源）</li>
+<li>IPython Notebook<br>既是一个交互计算平台，又是一个记录计算过程的「笔记本」。它由服务端和客户端两部分组成，其中服务端负责代码的解释与计算，而客户端负责与用户进行交互。服务端可以运行在本机也可以运行在远程服务器，包含负责运算的 IPython kernel (与 QT Console 的 kernel 相同) 以及一个 HTTP/S 服务器 (Tornado)。而客户端则是一个指向服务端地址的浏览器页面，负责接受用户的输入并负责渲染输出。<a href="http://ipython.org/notebook.html" target="_blank" rel="noopener">http://ipython.org/notebook.html</a></li>
+</ul>
+<h4 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h4><p>Hello ZeroMQ</p>
+<h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://github.com/imatix/zguide.git</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h4 id="编译依赖项"><a href="#编译依赖项" class="headerlink" title="编译依赖项"></a>编译依赖项</h4><p><strong>libsodium-1.0.0</strong> (zeromq-4.1.2) </p>
+<p>Github Issues:<a href="https://github.com/zeromq/libzmq/issues/1854" target="_blank" rel="noopener">zmq-4.1.2 make failed as libsodium-1.0.8 sodium_init #1854</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cc1plus: warnings being treated as errors</span><br><span class="line">src/curve_client.cpp: In constructor</span><br><span class="line"></span><br><span class="line"><span class="string">'zmq::curve_client_t::curve_client_t(const zmq::options_t&amp;)'</span>:</span><br><span class="line">src/curve_client.cpp:61: warning: ignoring <span class="built_in">return</span> value of</span><br><span class="line"> <span class="string">'int sodium_init()'</span>,</span><br><span class="line">declared with attribute warn_unused_result</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//C Project 添加库</span><br><span class="line">gcc -L/usr/<span class="built_in">local</span>/lib -o <span class="string">"veto_mq_server"</span>  ./src/veto_mq_server.o  -lzmq</span><br></pre></td></tr></table></figure>
+<p><strong>可能的异常：库路径、名称错误</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</span><br><span class="line"><span class="string">"_zmq_bind"</span>, referenced from:</span><br><span class="line">_main <span class="keyword">in</span> veto_mq_server.o</span><br><span class="line"><span class="string">"_zmq_ctx_new"</span>, referenced from:</span><br><span class="line">_main <span class="keyword">in</span> veto_mq_server.o</span><br><span class="line"><span class="string">"_zmq_recv"</span>, referenced from:</span><br><span class="line">_main <span class="keyword">in</span> veto_mq_server.o</span><br><span class="line"><span class="string">"_zmq_send"</span>, referenced from:</span><br><span class="line">_main <span class="keyword">in</span> veto_mq_server.o</span><br><span class="line"><span class="string">"_zmq_socket"</span>, referenced from:</span><br><span class="line">_main <span class="keyword">in</span> veto_mq_server.o</span><br><span class="line">ld: symbol(s) not found <span class="keyword">for</span> architecture x86_64  </span><br><span class="line">clang: error: linker <span class="built_in">command</span> failed with <span class="built_in">exit</span> code 1 (use -v to see invocation)**</span><br></pre></td></tr></table></figure>
+<h4 id="Client-Server-Model"><a href="#Client-Server-Model" class="headerlink" title="Client-Server Model"></a>Client-Server Model</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;zmq.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;zmq_utils.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"veto_mq_utils.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="comment">//</span></span><br><span class="line"> print_zmq_version();</span><br><span class="line">    <span class="comment">//  Socket to talk to clients</span></span><br><span class="line">    <span class="keyword">void</span> *context = zmq_ctx_new ();</span><br><span class="line">    <span class="keyword">void</span> *responder = zmq_socket (context, ZMQ_REP);</span><br><span class="line">    <span class="keyword">int</span> rc = zmq_bind (responder, <span class="string">"tcp://*:5555"</span>);</span><br><span class="line">    assert (rc == <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">char</span> buffer [<span class="number">10</span>];</span><br><span class="line">        zmq_recv (responder, buffer, <span class="number">10</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span> (<span class="string">"Received Hello \n"</span>);</span><br><span class="line">        sleep (<span class="number">1</span>);          <span class="comment">//  Do some 'work'</span></span><br><span class="line">        zmq_send (responder, <span class="string">"World"</span>, <span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//client.c</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;zmq.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;zmq_utils.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span> (<span class="string">"Connecting to hello world server...\n"</span>);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">void</span> \*context = zmq_ctx_new ();</span><br><span class="line">     <span class="keyword">void</span> \*requester = zmq_socket (context, ZMQ_REQ);</span><br><span class="line"></span><br><span class="line">     zmq_connect (requester, <span class="string">"tcp://localhost:5555"</span>);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">int</span> request_nbr;</span><br><span class="line">     <span class="keyword">for</span> (request_nbr = <span class="number">0</span>; request_nbr != <span class="number">10</span>; request_nbr++) &#123;</span><br><span class="line">         <span class="keyword">char</span> buffer [<span class="number">10</span>];</span><br><span class="line">         <span class="built_in">printf</span> (<span class="string">"Sending Hello %d...\n"</span>, request_nbr);</span><br><span class="line">         zmq_send (requester, <span class="string">"Hello"</span>, <span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">         zmq_recv (requester, buffer, <span class="number">10</span>, <span class="number">0</span>);</span><br><span class="line">         <span class="built_in">printf</span> (<span class="string">"Received World %d\n"</span>, request_nbr);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     zmq_close (requester);</span><br><span class="line">     zmq_ctx_destroy (context);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Makefile</span><br><span class="line">SHELL   = /bin/sh</span><br><span class="line">prefix  = /usr/<span class="built_in">local</span></span><br><span class="line">exec_prefix=<span class="variable">$&#123;prefix&#125;</span></span><br><span class="line">srcdir  = .</span><br><span class="line">sbindir = <span class="variable">$&#123;exec_prefix&#125;</span>/sbin</span><br><span class="line">libdir  = <span class="variable">$&#123;exec_prefix&#125;</span>/lib</span><br><span class="line">sysconfdir = <span class="variable">$&#123;prefix&#125;</span>/etc</span><br><span class="line">SETUPDIR = /home/nms</span><br><span class="line">TARGETDIR = $(SETUPDIR)/bin</span><br><span class="line">SRCDIR = .</span><br><span class="line">CC      = gcc</span><br><span class="line">CFLAGS  = -O2 -Wall</span><br><span class="line">CPPFLAGS= -g </span><br><span class="line">DEFS    = </span><br><span class="line">LDFLAGS = </span><br><span class="line">LIBS    = -lzmq  -L/usr/<span class="built_in">local</span>/lib</span><br><span class="line">INCLUDES= -I/usr/<span class="built_in">local</span>/include </span><br><span class="line"></span><br><span class="line">CURR_DIR = $(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line">CC_TMP = lib</span><br><span class="line"></span><br><span class="line">OBJS    =  $(CC_TMP)/veto_mq_server.o  $(CC_TMP)/veto_mq_utils.o</span><br><span class="line">TARGET  =  veto_mq_server</span><br><span class="line"></span><br><span class="line">.c.o:</span><br><span class="line"> $(CC) -I. $(CPPFLAGS) $(DEFS) $(CFLAGS) -c $&lt;</span><br><span class="line"></span><br><span class="line">all: $(TARGET)</span><br><span class="line"></span><br><span class="line">$(TARGET): $(OBJS)</span><br><span class="line"> $(CC) $(CPPFLAGS) $(OBJS) $(LIBS) $(LDFLAGS) -o <span class="variable">$@</span></span><br><span class="line"> -cp $(SRCDIR)/$(TARGET)  $(TARGETDIR)/$(TARGET) </span><br><span class="line"> -chmod ugo+s $(TARGETDIR)/$(TARGET) </span><br><span class="line"> -chmod ugo+s $(SRCDIR)/$(TARGET) </span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line"> -rm <span class="_">-f</span> *.o *~  *.core core $(TARGET) </span><br><span class="line"> -rm <span class="_">-f</span> $(TARGETDIR)/$(TARGET)</span><br><span class="line"></span><br><span class="line">veto_mq_server.o: veto_mq_server.c</span><br><span class="line"> $(CC) -g -c -o $(CC_TMP)/veto_mq_server.o veto_mq_server.c $(CPPFLAGS) $(INCLUDES)</span><br><span class="line"></span><br><span class="line">veto_mq_utils.o: veto_mq_utils.c</span><br><span class="line"> $(CC) -g -c -o $(CC_TMP)/veto_mq_utils.o veto_mq_utils.c $(INCLUDES)</span><br></pre></td></tr></table></figure>
+<h4 id="Running"><a href="#Running" class="headerlink" title="Running"></a>Running</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash-3.2<span class="comment"># ./veto_mq_server</span></span><br><span class="line"></span><br><span class="line">bash-3.2<span class="comment"># ps -ef | grep mq | grep -v 'grep'</span></span><br><span class="line">    0  3616     1   0 10:00AM ttys000    0:00.01 ./veto_mq_server</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bash-3.2<span class="comment"># ./veto_mq_client</span></span><br><span class="line">Connecting to hello world server...</span><br><span class="line">Sending Hello 0...</span><br><span class="line">Received World 0</span><br><span class="line">Sending Hello 1...</span><br><span class="line">Received World 1</span><br><span class="line">Sending Hello 2...</span><br><span class="line">Received World 2</span><br><span class="line">Sending Hello 3...</span><br><span class="line">Received World 3</span><br></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li>（推荐）［美］Pieter Hintjens《ZeroMQ:Messaging for Many Applications》</li>
+<li><a href="http://www.jianshu.com/p/8ddb7e19ce46" target="_blank" rel="noopener">ZeroMQ社区生态白皮书</a></li>
+<li><a href="http://github.com/zqhxuyuan/2017/10/18/Midd-RocketMQ/" target="_blank" rel="noopener">深入解析中间件之RocketMQ</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/04/26/OpenSource-ZeroMQ/" data-id="ckwgm33mr00in7b1yfrrdpq4c" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/Visualization-RunningApp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          数据可视化（二）跑步应用数据可视化评测
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/26/Architect/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Architect：架构师</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E8%B5%B7%E4%BA%BA%EF%BC%9APieter-Hintjens"><span class="toc-number">1.0.1.</span> <span class="toc-text">发起人：Pieter Hintjens</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%93%B2%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">架构哲学</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Repository"><span class="toc-number">2.0.1.</span> <span class="toc-text">Repository</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Application"><span class="toc-number">2.0.2.</span> <span class="toc-text">Application</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ABC"><span class="toc-number">2.0.3.</span> <span class="toc-text">ABC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install"><span class="toc-number">2.0.4.</span> <span class="toc-text">Install</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-number">2.0.5.</span> <span class="toc-text">编译依赖项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Client-Server-Model"><span class="toc-number">2.0.6.</span> <span class="toc-text">Client-Server Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Running"><span class="toc-number">2.0.7.</span> <span class="toc-text">Running</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

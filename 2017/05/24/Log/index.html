@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：应用程序的日志管理及可视化 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要程序中记录日志的首要目的：Troubleshooting。通过记录程序中对外部系统与模块的依赖调用、重要状态信息的变化、关键变量、关键逻辑等，显示基于时间轴的程序运行轨迹，显示业务是否正常、是否存在非预期执行，在出问题时方便还原现场，推断程序运行过程、理清问题的方向。 本文将讨论在实现日志功能过程中常见的一些问题，包括基础API、格式化、日志转发及可视化等方面，代码采用Go语言描述。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：应用程序的日志管理及可视化">
+<meta property="og:url" content="https://riboseyim.com/2017/05/24/Log/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要程序中记录日志的首要目的：Troubleshooting。通过记录程序中对外部系统与模块的依赖调用、重要状态信息的变化、关键变量、关键逻辑等，显示基于时间轴的程序运行轨迹，显示业务是否正常、是否存在非预期执行，在出问题时方便还原现场，推断程序运行过程、理清问题的方向。 本文将讨论在实现日志功能过程中常见的一些问题，包括基础API、格式化、日志转发及可视化等方面，代码采用Go语言描述。">
+<meta property="og:locale">
+<meta property="og:image" content="https://goaccess.io/images/goaccess-dashboard.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_2.png">
+<meta property="article:published_time" content="2017-05-24T06:22:56.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:06.389Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goaccess.io/images/goaccess-dashboard.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Log" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/24/Log/" class="article-date">
+  <time datetime="2017-05-24T06:22:56.000Z" itemprop="datePublished">2017-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：应用程序的日志管理及可视化
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/24/Log/" data-id="ckwgm33m000d87b1ygp3evvsz" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>程序中记录日志的首要目的：Troubleshooting。通过记录程序中对外部系统与模块的依赖调用、重要状态信息的变化、关键变量、关键逻辑等，显示基于时间轴的程序运行轨迹，显示业务是否正常、是否存在非预期执行，在出问题时方便还原现场，推断程序运行过程、理清问题的方向。</p>
+<p>本文将讨论在实现日志功能过程中常见的一些问题，包括基础API、格式化、日志转发及可视化等方面，代码采用Go语言描述。</p>
+<span id="more"></span>
+<h3 id="一、Basic"><a href="#一、Basic" class="headerlink" title="一、Basic"></a>一、Basic</h3><p><strong>1、后台输出</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;------hello world-----&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2、There are no exceptions in Golang, only errors.</strong></p>
+<p>Go语言不支持传统的 try…catch…finally 这种异常，因为Go语言的设计者们认为，将异常与控制结构混在一起会很容易使得代码变得混乱。因为开发者很容易滥用异常，甚至一个小小的错误都抛出一个异常，替代方案是使用多值返回来返回错误。当然Go并不是全面否定异常的存在，或者用recover+panic语法实现，只是极力不鼓励多用异常。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;errors&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   <span class="comment">/* local variable definition */</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* function for division which return an error if divide by 0 */</span></span><br><span class="line">   ret,err = div(a, b)</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      log.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(ret)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3、写入日志文件:</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">&quot;log&quot;</span></span><br><span class="line">  <span class="string">&quot;os&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  f,err :=os.OpenFile(<span class="string">&quot;test.log&quot;</span>,os.O_WRONLY|os.O_CREATE|os.O_APPEND,<span class="number">0644</span>)</span><br><span class="line">  <span class="keyword">if</span> err !=<span class="literal">nil</span>&#123;</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">defer</span> f.Close()</span><br><span class="line">  log.SetOutput(f)</span><br><span class="line">  log.Println(<span class="string">&quot;==========works==============&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YRMacBook-Pro:go-log yanrui$ more test.log</span><br><span class="line">2017/05/24 21:46:25 ==========works==============</span><br></pre></td></tr></table></figure>
+<h3 id="二、格式化"><a href="#二、格式化" class="headerlink" title="二、格式化"></a>二、格式化</h3><p>推荐日志工具库：logrus</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">go</span> get github.com/Sirupsen/logrus</span><br></pre></td></tr></table></figure>
+<p><strong>1、JSON format</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  log <span class="string">&quot;github.com/Sirupsen/logrus&quot;</span></span><br><span class="line">  <span class="string">&quot;github.com/logmatic/logmatic-go&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// use JSONFormatter</span></span><br><span class="line">    log.SetFormatter(&amp;logmatic.JSONFormatter&#123;&#125;)</span><br><span class="line">    <span class="comment">// log an event as usual with logrus</span></span><br><span class="line">    log.WithFields(log.Fields&#123;<span class="string">&quot;string&quot;</span>: <span class="string">&quot;foo&quot;</span>, <span class="string">&quot;int&quot;</span>: <span class="number">1</span>, <span class="string">&quot;float&quot;</span>: <span class="number">1.1</span> &#125;).Info(<span class="string">&quot;My first ssl event from golang&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>日志输出样式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;@marker&quot;</span>:[<span class="string">&quot;sourcecode&quot;</span>,<span class="string">&quot;golang&quot;</span>],</span><br><span class="line">  <span class="string">&quot;date&quot;</span>:<span class="string">&quot;2017-05-24T15:27:40+08:00&quot;</span>,</span><br><span class="line">  <span class="string">&quot;float&quot;</span>:<span class="number">1.1</span>,<span class="string">&quot;int&quot;</span>:<span class="number">1</span>,<span class="string">&quot;level&quot;</span>:<span class="string">&quot;info&quot;</span>,</span><br><span class="line">  <span class="string">&quot;message&quot;</span>:<span class="string">&quot;My first ssl event from golang&quot;</span>,</span><br><span class="line">  <span class="string">&quot;string&quot;</span>:<span class="string">&quot;foo&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、附加上下文"><a href="#三、附加上下文" class="headerlink" title="三、附加上下文"></a>三、附加上下文</h3><p>通过logrus库可以加入一些上下文信息，例如：主机名称，程序名称或者会话参数等。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">contextLogger := log.WithFields(log.Fields&#123;</span><br><span class="line">  <span class="string">&quot;common&quot;</span>: <span class="string">&quot;XXX common content XXX&quot;</span>,</span><br><span class="line">  <span class="string">&quot;other&quot;</span>: <span class="string">&quot;YYY special context YYY&quot;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">contextLogger.Info(<span class="string">&quot;AAAAAAAAAAAA&quot;</span>)</span><br><span class="line">contextLogger.Info(<span class="string">&quot;BBBBBBBBBBBB&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>日志输出样式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">YRMacBook-Pro:go-log yanrui$ go run LogMatic.go</span><br><span class="line">&#123;<span class="string">&quot;@marker&quot;</span>:[<span class="string">&quot;sourcecode&quot;</span>,<span class="string">&quot;golang&quot;</span>],<span class="string">&quot;common&quot;</span>:<span class="string">&quot;XXX common content XXX&quot;</span>,<span class="string">&quot;date&quot;</span>:<span class="string">&quot;2017-05-24T17:00:08+08:00&quot;</span>,<span class="string">&quot;level&quot;</span>:<span class="string">&quot;info&quot;</span>,<span class="string">&quot;message&quot;</span>:<span class="string">&quot;AAAAAAAAAAAA&quot;</span>,<span class="string">&quot;other&quot;</span>:<span class="string">&quot;YYY special context YYY&quot;</span>&#125;</span><br><span class="line">&#123;<span class="string">&quot;@marker&quot;</span>:[<span class="string">&quot;sourcecode&quot;</span>,<span class="string">&quot;golang&quot;</span>],<span class="string">&quot;common&quot;</span>:<span class="string">&quot;XXX common content XXX&quot;</span>,<span class="string">&quot;date&quot;</span>:<span class="string">&quot;2017-05-24T17:00:08+08:00&quot;</span>,<span class="string">&quot;level&quot;</span>:<span class="string">&quot;info&quot;</span>,<span class="string">&quot;message&quot;</span>:<span class="string">&quot;BBBBBBBBBBBB&quot;</span>,<span class="string">&quot;other&quot;</span>:<span class="string">&quot;YYY special context YYY&quot;</span>&#125;</span><br><span class="line">YRMacBook-Pro:go-log yanrui$</span><br></pre></td></tr></table></figure></p>
+<h3 id="四、Hooks"><a href="#四、Hooks" class="headerlink" title="四、Hooks"></a>四、Hooks</h3><p>我们还可以利用Hook机制实现日志功能扩展，例如Syslog hook，将输出的日志发送到指定的Syslog服务。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  log <span class="string">&quot;github.com/sirupsen/logrus&quot;</span></span><br><span class="line">  <span class="string">&quot;gopkg.in/gemnasium/logrus-airbrake-hook.v2&quot;</span> <span class="comment">// the package is named &quot;aibrake&quot;</span></span><br><span class="line">  logrus_syslog <span class="string">&quot;github.com/sirupsen/logrus/hooks/syslog&quot;</span></span><br><span class="line">  <span class="string">&quot;log/syslog&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    hook, err := logrus_syslog.NewSyslogHook(<span class="string">&quot;udp&quot;</span>, <span class="string">&quot;59.37.0.1:514&quot;</span>, syslog.LOG_INFO, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      log.Error(<span class="string">&quot;Unable to connect to local syslog daemon&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      log.AddHook(hook)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>验证是否发送Syslog：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tcpdump | grep <span class="number">59.37</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">tcpdump: data link <span class="keyword">type</span> PKTAP</span><br><span class="line">tcpdump: verbose output suppressed, use -v or -vv <span class="keyword">for</span> full protocol decode</span><br><span class="line">listening on pktap, link-<span class="keyword">type</span> PKTAP (Apple DLT_PKTAP), capture size <span class="number">262144</span> bytes</span><br><span class="line"><span class="number">18</span>:<span class="number">51</span>:<span class="number">05.663612</span> IP <span class="number">192.168</span><span class="number">.199</span><span class="number">.15</span><span class="number">.58819</span> &gt; <span class="number">59.37</span><span class="number">.0</span><span class="number">.1</span>.syslog: SYSLOG kernel.info, length: <span class="number">314</span></span><br><span class="line"><span class="number">18</span>:<span class="number">51</span>:<span class="number">05.663657</span> IP <span class="number">192.168</span><span class="number">.199</span><span class="number">.15</span><span class="number">.58819</span> &gt; <span class="number">59.37</span><span class="number">.0</span><span class="number">.1</span>.syslog: SYSLOG kernel.info, length: <span class="number">314</span></span><br></pre></td></tr></table></figure>
+<h3 id="五、可视化"><a href="#五、可视化" class="headerlink" title="五、可视化"></a>五、可视化</h3><p>在真实场景中日志数据体量非常庞大，日志存储只是第一步，更多的情况是需要查看特定指标或者能够快速检索信息，此时日志分析平台就发挥作用了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://goaccess.io">GoAccess</a>: Web Server Log</li>
+</ul>
+<p><img src="https://goaccess.io/images/goaccess-dashboard.png" alt=""></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://tar.goaccess.io/goaccess-1.3.tar.gz</span><br><span class="line">$ tar -xzvf goaccess-1.3.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> goaccess-1.3/</span><br><span class="line">$ ./configure --enable-utf8 --enable-geoip=legacy</span><br><span class="line">$ make</span><br><span class="line"><span class="comment"># make install</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://logmatic.io">logmatic</a></li>
+</ul>
+<p>在使用logmatic之前，需要下载它的hook支持：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">go</span> get github.com/logmatic/logmatic-<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// instantiate a new Logger with your Logmatic APIKey</span></span><br><span class="line">    <span class="comment">// 国内访问比较慢</span></span><br><span class="line">  	log.AddHook(logmatic.NewLogmaticHook(<span class="string">&quot;p53uTkOhSEqI3-116DynkQ&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ..........</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><img src="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_1.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/logmatic_demo_2.png" alt=""></p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="Tail-Multiple-Files"><a href="#Tail-Multiple-Files" class="headerlink" title="Tail Multiple Files"></a>Tail Multiple Files</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Native Tail Command</span></span><br><span class="line">$ tail -f file1 file2</span><br><span class="line"><span class="comment"># multitail Utility</span></span><br><span class="line"><span class="comment"># yum install multitail</span></span><br><span class="line">$ multitail access.log httpd.log</span><br></pre></td></tr></table></figure>
+<h2 id="扩展阅读：开发语言-amp-代码工程"><a href="#扩展阅读：开发语言-amp-代码工程" class="headerlink" title="扩展阅读：开发语言&amp;代码工程"></a>扩展阅读：开发语言&amp;代码工程</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">Stack Overflow：2017年最赚钱的编程语言</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/">玩转编程语言:构建自定义代码生成器</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/">远程通信协议:从 CORBA 到 gRPC</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/">基于Kafka构建事件溯源型微服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/08/15/OpenSource-Kafka/">LinkedIn 开源 Kafka Monitor</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/23/RestfulAPI/">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/24/Log/">应用程序开发中的日志管理(Go语言描述)</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.codingnow.com/2018/05/ineffective_debugger.html">云风的BLOG：断点单步跟踪是一种低效的调试方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://logmatic.io/blog/our-guide-to-a-golang-logs-world/?utm_content=buffer1f62f&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">logmatic.io:Our Guide to a Golang logs world</a></li>
+<li><a target="_blank" rel="noopener" href="https://logmatic.io/blog/beyond-application-monitoring-discover-logging-best-practices/">logmatic.io:Beyond Application Monitoring</a></li>
+<li><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5424">Syslog RFC 5424</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.golang.org/error-handling-and-go">Golang Blog:Error handling and Go</a></li>
+<li><a target="_blank" rel="noopener" href="https://dave.cheney.net/2012/01/18/why-go-gets-exceptions-right">Dave Cheney:Why Go gets exceptions right</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ghj1976/archive/2013/02/11/2910114.html">蝈蝈俊:Go的异常处理 defer, panic, recover</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27158146">知乎：Go 语言的错误处理机制是一个优秀的设计吗？</a></li>
+<li><a target="_blank" rel="noopener" href="https://leo108.com/pid-2256.asp">Monolog优化及打造ELK友好的日志格式 | Leo108’s Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.tecmint.com/watch-or-monitor-linux-log-files-in-real-time/">4 Ways to Watch or Monitor Log Files in Real Time</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403051208&amp;idx=1&amp;sn=1694ac05acbcb5ca53c88bfac8a68856&amp;scene=1&amp;srcid=1224xZuQ9QQ4sRmiPVdHTppL%23rd">【年度案例】Twitter高性能分布式日志系统架构解析 | 原创 2015-12-24 郭斯杰 高可用架构</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ipswitch.com/Ipswitch/media/Ipswitch/Documents/Resources/Whitepapers%20and%20eBooks/ELM_Security_WP.pdf?ext=.pdf">BEST PRACTICES:EVENT LOG MANAGEMENT FOR SECURITY AND COMPLIANCE INITIATIVES| By Ipswitch, Inc. Network Managment Division</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.rsyslog.com/doc/v8-stable/configuration/index.html">rsyslog 8.1901.0 documentation</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/24/Log/" data-id="ckwgm33m000d87b1ygp3evvsz" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/26/Protocol/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          计算机网络协议 | Overview of Protocol
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/23/RestfulAPI/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源技术架构漫谈：基于Go语言快速构建RESTful API服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Basic"><span class="toc-number">1.1.</span> <span class="toc-text">一、Basic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">二、格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%99%84%E5%8A%A0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">1.3.</span> <span class="toc-text">三、附加上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Hooks"><span class="toc-number">1.4.</span> <span class="toc-text">四、Hooks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.5.</span> <span class="toc-text">五、可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">2.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tail-Multiple-Files"><span class="toc-number">2.0.1.</span> <span class="toc-text">Tail Multiple Files</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-amp-%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：开发语言&amp;代码工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

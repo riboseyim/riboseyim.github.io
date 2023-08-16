@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：Hadoop | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Uber Hadoop 文件系统最佳实践 Scaling out using ViewFs HDFS upgrades NameNode Garbage collection Controlling the number of small files DFS load management service New Feature : Observer NameNode Router-base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：Hadoop">
+<meta property="og:url" content="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Uber Hadoop 文件系统最佳实践 Scaling out using ViewFs HDFS upgrades NameNode Garbage collection Controlling the number of small files DFS load management service New Feature : Observer NameNode Router-base">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-5.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-6.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png">
+<meta property="article:published_time" content="2018-08-01T11:33:59.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.398Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Database">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-Hadoop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/01/OpenSource-Hadoop/" class="article-date">
+  <time datetime="2018-08-01T11:33:59.000Z" itemprop="datePublished">2018-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：Hadoop
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="ckwgm33mm00hs7b1y6ycx7bqz" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Uber Hadoop 文件系统最佳实践</li>
+<li>Scaling out using ViewFs</li>
+<li>HDFS upgrades</li>
+<li>NameNode Garbage collection</li>
+<li>Controlling the number of small files</li>
+<li>DFS load management service</li>
+<li>New Feature : Observer NameNode</li>
+<li>Router-based HDFS Federation</li>
+<li>Engineering : 独立的群集（isolated clusters）、分阶段升级过程（a staged upgrade process）和应急回滚计划（contingency rollback plans）</li>
+</ul>
+<span id="more"></span>
+<h2 id="Introduction-Apache-Hadoop-简介"><a href="#Introduction-Apache-Hadoop-简介" class="headerlink" title="Introduction | Apache Hadoop 简介"></a>Introduction | Apache Hadoop 简介</h2><h2 id="Core-Concept-Apache-Hadoop-核心概念"><a href="#Core-Concept-Apache-Hadoop-核心概念" class="headerlink" title="Core Concept | Apache Hadoop 核心概念"></a>Core Concept | Apache Hadoop 核心概念</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+<li><a target="_blank" rel="noopener" href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/035fc972c796d33122033a0614bc94cff1527999.pdf">The Google File System</a><h4 id="Concept-A"><a href="#Concept-A" class="headerlink" title="Concept A"></a>Concept A</h4><h4 id="Concept-B"><a href="#Concept-B" class="headerlink" title="Concept B"></a>Concept B</h4><h4 id="Concept-C"><a href="#Concept-C" class="headerlink" title="Concept C"></a>Concept C</h4></li>
+</ul>
+<h2 id="Architecture-Apache-Hadoop-架构"><a href="#Architecture-Apache-Hadoop-架构" class="headerlink" title="Architecture | Apache Hadoop 架构"></a>Architecture | Apache Hadoop 架构</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://prestodb.io/">Presto:Distributed SQL Query Engine for Big Data</a></li>
+<li><a target="_blank" rel="noopener" href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/ViewFs.html">ViewFs Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/WebHDFS.html">WebHDFS REST API</a></li>
+</ul>
+<h2 id="Best-Practice-Apache-Hadoop-最佳实践"><a href="#Best-Practice-Apache-Hadoop-最佳实践" class="headerlink" title="Best Practice | Apache Hadoop 最佳实践"></a>Best Practice | Apache Hadoop 最佳实践</h2><h1 id="Uber-Hadoop-文件系统最佳实践"><a href="#Uber-Hadoop-文件系统最佳实践" class="headerlink" title="Uber Hadoop 文件系统最佳实践"></a>Uber Hadoop 文件系统最佳实践</h1><ul>
+<li>原文：April 5, 2018 <a target="_blank" rel="noopener" href="https://eng.uber.com/scaling-hdfs/">Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
+</ul>
+<blockquote>
+<p>How Uber implemented these improvements to facilitate the continued growth, stability, and reliability of our storage system.</p>
+</blockquote>
+<p>三年前, Uber 工程团队引入 Hadoop 作为大数据分析的存储 (HDFS) 和计算 (YARN) 基础设施。</p>
+<p>Uber 使用 Hadoop 进行批量和流式分析, 广泛应用于包括欺诈检测（ fraud detection）、机器学习（machine learning）和 ETA 计算(Estimated Time of Arrival)等领域。在过去的几年里, Uber 的业务发展迅猛,数据量和相关的访问负载呈指数级增长 ; 仅在 2017年, 存储在 HDFS 上的数据量就增长了400% 以上。</p>
+<p>在扩展基础设施的同时保持高性能可不是一件轻松的事。为了实现这一目标,Uber 数据架构团队通过实施若干新的调整和功能来扩展  HDFS , 包括可视化文件系统（View File System ，ViewFs）、频繁的 HDFS 版本升级、NameNode 垃圾回收调整, 限制通过系统筛选小文件的数量、HDFS 负载管理服务和只读 NameNode 副本。下面将详细介绍如何执行这些改进以促进存储系统的持续增长、稳定性和可靠性。</p>
+<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><p>HDFS 被设计为可伸缩的分布式文件系统, 单个群集支持上千个节点。只要有足够的硬件, 在一个集群中可以轻松、快速地扩展实现超过 100 pb 的原始存储容量。</p>
+<p>然而对于 Uber 而言, 业务迅速增长使其难以可靠地进行扩展同时而不减慢数据分析的速度。成千上万的用户每周都要执行数以百万计的查询（通过 Hive 或 Presto ）。</p>
+<p>目前, HDFS 超过一半以上的访问源于 Presto, 并且 90% 的 Presto 查询需要 100 秒以上的时间来处理。如果我们的 HDFS 基础结构超载, 那么在队列中的查询就会堆积起来, 从而导致查询延迟。更为重要的是，对于每个查询而言，我们需要在 HDFS 上尽快地提供数据。</p>
+<p>针对原来的存储基础架构, 我们设计了提取（extract）、转换（transform）和加载 (ETL) 机制以便在用户运行查询时减少同一集群中发生的复制延迟。这些群集由于具有双重职责，因而需要生成小文件以适应频繁的写入和更新, 这反而进一步堵塞了队列。</p>
+<p>在我们面临的挑战中，首要任务是多个团队需要大量的存储数据, 这就决定了不能采用按照用例或组织进行集群分割的方案, 那样反过来会降低效率的同时增加成本。</p>
+<p>造成减速的根源 — 在不影响用户体验的情况下扩展 HDFS 的主要瓶颈是 NameNode 的性能和吞吐量, 它包括系统中所有文件的目录树, 用于跟踪保存数据文件的位置。由于所有元数据都存储在 NameNode 中, 因此客户端对 HDFS 群集的请求必须首先通过它。更复杂的是, NameNode 命名空间上的ReadWriteLock 限制了 NameNode 可以支持的最大吞吐量, 因为任何写入请求都将被独占写锁定, 并强制任何其他请求都在队列中等待。</p>
+<p>2016 年晚些时候, 我们开始发现 NameNode  RPC 队列时间高的问题。有时, NameNode 队列时间可能超过每个请求 500毫秒 (最慢的队列时间达到接近一秒), 这意味着每一个 HDFS 请求在队列中至少等待半秒 — 与我们的正常进程时间（10 毫秒以下）相比, 这是明显的减速。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-1.png" alt="Figure 1. In 2016, our NameNode RPC queue time could exceed half a second per HDFS request."></li>
+</ul>
+<h2 id="Enabling-scaling-amp-improving-performance"><a href="#Enabling-scaling-amp-improving-performance" class="headerlink" title="Enabling scaling &amp; improving performance"></a>Enabling scaling &amp; improving performance</h2><p>为了确保 HDFS 高性能运行的同时持续扩展, Uber 并行开发多个解决方案, 以避免在短期内出现停机。这些解决方案使我们建立了一个更可靠和可扩展的系统, 能够支持未来的长期增长。</p>
+<p>改进方案概述如下：</p>
+<h4 id="Scaling-out-using-ViewFs"><a href="#Scaling-out-using-ViewFs" class="headerlink" title="Scaling out using ViewFs"></a>Scaling out using ViewFs</h4><p><a target="_blank" rel="noopener" href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html">Twitter 尝试过类似努力</a>，在他们的启发下, 我们利用可视化文件系统 (ViewFs) 将 HDFS 拆分为多个物理命名空间, 并使用 ViewFs 挂载点向用户呈现一个虚拟命名空间。</p>
+<p>为了完成这一目标, 我们将 HBase（YARN 和 Presto 操作）从相同的 HDFS 集群分开。该调整不仅大大减少了主集群上的负载, 而且使我们的 HBase 更加稳定, 将 HBase 集群的重启时间从几小时减少到几分钟。</p>
+<p>我们还为聚合 YARN 应用日志创建了一个专用的 HDFS 群集。要使日志聚合支持 ViewFs, 需要 <strong>YARN-3269</strong>。我们的 Hive 临时目录也被移动到这个群集。增加集群的结果是非常令人满意的 ; 目前, 新群集的服务总写入请求数约占总数的 40%, 而且大多数文件都是小文件, 这也减轻了主群集上的文件计数压力。由于对现有应用程序而言，不需要更改客户端, 因此改转换非常顺利。</p>
+<p>最后, 我们在 ViewFs 后端实现了独立的的 HDFS 群集, 而不是基础架构中的 HDFS Federation 。通过这种设置, 可以逐步执行 HDFS 升级, 最大限度地减少大规模停机的风险; 此外, 完全隔离还有助于提高系统的可靠性。然而, 这种修复方案的一个缺点是, 保持单独的 HDFS 群集会导致更高的运营成本。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-2.png" alt="Figure 2. We installed ViewFs in multiple data centers to help manage our HDFS namespaces."></li>
+</ul>
+<h4 id="HDFS-upgrades"><a href="#HDFS-upgrades" class="headerlink" title="HDFS upgrades"></a>HDFS upgrades</h4><p>第二个解决方案是升级 HDFS 以跟上最新版本。我们一年执行了两次主要升级, 首先从 CDH 5.7.2 ( 包含大量 HDFS 2.6.0 补丁) 升级到 Apache 2.7.3, 然后升级到 Apache  2.8.2。为此, 我们还必须重构基于 Puppet 和 Jenkins 之上的部署框架, 以更换第三方群集管理工具。</p>
+<p>版本升级带来了关键的可伸缩性改进, 包括 HDFS-9710、HDFS-9198 和 HDFS-9412。例如, 升级到 Apache 2.7.3 后, 增量块报告（incremental block report）的数量明显减少, 从而减轻了 NameNode 的负载。</p>
+<p>升级 HDFS 可能会有风险, 因为它可能会导致停机、性能下降或数据丢失。为了解决这些可能的问题, 我们花了几个月的时间来验证 Apache  2.8.2 之后才将其部署到生产环境中。但是, 在升级最大的生产集群时, 仍然有一个 Bug (HDFS-12800) 让我们措手不及。尽管 Bug 引起的问题很晚才发现, 但是凭借独立群集、分阶段升级过程（a staged upgrade process）和应急回滚计划（contingency rollback plans），最后给我们的影响非常有限。</p>
+<p>事实证明，在同一台服务器上运行不同版本的 YARN 和 HDFS 的能力对于我们实现扩展至关重要。由于 YARN 和 HDFS 都是 Hadoop 的一部分, 它们通常一起升级。然而,  YARN 主线版本的升级需要更长时间的充分验证之后才会推出, 一些生产应用的 YARN 可能需要更新，由于 YARN  API 的变化或  YARN 和这些应用的 JAR 依赖冲突。虽然 YARN 的可伸缩性在我们的环境中不是一个问题, 但我们不希望关键的 HDFS 升级被 YARN 升级阻塞。为了防止可能的堵塞, 我们目前运行的 YARN 比 HDFS 的版本更早, 在我们的场景很有效。(但是, 当采用诸如 Erasure Coding 之类的功能时, 由于需要更改客户端, 此策略可能不起作用。）</p>
+<h4 id="NameNode-Garbage-collection"><a href="#NameNode-Garbage-collection" class="headerlink" title="NameNode Garbage collection"></a>NameNode Garbage collection</h4><p>垃圾回收 (Garbage collection , GC) 调优在整个优化方案中也发挥了重要作用。它在扩展存储基础架构的同时，给我们创造了必要的喘息空间。</p>
+<p>通过强制使用并发标记扫描收集器 (Concurrent Mark Sweep collectors ，CMS) 防止长时间 GC 暂停, 通过调整 CMS 参数 (如 CMSInitiatingOccupancyFraction、UseCMSInitiatingOccupancyOnly 和 CMSParallelRemarkEnabled ) 来执行更具侵略性的老年代集合（注：CMS 是分代的，新生代和老年代都会发生回收。CMS 尝试通过多线程并发的方式来跟踪对象的可达性，以便减少老生代的收集时间）。虽然会增加 CPU 利用率, 但幸运的是我们有足够的空闲 CPU 来支持此功能。</p>
+<p>由于繁重的 RPC 负载, 在新生代中创建了大量短期的对象, 迫使新生代收集器频繁地执行垃圾回收暂停（stop-the-world）。通过将新生代的规模从 1.5GB 增加到 16GB , 并调整 ParGCCardsPerStrideChunk 值 (设置为 32768), 生产环境中 NameNode 在 GC 暂停时所花费的总时间从 13% 减少到 1.7% , 吞吐量增加了 10% 以上。</p>
+<p>与 GC 相关的 JVM 参数( NameNode  堆大小 160GB ）, 供参考：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">XX:+UnlockDiagnosticVMOptions</span><br><span class="line">XX:ParGCCardsPerStrideChunk=32768 -XX:+UseParNewGC</span><br><span class="line">XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled</span><br><span class="line">XX:CMSInitiatingOccupancyFraction=40</span><br><span class="line">XX:+UseCMSInitiatingOccupancyOnly</span><br><span class="line">XX:+CMSParallelRemarkEnabled -XX:+UseCondCardMark</span><br><span class="line">XX:+DisableExplicitGC</span><br></pre></td></tr></table></figure>
+<p>Uber 还在评估是否将第一垃圾回收器 (Garbage-First Garbage Collector , G1GC) 集成在系统中。虽然在过去使用 G1GC 时没有看到优势, 但 JVM 的新版本带来了额外的垃圾回收器性能改进, 因此重新审视收集器和配置的选择有时是必要的。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-3.png" alt="Figure 3. By increasing the young generation size from 1.5GB to 16GB and tuning the ParGCCardsPerStrideChunk value, the total time our production NameNode spent on GC pause decreased from 13 percent to 1.7 percent."></li>
+</ul>
+<h4 id="Controlling-the-number-of-small-files"><a href="#Controlling-the-number-of-small-files" class="headerlink" title="Controlling the number of small files"></a>Controlling the number of small files</h4><p>由于 NameNode 将所有文件元数据加载到内存中, 小文件增长会增加 NameNode 的内存压力。此外, 小文件会导致读取 RPC 调用增加, 以便在客户端读取文件时访问相同数量的数据, 以及在生成文件时增加 RPC 调用。为了减少存储中小文件的数量, Uber 主要采取了两种方法：</p>
+<p>首先，Uber Hadoop 数据平台团队基于 Hoodie 库建立了新的摄取管道, 生成比原始数据管道创建的更大的文件。不过, 作为一个临时解决方案, 在这些可用之前, 我们还建立了一个工具 (称为 stitcher  “订书机”), 将小文件合并成较大的文件（通常大于 1GB ）。</p>
+<p>其次, 在 Hive 数据库和应用程序目录上设置了严格的命名空间配额。为了贯彻这一目标, 我们为用户创建了一个自助服务工具, 用于管理其组织内的配额。配额的分配比例为每文件 256MB, 以鼓励用户优化其输出文件大小。Hadoop 团队还提供优化指南和文件合并工具以帮助用户采用最佳实践。例如, 在 Hive 上启用自动合并（auto-merge）和调整减速器数量（the number of reducers ）可以大大减少由 Hive   insert-overwrite 查询生成的文件数。</p>
+<h4 id="HDFS-load-management-service"><a href="#HDFS-load-management-service" class="headerlink" title="HDFS load management service"></a>HDFS load management service</h4><p>运行大型多租户基础架构 (如 HDFS ) 的最大挑战之一是检测哪些应用程序导致异常大的负载、如何快速采取措施来修复它们。为了实现这一目的，Uber 构建了内置 HDFS 的负载管理服务, 称为 Spotlight 。</p>
+<p>在目前的 Spotlight 实现中, 审计日志从活跃的 NameNode 以流的形式送到一个基于 Flink 和 Kafka 的后端实时处理。最后，日志分析结果通过仪表板输出, 并用于自动化处理（例如自动禁用帐户或杀死导致 HDFS 减速的工作流）。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-4.png" alt="Figure 4. Spotlight enables us to identify and disable accounts that are causing HDFS slowdown."></li>
+</ul>
+<h4 id="New-Feature-Observer-NameNode"><a href="#New-Feature-Observer-NameNode" class="headerlink" title="New Feature : Observer NameNode"></a>New Feature : Observer NameNode</h4><p>Uber 正在开发一个新的 HDFS 功能 Observer NameNode (HDFS-12975)   。 Observer NameNode 设计为一个 NameNode 只读副本, 目的是减少在活跃的 NameNode 群集上加载。由于 HDFS RPC 容量和增长的一半以上来自只读的 Presto 查询, Uber 希望借助 Observer NameNodes 的帮助将总体 NameNode 吞吐量扩展到 100% 。Uber 已经完成了这个工具的验证, 并正在将其投入生产环境中。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-5.jpg" alt="Figure 5. Uber Engineering’s current HDFS architecture incorporates high availability and Observer NameNodes."></li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ul>
+<li>Layer your solutions: 考虑不同层次的解决方案。实现像 Observer NameNode 那样的工具或将 HDFS 切分到多集群需要付出巨大的努力。短期措施, 如 GC 调整和通过 stitcher 合并较小的文件, 给了我们很多喘息的空间以开发完善长期的解决方案。</li>
+<li>Bigger is better: 因为小文件对 HDFS 的威胁, 所以最好及早解决它们, 而不是延后。主动向用户提供工具、文档和培训是帮助实施最佳实践非常有效的方法。</li>
+<li>Participate in the community: Hadoop 已经存在超过 10 年了, 其社区比以往任何时候都更加活跃, 几乎每个版本中都引入了可伸缩性和功能改进。通过贡献您自己的发现和工具来参与 Hadoop 社区对于你持续扩展基础架构非常重要。</li>
+</ul>
+<h2 id="未来"><a href="#未来" class="headerlink" title="未来"></a>未来</h2><p>在不久的将来, Uber 计划将各种新服务集成到存储系统（如 图6 所示）。</p>
+<ul>
+<li><img src="http://riboseyim-qiniu.riboseyim.com/Uber-Hadoop-201809-6.png" alt="Figure 6. Our near-future HDFS architecture will incorporate several additional features and functionalities that will contribute to the growth of our storage
+infrastructure."></li>
+</ul>
+<p>接下来重点介绍两个主要项目, 基于路由的 HFDS Federation 和 tiered storage :</p>
+<h4 id="Router-based-HDFS-Federation"><a href="#Router-based-HDFS-Federation" class="headerlink" title="Router-based HDFS Federation"></a>Router-based HDFS Federation</h4><p>Uber 目前使用 ViewFs 扩展 HDFS （当 subclusters 超载时）。此方法的主要问题是, 每次在 ViewFs 上添加或替换新的挂载点时, 都需要更改客户端配置, 而且很难在不影响生产工作流的情况下进行。这种困境是我们目前只拆分不需要大规模更改客户端数据的主要原因之一, 例如 YARN 日志聚合。</p>
+<p>Microsoft 的新倡议—基于路由的 HFDS Federation (<a target="_blank" rel="noopener" href="https://issues.apache.org/jira/browse/HDFS-10467">HDFS-10467</a>, <a target="_blank" rel="noopener" href="https://issues.apache.org/jira/browse/HDFS-12615">HDFS-12615</a>),目前包含在 HDFS 2.9 版本中, 是一个基于 ViewFs 的分区联盟的扩展。该联盟添加了一层软件集中管理 HDFS 命名空间。通过提供相同的接口 (RPC 和 WebHDFS 的组合), 它的外层为用户提供了对任何 subclusters 的透明访问, 并让 subclusters 独立地管理其数据。</p>
+<p>通过提供再平衡工具( a rebalancing tool ), 联盟层( the federation layer )还将支持跨 subclusters 的透明数据移动, 用于平衡工作负载和实现分层存储。联盟层集中式维护状态存储区中全局命名空间的状态, 并允许多个活跃的路由器将用户请求定向到正确的 subclusters 时启动和运行。</p>
+<p>Uber 正在积极地与 Hadoop 社区密切协作，致力于将基于路由的 HDFS Federation 引入到生产环境, 并进一步开源改进, 包括支持 WebHDFS 。</p>
+<h4 id="Tiered-Storage"><a href="#Tiered-Storage" class="headerlink" title="Tiered Storage"></a>Tiered Storage</h4><p>随着基础架构的规模增长, 降低存储成本的重要性也同样重要。Uber 技术团队中进行的研究表明, 相较旧数据 (warm data)  用户会更频繁地访问最近的数据 (hot data)。将旧数据移动到一个单独的、占用较少资源的层将大大降低我们的存储成本。HDFS  Erasure Coding 、Router-based Federation、高密度 (250TB 以上) 硬件和数据移动服务 (在 “热” 层群集和 “暖” 层群集之间处理移动数据) 是即将进行的分层存储设计的关键组件。Uber 计划在以后的文章中分享在分层存储实现方面的经验。</p>
+<h2 id="Apache-Hadoop-ABC"><a href="#Apache-Hadoop-ABC" class="headerlink" title="Apache Hadoop ABC"></a>Apache Hadoop ABC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop version</span><br><span class="line">Hadoop 3.1.0</span><br><span class="line">Source code repository https://github.com/apache/hadoop -r 16b70619a24cdcf5d3b0fcf4b58ca77238ccbe6d</span><br><span class="line">Compiled by centos on 2018-03-30T00:00Z</span><br><span class="line">Compiled with protoc 2.5.0</span><br><span class="line">From <span class="built_in">source</span> with checksum 14182d20c972b3e2105580a1ad6990</span><br><span class="line">This <span class="built_in">command</span> was run using /usr/<span class="built_in">local</span>/Cellar/hadoop/3.1.0/libexec/share/hadoop/common/hadoop-common-3.1.0.jar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常见异常：检查 JDK 版本是否过低</span></span><br><span class="line">$ hadoop version</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.UnsupportedClassVersionError: org/apache/hadoop/util/VersionInfo : Unsupported major.minor version 52.0</span><br><span class="line">	at java.lang.ClassLoader.defineClass1(Native Method)</span><br></pre></td></tr></table></figure>
+<h4 id="Java-Garbage-Collection-Types"><a href="#Java-Garbage-Collection-Types" class="headerlink" title="Java Garbage Collection Types"></a>Java Garbage Collection Types</h4><ul>
+<li><p>Serial GC (-XX:+UseSerialGC): Serial GC uses the simple mark-sweep-compact approach for young and old generations garbage collection i.e Minor and Major GC.<br>Serial GC is useful in client-machines such as our simple stand alone applications and machines with smaller CPU. It is good for small applications with low memory footprint.</p>
+</li>
+<li><p>Parallel GC (-XX:+UseParallelGC): Parallel GC is same as Serial GC except that is spawns N threads for young generation garbage collection where N is the number of CPU cores in the system. We can control the number of threads using -XX:ParallelGCThreads=n JVM option.<br>Parallel Garbage Collector is also called throughput collector because it uses multiple CPUs to speed up the GC performance. Parallel GC uses single thread for Old Generation garbage collection.</p>
+</li>
+<li><p>Parallel Old GC (-XX:+UseParallelOldGC): This is same as Parallel GC except that it uses multiple threads for both Young Generation and Old Generation garbage collection.<br>Concurrent Mark Sweep (CMS) Collector (-XX:+UseConcMarkSweepGC): CMS Collector is also referred as concurrent low pause collector. It does the garbage collection for Old generation. CMS collector tries to minimize the pauses due to garbage collection by doing most of the garbage collection work concurrently with the application threads.<br>CMS collector on young generation uses the same algorithm as that of the parallel collector. This garbage collector is suitable for responsive applications where we can’t afford longer pause times. We can limit the number of threads in CMS collector using -XX:ParallelCMSThreads=n JVM option.</p>
+</li>
+<li><p>G1 Garbage Collector (-XX:+UseG1GC): The Garbage First or G1 garbage collector is available from Java 7 and it’s long term goal is to replace the CMS collector. The G1 collector is a parallel, concurrent, and incrementally compacting low-pause garbage collector.<br>Garbage First Collector doesn’t work like other collectors and there is no concept of Young and Old generation space. It divides the heap space into multiple equal-sized heap regions. When a garbage collection is invoked, it first collects the region with lesser live data, hence “Garbage First”. You can find more details about it at Garbage-First Collector Oracle Documentation.</p>
+</li>
+</ul>
+<h2 id="扩展阅读：电子书《Linux-Perf-Master》"><a href="#扩展阅读：电子书《Linux-Perf-Master》" class="headerlink" title="扩展阅读：电子书《Linux Perf Master》"></a>扩展阅读：电子书《Linux Perf Master》</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.gitbook.io/perf">https://riboseyim.gitbook.io/perf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/linux-perf-master/details">https://www.gitbook.com/book/riboseyim/linux-perf-master/details</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/banner-LPM-201803.png" alt=""></p>
+<h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/08/01/OpenSource-Hadoop/">开源架构技术漫谈：Hadoop</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/">基于Kafka构建事件溯源型微服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/23/RestfulAPI/">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/SDN/">SDN 技术指南（一）: 架构概览</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/22/SDN-OpenFlow/">SDN 技术指南（二）: OpenFlow </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/">计算机远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/09/01/AAA/">基于LVS的AAA负载均衡架构实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/04/OpenSource-Ganglia/">基于Ganglia实现服务集群性能态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">Stack Overflow：云计算平台的趋势分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">Stack Overflow：2017年最赚钱的编程语言</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/07/17/OpenSource-StackOverflow/">Stack Overflow: The Architecture &amp; Hardware - 2016 Edition</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java#java-visualvm-with-visual-gc">Java (JVM) Memory Model – Memory Management in Java</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.0.0/data-storage/content/example_viewfs_mounttable_entries.html">Example of ViewFs mount table entries</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.twitter.com/engineering/en_us/a/2015/hadoop-filesystem-at-twitter.html">Hadoop filesystem at Twitter</a></li>
+<li><a target="_blank" rel="noopener" href="http://dongxicheng.org/mapreduce/hdfs-federation-introduction/">董的博客-HDFS Federation设计动机与基本原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/presto.html">Presto实现原理和美团的使用实践</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/08/01/OpenSource-Hadoop/" data-id="ckwgm33mm00hs7b1y6ycx7bqz" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/07/Linux-Perf-JVM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断:JVM
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/07/Writing-Email/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">如何写邮件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-Apache-Hadoop-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">Introduction | Apache Hadoop 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core-Concept-Apache-Hadoop-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">Core Concept | Apache Hadoop 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-A"><span class="toc-number">3.0.1.</span> <span class="toc-text">Concept A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-B"><span class="toc-number">3.0.2.</span> <span class="toc-text">Concept B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Concept-C"><span class="toc-number">3.0.3.</span> <span class="toc-text">Concept C</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Apache-Hadoop-%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">Architecture | Apache Hadoop 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practice-Apache-Hadoop-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">5.</span> <span class="toc-text">Best Practice | Apache Hadoop 最佳实践</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uber-Hadoop-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number"></span> <span class="toc-text">Uber Hadoop 文件系统最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges"><span class="toc-number">1.</span> <span class="toc-text">Challenges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enabling-scaling-amp-improving-performance"><span class="toc-number">2.</span> <span class="toc-text">Enabling scaling &amp; improving performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Scaling-out-using-ViewFs"><span class="toc-number">2.0.1.</span> <span class="toc-text">Scaling out using ViewFs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HDFS-upgrades"><span class="toc-number">2.0.2.</span> <span class="toc-text">HDFS upgrades</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NameNode-Garbage-collection"><span class="toc-number">2.0.3.</span> <span class="toc-text">NameNode Garbage collection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Controlling-the-number-of-small-files"><span class="toc-number">2.0.4.</span> <span class="toc-text">Controlling the number of small files</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HDFS-load-management-service"><span class="toc-number">2.0.5.</span> <span class="toc-text">HDFS load management service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#New-Feature-Observer-NameNode"><span class="toc-number">2.0.6.</span> <span class="toc-text">New Feature : Observer NameNode</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.</span> <span class="toc-text">最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5"><span class="toc-number">4.</span> <span class="toc-text">未来</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Router-based-HDFS-Federation"><span class="toc-number">4.0.1.</span> <span class="toc-text">Router-based HDFS Federation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tiered-Storage"><span class="toc-number">4.0.2.</span> <span class="toc-text">Tiered Storage</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Hadoop-ABC"><span class="toc-number">5.</span> <span class="toc-text">Apache Hadoop ABC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-Garbage-Collection-Types"><span class="toc-number">5.0.1.</span> <span class="toc-text">Java Garbage Collection Types</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E7%94%B5%E5%AD%90%E4%B9%A6%E3%80%8ALinux-Perf-Master%E3%80%8B"><span class="toc-number">6.</span> <span class="toc-text">扩展阅读：电子书《Linux Perf Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%BC%80%E6%BA%90%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%BC%AB%E8%B0%88"><span class="toc-number">7.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

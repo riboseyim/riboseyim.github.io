@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Machine Learning:Training Models | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning:Training Models">
+<meta property="og:url" content="https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-02-27T06:23:57.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.345Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="数学与算法">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-TrainModel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/27/Machine-Learning-TrainModel/" class="article-date">
+  <time datetime="2018-02-27T06:23:57.000Z" itemprop="datePublished">2018-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning:Training Models
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/" data-id="ckwgm33m800ey7b1yxvdus9on" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><span id="more"></span>
+<h2 id="Previous"><a href="#Previous" class="headerlink" title="Previous"></a>Previous</h2><p>前文回顾：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning (二) : 宠物智能识别之 Using OpenCV with Node.js</a></li>
+</ul>
+<p>上面的文章中提到了机器学习的预测结果受模型质量的影响很大，如果想要取得好的效果需要通过训练增强优化。</p>
+<h4 id="Training-Data"><a href="#Training-Data" class="headerlink" title="Training Data"></a>Training Data</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://download.tensorflow.org/example_images/flower_photos.tgz \| tar xz -C tf_files</span><br></pre></td></tr></table></figure>
+<h4 id="Training-the-Network"><a href="#Training-the-Network" class="headerlink" title="Training the Network"></a>Training the Network</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/googlecodelabs/tensorflow-for-poets-2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python scripts/retrain.py</span><br><span class="line">--image_dir=tf_files/flower_photos</span><br><span class="line">--output_graph=tf_files/retrained_graph.pb</span><br><span class="line">--output_labels=tf_files/retrained_labels.txt</span><br></pre></td></tr></table></figure>
+<h4 id="Test-Using-the-Retrained-Model"><a href="#Test-Using-the-Retrained-Model" class="headerlink" title="Test:Using the Retrained Model"></a>Test:Using the Retrained Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/label_image.py --image data/daisy.jpg</span><br></pre></td></tr></table></figure>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">node &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;DecodeJpeg/contents&quot;</span></span><br><span class="line">  <span class="attr">op</span>: <span class="string">&quot;Const&quot;</span></span><br><span class="line">  attr &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&quot;dtype&quot;</span></span><br><span class="line">    value &#123;</span><br><span class="line">      <span class="attr">type</span>: DT_STRING</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  attr &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&quot;value&quot;</span></span><br><span class="line">    value &#123;</span><br><span class="line">      tensor &#123;</span><br><span class="line">        <span class="attr">dtype</span>: DT_STRING</span><br><span class="line">        tensor_shape &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attr">string_val</span>: <span class="string">&quot;\377\330.......&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">node &#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&quot;softmax/biases&quot;</span></span><br><span class="line"><span class="attr">op</span>: <span class="string">&quot;Const&quot;</span></span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;dtype&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">type</span>: DT_FLOAT</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;value&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line">tensor &#123;</span><br><span class="line">  <span class="attr">dtype</span>: DT_FLOAT</span><br><span class="line">  tensor_shape &#123;</span><br><span class="line">    dim &#123;</span><br><span class="line">      <span class="attr">size</span>: <span class="number">1008</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attr">tensor_content</span>: <span class="string">&quot;\312\277\006&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">node &#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&quot;softmax/logits/MatMul&quot;</span></span><br><span class="line"><span class="attr">op</span>: <span class="string">&quot;MatMul&quot;</span></span><br><span class="line"><span class="attr">input</span>: <span class="string">&quot;pool_3/_reshape&quot;</span></span><br><span class="line"><span class="attr">input</span>: <span class="string">&quot;softmax/weights&quot;</span></span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;T&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">type</span>: DT_FLOAT</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;transpose_a&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">b</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;transpose_b&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">b</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">node &#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&quot;softmax/logits&quot;</span></span><br><span class="line"><span class="attr">op</span>: <span class="string">&quot;BiasAdd&quot;</span></span><br><span class="line"><span class="attr">input</span>: <span class="string">&quot;softmax/logits/MatMul&quot;</span></span><br><span class="line"><span class="attr">input</span>: <span class="string">&quot;softmax/biases&quot;</span></span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;T&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">type</span>: DT_FLOAT</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">node &#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&quot;softmax&quot;</span></span><br><span class="line"><span class="attr">op</span>: <span class="string">&quot;Softmax&quot;</span></span><br><span class="line"><span class="attr">input</span>: <span class="string">&quot;softmax/logits&quot;</span></span><br><span class="line">attr &#123;</span><br><span class="line"><span class="attr">key</span>: <span class="string">&quot;T&quot;</span></span><br><span class="line">value &#123;</span><br><span class="line"><span class="attr">type</span>: DT_FLOAT</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Optional-Parameters"><a href="#Optional-Parameters" class="headerlink" title="Optional Parameters"></a>Optional Parameters</h4><h4 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">22:17:28.523085: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn&#x27;t compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.</span><br><span class="line">22:17:28 NodeDef mentions attr &#x27;dilations&#x27; not in Op&lt;name=Conv2D; signature=input:T, filter:T -&gt; output:T; attr=T:type,allowed=[DT_HALF, DT_FLOAT]; attr=strides:list(int); attr=use_cudnn_on_gpu:bool,default=true; attr=padding:string,allowed=[&quot;SAME&quot;, &quot;VALID&quot;]; attr=data_format:string,default=&quot;NHWC&quot;,allowed=[&quot;NHWC&quot;, &quot;NCHW&quot;]&gt;; NodeDef: conv/Conv2D = Conv2D[T=DT_FLOAT, data_format=&quot;NHWC&quot;, dilations=[1, 1, 1, 1], padding=&quot;VALID&quot;, strides=[1, 2, 2, 1], use_cudnn_on_gpu=true](Mul, conv/conv2d_params). (Check whether your GraphDef-interpreting binary is up to date with your GraphDef-generating binary.).</span><br><span class="line"></span><br><span class="line">22:22:02.629987: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.2 AVX AVX2 FMA</span><br></pre></td></tr></table></figure>
+<h2 id="About-Data-Sets"><a href="#About-Data-Sets" class="headerlink" title="About Data Sets"></a>About Data Sets</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/fun-with-small-image-data-sets-part-2-54d683ca8c96">Fun with small image data-sets (Part 2)</a></li>
+</ul>
+<h2 id="扩展阅读-《The-Machine-Learning-Master》"><a href="#扩展阅读-《The-Machine-Learning-Master》" class="headerlink" title="扩展阅读:《The Machine Learning Master》"></a>扩展阅读:<a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h2><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/J75ZdrNCSwBO1y9o84THQg">综述论文：机器学习中的模型评价、模型选择与算法选择 | 2018-02-02 机器之心</a></li>
+<li><a target="_blank" rel="noopener" href="https://dev.to/michaeljtaylor0/plug--play-machine-learning-models-in-golang--fc0">Plug &amp; Play Machine Learning Models in GoLang |  BAYESIAN CLASSIFICATION</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackernoon.com/train-your-machine-learning-models-on-googles-gpus-for-free-forever-a41bd309d6ad">Train Your Machine Learning Models on Google’s GPUs for Free — Forever</a></li>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/how-do-we-train-neural-networks-edd985562b73">How do we ‘train’ neural networks ?</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/02/27/Machine-Learning-TrainModel/" data-id="ckwgm33m800ey7b1yxvdus9on" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/02/eBook-MLM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          电子书：《Machine Learning Master》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/16/DTrace-Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">动态追踪技术(五)：DTrace for Linux</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Previous"><span class="toc-number">2.</span> <span class="toc-text">Previous</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Training-Data"><span class="toc-number">2.0.1.</span> <span class="toc-text">Training Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Training-the-Network"><span class="toc-number">2.0.2.</span> <span class="toc-text">Training the Network</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test-Using-the-Retrained-Model"><span class="toc-number">2.0.3.</span> <span class="toc-text">Test:Using the Retrained Model</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model"><span class="toc-number">3.</span> <span class="toc-text">Model</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Optional-Parameters"><span class="toc-number">3.0.1.</span> <span class="toc-text">Optional Parameters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Questions"><span class="toc-number">3.0.2.</span> <span class="toc-text">Questions</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Data-Sets"><span class="toc-number">4.</span> <span class="toc-text">About Data Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB-%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读:《The Machine Learning Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

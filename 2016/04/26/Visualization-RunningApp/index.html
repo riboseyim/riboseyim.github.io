@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数据可视化（二）跑步应用数据可视化评测 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 案例：跑步应用Nike+ Running 和 Garmin Mobile 评测 评估场景：跑步 评估时间：2016.02.22 评估说明：所有评测数据为作者真实体验测量，不针对特定厂家。 首发版（简书）：跑步应用Nike+ Running 和 Garmin Mobile 评测 |20160222">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化（二）跑步应用数据可视化评测">
+<meta property="og:url" content="https://riboseyim.com/2016/04/26/Visualization-RunningApp/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 案例：跑步应用Nike+ Running 和 Garmin Mobile 评测 评估场景：跑步 评估时间：2016.02.22 评估说明：所有评测数据为作者真实体验测量，不针对特定厂家。 首发版（简书）：跑步应用Nike+ Running 和 Garmin Mobile 评测 |20160222">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%AF%84%E4%BC%B0%E6%98%8E%E7%BB%86.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E4%B8%BB%E9%A1%B5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%97%A5%E5%8E%86.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%8E%A8%E8%8D%90.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E7%A4%BE%E4%BA%A4.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%8D%A3%E8%AA%89.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%8D%A3%E8%AA%89_Garmin.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%95%99%E7%BB%83.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E7%A1%AC%E4%BB%B6.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E4%B8%8D%E8%B6%B3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%A4%A9%E6%B0%94.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%87%80%E8%AF%84%E4%BC%B0.png">
+<meta property="article:published_time" content="2016-04-26T03:59:39.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:10.568Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="运动">
+<meta property="article:tag" content="体能训练">
+<meta property="article:tag" content="移动互联网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Visualization-RunningApp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/Visualization-RunningApp/" class="article-date">
+  <time datetime="2016-04-26T03:59:39.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据可视化（二）跑步应用数据可视化评测
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/04/26/Visualization-RunningApp/" data-id="ckwgm33pj014u7b1yk8ccqq06" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83/" rel="tag">体能训练</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">移动互联网</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E5%8A%A8/" rel="tag">运动</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>案例：跑步应用Nike+ Running 和 Garmin Mobile 评测</li>
+<li>评估场景：跑步</li>
+<li>评估时间：2016.02.22</li>
+<li>评估说明：所有评测数据为作者真实体验测量，不针对特定厂家。</li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/5290fc641230">首发版（简书）：跑步应用Nike+ Running 和 Garmin Mobile 评测 |20160222</a></li>
+</ul>
+<span id="more"></span>
+<h4 id="评估框架"><a href="#评估框架" class="headerlink" title="评估框架"></a>评估框架</h4><p>本次评估将以此为框架，逐一对比，双方都有的特性直接抵消忽略，不再讨论。核心子系统可概括为：硬件平台、跑步系统、数据分析系统、教练系统、荣誉系统、社交系统、其它支持。作为一款个人应用产品，社交系统是各厂追逐的王冠。</p>
+<ul>
+<li>评估框架</li>
+<li>竞争项目明细<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%AF%84%E4%BC%B0%E6%98%8E%E7%BB%86.png" alt=""></li>
+</ul>
+<h4 id="主页系统"><a href="#主页系统" class="headerlink" title="主页系统"></a>主页系统</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E4%B8%BB%E9%A1%B5.png" alt=""></p>
+<h4 id="分析系统"><a href="#分析系统" class="headerlink" title="分析系统"></a>分析系统</h4><ul>
+<li>Nike: 数据高度融合，无时无刻不突出变化、突出趋势</li>
+<li>Garmin:数据离散、基本无融合，平铺直叙  (更正：20160513 v3.6 已实现心率、高度、步频叠加层)<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_1.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_2.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%88%86%E6%9E%90_3.png" alt=""></li>
+</ul>
+<h4 id="社交应用"><a href="#社交应用" class="headerlink" title="社交应用"></a>社交应用</h4><p>基于庞大的消费群体、软件的低门槛，Nike+ Running的用户基数应该大很多（暂无统计数字支撑）。</p>
+<ul>
+<li>日历系统：各有千秋<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%97%A5%E5%8E%86.png" alt=""></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%8E%A8%E8%8D%90.png" alt="佳明自动推荐赛段功能，赞"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E7%A4%BE%E4%BA%A4.png" alt=""></p>
+<h4 id="荣誉系统"><a href="#荣誉系统" class="headerlink" title="荣誉系统"></a>荣誉系统</h4><p>在这一单项中，Garmin的劣势非常明显，完全暴露的产品设计、运营能力的巨大短板。<br>Nike+ Running则形成了非常完善的勋章系统，有利于提高用户粘性，为很多厂家所借鉴。包括但不限于：</p>
+<ul>
+<li>里程：段位等级制（个人综合）   奖杯制 （每月，分为金、银、铜等）</li>
+<li>积分：5K、10K、50K、100K等</li>
+<li>连续性：1周3次、1周5次、连续3个月、连续6个月等</li>
+<li><p>纪念性：周年、特殊节日、夜猫子、运动鞋、微博分享纪念等</p>
+</li>
+<li><p>荣誉系统－Nike+徽章体系<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%8D%A3%E8%AA%89.png" alt=""></p>
+</li>
+<li><p>荣誉系统－Garmin徽章体系:能走点心吗？<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E8%8D%A3%E8%AA%89_Garmin.png" alt=""></p>
+</li>
+</ul>
+<h4 id="教练系统"><a href="#教练系统" class="headerlink" title="教练系统"></a>教练系统</h4><p>按照不同目标，可以推荐制定个人训练计划，并提供分析数据，不仅提高了趣味性，更体现了对入门级玩家的关怀。<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E6%95%99%E7%BB%83.png" alt=""></p>
+<h4 id="硬件平台"><a href="#硬件平台" class="headerlink" title="硬件平台"></a>硬件平台</h4><p>Garmin自有硬件平台,已经形成高低搭配的产品线，但是也限制了其APP兼容其他硬件厂家的可能性。<br>Nike前几年尝试过内嵌跑鞋的传感器、TomTom贴牌代工的Sport Watch, 市场反馈看起来不好。几款产品目前都已停产，其战略完全转为纯软件路线：包括第一批支持Apple Watch,成为预置APP，全面支持Apple Health,支持TomTom、Garmin终端采集数据共享。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E7%A1%AC%E4%BB%B6.png" alt=""></p>
+<h4 id="改进空间"><a href="#改进空间" class="headerlink" title="改进空间"></a>改进空间</h4><p>数据分析系统中，如果可以选择多次训练数据进行对比，应用的实用性和娱乐性会更强。甚至可以推荐相同“赛段”的历史数据对比。<br>在户外运动场景，温度、湿度、风力、天气、气压的情况对成绩有较大影响。目前这两款应用都只做到记录当天的天气概况（晴、雨等），对于深度、活跃用户来说略显不足。第三点不足，基于众所周知的原因，或者大陆运营力量的不足，数据上传、售后服务皆有不稳定的情况。<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E4%B8%8D%E8%B6%B3.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%A4%A9%E6%B0%94.png" alt=""></p>
+<ul>
+<li>结论</li>
+<li>Nike+ Running： 系出豪门，设计感强，交互体验完胜；</li>
+<li>Garmin Connect Mobile : 自有硬件平台优势突出，设计体验凌乱，运营优待提升。<br><img src="http://riboseyim-qiniu.riboseyim.com/APP_Running_201602_Garmin_Nike_%E5%87%80%E8%AF%84%E4%BC%B0.png" alt=""></li>
+</ul>
+<h2 id="扩展阅读：数据可视化"><a href="#扩展阅读：数据可视化" class="headerlink" title="扩展阅读：数据可视化"></a>扩展阅读：数据可视化</h2><ul>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
+<li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
+<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
+</ul>
+<h2 id="参考案例"><a href="#参考案例" class="headerlink" title="参考案例"></a>参考案例</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VZy7kqUL2P9q6uggqc02Sw">共享单车APP评测 | 优恪</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/04/26/Visualization-RunningApp/" data-id="ckwgm33pj014u7b1yk8ccqq06" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83/" rel="tag">体能训练</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">移动互联网</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E5%8A%A8/" rel="tag">运动</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/Linux-Perf-Master/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux 性能诊断高级课程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/26/OpenSource-ZeroMQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源技术架构漫谈：消息中间件(ZeroMQ)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">评估框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%A1%B5%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.2.</span> <span class="toc-text">主页系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">分析系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BE%E4%BA%A4%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.4.</span> <span class="toc-text">社交应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8D%A3%E8%AA%89%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.5.</span> <span class="toc-text">荣誉系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%99%E7%BB%83%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.6.</span> <span class="toc-text">教练系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.0.7.</span> <span class="toc-text">硬件平台</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E7%A9%BA%E9%97%B4"><span class="toc-number">1.0.8.</span> <span class="toc-text">改进空间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%A1%88%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">参考案例</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

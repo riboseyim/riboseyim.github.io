@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>珠海航展交通管控实践 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 工程案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="珠海航展交通管控实践">
+<meta property="og:url" content="https://riboseyim.com/2016/11/20/Network-Traffic/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 工程案例">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_02.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_030.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_04.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_06.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_08.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_09.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_12.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_11.png">
+<meta property="article:published_time" content="2016-11-20T03:02:31.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.129Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Network-Traffic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/20/Network-Traffic/" class="article-date">
+  <time datetime="2016-11-20T03:02:31.000Z" itemprop="datePublished">2016-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      珠海航展交通管控实践
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="ckwgm33mj00h37b1y3h3pnafp" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>工程案例</li>
+</ul>
+<span id="more"></span>
+<p>从2008年算起，笔者已经参加了5届珠海航展。在过去的航展中，群众“吐槽”最多的就是航展期间的交通，笔者亲身经历过的几次，无论是公交还是私家车方式，都体会到了“机场航展、路上车展”的拥堵悲壮感。</p>
+<p>2016年珠海航展的交通状况却出奇的好，这引起了我的研究兴趣——按照Google SRE的理念，我们应该思考，自己的实践经验是否可以在其它行业复制，不同领域的成功实践是否能为我所借鉴学习。那么这次成功交通流量管控实践，是否可以为解决信息系统性能问题、架构设计优化提供借鉴思路呢？谨以此文，聊作记录。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>展馆位于珠海市三灶机场。机场本身是在一个南面临海的半岛，展会期间的主要流量方向来自市区、珠三角城市群、外地经广深中转人群。主要的人、车流量会从北、东、西三个方面汇入，穿越市区，经过跨海大桥以及机场高速，进入珠海西部区域。如图所示：<br><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_01.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_02.png" alt=""></p>
+<p>这是一个典型的流量突发峰值场景：<br>1、东部区域为主要流量入口，西部区域交通路网稀疏，对接容量不足；沿途多山靠海，地形地貌蜿蜒复杂，任意一点出现延时，会很快扩散，回旋空间小；<br>2、航展两年举办一次，每次一周。特别为此硬性扩容，经济性太差；<br>3、整个业务链条存在明显的薄弱环节：珠海大桥（珠海大道主干道单向4车道，辅道单向3车道，7条车道的车流集中汇集在珠海大桥上桥处，而珠海大桥单向只有3车道）；</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_030.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_04.png" alt=""></p>
+<p>治理目标：<br>1、保障展会沿途交通线路通畅：即最大限度提升现有基础设施的通行效率，同时管控流量波动，防止超过预期的突发峰值；<br>2、提供弹性扩容能力，预留一定冗余容量，突发事件预案；<br>3、不能明显影响现有生产业务（城市功能仍需正常运转）。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="一、总量预算"><a href="#一、总量预算" class="headerlink" title="一、总量预算"></a>一、总量预算</h3><p>a) 公众日每天进场人数不超8万人<br>b)取消现场售票，提高展区周边通行效率，也防止无序流量；<br>c) 取消三日通票，按日售票，通过票务系统引导，分摊每日流量负荷。</p>
+<p>最难的恐怕是测算。根据官方通报，主要由道路交通、餐饮等现场承载力测算，应该会参考往年的历史数据，旅行社市场调研情况，甚至可能是官网访问点击数据等。当然实际过程应该比较复杂，暂时没有一手信息，暂且掠过。</p>
+<p>另外，技术上测算完了之后，也需要有人敢于为决策拍板。毕竟测算失误，是需要承担责任风险的，压力环境下如何决策是很值得研究的。总之，技术决策过程，都需要有一个人能下最后决心的。</p>
+<h3 id="二、流量路径规划"><a href="#二、流量路径规划" class="headerlink" title="二、流量路径规划"></a>二、流量路径规划</h3><p>第一，优先保障航展核心区交通顺畅；<br>第二，设置外围停车场，实行小客车“P+R”停车换乘<br>第三，安排大运量公共交通接驳，减少核心展区交通压力；<br>第四，设置航展专用车道，保障公交、旅游包车等优先通行；<br>第五，最薄弱环节珠海大道启用同向红绿灯，增设导流实线。<br><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_06.png" alt=""></p>
+<p>往届现场车辆大排长龙的景像今年没有出现，一路畅通。从技术上分析，上述方案能够取得明显效果，主要思路是一致的，即采用“负载均衡+缓存”机制，适当降低某些业务的优先级和时延，提升通行效率，保证整体可用性。具体表现为：</p>
+<p><strong>1、负载均衡</strong><br>针对全线关键薄弱环节的瓶颈，将分流管制区放在珠海大桥之前，将大客车和自驾车流量分离，实际上起到了负载均衡的作用。负载均衡算法增加了大客车的优先权重，虽然会增加自驾车20分钟左右的绕行时间，但是保证了系统整体可用。比起大车小车挤成罐头的惨烈场景，这点损耗非常划算。</p>
+<p>另外，在珠海大道开启二级负载均衡。主要措施：启用同向红绿灯，红绿灯口被重新划分为6个车道，每个车道会对应一个信号灯组，增设导流实线。限制加塞变道、不同方向车流抢道的现象发生。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_08.png" alt=""></p>
+<p><strong>2、缓存机制</strong></p>
+<p>一级缓存：自驾车换乘区。将小型自驾车引导进入附近的换乘停车场，而不是直接驶入核心区，中间调用大客车接驳。减少核心区的空间压力，也能聚拢零散客流。</p>
+<p>二级缓存：核心区停车场。根据当时现场情况观察，展区周边的停车位经过统一规划，几乎没有乱停乱摆的情况发生。所有观展客流下车即进入验票口的蛇形验票队伍，出来即可换乘接驳大巴，团进团出，不会存在以往核心区滞留人群混乱的局面。</p>
+<p><strong>3、实时监控能力升级</strong></p>
+<p>例如 <strong>无人机：</strong>：使用无人机监控道路、停车场地等，提供更灵活的巡逻方式，扩大巡逻覆盖面。既缓解警力不足问题，也减少监控死角，对于潜在违规驾驶人也有一定震慑作用，有利于规范道路行车秩序。</p>
+<p><strong>高德地图</strong>：当地警方与高德地图合作，航展期间将联合运营实现出行道路交通管制信息和场馆周边停车场、换乘点等信息的实时发布，引导观众避开拥堵路段。<br>此外，<strong>出租车GPS可视化系统</strong>、高配置的警用摩托车等装备也有一定特色。</p>
+<p>上述方案能够落实到位，我相信是与大量引用新型技术密不可分的。<br><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_09.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_12.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Traffic_Question_ZH2016_11.png" alt=""></p>
+<h2 id="2016珠海航展图集"><a href="#2016珠海航展图集" class="headerlink" title="2016珠海航展图集"></a>2016珠海航展图集</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/0d67dc1a0ad4">2016珠海航展 中国八一飞行表演队</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/0d67dc1a0ad4">2016珠海航展 俄罗斯勇士&amp;雨燕飞行表演队</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/0d67dc1a0ad4">2016珠海航展 英国皇家空军红箭飞行表演队</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://zhangyi.farbox.com/post/architecture/traffic-jam-and-performance-tuning">张逸：交通堵塞与性能优化</a></li>
+<li><a target="_blank" rel="noopener" href="http://coolshell.cn/articles/17416.html">酷壳：缓存更新的套路</a></li>
+<li>拥塞控制：排队理论，控制理论<a target="_blank" rel="noopener" href="http://blog.csdn.net/dog250/article/details/72849985">Bomb250@排队系统拥塞控制的位置</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/11/20/Network-Traffic/" data-id="ckwgm33mj00h37b1y3h3pnafp" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/26/DTrace/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          专题：动态追踪技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/04/OpenSource-Ganglia/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源技术架构漫谈:基于 Ganglia 实现集群性能态势感知</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E9%87%8F%E9%A2%84%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text">一、总量预算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%81%E9%87%8F%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92"><span class="toc-number">3.2.</span> <span class="toc-text">二、流量路径规划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2016%E7%8F%A0%E6%B5%B7%E8%88%AA%E5%B1%95%E5%9B%BE%E9%9B%86"><span class="toc-number">4.</span> <span class="toc-text">2016珠海航展图集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

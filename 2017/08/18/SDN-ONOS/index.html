@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>SDN技术指南：Open Network Operating System | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Samsung 主办 ONOS Build 2017 Google 加入CORD ONOS vs. OpenDaylight">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDN技术指南：Open Network Operating System">
+<meta property="og:url" content="https://riboseyim.com/2017/08/18/SDN-ONOS/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Samsung 主办 ONOS Build 2017 Google 加入CORD ONOS vs. OpenDaylight">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-CORD-architecture.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/small-palace-tower-landmark-place-of-worship-temple.jpg">
+<meta property="article:published_time" content="2017-08-18T04:12:06.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:09.420Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="SDN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/SDN-CORD-architecture.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SDN-ONOS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/18/SDN-ONOS/" class="article-date">
+  <time datetime="2017-08-18T04:12:06.000Z" itemprop="datePublished">2017-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SDN技术指南：Open Network Operating System
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/08/18/SDN-ONOS/" data-id="ckwgm33os01217b1yy1ljxtft" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDN/" rel="tag">SDN</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Samsung 主办 ONOS Build 2017</li>
+<li>Google 加入CORD</li>
+<li>ONOS vs. OpenDaylight</li>
+</ul>
+<span id="more"></span>
+<blockquote>
+<p>ONOS source code, written in Java</p>
+</blockquote>
+<h2 id="ONOS-Architecture"><a href="#ONOS-Architecture" class="headerlink" title="ONOS Architecture"></a>ONOS Architecture</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/SDN-CORD-architecture.png" alt=""></p>
+<h2 id="Samsung-主办-ONOS-Build-2017"><a href="#Samsung-主办-ONOS-Build-2017" class="headerlink" title="Samsung 主办 ONOS Build 2017"></a>Samsung 主办 ONOS Build 2017</h2><p><a target="_blank" rel="noopener" href="https://www.linux.com/blog/onos/2017/8/samsung-hosts-onos-build-2017-and-fuels-sdn-innovation">原文：Samsung Hosts ONOS Build 2017 and Fuels SDN Innovation</a></p>
+<p>三星Samsung将于 9月 20-22 在韩国首尔的研发中心主办 ONOS Build 2017 。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/small-palace-tower-landmark-place-of-worship-temple.jpg" alt=""></p>
+<p>开放网络操作系统(ONOS , Open Network Operating System) 社区在全世界各个地区快速发展，ONOS Build 2017 是开放网络基金会（ONF，Open Networking Foundation）组织的大型开发者大会，专注于 ONOS 项目的研发与推广工作，将于 2017 年 9 月 20 日- 22日在韩国首尔的三星研发中心举办。</p>
+<p>本次年度活动将联合200多名开发商和贡献者一起分享，学习，调整，规划，和PK。大会将提供 ONOS 专家主题演讲，人们可以通过社区展示活动了解相关的工作信息，这将是一次演示汇报的 SDN 科技博览会 以及一次编程马拉松活动。我们也将了解到三星Samsung，作为开放网络基金会的合作伙伴之一，为什么投资 ONOS 建设。</p>
+<h4 id="为什么三星投资主办-ONOS-大会"><a href="#为什么三星投资主办-ONOS-大会" class="headerlink" title="为什么三星投资主办 ONOS 大会 ?"></a>为什么三星投资主办 ONOS 大会 ?</h4><p>三星认为，通过开源社区的努力，ONS 项目作为组织的核心将铺平道路、加速革新。作为一家领先的网络解决方案提供商，三星很高兴能帮助那些正在推动创新并将SDN技术引入全球电信网络的开发人员。 </p>
+<h4 id="什么三星投资-ONOS-项目"><a href="#什么三星投资-ONOS-项目" class="headerlink" title="什么三星投资 ONOS 项目 ?"></a>什么三星投资 ONOS 项目 ?</h4><p>ONOS 的目标是通过 SDN 的方式达到运营商级的性能指标，包括服务保证，可靠性和可扩展性和高性能。三星相信 ONOS 项目在实现传统网络转向灵活和可扩展系统方面以及走在前列，将使运营商能够更有效地运行他们的网络，为即将到来的5G 时代做好准备。<br>三星一直在积极地促成和加速塑造下一代网络服务，基于 ONOS 项目的开源 SDN 和网络虚拟化。我们相信三星的贡献将有助于满足运营商在电信领域提供领先的5G服务的要求。</p>
+<h4 id="三星参与-ONOS-项目多久了"><a href="#三星参与-ONOS-项目多久了" class="headerlink" title="三星参与 ONOS 项目多久了 ?"></a>三星参与 ONOS 项目多久了 ?</h4><p>三星在 2014 年基于现成的 ONOS 项目开发了首个商业的 SDN 产品，并且在 2016年作为董事会成员加入 ONOS 项目。自从加入该项目，三星一直积极促进每个版本的发展，和其他运营商密切合作开发商业级的 SDN 解决方案。借助于大量具备丰富的 SDN 工作经验开发者、对电信网络整体架构的深刻理解，三星正在社区扮演一个社区规范主要贡献者的角色，有助于在市场中提升相关技术可用性。</p>
+<h4 id="ONOS-Build-愿景"><a href="#ONOS-Build-愿景" class="headerlink" title="ONOS Build 愿景"></a>ONOS Build 愿景</h4><p>ONOS 大会是一个年度会议，将在世界不同地区举行，连接来自不同背景和行业的全球开发者。今年，我们邀请创新者到亚洲为亚太地区的学术和商业生态系统注入新的活力。此外，该活动将成为开发人员在SDN技术及应用中促进和分享其成果的平台。与会者通过年度共享，参与公开讨论，将增加创新 SDN 商业解决方案的水平，有助于SDN发展。最后，全球许多运营商将出席 ONOS 大会。通过连接运营商，我们希望我们能与开发者分享 SDN 的愿景和技术进步。这将极大地改变行业，帮助我们走向更大的网络的可能性。</p>
+<h4 id="ONOS-2017-议程"><a href="#ONOS-2017-议程" class="headerlink" title="ONOS 2017 议程"></a>ONOS 2017 议程</h4><p>ONOS 2016 大会是首次建立一个强大的 SDN 技术基础的活动。近一年以来，有越来越多的移动运营商愿意将技术融入他们的网络。 ONOS  2017 大会将在电信行业参与者感知到快速变化的背景下召开的，将推动全球电信市场发展商业化的运营商级 SDN 。从内容上讲，今年的活动将持续3天，为与会者提供额外一天的对话会议，让他们深入了解彼此的技术并展示工作成果。最后一天，还将会有旨在介绍 CORD （Central Office Re-Architected as a Data Center）项目的相关进展。</p>
+<h4 id="ONOS-Build-2017-Schedule"><a href="#ONOS-Build-2017-Schedule" class="headerlink" title="ONOS Build 2017 Schedule"></a><a target="_blank" rel="noopener" href="http://onosbuild.org/schedule/">ONOS Build 2017 Schedule</a></h4><h2 id="相关资讯"><a href="#相关资讯" class="headerlink" title="相关资讯"></a>相关资讯</h2><h4 id="Google-加入CORD"><a href="#Google-加入CORD" class="headerlink" title="Google 加入CORD"></a>Google 加入CORD</h4><p>2016年7月26日，CORD 项目宣布成为Linux基金会下的一个独立的开源项目，Google、Radisys以及三星电子宣布加入该项目。CORD的愿景是为规模化的数据中心服务，CORD 创建了两个控制平面：一个使用ONOS控制器，负责网络服务；另外一个使用新的 CORD 操作系统 — XOS，管理VNFs，该操作系统将一切都看作服务。</p>
+<h4 id="ONOS-vs-OpenDaylight"><a href="#ONOS-vs-OpenDaylight" class="headerlink" title="ONOS vs. OpenDaylight"></a>ONOS vs. OpenDaylight</h4><p>ONOS  的第一个版本由 Open Networking Lab (ON.Lab)  在2014年贡献到社区（源码用 Java 编写），2015年10月, ONOS 项目 作为 合作项目（collaborative） 加入 Linux Foundation。 OpenDaylight (ODL)  由 Linux Foundation 创建。两者在推动 SDN 的设计和目标上非常相似，主要是支持者和合作伙伴不同。ONOS 更倾向于网络运营商，更关注提供更好的整体网络性能；ODL更倾向于数据中心网络，设计上注重融合传统网络与 SDN 。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.sdxcentral.com/sdn/definitions/opendaylight-project/">What is the OpenDaylight Project (ODL)?</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="SDN技术专题"><a href="#SDN技术专题" class="headerlink" title="SDN技术专题"></a>SDN技术专题</h4><ul>
+<li><a href="https://riboseyim.com/2017/05/12/SDN/">SDN 技术指南（一）: 架构概览</a></li>
+<li><a href="https://riboseyim.com/2017/08/22/SDN-OpenFlow/">SDN 技术指南（二）：OpenFlow</a></li>
+<li><a href="https://riboseyim.com/2017/10/16/SDN-Controller/">SDN 技术指南（三）：SDN Controller</a></li>
+<li><a href="https://riboseyim.com/2017/10/13/SDN-OpenvSwitch/">SDN 技术指南（四）：Open vSwitch</a></li>
+<li><a href="https://riboseyim.com/2019/06/07/SDN-NFV">SDN 技术指南（五）：NFV</a></li>
+<li><a href="#">SDN 技术指南（六）：OpenStack or Kubernetes ? </a></li>
+<li><a href="https://riboseyim.com/2019/06/07/SDN-ORG/">SDN 技术指南（七）：标准化组织</a></li>
+<li><a href="https://riboseyim.com/2019/06/07/SDN-CASE">SDN 技术指南（八）：案例教学</a></li>
+<li><a href="https://riboseyim.com/2019/06/07/SDN-MOOC/">SDN技术指南（十）：在线课程推荐</a></li>
+</ul>
+<h4 id="网络编程专题"><a href="#网络编程专题" class="headerlink" title="网络编程专题"></a>网络编程专题</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">网络数据包的捕获与分析（libpcap、BPF及gopacket）</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+</ul>
+<h4 id="网络安全专题"><a href="#网络安全专题" class="headerlink" title="网络安全专题"></a>网络安全专题</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security|香港拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h4 id="云计算专题"><a href="#云计算专题" class="headerlink" title="云计算专题"></a>云计算专题</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">AWS or Azure : 云计算平台的趋势分析|Stack Overflow,2017</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ONOS">Wiki: ONOS</a></li>
+<li><a target="_blank" rel="noopener" href="http://opencord.org/">OpenCORD.org</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sdnlab.com/17777.html">sdnlab.com: AT&amp;T CORD架构解读</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sdnlab.com/17495.html">sdnlab.com: Google加入CORD</a></li>
+<li><a target="_blank" rel="noopener" href="https://opennetworking.org/about/onf-overview">OpenNetworking.org: ONF Overview</a></li>
+<li><a target="_blank" rel="noopener" href="http://searchsdn.techtarget.com/definition/ONOS-Open-Network-Operating-System">techtarget.com: ONOS (Open Network Operating System)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/08/18/SDN-ONOS/" data-id="ckwgm33os01217b1yy1ljxtft" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDN/" rel="tag">SDN</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/20/Artistic-Suona/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Suona
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/15/Medicine/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Catalog:Medical</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ONOS-Architecture"><span class="toc-number">2.</span> <span class="toc-text">ONOS Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samsung-%E4%B8%BB%E5%8A%9E-ONOS-Build-2017"><span class="toc-number">3.</span> <span class="toc-text">Samsung 主办 ONOS Build 2017</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%89%E6%98%9F%E6%8A%95%E8%B5%84%E4%B8%BB%E5%8A%9E-ONOS-%E5%A4%A7%E4%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">为什么三星投资主办 ONOS 大会 ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E4%B8%89%E6%98%9F%E6%8A%95%E8%B5%84-ONOS-%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.0.2.</span> <span class="toc-text">什么三星投资 ONOS 项目 ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E6%98%9F%E5%8F%82%E4%B8%8E-ONOS-%E9%A1%B9%E7%9B%AE%E5%A4%9A%E4%B9%85%E4%BA%86"><span class="toc-number">3.0.3.</span> <span class="toc-text">三星参与 ONOS 项目多久了 ?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ONOS-Build-%E6%84%BF%E6%99%AF"><span class="toc-number">3.0.4.</span> <span class="toc-text">ONOS Build 愿景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ONOS-2017-%E8%AE%AE%E7%A8%8B"><span class="toc-number">3.0.5.</span> <span class="toc-text">ONOS 2017 议程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ONOS-Build-2017-Schedule"><span class="toc-number">3.0.6.</span> <span class="toc-text">ONOS Build 2017 Schedule</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E8%AE%AF"><span class="toc-number">4.</span> <span class="toc-text">相关资讯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Google-%E5%8A%A0%E5%85%A5CORD"><span class="toc-number">4.0.1.</span> <span class="toc-text">Google 加入CORD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ONOS-vs-OpenDaylight"><span class="toc-number">4.0.2.</span> <span class="toc-text">ONOS vs. OpenDaylight</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SDN%E6%8A%80%E6%9C%AF%E4%B8%93%E9%A2%98"><span class="toc-number">5.0.1.</span> <span class="toc-text">SDN技术专题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%93%E9%A2%98"><span class="toc-number">5.0.2.</span> <span class="toc-text">网络编程专题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%93%E9%A2%98"><span class="toc-number">5.0.3.</span> <span class="toc-text">网络安全专题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%93%E9%A2%98"><span class="toc-number">5.0.4.</span> <span class="toc-text">云计算专题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

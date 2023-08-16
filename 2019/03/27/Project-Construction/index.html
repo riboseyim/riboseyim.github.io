@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>PM指南:建筑工程项目管理 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 《工程项目管理》| 同济大学MOOC课程 理论：组织论、信息论、项目控制论 重点：投资控制、进度控制、质量控制、风险控制 技术：网络规划技术、项目管理软件（MS Project&#x2F;P3&#x2F;P6）、BIM 案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PM指南:建筑工程项目管理">
+<meta property="og:url" content="https://riboseyim.com/2019/03/27/Project-Construction/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 《工程项目管理》| 同济大学MOOC课程 理论：组织论、信息论、项目控制论 重点：投资控制、进度控制、质量控制、风险控制 技术：网络规划技术、项目管理软件（MS Project&#x2F;P3&#x2F;P6）、BIM 案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E4%B8%81%E5%A3%AB%E6%98%AD.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E7%BB%84%E7%BB%87%E8%AE%BA.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E4%BF%A1%E6%81%AF%E6%B5%81.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tool-%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92%E6%8A%80%E6%9C%AF.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_TianHe.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_Megaproject_Xiancun.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_TongJi.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83_%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.png">
+<meta property="article:published_time" content="2019-03-27T05:43:53.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.910Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Manager">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E4%B8%81%E5%A3%AB%E6%98%AD.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Project-Construction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/27/Project-Construction/" class="article-date">
+  <time datetime="2019-03-27T05:43:53.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PM指南:建筑工程项目管理
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2019/03/27/Project-Construction/" data-id="ckwgm33n000ka7b1yycyjf5j6" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>《工程项目管理》| 同济大学MOOC课程</li>
+<li>理论：组织论、信息论、项目控制论</li>
+<li>重点：投资控制、进度控制、质量控制、风险控制</li>
+<li>技术：网络规划技术、项目管理软件（MS Project/P3/P6）、BIM</li>
+<li>案例：上海地铁、上海虹桥交通枢纽、上海世博会、广州地铁、广州新白云机场</li>
+</ul>
+<span id="more"></span>
+<p>按照维基百科的解释，工程学是指将知识（通常是科学，数学和经验）应用于结构，机器，材料，设备，系统，过程和组织的创新，设计，构造，操作和维护。</p>
+<blockquote>
+<p>Engineering is the application of knowledge, typically in the form of science, mathematics, and empirical evidence, to the innovation, design, construction, operation and maintenance of structures, machines, materials, devices, systems, processes, and organizations.</p>
+</blockquote>
+<p>常识告诉我们，无论是传统的建筑工程、交通工程，还是较为年轻的计算机工程、软件工程，大量的术语和管理思维其实源于建筑业 —— 也就是诸多从业人员口中常说的”搬砖“。</p>
+<p>最近我有一个想法，即无论从事何种类别的工程职业——以”搬砖“活动谋生的从业人群都有必要了解一些土木工程知识，因为历史已经反复证明，古老建筑行业的叙事逻辑早早晚晚都要在所有新兴行业推广。</p>
+<h2 id="《工程项目管理》-同济大学MOOC课程"><a href="#《工程项目管理》-同济大学MOOC课程" class="headerlink" title="《工程项目管理》| 同济大学MOOC课程"></a>《工程项目管理》| 同济大学MOOC课程</h2><p>《工程项目管理》MOOC课程是同济大学多年建设打造的一门国家精品课程。课程由我国工程管理界著名教授丁士昭先生主持（同济大学工程管理研究所创始人、名誉所长）。</p>
+<blockquote>
+<p>组织论是项目管理的母学科。</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E4%B8%81%E5%A3%AB%E6%98%AD.png" alt=""></p>
+<p>个人认为同济大学的《工程项目管理》本课程有 <strong>两大特色</strong>：</p>
+<ul>
+<li><p>第一，理论体系高度突出“组织理论（Organization Theory）”，可以说组织论与信息论是贯穿整个课程的两大基石。丁老师的观点是，学习项目管理之前很有必要先学习组织论。（《组织理论与设计》，Richard L. Daft著）</p>
+</li>
+<li><p>第二，高度突出信息论，强调项目管理的实质是知识管理、是面向专业人士的 Professional Management 。</p>
+</li>
+<li><p>第三，理论联系实际，讲师团队本身具有强大的工程实践背景，课件中援引了大量一线工程的实际素材。</p>
+</li>
+</ul>
+<p>现代意义的建筑师出现在欧洲，最早的建筑师就是总营造师，也称建筑师傅。建筑师负责设计、购买材料、雇佣工匠，并管理工程施工。</p>
+<p>16世纪至18世纪中期，欧洲兴起华丽的花型建筑热潮，在建筑师队伍中开始形成了分工，一部分建筑师联合起来专注于进行设计，另一部分建筑师则负责组织、监督施工，逐步开始了设计和施工的分离，并逐步形成了更加精细的专业分工。例如：</p>
+<ul>
+<li><p>营造师（Master Builder）：作为建筑项目的最高领导者，负责跟进整个工程项目。</p>
+</li>
+<li><p>建造师（Constructor）：负责全面的组织管理，以工程项目施工管理为主业，通常为项目经理或相关负责人。</p>
+</li>
+<li><p>建筑师（Architect）：负责设计建筑物平面图的专业人士。建筑师需要兼备艺术家的审美眼光和工程师的力学知识，作品需要从力学角度计算，选取合适的工程材料才能实现。</p>
+</li>
+</ul>
+<p>即使是技术最成熟的建筑工程行业，组织和管理活动依然占据核心的位置，这个问题本身就已经很有意思。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E7%BB%84%E7%BB%87%E8%AE%BA.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/TongJi-CPM-%E4%BF%A1%E6%81%AF%E6%B5%81.png" alt=""></p>
+<h4 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h4><p>课程配套教材为《工程项目管理》，丁士昭主编，中国建筑工业出版社。</p>
+<p>教学内容分别为基础理论知识模块、案例与实务模块及工程管理创新与前沿模块。</p>
+<p><strong>基础理论知识</strong> 涵盖了工程管理的全面知识领域，包括工程项目管理概述、组织理论、目标控制基本原理、项目策划、投资控制、进度控制、工程项目质量控制和安全管理、工程项目管理信息化、设计阶段的项目管理、采购阶段的项目管理、施工阶段的项目管理、项目运营管理。</p>
+<p><strong>案例与实务</strong> 构建了工程管理的案例库，包括The Domain of Project Management、How the 6th version of PMBOK GUILDE was born、重大基础设施建设项目策划——聚焦上海虹桥综合交通枢纽案例、上海虹桥综合交通枢纽工程进度总控、Virtual Design &amp; Construction - An Introduction、BIM技术与安全应急管理、2010年上海世博会工程建设项目管理、国际建筑业绩效管理的现状和实践、新时期施工管理的新问题、大型保障房项目建设管理创新与实践、基础设施项目群建设管理：长春市案例等。</p>
+<p><strong>创新与实践</strong> 聚焦了工程管理的新视角，包括哲学视野中的工程、三峡工程项目管理、The Past, Present and Future of Project Management、升级中的中国对外承包业、关于中国建筑业改革发展的探讨、借鉴国际经验推进建设管理的全面深化改革、运用国际项目管理新理论7门精彩讲座，融合了工程院院士及国内外工程管理一线专家的真知灼见。</p>
+<p>按照设计，完成所有MOOC课程10周时间。</p>
+<p><a target="_blank" rel="noopener" href="http://www.icourse163.org/learn/TONGJI-46008?tid=1003249011">http://www.icourse163.org/learn/TONGJI-46008?tid=1003249011</a></p>
+<h4 id="授课讲师"><a href="#授课讲师" class="headerlink" title="授课讲师"></a>授课讲师</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>简介</th>
+<th>主讲内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15208.html">丁士昭</a></td>
+<td>同济大学工程管理研究所创始人、名誉所长。<br> 德国达姆斯塔特工业大学，工学博士</td>
+<td>概论、组织理论、工程控制论、工程顾问、工程监理、政策法律</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15191.html">何清华</a></td>
+<td>研究领域：建设工程项目管理、重大/复杂工程管理、精益建设</td>
+<td>动态控制原理（目标控制、进度控制、质量控制）案例（）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15216.html">乐云</a></td>
+<td>研究领域：建设工程项目管理，包括项目前期策划、大型复杂工程项目组织管理、承发包模式与合同管理、工程管理信息化等</td>
+<td>项目策划、案例（上海世博会工程进度总控）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15211.html">张建国</a></td>
+<td>研究领域主要有工程造价管理理论与方法、工程进度优化与控制、可持续建设、建筑服务贸易、IT在工程管理中应用等</td>
+<td>工程项目投资控制、案例（上海虹桥综合交通枢纽交通中心工程、浦东国际机场扩建工程投资控制）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15214.html">高欣</a></td>
+<td>研究领域：城市管理与建设工程管理、项目管理、大型建设工程进度规划与控制、建设工程风险管理与保险</td>
+<td>网络规划技术、案例（广州白云国际机场扩建工程总进度控制）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15184.html">贾广社</a></td>
+<td></td>
+<td>案例（上海虹桥交通枢纽工程进度总控）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15215.html">王广斌</a></td>
+<td>研究领域：项目管理、工程管理信息化、项目投融资</td>
+<td>案例（中德友好医院）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15208.html">丁士昭</a> 。1940年9月26日出生于上海。1963年毕业于同济大学建筑工程系，同济大学工程管理研究所创始人、名誉所长。主要从事建筑经济、建设项目策划、项目管理等方面的研究。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15191.html">何清华</a>。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学复杂工程管理研究院副院长兼精益建设研究中心主任。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15216.html">乐云</a>。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学复杂工程管理研究院副院长。研究领域为建设工程项目管理，包括项目前期策划、大型复杂工程项目组织管理、承发包模式与合同管理、工程管理信息化等。（教育部2015年7月6日通报同济大学经济与管理学院建设管理与房地产系存在公款出国旅游问题，系主任乐云受到党内严重警告处分）</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15211.html">张建国</a>。管理学博士。同济大学经济与管理学院建设管理与房地产系教授、博士生导师。同济大学工程管理研究所所长。研究领域主要有工程造价管理理论与方法、工程进度优化与控制、可持续建设、建筑服务贸易、IT在工程管理中应用等。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15214.html">高欣</a>。同济大学经济与管理学院建设管理与房地产系教授，博士生导师。同济大学基建处长。研究领域：城市管理与建设工程管理、项目管理、大型建设工程进度规划与控制、建设工程风险管理与保险。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15184.html">贾广社</a>。同济大学经济与管理学院建设管理与房地产系教授。1982年，新疆工学院获工学学士学位 工民建专业，2000年，同济大学获管理学博士学位 工程管理专业。研究与领域工程项目管理、大型建设工程项目总控、项目管理成熟度，跨学科研究：建设工程社会学、工程哲学。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15215.html">王广斌</a>。同济大学经济与管理学院副院长。中国图学学会BIM委员会副主任委员、中国建设教育协会BIM委员会副主任委员、中国工程建设标准化协会建筑信息模型BIM专业委员会理事。</li>
+<li><a target="_blank" rel="noopener" href="http://sem.tongji.edu.cn/semch/15210.html">曹吉鸣</a>，博士、教授、博士生导师，同济大学复杂工程管理研究院副院长，设施管理研究中心主任。</li>
+</ul>
+<h4 id="1-1-工程项目管理概论（丁士昭）（推荐）"><a href="#1-1-工程项目管理概论（丁士昭）（推荐）" class="headerlink" title="1.1 工程项目管理概论（丁士昭）（推荐）"></a>1.1 工程项目管理概论（丁士昭）（推荐）</h4><ul>
+<li>英语：<strong>Professional Management in Construction</strong> （1997年华盛顿会议）</li>
+<li>美国：Construction Management</li>
+<li>项目控制论，项目总控：Project Controlling</li>
+</ul>
+<h5 id="工程项目周期"><a href="#工程项目周期" class="headerlink" title="工程项目周期"></a>工程项目周期</h5><ul>
+<li>项目策划，DM—Development Management</li>
+<li>项目管理，PM—Project Management</li>
+<li>营建管理，CM—Construction Management</li>
+</ul>
+<h4 id="1-2-项目管理的组织理论（丁士昭）（推荐）"><a href="#1-2-项目管理的组织理论（丁士昭）（推荐）" class="headerlink" title="1.2 项目管理的组织理论（丁士昭）（推荐）"></a>1.2 项目管理的组织理论（丁士昭）（推荐）</h4><blockquote>
+<p>组织论是项目管理的母学科。</p>
+</blockquote>
+<ul>
+<li>推荐阅读：《组织理论与设计》</li>
+</ul>
+<h4 id="1-3-The-Domain-of-Project-Management（Monique-Aubry）"><a href="#1-3-The-Domain-of-Project-Management（Monique-Aubry）" class="headerlink" title="1.3 The Domain of Project Management（Monique Aubry）"></a>1.3 The Domain of Project Management（Monique Aubry）</h4><h4 id="2-1-工程项目目标控制的基本原理（何清华）（推荐）"><a href="#2-1-工程项目目标控制的基本原理（何清华）（推荐）" class="headerlink" title="2.1 工程项目目标控制的基本原理（何清华）（推荐）"></a>2.1 工程项目目标控制的基本原理（何清华）（推荐）</h4><ul>
+<li>动态控制原理在目标控制的应用</li>
+<li>动态控制原理在投资控制的应用</li>
+<li>动态控制原理在质量控制的应用</li>
+</ul>
+<h4 id="2-1-6-项目风险管理基本原理"><a href="#2-1-6-项目风险管理基本原理" class="headerlink" title="2.1.6 项目风险管理基本原理"></a>2.1.6 项目风险管理基本原理</h4><h4 id="2-1-7-工程项目风险管理"><a href="#2-1-7-工程项目风险管理" class="headerlink" title="2.1.7 工程项目风险管理"></a>2.1.7 工程项目风险管理</h4><ul>
+<li>风险定性分析方法：P-I矩阵</li>
+</ul>
+<h4 id="2-2-项目策划（乐云）（推荐）"><a href="#2-2-项目策划（乐云）（推荐）" class="headerlink" title="2.2 项目策划（乐云）（推荐）"></a>2.2 项目策划（乐云）（推荐）</h4><ul>
+<li>2.2.1 基本原理</li>
+<li>2.2.2 环境调查与分析</li>
+<li>2.2.3 项目定义与项目功能分析</li>
+<li>2.2.4</li>
+<li>2.2.5 项目实施策划</li>
+<li>案例：上海世博会工程总进度计划（2007年11月）</li>
+<li>2.2.6</li>
+<li>2.2.7 项目实施的组织策划</li>
+<li>组织结构策划</li>
+<li>任务分工策划</li>
+<li>管理职能分工策划</li>
+<li><p>工作流程策划</p>
+</li>
+<li><p>2.2.8 项目实施的目标控制策划</p>
+</li>
+<li><p>进度目标控制策划</p>
+</li>
+<li>投资目标控制策划</li>
+<li>质量目标控制策划</li>
+</ul>
+<h4 id="3-1-工程项目投资控制（张建国）（推荐）"><a href="#3-1-工程项目投资控制（张建国）（推荐）" class="headerlink" title="3.1 工程项目投资控制（张建国）（推荐）"></a>3.1 工程项目投资控制（张建国）（推荐）</h4><ul>
+<li>3.1.5 谁对项目投资费用有影响</li>
+</ul>
+<h4 id="3-2-网络计划技术（高欣）（推荐）"><a href="#3-2-网络计划技术（高欣）（推荐）" class="headerlink" title="3.2 网络计划技术（高欣）（推荐）"></a>3.2 网络计划技术（高欣）（推荐）</h4><ul>
+<li>工程项目进度计划的编制方法</li>
+<li>工程项目进度计划系统</li>
+<li>工程项目进度控制</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tool-%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92%E6%8A%80%E6%9C%AF.png" alt=""></p>
+<ul>
+<li><a href="https://riboseyim.com/2019/05/29/Project-Tech-NetworkPlanning/">PM指南:网络计划技术|工具与技术</a></li>
+</ul>
+<h4 id="3-2-9-工程项目进度管理案例"><a href="#3-2-9-工程项目进度管理案例" class="headerlink" title="3.2.9 工程项目进度管理案例"></a>3.2.9 工程项目进度管理案例</h4><ul>
+<li>广州白云国际机场扩建工程总进度计划</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_TianHe.png" alt=""></p>
+<h4 id="3-3-案例教学-上海虹桥交通枢纽工程进度总控（贾广社）（推荐）"><a href="#3-3-案例教学-上海虹桥交通枢纽工程进度总控（贾广社）（推荐）" class="headerlink" title="3.3 案例教学|上海虹桥交通枢纽工程进度总控（贾广社）（推荐）"></a>3.3 案例教学|上海虹桥交通枢纽工程进度总控（贾广社）（推荐）</h4><ul>
+<li>项目总控理论概述</li>
+<li>进度总控实践</li>
+<li>进度总控实践与创新</li>
+</ul>
+<h4 id="4-1-工程项目质量控制和安全管理（贾广社）"><a href="#4-1-工程项目质量控制和安全管理（贾广社）" class="headerlink" title="4.1 工程项目质量控制和安全管理（贾广社）"></a>4.1 工程项目质量控制和安全管理（贾广社）</h4><h4 id="4-2-计算机、网络平台和BIM在建设项目管理中的应用（王广斌）"><a href="#4-2-计算机、网络平台和BIM在建设项目管理中的应用（王广斌）" class="headerlink" title="4.2 计算机、网络平台和BIM在建设项目管理中的应用（王广斌）"></a>4.2 计算机、网络平台和BIM在建设项目管理中的应用（王广斌）</h4><ul>
+<li>案例：中德友好医院</li>
+</ul>
+<h4 id="4-3-案例与实务-Virtual-Design-amp-Construction-An-Introduction（）"><a href="#4-3-案例与实务-Virtual-Design-amp-Construction-An-Introduction（）" class="headerlink" title="4.3 案例与实务| Virtual Design &amp; Construction - An Introduction（）"></a>4.3 案例与实务| Virtual Design &amp; Construction - An Introduction（）</h4><h4 id="5-1-工程设计阶段的项目管理（李永奎，副教授）"><a href="#5-1-工程设计阶段的项目管理（李永奎，副教授）" class="headerlink" title="5.1 工程设计阶段的项目管理（李永奎，副教授）"></a>5.1 工程设计阶段的项目管理（李永奎，副教授）</h4><ul>
+<li>5.5.1 设计任务的委托和设计合同管理</li>
+</ul>
+<h4 id="5-2-工程项目的采购管理（孙继德，副教授）"><a href="#5-2-工程项目的采购管理（孙继德，副教授）" class="headerlink" title="5.2 工程项目的采购管理（孙继德，副教授）"></a>5.2 工程项目的采购管理（孙继德，副教授）</h4><h4 id="6-1-施工阶段的项目管理（曹吉鸣）"><a href="#6-1-施工阶段的项目管理（曹吉鸣）" class="headerlink" title="6.1 施工阶段的项目管理（曹吉鸣）"></a>6.1 施工阶段的项目管理（曹吉鸣）</h4><h4 id="6-2-建设项目的运营管理（曹吉鸣）"><a href="#6-2-建设项目的运营管理（曹吉鸣）" class="headerlink" title="6.2 建设项目的运营管理（曹吉鸣）"></a>6.2 建设项目的运营管理（曹吉鸣）</h4><h4 id="6-3-案例与实务-国际建筑业绩效管理的现状与实践（戴久坤）"><a href="#6-3-案例与实务-国际建筑业绩效管理的现状与实践（戴久坤）" class="headerlink" title="6.3 案例与实务|国际建筑业绩效管理的现状与实践（戴久坤）"></a>6.3 案例与实务|国际建筑业绩效管理的现状与实践（戴久坤）</h4><h4 id="6-4-关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）"><a href="#6-4-关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）" class="headerlink" title="6.4 关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）"></a>6.4 关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）</h4><p><img src="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_Megaproject_Xiancun.png" alt=""></p>
+<h4 id="7-1-案例与实务-中国2010年上海世博会工程建设项目管理（乐云）（推荐）"><a href="#7-1-案例与实务-中国2010年上海世博会工程建设项目管理（乐云）（推荐）" class="headerlink" title="7.1 案例与实务|中国2010年上海世博会工程建设项目管理（乐云）（推荐）"></a>7.1 案例与实务|中国2010年上海世博会工程建设项目管理（乐云）（推荐）</h4><h4 id="7-2-新时期施工管理的新问题（施骞）（推荐）"><a href="#7-2-新时期施工管理的新问题（施骞）（推荐）" class="headerlink" title="7.2 新时期施工管理的新问题（施骞）（推荐）"></a>7.2 新时期施工管理的新问题（施骞）（推荐）</h4><ul>
+<li>施工质量安全控制中的关键问题</li>
+</ul>
+<h4 id="8-1-案例教学-上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）"><a href="#8-1-案例教学-上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）" class="headerlink" title="8.1 案例教学|上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）"></a>8.1 案例教学|上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）</h4><ul>
+<li>重大项目策划</li>
+</ul>
+<h4 id="8-2-案例教学-大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）"><a href="#8-2-案例教学-大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）" class="headerlink" title="8.2 案例教学|大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）"></a>8.2 案例教学|大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）</h4><h4 id="8-3-案例与实务-基础设施项目群建设管理：长春市案例（李永奎，副教授）"><a href="#8-3-案例与实务-基础设施项目群建设管理：长春市案例（李永奎，副教授）" class="headerlink" title="8.3 案例与实务|基础设施项目群建设管理：长春市案例（李永奎，副教授）"></a>8.3 案例与实务|基础设施项目群建设管理：长春市案例（李永奎，副教授）</h4><h4 id="9-1-哲学视野中的工程（殷瑞钰，原冶金部副部长）"><a href="#9-1-哲学视野中的工程（殷瑞钰，原冶金部副部长）" class="headerlink" title="9.1 哲学视野中的工程（殷瑞钰，原冶金部副部长）"></a>9.1 哲学视野中的工程（殷瑞钰，原冶金部副部长）</h4><h4 id="9-2-三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）"><a href="#9-2-三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）" class="headerlink" title="9.2 三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）"></a>9.2 三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）</h4><h4 id="10-1-工程管理创新与实践（丁士昭）"><a href="#10-1-工程管理创新与实践（丁士昭）" class="headerlink" title="10.1 工程管理创新与实践（丁士昭）"></a>10.1 工程管理创新与实践（丁士昭）</h4><h4 id="10-2-The-Past-Present-and-Future-of-Project-Management（Dr-Ediwin-J-Andrews）"><a href="#10-2-The-Past-Present-and-Future-of-Project-Management（Dr-Ediwin-J-Andrews）" class="headerlink" title="10.2 The Past,Present and Future of Project Management（Dr. Ediwin J. Andrews）"></a>10.2 The Past,Present and Future of Project Management（Dr. Ediwin J. Andrews）</h4><h4 id="10-3-升级中的中国对外承包业（吴之昕-中建一局总工）"><a href="#10-3-升级中的中国对外承包业（吴之昕-中建一局总工）" class="headerlink" title="10.3 升级中的中国对外承包业（吴之昕|中建一局总工）"></a>10.3 升级中的中国对外承包业（吴之昕|中建一局总工）</h4><h2 id="案例作业"><a href="#案例作业" class="headerlink" title="案例作业"></a>案例作业</h2><ul>
+<li>美国国防部“北极星”项目</li>
+<li>上海地铁一号线建设的组织策划（1990）；</li>
+<li>上海虹桥交通枢纽（虹桥机场+高铁上海站）项目</li>
+<li>广州地铁首期工程建设项目管理总体方案（1991.11—1992.5）；</li>
+<li>广州新白云机场建设总进度计划纲要（2000.11—2001.2）</li>
+</ul>
+<h2 id="阅读作业"><a href="#阅读作业" class="headerlink" title="阅读作业"></a>阅读作业</h2><ul>
+<li>《工程项目管理》，丁士昭主编，中国建筑工业出版社</li>
+<li>《组织理论与设计(第10版)》，Richard L. Daft著</li>
+<li>《项目管理 - 计划、进度和控制的系统方法》| 哈罗德·柯兹纳(Harold Kerzner)</li>
+<li>《项目管理知识体系指南 (PMBOK Guide)》, 美国项目管理协会（PMI）</li>
+<li>《建设工程项目管理（第三版）》，中国建筑工业出版社，2011</li>
+<li>《工程项目前期策划》，乐云、李永奎，中国建筑工业出版社，2011</li>
+<li>《工程施工组织与管理》，曹吉鸣，中国建筑工业出版社 ，2012</li>
+<li>《建设工程项目管理成熟度理论及应用》，贾广社、陈建国，中国建筑工业出版社，2012</li>
+<li>《工程项目管理》，乐云、邓铁军，武汉理工大学出版社，2008</li>
+<li>《项目管理》，何清华，同济大学出版社,2011</li>
+<li>《工程管理概论（第二版）》，成虎，中国建筑工业出版社，2011</li>
+<li>《建设工程管理概论》，任宏，武汉理工大学出版社，2008</li>
+<li>《工程计量与造价管理(第三版)》，陈建国、高显义，同济大学出版社，2010</li>
+<li>《工程计价与造价管理》，陈建国、高显义，中国建筑工业出版社，2011</li>
+<li>《项目总控—建设工程的新型管理模式》，贾广社，同济大学出版社，2003</li>
+<li>《成功的项目管理（第5版）》，（美）克莱门斯、（美）吉多著，张金成、杨坤译，电子工业出版社，2012</li>
+</ul>
+<h4 id="MOOC资源"><a href="#MOOC资源" class="headerlink" title="MOOC资源"></a>MOOC资源</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.icourse163.org/learn/TONGJI-46008?tid=1003249011">《工程项目管理》| 同济大学 MOOC 课程</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Theme_Arch_TongJi.png" alt=""></p>
+<h2 id="学习小组"><a href="#学习小组" class="headerlink" title="学习小组"></a>学习小组</h2><p>​<br>​感兴趣的朋友可以加入知识星球共同学习，链接 <a target="_blank" rel="noopener" href="https://t.zsxq.com/qvnYNbE">https://t.zsxq.com/qvnYNbE</a></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83_%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.png" alt=""></p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><h4 id="翻译卡片"><a href="#翻译卡片" class="headerlink" title="翻译卡片"></a>翻译卡片</h4><p>建筑工程（简称：AE、BE、CE，英语：Architectural engineering、Building Engineering、Construction Engineering），原称为土木工程，是一个关于建筑物的施工和内部设施安装的工程学。</p>
+<h4 id="人物卡片：丁士昭"><a href="#人物卡片：丁士昭" class="headerlink" title="人物卡片：丁士昭"></a>人物卡片：丁士昭</h4><h5 id="丁士昭履历"><a href="#丁士昭履历" class="headerlink" title="丁士昭履历"></a>丁士昭履历</h5><p>1952—1955，上海，南洋模范中学，初中<br>1955—1958，上海，上海中学，高中<br>1958—1963，上海，同济大学 建筑工程系，建筑工程经济与组织专业<br>1963—1978，同济大学 建筑施工组织教研室，助教<br>1978—1985，同济大学 建筑管理教研室，讲师<br>1980.10—1982.10，联邦德国，达姆斯塔特技术大学（Technische Universitaet Darmstadt），科研、进修。<br>1983—1985，同济大学 建筑管理教研室，主任<br>1985.4—1985.12，联邦德国，达姆斯塔特技术大学，土木工程系，工学博士（1985.10）。博士论文—多阶网络法的数学模型、解法和程序。<br>1986—1987，同济大学 经济信息系，副教授<br>1987年—经济信息系 教授、副系主任、经济管理学院副院长<br>1988.10—1989.2, 联邦德国，Integrata 软件公司，科研、进修<br>1991—至今，同济大学 工程管理研究所所长，教授<br>1998.7—1999.1， 日本 名古屋大学客座教授<br>2000.8—2000.10, 联邦德国，Integrata 基金会</p>
+<h5 id="主要讲授课程"><a href="#主要讲授课程" class="headerlink" title="主要讲授课程"></a>主要讲授课程</h5><ul>
+<li>项目管理</li>
+<li>建设监理</li>
+<li>建筑经济</li>
+<li>算法语言</li>
+<li>网络计划技术</li>
+<li>建筑施工组织与计划</li>
+<li>专业德语</li>
+</ul>
+<h5 id="科研成果"><a href="#科研成果" class="headerlink" title="科研成果"></a>科研成果</h5><ul>
+<li>主持研制和开发“上海地铁工程项目管理信息系统”，上海市科委组织鉴定，鉴定结论：国内首创，1991年10月</li>
+<li>主持编写“广州地铁首期工程项目管理总体方案”，建设部组织鉴定，1992年1月</li>
+<li>主持研究“建设项目总承包的理论、方法与手段”，上海市建委组织鉴定，鉴定结论：国内领先，1992年，（该课题由同济大学工程管理研究所、上海华东建筑设计院、中建总公司上海分公司联合研究）</li>
+<li>主持研制和开发“上海合流污水处理投资控制信息系统“,上海合流污水处理工程指挥部委托， 1993年</li>
+<li>主持研究“中国建设监理模式”，上海市建委组织鉴定、建设部参加鉴定，建设部七五重点项目，鉴定结论：国内领先水平。1995年6月，（该课题由10余人参加，编写科研报告27份）</li>
+<li>主持研制和开发“DP-1/CC计算机辅助投资控制系统”，建设部组织鉴定，鉴定结论：国际先进水平，1996年11月，（该课题由同济大学工程管理研究所 与Infoage软件公司联合开发）</li>
+<li>主持研究“德国建设管理体制及相关制度的研究”，建设部委托,1998年</li>
+<li>主持研究“国际建筑业管理体制、法制与机制的研究”，建设部组织鉴定，中国高校科学技术进步奖，二等奖，2000年</li>
+<li>主持研制和开发“长江口深水航道治理工程信息系统”，长江口深水航道治理工程公司委托,1998-2000年</li>
+<li>主持研制和开发“天津基础设施综合管理信息系统（TIIMIS）”，天津市建委委托，世界银行贷款项目,1998-2000年</li>
+</ul>
+<h4 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h4><ul>
+<li><a href="https://riboseyim.com/2019/02/06/Project/">项目管理 | Overview of Project Management</a></li>
+<li><a href="https://riboseyim.com/2019/04/30/Project-PMP/">PM指南:PMI项目管理知识体系</a></li>
+<li><a href="https://riboseyim.com/2019/03/27/Project-Construction/">PM指南:建筑工程项目管理|行业案例教学</a></li>
+<li><a href="#">PM指南:范围管理</a></li>
+<li><a href="#">PM指南:进度管理</a></li>
+<li><a href="#">PM指南:成本管理</a></li>
+<li><a href="#">PM指南:质量管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Resources/">PM指南:资源管理</a></li>
+<li><a href="https://riboseyim.com/2019/02/06/Project-Communications/">PM指南:沟通管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/06/05/Project-Risk/">PM指南:风险管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Procurement/">PM指南:采购管理</a></li>
+<li><a href="#">PM指南:相关方管理</a></li>
+<li><a href="https://riboseyim.com/2019/05/29/Project-Tech-NetworkPlanning/">PM指南:网络计划技术|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2019/04/06/Project-PMIS/">PM指南:项目管理信息系统|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2018/06/19/Project-Template/">PM指南:项目管理开局模板|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/04/26/TeamWork-Redmine/">PM指南:开源项目管理平台Redmine|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">PM指南:软件业看板Kanban管理实践|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/05/31/TeamWork-Git/">PM指南:源代码版本管理|工具与技术</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.icourse163.org/course/tongji-46008">MOOC 课程表 | 同济大学《工程项目管理》</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.wenxuecity.com/book/?act=view&amp;chapterID=4054413&amp;bookID=60360184">中国投资体制改革30年研究 &gt; 第三节 项目管理的科学化</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.iolaw.org.cn/showArticle.aspx?id=2390">政府投资与投资体制改革三十年 | 作者：席月民 | 中国法学网</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.scca.sh.cn/shownews.aspx?id=3742">面向可持续建设的工程管理——访同济大学教授、建设工程领域专家学者丁士昭</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/gMiPK5YyiDxA2-xj6JsZFQ">《政府工程怎么管:深圳的实践与创新研究》|同济大学丁士昭教授和深圳市建筑工务署杨胜军署长</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2019/03/27/Project-Construction/" data-id="ckwgm33n000ka7b1yycyjf5j6" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/06/Project-PMIS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PM指南:项目管理信息系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/17/International-Relations-Kaplan/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">行走的思想家:罗伯特·D.卡普兰</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%8A%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E3%80%8B-%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6MOOC%E8%AF%BE%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">《工程项目管理》| 同济大学MOOC课程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9"><span class="toc-number">2.0.1.</span> <span class="toc-text">课程内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%88%E8%AF%BE%E8%AE%B2%E5%B8%88"><span class="toc-number">2.0.2.</span> <span class="toc-text">授课讲师</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E6%A6%82%E8%AE%BA%EF%BC%88%E4%B8%81%E5%A3%AB%E6%98%AD%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.3.</span> <span class="toc-text">1.1 工程项目管理概论（丁士昭）（推荐）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E5%91%A8%E6%9C%9F"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">工程项目周期</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E7%BB%84%E7%BB%87%E7%90%86%E8%AE%BA%EF%BC%88%E4%B8%81%E5%A3%AB%E6%98%AD%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.4.</span> <span class="toc-text">1.2 项目管理的组织理论（丁士昭）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-The-Domain-of-Project-Management%EF%BC%88Monique-Aubry%EF%BC%89"><span class="toc-number">2.0.5.</span> <span class="toc-text">1.3 The Domain of Project Management（Monique Aubry）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%EF%BC%88%E4%BD%95%E6%B8%85%E5%8D%8E%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.6.</span> <span class="toc-text">2.1 工程项目目标控制的基本原理（何清华）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-6-%E9%A1%B9%E7%9B%AE%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.0.7.</span> <span class="toc-text">2.1.6 项目风险管理基本原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-7-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86"><span class="toc-number">2.0.8.</span> <span class="toc-text">2.1.7 工程项目风险管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%EF%BC%88%E4%B9%90%E4%BA%91%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.9.</span> <span class="toc-text">2.2 项目策划（乐云）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E6%8A%95%E8%B5%84%E6%8E%A7%E5%88%B6%EF%BC%88%E5%BC%A0%E5%BB%BA%E5%9B%BD%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.10.</span> <span class="toc-text">3.1 工程项目投资控制（张建国）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E7%BD%91%E7%BB%9C%E8%AE%A1%E5%88%92%E6%8A%80%E6%9C%AF%EF%BC%88%E9%AB%98%E6%AC%A3%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.11.</span> <span class="toc-text">3.2 网络计划技术（高欣）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-9-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E8%BF%9B%E5%BA%A6%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B"><span class="toc-number">2.0.12.</span> <span class="toc-text">3.2.9 工程项目进度管理案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%A1%88%E4%BE%8B%E6%95%99%E5%AD%A6-%E4%B8%8A%E6%B5%B7%E8%99%B9%E6%A1%A5%E4%BA%A4%E9%80%9A%E6%9E%A2%E7%BA%BD%E5%B7%A5%E7%A8%8B%E8%BF%9B%E5%BA%A6%E6%80%BB%E6%8E%A7%EF%BC%88%E8%B4%BE%E5%B9%BF%E7%A4%BE%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.13.</span> <span class="toc-text">3.3 案例教学|上海虹桥交通枢纽工程进度总控（贾广社）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E8%B4%A8%E9%87%8F%E6%8E%A7%E5%88%B6%E5%92%8C%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%EF%BC%88%E8%B4%BE%E5%B9%BF%E7%A4%BE%EF%BC%89"><span class="toc-number">2.0.14.</span> <span class="toc-text">4.1 工程项目质量控制和安全管理（贾广社）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%81%E7%BD%91%E7%BB%9C%E5%B9%B3%E5%8F%B0%E5%92%8CBIM%E5%9C%A8%E5%BB%BA%E8%AE%BE%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E7%8E%8B%E5%B9%BF%E6%96%8C%EF%BC%89"><span class="toc-number">2.0.15.</span> <span class="toc-text">4.2 计算机、网络平台和BIM在建设项目管理中的应用（王广斌）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%A1%88%E4%BE%8B%E4%B8%8E%E5%AE%9E%E5%8A%A1-Virtual-Design-amp-Construction-An-Introduction%EF%BC%88%EF%BC%89"><span class="toc-number">2.0.16.</span> <span class="toc-text">4.3 案例与实务| Virtual Design &amp; Construction - An Introduction（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%EF%BC%88%E6%9D%8E%E6%B0%B8%E5%A5%8E%EF%BC%8C%E5%89%AF%E6%95%99%E6%8E%88%EF%BC%89"><span class="toc-number">2.0.17.</span> <span class="toc-text">5.1 工程设计阶段的项目管理（李永奎，副教授）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%87%87%E8%B4%AD%E7%AE%A1%E7%90%86%EF%BC%88%E5%AD%99%E7%BB%A7%E5%BE%B7%EF%BC%8C%E5%89%AF%E6%95%99%E6%8E%88%EF%BC%89"><span class="toc-number">2.0.18.</span> <span class="toc-text">5.2 工程项目的采购管理（孙继德，副教授）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%96%BD%E5%B7%A5%E9%98%B6%E6%AE%B5%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%EF%BC%88%E6%9B%B9%E5%90%89%E9%B8%A3%EF%BC%89"><span class="toc-number">2.0.19.</span> <span class="toc-text">6.1 施工阶段的项目管理（曹吉鸣）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E5%BB%BA%E8%AE%BE%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%90%E8%90%A5%E7%AE%A1%E7%90%86%EF%BC%88%E6%9B%B9%E5%90%89%E9%B8%A3%EF%BC%89"><span class="toc-number">2.0.20.</span> <span class="toc-text">6.2 建设项目的运营管理（曹吉鸣）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E6%A1%88%E4%BE%8B%E4%B8%8E%E5%AE%9E%E5%8A%A1-%E5%9B%BD%E9%99%85%E5%BB%BA%E7%AD%91%E4%B8%9A%E7%BB%A9%E6%95%88%E7%AE%A1%E7%90%86%E7%9A%84%E7%8E%B0%E7%8A%B6%E4%B8%8E%E5%AE%9E%E8%B7%B5%EF%BC%88%E6%88%B4%E4%B9%85%E5%9D%A4%EF%BC%89"><span class="toc-number">2.0.21.</span> <span class="toc-text">6.3 案例与实务|国际建筑业绩效管理的现状与实践（戴久坤）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E5%85%B3%E4%BA%8E%E5%BB%BA%E7%AD%91%E4%B8%9A%E6%94%B9%E9%9D%A9%E5%8F%91%E5%B1%95%E7%9A%84%E6%8E%A2%E8%AE%A8%EF%BC%88%E5%90%B4%E6%85%A7%E5%A8%9F%EF%BC%8C%E4%BD%8F%E5%BB%BA%E9%83%A8%E5%B7%A5%E7%A8%8B%E8%B4%A8%E9%87%8F%E5%AE%89%E5%85%A8%E7%9B%91%E7%AE%A1%E5%8F%B8%EF%BC%89"><span class="toc-number">2.0.22.</span> <span class="toc-text">6.4 关于建筑业改革发展的探讨（吴慧娟，住建部工程质量安全监管司）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-%E6%A1%88%E4%BE%8B%E4%B8%8E%E5%AE%9E%E5%8A%A1-%E4%B8%AD%E5%9B%BD2010%E5%B9%B4%E4%B8%8A%E6%B5%B7%E4%B8%96%E5%8D%9A%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%BB%BA%E8%AE%BE%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B9%90%E4%BA%91%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.23.</span> <span class="toc-text">7.1 案例与实务|中国2010年上海世博会工程建设项目管理（乐云）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-%E6%96%B0%E6%97%B6%E6%9C%9F%E6%96%BD%E5%B7%A5%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%B0%E9%97%AE%E9%A2%98%EF%BC%88%E6%96%BD%E9%AA%9E%EF%BC%89%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.0.24.</span> <span class="toc-text">7.2 新时期施工管理的新问题（施骞）（推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-%E6%A1%88%E4%BE%8B%E6%95%99%E5%AD%A6-%E4%B8%8A%E6%B5%B7%E8%99%B9%E6%A1%A5%E7%BB%BC%E5%90%88%E4%BA%A4%E9%80%9A%E6%9E%A2%E7%BA%BD%EF%BC%88%E5%88%98%E6%AD%A6%E5%90%9B%EF%BC%8C%E4%B8%8A%E6%B5%B7%E6%9C%BA%E5%9C%BA%E9%9B%86%E5%9B%A2%E6%80%BB%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%89"><span class="toc-number">2.0.25.</span> <span class="toc-text">8.1 案例教学|上海虹桥综合交通枢纽（刘武君，上海机场集团总工程师）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-%E6%A1%88%E4%BE%8B%E6%95%99%E5%AD%A6-%E5%A4%A7%E5%9E%8B%E4%BF%9D%E9%9A%9C%E6%88%BF%E9%A1%B9%E7%9B%AE%E5%BB%BA%E8%AE%BE%E7%AE%A1%E7%90%86%EF%BC%88%E9%99%88%E5%85%B4%E6%B1%89%EF%BC%8C%E5%8D%97%E4%B8%9C%E6%A0%96%E9%9C%9E%E5%BB%BA%E8%AE%BE%E9%9B%86%E5%9B%A2%E6%80%BB%E7%BB%8F%E7%90%86%EF%BC%89"><span class="toc-number">2.0.26.</span> <span class="toc-text">8.2 案例教学|大型保障房项目建设管理（陈兴汉，南东栖霞建设集团总经理）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-%E6%A1%88%E4%BE%8B%E4%B8%8E%E5%AE%9E%E5%8A%A1-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E9%A1%B9%E7%9B%AE%E7%BE%A4%E5%BB%BA%E8%AE%BE%E7%AE%A1%E7%90%86%EF%BC%9A%E9%95%BF%E6%98%A5%E5%B8%82%E6%A1%88%E4%BE%8B%EF%BC%88%E6%9D%8E%E6%B0%B8%E5%A5%8E%EF%BC%8C%E5%89%AF%E6%95%99%E6%8E%88%EF%BC%89"><span class="toc-number">2.0.27.</span> <span class="toc-text">8.3 案例与实务|基础设施项目群建设管理：长春市案例（李永奎，副教授）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-%E5%93%B2%E5%AD%A6%E8%A7%86%E9%87%8E%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%EF%BC%88%E6%AE%B7%E7%91%9E%E9%92%B0%EF%BC%8C%E5%8E%9F%E5%86%B6%E9%87%91%E9%83%A8%E5%89%AF%E9%83%A8%E9%95%BF%EF%BC%89"><span class="toc-number">2.0.28.</span> <span class="toc-text">9.1 哲学视野中的工程（殷瑞钰，原冶金部副部长）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2-%E4%B8%89%E5%B3%A1%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%EF%BC%88%E9%99%86%E4%BD%91%E6%A5%A3%EF%BC%8C%E5%8E%9F%E8%83%BD%E6%BA%90%E9%83%A8%E5%89%AF%E9%83%A8%E9%95%BF%E3%80%81%E4%B8%89%E5%B3%A1%E6%80%BB%E5%85%AC%E5%8F%B8%E6%80%BB%E7%BB%8F%E7%90%86%EF%BC%89"><span class="toc-number">2.0.29.</span> <span class="toc-text">9.2 三峡工程项目管理（陆佑楣，原能源部副部长、三峡总公司总经理）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1-%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E5%88%9B%E6%96%B0%E4%B8%8E%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%81%E5%A3%AB%E6%98%AD%EF%BC%89"><span class="toc-number">2.0.30.</span> <span class="toc-text">10.1 工程管理创新与实践（丁士昭）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-The-Past-Present-and-Future-of-Project-Management%EF%BC%88Dr-Ediwin-J-Andrews%EF%BC%89"><span class="toc-number">2.0.31.</span> <span class="toc-text">10.2 The Past,Present and Future of Project Management（Dr. Ediwin J. Andrews）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-%E5%8D%87%E7%BA%A7%E4%B8%AD%E7%9A%84%E4%B8%AD%E5%9B%BD%E5%AF%B9%E5%A4%96%E6%89%BF%E5%8C%85%E4%B8%9A%EF%BC%88%E5%90%B4%E4%B9%8B%E6%98%95-%E4%B8%AD%E5%BB%BA%E4%B8%80%E5%B1%80%E6%80%BB%E5%B7%A5%EF%BC%89"><span class="toc-number">2.0.32.</span> <span class="toc-text">10.3 升级中的中国对外承包业（吴之昕|中建一局总工）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E4%BD%9C%E4%B8%9A"><span class="toc-number">3.</span> <span class="toc-text">案例作业</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E4%BD%9C%E4%B8%9A"><span class="toc-number">4.</span> <span class="toc-text">阅读作业</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MOOC%E8%B5%84%E6%BA%90"><span class="toc-number">4.0.1.</span> <span class="toc-text">MOOC资源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">学习小组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">6.</span> <span class="toc-text">拓展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BF%BB%E8%AF%91%E5%8D%A1%E7%89%87"><span class="toc-number">6.0.1.</span> <span class="toc-text">翻译卡片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%BA%E7%89%A9%E5%8D%A1%E7%89%87%EF%BC%9A%E4%B8%81%E5%A3%AB%E6%98%AD"><span class="toc-number">6.0.2.</span> <span class="toc-text">人物卡片：丁士昭</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%81%E5%A3%AB%E6%98%AD%E5%B1%A5%E5%8E%86"><span class="toc-number">6.0.2.1.</span> <span class="toc-text">丁士昭履历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E8%AE%B2%E6%8E%88%E8%AF%BE%E7%A8%8B"><span class="toc-number">6.0.2.2.</span> <span class="toc-text">主要讲授课程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%91%E7%A0%94%E6%88%90%E6%9E%9C"><span class="toc-number">6.0.2.3.</span> <span class="toc-text">科研成果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86"><span class="toc-number">6.0.3.</span> <span class="toc-text">项目管理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

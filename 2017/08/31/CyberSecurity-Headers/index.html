@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Cyber-Security:Web应用安全：攻击、防护与检测 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Web 应用服务器安全：攻击、防护与检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber-Security:Web应用安全：攻击、防护与检测">
+<meta property="og:url" content="https://riboseyim.com/2017/08/31/CyberSecurity-Headers/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Web 应用服务器安全：攻击、防护与检测">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CyberSecurity_Clickjack.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CyberSecurity_sslstrip-mitm.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CyberSecuryty_Web_Headers_1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/CyberSecuryty_Web_Headers_2.png">
+<meta property="article:published_time" content="2017-08-31T01:59:11.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:03.664Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Cyber-Security">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/CyberSecurity_Clickjack.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CyberSecurity-Headers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/31/CyberSecurity-Headers/" class="article-date">
+  <time datetime="2017-08-31T01:59:11.000Z" itemprop="datePublished">2017-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cyber-Security:Web应用安全：攻击、防护与检测
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/08/31/CyberSecurity-Headers/" data-id="ckwgm33kb003t7b1ymyi6ug8m" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>Web 应用服务器安全：攻击、防护与检测</li>
+</ul>
+<span id="more"></span>
+<h2 id="Web-应用服务器安全：攻击、防护与检测"><a href="#Web-应用服务器安全：攻击、防护与检测" class="headerlink" title="Web 应用服务器安全：攻击、防护与检测"></a>Web 应用服务器安全：攻击、防护与检测</h2><h4 id="摘要-1"><a href="#摘要-1" class="headerlink" title="摘要"></a>摘要</h4><p>目前有许多的恶意攻击都是以网站及其用户作为目标，本文将简要介绍在 Web 服务器一侧的安全加固和测试方法。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>攻击方式</th>
+<th>防护方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点击劫持(clickjacking)</td>
+<td>X-Frame-Options Header</td>
+<td>——-</td>
+</tr>
+<tr>
+<td>基于 SSL 的中间人攻击(SSL Man-in-the-middle)</td>
+<td>HTTP Strict Transport Security</td>
+<td>——-</td>
+</tr>
+<tr>
+<td>跨站脚本(Cross-site scripting,XSS)</td>
+<td>X-XSS-Protection、Content-Security-Policy、X-Content-Type-Options</td>
+<td>——-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="点击劫持（Clickjacking）"><a href="#点击劫持（Clickjacking）" class="headerlink" title="点击劫持（Clickjacking）"></a>点击劫持（Clickjacking）</h4><p>点击劫持,<a target="_blank" rel="noopener" href="https://www.troyhunt.com/clickjack-attack-hidden-threat-right-in/">clickjacking</a> 是一种在网页中将恶意代码等隐藏在看似无害的内容（如按钮）之下，并诱使用户点击的手段，又被称为界面伪装（UI redressing）。例如用户收到一封包含一段视频的电子邮件，但其中的“播放”按钮并不会真正播放视频，而是被诱骗进入一个购物网站。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CyberSecurity_Clickjack.png" alt=""></p>
+<p>针对点击劫持攻击，<a target="_blank" rel="noopener" href="https://www.owasp.org">开放Web应用程序安全项目(Open Web Application Security Project ,OWASP)</a>(非营利组织，其目的是协助个人、企业和机构来发现和使用可信赖软件) 提供了一份指引，<a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#Defending_with_X-Frame-Options_Response_Headers">《Defending_with_X-Frame-Options_Response_Headers》</a> 。</p>
+<p>X-Frame-Options HTTP 响应头是用来给浏览器指示允许一个页面可否在 frame 标签 或者 object 标签中展现的标记。网站可以使用此功能，来确保自己网站的内容没有被嵌到别人的网站中去，也从而避免了点击劫持 (clickjacking) 的攻击。DENY:表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套也不允许。SAMEORIGIN:表示该页面可以在相同域名页面的 frame 中展示。ALLOW-FROM uri:表示该页面可以在指定来源的 frame 中展示。配置如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy</span></span><br><span class="line">http-response set-header X-Frame-Options:DENY</span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header X-Frame-Options <span class="string">&quot;DENY&quot;</span>;</span><br><span class="line"><span class="comment">//Java</span></span><br><span class="line">response.addHeader(<span class="string">&quot;x-frame-options&quot;</span>,<span class="string">&quot;DENY&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="跨站脚本-Cross-site-scripting-XSS"><a href="#跨站脚本-Cross-site-scripting-XSS" class="headerlink" title="跨站脚本 Cross-site scripting (XSS)"></a>跨站脚本 Cross-site scripting (XSS)</h3><p>跨站脚本通常指的是通过利用开发时留下的漏洞，注入恶意指令代码（JavaScript/Java/VBScript/ActiveX/Flash/HTML等）到网页，使用户加载并执行攻击者恶意制造的程序。攻击者可能得到更高的权限、私密网页、会话和cookie等各种内容。目前有两种不同的 HTTP 响应头可以用来防止 XSS 攻击，它们是：</p>
+<ul>
+<li>X-XSS-Protection</li>
+<li>Content-Security-Policy</li>
+</ul>
+<h4 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h4><p>HTTP X-XSS-Protection 响应头是Internet Explorer，Chrome和Safari的一个功能，当检测到跨站脚本攻击 (XSS)时，浏览器将停止加载页面。配置选项：0 禁止XSS过滤。1 启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。mode=block 启用XSS过滤, 如果检测到攻击，浏览器将不会清除页面，而是阻止页面加载。report=reporting-URI 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用 CSP report-uri 指令的功能发送违规报告。参考文章<a target="_blank" rel="noopener" href="http://blog.innerht.ml/the-misunderstood-x-xss-protection/">《The misunderstood X-XSS-Protection》</a>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy</span></span><br><span class="line">http-response set-header X-XSS-Protection: <span class="number">1</span>;mode=block</span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header X-Xss-Protection <span class="string">&quot;1; mode=block&quot;</span> always;;</span><br></pre></td></tr></table></figure>
+<p>浏览器支持情况：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(Yes)</td>
+<td>(Yes)</td>
+<td>No</td>
+<td>8.0</td>
+<td>(Yes)</td>
+<td>(Yes)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Content-Security-Policy"><a href="#Content-Security-Policy" class="headerlink" title="Content-Security-Policy"></a>Content-Security-Policy</h4><p>内容安全性政策(Content Security Policy,CSP)就是一种白名单制度，明确告诉客户端哪些外部资源（脚本／图片／音视频等）可以加载和执行。浏览器可以拒绝任何不来自预定义位置的任何内容，从而防止外部注入的脚本和其他此类恶意内容。设置 Content-Security-Policy Header：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy:</span></span><br><span class="line">http-response set-header Content-Security-Policy:script-src https:<span class="comment">//www.google-analytics.com;https://q.quora.com</span></span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header Content-Security-Policy-Report-Only <span class="string">&quot;script-src https://www.google-analytics.com https://q.quora.com&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="MIME-Sniffing"><a href="#MIME-Sniffing" class="headerlink" title="MIME-Sniffing"></a>MIME-Sniffing</h4><p>MIME-Sniffing（主要是Internet Explorer）使用的一种技术，它尝试猜测资源的 MIME 类型（也称为 Content-Type 内容类型）。这意味着浏览器可以忽略由 Web 服务器发送的 Content-Type Header，而不是尝试分析资源（例如将纯文本标记为HTML 标签），按照它认为的资源（HTML）渲染资源而不是服务器的定义（文本）。虽然这是一个非常有用的功能，能够纠正服务器发送的错误的 Content-Type，但是心怀不轨的人可以轻易滥用这一特性，这使得浏览器和用户可能被恶意攻击。例如，如通过精心制作一个图像文件，并在其中嵌入可以被浏览器所展示和执行的HTML和t代码。<a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-v-comprehensive-protection/">《Microsoft Developer Network:IE8 Security Part V: Comprehensive Protection》</a>：</p>
+<blockquote>
+<p>Consider, for instance, the case of a picture-sharing web service which hosts pictures uploaded by anonymous users. An attacker could upload a specially crafted JPEG file that contained script content, and then send a link to the file to unsuspecting victims. When the victims visited the server, the malicious file would be downloaded, the script would be detected, and it would run in the context of the picture-sharing site. This script could then steal the victim’s cookies, generate a phony page, etc.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy</span></span><br><span class="line">http-response set-header X-Content-Type-Options: nosniff</span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header X-Content-Type-Options <span class="string">&quot;nosniff&quot;</span> always;</span><br></pre></td></tr></table></figure>
+<h4 id="SSL-Strip-Man-in-The-Middle-Attack"><a href="#SSL-Strip-Man-in-The-Middle-Attack" class="headerlink" title="SSL Strip Man-in-The-Middle Attack"></a>SSL Strip Man-in-The-Middle Attack</h4><p>中间人攻击中攻击者与通讯的两端分别创建独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。例如，在一个未加密的Wi-Fi 无线接入点的接受范围内的中间人攻击者，可以将自己作为一个中间人插入这个网络。强制用户使用<a href="#">HTTP严格传输安全（HTTP Strict Transport Security,HSTS）</a>。 HSTS 是一套由 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/12/Protocol-RFC/">IETF</a> 发布的互联网安全策略机制。Chrome 和 Firefox 浏览器有一个内置的 HSTS 的主机列表，网站可以选择使用 HSTS 策略强制浏览器使用 HTTPS 协议与网站进行通信，以减少会话劫持风险。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/CyberSecurity_sslstrip-mitm.png" alt=""></p>
+<p>服务器设置下列选项可以强制所有客户端只能通过 HTTPS 连接：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy</span></span><br><span class="line">http-response set-header Strict-Transport-Security max-age=<span class="number">31536000</span>;includeSubDomains;preload</span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header Strict-Transport-Security <span class="string">&#x27;max-age=31536000; includeSubDomains; preload; always;&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="暴露-URL-（HTTPS-gt-HTTP-Sites"><a href="#暴露-URL-（HTTPS-gt-HTTP-Sites" class="headerlink" title="暴露 URL （HTTPS &gt; HTTP Sites)"></a>暴露 URL （HTTPS &gt; HTTP Sites)</h4><p>Referrer 信息被广泛用于网络访问流量来源分析，它是众多网站数据统计服务的基础，例如 <a href="#">Google Analytics</a> 和 <a target="_blank" rel="noopener" href="https://awstats.sourceforge.io/">AWStats,基于Perl的开源日志分析工具</a>。同样的这一特性也会很容易被恶意利用，造成用户敏感信息泄漏，例如将用户 SESSION ID 放在 URL 中，第三方拿到就可能看到别人登录后的页面内容。2014 年，W3C 发布了 Referrer Policy 的新草案，开发者开始有权控制自己网站的 Referrer Policy。但是仅有 Chrome／Firefox 浏览器较新的版本的能够提供支持。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Chrome</th>
+<th>Firefox</th>
+<th>Edge、Internet Explorer、    Opera、Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic Support</td>
+<td>56.0</td>
+<td>50.0</td>
+<td>(No)</td>
+</tr>
+<tr>
+<td>same-origin</td>
+<td>(No)1</td>
+<td>52.0</td>
+<td>(No)</td>
+</tr>
+<tr>
+<td>strict-origin</td>
+<td>(No)1</td>
+<td>52.0</td>
+<td>(No)</td>
+</tr>
+<tr>
+<td>strict-origin-when-cross-origin</td>
+<td>(No)1</td>
+<td>52.0</td>
+<td>(No)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Referrer-Policy选项列表：</p>
+<ul>
+<li>Referrer-Policy: no-referrer  //整个 Referer 首部会被移除。访问来源信息不随着请求一起发送。</li>
+<li>Referrer-Policy: no-referrer-when-downgrade //默认选项<br>//引用页面的地址会被发送(HTTPS-&gt;HTTPS)，降级的情况不会被发送 (HTTPS-&gt;HTTP)</li>
+<li>Referrer-Policy: origin //在任何情况下，仅发送文件的源作为引用地址</li>
+<li>Referrer-Policy: origin-when-cross-origin //对于同源的请求，会发送完整的URL作为引用地址，但是对于非同源请求仅发送文件的源</li>
+<li>Referrer-Policy: same-origin //对于同源的请求会发送引用地址，但是对于非同源请求则不发送引用地址信息。</li>
+<li>Referrer-Policy: strict-origin //在同等安全级别的情况下，发送文件的源作为引用地址(HTTPS-&gt;HTTPS)</li>
+<li>Referrer-Policy: strict-origin-when-cross-origin //对于同源的请求，会发送完整的URL作为引用地址</li>
+<li>Referrer-Policy: unsafe-url //无论是否同源请求，都发送完整的 URL（移除参数信息之后）作为引用地址。</li>
+</ul>
+<p>我们必须确保用户从全 HTTPS 站点跳转到 HTTP 站点的时候，没有中间人可以嗅探出用户实际的 HTTPS URL，Referrer Policy 设置如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HAProxy</span></span><br><span class="line">http-response set-header Referrer-Policy no-referrer-when-downgrade</span><br><span class="line"><span class="comment">//Nginx</span></span><br><span class="line">add_header Referrer-Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+<th>Referrer （Policy :no-referrer-when-downgrade）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://test.com/blog1/">https://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog2/">http://test.com/blog2/</a></td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://test.com/blog1/">https://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="https://test.com/blog2/">https://test.com/blog2/</a></td>
+<td><a target="_blank" rel="noopener" href="https://test.com/blog1/">https://test.com/blog1/</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog2/">http://test.com/blog2/</a></td>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="http://example.com">http://example.com</a></td>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="https://example.com">https://example.com</a></td>
+<td><a target="_blank" rel="noopener" href="http://test.com/blog1/">http://test.com/blog1/</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://test.com/blog1/">https://test.com/blog1/</a></td>
+<td><a target="_blank" rel="noopener" href="http://example.com">http://example.com</a></td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>安全研究员 Scott Helme 贡献了一个非常棒的网站 [<a target="_blank" rel="noopener" href="https://securityheaders.io/]，可以分析自己站点的Header(报文头)，并提出改进安全性的建议。示例如下（环境参数，Operating">https://securityheaders.io/]，可以分析自己站点的Header(报文头)，并提出改进安全性的建议。示例如下（环境参数，Operating</a> System: CentOS 7 ; haproxy 1.5.14 ; nginx 1.12.0）。</p>
+<ul>
+<li>加固前的检测结果<br><img src="http://riboseyim-qiniu.riboseyim.com/CyberSecuryty_Web_Headers_1.png" alt="加固前"></li>
+<li>加固后的检测结果<br><img src="http://riboseyim-qiniu.riboseyim.com/CyberSecuryty_Web_Headers_2.png" alt="加固后"></li>
+</ul>
+<h2 id="扩展阅读：《The-Cyber-Security-Master》"><a href="#扩展阅读：《The-Cyber-Security-Master》" class="headerlink" title="扩展阅读：《The Cyber-Security Master》"></a>扩展阅读：<a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/cyber-security-manual">《The Cyber-Security Master》</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/670c4d2bb419">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/07/CyberSecurity/">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.twilio.com/blog/a-http-headers-for-the-responsible-developer">HTTP headers for the responsible developer</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sans.org/reading-room/whitepapers/threats/ssl-man-in-the-middle-attacks-480">SSL Man-in-the-Middle Attacks|SANS Institute InfoSec Reading Room</a></li>
+<li><a target="_blank" rel="noopener" href="https://scotthelme.co.uk/a-new-security-header-referrer-policy/">A new security header: Referrer Policy | Scott Helme</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-v-comprehensive-protection/">《Microsoft Developer Network:IE8 Security Part V: Comprehensive Protection》</a></li>
+<li><a target="_blank" rel="noopener" href="https://scotthelme.co.uk/wifi-pineapple-karma-sslstrip/">The WiFi Pineapple - Using Karma and SSLstrip to MiTM secure connections | Scott Helme</a></li>
+<li><a target="_blank" rel="noopener" href="https://scotthelme.co.uk/content-security-policy-an-introduction/">Content Security Policy - An Introduction | Scott Helme</a></li>
+<li><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/61144">Content Security Policy 入门教程 | 云栖社区</a></li>
+<li><a target="_blank" rel="noopener" href="https://imququ.com/post/referrer-policy.html">Referrer Policy 介绍 | Jerry Qu</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/08/31/CyberSecurity-Headers/" data-id="ckwgm33kb003t7b1ymyi6ug8m" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/04/Addiction-Decision/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          嗑药简史：药物成瘾与神经系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/30/Mathmetics-Beauty/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">读书笔记|数学之美（Beauty Of Mathmetics）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%EF%BC%9A%E6%94%BB%E5%87%BB%E3%80%81%E9%98%B2%E6%8A%A4%E4%B8%8E%E6%A3%80%E6%B5%8B"><span class="toc-number">2.</span> <span class="toc-text">Web 应用服务器安全：攻击、防护与检测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%91%98%E8%A6%81-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%EF%BC%88Clickjacking%EF%BC%89"><span class="toc-number">2.0.2.</span> <span class="toc-text">点击劫持（Clickjacking）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC-Cross-site-scripting-XSS"><span class="toc-number">2.1.</span> <span class="toc-text">跨站脚本 Cross-site scripting (XSS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#X-XSS-Protection"><span class="toc-number">2.1.1.</span> <span class="toc-text">X-XSS-Protection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Content-Security-Policy"><span class="toc-number">2.1.2.</span> <span class="toc-text">Content-Security-Policy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MIME-Sniffing"><span class="toc-number">2.1.3.</span> <span class="toc-text">MIME-Sniffing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSL-Strip-Man-in-The-Middle-Attack"><span class="toc-number">2.1.4.</span> <span class="toc-text">SSL Strip Man-in-The-Middle Attack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9A%B4%E9%9C%B2-URL-%EF%BC%88HTTPS-gt-HTTP-Sites"><span class="toc-number">2.1.5.</span> <span class="toc-text">暴露 URL （HTTPS &gt; HTTP Sites)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.6.</span> <span class="toc-text">测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E3%80%8AThe-Cyber-Security-Master%E3%80%8B"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：《The Cyber-Security Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

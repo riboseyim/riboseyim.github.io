@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数据可视化（五）基于网络爬虫制作可视化图表 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 基于网络爬虫的可视化图表:golang,goquery 案例：最近十年全国彩票销售变化情况 案例：中国科学院院士分布 数据可视化技术方案:基于 SVG (D3、Raphael)、基于 Canvas（Echarts）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化（五）基于网络爬虫制作可视化图表">
+<meta property="og:url" content="https://riboseyim.com/2017/05/12/Visualization-Charts/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 基于网络爬虫的可视化图表:golang,goquery 案例：最近十年全国彩票销售变化情况 案例：中国科学院院士分布 数据可视化技术方案:基于 SVG (D3、Raphael)、基于 Canvas（Echarts）">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%C2%B7%E9%99%A2%E5%A3%AB%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%C2%B7201801.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/usa-traffic-1980.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/%E5%A4%A9%E5%AE%98%E8%B5%90%E7%A6%8F.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-4-min.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-3.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-5.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Coror-Default.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/echarts-%E5%9B%BD%E5%AE%B6%E7%BB%9F%E8%AE%A1%E5%B1%80.png">
+<meta property="article:published_time" content="2017-05-12T10:45:50.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:10.208Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%C2%B7%E9%99%A2%E5%A3%AB%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%C2%B7201801.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Visualization-Charts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/Visualization-Charts/" class="article-date">
+  <time datetime="2017-05-12T10:45:50.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据可视化（五）基于网络爬虫制作可视化图表
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="ckwgm33pe014c7b1ygc2h0e22" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>基于网络爬虫的可视化图表:golang,goquery</li>
+<li>案例：最近十年全国彩票销售变化情况</li>
+<li>案例：中国科学院院士分布</li>
+<li>数据可视化技术方案:基于 SVG (D3、Raphael)、基于 Canvas（Echarts）</li>
+</ul>
+<span id="more"></span>
+<h2 id="基于网络爬虫的可视化图表"><a href="#基于网络爬虫的可视化图表" class="headerlink" title="基于网络爬虫的可视化图表"></a>基于网络爬虫的可视化图表</h2><p>我们身处大数据时代，几乎在所有工作例如商业技术、金融、科研教育等行业，以及日常生活中都可能需要涉及数据分析活动。横向来看数据分析的知识体系贯穿数据获取、数据存储、数据分析、数据挖掘、数据可视化等各大部分；按数据来源分，即可以是自己收集的数据，也可以采购数据或者基于公开数据集。</p>
+<p>基于公开数据进行分析的话，必须提到的就是网络爬虫（web crawler），也被称作网络蜘蛛（spider）、自动索引程序（automatic indexer），搜索引擎（Google，百度等）就是大众日常生活中接触到的最典型、最强大的爬虫。</p>
+<p>公开数据包括政府（统计局、央行、银监会、证监会等）、企业、社会组织和互联网上的个人发布信息等。在浩如烟海的互联网内容中，有价值信息犹如‘待字闺中’深藏的美女，等待有心人去挖掘。例如：</p>
+<ul>
+<li>案例：最近十年全国彩票销售变化情况 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/charts/caipiao/index.html">在线演示</a></li>
+<li>案例：中国科学院院士分布（出生地与籍贯）<a target="_blank" rel="noopener" href="https://riboseyim.github.io/charts/casad/index.html">在线演示</a></li>
+<li>案例：美国航空入境旅客（出发地）变化情况 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/charts/usa-traffic/index.html">在线演示</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%C2%B7%E9%99%A2%E5%A3%AB%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%C2%B7201801.png" alt="中科院院士分布情况|201801"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-3.png" alt="全国彩票销售情况"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/usa-traffic-1980.png" alt=""></p>
+<p>为了实现上述图表，相关技术方案的要点如下：</p>
+<ul>
+<li>开发语言：<br>基于 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/05/Language-Go-lang/">Golang</a> 实现爬虫基本功能，主要考虑 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/05/Language-Go-lang/">Go 语言</a> 自身对于网络方面的强大支持，语言级 Goroutines 提供并发高性能支持。</li>
+<li>HTML选择器: <strong>goquery</strong> jQuery-style HTML manipulation in Go</li>
+<li>数据存储: csv,<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/03/OpenSource-DB-PostgreSQL/">PostgreSQL</a> 等</li>
+<li>数据可视化：<strong>ECharts</strong></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/%E5%A4%A9%E5%AE%98%E8%B5%90%E7%A6%8F.png" alt="基于网络爬虫制作可视化图表"></p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>数据来源页面：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://zhs.mof.gov.cn/zhuantilanmu/caipiaoguanli/">专栏：彩票管理</a></li>
+<li><a target="_blank" rel="noopener" href="http://zhs.mof.gov.cn/zhuantilanmu/caipiaoguanli/201712/t20171221_2786493.html">2017年11月份全国彩票销售情况</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.casad.cas.cn/chnl/371/index.html">全体院士名单</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.casad.cas.cn/aca/371/sxwlxb-200906-t20090626_1854608.html">院士个人介绍</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-4-min.png" alt="数据来源-专题"><br><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-3.png" alt="数据来源-内容"><br><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-5.png" alt="数据来源-翻页"></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-2.png" alt="数据来源页面-源代码"><br><img src="http://riboseyim-qiniu.riboseyim.com/gmof-caipiao-process-1.png" alt="数据来源页面-源代码"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//caipiao_task.go</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Handle_GMOF_CaiPiao_Month_BatchTask</span><span class="params">()</span></span> &#123;</span><br><span class="line">	data := read_csv_caipiao(<span class="string">&quot;./data/caipiao_list.csv&quot;</span>, <span class="string">&quot;,&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> data != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> i := <span class="keyword">range</span> data &#123;</span><br><span class="line">			<span class="keyword">go</span> Handle_GMOF_CaiPiao_Month_Task(url)</span><br><span class="line">		&#125;</span><br><span class="line">		&lt;-time.After(<span class="number">60</span> * time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Handle_GMOF_CaiPiao_Month_Task</span><span class="params">(url <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> url != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		myspider := init_GMOF_CaiPiao_Month_HTMLSpider(url)</span><br><span class="line">		ctx, _ := myspider.Setup(<span class="literal">nil</span>)</span><br><span class="line">		myspider.Spin(ctx)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//caipiao_spider.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;regexp&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;github.com/PuerkitoBio/goquery&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/celrenheit/spider&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> GMOF_CaiPiao_Month_HTMLSpider <span class="keyword">struct</span> &#123;</span><br><span class="line">	title <span class="keyword">string</span> <span class="string">`json:&quot;title&quot;`</span></span><br><span class="line">	url   <span class="keyword">string</span> <span class="string">`json:&quot;url&quot;`</span></span><br><span class="line">	desc  <span class="keyword">string</span> <span class="string">`json:&quot;desc&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init_GMOF_CaiPiao_Month_HTMLSpider</span><span class="params">(url <span class="keyword">string</span>)</span> *<span class="title">GMOF_CaiPiao_Month_HTMLSpider</span></span> &#123;</span><br><span class="line">	spider := NewGMOF_CaiPiao_Month_HTMLSpider()</span><br><span class="line">	spider.url = url</span><br><span class="line">	<span class="keyword">return</span> spider</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *GMOF_CaiPiao_Month_HTMLSpider)</span> <span class="title">Setup</span><span class="params">(ctx *spider.Context)</span> <span class="params">(*spider.Context, error)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> spider.NewHTTPContext(<span class="string">&quot;GET&quot;</span>, w.url, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *GMOF_CaiPiao_Month_HTMLSpider)</span> <span class="title">Spin</span><span class="params">(ctx *spider.Context)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> _, err := ctx.DoRequest(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	html, err := ctx.HTMLParser()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	caipiao := NewGMOF_CaiPiao_Month()</span><br><span class="line"></span><br><span class="line">	<span class="comment">//&lt;title&gt;&lt;/title&gt;</span></span><br><span class="line">	caipiao.Title = html.Find(<span class="string">&quot;title&quot;</span>).Eq(<span class="number">0</span>).Text()</span><br><span class="line">	caipiao.Title = Convert2String(caipiao.Title, GB18030)</span><br><span class="line">	<span class="comment">//class=&quot;TRS_Editor&quot;</span></span><br><span class="line">	html.Find(<span class="string">&quot;.TRS_Editor&quot;</span>).Each(<span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>, s *goquery.Selection)</span></span> &#123;</span><br><span class="line">		content := s.Find(<span class="string">&quot;p&quot;</span>).Text()</span><br><span class="line">		caipiao.Content = content</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> content != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">			content = Convert2String(content, GB18030)</span><br><span class="line">			rows := strings.Split(content, <span class="string">&quot;。&quot;</span>)</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> _, value := <span class="keyword">range</span> rows &#123;</span><br><span class="line">				<span class="comment">//fmt.Printf(&quot;======arr[%d]=\n [%s] \n&quot;, index, value)</span></span><br><span class="line">				<span class="keyword">if</span> strings.Index(value, <span class="string">&quot;全国彩票&quot;</span>) &gt; <span class="number">0</span> &#123;</span><br><span class="line">					reg := regexp.MustCompile(<span class="string">`全国共销售彩票([\d]+.[\d]+)\S+`</span>)</span><br><span class="line">					result := reg.FindStringSubmatch(value)</span><br><span class="line">					<span class="keyword">if</span> <span class="built_in">len</span>(result) &gt; <span class="number">0</span> &#123;</span><br><span class="line">						caipiao.Total = result[<span class="number">1</span>]</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//id=&quot;appendix&quot;</span></span><br><span class="line">	html.Find(<span class="string">&quot;#appendix&quot;</span>).Each(<span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>, s *goquery.Selection)</span></span> &#123;</span><br><span class="line">		href, _ := s.Find(<span class="string">&quot;a&quot;</span>).Eq(<span class="number">0</span>).Attr(<span class="string">&quot;href&quot;</span>) <span class="comment">//附件</span></span><br><span class="line">		caipiao.Attachid = href</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//===== export data</span></span><br><span class="line">	save_csv(<span class="string">&quot;./data/caipiao_result.csv&quot;</span>, caipiao)</span><br><span class="line">	<span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2017年11月份全国彩票销售情况,385.55<br>2017年10月份全国彩票销售情况,376.53<br>2017年9月份全国彩票销售情况,369.28<br>2017年8月份全国彩票销售情况,350.67<br>2017年7月份全国彩票销售情况,337.55<br>2017年6月份全国彩票销售情况,338.42</p>
+</blockquote>
+<h4 id="可视化图表：以-ECharts-为例"><a href="#可视化图表：以-ECharts-为例" class="headerlink" title="可视化图表：以 ECharts 为例"></a>可视化图表：以 ECharts 为例</h4><p><strong>常见的图表库</strong>，本文案例使用 ECharts 作为图表组件</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.highcharts.com">HighCharts</a>：JavaScript 编写，开源许可证允许个人用户和非商业用途。</li>
+<li><a target="_blank" rel="noopener" href="http://echarts.baidu.com">Baidu ECharts</a>：底层画图基于 Canvas, BSD 许可证协议。</li>
+<li><a target="_blank" rel="noopener" href="http://www.oschina.net/p/kartograph?fromerr=tZ15BKGv">Kartograph</a>：构建交互式地图轻量级类库。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//http://echarts.baidu.com/demo.html#line-gradient</span></span><br><span class="line">data = [[<span class="string">&quot;2017年11月&quot;</span>,<span class="number">385.55</span>],[<span class="string">&quot;2017年10月&quot;</span>,<span class="number">376.53</span>],[<span class="string">&quot;2017年9月&quot;</span>,<span class="number">369.28</span>],[<span class="string">&quot;2017年8月&quot;</span>,<span class="number">350.67</span>],[<span class="string">&quot;2017年7月&quot;</span>,<span class="number">337.55</span>],[<span class="string">&quot;2017年6月&quot;</span>,<span class="number">338.42</span>],[<span class="string">&quot;2017年11月&quot;</span>,<span class="number">385.55</span>],[<span class="string">&quot;2017年10月&quot;</span>,<span class="number">376.53</span>],[<span class="string">&quot;2017年9月&quot;</span>,<span class="number">369.28</span>],[<span class="string">&quot;2017年8月&quot;</span>,<span class="number">350.67</span>],[<span class="string">&quot;2017年7月&quot;</span>,<span class="number">337.55</span>],[<span class="string">&quot;2017年6月&quot;</span>,<span class="number">338.42</span>],[<span class="string">&quot;2017年11月&quot;</span>,<span class="number">385.55</span>],[<span class="string">&quot;2017年10月&quot;</span>,<span class="number">376.53</span>],[<span class="string">&quot;2017年9月&quot;</span>,<span class="number">369.28</span>],[<span class="string">&quot;2017年8月&quot;</span>,<span class="number">350.67</span>],[<span class="string">&quot;2017年7月&quot;</span>,<span class="number">337.55</span>],[<span class="string">&quot;2017年6月&quot;</span>,<span class="number">338.42</span>],[<span class="string">&quot;2017年5月&quot;</span>,<span class="number">376.95</span>],[<span class="string">&quot;2017年4月&quot;</span>,<span class="number">382.45</span>],[<span class="string">&quot;2017年3月&quot;</span>,<span class="number">379.33</span>],[<span class="string">&quot;2017年2月&quot;</span>,<span class="number">0</span>],[<span class="string">&quot;2017年1月&quot;</span>,<span class="number">291.61</span>],[<span class="string">&quot;2016年12月&quot;</span>,<span class="number">365.94</span>],[<span class="string">&quot;2016年11月&quot;</span>,<span class="number">344.82</span>],[<span class="string">&quot;2016年10月&quot;</span>,<span class="number">338.27</span>],[<span class="string">&quot;2016年9月&quot;</span>,<span class="number">320.71</span>],[<span class="string">&quot;2016年8月&quot;</span>,<span class="number">310.12</span>],[<span class="string">&quot;2016年7月&quot;</span>,<span class="number">324.03</span>],[<span class="string">&quot;2016年6月&quot;</span>,<span class="number">339.61</span>],[<span class="string">&quot;2016年5月&quot;</span>,<span class="number">346.19</span>],[<span class="string">&quot;2016年4月&quot;</span>,<span class="number">348.89</span>],[<span class="string">&quot;2016年3月&quot;</span>,<span class="number">356.88</span>],[<span class="string">&quot;2016年2月&quot;</span>,<span class="number">224.54</span>],[<span class="string">&quot;2016年1月&quot;</span>,<span class="number">326.41</span>],[<span class="string">&quot;2015年12月&quot;</span>,<span class="number">341.21</span>],[<span class="string">&quot;2015年11月&quot;</span>,<span class="number">306.30</span>],[<span class="string">&quot;2015年10月&quot;</span>,<span class="number">312.34</span>],[<span class="string">&quot;2015年9月&quot;</span>,<span class="number">290.78</span>],[<span class="string">&quot;2015年8月&quot;</span>,<span class="number">280.96</span>],[<span class="string">&quot;2015年7月&quot;</span>,<span class="number">270.47</span>],[<span class="string">&quot;2015年6月&quot;</span>,<span class="number">281.2371</span>],[<span class="string">&quot;2015年5月&quot;</span>,<span class="number">321.07</span>],[<span class="string">&quot;2015年5月&quot;</span>,<span class="number">321.07</span>],[<span class="string">&quot;2015年4月&quot;</span>,<span class="number">326.12</span>],[<span class="string">&quot;2015年3月&quot;</span>,<span class="number">308.12</span>],[<span class="string">&quot;2015年2月&quot;</span>,<span class="number">247.90</span>],[<span class="string">&quot;2015年1月&quot;</span>,<span class="number">392.33</span>],[<span class="string">&quot;2014年12月&quot;</span>,<span class="number">361.53</span>],[<span class="string">&quot;2014年11月&quot;</span>,<span class="number">341.18</span>],[<span class="string">&quot;2014年10月&quot;</span>,<span class="number">327.01</span>],[<span class="string">&quot;2014年9月&quot;</span>,<span class="number">322.52</span>],[<span class="string">&quot;2014年8月&quot;</span>,<span class="number">315.36</span>],[<span class="string">&quot;2014年7月&quot;</span>,<span class="number">372.09</span>],[<span class="string">&quot;2014年6月&quot;</span>,<span class="number">360.54</span>],[<span class="string">&quot;2014年5月&quot;</span>,<span class="number">307.94</span>],[<span class="string">&quot;2014年4月&quot;</span>,<span class="number">315.29</span>],[<span class="string">&quot;2014年3月&quot;</span>,<span class="number">328.74</span>],[<span class="string">&quot;2014年2月&quot;</span>,<span class="number">200.1</span>],[<span class="string">&quot;2014年1月&quot;</span>,<span class="number">271.49</span>],[<span class="string">&quot;2013年12月&quot;</span>,<span class="number">302.73</span>],[<span class="string">&quot;2013年11月&quot;</span>,<span class="number">274.16</span>],[<span class="string">&quot;2013年10月&quot;</span>,<span class="number">271.83</span>],[<span class="string">&quot;2013年9月&quot;</span>,<span class="number">257.62</span>],[<span class="string">&quot;2013年8月&quot;</span>,<span class="number">246.18</span>],[<span class="string">&quot;2013年7月&quot;</span>,<span class="number">243.65</span>],[<span class="string">&quot;2013年6月&quot;</span>,<span class="number">247.46</span>],[<span class="string">&quot;2013年5月&quot;</span>,<span class="number">273.41</span>],[<span class="string">&quot;2013年4月&quot;</span>,<span class="number">285.61</span>],[<span class="string">&quot;2013年3月&quot;</span>,<span class="number">273.37</span>],[<span class="string">&quot;2013年2月&quot;</span>,<span class="number">168.65</span>],[<span class="string">&quot;2013年1月&quot;</span>,<span class="number">248.59</span>],[<span class="string">&quot;2012年12月&quot;</span>,<span class="number">268.01</span>],[<span class="string">&quot;2012年11月&quot;</span>,<span class="number">237.06</span>],[<span class="string">&quot;2012年10月&quot;</span>,<span class="number">215.38</span>],[<span class="string">&quot;2012年9月&quot;</span>,<span class="number">205.12</span>],[<span class="string">&quot;2012年8月&quot;</span>,<span class="number">197.12</span>],[<span class="string">&quot;2012年7月&quot;</span>,<span class="number">201.98</span>],[<span class="string">&quot;2012年6月&quot;</span>,<span class="number">216.14</span>],[<span class="string">&quot;2012年5月&quot;</span>,<span class="number">236.16</span>],[<span class="string">&quot;2012年4月&quot;</span>,<span class="number">235.76</span>],[<span class="string">&quot;2012年3月&quot;</span>,<span class="number">235.79</span>],[<span class="string">&quot;2012年2月&quot;</span>,<span class="number">202.17</span>],[<span class="string">&quot;2012年1月&quot;</span>,<span class="number">164.54</span>],[<span class="string">&quot;2011年12月&quot;</span>,<span class="number">224.80</span>],[<span class="string">&quot;2011年11月&quot;</span>,<span class="number">210.08</span>],[<span class="string">&quot;2011年10月&quot;</span>,<span class="number">203.28</span>],[<span class="string">&quot;2011年9月&quot;</span>,<span class="number">196.44</span>],[<span class="string">&quot;2011年8月&quot;</span>,<span class="number">187.72</span>],[<span class="string">&quot;2011年7月&quot;</span>,<span class="number">182.05</span>],[<span class="string">&quot;2011年6月&quot;</span>,<span class="number">174.53</span>],[<span class="string">&quot;2011年5月&quot;</span>,<span class="number">187.28</span>],[<span class="string">&quot;2011年3月&quot;</span>,<span class="number">190.12</span>],[<span class="string">&quot;2011年2月&quot;</span>,<span class="number">112.92</span>],[<span class="string">&quot;2011年1月&quot;</span>,<span class="number">160.09</span>],[<span class="string">&quot;2010年12月&quot;</span>,<span class="number">171.89</span>],[<span class="string">&quot;2010年11月&quot;</span>,<span class="number">160.24</span>],[<span class="string">&quot;2010年10月&quot;</span>,<span class="number">149.95</span>],[<span class="string">&quot;2010年9月&quot;</span>,<span class="number">139.56</span>],[<span class="string">&quot;2011年4月&quot;</span>,<span class="number">186.50</span>],[<span class="string">&quot;2010年8月&quot;</span>,<span class="number">135.75</span>],[<span class="string">&quot;2010年7月&quot;</span>,<span class="number">132.74</span>],[<span class="string">&quot;2010年6月&quot;</span>,<span class="number">140.71</span>],[<span class="string">&quot;2010年5月&quot;</span>,<span class="number">144.38</span>],[<span class="string">&quot;2010年4月&quot;</span>,<span class="number">141.05</span>],[<span class="string">&quot;2010年3月&quot;</span>,<span class="number">132.52</span>],[<span class="string">&quot;2010年2月&quot;</span>,<span class="number">86.71</span>],[<span class="string">&quot;2010年1月&quot;</span>,<span class="number">126.99</span>],[<span class="string">&quot;2009年12月&quot;</span>,<span class="number">133.30</span>],[<span class="string">&quot;2009年11月&quot;</span>,<span class="number">117.05</span>],[<span class="string">&quot;2009年10月&quot;</span>,<span class="number">116.47</span>],[<span class="string">&quot;2009年9月&quot;</span>,<span class="number">111.73</span>],[<span class="string">&quot;2009年8月&quot;</span>,<span class="number">110.64</span>],[<span class="string">&quot;2009年7月&quot;</span>,<span class="number">107.87</span>],[<span class="string">&quot;2009年6月&quot;</span>,<span class="number">113.51</span>],[<span class="string">&quot;2009年5月&quot;</span>,<span class="number">121.59</span>],[<span class="string">&quot;2009年4月&quot;</span>,<span class="number">114.61</span>],[<span class="string">&quot;2009年3月&quot;</span>,<span class="number">114.49</span>],[<span class="string">&quot;2009年2月&quot;</span>,<span class="number">89.21</span>],[<span class="string">&quot;2009年1月&quot;</span>,<span class="number">74.33</span>],[<span class="string">&quot;2008年12月&quot;</span>,<span class="number">102.07</span>],[<span class="string">&quot;2008年11月&quot;</span>,<span class="number">94.09</span>],[<span class="string">&quot;2008年10月&quot;</span>,<span class="number">79.88</span>],[<span class="string">&quot;2008年8月&quot;</span>,<span class="number">84.66</span>]];</span><br><span class="line"><span class="keyword">var</span> dateList = data.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item[<span class="number">0</span>];</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> valueList = data.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item[<span class="number">1</span>];</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">option = &#123;</span><br><span class="line">    <span class="comment">// Make gradient line here</span></span><br><span class="line">    <span class="attr">visualMap</span>: [&#123;</span><br><span class="line">        <span class="attr">show</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;continuous&#x27;</span>,</span><br><span class="line">        <span class="attr">seriesIndex</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">min</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">max</span>: <span class="number">400</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">show</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;continuous&#x27;</span>,</span><br><span class="line">        <span class="attr">seriesIndex</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">dimension</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">min</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">max</span>: dateList.length - <span class="number">1</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">title</span>: [&#123;</span><br><span class="line">        <span class="attr">left</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&#x27;Gradient along the y axis&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">top</span>: <span class="string">&#x27;55%&#x27;</span>,</span><br><span class="line">        <span class="attr">left</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&#x27;Gradient along the x axis&#x27;</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">tooltip</span>: &#123;</span><br><span class="line">        <span class="attr">trigger</span>: <span class="string">&#x27;axis&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">xAxis</span>: [&#123;</span><br><span class="line">        <span class="attr">data</span>: dateList</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">data</span>: dateList,</span><br><span class="line">        <span class="attr">gridIndex</span>: <span class="number">1</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">yAxis</span>: [&#123;</span><br><span class="line">        <span class="attr">splitLine</span>: &#123;<span class="attr">show</span>: <span class="literal">false</span>&#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">splitLine</span>: &#123;<span class="attr">show</span>: <span class="literal">false</span>&#125;,</span><br><span class="line">        <span class="attr">gridIndex</span>: <span class="number">1</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">grid</span>: [&#123;</span><br><span class="line">        <span class="attr">bottom</span>: <span class="string">&#x27;60%&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">top</span>: <span class="string">&#x27;60%&#x27;</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">series</span>: [&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>,</span><br><span class="line">        <span class="attr">showSymbol</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">data</span>: valueList</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>,</span><br><span class="line">        <span class="attr">showSymbol</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">data</span>: valueList,</span><br><span class="line">        <span class="attr">xAxisIndex</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">yAxisIndex</span>: <span class="number">1</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ul>
+<li>默认调色板(palette)</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Coror-Default.png" alt=""></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Navy    — #001f3f</span><br><span class="line">Blue    — #0074d9</span><br><span class="line">Aqua    — #7fdbff</span><br><span class="line">Teal    — #39cccc</span><br><span class="line">Olive   — #3d9970</span><br><span class="line">Green   — #2ecc40</span><br><span class="line">Lime    — #01ff70</span><br><span class="line">Yellow  — #ffdc00</span><br><span class="line">Orange  — #ff851b</span><br><span class="line">Red     — #ff4136</span><br><span class="line">Maroon  — #85144b</span><br><span class="line">Fuchsia — #f012be</span><br><span class="line">Purple  — #b10dc9</span><br><span class="line">Black   — #<span class="number">111111</span></span><br><span class="line">Gray    — #aaaaaa</span><br><span class="line">Silver  — #dddddd</span><br><span class="line">White   — #ffffff</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>优化图表JS生成模板<br>图表定型之后，可以通过模板固化配置，根据需要动态生成目标文件（html,js,svg等等），详见<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/21/Language-Auto-Generator/">基于 Markdown 的 HTML 网页模板</a>。</p>
+</li>
+<li><p>优化采集器 Goroutines “线程池”<br>例如：PostgreSQL Exception: Open too many files</p>
+</li>
+<li><p>优化数据存储<br>例如：常用的 GIS 坐标库</p>
+</li>
+</ul>
+<h2 id="扩展阅读：开源工具与案例"><a href="#扩展阅读：开源工具与案例" class="headerlink" title="扩展阅读：开源工具与案例"></a>扩展阅读：开源工具与案例</h2><h4 id="在线词云"><a href="#在线词云" class="headerlink" title="在线词云"></a>在线词云</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.wordart.com">WordArt.com</a>:仅支持英文，精美，首选</li>
+<li><a target="_blank" rel="noopener" href="http://www.tagxedo.com/app.html">Tagxedo</a>:支持中、英文（中文分词效果一般），需要安装插件Silverlight</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/USIakoaavuy7XkO-5C0tgA">Tag Crowd &amp; Google Adwords</a></li>
+</ul>
+<h4 id="golang-based-library"><a href="#golang-based-library" class="headerlink" title="golang-based library"></a>golang-based library</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://golang.org/pkg/net/http/">golang.org/net/http</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/celrenheit/spider">github.com/celrenheit/spider</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.progville.com/go/goquery-jquery-html-golang/">goquery: jQuery-style HTML manipulation in Go</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/henrylee2cn/pholcus_lib">github.com/henrylee2cn/pholcus_lib</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/henrylee2cn/pholcus">Pholcus is a distributed, high concurrency and powerful web crawler software</a></li>
+</ul>
+<h4 id="可视化图表案例"><a href="#可视化图表案例" class="headerlink" title="可视化图表案例"></a>可视化图表案例</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://echarts.baidu.com/doc/example/topic/aqi-china/index.html">中国主要城市空气质量实况</a></li>
+<li><a target="_blank" rel="noopener" href="http://echarts.baidu.com/doc/example/topic/10-me-china/index.html">中国经济十年时空漫游（2002-2011）</a></li>
+</ul>
+<h2 id="可视化图表技术方案"><a href="#可视化图表技术方案" class="headerlink" title="可视化图表技术方案"></a>可视化图表技术方案</h2><ul>
+<li>基于 SVG : D3、Raphael</li>
+<li><p>基于 Canvas : Echarts</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.highcharts.com">HighCharts</a><br>国外开源产品，JavaScript 编写，自带主题、动态交互方便，目前公司新版业务视图、地图应用、交互式流量图等是基于这个库实现。<br>不足：缺少中文文档，开源许可证只允许个人用户和非商业用途，规模应用存在法律风险。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://echarts.baidu.com">Baidu ECharts</a><br>最早源于百度各种业务系统报表需求，底层画图基于 Canvas 。2013年开源，完全免费的BSD协议。<br>特点：拖拽重计算，第三方标准格式支持，中文社区支持<br>实例：<a target="_blank" rel="noopener" href="http://echarts.baidu.com/doc/example.html">http://echarts.baidu.com/doc/example.html</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/ecomfe/echarts">https://github.com/ecomfe/echarts</a><br><img src="http://riboseyim-qiniu.riboseyim.com/echarts-%E5%9B%BD%E5%AE%B6%E7%BB%9F%E8%AE%A1%E5%B1%80.png" alt=""></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.oschina.net/p/kartograph?fromerr=tZ15BKGv">Kartograph</a><br>Kartograph 是个构建交互式地图的简单、轻量级类库。它包含两个库，一个用Python写的，用于产生漂亮和压缩的SVG地图，另一个是js类库用于前端展示地图用。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/ajstarks/deck/tree/master/cmd/lchart">lchart(go-based)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/FXeDOHg_k52nv4We08SeQQ">朝花夕拾|showtext：字体，好玩的字体和好玩的图形 | 原创 2016-11-06 统计之都 统计之都</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/cttobin/ggthemr">Themes for ggplot2.</a></p>
+</li>
+</ul>
+<h2 id="扩展阅读：数据可视化"><a href="#扩展阅读：数据可视化" class="headerlink" title="扩展阅读：数据可视化"></a>扩展阅读：数据可视化</h2><ul>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
+<li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
+<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/t668acG5lRZxZ7A0xMXTSg">数据从业者必读：抓取了一千亿个网页后我才明白，爬虫一点都不简单 | 算法与数学之美  2018-09-07</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dw-c-nV8TJK5WWzSPal-yA">Matplotlib 可视化最有价值的 14 个图表（附完整 Python 源代码） | Lemonbit  GitChat精品课  3月13日</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/12/Visualization-Charts/" data-id="ckwgm33pe014c7b1ygc2h0e22" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/12/Language-Compiler/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          玩转编程语言:编译原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/12/Visualization-GIS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">数据可视化（四）开源地理信息系统简史</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">基于网络爬虫的可视化图表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8%EF%BC%9A%E4%BB%A5-ECharts-%E4%B8%BA%E4%BE%8B"><span class="toc-number">2.0.2.</span> <span class="toc-text">可视化图表：以 ECharts 为例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.0.3.</span> <span class="toc-text">最佳实践</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A1%88%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：开源工具与案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E8%AF%8D%E4%BA%91"><span class="toc-number">3.0.1.</span> <span class="toc-text">在线词云</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#golang-based-library"><span class="toc-number">3.0.2.</span> <span class="toc-text">golang-based library</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">3.0.3.</span> <span class="toc-text">可视化图表案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text">可视化图表技术方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

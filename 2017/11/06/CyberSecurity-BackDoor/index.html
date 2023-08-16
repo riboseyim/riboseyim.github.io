@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Cyber-Security:事与愿违的后门程序 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要一些情报机构赞同在加密软件中放置后门程序，但是谁使用它们呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber-Security:事与愿违的后门程序">
+<meta property="og:url" content="https://riboseyim.com/2017/11/06/CyberSecurity-BackDoor/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要一些情报机构赞同在加密软件中放置后门程序，但是谁使用它们呢？">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-11-05T16:19:12.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:03.428Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Policy&amp;Law">
+<meta property="article:tag" content="Cyber-Security">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CyberSecurity-BackDoor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/CyberSecurity-BackDoor/" class="article-date">
+  <time datetime="2017-11-05T16:19:12.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cyber-Security:事与愿违的后门程序
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/11/06/CyberSecurity-BackDoor/" data-id="ckwgm33nc00mi7b1y7yw4yuoo" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>一些情报机构赞同在加密软件中放置后门程序，但是谁使用它们呢？</p>
+<span id="more"></span>
+<ul>
+<li>原文：<a href="#">Internet security | When back doors backfire |Jan 2nd 2016</a></li>
+</ul>
+<p>如果没有加密技术，互联网上传递的信息倒不如写在明信片上。因此，政府、银行和商业机构都对自己的信息加密，当然恐怖组织和犯罪团伙也是如此。后门的问题就是这样，尽管它能让特工的工作更顺利，但也让互联网的每个人都失去了很多秘密。</p>
+<p>近期Juniper公司（一家美国网络硬件和软件供应商）事件的启示，清楚地说明了这点。Juniper在12月紧急发布后门公告，最早可追溯到2012年，它使得任何人可以解读基于VPN软件的加密流量（虚拟私有网络），VPN广泛应用于全球的企业和政府机构，以透过公共互联网链接不同办公区。目前不清楚谁该为此事负责，但是可能是在一个情报机构安装后门程序后，其他人又秘密的修改过。该后门涉及的加密标准包含一个有缺陷的随机数生成算法，它获得了美国国家安全局（NSA）的支持；另外一些线索指向中国或英国的情报机构。</p>
+<p>针对不同侦查目标破解加密信息显然是情报结构的职责范围，这也是政府结构应当具备监测能力最好理由，当然是在国家安全利益和法律框架的情况下。为了侦查行动而引入后门程序，风险是可能被胡作非为的特工、敌国政府或者犯罪者滥用，而且是在合法的前提下。目前不清楚Juniper的后门程序是什么人安装、使用，结局是什么。</p>
+<h4 id="who-behind"><a href="#who-behind" class="headerlink" title="who behind"></a>who behind</h4><p>情报机构辩解称：该后门非常隐秘、足够复杂，他们未经授权使用是不可能的。但是外来者可能偶然发现或者窃取到这个漏洞的细节。特别是美国在安全储存保密数据方面的记录非常糟糕。众所周知，在这个夏天，人事管理办公室发生泄密，包括2000万以上联邦雇员（公务员）的敏感个人数据，据称是中国人干的。有人称这一事件为美国情报史上最大的灾难。唯有Edward Snowden 泄密事件可以与之相比，（斯诺登：前国家安全局承包商雇员，目前居住在莫斯科）。（机场安全当局也不小心泄漏了万能钥匙——能打开大多数商业行李——一种物理上的后门）。</p>
+<h4 id="反击后门"><a href="#反击后门" class="headerlink" title="反击后门"></a>反击后门</h4><p>因此强制性置入后门的观点应当抵制。他们可能被犯罪者利用、从整体上削弱互联网安全，亿万人民赖以进行银行和支付业务。这种行为将损害公众对技术公司的信心，也使西方国家政府对独裁政权干涉互联网的批评更加困难。他们过分的要求在任何情况下都是徒劳的：没有后门的高性能加密软件，任何人在网上都可以免费获得。</p>
+<p>与其通过后门程序削弱每个人的秘密，特工应当使用其他手段。</p>
+<p>11月巴黎恐怖袭击之所以能成功，不是因为恐怖分子使用了高超的计算机技术，而是因为他们的活动信息没有被有效共享。必要时，国家安全局和其他情报机构通常能用特殊方式在嫌疑人的计算机和手机上植入蠕虫病毒。这比使用一个通用的后门要困难和低效——但是它对别人更安全。</p>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><p>NSA： National Security Agency<br>隶属美国国防部（DoD），办公地点在五角大楼，主管是现役军官。和CIA工作的最大不同之处在于，后两者首要的工作是面向“人”的间谍活动，而NSA不能参与此类间谍活动它的典型工作比如监视反越战活动，经济间谍活动，遭斯诺登泄露的公众信息是由NSA负责监控的。</p>
+</li>
+<li><p>a new law just passed in China<br>2015年7月1日，中国全国人大通过了新的《国家安全法》，首次提出“国家建设网络与信息安全保障体系”，“维护国家网络空间主权、安全和发展利益”</p>
+</li>
+<li><p>Juniper 漏洞<br>2015年12月Juniper发布紧急公告，称在对其 NetScreen 产品的内部代码审计过程中发现了两枚漏洞,可以让资深的攻击者获得对 NetScreen 设备的管理权限和解密 VPN 流量。</p>
+</li>
+<li><p>VPN 虚拟专用网络<br>在公用网络上建立专用网络，进行加密通讯。在企业网络中有广泛应用。VPN可通过服务器、硬件、软件等多种方式实现VPN能提供高水平的安全，使用高级的加密和身份识别协议保护数据避免受到窥探，阻止数据窃贼和其他非授权用户接触这种数据。</p>
+</li>
+</ul>
+<h4 id="《The-Cyber-Security-Master》"><a href="#《The-Cyber-Security-Master》" class="headerlink" title="《The Cyber-Security Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/cyber-security-manual">《The Cyber-Security Master》</a></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/09/CyberSecurity-Hacker/">Cyber-Security: 黑客与技术、产业及其精神世界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/670c4d2bb419">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/07/CyberSecurity/">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.miit.gov.cn/n1146285/n1146352/n3054355/n3057724/n3057734/c6521880/content.html">2018年第三季度网络安全威胁态势分析与工作综述|工信部</a><br>宁夏自治区近百万个IP地址发送NTP（Network Time Protocol,网络时间协议）响应信息，疑似被用作DDoS攻击，经宁夏自治区通信管理局组织相关单位研判，确定为宁夏电信公司为家庭宽带用户安装的光调制解调器开启了NTP服务，被攻击者恶意请求后返回的响应信息，宁夏自治区通信管理局督促宁夏电信公司及时对相关用户的近百万台光调制解调器进行远程固件升级，关闭NTP服务，消除被用作发起NTP型DDoS攻击的风险。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/11/06/CyberSecurity-BackDoor/" data-id="ckwgm33nc00mi7b1y7yw4yuoo" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/06/Addiction-Decision-Fentanyl/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          嗑药简史：扰动大国外交的China Girl(芬太尼)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/05/Commander-PHT-USArmy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">外军研究|美军体能训练</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#who-behind"><span class="toc-number">1.0.1.</span> <span class="toc-text">who behind</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%87%BB%E5%90%8E%E9%97%A8"><span class="toc-number">1.0.2.</span> <span class="toc-text">反击后门</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Cyber-Security-Master%E3%80%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">《The Cyber-Security Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

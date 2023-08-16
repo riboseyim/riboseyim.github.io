@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概要本文中我们将讨论如何借助 Kafka 实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。  第一部分 引子、环境准备、整体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务">
+<meta property="og:url" content="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="概要本文中我们将讨论如何借助 Kafka 实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。  第一部分 引子、环境准备、整体">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroServices_Math_Demo.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing_Classes.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_Kafka_Consumers.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_UseDocker.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_CloudTest.png">
+<meta property="article:published_time" content="2017-06-12T10:11:25.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.449Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="Database">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-Kafka-Microservice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/12/OpenSource-Kafka-Microservice/" class="article-date">
+  <time datetime="2017-06-12T10:11:25.000Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源架构技术漫谈：基于Kafka构建事件溯源模式的微服务
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="ckwgm33mn00hz7b1yhviwha5e" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本文中我们将讨论如何借助 Kafka 实现分布式消息管理，使用事件溯源（Event Sourcing）模式实现原子化数据处理，使用CQRS模式（Command-Query Responsibility Segregation ）实现查询职责分离，使用消费者群组解决单点故障问题，理解分布式协调框架Zookeeper的运行机制。整个应用的代码实现使用Go语言描述。</p>
+<ul>
+<li>第一部分 引子、环境准备、整体设计及实现</li>
+<li>第二部分 消息消费者及其集群化</li>
+<li>第三部分 测试驱动开发、Docker部署和持续集成</li>
+</ul>
+<span id="more"></span>
+<h1 id="第一部分-引子、环境准备、整体设计及实现"><a href="#第一部分-引子、环境准备、整体设计及实现" class="headerlink" title="第一部分 引子、环境准备、整体设计及实现"></a>第一部分 引子、环境准备、整体设计及实现</h1><h2 id="为什么需要微服务"><a href="#为什么需要微服务" class="headerlink" title="为什么需要微服务"></a>为什么需要微服务</h2><p>微服务本身并不算什么新概念，它要解决的问题在软件工程历史中早已经有人提出：解耦、扩展性、灵活性，解决“烂架构”膨胀后带来的复杂度问题。</p>
+<h5 id="Conway’s-law（康威定律）"><a href="#Conway’s-law（康威定律）" class="headerlink" title="Conway’s law（康威定律）"></a>Conway’s law（康威定律）</h5><blockquote>
+<p><strong>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization’s communication structure.（任何组织在设计一套系统（广义概念上的系统）时，所交付的设计方案在结构上都与该组织的通信结构保持一致）<br>— Melvyn Conway, 1967</strong></p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_Org.png" alt=""></p>
+<blockquote>
+<p>《人月神话》：Adding manpower to a late software project makes it later —Fred Brooks, (1975)</p>
+</blockquote>
+<p>为了赶进度加程序员就像用水去灭油锅里的火一样，原因在于：沟通成本 = n(n-1)/2，沟通成本随着项目或者组织的人员增加呈指数级增长。很多项目在经过一段时间的发展之后，都会有不少恐龙级代码，无人敢挑战。比如一个类的规模就多达数千行，核心方法近千行，大量重复代码，每次调整都以失败告终。庞大的系统规模导致团队新成员接手困难，项目组人员增加导致的代码冲突问题，系统复杂度的增加导致的不确定上线风险、引入新技术困难等。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroServices_Math_Demo.png" alt=""></p>
+<p>微服务 (Microservices)是解决这些困难的众多方案之一。它本质上是一种软件架构风格，它是以专注于单一责任与功能的小型功能区块 (Small Building Blocks) 为基础，利用模组化的方式组合出复杂的大型应用程序，各功能区块使用与语言无关 (Language-Independent/Language agnostic) 的 API 集相互通讯。</p>
+<h5 id="Event-Sourcing（事件溯源）"><a href="#Event-Sourcing（事件溯源）" class="headerlink" title="Event Sourcing（事件溯源）"></a>Event Sourcing（事件溯源）</h5><p>真正构建一个微服务是非常具有挑战性的。其中一个最重要的挑战就是原子化————如何处理分布式数据，如何设计服务的粒度。例如，常见的客户、工单场景，如果拆分成两个服务，查询都变成了一个难题：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">order</span> o, customer c</span><br><span class="line">  <span class="keyword">where</span> o.customer_id <span class="operator">=</span> c.id</span><br><span class="line">  <span class="keyword">and</span> o.gross_amount <span class="operator">&gt;</span> <span class="number">50000</span></span><br><span class="line">  <span class="keyword">and</span> o.status <span class="operator">=</span> <span class="string">&#x27;PAID&#x27;</span></span><br><span class="line">  <span class="keyword">and</span> c.country <span class="operator">=</span> <span class="string">&#x27;INDONESIA&#x27;</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在DDD领域（Domain-Driven Design，领域驱动设计）有一种架构风格被广泛应用，即CQRS （Command Query Responsibility Seperation，命令查询职责分离）。CQRS最核心的概念是Command、Event，“将数据(Data)看做是事实(Fact)。每个事实都是过去的痕迹，虽然这种过去可以遗忘，但却无法改变。” 这一思想直接发展了Event Source，即将这些事件的发生过程记录下来，使得我们可以追溯业务流程。CQRS对设计者的影响，是将领域逻辑，尤其是业务流程，皆看做是一种领域对象状态迁移的过程。这一点与REST将HTTP应用协议看做是应用状态迁移的引擎，有着异曲同工之妙。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing.png" alt=""></p>
+<h2 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h2><h3 id="Kafka-in-a-Nutshell"><a href="#Kafka-in-a-Nutshell" class="headerlink" title="Kafka in a Nutshell"></a>Kafka in a Nutshell</h3><p>Apache Kafka是由Apache软件基金会开发的一个开源消息中间件项目，由Scala写成。Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高吞吐、低延迟的平台。Kafka使用Zookeeper作为其分布式协调框架，很好的将消息生产、消息存储、消息消费的过程结合在一起。同时借助Zookeeper，kafka能够生产者、消费者和broker在内的所以组件在无状态的情况下，建立起生产者和消费者的订阅关系，并实现生产者与消费者的负载均衡。</p>
+<ul>
+<li>Kafka Core Words<br>Broker:Kafka集群包含一个或多个服务器，这种服务器被称为broker<br>Topic:每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。Topic相当于数据库中的Table，行数据以log的形式存储，非常类似Git中commit log。物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上但用户只需指定消息的Topic即可生产或消费数据而不必关心数据存于何处。<br>Partition:Parition是物理上的概念，每个Topic包含一个或多个Partition.<br>Producer:消息生产者，负责发布消息到Kafka broker<br>Consumer:消息消费者，向Kafka broker读取消息的客户端。<br>Consumer Group：每个Consumer属于一个特定的Consumer Group（可为每个Consumer指定group name，若不指定则属于默认的group）。</li>
+</ul>
+<h3 id="整体设计"><a href="#整体设计" class="headerlink" title="整体设计"></a>整体设计</h3><p>案例：假设一个银行账户系统。经过一段时间的经营发展，该行客户数量和交易规模都有了巨大的增长，系统内部变得异常复杂，每一个部分都变得沉重不堪。我们尝试对他的业务单元进行解耦，例如将余额计算逻辑从原有的核心系统拆分出来。根据银行账户业务特点，我们设计一个生产者——负责根据业务事件触发生成一个事件，所有事件基于Kafka存储，再设计一个消费者——负责从Kafka抓去未处理事件，通过调用业务逻辑处理单元完成后续持久化操作。这样一个账户的所有业务操作都可以有完整的快照历史，符合金融业务Audit（审计）的需要。而且通过使用事件，我们可以很方便地重建数据。</p>
+<p><strong>业务事件列表：</strong></p>
+<ul>
+<li>CreateEvent：开户</li>
+<li>DepositEvent：存款</li>
+<li>WithdrawEvent：取款</li>
+<li>TransferEvent：转账</li>
+</ul>
+<p><strong>领域模型：账户（Account）</strong><br>holder’s name:持有人名称<br>balance：余额<br>registration date：开户日期<br>……</p>
+<p><strong>领域模型：事件（Event）</strong><br>name:事件名称<br>ID：序号<br>……</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_EventSourcing_Classes.png" alt=""></p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>第一步，启动<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">ZooKeeper</a>:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirror.bit.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz</span><br><span class="line">$ tar -xvf kafka_2.10-0.10.1.0.tgz</span><br><span class="line">$ <span class="built_in">cd</span> kafka_2.10-0.10.1.0</span><br><span class="line">$ bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line">$ netstat -an | grep 2181</span><br><span class="line">tcp46      0      0  *.2181                 *.*                    LISTEN     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第二步，启动<a target="_blank" rel="noopener" href="https://kafka.apache.org/">Kafka</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ bin/kafka-server-start.sh config/server.properties   </span><br><span class="line"></span><br><span class="line">[2017-06-13 14:03:08,168] INFO New leader is 0 (kafka.server.ZookeeperLeaderElector<span class="variable">$LeaderChangeListener</span>)</span><br><span class="line">[2017-06-13 14:03:08,172] INFO Kafka version : 0.10.1.0 (org.apache.kafka.common.utils.AppInfoParser)</span><br><span class="line">[2017-06-13 14:03:08,172] INFO Kafka commitId : 3402a74efb23d1d4 (org.apache.kafka.common.utils.AppInfoParser)</span><br><span class="line">[2017-06-13 14:03:08,173] INFO [Kafka Server 0], started (kafka.server.KafkaServer)</span><br><span class="line"></span><br><span class="line">$ lsof -nP -iTCP -sTCP:LISTEN | sort -n</span><br><span class="line">$ netstat -an | grep 9092</span><br><span class="line">  tcp46      0      0  *.9092                 *.*                    LISTEN</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步，创建topic</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partition 1 --topic x-microservice-transactions-t1</span><br><span class="line"></span><br><span class="line">Created topic <span class="string">&quot;x-microservice-transactions-t1&quot;</span>.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>另外，运行多个<a target="_blank" rel="noopener" href="https://kafka.apache.org/">Kafka</a> 实例<br>Kafka多实例非常简单，只需要复制文件 server.properties，稍作修改即可。<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">config/server<span class="number">-1.</span>properties:</span><br><span class="line">    broker.id=<span class="number">1</span></span><br><span class="line">    listeners=PLAINTEXT:<span class="comment">//:9093</span></span><br><span class="line">    log.dir=/tmp/kafka-logs<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">config/server<span class="number">-2.</span>properties:</span><br><span class="line">    broker.id=<span class="number">2</span></span><br><span class="line">    listeners=PLAINTEXT:<span class="comment">//:9094</span></span><br><span class="line">    log.dir=/tmp/kafka-logs<span class="number">-2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动多个broker,须指定不同的属性文件</span></span><br><span class="line">$ bin/kafka-server-start.sh config/server<span class="number">-1.</span>properties</span><br><span class="line">$ bin/kafka-server-start.sh config/server<span class="number">-2.</span>properties</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="domain-model"><a href="#domain-model" class="headerlink" title="domain model"></a>domain model</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// domain model: bank_account.go</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> BankAccount <span class="keyword">struct</span> &#123;</span><br><span class="line">    Id      <span class="keyword">string</span></span><br><span class="line">    Name    <span class="keyword">string</span></span><br><span class="line">    Balance <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义下列函数：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1. FetchAccount(id) 从Redis读取账户实例信息</span></span><br><span class="line"><span class="comment">//2. updateAccount(id, data) 更新指定账户信息</span></span><br><span class="line"><span class="comment">//3. ToAccount(map) 将从Redis读到的账户信息转换为模型数据，return *BankAccount object.</span></span><br></pre></td></tr></table></figure>
+<h4 id="Kafka-amp-Redis-library"><a href="#Kafka-amp-Redis-library" class="headerlink" title="Kafka &amp; Redis library"></a>Kafka &amp; Redis library</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.go</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;github.com/go-redis/redis&quot;</span> <span class="comment">// Redis通讯库：go-redis</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    Redis = initRedis()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initRedis</span><span class="params">()</span> *<span class="title">redis</span>.<span class="title">Client</span></span> &#123;</span><br><span class="line">    redisUrl := os.Getenv(<span class="string">&quot;REDIS_URL&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> redisUrl == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">        redisUrl = <span class="string">&quot;127.0.0.1:6379&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> redis.NewClient(&amp;redis.Options&#123;</span><br><span class="line">        Addr:     redisUrl,</span><br><span class="line">        Password: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        DB:       <span class="number">0</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">//kafka.go</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/Shopify/sarama&quot;</span> <span class="comment">//Kafka通讯库：Sarama</span></span><br><span class="line">    <span class="string">&quot;os&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    brokers = []<span class="keyword">string</span>&#123;<span class="string">&quot;127.0.0.1:9092&quot;</span>&#125;</span><br><span class="line">    topic   = <span class="string">&quot;go-microservice-transactions&quot;</span></span><br><span class="line">    topics  = []<span class="keyword">string</span>&#123;topic&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newKafkaConfiguration</span><span class="params">()</span> *<span class="title">sarama</span>.<span class="title">Config</span></span> &#123;</span><br><span class="line">    conf := sarama.NewConfig()</span><br><span class="line">    conf.Producer.RequiredAcks = sarama.WaitForAll</span><br><span class="line">    conf.Producer.Return.Successes = <span class="literal">true</span></span><br><span class="line">    conf.ChannelBufferSize = <span class="number">1</span></span><br><span class="line">    conf.Version = sarama.V0_10_1_0</span><br><span class="line">    <span class="keyword">return</span> conf</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newKafkaSyncProducer</span><span class="params">()</span> <span class="title">sarama</span>.<span class="title">SyncProducer</span></span> &#123;</span><br><span class="line">    kafka, err := sarama.NewSyncProducer(brokers, newKafkaConfiguration())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">        os.Exit(<span class="number">-1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> kafka</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newKafkaConsumer</span><span class="params">()</span> <span class="title">sarama</span>.<span class="title">Consumer</span></span> &#123;</span><br><span class="line">    consumer, err := sarama.NewConsumer(brokers, newKafkaConfiguration())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">        os.Exit(<span class="number">-1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> consumer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="消息生产者Producer"><a href="#消息生产者Producer" class="headerlink" title="消息生产者Producer"></a>消息生产者Producer</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">//消息生产者 producer.go</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;bufio&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;os&quot;</span></span><br><span class="line">    <span class="string">&quot;strconv&quot;</span></span><br><span class="line">    <span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mainProducer</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> err error</span><br><span class="line">    reader := bufio.NewReader(os.Stdin)</span><br><span class="line">    kafka := newKafkaSyncProducer()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        fmt.Print(<span class="string">&quot;-&gt; &quot;</span>)</span><br><span class="line">        text, _ := reader.ReadString(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        text = strings.Replace(text, <span class="string">&quot;\n&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="number">-1</span>)</span><br><span class="line">        args := strings.Split(text, <span class="string">&quot;###&quot;</span>)</span><br><span class="line">        cmd := args[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> cmd &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;create&quot;</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(args) == <span class="number">2</span> &#123;</span><br><span class="line">                accName := args[<span class="number">1</span>]</span><br><span class="line">                event := NewCreateAccountEvent(accName)</span><br><span class="line">                sendMsg(kafka, event)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                fmt.Println(<span class="string">&quot;Only specify create###Account Name&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            fmt.Printf(<span class="string">&quot;Unknown command %s, only: create, deposit, withdraw, transfer\n&quot;</span>, cmd)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Printf(<span class="string">&quot;Error: %s\n&quot;</span>, err)</span><br><span class="line">            err = <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kafka.go</span></span><br><span class="line"><span class="comment">// 增加发送消息的方法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendMsg</span><span class="params">(kafka sarama.SyncProducer, event <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    json, err := json.Marshal(event)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    msgLog := &amp;sarama.ProducerMessage&#123;</span><br><span class="line">        Topic: topic,</span><br><span class="line">        Value: sarama.StringEncoder(<span class="keyword">string</span>(json)),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    partition, offset, err := kafka.SendMessage(msgLog)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">&quot;Message: %+v\n&quot;</span>, event)</span><br><span class="line">    fmt.Printf(<span class="string">&quot;Message is stored in partition %d, offset %d\n&quot;</span>,</span><br><span class="line">        partition, offset)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">//启动入口，main.go</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    mainProducer()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$  go build</span><br><span class="line">$ ./go-microservice</span><br><span class="line">-&gt; create</span><br><span class="line">Only specify create<span class="comment">###Account Name</span></span><br><span class="line">-&gt; create<span class="comment">###Yanrui</span></span><br><span class="line">Message: &#123;Event:&#123;AccId:49a23d27-4ffe-4c86-ab9a-fbc308ecff1c Type:CreateEvent&#125; AccName:Yanrui&#125;</span><br><span class="line">Message is stored <span class="keyword">in</span> partition 0, offset 0</span><br><span class="line">-&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="第二部分-消息消费者Consumer及其集群化"><a href="#第二部分-消息消费者Consumer及其集群化" class="headerlink" title="第二部分 消息消费者Consumer及其集群化"></a>第二部分 消息消费者Consumer及其集群化</h1><p>Consumer负责从Kafka加载消息队列。另外，我们需要为每一个事件创建process()函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">//processor.go</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">&quot;errors&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e CreateEvent)</span> <span class="title">Process</span><span class="params">()</span> <span class="params">(*BankAccount, error)</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> updateAccount(e.AccId, <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;</span><br><span class="line">        <span class="string">&quot;Id&quot;</span>:      e.AccId,</span><br><span class="line">        <span class="string">&quot;Name&quot;</span>:    e.AccName,</span><br><span class="line">        <span class="string">&quot;Balance&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e InvalidEvent)</span> <span class="title">Process</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e AcceptEvent)</span> <span class="title">Process</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// other Process() codes ...</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//consumer.go</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mainConsumer</span><span class="params">(partition <span class="keyword">int32</span>)</span></span> &#123;</span><br><span class="line">    kafka := newKafkaConsumer()</span><br><span class="line">    <span class="keyword">defer</span> kafka.Close()</span><br><span class="line">    <span class="comment">//注：开发环境中我们使用sarama.OffsetOldest，Kafka将从创建以来第一条消息开始发送。</span></span><br><span class="line">    <span class="comment">//在生产环境中切换为sarama.OffsetNewest,只会将最新生成的消息发送给我们。</span></span><br><span class="line">    consumer, err := kafka.ConsumePartition(topic, partition, sarama.OffsetOldest)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">        os.Exit(<span class="number">-1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> consumeEvents(consumer)</span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">&quot;Press [enter] to exit consumer\n&quot;</span>)</span><br><span class="line">    bufio.NewReader(os.Stdin).ReadString(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    fmt.Println(<span class="string">&quot;Terminating...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Go语言通过goroutine提供了对于并发编程的直接支持，goroutine是Go语言运行库的功能，作为一个函数入口，在堆上为其分配的一个堆栈。所以它非常廉价，我们可以很轻松的创建上万个goroutine，但它们并不是被操作系统所调度执行。除了被系统调用阻塞的线程外，Go运行库最多会启动$GOMAXPROCS个线程来运行goroutine。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gobyexample.com/goroutines">goroutines</a>: A goroutine is a lightweight thread of execution.</li>
+<li><a target="_blank" rel="noopener" href="https://gobyexample.com/channels">channels</a>: Channels are the pipes that connect concurrent goroutines. (&lt;- operator)</li>
+<li><a target="_blank" rel="noopener" href="https://gobyexample.com/for">for</a>: for is Go’s only looping construct. Here are three basic types of for loops.</li>
+<li><a target="_blank" rel="noopener" href="https://gobyexample.com/select">select</a>: Go’s select lets you wait on multiple channel operations.</li>
+<li><a target="_blank" rel="noopener" href="https://gobyexample.com/non-blocking-channel-operations">Non-Blocking Channel Operations</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">consumeEvents</span><span class="params">(consumer sarama.PartitionConsumer)</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> msgVal []<span class="keyword">byte</span></span><br><span class="line">  <span class="keyword">var</span> log <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> logMap <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> bankAccount *BankAccount</span><br><span class="line">  <span class="keyword">var</span> err error</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> &#123;</span><br><span class="line">    <span class="comment">//goruntine exec</span></span><br><span class="line">      <span class="keyword">select</span> &#123;</span><br><span class="line">          <span class="comment">// blocking &lt;- channel operator</span></span><br><span class="line">          <span class="keyword">case</span> err := &lt;-consumer.Errors():</span><br><span class="line">              fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">          <span class="keyword">case</span> msg := &lt;-consumer.Messages():</span><br><span class="line">              msgVal = msg.Value</span><br><span class="line">          <span class="comment">//</span></span><br><span class="line">          <span class="keyword">if</span> err = json.Unmarshal(msgVal, &amp;log); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                fmt.Printf(<span class="string">&quot;Failed parsing: %s&quot;</span>, err)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                logMap = log.(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line">                logType := logMap[<span class="string">&quot;Type&quot;</span>]</span><br><span class="line">                fmt.Printf(<span class="string">&quot;Processing %s:\n%s\n&quot;</span>, logMap[<span class="string">&quot;Type&quot;</span>], <span class="keyword">string</span>(msgVal))</span><br><span class="line"></span><br><span class="line">                <span class="keyword">switch</span> logType &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;CreateEvent&quot;</span>:</span><br><span class="line">                  event := <span class="built_in">new</span>(CreateEvent)</span><br><span class="line">                  <span class="keyword">if</span> err = json.Unmarshal(msgVal, &amp;event); err == <span class="literal">nil</span> &#123;</span><br><span class="line">                    bankAccount, err = event.Process()</span><br><span class="line">                  &#125;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                  fmt.Println(<span class="string">&quot;Unknown command: &quot;</span>, logType)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                  fmt.Printf(<span class="string">&quot;Error processing: %s\n&quot;</span>, err)</span><br><span class="line">                  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    fmt.Printf(<span class="string">&quot;%+v\n\n&quot;</span>, *bankAccount)</span><br><span class="line">                  &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<h4 id="重构main"><a href="#重构main" class="headerlink" title="重构main"></a>重构main</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.go</span></span><br><span class="line"><span class="comment">//支持producer和consumer启动模式</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;flag&quot;</span></span><br><span class="line">    ...</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    act := flag.String(<span class="string">&quot;act&quot;</span>, <span class="string">&quot;producer&quot;</span>, <span class="string">&quot;Either: producer or consumer&quot;</span>)</span><br><span class="line">    partition := flag.String(<span class="string">&quot;partition&quot;</span>, <span class="string">&quot;0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Partition which the consumer program will be subscribing&quot;</span>)</span><br><span class="line"></span><br><span class="line">    flag.Parse()</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">&quot;Welcome to go-microservice : %s\n\n&quot;</span>, *act)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> *act &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;producer&quot;</span>:</span><br><span class="line">        mainProducer()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;consumer&quot;</span>:</span><br><span class="line">        <span class="keyword">if</span> part32int, err := strconv.ParseInt(*partition, <span class="number">10</span>, <span class="number">32</span>); err == <span class="literal">nil</span> &#123;</span><br><span class="line">            mainConsumer(<span class="keyword">int32</span>(part32int))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过—act参数，可以启动一个消费者进程。当进程运行时，他将从Kafka一个一个拿出消息进行处理，按照我们之前在每个事件定义的Process() 方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ go build</span><br><span class="line">$ ./go-microservice --act=consumer</span><br><span class="line">Welcome to go-microservice : consumer</span><br><span class="line"></span><br><span class="line">Press [enter] to <span class="built_in">exit</span> consumer</span><br><span class="line"></span><br><span class="line">Processing CreateEvent:</span><br><span class="line">&#123;<span class="string">&quot;AccId&quot;</span>:<span class="string">&quot;49a23d27-4ffe-4c86-ab9a-fbc308ecff1c&quot;</span>,<span class="string">&quot;Type&quot;</span>:<span class="string">&quot;CreateEvent&quot;</span>,<span class="string">&quot;AccName&quot;</span>:<span class="string">&quot;Yanrui&quot;</span>&#125;</span><br><span class="line">&#123;Id:49a23d27-4ffe-4c86-ab9a-fbc308ecff1c Name:Yanrui Balance:0&#125;</span><br><span class="line">Terminating...</span><br></pre></td></tr></table></figure>
+<h3 id="集群化消息消费者"><a href="#集群化消息消费者" class="headerlink" title="集群化消息消费者"></a>集群化消息消费者</h3><p>问题：如果一个Consumer宕机了怎么办？（例如：程序崩溃、网络异常等原因）<br>解决方案：将多个Consumer编组为集群实现高可用。具体来说就是打标签，当有一个新的Log发送时，Kafka将其发送给其中一个实例。当该实例无法接收Log时，Kafka将Log传递给另一个包含相同标签的Consumer。<br>注意：Kafka 版本 0.9 +，另外还需要使用sarama-cluster库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用govendor获取</span></span><br><span class="line">govendor fetch github.com/bsm/sarama-cluster</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改mainConsumer方法使用sarama-cluster library连接Kafka</span></span><br><span class="line">config := cluster.NewConfig()</span><br><span class="line">config.Consumer.Offsets.Initial = sarama.OffsetNewest</span><br><span class="line">consumer, err := cluster.NewConsumer(brokers, <span class="string">&quot;go-microservice-consumer&quot;</span>, topics, config)</span><br><span class="line"></span><br><span class="line"><span class="comment">//topics定义</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    topics  = []<span class="keyword">string</span>&#123;topic&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//调整consumeEvents()</span></span><br><span class="line"><span class="keyword">case</span> err, more := &lt;-consumer.Errors():</span><br><span class="line">    <span class="keyword">if</span> more &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;Kafka error: %s\n&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//consumer.Messages() : MarkOffset</span></span><br><span class="line"><span class="comment">//consumer.go</span></span><br><span class="line"><span class="comment">//func mainConsumer(partition int32)</span></span><br><span class="line"></span><br><span class="line">consumer.MarkOffset(msg, <span class="string">&quot;&quot;</span>) <span class="comment">//增加的行</span></span><br><span class="line"></span><br><span class="line">msgVal = msg.Value</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>即使程序崩溃，MarkOffset也会将消息标记为 <strong>processed</strong> ,标签包括元数据以及这个时间点的状态。元数据可以被另外一个Consumer恢复数据状态，也就能被重新消费。即即使同样的消息被处理两次，结果也是一样的，这个过程理论上是 <strong>幂等</strong> 的（idempotent）。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_Kafka_Consumers.jpg" alt="Kafka Consumers"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//运行多个consumer实例</span></span><br><span class="line">$ ./<span class="keyword">go</span>-microservice --act=consumer</span><br><span class="line">$ ./<span class="keyword">go</span>-microservice --act=consumer</span><br><span class="line">$ ./<span class="keyword">go</span>-microservice --act=consumer</span><br></pre></td></tr></table></figure>
+<h1 id="第三部分：测试驱动开发、Docker部署和持续集成"><a href="#第三部分：测试驱动开发、Docker部署和持续集成" class="headerlink" title="第三部分：测试驱动开发、Docker部署和持续集成"></a>第三部分：测试驱动开发、Docker部署和持续集成</h1><h4 id="使用vendor管理Golang项目依赖"><a href="#使用vendor管理Golang项目依赖" class="headerlink" title="使用vendor管理Golang项目依赖"></a>使用vendor管理Golang项目依赖</h4><p>用govendor fetch <url1> <url2>新增的第三方包直接被get到根目录的vendor文件夹下,不会与其它的项目混用第三方包，完美避免多个项目同用同一个第三方包的不同版本问题。只需要对vendor/vendor.json进行版本控制，即可对第三包依赖关系进行控制。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment">//</span></span><br><span class="line">$ <span class="keyword">go</span> get -u github.com/kardianos/govendor</span><br><span class="line">$ cd $PROJECT_PATH</span><br><span class="line">$ govendor init</span><br><span class="line">$ govendor add +external</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<h4 id="单元测试：ginkgo-Test-Suite"><a href="#单元测试：ginkgo-Test-Suite" class="headerlink" title="单元测试：ginkgo Test Suite"></a>单元测试：ginkgo Test Suite</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://onsi.github.io/ginkgo/">ginkgo</a></li>
+<li><a target="_blank" rel="noopener" href="https://onsi.github.io/gomega/">gomega</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">go</span> get github.com/onsi/ginkgo/ginkgo</span><br><span class="line">$ <span class="keyword">go</span> get github.com/onsi/gomega</span><br><span class="line">$ ginkgo bootstrap</span><br><span class="line">Generating ginkgo test suite bootstrap <span class="keyword">for</span> main in:</span><br><span class="line">	go_microservice_suite_test.<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main_test</span><br><span class="line"><span class="comment">//go_microservice_suite_test.go,单元测试类</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;github.com/onsi/ginkgo&quot;</span></span><br><span class="line">    <span class="string">&quot;github.com/onsi/gomega&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _ = Describe(<span class="string">&quot;Event&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    Describe(<span class="string">&quot;NewCreateAccountEvent&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        It(<span class="string">&quot;can create a create account event&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">            name := <span class="string">&quot;John Smith&quot;</span></span><br><span class="line"></span><br><span class="line">            event := NewCreateAccountEvent(name)</span><br><span class="line"></span><br><span class="line">            Expect(event.AccName).To(Equal(name))</span><br><span class="line">            Expect(event.AccId).NotTo(BeNil())</span><br><span class="line">            Expect(event.Type).To(Equal(<span class="string">&quot;CreateEvent&quot;</span>))</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ginkgo</span><br><span class="line">Running Suite: go-microservice Suite</span><br><span class="line">==========================</span><br><span class="line">Random Seed: 1490709758</span><br><span class="line">Will run 1 of 1 specs</span><br><span class="line">Ran 1 of 1 Specs <span class="keyword">in</span> 0.000 seconds</span><br><span class="line">SUCCESS! -- 1 Passed | 0 Failed | 0 Pending | 0 Skipped PASS</span><br><span class="line">Ginkgo ran 1 suite <span class="keyword">in</span> 905.68195ms</span><br><span class="line">Test Suite Passed</span><br></pre></td></tr></table></figure>
+<h4 id="单元测试的四个阶段"><a href="#单元测试的四个阶段" class="headerlink" title="单元测试的四个阶段"></a>单元测试的四个阶段</h4><ol>
+<li>Setup 启动</li>
+<li>Execution 执行</li>
+<li>Verification 验证</li>
+<li>Teardown 拆卸</li>
+</ol>
+<h3 id="Docker部署"><a href="#Docker部署" class="headerlink" title="Docker部署"></a>Docker部署</h3><p><a target="_blank" rel="noopener" href="https://www.docker.com">Docker</a> 容器中需要包含下列组件：</p>
+<ol>
+<li>Golang</li>
+<li>Redis、Kafka</li>
+<li>微服务依赖的其它组件</li>
+</ol>
+<p>在根目录创建一个Dockerfile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM golang:1.8.0</span><br><span class="line">MAINTAINER Yanrui</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//install our dependencies</span></span><br><span class="line">RUN <span class="keyword">go</span> get -u github.com/kardianos/govendor</span><br><span class="line">RUN <span class="keyword">go</span> get github.com/onsi/ginkgo/ginkgo</span><br><span class="line">RUN <span class="keyword">go</span> get github.com/onsi/gomega</span><br><span class="line"></span><br><span class="line"><span class="comment">//将整个目录拷贝到容器</span></span><br><span class="line">ADD . /<span class="keyword">go</span>/src/<span class="keyword">go</span>-microservice</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查工作目录</span></span><br><span class="line">WORKDIR /<span class="keyword">go</span>/src/<span class="keyword">go</span>-microservice</span><br><span class="line"></span><br><span class="line"><span class="comment">//安装依赖项</span></span><br><span class="line">RUN govendor sync</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line">$ docker build -t <span class="keyword">go</span>-microservice .</span><br><span class="line">$ docker run -i -t <span class="keyword">go</span>-microservice /bin/bash</span><br><span class="line">$ ginkgo</span><br><span class="line">.......................</span><br><span class="line">.......Failed..........</span><br></pre></td></tr></table></figure>
+<p>由于容器本地并没有一个<a target="_blank" rel="noopener" href="https://redis.io">Redis</a>实例运行在上面，这时运行ginkgo测试就会报错。我们为什么不在这个Dockerfile中包含一个<a target="_blank" rel="noopener" href="https://redis.io">Redis</a>呢？这就违背了Docker分层解耦的初衷，我们可以通过docker-compose将两个服务连接起来一起工作。</p>
+<p>创建一个docker-compose.yml文件（与Dockerfile目录一致）:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;2.0&quot;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  app:</span><br><span class="line">    environment:</span><br><span class="line">      REDIS_URL: redis:6379</span><br><span class="line">    build: .</span><br><span class="line">    working_dir: /go/src/go-microservice</span><br><span class="line">    links:</span><br><span class="line">      - redis</span><br><span class="line">  redis:</span><br><span class="line">    image: redis:alpine</span><br></pre></td></tr></table></figure></p>
+<p>本地构建完成之后，再次运行 <strong>docker-compose run app ginkgo</strong> 测试通过。</p>
+<h3 id="Infrastructure-as-Code-基础设施即代码"><a href="#Infrastructure-as-Code-基础设施即代码" class="headerlink" title="Infrastructure as Code(基础设施即代码)"></a>Infrastructure as Code(基础设施即代码)</h3><blockquote>
+<p>The enabling idea of infrastructure as code is that the systems and devices which are used to run software can be treated as if they, themselves, are software. — Kief Morris</p>
+</blockquote>
+<p>云带来的好的一方面是它让公司中的任何人都可以轻松部署、配置和管理他们需要的基础设施。虽然很多基础设施团队采用了云和自动化技术，却没有采用相应的自动化测试和发布流程。它们把这些当作一门过于复杂的脚本语言来使用。他们会为每一次具体的改动编写手册、配置文件和执行脚本，再针对一部分指定的服务器手工运行它们，也就是说每一次改动都还需要花费专业知识、时间和精力。这种工作方式意味着基础设施团队没有把他们自己从日常的重复性劳动中解放出来。目前已经有很多商业云平台提供了Docker服务，只需要将自己的 <strong>git repository</strong> 链接到平台，即可以自动帮你完成部署，在云上完成集成测试。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_UseDocker.jpg" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build</span><br><span class="line">docker-compose run app ginkgo</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/MicroService_CloudTest.png" alt=""></p>
+<h2 id="扩展阅读：开源架构技术漫谈"><a href="#扩展阅读：开源架构技术漫谈" class="headerlink" title="扩展阅读：开源架构技术漫谈"></a>扩展阅读：开源架构技术漫谈</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/23/CloudComputing/">Stack Overflow：2017年最赚钱的编程语言</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/27/DevOps-OpenCensus">DevOps 漫谈：基于OpenCensus构建分布式跟踪系统</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/23/RestfulAPI/">基于Go语言快速构建一个RESTful API服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/12/OpenSource-Kafka-Microservice/">基于Kafka构建事件溯源型微服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/30/Protocol-gRPC/">远程通信协议：从 CORBA 到 gRPC</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/24/Log/">应用程序开发中的日志管理(Go语言描述)</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/08/15/OpenSource-Kafka/">DevOps 资讯 | LinkedIn 开源 Kafka Monitor</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><h4 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.melconway.com/Home/Conways_Law.html">康威定律</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/presentations/team-building-implementation-in-distributed-world">Mike Amundsen 《远距离条件下的康威定律——分布式世界中实现团队构建》</a></li>
+<li><a target="_blank" rel="noopener" href="http://shop.oreilly.com/product/0636920039297.do">Kief Morris《Infrastructure as Code - Managing Servers in the Cloud》</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/book-infrastructure-as-code">InfoQ:《Infrastructure as Code》书评与摘要</a><h4 id="Microservices"><a href="#Microservices" class="headerlink" title="Microservices"></a>Microservices</h4></li>
+<li><a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">(推荐)Martin Fowler : Microservices</a></li>
+<li><a target="_blank" rel="noopener" href="http://dockone.io/article/2133">李颖杰：为什么要重构到微服务（案例）</a></li>
+<li><a target="_blank" rel="noopener" href="https://outcrawl.com/go-graphql-gateway-microservices/">Using GraphQL with Microservices in Go</a></li>
+</ul>
+<h4 id="Event-Sourcing"><a href="#Event-Sourcing" class="headerlink" title="Event Sourcing"></a>Event Sourcing</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://semaphoreci.com/community/tutorials/writing-and-testing-an-event-sourcing-microservice-with-kafka-and-go">(推荐) Writing and Testing an Event Sourcing Microservice with Kafka and Go</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/adampahlevi/">Linkedin Profile:Adam Pahlevi Baihaqi</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/technology-learning/event-sourcing-and-cqrs-a-look-at-kafka-e0c1b90d17d8">(推荐) OKONKWO VINCENT IKEM:Building Scalable Applications Using Event Sourcing and CQRS</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing">(推荐)Microsoft Azure:Event Sourcing</a></li>
+<li><a target="_blank" rel="noopener" href="http://agiledon.github.io/blog/2012/12/31/basic-understanding-on-cqrs/">张逸:对CQRS的基础理解</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/netfocus/archive/2011/10/10/2204949.html">汤雪华：领域驱动设计之领域模型</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/netfocus/archive/2012/02/12/2347911.html">汤雪华：什么是事件溯源（Event Sourcing）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.com/news/2016/04/event-sourcing-anti-pattern">InfoQ:A Whole System Based on Event Sourcing is an Anti-Pattern</a><h4 id="Zookeeper-amp-Kafka"><a href="#Zookeeper-amp-Kafka" class="headerlink" title="Zookeeper &amp; Kafka"></a>Zookeeper &amp; Kafka</h4></li>
+<li><a target="_blank" rel="noopener" href="https://kafka.apache.org/quickstart">Kafka QuickStart</a></li>
+<li><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/KAFKA/Kafka+0.9+Consumer+Rewrite+Design">Apache.org:Kafka 0.9 Consumer Rewrite Design</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.quora.com/What-is-the-actual-role-of-ZooKeeper-in-Kafka">Quora:What is the actual role of ZooKeeper in Kafka?</a></li>
+<li><a target="_blank" rel="noopener" href="http://grokbase.com/t/kafka/users/135mk77x9q/relationship-between-zookeeper-and-kafka">grokbase:Relationship between Zookeeper and Kafka</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MjEyNTE4MQ==&amp;mid=403459151&amp;idx=1&amp;sn=640ba3d9ea70e23ace8b99aff764e42f&amp;scene=1&amp;srcid=01050dYirNIOQVUTLyiBw1j6#rd">朱赟:白话 IT 之要不要从 rabbitMQ 转 kafka？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/06/12/OpenSource-Kafka-Microservice/" data-id="ckwgm33mn00hz7b1yhviwha5e" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSource/" rel="tag">OpenSource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/14/Mathmetics/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Catalog:数学
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/03/Writing-WriterToolChain/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">我的写作工具链</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E5%BC%95%E5%AD%90%E3%80%81%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%E3%80%81%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="toc-number"></span> <span class="toc-text">第一部分 引子、环境准备、整体设计及实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">为什么需要微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Conway%E2%80%99s-law%EF%BC%88%E5%BA%B7%E5%A8%81%E5%AE%9A%E5%BE%8B%EF%BC%89"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Conway’s law（康威定律）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Event-Sourcing%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">Event Sourcing（事件溯源）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">实现方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-in-a-Nutshell"><span class="toc-number">2.1.</span> <span class="toc-text">Kafka in a Nutshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">整体设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">2.3.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#domain-model"><span class="toc-number">2.3.1.</span> <span class="toc-text">domain model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka-amp-Redis-library"><span class="toc-number">2.3.2.</span> <span class="toc-text">Kafka &amp; Redis library</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E7%94%9F%E4%BA%A7%E8%80%85Producer"><span class="toc-number">2.4.</span> <span class="toc-text">消息生产者Producer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%B6%88%E6%81%AF%E6%B6%88%E8%B4%B9%E8%80%85Consumer%E5%8F%8A%E5%85%B6%E9%9B%86%E7%BE%A4%E5%8C%96"><span class="toc-number"></span> <span class="toc-text">第二部分 消息消费者Consumer及其集群化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%9E%84main"><span class="toc-number">0.0.1.</span> <span class="toc-text">重构main</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E5%8C%96%E6%B6%88%E6%81%AF%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">0.1.</span> <span class="toc-text">集群化消息消费者</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E3%80%81Docker%E9%83%A8%E7%BD%B2%E5%92%8C%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="toc-number"></span> <span class="toc-text">第三部分：测试驱动开发、Docker部署和持续集成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8vendor%E7%AE%A1%E7%90%86Golang%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96"><span class="toc-number">0.0.1.</span> <span class="toc-text">使用vendor管理Golang项目依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%EF%BC%9Aginkgo-Test-Suite"><span class="toc-number">0.0.2.</span> <span class="toc-text">单元测试：ginkgo Test Suite</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">0.0.3.</span> <span class="toc-text">单元测试的四个阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E9%83%A8%E7%BD%B2"><span class="toc-number">0.1.</span> <span class="toc-text">Docker部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Infrastructure-as-Code-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%8D%B3%E4%BB%A3%E7%A0%81"><span class="toc-number">0.2.</span> <span class="toc-text">Infrastructure as Code(基础设施即代码)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%BC%80%E6%BA%90%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%BC%AB%E8%B0%88"><span class="toc-number">1.</span> <span class="toc-text">扩展阅读：开源架构技术漫谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory"><span class="toc-number">2.0.1.</span> <span class="toc-text">Theory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Microservices"><span class="toc-number">2.0.2.</span> <span class="toc-text">Microservices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-Sourcing"><span class="toc-number">2.0.3.</span> <span class="toc-text">Event Sourcing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zookeeper-amp-Kafka"><span class="toc-number">2.0.4.</span> <span class="toc-text">Zookeeper &amp; Kafka</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

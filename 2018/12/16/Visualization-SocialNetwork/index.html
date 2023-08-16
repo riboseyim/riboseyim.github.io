@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数据可视化（八）Program,Data and Classical Music | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 基于 Go + R  可视化古典音乐作曲家社交网络 Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。 Key Words: Go , R , Composer , Visualization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化（八）Program,Data and Classical Music">
+<meta property="og:url" content="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 基于 Go + R  可视化古典音乐作曲家社交网络 Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。 Key Words: Go , R , Composer , Visualization">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-Theme-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-3.png">
+<meta property="og:image" content="https://extraordinaryleastsquares.files.wordpress.com/2018/11/presentation1.png?w=1000&amp;h=562">
+<meta property="article:published_time" content="2018-12-16T10:05:18.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:10.624Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="Artistic">
+<meta property="article:tag" content="Developer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-Theme-2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Visualization-SocialNetwork" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/Visualization-SocialNetwork/" class="article-date">
+  <time datetime="2018-12-16T10:05:18.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据可视化（八）Program,Data and Classical Music
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/" data-id="ckwgm33pm01547b1yybe5el95" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Artistic/" rel="tag">Artistic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>基于 Go + R  可视化古典音乐作曲家社交网络</li>
+<li>Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。</li>
+<li>Key Words: Go , R , Composer , Visualization</li>
+</ul>
+<span id="more"></span>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-Theme-2.png" alt=""></p>
+<ul>
+<li>原标题：Using Data to Visualize Connections Between Composers</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://overthinkdciscores.com/2018/12/03/using-data-to-visualize-connections-between-composers">https://overthinkdciscores.com/2018/12/03/using-data-to-visualize-connections-between-composers</a></li>
+<li>作者：<a target="_blank" rel="noopener" href="https://github.com/EMurray16">Evan Murray</a></li>
+<li>发表时间：12/03/2018</li>
+</ul>
+<p>编程很有趣。我们能够制作很酷的东西，甚至无需考虑它对现实世界是否有实际用途。Coperformance 是一个业余项目，融合了作者对编程，数据和古典音乐的兴趣爱好。通过可视化应用 —— 我们可以从一个新的角度理解古典音乐作曲家以及他们之间的微妙联系。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-1.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-2.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/R-Go-Music-3.png" alt=""></p>
+<p>该项目得以实现归功于纽约爱乐乐团这座艺术宝库 —— 它们建立了一个 <a target="_blank" rel="noopener" href="https://github.com/nyphilarchive/PerformanceHistory">Github 库</a>以保存该团历史上所有的演出曲目。库中包含了大量信息，包括演出时间、地点，作曲家信息，独奏者信息，甚至是幕间休息的数据。这些数据都以 XML 或 JSON 格式编码，任何编程语言都可以解析和分析。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;programs&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;id&quot;</span>: <span class="string">&quot;38e072a7-8fc9-4f9a-8eac-3957905c0002&quot;</span>, <span class="comment">// GUID</span></span><br><span class="line">      <span class="string">&quot;programID&quot;</span>: <span class="string">&quot;3853&quot;</span>, <span class="comment">// NYP Local ID</span></span><br><span class="line">      <span class="string">&quot;orchestra&quot;</span>: <span class="string">&quot;New York Philharmonic&quot;</span>,</span><br><span class="line">      <span class="string">&quot;season&quot;</span>: <span class="string">&quot;1842-43&quot;</span>,</span><br><span class="line">      <span class="string">&quot;concerts&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">           <span class="string">&quot;eventType&quot;</span>: <span class="string">&quot;Subscription Season&quot;</span>,</span><br><span class="line">           <span class="string">&quot;Location&quot;</span>: <span class="string">&quot;Manhattan, NY&quot;</span>,</span><br><span class="line">           <span class="string">&quot;Venue&quot;</span>: <span class="string">&quot;Apollo Rooms&quot;</span>,</span><br><span class="line">           <span class="string">&quot;Date&quot;</span>: <span class="string">&quot;1842-12-07T05:00:00Z&quot;</span>,</span><br><span class="line">           <span class="string">&quot;Time&quot;</span>: <span class="string">&quot;8:00PM&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">/* A program can have multiple concerts */</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">&quot;works&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">&quot;ID&quot;</span>: <span class="string">&quot;8834*4&quot;</span>, <span class="comment">// e.g. &quot;1234*1&quot; - first part is the Work ID, second part is the NYP Movement ID</span></span><br><span class="line">          <span class="string">&quot;composerName&quot;</span>: <span class="string">&quot;Weber,  Carl  Maria Von&quot;</span>,</span><br><span class="line">          <span class="string">&quot;workTitle&quot;</span>: <span class="string">&quot;OBERON&quot;</span>,</span><br><span class="line">          <span class="string">&quot;movement&quot;</span>: <span class="string">&quot;\&quot;Ozean, du Ungeheuer\&quot; (Ocean, thou mighty monster), Reiza (Scene and Aria), Act II&quot;</span>,</span><br><span class="line">          <span class="string">&quot;conductorName&quot;</span>: <span class="string">&quot;Timm, Henry C.&quot;</span>,</span><br><span class="line">          <span class="string">&quot;soloists&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="string">&quot;soloistName&quot;</span>: <span class="string">&quot;Otto, Antoinette&quot;</span>,</span><br><span class="line">              <span class="string">&quot;soloistInstrument&quot;</span>: <span class="string">&quot;Soprano&quot;</span>,</span><br><span class="line">              <span class="string">&quot;soloistRoles&quot;</span>: <span class="string">&quot;S&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/* more soloists, if applicable. If no soloists, this will be an empty array */</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">/* a program will usually have multiple works */</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">&quot;ID&quot;</span>: <span class="string">&quot;0*&quot;</span>,</span><br><span class="line">          <span class="string">&quot;interval&quot;</span>: <span class="string">&quot;Intermission&quot;</span>,</span><br><span class="line">          <span class="string">&quot;soloists&quot;</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">/* Intermissions will also appear in the works array */</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/* more programs */</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定义指标"><a href="#定义指标" class="headerlink" title="定义指标"></a>定义指标</h4><ul>
+<li>定义新指标：Coperformance</li>
+</ul>
+<p>鉴于演出历史库包含丰富的数据，我们最直接简单的想法是探索作曲家之间的联系 —— 作曲家在同一个演出中出现的频率是多少？我们使用这个指标是因为音乐总监经常根据主题将不同曲目放在一起，比如浪漫英雄主义（Romantic heroism），例如芝加哥交响乐团在安娜堡（Ann Arbor，密歇根州）演出曲目，包括贝多芬第五交响曲和马勒第一交响曲。</p>
+<p>连接两个作曲家的原因多种多样。可能是缘于他们都创作类似的音乐——使用相同的形式和技巧、以不同的方式，或者由一个有趣的传记联系在一起。无论是什么，我们都期望它会导致两个作曲家比其他人更频繁地编排在一起。我们可以基于纽约爱乐乐团的数据库探索这些联系，因为数据的特殊性和令人难以置信的时间跨度，甚至可以追溯到爱乐乐团历史上的第一季。</p>
+<p>为此，首先定义一个名为“Coperformance”指标。 Coperformance 值为：两位作曲家在同一节目中出现的次数和随机出现次数的比率。如果它的值大于 1，可以说两位作曲家以某种非常规的方式联系在一起。如果它的值小于或等于1，那么可以说这两位作曲家直接没有联系。</p>
+<p>例子。假设每 100 场节目中就有 1 场同时出现两位作曲家。为了简化数学运算，数据库中有一百万场演出。如果作曲家只是随机出现，我们假设所有节目中有第一位作曲家出现的概率为 1％ ，第二位作曲家出现的概率也为 1％，即所有节目中两位作曲家同时出现的概率为 0.01％（本例中为100场）。事实上，如果两位作曲家一起出现在 200 个程序中，那么 Coperformance 值就是2，数据显示他们之间的联系非常紧密。如果他们只出现在 90 个节目中，那么从数据上看，没有证据表明两位作曲家之间有任何联系，除了他们都是古典音乐作曲家而已。</p>
+<p>需要说明的是，Coperformance 指标只能衡量作曲家之间的链接数量，并不知道驱动链接的原因。如前所述，可能有各种各样的事物将作曲家联系起来并提高 Coperformance 值，从音乐风格到传记信息，“也许音乐总监喜欢两位作曲家的美学”。要弄清楚具体是什么驱动链接，需要另外检查它们出现在相同演出的原因，看看是否存在共同主题。</p>
+<h4 id="指标可视化"><a href="#指标可视化" class="headerlink" title="指标可视化"></a>指标可视化</h4><p>Coperformance 指标可视化可以基于社交网络（Social networks）实现。</p>
+<p>交友软件一般都是典型的社交网络，例如 Facebook/QQ/微信。社交网络主要由两部分组成：节点(nodes)和边(edges)。节点是网络中的个人，边是连接两个节点的线，就像两个 Facebook 好友一样。在我们的例子中，边是二元的和非定向的（两个人要么是、要么不是朋友；如果你不是我的朋友，我不能成为你的朋友）。实际上，边可以有不同的权重，也可以是定向的。</p>
+<p>在作曲家网络中，每个节点都是一个单独的作曲家，边是加权的，并通过 Coperformance 值表示具有相同链接的作曲家。如果一对作曲家的 Coperformance 值大于 1，他们之间就具有强化联系，如果 Coperformance 值小于或等于 1 就不会。我们可以通过调整边的权重，使得变的线条更大、颜色更深（通过Coperformance 表现强化链接）进一步可视化网络。也可以对节点做类似的事情，使作曲家的节点根据他们在演出历史中出现的次数而变得越来越大或越来越小。</p>
+<p>最后，可视化工具为了使网络更加漂亮，可以将作曲家分组为集群（clusters）或社区（communities）。如果几个作曲家交织在一起，那么他们彼此都会有很高的 Coperformance 值。这有点类似于 Facebook 上的社交圈（social clique）。集群可视化的实现方式简单说就是根据它们所属的社区对节点进行着色。对此，有两点需要特别说明：</p>
+<p>首先，关于聚类算法的工作原理超出了本文的范围，可以参考 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Social_network_analysis">Wikipedia page on social network analysis</a> 。</p>
+<p>其次，就像 Coperformance 值无法解释将作曲家链接在一起的原因一样，聚类算法也无法解释到底是什么原因导致聚集发生。这是属于音乐导演和音乐学家需要回答的问题，而不属于数学领域。</p>
+<p>总而言之，作曲家网络的节点代表单个作曲家，并且具有两个属性：大小表示他们上演的频率和颜色表示他们在网络中所属的集群。网络中的边表示作曲家之间的链接情况，随着连接变得越来越强边也就变得越来越大、颜色越来越深。</p>
+<h4 id="可视化编程"><a href="#可视化编程" class="headerlink" title="可视化编程"></a>可视化编程</h4><p>构建作曲家网络的过程可以分为三个主要步骤：从格式化文件中读取数据，迭代数据中的所有成对出现的作曲家以计算其 Coperformance 值，网络可视化。</p>
+<p>Go 语言在前两个步骤中表现非常棒，但它没有任何网络可视化软件包可以在易用性和功能性方面媲美 R igraph 和 R visNetwork 。此外，相比于类似的 Go 软件包，Rstudio shiny 在构建用户界面和下载数据方面更具优势。自然地，该项目使用 sexp 包（注：原作者编写的开源代码库）。上述所有元素组合在一起部署在服务器上，就可以实现作曲家网络及可视化应用。</p>
+<p>使用说明。用户指定数据范围（开始和结束时间）以及网络中需要包含的作曲家的Coperformance 指标最小值。</p>
+<p>首先，程序将这些数据文件的名称从 R（和 shiny 包）传递给 Go （使用 sexp 包）。然后，Go 读取文件，根据用户的规范解析数据，计算网络中所有作曲家成对出现的 Coperformance 值，并将结果写入用户可以下载的 JSON 和 csv 数据文件。接下来从 Go 获取数据文件名（通过 sexp 传递），计算网络中的集群，并将其可视化。</p>
+<p>在这个项目中，虽然在没有 sexp 软件包的情况下几乎不会像现在这样干净，但它确实暴露了 sexp 软件包的弱点。通过文件连接 R 语言和 Go 语言太麻烦了，因为 sexp 不支持在 R 语言和 Go 语言之间传递矩阵（matrix）或字符串向量 (vector)。使 sexp 软件包更加灵活、缩小这一差距，将是我接下来的首要工作。</p>
+<p>如果利用统计数据还可以改进作曲家网络。从统计学上讲，两位作曲家随机出现的出场次数不是一个特定的数字（如上例中的 100），而是基于概率的一系列数字。</p>
+<p>如果将实际观测到的次数与我们认为合适的显着性水平（可能为95％）的上限进行比较，则可能更准确。例如，在上面的案例中将是 101 而不是 100 。(编者注：由于假设检验是根据样本提供的信息进行推断的，也就有犯错误的可能。例如，原假设正确，而我们却把它当成错误的加以拒绝。犯这种错误的概率用 α 表示，统计上把 α 称为假设检验中的显著性水平，也就是决策中所面临的风险。它是公认的小概率事件的概率值，必须在每一次统计检验之前确定，通常取α＝0.05 或 α＝0.01 。这表明，当作出接受原假设的决定时，其正确的可能性/概率为 95％ 或 99％）</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h4 id="New-York-Philharmonic"><a href="#New-York-Philharmonic" class="headerlink" title="New York Philharmonic"></a>New York Philharmonic</h4><p>纽约爱乐（New York Philharmonic），正式全名为纽约爱乐交响乐协会（Philharmonic-Symphony Society of New York, Inc.），世界上历史最悠久的乐队之一， 1842 年在美国纽约市成立。纽约爱乐是美国成立时间最长的乐团，属于美国五大管弦乐团之一。纽约爱乐完成过多个音乐作品的美国首演，例如贝多芬的《第九交响曲》。纽约爱乐目前一年大约演出 180 场音乐会。</p>
+<blockquote>
+<p>芝加哥交响乐团（穆蒂的新东家）的特点是有力量，以机床般强劲的铜管乐器为核心，这主要是由指挥弗里茨·莱纳(Fritz Reiner)带动起来的，后被格奥尔格·佐尔蒂(Georg Solti)进行了略带夸张的演绎；波士顿交响乐团的特点是稍微有点狂热，具有穿透力，很适合它演奏的法国音乐，指挥是查尔斯·明希(Charles Munch)和皮埃尔·蒙度(Pierre Monteux)；伦纳德·伯恩斯坦(Leonard Bernstein)领导下的纽约爱乐乐团的特点是态度轻松、随意。—— 《纽约时报》</p>
+</blockquote>
+<ul>
+<li>官方网站（可检索自）：<a target="_blank" rel="noopener" href="https://archives.nyphil.org">https://archives.nyphil.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://overthinkdciapps.com/coperformance/">New York Philharmonic Coperformance Project</a></li>
+</ul>
+<h4 id="Chicago-Youth-Symphony-Orchestra"><a href="#Chicago-Youth-Symphony-Orchestra" class="headerlink" title="Chicago Youth Symphony Orchestra"></a>Chicago Youth Symphony Orchestra</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/GPSBach/CYSOadvancements">Chicago Youth Symphony Orchestra college advancement statistics for diversity initiative</a></li>
+</ul>
+<p>These statistics are of great concern to those within the classical music world, and especially amongst orchestras in Chicago, which is one of America’s most diverse cities.  To this end, several of the city’s leading classical music teaching institutions have formed a partnership to understand and enhance their roles in cultivating diverse professional musicians of tomorrow.  This group, the Chicago Musical Pathways Initiative, was built to identify talented, motivated students early in their training, provide them with the resources they need to help them achieve their full musical potential, and ultimately to increase diversity in America’s professional, musical landscape.</p>
+<p><img src="https://extraordinaryleastsquares.files.wordpress.com/2018/11/presentation1.png?w=1000&amp;h=562" alt=""></p>
+<h2 id="资源链接"><a href="#资源链接" class="headerlink" title="资源链接"></a>资源链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://overthinkdciapps.com/coperformance/">Project Coperformance Site</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EMurray16/coperformance">Project Code:New York Philharmonic and Social Network Analysis</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nyphilarchive/PerformanceHistory">New York Philharmonic Performance History repository</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Social_network_analysis">Wikipedia page on social network analysis</a></li>
+<li><a target="_blank" rel="noopener" href="http://shiny.rstudio.com/">R Shiny</a><br>Shiny is an R package that makes it easy to build interactive web apps straight from R. You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.</li>
+<li><a target="_blank" rel="noopener" href="https://datastorm-open.github.io/visNetwork/">R visNetwork</a><br>visNetwork is an R package for network visualization, using vis.js javascript library (<a target="_blank" rel="noopener" href="http://visjs.org/">http://visjs.org/</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://igraph.org/">Project igraph</a><br>igraph is a collection of network analysis tools with the emphasis on efficiency, portability and ease of use. igraph is open source and free. igraph can be programmed in R, Python, Mathematica and C/C++.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EMurray16/Rgo/tree/master/sexp">Project sexp (Rgo)</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="音乐史"><a href="#音乐史" class="headerlink" title="音乐史"></a>音乐史</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/10/Artistic-Classical/">古典音乐低俗史</a></li>
+</ul>
+<h4 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h4><ul>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
+<li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
+<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BA%BD%E7%BA%A6%E7%88%B1%E4%B9%90">纽约爱乐</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%8A%9D%E5%8A%A0%E5%93%A5%E4%BA%A4%E5%93%8D%E4%B9%90%E5%9B%A2">芝加哥交响乐团</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/" data-id="ckwgm33pm01547b1yybe5el95" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Artistic/" rel="tag">Artistic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/23/Visualization-DataStruct/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          数据可视化（九）探索数据结构之美
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/10/DevOps-Build/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">DevOps 漫谈:全生命周期构建管理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%8C%87%E6%A0%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">定义指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%A0%87%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.0.2.</span> <span class="toc-text">指标可视化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B"><span class="toc-number">1.0.3.</span> <span class="toc-text">可视化编程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-number">2.</span> <span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#New-York-Philharmonic"><span class="toc-number">2.0.1.</span> <span class="toc-text">New York Philharmonic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Chicago-Youth-Symphony-Orchestra"><span class="toc-number">2.0.2.</span> <span class="toc-text">Chicago Youth Symphony Orchestra</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">资源链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E5%8F%B2"><span class="toc-number">4.0.1.</span> <span class="toc-text">音乐史</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">数据可视化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

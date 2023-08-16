@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>开源技术架构漫谈：Stack Overflow 架构全解析 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 Stack Overflow 架构解析，其架构既有商业外包服务，也大量采用开源软件，可以全景式展现当代主流架构的风貌。Stack Overflow 由 Jeff Atwood 和 Joel Spolsky 这两个非常著名的 Blogger 在 2008 年创建。   第一篇：总体架构第二篇：硬件清单第三篇：部署流程 (未翻译)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源技术架构漫谈：Stack Overflow 架构全解析">
+<meta property="og:url" content="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 Stack Overflow 架构解析，其架构既有商业外包服务，也大量采用开源软件，可以全景式展现当代主流架构的风貌。Stack Overflow 由 Jeff Atwood 和 Joel Spolsky 这两个非常著名的 Blogger 在 2008 年创建。   第一篇：总体架构第二篇：硬件清单第三篇：部署流程 (未翻译)">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/StackOverflow-1.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-HAProxy.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-DBTier.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-WebTier.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Fiber-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Fortinet-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Rack-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Installed-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Racked-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Raw-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Front-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Inside-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-SSDs-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Top-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Back-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Front-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Front2-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Unboxed-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Redis-Inside-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Service-Inside-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Service-Rear-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Redis-Search-Front-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Blades-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Blades2-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Front-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Rear-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks-Small.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks2-Small.jpg">
+<meta property="article:published_time" content="2016-07-17T06:12:37.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:08.603Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OpenSource-StackOverflow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/17/OpenSource-StackOverflow/" class="article-date">
+  <time datetime="2016-07-17T06:12:37.000Z" itemprop="datePublished">2016-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开源技术架构漫谈：Stack Overflow 架构全解析
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="ckwgm33mq00ik7b1yhlez7l8z" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>Stack Overflow 架构解析，其架构既有商业外包服务，也大量采用开源软件，可以全景式展现当代主流架构的风貌。<br>Stack Overflow 由 Jeff Atwood 和 Joel Spolsky 这两个非常著名的 Blogger 在 2008 年创建。</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/StackOverflow-2.png" alt=""></p>
+<p>第一篇：总体架构<br>第二篇：硬件清单<br>第三篇：部署流程 (未翻译)</p>
+<span id="more"></span>
+<blockquote>
+<p>As of April 2014, Stack Overflow has over 4,000,000 registered users[19]and more than 10,000,000 questions,[20]with 10,000,000 questions celebrated[21]in late August 2015. Based on the type oftagsassigned to questions, the top eight most discussed topics on the site are:Java,JavaScript,C#,PHP,Android,jQuery,PythonandHTML。——wiki</p>
+</blockquote>
+<h1 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h1><p>Stack Overflow 可以分解为八个切面：互联网、负载均衡、web层、服务层、缓存、推送、搜索、数据库。</p>
+<h4 id="First-Rule-Everything-is-redundant"><a href="#First-Rule-Everything-is-redundant" class="headerlink" title="First Rule:Everything is redundant"></a>First Rule:Everything is redundant</h4><p>两个数据中心：纽约和科罗拉多，冗余且持续备份。其它所有关键组件都尽可能贯彻冗余原则。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/StackOverflow-1.png" alt="全景视图"></p>
+<h4 id="物理架构"><a href="#物理架构" class="headerlink" title="物理架构"></a>物理架构</h4><ul>
+<li>4 台 Microsoft SQL Server 服务器（其中 2 台使用了新的硬件）</li>
+<li>11 台 IIS Web 服务器（新的硬件）</li>
+<li>2 台 Redis 服务器（新的硬件）</li>
+<li>3 台标签引擎服务器（其中 2 台使用了新的硬件）</li>
+<li>3 台 Elasticsearch 服务器（同上）</li>
+<li>4 台 HAProxy 负载均衡服务器（添加了 2 台，用于支持 CloudFlare）</li>
+<li>2 台网络设备（Nexus 5596 核心 + 2232TM Fabric Extender，升级到 10Gbps 带宽）</li>
+<li>2 台 Fortinet 800C 防火墙（取代了 Cisco 5525-X ASAs）</li>
+<li>2 台 Cisco ASR-1001 路由器（取代了 Cisco 3945 路由器）</li>
+<li>2 台 Cisco ASR-1001-x 路由器</li>
+</ul>
+<h4 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h4><p>The Internets 互联网<br>DNS服务：外包CloudFlare + 自建DNS<br>其实外包DNS服务应该已经可以满足服务，不过出于保险起见，还是有一套自建的DNS Server。</p>
+<p>看来trust issues 中外一致啊。</p>
+<p>Load Balancers 负载均衡<br>HAProxy 1.5.15 on CentOS 7<br>支持TLS (SSL)流量。关注HAProxy 1.7,它即将支持HTTP/2。</p>
+<p>引入开源架构之后，就必须持续关注、跟进社区的发展动态。</p>
+<p>吃着碗里的，看着锅里的，永远不能停。</p>
+<p>Web Tier Web层<br>IIS 8.5, ASP.Net MVC 5.2.3, and .Net 4.6.1<br>Service Tier 服务层<br>IIS, ASP.Net MVC 5.2.3, .Net 4.6.1, and HTTP.SYS<br>Cache缓存<br>Redis<br>L1级别：HTTP 缓存</p>
+<p>L2级别：L1级别缓存失败之后，通过Redis获取数据</p>
+<p>L1&amp;L2都是无法命中的情况下，会从数据库查询，并更新到缓存和Redis。</p>
+<p>缓存更新：基于发布／订阅模型，利用这个机制来清除其他服务上的 L1 缓存，用来保持 web 服务器上的缓存一致性。<br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Redis-Utilization.png" alt=""><br>另外Redis实例的CPU都很低，不到2%，这点很惊人。</p>
+<h4 id="Push推送"><a href="#Push推送" class="headerlink" title="Push推送"></a>Push推送</h4><p>开源库：NetGrain<br>使用 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">Websocket</a> 向用户推送实时的更新内容，比如顶部栏中的通知、投票数、新导航数、新的答案和评论。在高峰时刻，大约有 50 万个并发的  <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">Websocket</a>  连接，这可是一大堆浏览器。</p>
+<p>一个有趣的事实：其中一些浏览器已经打开超过 18 个月了。Someone should go check if those developers are still alive！！</p>
+<p>问题：临时端口、负载均衡上的文件句柄耗尽，都是非常有趣的问题，我们稍后会提到它们。</p>
+<h4 id="Search搜索"><a href="#Search搜索" class="headerlink" title="Search搜索"></a>Search搜索</h4><p>Elasticsearch集群，每个ES集群都有3个Node<br>什么不用Solr？我们需要在整个网络中进行搜索（同时有多个索引），在我们进行决策的时候 Solr 还不支持这种场景。</p>
+<p>还没有使用 2.x 版本的原因，是因为2.x 版本中类型（types）有了很大的变化，这意味着想要升级的话我们得重新索引所有内容。</p>
+<p>没有足够的时间来制定需求变更和迁移的计划。</p>
+<h4 id="Database数据库"><a href="#Database数据库" class="headerlink" title="Database数据库"></a>Database数据库</h4><p>SQLServer<br>Our usage of SQL is pretty simple. Simple is fast.</p>
+<p>数据库中只有一个存储过程，而且我打算把这个最后残留的存储过程也干掉，换成代码。</p>
+<h4 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h4><p>Opserver：轻量级监控系统，基于 asp.net MVC 框架，可监控：<br>Servers</p>
+<p>SQL clusters/instances</p>
+<p>redis</p>
+<p>elastic search</p>
+<p>exception logs</p>
+<p>haproxy</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-HAProxy.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-DBTier.png" alt=""><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Architecture-Opserver-WebTier.png" alt=""></p>
+<p>数据库CPU very low</p>
+<h1 id="Stack-Overflow-The-Hardware-2016-Edition"><a href="#Stack-Overflow-The-Hardware-2016-Edition" class="headerlink" title="Stack Overflow: The Hardware - 2016 Edition"></a>Stack Overflow: The Hardware - 2016 Edition</h1><p>这是关于Stack Overflow架构的一系列文章中的第二篇。<br>前一篇：《 Stack Overflow: 架构》（2016版）<br>后一篇：《 Stack Overflow: 我们是如何做部署的》（2016版）</p>
+<p>有人对硬件感兴趣吗？好吧，我感兴趣，这篇博客就是关于这个话题，所以，我赢了。如果你不关系硬件，那么可以走开并关闭浏览器了。还在这儿吗？真棒。<br>假如你的网页访问非常非常慢，在这种情况下，你应该考虑采购一些新的硬件。</p>
+<p>我曾今反复重申过多次：性能是一个重要组件。<br>特别是当你的代码必须在最快的硬件上运行，硬件的关系则越为重大。正如任何其它的平台，Stack Overflow的架构是分层的。硬件对我们来说属于基础层，它有自己的屋子，在很多情况下，对我们来说，它的许多关键组件是不可控的。。。就像运行在别人的服务器。它也伴随着直接和间接的成本。但是，这些不是本篇文章的重点，这方面的对比将于稍后报告。目前来说，我希望能提供一份详细的，关于我们基础设施的清单，用于大家参考和比较。</p>
+<p>服务器照片。有时是裸设备。<br>这个网页可以加载得更快，但是我不能自禁。（言归正传）<br>在这个系列报告中我将提供大量数字和规格说明。<br>当我说“我们的SQL Server CPU利用率接近5-10%，” 好吧，这非常棒。<br>但是，5-10% 的什么？ 这时我们需要一个参考值。这份硬件清单可以回答这些问题，并且座位与其它平台比较的依据，利用率对比如何，容量对比如何，等等。</p>
+<h3 id="How-We-Do-Hardware"><a href="#How-We-Do-Hardware" class="headerlink" title="How We Do Hardware"></a>How We Do Hardware</h3><p>免责声明：我不是一个人干的。</p>
+<p>George Beech (@GABeech) 是我的主要搭档，盘点管控Stack使用的硬件。<br>我们小心地规范每一台服务器，以使它符合设计意图。 我们不会只管下订单、分派任务。在这个过程中我们也不会自己单独完成；你必须知道将来这些硬件需要运行什么东西，才能做出合适的选择。我们将和开发工程师或者其他的可靠性工程师一道，为运行在盒子上的应用选择最佳方案。我们也关注在整个系统中什么才是最好的。每一台服务器都不是孤岛。如何将它嵌入到总体的架构中去，确实需要好好考量。哪些服务可以全平台共享？数据中心？日志系统？管理更少的事情，或者至少做到更少的差异，这件事本身就具有内在的价值。</p>
+<p>当我们盘点硬件的时候，我们列出了很多规则来帮助我们厘清哪些是需要提供的。<br>我还从没有真正写下这些心里面的检查表，简短来说：</p>
+<ul>
+<li>这是一个升级或降级的问题吗？（我们购买一个更大的机器，或者一些更小的？</li>
+<li>我们需要／希望做到什么程度的冗余? (多少预留空间和故障恢复能力?)</li>
+<li><strong>存储:</strong></li>
+<li>服务器／应用需要挂在磁盘吗？(我们是否需要Spinny操作系统驱动?)</li>
+<li>如果是，需要多少？（多大的网络带宽？有多少小文件？是否需要固态硬盘？）</li>
+<li>如果是SSD（固态硬盘），是否写负载？（我们讨论 Intel S3500/3700s? P360x? P3700s?)</li>
+<li>我们需要多少SSD容量? (是否可以采用同时搭载HDD（机械硬盘）的双轮方案?)</li>
+<li>数据是否需要完全缓存？（相比没有电容器的SSD，哪一种更便宜，哪种更合适？）</li>
+<li>将来存储是否需要扩展? (我们采用1U/10-bay 服务器, 或者一个 2U/26-bay 服务器?)</li>
+<li>这是一个数据仓库的场景设定吗？（我们是否考虑3.5’’驱动器？如果是，每个2U主板上是12个还是16个驱动器？）</li>
+<li>对于3.5’’的后板来说，存储平衡在在处理器上是否能达到 120W TDP 的限制?</li>
+<li>我们是否需要直接显示磁盘？（控制器是否需要支持pass-through?)</li>
+<li><strong>内存:</strong></li>
+<li>它需要多少内存？（我们必须买什么？）</li>
+<li>它将会使用多少内存？（我们最好买什么？）</li>
+<li>我们是否认为它稍后需要更多的内存？（我们应该搭配那种内存频率？）</li>
+<li>它是一个内存消耗型应用程序吗？（我们是否想要达到最大主频？）</li>
+<li>它是一个高并发的应用程序吗？（一定空间的情况下，我们是否想要通过更多的DIMM来分摊内存？）</li>
+<li><strong>CPU:</strong></li>
+<li>我们希望采用哪种类型的处理器？（我们需要CPU自己供电还是独立电源？）</li>
+<li>它是高并发的应用程序吗？（我们希望采用更少、更快的内核？或者，采用数量更多，更慢的内核？）</li>
+<li>以下哪种情况？是否存在大量的二级和三级缓存竞争？（为了提高性能，我们是否需要一个巨大的三级缓存？）</li>
+<li>应用瓶颈主要是单一内核吗？（我们是否采用最大主频？）</li>
+<li>如果是这样的话，同时需要支持多少进程数？（这里我们希望采用哪种引擎？）</li>
+<li><strong>网络:</strong></li>
+<li>我们是否需要增加 10Gb 网络连接？（此处是否为透传设备，例如一个负载均衡器？）</li>
+<li><p>我们需要怎样的出／入流量均衡策略？（哪个CPU内核负责计算均衡权重？）</p>
+</li>
+<li><p><strong>冗余:</strong></p>
+</li>
+<li>我们在数据缓存中心是否也需要服务器？</li>
+<li>我们是否需要在同等数量的情况下，接受更低的冗余要求？</li>
+<li>我们是否需要一个电源线？不。我们不需要。</li>
+</ul>
+<p>现在，让我们来看看服务网站的都有哪些硬件，它们位于纽约 （New York）QTS 数据中心。实际上，它位于新泽西（New Jersey)，但是让我们保持这个约定。为什么我们称之为NY数据中心？因为我们不想重命名所有以NY-开头的服务器。（What ?!…）我将记录在下面的清单上，丹佛的情况，在规格和冗余级别上略有差别。</p>
+<p>Hide Pictures (in case you’re using this as a hardware reference list later)</p>
+<h3 id="Stack-Overflow-amp-Stack-Exchange-站点服务器"><a href="#Stack-Overflow-amp-Stack-Exchange-站点服务器" class="headerlink" title="Stack Overflow &amp; Stack Exchange 站点服务器"></a>Stack Overflow &amp; Stack Exchange 站点服务器</h3><h4 id="纽约数据中心"><a href="#纽约数据中心" class="headerlink" title="纽约数据中心"></a>纽约数据中心</h4><p><strong>全局选项</strong><br>先说明一些全局配置，在下面每台服务器的介绍里就不重复了：</p>
+<ul>
+<li>除非有特殊需要，不包含操作系统驱动。大多数服务器使用一对250 或者 500 GB SATA HDD 硬盘 ，用于操作系统，通常是 RAID 1。我们不担心启动时间问题，所有物理服务器，启动时间中的大部分不依赖驱动的速度（例如，检查768GB内存）。</li>
+<li>所有服务器通过2个或以上10Gb网络链路连接，通过双活LACP协议。</li>
+<li>所有服务器运行在208V 单相功率电源 (经由2个PSU ，来自2个PDU-双电源).</li>
+<li>在纽约的所有服务器由缆线臂，在丹佛的服务器则没有（主要依靠本地工程师）。</li>
+<li>所有服务器都有一个iDRAC连接 (经由管理网络) 和一个KVM连接。</li>
+</ul>
+<p><strong>网络</strong></p>
+<ul>
+<li>2x Cisco Nexus 5596UP 核心交换机 (96 SFP+ 端口，每个端口 10 Gbps)</li>
+<li>10x Cisco Nexus 2232TM Fabric Extenders (2 per rack - each has 32 BASE-T ports each at 10Gbps + 8 SFP+ 10Gbps 上联链路)</li>
+<li>2x Fortinet 800C 防火墙</li>
+<li>2x Cisco ASR-1001 路由器</li>
+<li>2x Cisco ASR-1001-x 路由器</li>
+<li>6x Cisco 2960S-48TS-L 网管交换机 (1 Per Rack - 48 1Gbps ports + 4 SFP 1Gbps)</li>
+<li>1x Dell DMPU4032 KVM</li>
+<li>7x Dell DAV2216 KVM Aggregators (1–2 per rack - each uplinks to the DPMU4032)</li>
+</ul>
+<p>原作者备注: 每个 FEX 到核心 拥有 80 Gbps 上联带宽 ，核心通过一个160 Gbps端口通道与它们连接。由于最近的一些工程，我们位于丹佛数据中心的硬件会更新一些。所有4 台路由器的型号是 ASR-1001-x 和 双核 Cisco Nexus 56128P,每个都拥有96 SFP+ 10Gbps 端口 和 8 QSFP+ 40Gbps 端口。这些节省下来的端口，可以用于未来扩展，我们可以为核心绑定4x 40Gbps链接，替代每个 16x10Gbps端口的方案，正如我们在纽约做的那样。这些就是纽约的网络设备情况:</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Fiber-Small.jpg" alt="SO-Hardware-Network-NewYork-Fiber-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Fortinet-Small.jpg" alt="SO-Hardware-Network-NewYork-Fortinet-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-NewYork-Rack-Small.jpg" alt="SO-Hardware-Network-NewYork-Rack-Small.jpg"></p>
+<h4 id="丹佛数据中心"><a href="#丹佛数据中心" class="headerlink" title="丹佛数据中心"></a>丹佛数据中心</h4><p>这里需要提到的是Mark Henderson, 我们网站的可靠性工程师之一，专程到纽约数据中心为我的这份报告拿到了一些高分辨率的照片。<br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Installed-Small.jpg" alt="SO-Hardware-Network-Denver-Installed-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Racked-Small.jpg" alt="SO-Hardware-Network-Denver-Racked-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Network-Denver-Raw-Small.jpg" alt="SO-Hardware-Network-Denver-Raw-Small.jpg"></p>
+<p><strong>SQL Servers (Stack Overflow 集群)</strong></p>
+<ul>
+<li>2 Dell R720xd 服务器，每台配置如下:</li>
+<li>双 E5-2697v2 处理器 (每个 12 核 @2.7–3.5GHz)</li>
+<li>384 GB of RAM (24x 16 GB DIMMs)</li>
+<li>1x Intel P3608 4 TB NVMe PCIe SSD (RAID 0, 2块卡上两个控制器)</li>
+<li>24x Intel 710 200 GB SATA SSDs (RAID 10)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)<br><strong>SQL Servers (Stack Exchange 及其它业务集群)</strong></li>
+<li>2 Dell R730xd Servers, each with:</li>
+<li>双 E5-2667v3 处理器 (每个8 核 @3.2–3.6GHz)</li>
+<li>768 GB of RAM (24x 32 GB DIMMs)</li>
+<li>3x Intel P3700 2 TB NVMe PCIe SSD (RAID 0)</li>
+<li>24x 10K Spinny 1.2 TB SATA HDDs (RAID 10)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)<br>原作者备注: 丹佛的SQL硬件在规格上相同，对应纽约部分这里只有一个 SQL 服务器<br>这是二月份为纽约的SQL Server 升级PCIe SSD的情形：</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Front-Small.jpg" alt="SO-Hardware-SQL-Front-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Inside-Small.jpg" alt="SO-Hardware-SQL-Inside-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-SSDs-Small.jpg" alt="SO-Hardware-SQL-SSDs-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-SQL-Top-Small.jpg" alt="SO-Hardware-SQL-Top-Small.jpg"></p>
+<p><strong>Web 服务器</strong></p>
+<ul>
+<li>11 Dell R630 服务器，每台配置如下:</li>
+<li>双 E5-2690v3 处理器 (每个12 核 @2.6–3.5GHz)</li>
+<li>64 GB of RAM (8x 8 GB DIMMs)</li>
+<li>2x Intel 320 300GB SATA SSDs (RAID 1)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong>应用服务器 (Workers)</strong></p>
+<ul>
+<li>2 Dell R630 服务器, 每台配置如下:</li>
+<li>双 E5-2643 v3 处理器(每个 6 核 @3.4–3.7GHz)</li>
+<li>64 GB of RAM (8x 8 GB DIMMs)</li>
+<li>1 Dell R620 服务器,配置如下:</li>
+<li>双 E5-2667 处理器 (每个6 核 @2.9–3.5GHz)</li>
+<li>32 GB of RAM (8x 4 GB DIMMs)</li>
+<li>2x Intel 320 300GB SATA SSDs (RAID 1)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Back-Small.jpg" alt="SO-Hardware-Web-Tier-Back-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Front-Small.jpg" alt="SO-Hardware-Web-Tier-Front-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Front2-Small.jpg" alt="SO-Hardware-Web-Tier-Front2-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Web-Tier-Unboxed-Small.jpg" alt="SO-Hardware-Web-Tier-Unboxed-Small.jpg"></p>
+<p>原作者备注: NY-SERVICE03 目前仍然是一台 R620, 但是现在并没有足够老到以至于需要更换。它会在今年晚些时候升级。</p>
+<p><strong>Redis 服务器 (缓存)</strong></p>
+<ul>
+<li>2 Dell R630 服务器, 每台配置如下:</li>
+<li>双 E5-2687W v3 处理器 (每个10 核 @3.1–3.5GHz)</li>
+<li>256 GB of RAM (16x 16 GB DIMMs)</li>
+<li>2x Intel 520 240GB SATA SSDs (RAID 1)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong>Elasticsearch 服务器 (检索)</strong></p>
+<ul>
+<li>3 Dell R620 服务器, 每台配置如下:</li>
+<li>双 E5-2680 处理器 (每个8 核 @2.7–3.5GHz)</li>
+<li>192 GB of RAM (12x 16 GB DIMMs)</li>
+<li>2x Intel S3500 800GB SATA SSDs (RAID 1)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong>HAProxy 服务器 (负载均衡器)</strong></p>
+<ul>
+<li>2 Dell R620 服务器 (流量来源CloudFlare), 每台配置如下:</li>
+<li>双 E5-2637 v2 处理器 (每个4 核 @3.5–3.8GHz)</li>
+<li>192 GB of RAM (12x 16 GB DIMMs)</li>
+<li>6x Seagate Constellation 7200RPM 1TB SATA HDDs (RAID 10) (日志)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC) - (DMZ)内网流量</li>
+<li>双 10 Gbps 网络 (Intel X540) - 外网流量</li>
+<li>2 Dell R620 服务器 (直达流量), 每台配置如下:</li>
+<li>双 E5-2650 处理器 (每个 8 核 @2.0–2.8GHz each)</li>
+<li>64 GB of RAM (4x 16 GB DIMMs)</li>
+<li>2x Seagate Constellation 7200RPM 1TB SATA HDDs (RAID 10) (日志)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC) - (DMZ) 外网流量</li>
+<li>双 10 Gbps 网络 (Intel X540) - 外网流量</li>
+</ul>
+<p>原作者备注: 这些服务器是不同时期采购的，因此规格上略有差异。并且，2台CloudFlare负载均衡器因为安装了memcached,拥有更多内存（我们现在已经不运行该组件）。这些服务，redis, 检索,和负载均衡器在stack都是基于1U 服务器。<br>这是纽约的情况：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Redis-Inside-Small.jpg" alt="SO-Hardware-Redis-Inside-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Service-Inside-Small.jpg" alt="SO-Hardware-Service-Inside-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Service-Rear-Small.jpg" alt="SO-Hardware-Service-Rear-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Redis-Search-Front-Small.jpg" alt="SO-Hardware-Service-Redis-Search-Front-Small.jpg"></p>
+<h3 id="其它服务器"><a href="#其它服务器" class="headerlink" title="其它服务器"></a>其它服务器</h3><p>我们还有一些其他的服务器并不直接或间接服务于网站的流量。<br>它们负责处理一些相关业务（例如，域名控制器，少量用于应用验证，跑在虚拟机上），或者一些次要的采购用于监控，日志存储，备份等等。既然已经表示未来会做一系列的报告，我把一切有趣的“后台”服务器也列出来。使我可以将更多的服务器拿出来和你分享，有人不喜欢的吗？</p>
+<p><strong>VM 服务器 (VMWare, 当前)</strong></p>
+<ul>
+<li>2 Dell FX2s Blade Chassis, each with 2 of 4 blades populated</li>
+<li>4 Dell FC630 Blade Servers (2 per chassis), each with:</li>
+<li>双 E5-2698 v3 处理器 (每个16 核 @2.3–3.6GHz)</li>
+<li>768 GB of RAM (24x 32 GB DIMMs)</li>
+<li>2x 16GB SD Cards (Hypervisor - no local storage)</li>
+<li>双 4x 10 Gbps 网络 (FX IOAs - BASET)</li>
+<li>1 EqualLogic PS6210X iSCSI SAN</li>
+<li>24x Dell 10K RPM 1.2TB SAS HDDs (RAID10)</li>
+<li>双 10Gb 网络 (10-BASET)</li>
+<li>1 EqualLogic PS6110X iSCSI SAN</li>
+<li>24x Dell 10K RPM 900GB SAS HDDs (RAID10)</li>
+<li>双 10Gb 网络 (SFP+)</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Blades-Small.jpg" alt="SO-Hardware-VMs-Blades-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Blades2-Small.jpg" alt="SO-Hardware-VMs-Blades2-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Front-Small.jpg" alt="SO-Hardware-VMs-Front-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-VMs-Rear-Small.jpg" alt="SO-Hardware-VMs-Rear-Small.jpg"></p>
+<p>在一些场景下，还有几台重要的服务器不是虚拟机。这些系统后台任务，帮助我们通过日志追踪排查问题，存储大量的数据等等。</p>
+<p><strong>机器学习服务器 (Providence)</strong><br>这些服务器99%的时间是空闲的，但是每晚承担了大量的处理工作：刷新Providence。它们也可以通过内部数据中心的方式，用来测试基于海量数据的新算法。</p>
+<ul>
+<li>2 Dell R620 服务器, 每台配置如下:</li>
+<li>双 E5-2697 v2 处理器 (每个 12 核 @2.7–3.5GHz)</li>
+<li>384 GB of RAM (24x 16 GB DIMMs)</li>
+<li>4x Intel 530 480GB SATA SSDs (RAID 10)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p>译者注：Providence，应为项目代号。Providence通过分析流量日志，给网站的访问用户打标签 (类似“web开发者” 或者 “使用Java技术栈”)  。详细可以查阅[<a target="_blank" rel="noopener" href="https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/">https://kevinmontrose.com/2015/01/27/providence-machine-learning-at-stack-exchange/</a>]</p>
+<p><strong>机器学习服务器－Redis (Still Providence)</strong><br>这是一个为 Providence服务的redis数据集。它们通常是一台主用，一台备用，还有一个实例是用于测试，如最新版的ML算法。当它不用做Q&amp;A站点时，这些数据会服务于职位招聘的边栏广告。</p>
+<ul>
+<li>3 Dell R720xd 服务器,每台配置如下:</li>
+<li>Dual E5-2650 v2 Processors (8 cores @2.6–3.4GHz each)</li>
+<li>384 GB of RAM (24x 16 GB DIMMs)</li>
+<li>4x Samsung 840 Pro 480 GB SATA SSDs (RAID 10)</li>
+<li>Dual 10 Gbps network (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong>日志服务器(各种日志）</strong><br>我们的 Logstash 集群 (使用 Elasticsearch 存储) ，数据来源于，任何地方。<br>我们曾计划将HTTP日志复制一份到这些服务器，但是由于影响性能的问题而没有实现。尽管如此，我们还是将所有的网络设备日志，syslog，Windows和Linux系统日志存在这里，所以我们能够建立建立一个网络的全局视图，或者快速地排查问题。当告警发生的时候，它也被用作Bosun的一个数据源。这个集群总计使用的存储是 6x12x4 = 288 TB。</p>
+<ul>
+<li>6 Dell R720xd 服务器, 每台配置如下:</li>
+<li>Dual E5-2660 v2 Processors (10 cores @2.2–3.0GHz each)</li>
+<li>192 GB of RAM (12x 16 GB DIMMs)</li>
+<li>12x 7200 RPM Spinny 4 TB SATA HDDs (RAID 0 x3 - 4 drives per)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong> SQL Server－HTTP日志 </strong><br>在这些服务器，我们将访问负载均衡器的单独HTTP请求，存储到SQL数据库(来源于HAProxy syslog）。我们只记录少数高级别的请求，类似URL，查询，UserAgent,SQL执行时间，Redis，等等。在这里的数据，每天将进入一个集群的Columnstore 索引。我们借助这些数据排查用户的问题，发现僵尸网络，等等。</p>
+<ul>
+<li>1 Dell R730xd 服务器，配置如下:</li>
+<li>双 E5-2660 v3 处理器 (每个10 核 @2.6–3.3GHz)</li>
+<li>256 GB of RAM (16x 16 GB DIMMs)</li>
+<li>2x Intel P3600 2 TB NVMe PCIe SSD (RAID 0)</li>
+<li>16x Seagate ST6000NM0024 7200RPM Spinny 6 TB SATA HDDs (RAID 10)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p><strong> SQL Server  - 开发 </strong><br>我们喜欢尽可能多地模拟生产环境，类似SQL匹配，额，至少是它过去常常发生的那样。们一直以来这购买升级生产处理器。我们会将升级这些服务器，采用2U 解决方案，在今年晚些升级Stack Overflow 集群的时候一起做。</p>
+<ul>
+<li>1 Dell R620 服务器，配置如下:</li>
+<li>双 E5-2620 处理器 (每个6核 @2.0–2.5GHz)</li>
+<li>384 GB of RAM (24x 16 GB DIMMs)</li>
+<li>8x Intel S3700 800 GB SATA SSDs (RAID 10)</li>
+<li>双 10 Gbps 网络 (Intel X540/I350 NDC)</li>
+</ul>
+<p>这些就是实际服务我们网站的硬件，或者说大家普遍感兴趣的部分。<br>我们当然还有其它服务器，用于后台任务，例如日志记录，监控，备份，等等。<br>如果你对于我们其它系统还有特别感兴趣的地方，请尽管留言提问，我很高兴回答。</p>
+<p>这是一周多以前在纽约的全程：</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks-Small.jpg" alt="SO-Hardware-Racks-Small.jpg"><br><img src="http://riboseyim-qiniu.riboseyim.com/SO-Hardware-Racks2-Small.jpg" alt="SO-Hardware-Racks2-Small.jpg"></p>
+<h3 id="接下来？"><a href="#接下来？" class="headerlink" title="接下来？"></a>接下来？</h3><p>我做的这一系列工作是希望能让社区了解到最多情况。<br>通过Trello board, 它让部署看起来像是下一个最有趣的话题。预计下一次将让大家了解代码是如何从开发者的机器到生产环境，以及这个过程中解决的所有问题。它将覆盖数据库迁移，滚动构建，CI 组件，我们如何建立开发环境，所有要素如何共享信息等。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/refraction-tech-everything/how-netflix-works-the-hugely-simplified-complex-stuff-that-happens-every-time-you-hit-play-3a40c9be254b">How Netflix works: the (hugely simplified) complex stuff that happens every time you hit Play</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/07/17/OpenSource-StackOverflow/" data-id="ckwgm33mq00ik7b1yhlez7l8z" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SRE/" rel="tag">SRE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/28/Policy-Publish/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          政府行为模型及预测：关于出版业的过去、现在和将来
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/03/Reading/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">关于藏书与阅读</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number"></span> <span class="toc-text">总体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#First-Rule-Everything-is-redundant"><span class="toc-number">0.0.1.</span> <span class="toc-text">First Rule:Everything is redundant</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84"><span class="toc-number">0.0.2.</span> <span class="toc-text">物理架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84"><span class="toc-number">0.0.3.</span> <span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Push%E6%8E%A8%E9%80%81"><span class="toc-number">0.0.4.</span> <span class="toc-text">Push推送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search%E6%90%9C%E7%B4%A2"><span class="toc-number">0.0.5.</span> <span class="toc-text">Search搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Database%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">0.0.6.</span> <span class="toc-text">Database数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F"><span class="toc-number">0.0.7.</span> <span class="toc-text">监控系统</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stack-Overflow-The-Hardware-2016-Edition"><span class="toc-number"></span> <span class="toc-text">Stack Overflow: The Hardware - 2016 Edition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-We-Do-Hardware"><span class="toc-number">0.1.</span> <span class="toc-text">How We Do Hardware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-Overflow-amp-Stack-Exchange-%E7%AB%99%E7%82%B9%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">0.2.</span> <span class="toc-text">Stack Overflow &amp; Stack Exchange 站点服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BD%E7%BA%A6%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">0.2.1.</span> <span class="toc-text">纽约数据中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B9%E4%BD%9B%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">0.2.2.</span> <span class="toc-text">丹佛数据中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">0.3.</span> <span class="toc-text">其它服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%EF%BC%9F"><span class="toc-number">0.4.</span> <span class="toc-text">接下来？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

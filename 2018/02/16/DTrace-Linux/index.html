@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>动态追踪技术(五)：DTrace for Linux | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 里程碑：DTrace 从 CDDL 切换为 GPL 许可证 里程碑：Linux 合并 BPF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态追踪技术(五)：DTrace for Linux">
+<meta property="og:url" content="https://riboseyim.com/2018/02/16/DTrace-Linux/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 里程碑：DTrace 从 CDDL 切换为 GPL 许可证 里程碑：Linux 合并 BPF">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Software-license-classification.png">
+<meta property="article:published_time" content="2018-02-16T10:09:11.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:03.931Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Economist">
+<meta property="article:tag" content="Policy&amp;Law">
+<meta property="article:tag" content="DTrace">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/Software-license-classification.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DTrace-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/16/DTrace-Linux/" class="article-date">
+  <time datetime="2018-02-16T10:09:11.000Z" itemprop="datePublished">2018-02-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      动态追踪技术(五)：DTrace for Linux
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/02/16/DTrace-Linux/" data-id="ckwgm33kd00407b1yfhdze81n" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTrace/" rel="tag">DTrace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Economist/" rel="tag">Economist</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>里程碑：DTrace 从 CDDL 切换为 GPL 许可证</li>
+<li>里程碑：Linux 合并 BPF</li>
+</ul>
+<span id="more"></span>
+<h2 id="里程碑：DTrace-切换到-GPL-许可证"><a href="#里程碑：DTrace-切换到-GPL-许可证" class="headerlink" title="里程碑：DTrace 切换到 GPL 许可证"></a>里程碑：DTrace 切换到 GPL 许可证</h2><h4 id="News-dtrace-dropped-the-CDDL-and-switched-to-the-GPL"><a href="#News-dtrace-dropped-the-CDDL-and-switched-to-the-GPL" class="headerlink" title="News:dtrace dropped the CDDL and switched to the GPL!"></a>News:dtrace dropped the CDDL and switched to the GPL!</h4><p>根据 2月14日 Brendan Gregg 在 Twitter 上推送的消息：Oracle 已经将 DTrace 模块的开源许可证从 CDDL 切换到 GPL，预计最快到 2018 年底 Linux kernel 就可以发布一个可用的 /usr/sbin/dtrace ，底层基于 bcc 和 eBPF 。</p>
+<blockquote>
+<p>Good news from Oracle: DTrace is GPL’d (thank you!). I’d guess by the end of 2018 we’ll have a working /usr/sbin/dtrace on Linux for running D scripts (using libbcc+eBPF on the backend)</p>
+</blockquote>
+<p>关于动态追踪技术（Dynamic Tracing），我们在之前的文章已经有所介绍，<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a> 。DTrace 是动态追踪技术的鼻祖，源自 Solaris 操作系统，提供了高级性能分析和调试功能（ advanced performance analysis and troubleshooting tool ）。</p>
+<p>Oracle 收购 SUN 公司之后推出了 Oracle Linux DTrace （基于 Oracle 企业级内核  Unbreakable Enterprise Kernel ，UEK)，针对性地发展完善了一系列探针如 syscall, profile, sdt, proc, sched 和 USDT，受制于诸多原因一直没有进入 Linux kernel 代码树，其中最大的一个障碍是许可授权问题：DTrace 源代码采用 CDDL 许可证，不兼容 Linux kernel 使用的 GPLv2 许可证，无法直接移植。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">commit e1744f50ee9bc1978d41db7cc93bcf30687853e6</span><br><span class="line">Author: Tomas Jedlicka &lt;tomas.jedlicka@oracle.com&gt;</span><br><span class="line">Date: Tue Aug <span class="number">1</span> <span class="number">09</span>:<span class="number">15</span>:<span class="number">44</span> <span class="number">2017</span> <span class="number">-0400</span></span><br><span class="line"></span><br><span class="line">dtrace: Integrate DTrace Modules into kernel proper</span><br><span class="line"></span><br><span class="line">This changeset integrates DTrace <span class="keyword">module</span> sources into the main kernel</span><br><span class="line">source tree under the GPLv2 license. Sources have been moved to</span><br><span class="line">appropriate locations in the kernel tree.</span><br></pre></td></tr></table></figure>
+<h4 id="CDDL-vs-GPL"><a href="#CDDL-vs-GPL" class="headerlink" title="CDDL vs GPL"></a>CDDL vs GPL</h4><p>DTrace 与 OpenSolaris 一样之前是基于 CDDL 许可证而不是 Linux kernel 使用的 GPL 许可证，二者的区别是什么呢？</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Software-license-classification.png" alt=""></p>
+<p>GNU通用公共许可协议（GNU General Public License，简称 GNU GPL、GPL，港台地区翻译为“GNU通用公共授权条款”）是广泛使用的免费软件许可证，最初由GNU项目的自由软件基金会（FSF）的理查德·斯托曼（Richard Matthew Stallman）撰写。 </p>
+<p>一般的版权概念（“copyright”），从不授予用户任何权利（除了使用的权利），更多的是限制性规定，例如复制、修改、分发等，也可以包括一些法律允许的行为，比如逆向工程。GPL 则代表了知识产权制度的左翼阵营（“copyleft”），它授予被许可人以下权利（或称“自由”）：</p>
+<ul>
+<li>以任何目的运行此程序的自由；</li>
+<li>再复制的自由；</li>
+<li>修改程序并公开发布改进版的自由（前提是能得到源代码）。</li>
+</ul>
+<p>GPL 及其它 Copyleft 协议授予了被许可人（几乎是任何人）以非常广泛的自由，同时利用版权法设计了“传染机制”：GPL明确规定，任何源码的衍生产品，如果对外发布，都必须保持同样的许可证。这就是说，任何人只要发布基于某个GPL软件的修改版本，他就必须公开源码，并且同意他人可以自由地复制和分发，否则原始作者可以根据版权法起诉 。</p>
+<p>DTrace 的 CDDL 许可证继承自 Sun Microsystems 。通用开发与发行许可证（Common Development and Distribution License，简称CDDL） 是一个由 Sun 提出的授权协议，它以 Mozilla 公共许可证（MPL）1.1版本为基础。基于 CDDL 许可证的项目主要有：OpenSolaris (含 DTrace 和 ZFS) 、NetBeans IDE 、GlassFish 等。</p>
+<blockquote>
+<p>Like the MPL, the CDDL is a weak copyleft license in-between GPL license and BSD/MIT permissive licenses, requiring only source code files under CDDL to remain under CDDL.</p>
+</blockquote>
+<p>鉴于 GPL 许可模式下很难通过开源软件直接盈利，因此也有很多类似 CDDL 的开源协议倾向于支持商业开发，授予厂商更大的决定权。CDDL 最大的特点是源代码和可执行文件允许采用不同的许可证。例如一般不存在 GPL 模式下存在的 “社区”版本，而是由厂商提供一些免费版本供开发者在非生产环境下使用，同时附上 CDDL 许可的源代码，开发者可以自行编译和部署；更重要的是，厂商只对付费客户提供安全补丁修复和维护版本的源代码。</p>
+<p><strong>综上所述</strong>，基于 CDDL 许可证的 DTrace 你只可以使用但不允许围绕代码进行修改，或者添加其他跟踪点。Paul Fox 个人贡献的dtrace4linux 项目就试图移植 Sun DTrace 到 Linux 的 ，但是受限于许可证只能做到附加产品（add-on）, 外部人员很难直接参与进来，事实上 CDDL 许可证的项目外部贡献最多一般不会超过 10% 。</p>
+<h4 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h4><p>在此之前，Linux 已经拥有 SystemTap 和动态探针（dprobes），DTrace 是基于整个系统的全局跟踪、调试、分析工具。Linux kernel 的创建者显然不喜欢一个“复杂”的系统（large system）, 他们倾向于将跟踪、分析和探测划分为彼此独立的小单元。许多开发者为此发明了各种钩子（hooks）以及整合某些特定探针（probes）的便利工具，例如 kprobes , uprobes, markers 等。 dtrace for linux 正式进入 Linux kernel 之后，有望将相关技术整合成一个更强大的体系，这一点非常令人期待。</p>
+<h2 id="里程碑：Linux-合并-BPF"><a href="#里程碑：Linux-合并-BPF" class="headerlink" title="里程碑：Linux 合并 BPF"></a>里程碑：Linux 合并 BPF</h2><p>2016年11月，Linux 4.9-rc1发布，正式合并了一项重要特性：BPF追踪（Timed sampling）。</p>
+<p>系统性能领域的国际导师Brendan Gregg，感动得都快哭了，当即在Twitter上表示这是一个重要的里程碑!<br>他随后又写了一篇长文<a target="_blank" rel="noopener" href="http://www.brendangregg.com/blog/2016-10-27/dtrace-for-linux-2016.html">《DTrace for Linux 2016》</a>，以示庆祝。</p>
+<blockquote>
+<p>As a long time DTrace user and expert, this is an exciting milestone!<br>—Brendan Gregg</p>
+</blockquote>
+<p>Linux 合并了BPF而已嘛，跟DTrace这个劳什子有什么关系呢？</p>
+<p>DTrace 是动态追踪技术的鼻祖，源自 Solaris 操作系统，提供了高级性能分析和调试功能，它的源代码采用 CDDL 许可证，不兼容 Linux 内核使用的 GPLv2 许可证，无法直接移植。当然，江湖上还有另外一种说法，Linux之所以一直没有原生支持DTrace,是因为Linus 觉得这玩意没什么必要。Anyway,随着 BPF跟踪的最后主要功能合并到 Linux 4.9-rc1，Linux 现在有了类似 DTrace 的高级分析和调试功能。</p>
+<p>Linux 这次合并的BPF（The Berkeley Packet Filter ），来自于加州大学伯克利分校（这所大学很有意思，以后还要反复提到）。BPF，顾名思义，最早只是一个纯粹的封包过滤器，后来在很多牛人的参与下，进行了扩展，得到了一个所谓的 eBPF，可以作为某种更加通用的内核虚拟机。通过这种机制，我们其实可以在 Linux 中构建类似 DTrace 那种常驻内核的动态追踪虚拟机。</p>
+<blockquote>
+<p>Linux 没有 DTrace（名字），但现在有了 DTrace（功能）</p>
+</blockquote>
+<h2 id="扩展阅读：动态追踪技术"><a href="#扩展阅读：动态追踪技术" class="headerlink" title="扩展阅读：动态追踪技术"></a>扩展阅读：动态追踪技术</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（一）：How the Linux Kernel Boots</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/05/29/Linux-Works/">操作系统原理 | How Linux Works（二）：User Space &amp; RAM</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/11/Linux-Works-Memory/">操作系统原理 | How Linux Works（三）：Memory</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/11/26/DTrace/">动态追踪技术(一)：DTrace 导论</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTY1MjQ3Nw==&amp;mid=2651939588&amp;idx=1&amp;sn=35f71c5f88d1edf23cb2efc812ab8e6c&amp;chksm=bd578c168a20050041c08618281691f0111f61c789097a69095933057618637fc54817815921#rd">动态追踪技术(二)：strace+gdb 溯源 Nginx 内存溢出异常 </a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/17/DTrace_FTrace/">动态追踪技术(三)：Tracing Your Kernel Function!</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/27/DTrace_bcc/">动态追踪技术(四)：基于 Linux bcc/BPF 实现 Go 程序动态追踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/DTrace-Linux/">动态追踪技术(五)：Welcome DTrace for Linux</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://gnu.wildebeest.org/blog/mjw/2018/02/14/dtrace-for-linux-oracle-does-the-right-thing/">DTRACE FOR LINUX; ORACLE DOES THE RIGHT THING | February 14, 2018 | MARK J. WIELAARD</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/server-storage/linux/downloads/linux-dtrace-2800968.html">Oracle Linux DTrace</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/02/16/DTrace-Linux/" data-id="ckwgm33kd00407b1yfhdze81n" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTrace/" rel="tag">DTrace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Economist/" rel="tag">Economist</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/27/Machine-Learning-TrainModel/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Machine Learning:Training Models
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/16/Machine-Learning-Law/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">AI产业资讯：机器学习技术与知识产权法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E7%A8%8B%E7%A2%91%EF%BC%9ADTrace-%E5%88%87%E6%8D%A2%E5%88%B0-GPL-%E8%AE%B8%E5%8F%AF%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">里程碑：DTrace 切换到 GPL 许可证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#News-dtrace-dropped-the-CDDL-and-switched-to-the-GPL"><span class="toc-number">2.0.1.</span> <span class="toc-text">News:dtrace dropped the CDDL and switched to the GPL!</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CDDL-vs-GPL"><span class="toc-number">2.0.2.</span> <span class="toc-text">CDDL vs GPL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Future"><span class="toc-number">2.0.3.</span> <span class="toc-text">Future</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E7%A8%8B%E7%A2%91%EF%BC%9ALinux-%E5%90%88%E5%B9%B6-BPF"><span class="toc-number">3.</span> <span class="toc-text">里程碑：Linux 合并 BPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E5%8A%A8%E6%80%81%E8%BF%BD%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="toc-number">4.</span> <span class="toc-text">扩展阅读：动态追踪技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

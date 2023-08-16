@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 计算机视觉库：OpenCV Using OpenCV with Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js">
+<meta property="og:url" content="https://riboseyim.com/2018/01/15/Machine-Learning-OpenCV/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 计算机视觉库：OpenCV Using OpenCV with Node.js">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ML-Tensorflow-Theme-Dog.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-2.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/ML-Algorithm-OpenCV.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png">
+<meta property="article:published_time" content="2018-01-15T09:01:06.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.093Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Nodejs">
+<meta property="article:tag" content="Machine-Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/ML-Tensorflow-Theme-Dog.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Machine-Learning-OpenCV" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/15/Machine-Learning-OpenCV/" class="article-date">
+  <time datetime="2018-01-15T09:01:06.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2018/01/15/Machine-Learning-OpenCV/" data-id="ckwgm33m900f97b1yvvw3kpg7" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>计算机视觉库：OpenCV</li>
+<li>Using OpenCV with Node.js</li>
+</ul>
+<span id="more"></span>
+<h2 id="Privious"><a href="#Privious" class="headerlink" title="Privious"></a>Privious</h2><p>OpenCV ( Open Source Computer Vision Library )，是一个基于C/C++语言的计算机视觉库，在跨平台图像/视频处理、模式识别、人机交互、机器人等领域有广泛的应用。</p>
+<p>OpenCV 包含机器学习库，支持传统的机器学习算法（决策树、朴素贝叶斯、支持向量机、随机森林等），近期的版本演进侧重于增强深度学习的支持，例如 <a target="_blank" rel="noopener" href="https://opencv.org/opencv-3-3.html">OpenCV 3.3</a> 将深度神经网络（Deep neural networks，DNN ) 提升到主代码库（promote DNN module from opencv_contrib to the main repository），2017 年 12 月发布的 OpenCV 3.4 针对 R-CNN 进行了性能优化。</p>
+<p>OpenCV 的主要编程是 C++ ，大部分的接口也是基于 C++，但它仍然保留着很多 C 接口（功能不完整）。绑定语言（binding）有 Python，java 和 MATLAB /OCTAVE ，另外还有一些其他语言的包装器（wrapper）如 C# , Perl , Haskell 和 Ruby。<strong><a target="_blank" rel="noopener" href="https://github.com/justadudewhohacks/opencv4nodejs">opencv4nodejs</a></strong> 项目是一个支持所有 OpenCV 3 的 Node.js 绑定，有助于弥补 JavaScript 缺乏计算机视觉实现的不足，为 Node.js 优势应用场景的选型中提供了更多选择（例如使用 WebSocket 推送技术创建实时 Web 应用）。</p>
+<p>前文回顾：<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a> 中演示了一个图像识别的案例，我们来看看基于 OpenCV + Node.js 是如何实现的：</p>
+<h2 id="Using-OpenCV-with-Node-js"><a href="#Using-OpenCV-with-Node-js" class="headerlink" title="Using OpenCV with Node.js"></a>Using OpenCV with Node.js</h2><p><img src="http://riboseyim-qiniu.riboseyim.com/ML-Tensorflow-Theme-Dog.png" alt=""></p>
+<h4 id="Enviroment"><a href="#Enviroment" class="headerlink" title="Enviroment"></a>Enviroment</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cmake --version</span><br><span class="line">cmake version 3.10.2</span><br><span class="line"></span><br><span class="line">$ brew install cmake</span><br><span class="line"></span><br><span class="line">$ brew install opencv3</span><br><span class="line"><span class="comment"># dependencies for opencv: eigen, lame, x264, xvid, ffmpeg, libpng,</span></span><br><span class="line"><span class="comment"># libtiff, ilmbase, openexr, gdbm, python, xz, python3, numpy, tbb</span></span><br><span class="line"></span><br><span class="line">$ mkdir project-opencv-demo</span><br><span class="line">$ <span class="built_in">cd</span> project-opencv-demo</span><br><span class="line">$ npm init</span><br><span class="line">$ npm install --save opencv4nodejs</span><br></pre></td></tr></table></figure>
+<h4 id="Load-InceptionModel"><a href="#Load-InceptionModel" class="headerlink" title="Load InceptionModel"></a>Load InceptionModel</h4><p>Tensorflow Inception Model 是一个已经被训练好的模型，可以识别数千类对象，只要将图像输入就可以输出推测的一个分类概率。Tensorflow Inception Model 包括 ‘graph.pb’ 和 ‘label_strings.txt’ 两个文件，使用之前需要先加载。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cv = <span class="built_in">require</span>(<span class="string">&#x27;opencv4nodejs&#x27;</span>);</span><br><span class="line"><span class="comment">//const cv = require(&#x27;../&#x27;);</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!cv.xmodules.dnn) &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;exiting: opencv4nodejs compiled without dnn module&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// replace with path where you unzipped inception model</span></span><br><span class="line"><span class="keyword">const</span> inceptionModelPath = <span class="string">&#x27;./models/tf-inception&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modelFile = path.resolve(inceptionModelPath, <span class="string">&#x27;tensorflow_inception_graph.pb&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> classNamesFile = path.resolve(inceptionModelPath, <span class="string">&#x27;imagenet_comp_graph_label_strings.txt&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (!fs.existsSync(modelFile) || !fs.existsSync(classNamesFile)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;exiting: could not find inception model&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;download the model from: https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;load models:&#x27;</span>+inceptionModelPath)</span><br><span class="line"></span><br><span class="line"><span class="comment">// read classNames and store them in an array</span></span><br><span class="line"><span class="keyword">const</span> classNames = fs.readFileSync(classNamesFile).toString().split(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// initialize tensorflow inception model from modelFile</span></span><br><span class="line"><span class="keyword">const</span> net = cv.readNetFromTensorflow(modelFile);</span><br></pre></td></tr></table></figure>
+<h4 id="Image-Classify"><a href="#Image-Classify" class="headerlink" title="Image Classify"></a>Image Classify</h4><p>读取图片存储为 Blob 格式，调用 <strong>net.forward()</strong> （图像作为输入参数），此处我们仅输出概率高于 5% 的分类。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> classifyImg = <span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// inception model works with 224 x 224 images, so we resize</span></span><br><span class="line">  <span class="comment">// our input images and pad the image with white pixels to</span></span><br><span class="line">  <span class="comment">// make the images have the same width and height</span></span><br><span class="line">  <span class="keyword">const</span> maxImgDim = <span class="number">224</span>;</span><br><span class="line">  <span class="keyword">const</span> white = <span class="keyword">new</span> cv.Vec(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>);</span><br><span class="line">  <span class="keyword">const</span> imgResized = img.resizeToMax(maxImgDim).padToSquare(white);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// network accepts blobs as input</span></span><br><span class="line">  <span class="keyword">const</span> inputBlob = cv.blobFromImage(imgResized);</span><br><span class="line">  net.setInput(inputBlob);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// forward pass input through entire network, will return</span></span><br><span class="line">  <span class="comment">// classification result as 1xN Mat with confidences of each class</span></span><br><span class="line">  <span class="keyword">const</span> outputBlob = net.forward();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// find all labels with a minimum confidence</span></span><br><span class="line">  <span class="keyword">const</span> minConfidence = <span class="number">0.05</span>;</span><br><span class="line">  <span class="keyword">const</span> locations =</span><br><span class="line">    outputBlob</span><br><span class="line">      .threshold(minConfidence, <span class="number">1</span>, cv.THRESH_BINARY)</span><br><span class="line">      .convertTo(cv.CV_8U)</span><br><span class="line">      .findNonZero();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> result =</span><br><span class="line">    locations.map(<span class="function"><span class="params">pt</span> =&gt;</span> (&#123;</span><br><span class="line">      <span class="attr">confidence</span>: <span class="built_in">parseInt</span>(outputBlob.at(<span class="number">0</span>, pt.x) * <span class="number">100</span>) / <span class="number">100</span>,</span><br><span class="line">      <span class="attr">className</span>: classNames[pt.x]</span><br><span class="line">    &#125;))</span><br><span class="line">      <span class="comment">// sort result by confidence</span></span><br><span class="line">      .sort(<span class="function">(<span class="params">r0, r1</span>) =&gt;</span> r1.confidence - r0.confidence)</span><br><span class="line">      .map(<span class="function"><span class="params">res</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;res.className&#125;</span> (<span class="subst">$&#123;res.confidence&#125;</span>)`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> testData = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">image</span>: <span class="string">&#x27;./data/IMG_3560.png&#x27;</span>,</span><br><span class="line">    <span class="attr">label</span>: <span class="string">&#x27;Yan Dog&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">image</span>: <span class="string">&#x27;./data/IMG_3608.png&#x27;</span>,</span><br><span class="line">    <span class="attr">label</span>: <span class="string">&#x27;Yang Dog&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">testData.forEach(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> img = cv.imread(data.image);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;%s,%s: &#x27;</span>, data.image,data.label);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> predictions = classifyImg(img);</span><br><span class="line">  predictions.forEach(<span class="function"><span class="params">p</span> =&gt;</span> <span class="built_in">console</span>.log(p));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//cv.imshowWait(&#x27;img&#x27;, img);</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;---------finish---------&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Tensorflow-Demo-Dog-2.png" alt="IMG_3608.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ npm run tf-classify</span><br><span class="line"></span><br><span class="line">&gt; node ./tf-classify.js</span><br><span class="line">load models:./models/tf-inception</span><br><span class="line"></span><br><span class="line">-------------------------------</span><br><span class="line">./data/IMG_3560.png,Yan Dog:</span><br><span class="line">[ INFO:0] Initialize OpenCL runtime...</span><br><span class="line">潘布魯克威尔斯柯基犬 Pembroke (0.83)</span><br><span class="line">-------------------------------</span><br><span class="line">./data/IMG_4423.png,Yang Dog:</span><br><span class="line">吉娃娃 Chihuahua (0.89)</span><br><span class="line">Pembroke (0.07)</span><br><span class="line">-------------------------------</span><br><span class="line">./data/IMG_3608.png,Yang Dog:</span><br><span class="line">玩具梗 toy terrier (0.22)</span><br><span class="line">美国斯塔福德郡梗 American Staffordshire terrier (0.2)</span><br><span class="line">吉娃娃 Chihuahua (0.14)</span><br><span class="line">斯塔福德郡牛头梗 Staffordshire bullterrier (0.12)</span><br><span class="line">比特犬 whippet (0.05)</span><br><span class="line">-------------------------------</span><br></pre></td></tr></table></figure>
+<p>问题：对比之前 <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a> 的预测值，两次识别的结果很接近，但是又有不同，这是为什么呢？请注意后续更新。</p>
+<h2 id="OpenCV-概要"><a href="#OpenCV-概要" class="headerlink" title="OpenCV 概要"></a>OpenCV 概要</h2><p>OpenCV ( Open Source Computer Vision Library )，是一个基于C/C++语言的跨平台图像/视频处理函数库。OpenCV 由英特尔公司于1999年发起并参与开发，以 BSD 许可证授权发行，可以在商业和研究领域中免费使用。OpenCV 主要用于开发实时的图像处理、计算机视觉以及模式识别程序。</p>
+<p>OpenCV 的主要编程是 C++ ，大部分的接口也是基于 C++，但它仍然保留着很多 C 接口（不完整）。绑定语言（binding）有 Python，java 和 MATLAB /OCTAVE ，另外还有一些其他语言的包装器（wrapper）如 C# , Perl , Haskell 和 Ruby。</p>
+<h4 id="OpenCV-版本"><a href="#OpenCV-版本" class="headerlink" title="OpenCV 版本"></a>OpenCV 版本</h4><p>OpenCV 第一个预览版本于 2000 年在 IEEE Conference 公开，目前每6个月就会有一个官方版本，由一个商业公司赞助的独立小组开发。<br>OpenCV 1.0：2006年发布<br>OpenCV 2.0：2009年10月发布，主要更新包括 C++ 接口<br>OpenCV 2.3：2011年6月发布，主要更新包括移动终端兼容性（NDK-Build）<br>OpenCV 3.0：2015年6月发布<br>OpenCV 3.3: 2017年8月发布，主要更新包括深度学习（promote DNN module from opencv_contrib to the main repository）<br>OpenCV 3.4: 2017年12月发布，主要更新包括 DNN 模块改进（包括 R-CNN 性能优化), Javascript 绑定和 OpenCL 实现</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">$ pkg-config --modversion opencv</span><br><span class="line">3.4.0</span><br></pre></td></tr></table></figure>
+<h4 id="OpenCV-主要模块"><a href="#OpenCV-主要模块" class="headerlink" title="OpenCV 主要模块"></a>OpenCV 主要模块</h4><ul>
+<li>cv 核心函数库</li>
+<li>cvaux 辅助函数库</li>
+<li>cxcore 数据结构与线性代数库</li>
+<li>highgui GUI 函数库，包括用户界面、读/写图像及视频</li>
+<li>ml 机器学习函数库，包括统计模型、贝叶斯、最近邻居、支持向量机、决策树、随机树、最大期望、神经网络等，详见<a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a>。</li>
+<li>gpu GPU加速,GPU模块及数据结构，包含图像处理与分析模块</li>
+</ul>
+<h4 id="OpenCV-主要功能"><a href="#OpenCV-主要功能" class="headerlink" title="OpenCV 主要功能"></a>OpenCV 主要功能</h4><ul>
+<li>图像数据操作（内存分配与释放 allocation &amp; release，图像复制 copying、设定和转换 setting &amp; conversion）</li>
+<li>矩阵/向量数据操作及线性代数运算（矩阵乘积、矩阵方程求解、特征值、奇异值分解）</li>
+<li>支持多种动态数据结构（链表、队列、数据集、树、图）</li>
+<li>基本图像处理（去噪、边缘检测、角点检测、采样与插值、色彩变换、形态学处理、直方图、图像金字塔结构）</li>
+<li>结构分析（连通域/分支、轮廓处理、距离转换、图像矩、模板匹配、霍夫变换、多项式逼近、曲线拟合、椭圆拟合、狄劳尼三角化）</li>
+<li>图像/视频的输入输出（支持文件或摄像头的输入，图像/视频文件的输出）</li>
+<li>摄像头定标（寻找和跟踪定标模式、参数定标、基本矩阵估计、单应矩阵估计、立体视觉匹配）</li>
+<li>运动分析（光流 optical flow、动作分割 motion segmentation、目标跟踪 tracking）</li>
+</ul>
+<h4 id="OpenCV-基本数据类型"><a href="#OpenCV-基本数据类型" class="headerlink" title="OpenCV 基本数据类型"></a>OpenCV 基本数据类型</h4><ul>
+<li>CvPoint:表示一个坐标为整数的二维点</li>
+<li>CvSize:表示矩阵框大小，以像素为精度。</li>
+<li>CvRect:通过方形左上角坐标和方形的高和宽来确定一个矩形区域</li>
+<li>CvScalar:用来存放像素值（ double 数组，不一定是灰度值）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span>  <span class="class"><span class="keyword">struct</span>  <span class="title">CvPoint</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;<span class="comment">//图像中点的x坐标</span></span><br><span class="line">    <span class="keyword">int</span> y;<span class="comment">//图像中点的y坐标</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CvSize</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> width; <span class="comment">//矩形宽</span></span><br><span class="line">    <span class="keyword">int</span> height; <span class="comment">//矩形高</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CvRect</span> 　　</span></span><br><span class="line"><span class="class">&#123;</span> 　　</span><br><span class="line">    <span class="keyword">int</span> x; <span class="comment">//方形的左上角的x-坐标 　　</span></span><br><span class="line">    <span class="keyword">int</span> y; <span class="comment">//方形的左上角的y-坐标　</span></span><br><span class="line">    <span class="keyword">int</span> width; <span class="comment">//宽 　　</span></span><br><span class="line">    <span class="keyword">int</span> height; <span class="comment">//高</span></span><br><span class="line">&#125; 　</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CvScalar</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> val[<span class="number">4</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="OpenCV-与机器学习"><a href="#OpenCV-与机器学习" class="headerlink" title="OpenCV 与机器学习"></a>OpenCV 与机器学习</h4><p>OpenCV 包含机器学习库，支持以下算法：</p>
+<ul>
+<li>Boosting</li>
+<li>Decision tree learning</li>
+<li>Gradient boosting trees</li>
+<li>Expectation-maximization algorithm</li>
+<li>k-nearest neighbor algorithm</li>
+<li>Naive Bayes classifier</li>
+<li>Artificial neural networks</li>
+<li>Random forest</li>
+<li>Support vector machine (SVM)</li>
+<li>Deep neural networks (DNN) （<a target="_blank" rel="noopener" href="https://opencv.org/opencv-3-3.html">OpenCV 3.3</a> promote DNN module from opencv_contrib to the main repository）</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/ML-Algorithm-OpenCV.png" alt=""></p>
+<h4 id="OpenCV-资源"><a href="#OpenCV-资源" class="headerlink" title="OpenCV 资源"></a>OpenCV 资源</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/opencv/opencv">OpenCV github repo</a></li>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/r/justadudewhohacks/opencv-nodejs/">Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/justadudewhohacks/opencv4nodejs">opencv4nodejs</a></li>
+<li><a target="_blank" rel="noopener" href="http://wiki.opencv.org.cn/index.php/OpenCV_%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B%EF%BC%88%E7%9F%A9%E9%98%B5/%E5%9B%BE%E5%83%8F/%E8%A7%86%E9%A2%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%EF%BC%89#.EF.BC.884.EF.BC.89____.E8.AE.BE.E7.BD.AE.2F.E8.8E.B7.E5.8F.96.E6.84.9F.E5.85.B4.E8.B6.A3.E5.8C.BA.E5.9F.9FROI:">OpenCV编程简介 Introduction to programming with OpenCV</a></li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><h4 id="《The-Machine-Learning-Master》"><a href="#《The-Machine-Learning-Master》" class="headerlink" title="《The Machine Learning Master》"></a><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/machine-learning">《The Machine Learning Master》</a></h4><p><img src="http://riboseyim-qiniu.riboseyim.com/banner-MLM-201803.png" alt=""></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/17/Machine-Learning-TensorFlow/">Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/15/Machine-Learning-OpenCV/">Machine Learning(二):宠物智能识别之 Using OpenCV with Node.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/">Machine Learning:机器学习项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/10/Machine-Learning-Algorithms/">Machine Learning:机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/04/02/Machine-Learning-Algorithms-Sheet/">Machine Learning:如何选择机器学习算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/05/07/Machine-Learning-Neural-Network">Machine Learning:神经网络基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/01/25/Machine-Learning-Books/">Machine Learning:机器学习书单</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/29/Machine-Learning-News">Machine Learning:人工智能媒体报道集</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/02/16/Machine-Learning-Law/">Machine Learning:机器学习技术与知识产权法</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/03/09/Machine-Learning-Economist/">Machine Learning:经济学家谈人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://heartbeat.fritz.ai/the-5-computer-vision-techniques-that-will-change-how-you-see-the-world-1ee19334354b">The 5 Computer Vision Techniques That Will Change How You See The World</a></li>
+<li><strong>Paper</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1512.00567.pdf">Rethinking the Inception Architecture for Computer Vision</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@muehler.v/node-js-meets-opencvs-deep-neural-networks-fun-with-tensorflow-and-caffe-ff8d52a0f072">Node.js meets OpenCV’s Deep Neural Networks — Fun with Tensorflow and Caffe</a></li>
+<li><a target="_blank" rel="noopener" href="https://outcrawl.com/image-recognition-api-go-tensorflow/">Build an Image Recognition API with Go and TensorFlow</a></li>
+<li><a target="_blank" rel="noopener" href="https://research.googleblog.com/2016/03/train-your-own-image-classifier-with.html">Train your own image classifier with Inception in TensorFlow | Wednesday, March 09, 2016 | Google Research Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@muehler.v/node-js-opencv-for-face-recognition-37fa7cb860e8">Node.js + OpenCV for Face Recognition</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@muehler.v/node-js-face-recognition-js-simple-and-robust-face-recognition-using-deep-learning-ea5ba8e852">Node.js + face-recognition.js : Simple and Robust Face Recognition using Deep Learning</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@muehler.v/node-js-meets-opencvs-deep-neural-networks-fun-with-tensorflow-and-caffe-ff8d52a0f072">Node.js meets OpenCV’s Deep Neural Networks — Fun with Tensorflow and Caffe</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78">Machine Learning is Fun! Part 4: Modern Face Recognition with Deep Learning</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@muehler.v/machine-learning-with-opencv-and-javascript-part-1-recognizing-handwritten-letters-using-hog-and-88719b70efaa">Machine Learning with OpenCV and JavaScript: Recognizing Handwritten Letters using HOG and SVM</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rbZeZNVA-Q4">Live Face Detection in Go using OpenCV and MachineBox | video</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/news/2016/10/YAHOO-pornographic-detection-ne?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global">雅虎开源色情图片检测神经网络</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2018/01/15/Machine-Learning-OpenCV/" data-id="ckwgm33m900f97b1yvvw3kpg7" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine-Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/17/Machine-Learning-TensorFlow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Machine Learning(一):基于 TensorFlow 实现宠物血统智能识别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/15/Visualization-DataSource/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">数据可视化（十）公共数据源列表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privious"><span class="toc-number">2.</span> <span class="toc-text">Privious</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-OpenCV-with-Node-js"><span class="toc-number">3.</span> <span class="toc-text">Using OpenCV with Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Enviroment"><span class="toc-number">3.0.1.</span> <span class="toc-text">Enviroment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Load-InceptionModel"><span class="toc-number">3.0.2.</span> <span class="toc-text">Load InceptionModel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Image-Classify"><span class="toc-number">3.0.3.</span> <span class="toc-text">Image Classify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test"><span class="toc-number">3.0.4.</span> <span class="toc-text">Test</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCV-%E6%A6%82%E8%A6%81"><span class="toc-number">4.</span> <span class="toc-text">OpenCV 概要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E7%89%88%E6%9C%AC"><span class="toc-number">4.0.1.</span> <span class="toc-text">OpenCV 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9D%97"><span class="toc-number">4.0.2.</span> <span class="toc-text">OpenCV 主要模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">4.0.3.</span> <span class="toc-text">OpenCV 主要功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.0.4.</span> <span class="toc-text">OpenCV 基本数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">4.0.5.</span> <span class="toc-text">OpenCV 与机器学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenCV-%E8%B5%84%E6%BA%90"><span class="toc-number">4.0.6.</span> <span class="toc-text">OpenCV 资源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">5.</span> <span class="toc-text">扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%8AThe-Machine-Learning-Master%E3%80%8B"><span class="toc-number">5.0.1.</span> <span class="toc-text">《The Machine Learning Master》</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 马尔可夫模型（Markov Model ） 隐含马尔可夫模型（ Hidden Markov Model ） 隐含隐马尔可夫模型的应用 马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络">
+<meta property="og:url" content="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 马尔可夫模型（Markov Model ） 隐含马尔可夫模型（ Hidden Markov Model ） 隐含隐马尔可夫模型的应用 马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png">
+<meta property="article:published_time" content="2017-05-09T08:16:55.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:07.810Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="数学与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/markov.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Mathmetics-Markov-Model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/09/Mathmetics-Markov-Model/" class="article-date">
+  <time datetime="2017-05-09T08:16:55.000Z" itemprop="datePublished">2017-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      概率论基础：从马尔可夫模型（Markov Model）到贝叶斯网络
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="ckwgm33me00g17b1yivg3ur8e" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>马尔可夫模型（Markov Model ）</li>
+<li>隐含马尔可夫模型（ Hidden Markov Model ）</li>
+<li>隐含隐马尔可夫模型的应用</li>
+<li>马尔可夫链的扩展 —— 贝叶斯网络（Bayesian Network）</li>
+</ul>
+<span id="more"></span>
+<p>19 世纪到 20 世纪初，<strong>马尔可夫（Andrey Markov）提出假设</strong>，任意一个词 Wi 出现的概率只同它前面的词 Wi-1有关，偷懒但颇为有效的方法。【符合这个假设的随机过程则称为马尔科夫过程，也称为马尔可夫链。】二元模型（ Bigram Model ）对应的公式如下：</p>
+<p> P(S) = P(W1 ,W2, … , Wn)<br>    =P(W1)·P(W2|W1) ·P(W3|W2) ··· P(Wi | Wi-1) ··· P(Wn | Wn-1)</p>
+<ul>
+<li>马尔可夫链：符合这个马尔可夫假设的随机过程则称为马尔科夫过程。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">digraph markov&#123;</span><br><span class="line">  label = <span class="string">&quot; Markov 马尔可夫链&quot;</span>;</span><br><span class="line">  rankdir = LR;</span><br><span class="line">  m1-&gt;m2[label = <span class="string">&quot;1.0&quot;</span>];</span><br><span class="line">  m2-&gt;m3[label = <span class="string">&quot;0.6&quot;</span>];</span><br><span class="line">  m3-&gt;m4[label = <span class="string">&quot;0.3&quot;</span>];</span><br><span class="line">  m2-&gt;m4[label = <span class="string">&quot;0.4&quot;</span>];</span><br><span class="line">  m3-&gt;m3[label = <span class="string">&quot;0.7&quot;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov.png" alt=""></p>
+<ul>
+<li>隐含马尔可夫模型（ Hidden Markov Model ）<br>最早由20世纪六七十年代，<a href="#">美国数学家鲍姆（ Leonard E. Baum ）</a> 发表的一系列论文中提出。隐含马尔可夫模型是马尔可夫链的一个扩展，即任一时刻 t 的状态 St 是不可见的。但是，在每个时刻 t 会输出一个富豪 Ot ，而且 Ot 和 St 相关且仅和 St 相关。</li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/markov-hidden.png" alt=""></p>
+<h2 id="隐马尔可夫模型的应用"><a href="#隐马尔可夫模型的应用" class="headerlink" title="隐马尔可夫模型的应用"></a>隐马尔可夫模型的应用</h2><p>隐含马尔可夫模型成功的应用最早是语音识别（Sphinx——大词汇量连续语音识别系统）。根据应用的不同而有不同的名称,例如语音识别中的声学模型（ Acoustic Model ），机器翻译中的翻译模型（ Translation Model ）等。</p>
+<h4 id="1、应用领域：翻译"><a href="#1、应用领域：翻译" class="headerlink" title="1、应用领域：翻译"></a>1、应用领域：翻译</h4><ul>
+<li>语音识别，声学模型（ Acoustic Model ）</li>
+<li>机器翻译，翻译模型（ Translation Model ）</li>
+<li>中文断词/分词或光学字符识别</li>
+<li>拼写纠错，纠错模型（ Correction Model）</li>
+<li>手写体识别</li>
+</ul>
+<h4 id="2、应用领域：图像识别"><a href="#2、应用领域：图像识别" class="headerlink" title="2、应用领域：图像识别"></a>2、应用领域：图像识别</h4><h4 id="3、生物信息学-和-基因组学"><a href="#3、生物信息学-和-基因组学" class="headerlink" title="3、生物信息学 和 基因组学"></a>3、生物信息学 和 基因组学</h4><ul>
+<li>基因组序列中蛋白质编码区域的预测</li>
+<li>对于相互关联的DNA或蛋白质族的建模</li>
+<li>从基本结构中预测第二结构元素</li>
+<li>通信中的译码过程</li>
+</ul>
+<h3 id="隐含马尔可夫模型的训练"><a href="#隐含马尔可夫模型的训练" class="headerlink" title="隐含马尔可夫模型的训练"></a>隐含马尔可夫模型的训练</h3><ul>
+<li>知识背景：概率论</li>
+<li>围绕隐含马尔可夫模型的基本问题<ol>
+<li>给定一个模型，如何计算某个特定输出序列的概率；<br>Forward-Backward 算法<br>参考书 Frederick Jelinek《Statistical Methods for Speech Recognition(Language, Speech, and Communication)》</li>
+<li>给定一个模型和某个特定的输出序列，如何找到最可能产生这个输出的状态序列<br>解码算法：维特比算法</li>
+<li>给定足够量的观测数据，如何估计隐含马尔可夫模型的参数。<br>绚练算法：鲍姆-韦尔奇算法（Baum-Welch Algorithm）</li>
+</ol>
+</li>
+</ul>
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/30/Mathmetics-Beauty/">读书笔记|数学之美（Beauty Of Mathmetics）</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/1qM_J5We1iSe8_Ty-AL4Sw">马尔科夫模型与离散事件系统仿真模型简析 |  则裕沙龙@立波 </a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/v_july_v/article/details/40984699">从贝叶斯方法谈到贝叶斯网络 | v_JULY_v (结构之法 算法之道)</a></li>
+<li><a target="_blank" rel="noopener" href="http://open.163.com/movie/2008/1/2/N/M6SGF6VB4_M6SGKSC2N.html">斯坦福大学公开课-机器学习过程-马尔可夫决策过程</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555495&amp;idx=1&amp;sn=f5b46175b9a0cbd4006a193a0ca91782&amp;chksm=8b7e39bcbc09b0aa6d9b32a0d49926090fe7fb160ba4fbd51ed17cbbdb05806b234024198cf4&amp;mpshare=1&amp;scene=1&amp;srcid=0925x4UfKSwzSRQWFceVQEka%23rd">从贝叶斯定理到概率分布：综述概率论基本定义 | 算法与数学之美</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652555638&amp;idx=2&amp;sn=efc42acdeaa7921637924463cbf38db0&amp;chksm=8b7e382dbc09b13bc8048c762a088c0ae2b979706465aaef4b454c6289e7161a19b8998f114d&amp;mpshare=1&amp;scene=1&amp;srcid=100303yDRzK0nt5PI8G4NTcd%23rd">实例详解贝叶斯推理的原理 | 2017-10-03 算法与数学之美</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/05/09/Mathmetics-Markov-Model/" data-id="ckwgm33me00g17b1yivg3ur8e" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数学与算法</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/09/CyberSecurity-Hacker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Cyber-Security:黑客与技术、产业及其精神世界
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/05/Language-Go-lang/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Catalog：玩转编程语言 - Golang 专题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">隐马尔可夫模型的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F%EF%BC%9A%E7%BF%BB%E8%AF%91"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、应用领域：翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F%EF%BC%9A%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、应用领域：图像识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6-%E5%92%8C-%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、生物信息学 和 基因组学</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%90%AB%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="toc-number">2.1.</span> <span class="toc-text">隐含马尔可夫模型的训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

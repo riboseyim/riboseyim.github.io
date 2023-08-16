@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>PM指南:开源项目管理平台Redmine | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概要 不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PM指南:开源项目管理平台Redmine">
+<meta property="og:url" content="https://riboseyim.com/2016/04/26/TeamWork-Redmine/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="概要 不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/93/8b/93cc49843b45dd772627527c8423228b.png">
+<meta property="article:published_time" content="2016-04-26T03:32:25.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:09.844Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="Engineering">
+<meta property="article:tag" content="Manager">
+<meta property="article:tag" content="工具癖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TeamWork-Redmine" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/TeamWork-Redmine/" class="article-date">
+  <time datetime="2016-04-26T03:32:25.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PM指南:开源项目管理平台Redmine
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="ckwgm33p401397b1ywavgzviv" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E7%99%96/" rel="tag">工具癖</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><blockquote>
+<p>不管别人如何干扰，如何制造事端，最优秀的将领总是能达到预期的木笔而不会受制于作战计划。（温斯顿·S·丘吉尔《丘吉尔传·我的青春》p227）</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Redmine"><a href="#Redmine" class="headerlink" title="Redmine"></a>Redmine</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/cd7a12fa09bb">基于Redmine的项目管理平台</a></li>
+</ul>
+<p>“过程有记录，责任可追踪”,开发、运营过程中需要持续关注的基础信息，都可以通过统一平台沉淀、分析和改进优化。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/gantt@2x.png" alt=""></p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/workflow_example@2x.png" alt=""></p>
+<!--![基于Redmine数据定制开发](http://riboseyim-qiniu.riboseyim.com/theme_redmine_myindex.png)-->
+<h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><h4 id="Install-Redmine"><a href="#Install-Redmine" class="headerlink" title="Install Redmine"></a>Install Redmine</h4><p><a target="_blank" rel="noopener" href="http://bitnami.com">BitName</a> 提供了一个包含 Ruby、RAILS、MySQL、Apache 等依赖的集成安装包。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.解压</span></span><br><span class="line">~/redmine-1.2.1-1/apps/redmine/vender/plugins</span><br><span class="line">$ <span class="built_in">cd</span> redmine-1.2.1-1</span><br><span class="line"><span class="comment"># 2.安装</span></span><br><span class="line">$ ./use_redmine</span><br><span class="line"><span class="comment"># 3.配置</span></span><br><span class="line">$ <span class="built_in">cd</span> apps/redmine/vender/pluginsrake</span><br><span class="line">$ db:migrate_plugins RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><img src="https://upload-images.jianshu.io/upload_images/1037849-f81e70d040cb7850.jpg" alt=""></p>
+<h2 id="Kanban"><a href="#Kanban" class="headerlink" title="Kanban"></a>Kanban</h2><ul>
+<li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">Kanban看板管理实践精要</a></li>
+</ul>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/Kanban_Pattern_DevOps.png" alt=""></p>
+<p><img src="https://static001.infoq.cn/resource/image/93/8b/93cc49843b45dd772627527c8423228b.png" alt=""></p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
+<li><a href="https://riboseyim.com/2019/02/06/Project/">项目管理 | Overview of Project Management</a></li>
+<li><a href="https://riboseyim.com/2019/04/30/Project-PMP/">PM指南:PMI项目管理知识体系</a></li>
+<li><a href="https://riboseyim.com/2019/03/27/Project-Construction/">PM指南:建筑工程项目管理|行业案例教学</a></li>
+<li><a href="#">PM指南:范围管理</a></li>
+<li><a href="#">PM指南:进度管理</a></li>
+<li><a href="#">PM指南:成本管理</a></li>
+<li><a href="#">PM指南:质量管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Resources/">PM指南:资源管理</a></li>
+<li><a href="https://riboseyim.com/2019/02/06/Project-Communications/">PM指南:沟通管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2018/06/05/Project-Risk/">PM指南:风险管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/03/12/Project-Procurement/">PM指南:采购管理</a></li>
+<li><a href="#">PM指南:相关方管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2019/04/06/Project-PMIS/">PM指南:项目管理信息系统|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2018/06/19/Project-Template/">PM指南:项目管理开局模板|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/04/26/TeamWork-Redmine/">PM指南:开源项目管理平台Redmine|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2017/08/06/TeamWork-Kanban/">PM指南:软件业看板Kanban管理实践|工具与技术</a></li>
+<li><a href="https://riboseyim.com/2016/05/31/TeamWork-Git/">PM指南:源代码版本管理|工具与技术</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://agiledon.github.com/blog/2014/08/09/visualize-design-workshop/">张逸：可视化设计工作坊</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2016/04/26/TeamWork-Redmine/" data-id="ckwgm33p401397b1ywavgzviv" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Engineering/" rel="tag">Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Manager/" rel="tag">Manager</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E7%99%96/" rel="tag">工具癖</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/Commander/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          讲武堂
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/26/Network-Ntopng/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">开源架构技术漫谈：基于 Ntopng 实现网络流量的可视化监控</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redmine"><span class="toc-number">2.</span> <span class="toc-text">Redmine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BASIC"><span class="toc-number">3.</span> <span class="toc-text">BASIC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Redmine"><span class="toc-number">3.0.1.</span> <span class="toc-text">Install Redmine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.0.2.</span> <span class="toc-text">数据结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kanban"><span class="toc-number">4.</span> <span class="toc-text">Kanban</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">5.</span> <span class="toc-text">拓展阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

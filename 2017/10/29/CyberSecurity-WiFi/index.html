@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Cyber-Security:警惕Wi-Fi漏洞 | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 1、不可信任的基础设施：Wi-Fi 2、安全通信协议：HTTPS 3、历史遗留问题：DNS 4、最后一英里的安全：VPN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber-Security:警惕Wi-Fi漏洞">
+<meta property="og:url" content="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 1、不可信任的基础设施：Wi-Fi 2、安全通信协议：HTTPS 3、历史遗留问题：DNS 4、最后一英里的安全：VPN">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Basics.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-WhereKrackshappen.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Everywhere.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-HTTPS.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-LOLDNS.png">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-VPN.png">
+<meta property="article:published_time" content="2017-10-29T09:39:02.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:03.825Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Policy&amp;Law">
+<meta property="article:tag" content="Cyber-Security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Basics.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CyberSecurity-WiFi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/29/CyberSecurity-WiFi/" class="article-date">
+  <time datetime="2017-10-29T09:39:02.000Z" itemprop="datePublished">2017-10-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cyber-Security:警惕Wi-Fi漏洞
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="ckwgm33ka003m7b1yi04cj09u" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>1、不可信任的基础设施：Wi-Fi</li>
+<li>2、安全通信协议：HTTPS</li>
+<li>3、历史遗留问题：DNS</li>
+<li>4、最后一英里的安全：VPN</li>
+</ul>
+<span id="more"></span>
+<h2 id="Cyber-Security-警惕-Wi-Fi-漏洞-KRACK"><a href="#Cyber-Security-警惕-Wi-Fi-漏洞-KRACK" class="headerlink" title="Cyber-Security: 警惕 Wi-Fi 漏洞 KRACK"></a>Cyber-Security: 警惕 Wi-Fi 漏洞 KRACK</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.linux.com/blog/2017/10/tips-secure-your-network-wake-krack">原文：Tips to Secure Your Network in the Wake of KRACK | KONSTANTIN RYABITSEV OCTOBER 18, 2017</a></li>
+</ul>
+<p>KRACK 攻击将目标放在你的移动设备和 Wi-Fi 接入点之间的链路，它可能是一台路由器 —— 在你的家里、办公室、社区图书馆或者你最喜欢咖啡店。 下面这些技巧能够帮助您提高网络连接的安全性。</p>
+<p>密钥重安装攻击 （KRACK, Key Reinstallation Attacks)  概要如下:</p>
+<ul>
+<li>基于 WPA2 无线握手协议的漏洞，攻击者可能在你的设备和Wi-Fi接入点之间嗅探或者操纵流量</li>
+<li>WPA2 标准存在定义含糊以及标准实现不够严谨，特别是对于 Linux 和 Android 设备来说问题尤其糟糕。事实上，在底层操作系统被修补之前，该漏洞允许攻击者强制所有无线通信流量不进行任何加密。</li>
+<li>这个漏洞可以在客户端修补，所以事情并没有到不可收拾的地步。WPA2 无线加密标准并没有过时，WEP （Wired Equivalent Privacy，有线等效保密协议）标准也是同样的道理（解决该问题的方案并不是切换到 WEP ）。</li>
+<li>最流行的 Linux 发行版已经在客户机上发送修复此漏洞的更新，所以需要尽快更新。</li>
+<li>Android 将很快为这个漏洞推送补丁程序。如果您的设备正在接收 Android 安全补丁，您不久就会收到一个修复程序。如果您的设备不再接收这样的更新，那么这个特殊的漏洞仅仅是您停止使用旧的、不支持更新的 Android 设备的另一个原因。</li>
+</ul>
+<p>也就是说，从我的观点来看，Wi-Fi 仅仅是不可信任基础设施链条中的另一个环节，我们应该避免把它当作完全可信的通信渠道。</p>
+<h4 id="1、不可信任的基础设施：Wi-Fi"><a href="#1、不可信任的基础设施：Wi-Fi" class="headerlink" title="1、不可信任的基础设施：Wi-Fi"></a>1、不可信任的基础设施：Wi-Fi</h4><p>如果现在阅读本文是通过你的笔记本电脑或者移动电话，那么你的通信链可能看起来应该是这样的：<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Basics.png" alt=""></p>
+<p>KRACK 攻击将目标放在你的移动设备和 Wi-Fi 接入点之间的链路，它可能是一台路由器 —— 在你的家里、办公室、社区图书馆或者你最喜欢咖啡店。<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-WhereKrackshappen.png" alt=""></p>
+<p>实际上，这个图应该类似于这样：<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-Everywhere.png" alt=""></p>
+<p>Wi-Fi 仅仅是我们漫长的通信链中的第一个不应该信任的环节。如果让我猜的话，你正在使用的 Wi-Fi 路由器可能从开始使用的那天起就没有收到过安全更新。更糟的是，它可能是默认的或容易被猜到的管理凭据（用户名/口令/密钥等），从来就没有更改过。除非你自己初始化并配置了路由器，同时你还能记住自己最后一次是什么时候更新它的固件，总之，你应该假设它现在是由别人控制，不能被信任。</p>
+<p>通过 Wi-Fi 路由器，我们进入了一个由各类不可信任基础设施覆盖的区域 — 取决于你的偏执狂水平。在我们的上游有各类 ISP 和服务提供商，他们中的许多人捕获，监视，改变，分析和销售我们的个人流量，试图从我们的浏览习惯中获得更多的钱。通常，他们自己的安全补丁计划留下了许多有待改进的地方，最终使我们的流量暴露在恶意人士的眼里。</p>
+<p>通常在互联网上，我们不得不担心强大的、国家级的演员操纵核心网络协议（例如 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/BGP_hijacking">BGP hijacking，BGP 劫持</a> ） ，为了支持质量监控程序或者执行国家级的流量过滤能力。</p>
+<h4 id="2、安全通信协议：HTTPS"><a href="#2、安全通信协议：HTTPS" class="headerlink" title="2、安全通信协议：HTTPS"></a>2、安全通信协议：HTTPS</h4><p>幸运的是，我们有一个基于不安全介质进行安全通信的解决方案，我们每天都在使用它 —— HTTPS 协议对我们的 Internet 流量进行点对点加密，并确保我们可以信任我们所通信的站点。</p>
+<p>Linux 基金会发起 <a target="_blank" rel="noopener" href="https://letsencrypt.org/">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a>，便于网站所有者全球提供终端到终端的加密，这有助于确保任何受损的设备，我们的个人设备，我们要访问的网站之间没有通信泄密风险。</p>
+<p>好吧…只能说尽量接近没有风险。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-HTTPS.png" alt=""></p>
+<h4 id="3、历史遗留问题：DNS"><a href="#3、历史遗留问题：DNS" class="headerlink" title="3、历史遗留问题：DNS"></a>3、历史遗留问题：DNS</h4><p>即使我们忠实地使用 HTTPS 协议来创建一个可信的通信渠道，攻击者还有一个机会，访问我们的 Wi-Fi 路由器或改变我们的 Wi-Fi 流量 — 例如 KRACK 攻击 — 可以诱导我们同错误的网站通信。他们可以这样做事利用了另一个事实，即我们仍然十分依赖于 DNS —— 一种上世纪80年代开始应用，不加密，非常容易被欺骗协议。<br><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-LOLDNS.png" alt=""></p>
+<p>DNS （Domain Name System，域名系统）可以将人类友好的域名例如“linux.com”转换成 IP 地址 —— 计算机可以基于 IP 地址相互通信。为了将域名转换成 IP 地址，计算机会查询解析器软件 —— 通常运行在 Wi-Fi 路由器上或操作系统本身。解析器将查询一个包括 “root” 域名服务器的分布式网络，找出系统在互联网上所谓的“权威”的信息，域名“Linux .com”对应的IP地址。</p>
+<p>麻烦的是，上述过程都是基于未经身份验证的通信，很容易假冒，明文协议和响应都可以很容易地被攻击者改变，使查询返回不正确的数据。如果有人设法进行 DNS 查询欺骗并返回错误的IP地址，他们就可以操纵我们系统的 HTTP 请求到指定的地方。</p>
+<p>幸运的是，HTTPS 协议有很多内置的保护，可以确保不容易被别人假装成另一个站点。恶意服务器上的 TLS 证书必须匹配您请求的 DNS名称 ，TLS 证书由一个卓有声誉的 数字证书认证中心(Certificate Authority， CA)签发 ，并获得浏览器认可。如果不是这样的话，浏览器会显示出一个很大的警告：你要与之沟通的主机不是他们所说的那个人。如果你看到这样的警告，在选择忽略之前，请格外小心，因为你可能会泄露你的秘密给那些会使用它们的人攻击你。</p>
+<p>如果攻击者完全控制了路由器，他们首先可以阻止您的连接使用HTTPS，通过拦截服务器的响应，指示浏览器设置安全连接（这称为“SSL strip 攻击”）。为了帮助保护您免受这种攻击，网站可以增加一个 特殊响应报头，告诉浏览器它们在未来始终使用HTTPS 协议进行通信，但这只是在你的第一次访问之后才有效。对一些非常受欢迎的网站，浏览器现在包括一个硬编码的域名列表，可以设置在第一次访问的时候也使用 HTTPS 协议 。</p>
+<p>DNS 欺骗的解决方案称为 DNSSEC （Domain Name System Security Extensions ，CDNS安全扩展，由 IETF 提供的一系列 DNS 安全认证的机制，RFC 2535 ），但它看起来距离被接受的那一天还很遥远，其中有一个重要的障碍 —— 实时感知。DNSSEC 普遍使用之前，我们必须假定，我们收到的 DNS 信息不完全可信的。</p>
+<h4 id="4、最后一英里的安全：VPN"><a href="#4、最后一英里的安全：VPN" class="headerlink" title="4、最后一英里的安全：VPN"></a>4、最后一英里的安全：VPN</h4><p>所以，如果你不能信任 Wi-Fi — 和/或在地下室的无线路由器，它可能比你的大多数宠物的年龄都大，你可以采取什么措施来确保你的设备和互联网通信“最后一英里”的完整性呢？</p>
+<p>一个可接受的解决方案是使用一个信誉良好的 VPN 提供商，在你的系统和基础设施之间建立安全通信链路。我们的希望在于他们比你的路由器厂商和你当前的互联网服务提供商更加关注安全，所以他们可以更好地保证您的流量不受嗅探，或者遏制恶意人士的骚扰。让你所有的工作站和移动设备使用 VPN ，可确保类似  漏洞，例如 KRACK 攻击或不安全的路由器等，不影响你与外部世界通信的完整性。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/BlankNetworkDiagram-VPN.png" alt=""></p>
+<p>这里的重要警告是，在选择 VPN 提供商时，必须保证它们的合理地可信性；否则，您只是同另一组恶意行为者进行交易。远离任何提供“免费 VPN”的提供商，他们很可能把你作为间谍目标，或者出售您的流量给营销公司赚钱。 </p>
+<p>并非所有的设备都需要安装 VPN，但您每天使用的、涉及访问个人私人信息网站的—— 尤其是访问您的金钱和身份信息（政府、银行网站、社交网络等）的任何东西都必须得到安全保护。VPN 不是应对所有网络层漏洞的灵丹妙药，但它肯定会有所帮助，当你在机场使用不安全的 Wi-Fi 卡，或者下次类似 KRACK 漏洞被发现的时候。</p>
+<h2 id="扩展阅读：《The-Cyber-Security-Master》"><a href="#扩展阅读：《The-Cyber-Security-Master》" class="headerlink" title="扩展阅读：《The Cyber-Security Master》"></a>扩展阅读：<a target="_blank" rel="noopener" href="https://www.gitbook.com/book/riboseyim/cyber-security-manual">《The Cyber-Security Master》</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/11/12/DevOps-Container-Security/">Cyber-Security: Linux 容器安全的十重境界</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/10/29/CyberSecurity-WiFi/">Cyber-Security: 警惕 Wi-Fi 漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/31/CyberSecurity-Headers/">Cyber-Security: Web应用安全：攻击、防护和检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/08/09/Protocol-IPv6/">Cyber-Security: IPv6 &amp; Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/06/CyberSecurity-SSH/">Cyber-Security: OpenSSH 并不安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/06/12/CyberSecurity-Trojan/">Cyber-Security: Linux/XOR.DDoS 木马样本分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">浅谈基于数据分析的网络态势感知</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/06/16/Network-Pcap/">Packet Capturing:关于网络数据包的捕获、过滤和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/04/26/Network-Ntopng/">新一代Ntopng网络流量监控—可视化和架构分析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/670c4d2bb419">Cyber-Security: 事与愿违的后门程序 | Economist</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2016/10/07/CyberSecurity/">Cyber-Security: 美国网络安全立法策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/04/09/CyberSecurity-CSTCB/">Cyber-Security: 香港警务处拟增设网络安全与科技罪案总警司</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/BGP_hijacking">BGP hijacking，BGP 劫持</a></li>
+<li><a target="_blank" rel="noopener" href="https://letsencrypt.org/">“Let’s Encrypt” 项目,Let’s Encrypt is a free, automated, and open Certificate Authority.</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5NjA0NjI5MQ==&amp;mid=402074320&amp;idx=1&amp;sn=e81d1be8ce013b813dd3a8cdd050d04f&amp;scene=1&amp;srcid=0117tzKNHcCeyGHrnkwjv2WN%23rd">2015年去过凯悦？请小心你的银行卡 | 2016-01-17 安全威胁情报</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/10/29/CyberSecurity-WiFi/" data-id="ckwgm33ka003m7b1yi04cj09u" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cyber-Security/" rel="tag">Cyber-Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Policy-Law/" rel="tag">Policy&Law</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/30/Protocol-gRPC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          计算机远程通信协议：gRPC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/24/Linux-Perf-Picture/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux 性能诊断:荐书《图解性能优化》</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cyber-Security-%E8%AD%A6%E6%83%95-Wi-Fi-%E6%BC%8F%E6%B4%9E-KRACK"><span class="toc-number">2.</span> <span class="toc-text">Cyber-Security: 警惕 Wi-Fi 漏洞 KRACK</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8D%E5%8F%AF%E4%BF%A1%E4%BB%BB%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9AWi-Fi"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、不可信任的基础设施：Wi-Fi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E5%85%A8%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%EF%BC%9AHTTPS"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、安全通信协议：HTTPS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8E%86%E5%8F%B2%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98%EF%BC%9ADNS"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、历史遗留问题：DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%9C%80%E5%90%8E%E4%B8%80%E8%8B%B1%E9%87%8C%E7%9A%84%E5%AE%89%E5%85%A8%EF%BC%9AVPN"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、最后一英里的安全：VPN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E3%80%8AThe-Cyber-Security-Master%E3%80%8B"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：《The Cyber-Security Master》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

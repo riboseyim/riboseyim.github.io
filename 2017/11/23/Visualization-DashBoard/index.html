@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数据可视化（六）常见的可视化仪表盘(DashBoard) | Ribose Yim&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要 仪表盘（DashBoard） 决策路径 (Decision Path) ELK Stack（Elasticsearch、Logtash、Kibana） Graphite &amp; Grafana Keen IO 、Librato、DataDog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化（六）常见的可视化仪表盘(DashBoard)">
+<meta property="og:url" content="https://riboseyim.com/2017/11/23/Visualization-DashBoard/index.html">
+<meta property="og:site_name" content="Ribose Yim&#39;s Home">
+<meta property="og:description" content="摘要 仪表盘（DashBoard） 决策路径 (Decision Path) ELK Stack（Elasticsearch、Logtash、Kibana） Graphite &amp; Grafana Keen IO 、Librato、DataDog">
+<meta property="og:locale">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_ELK_Kibana.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_Grafana.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_Keenio.jpg">
+<meta property="og:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_DataDog.jpg">
+<meta property="article:published_time" content="2017-11-23T01:34:51.000Z">
+<meta property="article:modified_time" content="2023-08-16T02:50:10.260Z">
+<meta property="article:author" content="RiboseYim">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="架构师">
+<meta property="article:tag" content="Developer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://riboseyim-qiniu.riboseyim.com/DashBoards_ELK_Kibana.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Ribose Yim&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129742531-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riboseyim.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags/DevOps">DevOps</a>
+        
+          <a class="main-nav-link" href="/tags/Machine-Learning">机器学习</a>
+        
+          <a class="main-nav-link" href="/tags/Economist">经济学人</a>
+        
+          <a class="main-nav-link" href="/tags/Policy-Law">Policy&amp;Law</a>
+        
+          <a class="main-nav-link" href="/charts">图表</a>
+        
+          <a class="main-nav-link" href="/2017/02/09/eBook">电子书</a>
+        
+          <a class="main-nav-link" href="/2016/05/31/AboutMe">关于</a>
+        
+          <a class="main-nav-link" href="https://riboseyim.com">TechBlog</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ribose Yim&#39;s Home</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Visualization-DashBoard" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/23/Visualization-DashBoard/" class="article-date">
+  <time datetime="2017-11-23T01:34:51.000Z" itemprop="datePublished">2017-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">工程技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据可视化（六）常见的可视化仪表盘(DashBoard)
+    </h1>
+  
+
+      </header>
+      
+      <footer class="article-footer">
+        <a data-url="https://riboseyim.com/2017/11/23/Visualization-DashBoard/" data-id="ckwgm33pf014f7b1yz4dtkl03" class="article-share-link">分享</a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+      </footer>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>仪表盘（DashBoard）</li>
+<li>决策路径 (Decision Path)</li>
+<li>ELK Stack（Elasticsearch、Logtash、Kibana）</li>
+<li>Graphite &amp; Grafana</li>
+<li>Keen IO 、Librato、DataDog</li>
+</ul>
+<span id="more"></span>
+<h4 id="仪表盘（DashBoard）"><a href="#仪表盘（DashBoard）" class="headerlink" title="仪表盘（DashBoard）"></a>仪表盘（DashBoard）</h4><ul>
+<li>指标工具 (Metrics Tools)</li>
+<li>可视化工具 (Visualization Tools)</li>
+<li>日志管理工具 (Log Management tools)</li>
+</ul>
+<h4 id="决策路径-Decision-Path"><a href="#决策路径-Decision-Path" class="headerlink" title="决策路径 (Decision Path)"></a>决策路径 (Decision Path)</h4><ol>
+<li>OpenSource or SaaS ?</li>
+</ol>
+<ul>
+<li>开源软件：需要自己安装和配置 ( Graphite and ELK stack )</li>
+<li>SaaS：需要改造现有程序、嵌入代码 ( Keen IO, Librato, and DataDog)</li>
+</ul>
+<ol>
+<li><p>Analytics or Visualization<br>复杂分析: Keen IO 、 ELK stack<br>监控/指标呈现：Graphite（Grafana）、 DataDog</p>
+</li>
+<li><p>Budget and Environment</p>
+</li>
+</ol>
+<ul>
+<li>迁移成本：例如现有资产中已经有 Graphite 数据，采用Grafana可即时提升数据可视化效果</li>
+<li>成本预算：例如日志分析器（log analyzer）的带宽和存储</li>
+</ul>
+<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><ul>
+<li>ELK Stack （Elasticsearch、Logtash、Kibana）</li>
+<li>Graphite &amp; Grafana : <a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/07/14/Network-sFlow/">基于数据分析的网络态势感知</a></li>
+<li>Keen IO</li>
+<li>Librato</li>
+<li>DataDog</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>价格</th>
+<th>优点</th>
+<th>弱点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELK Stack</td>
+<td>免费（Elastic paid plans 提供不同级别的专家服务）</td>
+<td>Strong Communities;Kibana 包含商业分析；ES 与 Kibana 易集成</td>
+<td>安装配置；大规模使用时的机器成本</td>
+</tr>
+<tr>
+<td>Graphite</td>
+<td>免费</td>
+<td>real-time graphs of numeric and time-differentiated data</td>
+<td>数据采集和复杂分析能力弱；</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>免费</td>
+<td>支持多种数据源，提供丰富的插件</td>
+<td>不提供数据存储，不提供数据采集</td>
+</tr>
+<tr>
+<td>Keen IO</td>
+<td>Free to $2000/月，按量收费</td>
+<td>实时/归档数据可视化能力强；易于共享和提取数据</td>
+<td>需要嵌入代码，依赖和拓展管理难度</td>
+</tr>
+<tr>
+<td>Librato</td>
+<td>按指标收费</td>
+<td>监测和管理云应用，提供可以高度定制化的报表及告警功能</td>
+<td>计费复杂，不提供数据采集，需要嵌入代码，依赖和拓展管理难度</td>
+</tr>
+<tr>
+<td>DataDog</td>
+<td>免费版，标准版（主机数量，$15台/月）</td>
+<td>app、软硬件数据统一</td>
+<td>目前不发展数据分析</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="ELK-Stack"><a href="#ELK-Stack" class="headerlink" title="ELK Stack"></a>ELK Stack</h4><p>Elasticsearch: 搜索和分析能力<br>Logstash: 日志聚合器(Aggregator)<br>Kibana：DashBoard</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DashBoards_ELK_Kibana.jpg" alt=""></p>
+<h4 id="Graphite-amp-Grafana"><a href="#Graphite-amp-Grafana" class="headerlink" title="Graphite &amp; Grafana"></a>Graphite &amp; Grafana</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://riboseyim.github.io/2017/12/04/Visualization-Graphite/">Graphite</a>: 开发语言（Python），支持数据存储、图形化和可视化，本身并不收集数据，需要和采集工具配合。</li>
+<li>Grafana: 开发语言（Go），提供了一个指标集的仪表盘，<strong>可以将 Graphite 作为数据源（DataSource）</strong>。</li>
+</ul>
+<blockquote>
+<p>Grafana provides many additional features and spiffy looking visuals to Graphite</p>
+</blockquote>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DashBoards_Grafana.jpg" alt=""></p>
+<h4 id="Keen-IO"><a href="#Keen-IO" class="headerlink" title="Keen IO"></a>Keen IO</h4><p>Keen IO is a <strong>SaaS</strong> analytics infrastructure platform.<br><img src="http://riboseyim-qiniu.riboseyim.com/DashBoards_Keenio.jpg" alt=""></p>
+<h4 id="Librato"><a href="#Librato" class="headerlink" title="Librato"></a>Librato</h4><p>监测和管理云应用；<br>提供可以高度定制化的报表；<br>提供多样化的告警通知方式：邮件、HipChat、Campfire、HTTP Post</p>
+<h4 id="DataDog"><a href="#DataDog" class="headerlink" title="DataDog"></a>DataDog</h4><p>DataDog is SaaS monitoring tool.<br>DataDog 主要围绕数据聚集和呈现，并不关注数据分析，即强调所有硬件、软件产生的数据实现汇聚统一。</p>
+<p><img src="http://riboseyim-qiniu.riboseyim.com/DashBoards_DataDog.jpg" alt=""></p>
+<h2 id="扩展阅读：数据可视化"><a href="#扩展阅读：数据可视化" class="headerlink" title="扩展阅读：数据可视化"></a>扩展阅读：数据可视化</h2><ul>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-OmniGraffle/">数据可视化（一）思维利器 OmniGraffle 绘图指南 </a></li>
+<li><a href="https://riboseyim.com/2016/04/26/Visualization-BestAppMap">数据可视化（二）跑步应用Nike+ Running 和 Garmin Mobile 评测</a></li>
+<li><a href="https://riboseyim.com/2017/09/15/Visualization-Graphviz/">数据可视化（三）基于 Graphviz 实现程序化绘图</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-GIS/">数据可视化（四）开源地理信息技术简史（Geographic Information System</a></li>
+<li><a href="https://riboseyim.com/2017/05/12/Visualization-Charts/">数据可视化（五）基于网络爬虫制作可视化图表</a></li>
+<li><a href="https://riboseyim.com/2017/11/23/Visualization-DashBoard/">数据可视化（六）常见的数据可视化仪表盘(DashBoard)</a></li>
+<li><a href="https://riboseyim.com/2017/12/04/Visualization-Graphite/">数据可视化（七）Graphite 体系结构详解</a></li>
+<li><a href="https://riboseyim.com/2018/12/16/Visualization-SocialNetwork/">数据可视化（八）Program,Data and Classical Music</a></li>
+<li><a href="https://riboseyim.com/2018/01/15/Visualization-DataSource/">数据可视化（十）公共数据源列表</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://blog.takipi.com/production-tools-guide/visualization-and-metrics/"></a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riboseyim.com/2017/11/23/Visualization-DashBoard/" data-id="ckwgm33pf014f7b1yz4dtkl03" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">架构师</a></li></ul>
+
+    </footer>
+  </div>
+
+  
+    <div class="article-entry" itemprop="articleBody">
+      <p>
+      欢迎扫码关注微信公众号获取最新动态，读者交流 QQ 群：338272982 。
+      <br>
+      </p>
+      <p>
+        <a href="https://riboseyim.com" title="微信公众号@睿哥杂货铺" rel="fancy-group" class="fancy-ctn fancybox">
+          <img src="http://riboseyim-qiniu.riboseyim.com/ID_RiboseYim_201812.png" title="微信公众号@睿哥杂货铺">
+        </a>
+      </p>
+    </div>
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =10
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/27/Psychology/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          心理学 | Overview of Psychology
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/22/Visualization-Grafana/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Grafana</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%AA%E8%A1%A8%E7%9B%98%EF%BC%88DashBoard%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">仪表盘（DashBoard）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E8%B7%AF%E5%BE%84-Decision-Path"><span class="toc-number">1.0.2.</span> <span class="toc-text">决策路径 (Decision Path)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Options"><span class="toc-number">2.</span> <span class="toc-text">Options</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ELK-Stack"><span class="toc-number">2.0.1.</span> <span class="toc-text">ELK Stack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graphite-amp-Grafana"><span class="toc-number">2.0.2.</span> <span class="toc-text">Graphite &amp; Grafana</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Keen-IO"><span class="toc-number">2.0.3.</span> <span class="toc-text">Keen IO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Librato"><span class="toc-number">2.0.4.</span> <span class="toc-text">Librato</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataDog"><span class="toc-number">2.0.5.</span> <span class="toc-text">DataDog</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">扩展阅读：数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+      <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+      &copy; 2008 - 2023 RiboseYim&nbsp;
+      |&nbsp; Email:&nbsp; <a>riboseyim@gmail.com</a>
+      |&nbsp; <a href="https://twitter.com/riboseyim" target="_blank" style="color:#939393;">Twitter</a>
+      |&nbsp; <a href="https://github.com/riboseyim" target="_blank" style="color:#939393;">GitHub</a>
+      |&nbsp; <a href="https://github.com/riboseyim/riboseyim.com.comment/issues" target="_blank"> 留言箱 Message Box</a>
+    </div>
+  </div>
+  <div class="outer">
+    <div  style="width:100%;margin:0 auto; padding:10px 0;text-align:center">
+        主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank" style="color:#939393;font-size:80%">Hexo Cafe</a> |
+       <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0" style="display:inline-block;text-decoration:none;color:#939393;font-size:80%">保持署名-非商业性使用-禁止演绎| License BY-NC-ND 4.0 </a> |
+       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258500076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258500076%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  </div>
+</footer>
+
+<script src="/jquery/jquery.min.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/tags/DevOps" class="mobile-nav-link">DevOps</a>
+  
+    <a href="/tags/Machine-Learning" class="mobile-nav-link">机器学习</a>
+  
+    <a href="/tags/Economist" class="mobile-nav-link">经济学人</a>
+  
+    <a href="/tags/Policy-Law" class="mobile-nav-link">Policy&amp;Law</a>
+  
+    <a href="/charts" class="mobile-nav-link">图表</a>
+  
+    <a href="/2017/02/09/eBook" class="mobile-nav-link">电子书</a>
+  
+    <a href="/2016/05/31/AboutMe" class="mobile-nav-link">关于</a>
+  
+    <a href="https://riboseyim.com" class="mobile-nav-link">TechBlog</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+    
+ 
+
+
+  
+  
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
